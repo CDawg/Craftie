@@ -13,6 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+
 Craftie._G.Width = 600
 Craftie._G.Height= 400
 

@@ -1,7 +1,7 @@
 --default load in enUS/GB, then load overwrites. https://develop.battle.net/documentation/world-of-warCraftie/guides/localization
 
 Craftie._L = {
-	TITLE = "Craftieie",
+	TITLE = "Craftie",
 
 	INTRO = {
 		{

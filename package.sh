@@ -1,14 +1,14 @@
-echo "Removing old /E/Craftieie"
-rm -rf /e/Craftieie
-rm -rf /e/Craftieie_GIT
-echo "Copying over current Craftieie => /E/Craftieie"
-cp -r "/c/Program Files (x86)/World of WarCraftie/_anniversary_/Interface/AddOns/Craftieie" /e/Craftieie
-echo "Copying over current Craftieie => /E/Craftieie_GIT"
-cp -r "/c/Program Files (x86)/World of WarCraftie/_anniversary_/Interface/AddOns/Craftieie" /e/Craftieie_GIT
+echo "Removing old /E/Craftie"
+rm -rf /e/Craftie
+rm -rf /e/Craftie_GIT
+echo "Copying over current Craftie => /E/Craftie"
+cp -r "/c/Program Files (x86)/World of WarCraftie/_anniversary_/Interface/AddOns/Craftie" /e/Craftie
+echo "Copying over current Craftie => /E/Craftie_GIT"
+cp -r "/c/Program Files (x86)/World of WarCraftie/_anniversary_/Interface/AddOns/Craftie" /e/Craftie_GIT
 
 echo "Cleaning up .git .vscode"
-rm /e/Craftieie/.gitignore
-rm /e/Craftieie/package.sh
-rm -rf /e/Craftieie/.vscode/
-rm -rf /e/Craftieie/.git/
+rm /e/Craftie/.gitignore
+rm /e/Craftie/package.sh
+rm -rf /e/Craftie/.vscode/
+rm -rf /e/Craftie/.git/
 echo "Done!"
