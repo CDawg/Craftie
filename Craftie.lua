@@ -13,6 +13,30 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+--function OnEvent(self, event)
+--	print("Craftie.Event " .. event)
+--end
+
+Craftie.Event = CreateFrame("Frame")
+Craftie.Event:RegisterEvent("ADDON_LOADED")
+Craftie.Event:RegisterEvent("CHAT_MSG_ADDON")
+Craftie.Event:RegisterEvent("CHAT_MSG_CHANNEL")
+--Craftie.Event:RegisterEvent("PLAYER_STARTED_MOVING")
+--Craftie.Event:RegisterEvent("PLAYER_STOPPED_MOVING")
+Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, _casted, _spellID)
+  Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
+end)
+
+function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
+  if (event) then
+		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.prefix)) then
+	    --TOCA.Notification(TOCA.Addon .. " " .. TOCA._L.INIT[6] .. ". Type " .. TOCA._G.CMD .. " for commands.")
+	    Craftie.Init()
+      print("Craftie.Event " .. prefix .. " | " .. event)
+	  end
+    --print("Craftie.Event " .. prefix .. " | " .. event)
+  end
+end
 
 Craftie._G.Width = 600
 Craftie._G.Height= 400
@@ -40,8 +64,8 @@ Craftie.Frame.Scroll = {}
 
 Craftie.Frame.Scroll.Recipes = {}
 Craftie.Frame.Scroll.Recipes.List = {}
-Craftie.Frame.Scroll.Recipes_Width = Craftie._G.Width-18
-Craftie.Frame.Scroll.Recipes_Height= Craftie._G.Height-90
+Craftie.Frame.Scroll.Recipes_Width = 300
+Craftie.Frame.Scroll.Recipes_Height= 310
 
 Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame)
 Craftie.Frame.Scroll.Recipes:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
@@ -66,8 +90,9 @@ Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Fr
 Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Recipes.List.Child, "BOTTOMRIGHT", -42, 14)
 
 Craftie.Frame.Scroll.Recipes.List.Item = {}
-for i=1, 24 do
-  Craftie.Frame.Scroll.Recipes.List.Item[i] = CreateFrame("Frame", Craftie.Frame.Scroll.Recipes.List.Item[i], Craftie.Frame.Scroll.Recipes.ListChildFrame, "BackdropTemplate", -1)
+
+for i=1, 40 do
+  Craftie.Frame.Scroll.Recipes.List.Item[i] = CreateFrame("Button", Craftie.Frame.Scroll.Recipes.List.Item[i], Craftie.Frame.Scroll.Recipes.ListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetWidth(Craftie.Frame.Scroll.Recipes_Width-26) --scrollbar size
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetHeight(20)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetPoint("TOPLEFT", 2, -i*18)
@@ -91,6 +116,73 @@ for i=1, 24 do
   end)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnLeave", function(self)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropBorderColor(1, 1, 1, 0)
+  end)
+  Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
+    --for _, id in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
+      --local recipeInfo = C_TradeSkillUI.GetRecipeInfo(5)
+      --print(recipeInfo.recipeID, recipeInfo.name)
+    --end
+    --Craftie.Notification("line " .. i, true)
+    --print(C_TradeSkillUI.GetBaseProfessionInfo())
+
+    --[==[
+    local categories = {C_TradeSkillUI.GetCategories()}
+    for _, categoryID in pairs(categories) do
+	    print(categoryID, C_TradeSkillUI.GetCategoryInfo(categoryID).name)
+    end
+    --name, rank, maxRank = GetTradeSkillLine()
+    --items = C_TradeSkillUI.GetCraftingTargetItems(1015)
+    --print(items)
+    --skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps, indentLevel, showProgressBar, currentRank, maxRank, startingRank = GetTradeSkillInfo(3)
+    --print(skillName)
+    ]==]--
+
+  --[==[
+  -- this works!
+  --print(ClassicGetProfessions())
+  --profession window must be open in order to extract trade info??
+  local name, type;
+  for i=1,GetNumTradeSkills() do
+   name, type, _, _, _, _ = GetTradeSkillInfo(i)
+    if (name and type ~= "header") then
+       --DEFAULT_CHAT_FRAME:AddMessage("Found: "..name)
+       print(name .. " | " .. type)
+    end
+  end
+  ]==]--
+
+  -- /script i=1;x='a'; while x do x,_,_,y,_,_,z=GetSkillLineInfo(i); if(x) then print(x..': '..y..'/'..z);i=i+1;end;end;
+
+  --[==[
+  local skillDB = C_TradeSkillUI.GetAllProfessionTradeSkillLines()
+  for skillIndex, skillID in pairs(skillDB) do
+      local profDB = C_TradeSkillUI.GetProfessionInfoBySkillLineID(skillID)
+      XTest_ProfessionInfo[skillID] = {}
+      for profKey,profData in pairs(profDB) do
+          print(profKey,profData)
+          XTest_ProfessionInfo[skillID][profKey] = profData
+      end
+  end
+  ]==]--
+
+  --C_TradeSkillUI.OpenTradeSkill(3)
+
+  --local numberOfCrafts = GetNumCrafts()
+  --local numSkills = GetNumTradeSkills()
+  --print("crafts: " .. numberOfCrafts)
+  --print("skills: " .. numSkills)
+
+  --print(GetItemInfo(1011))
+
+  --print(C_TradeSkillUI.GetRecipeInfo(256777))
+--ProfessionsFrame.CraftingPage.SchematicForm:GetRecipeInfo()
+--print(C_TradeSkillUI.GetBaseProfessionInfo())
+
+--print(GetProfessions())
+
+  --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
+  Craftie.SendPacket("31001110010010101", "WHISPER", false)
+  --Craftie.SendPacket("WHISPER", false)
   end)
 end
 

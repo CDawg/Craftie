@@ -49,6 +49,7 @@ Craftie = {
 		combine= UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
 	},
 }
+Craftie._G.prefix = "CRAHH"
 
 function arrayToString(array)
   formstring=""

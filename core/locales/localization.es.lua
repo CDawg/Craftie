@@ -5,10 +5,9 @@ Craftie._L = {
 
 	INTRO = {
 		{
-			"|cfffa7634 Totem Caddy Devs are looking for language translators! Please click the contact tab to get more details if you would like to contribute to Totem Caddy!|r",
+			"|cffF57327 Craftie|r",
 			"",
-			"|cfffab734First time using Totem Caddy?|r",
-			"Select the Help tab for more info|n|n",
+			"|cfffab734First time using Craftie?|r",
 			"UPDATES",
 		},
 	}

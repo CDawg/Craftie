@@ -9,7 +9,8 @@
 ## OptionalDeps: Blizzard_RaidFrame, Blizzard_RaidUI, Blizzard_CompactRaidFrames, Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
 
 # Library
-core/CraftieLibrary.lua
+core/external/luazw.lua
+core/library/global.lua
 
 # Localization
 # core/locales/localization.en.lua
