@@ -13,6 +13,20 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+Craftie._G = {
+  --title  = TOCA.colors.class[7][4] .. TOCA._L.TITLE .."|r",
+  author = "Porthias",
+  CMD    = "/craftie",
+  --width  = 150,
+  --height = 85,
+  font   = "Interface/Addons/Craftie/fonts/FRIZQT__.TTF",
+  dir    = "Interface/Addons/Craftie/",
+  prefix = "CRAHH",
+  suffix = "TBC Anniversary",
+  date   = date("%Y%m%d"),
+  update = 20260608,
+}
+
 Craftie.Framelevel = {
   Background= 0,
   Foreground= 1,
@@ -28,14 +42,7 @@ function Craftie.Notification(msg, debug)
 end
 
 function Craftie.Init()
-  for _, v in ipairs({Craftie.GetProfessions()}) do
-    if v then
-      local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier = GetSkillLineInfo( v )
-      print(name)
-      print(rank)
-      print(maxRank)
-    end
-  end
+--init
 end
 
 Craftie.Professions = {
@@ -55,7 +62,7 @@ Craftie.Professions = {
   {"Jewelcrafting", "INV_Misc_Gem_02",     "1.00, 0.25, 0.25"},
 }
 
-function Craftie.GetProfessions()
+function Craftie.GetProfessionsPlayer()
 	local pass = false
 	local skills = {}
 	local skillnum = 0
@@ -83,6 +90,9 @@ function Craftie.GetProfessions()
 	return skills[1], skills[2], skills[3], skills[4], skills[5]
 end
 
+function Craftie.GetProfessionsLibrary(lib)
+
+end
 
 function Craftie.SendPacket(packet, channel, compress)
   compressPacket = packet

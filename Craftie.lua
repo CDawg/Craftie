@@ -17,27 +17,6 @@ the copyright holders.
 --	print("Craftie.Event " .. event)
 --end
 
-Craftie.Event = CreateFrame("Frame")
-Craftie.Event:RegisterEvent("ADDON_LOADED")
-Craftie.Event:RegisterEvent("CHAT_MSG_ADDON")
-Craftie.Event:RegisterEvent("CHAT_MSG_CHANNEL")
---Craftie.Event:RegisterEvent("PLAYER_STARTED_MOVING")
---Craftie.Event:RegisterEvent("PLAYER_STOPPED_MOVING")
-Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, _casted, _spellID)
-  Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
-end)
-
-function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
-  if (event) then
-		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.prefix)) then
-	    --TOCA.Notification(TOCA.Addon .. " " .. TOCA._L.INIT[6] .. ". Type " .. TOCA._G.CMD .. " for commands.")
-	    Craftie.Init()
-      print("Craftie.Event " .. prefix .. " | " .. event)
-	  end
-    --print("Craftie.Event " .. prefix .. " | " .. event)
-  end
-end
-
 Craftie._G.Width = 600
 Craftie._G.Height= 400
 
@@ -59,6 +38,11 @@ Craftie.Frame:SetScript("OnDragStop", function()
   -- CraftieDB[Craftie.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
   Craftie.Notification("[" .. Craftie.player.combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true)
 end)
+
+Craftie.Icon = Craftie.Frame:CreateTexture(nil, "ARTWORK")
+Craftie.Icon:SetSize(54, 54)
+Craftie.Icon:SetPoint("TOPLEFT", -4, 4)
+Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
 
 Craftie.Frame.Scroll = {}
 
@@ -91,7 +75,10 @@ Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Crafti
 
 Craftie.Frame.Scroll.Recipes.List.Item = {}
 
-for i=1, 40 do
+--for i=1, 40 do
+Craftie.Frame.Scroll.Text={}
+
+for i=1, getn(Craftie.Profession.Alchemy) do
   Craftie.Frame.Scroll.Recipes.List.Item[i] = CreateFrame("Button", Craftie.Frame.Scroll.Recipes.List.Item[i], Craftie.Frame.Scroll.Recipes.ListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetWidth(Craftie.Frame.Scroll.Recipes_Width-26) --scrollbar size
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetHeight(20)
@@ -104,20 +91,33 @@ for i=1, 40 do
 		  insets  = {left=0, right=0, top=1, bottom=1},
 		}
   )
-  Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.1)
-  if (i % 2 == 0) then
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.2)
-  end
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetFrameLevel(Craftie.Framelevel.Background)
+  Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.1)
 
+  Craftie.Frame.Scroll.Text[i] = Craftie.Frame.Scroll.Recipes.List.Item[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.Scroll.Text[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
+  Craftie.Frame.Scroll.Text[i]:SetPoint("TOPLEFT", 8, -4)
+  Craftie.Frame.Scroll.Text[i]:SetText(Craftie.Profession.Alchemy[i][2])
+  Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
+
+  if (i % 2 == 0) then
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.15)
+  end
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnEnter", function(self)
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 0.9, 0.9, 0.2)
+    Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 0.8, 1)
   end)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnLeave", function(self)
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropBorderColor(1, 1, 1, 0)
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.1)
+    Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
+      if (i % 2 == 0) then
+        Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.15)
+      end
   end)
+
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
+    print(Craftie.Profession.Alchemy[i][1])
     --for _, id in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
       --local recipeInfo = C_TradeSkillUI.GetRecipeInfo(5)
       --print(recipeInfo.recipeID, recipeInfo.name)
@@ -180,8 +180,19 @@ for i=1, 40 do
 
 --print(GetProfessions())
 
+for _, v in ipairs({Craftie.GetProfessionsPlayer()}) do
+  if v then
+    local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier = GetSkillLineInfo( v )
+    print("GetProfessions " .. name .. " [" .. maxRank .. "]")
+  end
+end
+
+--for k, v in ipairs(Craftie.Profession.Alchemy) do
+  --print(v[2])
+--end
+
   --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
-  Craftie.SendPacket("31001110010010101", "WHISPER", false)
+  Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
   --Craftie.SendPacket("WHISPER", false)
   end)
 end

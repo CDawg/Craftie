@@ -13,11 +13,13 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+--22840 Elixir of Major Mageblood
+
 __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 
 Craftie = {
 	_L={},
-  _G={},
+  --_G={},
 
 	--Category = "|cff0070DDTotem Caddy", --options/keybindings
 
@@ -49,7 +51,8 @@ Craftie = {
 		combine= UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
 	},
 }
-Craftie._G.prefix = "CRAHH"
+Craftie.Profession={}
+Craftie.Professions={}
 
 function arrayToString(array)
   formstring=""

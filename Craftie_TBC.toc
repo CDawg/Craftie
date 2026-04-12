@@ -10,7 +10,9 @@
 
 # Library
 core/external/luazw.lua
-core/library/global.lua
+core/CraftieLibrary.lua
+core/CraftieEventManager.lua
+core/library/alchemy.lua
 
 # Localization
 # core/locales/localization.en.lua
