@@ -1,4 +1,4 @@
-TBC_BLACKSMITHING_RECIPES = {
+Craftie.Profession.Blacksmithing = {
 
 [2018] = {
     spellID      = 2018,

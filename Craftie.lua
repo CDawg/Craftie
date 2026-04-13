@@ -17,7 +17,7 @@ the copyright holders.
 --	print("Craftie.Event " .. event)
 --end
 
-Craftie._G.Width = 600
+Craftie._G.Width = 800
 Craftie._G.Height= 400
 
 Craftie.Frame={}
@@ -93,7 +93,7 @@ for i=1, getn(Craftie.Profession.Alchemy) do
   )
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetFrameLevel(Craftie.Framelevel.Background)
-  Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.1)
+  Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
 
   Craftie.Frame.Scroll.Text[i] = Craftie.Frame.Scroll.Recipes.List.Item[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.Scroll.Text[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
@@ -102,22 +102,27 @@ for i=1, getn(Craftie.Profession.Alchemy) do
   Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
 
   if (i % 2 == 0) then
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.15)
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(0.6, 0.7, 1, 0.1)
   end
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnEnter", function(self)
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 0.9, 0.9, 0.2)
+    --GameTooltip:SetOwner(Craftie.Frame, "BOTTOMRIGHT")
+    --GameTooltip:AddLine("HelloWorld!")
+    --GameTooltip:Show()
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(0.6, 0.7, 1, 0.15)
     Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 0.8, 1)
   end)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnLeave", function(self)
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.1)
+    GameTooltip:Hide()
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
     Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
       if (i % 2 == 0) then
-        Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0.15)
+        Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
       end
   end)
 
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
-    print(Craftie.Profession.Alchemy[i][1])
+    --print(C_TradeSkillUI.GetRecipeOutputItemData(Craftie.Profession.Alchemy[i][1]))
+
     --for _, id in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
       --local recipeInfo = C_TradeSkillUI.GetRecipeInfo(5)
       --print(recipeInfo.recipeID, recipeInfo.name)
@@ -136,6 +141,11 @@ for i=1, getn(Craftie.Profession.Alchemy) do
     --skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps, indentLevel, showProgressBar, currentRank, maxRank, startingRank = GetTradeSkillInfo(3)
     --print(skillName)
     ]==]--
+     --name, rank, maxRank = GetTradeSkillLine()
+    --print(C_TradeSkillUI.GetCraftingTargetItems(1015))
+    --print(items)
+    --skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps, indentLevel, showProgressBar, currentRank, maxRank, startingRank = GetTradeSkillInfo(3)
+    --print(skillName)
 
   --[==[
   -- this works!
@@ -172,7 +182,9 @@ for i=1, getn(Craftie.Profession.Alchemy) do
   --print("crafts: " .. numberOfCrafts)
   --print("skills: " .. numSkills)
 
-  --print(GetItemInfo(1011))
+  --print(C_TradeSkillUI.GetProfessionInfoByRecipeID(Craftie.Profession.Alchemy[i][1]))
+  --print(C_TradeSkillUI.GetItemCraftedQualityInfo(Craftie.Profession.Alchemy[i][2]))
+  --print(GetItemInfo(Craftie.Profession.Alchemy[i][1]))
 
   --print(C_TradeSkillUI.GetRecipeInfo(256777))
 --ProfessionsFrame.CraftingPage.SchematicForm:GetRecipeInfo()
@@ -180,19 +192,38 @@ for i=1, getn(Craftie.Profession.Alchemy) do
 
 --print(GetProfessions())
 
+--itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expansionID, setID, isCraftingReagent = C_Item.GetItemInfo(Craftie.Profession.Alchemy[i][1])
+--local itemName, itemLink = C_Item.GetItemInfo(Craftie.Profession.Alchemy[i][2])
+
+--works
+--print(GetItemIcon(Craftie.Profession.Alchemy[i][1]))
+--link = GetCraftRecipeLink(Craftie.Profession.Alchemy[i][1])
+--print(link)
+  print(Craftie.Profession.Alchemy[i][1])
+  --print(GetTradeSkillRecipeLink(Craftie.Profession.Alchemy[i][1]))
+  --print(C_TradeSkillUI.GetCraftingTargetItems(Craftie.Profession.Alchemy[i][1]))
+  --local result = C_Item.GetItemChildInfo(Craftie.Profession.Alchemy[i][2])
+  --for k, v in pairs(result) do 
+    --print(k, v) 
+  --end
+  --print(C_Item.GetItemSpell(Craftie.Profession.Alchemy[i][1]))
+
+
+--[==[
 for _, v in ipairs({Craftie.GetProfessionsPlayer()}) do
   if v then
     local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier = GetSkillLineInfo( v )
     print("GetProfessions " .. name .. " [" .. maxRank .. "]")
   end
 end
+]==]--
 
 --for k, v in ipairs(Craftie.Profession.Alchemy) do
   --print(v[2])
 --end
 
   --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
-  Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
+  --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
   --Craftie.SendPacket("WHISPER", false)
   end)
 end

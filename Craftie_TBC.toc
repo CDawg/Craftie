@@ -12,7 +12,8 @@
 core/external/luazw.lua
 core/CraftieLibrary.lua
 core/CraftieEventManager.lua
-core/library/alchemy.lua
+library/reagents.lua
+library/alchemy.lua
 
 # Localization
 # core/locales/localization.en.lua
