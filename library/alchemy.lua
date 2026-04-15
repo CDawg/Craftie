@@ -14,7 +14,8 @@ the copyright holders.
 ]==]--
 
 --spellID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
-Craftie.Profession.Alchemy = {
+--Craftie.Profession.Alchemy = {
+data = {
 {2329, "Elixir of Lion's Strength", 1, 2454, "", {{2449, 1}, {765, 1}, {3371, 1}}, "inv_potion_56", "", 1},
 {2330, "Minor Healing Potion", 1, 118, "", {{2447, 1}, {765, 1}, {3371, 1}}, "inv_potion_49", "", 1},
 {2331, "Minor Mana Potion", 25, 2455, "", {{785, 1}, {765, 1}, {3371, 1}}, "inv_potion_70", "", 1},

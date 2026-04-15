@@ -94,6 +94,15 @@ function getKeyFromValue(_array, value, index)
 	end
 end
 
+local function insertUnique(t, value)
+  local seen = {}
+  for _, v in ipairs(t) do seen[v] = true end
+  
+  if not seen[value] then
+      table.insert(t, value)
+  end
+end
+
 function reindexArray(input, reval)
   local n=#input
   for i=1,n do

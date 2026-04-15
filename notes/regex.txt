@@ -3,3 +3,32 @@ sourceDetail = \{.*\},
 
 \[[0-9]\]
 
+
+LUA For Windows
+local max_reagents = 6
+--local sqltable = 'select `entry`, `name` from `item_template` where entry ="'
+local sqltable = ' OR `entry`="'
+local reagent = {}
+
+local function insertUnique(t, value)
+  local seen = {}
+  for _, v in ipairs(t) do seen[v] = true end
+  if not seen[value] then
+    table.insert(t, value)
+  end
+end
+
+for index, value in ipairs(data) do
+  for i=1, max_reagents do
+    --reagent[i] = 0
+    if (value[6][i] ~= nil) then
+      insertUnique(reagent, value[6][i][1])
+    end
+  end
+end
+
+for k, v in ipairs(reagent) do
+  --print(sqltable .. v .. '";')
+  print(sqltable .. v .. '"')
+end
+
