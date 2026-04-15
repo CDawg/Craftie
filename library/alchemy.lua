@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---spellID, name, requiredSkill, craftedID, RecipeItemID, MatQuantity, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
+--spellID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
 Craftie.Profession.Alchemy = {
 {2329, "Elixir of Lion's Strength", 1, 2454, "", {{2449, 1}, {765, 1}, {3371, 1}}, "inv_potion_56", "", 1},
 {2330, "Minor Healing Potion", 1, 118, "", {{2447, 1}, {765, 1}, {3371, 1}}, "inv_potion_49", "", 1},
@@ -23,7 +23,6 @@ Craftie.Profession.Alchemy = {
 {2334, "Elixir of Minor Fortitude", 50, 2458, "", {{2449, 2}, {2447, 1}, {3371, 1}}, "inv_potion_42", "", 1},
 {2335, "Swiftness Potion", 60, 2459, 2555, {{2452, 1}, {2450, 1}, {3371, 1}}, "inv_potion_95","inv_scroll_06", 2},
 {2337, "Lesser Healing Potion", 55, 858, "", {{118, 1}, {2450, 1}}, "inv_potion_50", "", 1},
---50
 {3170, "Weak Troll's Blood Potion", 15, 3382, "", {{2447, 1}, {2449, 2}, {3371, 1}}, "inv_potion_77", "", 1},
 {3171, "Elixir of Wisdom", 90, 3383, "", {{785, 1}, {2450, 2}, {3371, 1}}, "inv_potion_06", "", 1},
 {3172, "Minor Magic Resistance Potion", 110, 3384, 3393, {{785, 3}, {3355, 1}, {3371, 1}}, "", "", 2},
@@ -42,7 +41,6 @@ Craftie.Profession.Alchemy = {
 {3452, "Mana Potion", 160, 3827, "", {{3820, 1}, {3356, 1}, {3372, 1}}, "inv_potion_72", "", 1},
 {3453, "Elixir of Detect Lesser Invisibility", 195, 3828, 3832, {{3358, 1}, {3818, 1}, {3372, 1}}, "inv_potion_01","inv_scroll_06", 2},
 {3454, "Frost Oil", 200, 3829, 14634, {{3358, 4}, {3819, 2}, {3372, 1}}, "inv_potion_20","inv_scroll_06", 3},
---125
 {4508, "Discolored Healing Potion", 50, 4596, "", {{3164, 1}, {2447, 1}, {3371, 1}}, "inv_potion_35", "", 3},
 {4942, "Lesser Stoneshield Potion", 215, 4623, "", {{3858, 1}, {3821, 1}, {3372, 1}}, "inv_potion_67", "", 3},
 {6617, "Rage Potion", 60, 5631, 5640, {{5635, 2}, {3371, 1}}, "inv_potion_24","inv_scroll_03", 3},
@@ -85,7 +83,6 @@ Craftie.Profession.Alchemy = {
 {11478, "Elixir of Detect Demon", 250, 9233, "", {{8846, 2}, {8925, 1}}, "inv_potion_53", "", 1},
 {11479, "Transmute: Iron to Gold", 225, 3577, 9304, {{3575, 1}}, "inv_ingot_03","inv_scroll_03", 3},
 {11480, "Transmute: Mithril to Truesilver", 225, 6037, 9305, {{3860, 1}}, "inv_ingot_08","inv_scroll_03", 1},
---200
 {12609, "Catseye Elixir", 200, 10592, "", {{3821, 1}, {3818, 1}, {3372, 1}}, "inv_potion_36", "", 1},
 {15833, "Dreamless Sleep Potion", 230, 12190, "", {{8831, 3}, {8925, 1}}, "inv_potion_83", "", 1},
 {17187, "Transmute: Arcanite", 275, 12360, 12958, {{12359, 1}, {12363, 1}}, "inv_misc_stonetablet_05","inv_scroll_03", 3},
@@ -173,7 +170,6 @@ Craftie.Profession.Alchemy = {
 {28589, "Flask of Relentless Assault", 390, 22854, "", {{22794, 1}, {22793, 3}, {22789, 7}, {18256, 1}}, "inv_potion_117", "", 3},
 {28590, "Flask of Blinding Light", 390, 22861, "", {{22794, 1}, {22793, 3}, {22791, 7}, {18256, 1}}, "inv_potion_116", "", 3},
 {28591, "Flask of Pure Death", 390, 22866, "", {{22794, 1}, {22793, 3}, {22792, 7}, {18256, 1}}, "inv_potion_115", "", 3},
---275
 {29688, "Transmute: Primal Might", 350, 23571, 23574, {{22452, 1}, {21885, 1}, {22451, 1}, {21884, 1}, {22457, 1}}, "spell_nature_lightningoverload","inv_scroll_06", 3},
 {32765, "Transmute: Earthstorm Diamond", 350, 25867, 25869, {{23079, 3}, {23107, 3}, {23112, 3}, {22452, 2}, {21885, 2}}, "inv_misc_gem_diamond_04","inv_scroll_03", 3},
 {32766, "Transmute: Skyfire Diamond", 350, 25868, 25870, {{23077, 3}, {21929, 3}, {23117, 3}, {21884, 2}, {22451, 2}}, "inv_misc_gem_diamond_05","inv_scroll_03", 3},

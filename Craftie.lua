@@ -78,6 +78,67 @@ Craftie.Frame.Scroll.Recipes.List.Item = {}
 --for i=1, 40 do
 Craftie.Frame.Scroll.Text={}
 
+function Craftie.GetItemInfo(item)
+  
+end
+
+local max_reagents = 6
+
+Craftie.Frame.Reagent = {}
+Craftie.Frame.Reagent.Back = {}
+Craftie.Frame.Reagent.Icon = {}
+Craftie.Frame.Reagent.Text = {}
+Craftie.Frame.Reagent.Data = {}
+Craftie.Frame.Reagent_Width = 100
+Craftie.Frame.Reagent_Height= 35
+for i=1, max_reagents do
+  Craftie.Frame.Reagent.Back[i] = CreateFrame("Frame", Craftie.Frame, Craftie.Frame, "BackdropTemplate")
+  Craftie.Frame.Reagent.Back[i]:SetWidth(Craftie.Frame.Reagent_Width)
+  Craftie.Frame.Reagent.Back[i]:SetHeight(Craftie.Frame.Reagent_Height)
+  if (i % 2 == 0) then
+    Craftie.Frame.Reagent.Back[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width+35, (-i*18)-20)
+  else
+    local p = i+1
+    Craftie.Frame.Reagent.Back[i]:SetPoint("CENTER", 0, (-p*18)-20)
+  end
+  Craftie.Frame.Reagent.Back[i]:SetBackdrop(Craftie.Backdrop.General)
+  Craftie.Frame.Reagent.Back[i]:SetBackdropColor(0, 0, 0, 1)
+  Craftie.Frame.Reagent.Back[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
+  Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Back[i]:CreateTexture(nil, "ARTWORK")
+  Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-2, Craftie.Frame.Reagent_Height-2)
+  Craftie.Frame.Reagent.Icon[i]:SetPoint("CENTER", -65, 0)
+  Craftie.Frame.Reagent.Icon[i]:SetTexture("Interface/Icons/inv_misc_questionmark")
+  Craftie.Frame.Reagent.Text[i] =  Craftie.Frame.Reagent.Back[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.Reagent.Text[i]:SetFont(Craftie._G.font, 10, "OUTLINE")
+  Craftie.Frame.Reagent.Text[i]:SetPoint("TOPLEFT", 2, -6)
+  Craftie.Frame.Reagent.Text[i]:SetText(i)
+  Craftie.Frame.Reagent.Text[i]:SetWidth(Craftie.Frame.Reagent_Width-10)
+  Craftie.Frame.Reagent.Text[i]:SetWordWrap(true)
+  Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.Reagent.Back[i]:Hide()
+end
+
+function Craftie.ReagentList(item)
+  local reagent = {}
+  for i=1, max_reagents do
+    reagent[i] = 0
+     Craftie.Frame.Reagent.Back[i]:Hide()
+    if (not isempty(item[6][i])) then
+      --Craftie.Frame.Reagent.Text[i]:SetText(item[6][i][1])
+      local r = 0
+      r = getKeyFromValue(Craftie.Reagent, item[6][i][1], 1)
+      --print(Craftie.Reagent[r][2])
+      Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
+      Craftie.Frame.Reagent.Icon[i]:SetTexture(C_Item.GetItemIconByID(Craftie.Reagent[r][1]))
+      --print(C_Item.GetItemIconByID(Craftie.Reagent[r][3]))
+      Craftie.Frame.Reagent.Back[i]:Show()
+    end
+    --if (reagent[i] > 1) then
+      --print("reagent " .. reagent[i])
+    --end
+  end
+end
+
 for i=1, getn(Craftie.Profession.Alchemy) do
   Craftie.Frame.Scroll.Recipes.List.Item[i] = CreateFrame("Button", Craftie.Frame.Scroll.Recipes.List.Item[i], Craftie.Frame.Scroll.Recipes.ListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetWidth(Craftie.Frame.Scroll.Recipes_Width-26) --scrollbar size
@@ -199,7 +260,11 @@ for i=1, getn(Craftie.Profession.Alchemy) do
 --print(GetItemIcon(Craftie.Profession.Alchemy[i][1]))
 --link = GetCraftRecipeLink(Craftie.Profession.Alchemy[i][1])
 --print(link)
-  print(Craftie.Profession.Alchemy[i][1])
+  print("craftie " .. Craftie.Profession.Alchemy[i][1])
+  --print(Craftie.Profession.Alchemy[i][6][1][1])
+  Craftie.ReagentList(Craftie.Profession.Alchemy[i])
+  --local r1 = getKeyFromValue(Craftie.Reagent, 2449, 1)
+  --print(Craftie.Reagent[r1][2])
   --print(GetTradeSkillRecipeLink(Craftie.Profession.Alchemy[i][1]))
   --print(C_TradeSkillUI.GetCraftingTargetItems(Craftie.Profession.Alchemy[i][1]))
   --local result = C_Item.GetItemChildInfo(Craftie.Profession.Alchemy[i][2])

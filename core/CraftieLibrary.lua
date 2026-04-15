@@ -19,29 +19,8 @@ __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 
 Craftie = {
 	_L={},
-  --_G={},
 
 	--Category = "|cff0070DDTotem Caddy", --options/keybindings
-
-	Backdrop={
-		General = {
-		  --bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
-      bgFile  = "Interface/TutorialFrame/TutorialFrameBackground",
-		  edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
-		  edgeSize= 12,
-		  insets  = {left=2, right=2, top=2, bottom=2},
-		},
-		Button = {
-		  bgFile  = "Interface/Buttons/GoldGradiant",
-		  edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
-		  edgeSize= 10,
-		  insets  = {left=2, right=2, top=2, bottom=2},
-		},
-		Slider = {
-			Template = "UISliderTemplateWithLabels",
-		}
-	},
-
 	player = {
 	  name   = UnitName("player"),
 	  realm  = GetRealmName(),

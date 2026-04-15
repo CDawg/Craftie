@@ -1,6 +1,6 @@
 
 --ItemID, name, DisplayID, ItemLevel, RequiredLevel, Material
-Craftie.Reagents = {
+Craftie.Reagent = {
 {118, "Minor Healing Potion", "15710", "5", "1", "3"},
 {723, "Goretusk Liver", "7369", "12", "0", "8"},
 {729, "Stringy Vulture Meat", "7407", "10", "0", "4"},
