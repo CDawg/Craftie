@@ -6,7 +6,6 @@ sourceDetail = \{.*\},
 
 LUA For Windows
 local max_reagents = 6
---local sqltable = 'select `entry`, `name` from `item_template` where entry ="'
 local sqltable = ' OR `entry`="'
 local reagent = {}
 
@@ -31,4 +30,3 @@ for k, v in ipairs(reagent) do
   --print(sqltable .. v .. '";')
   print(sqltable .. v .. '"')
 end
-

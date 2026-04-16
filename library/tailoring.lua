@@ -13,8 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---spellID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
-
+--itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
 Craftie.Profession.Tailoring = {
 {2385, "Brown Linen Vest", 10, 2568, "", {{2996, 1}, {2320, 1}}, "inv_shirt_05", "", 1},
 {2386, "Linen Boots", 65, 2569, "", {{2996, 3}, {2320, 1}, {2318, 1}}, "inv_boots_09", "", 1},
@@ -69,9 +68,6 @@ Craftie.Profession.Tailoring = {
 {3871, "Formal White Shirt", 170, 4334, "", {{4305, 3}, {2324, 2}, {2321, 1}}, "inv_shirt_08", "", 1},
 {3872, "Rich Purple Silk Shirt", 185, 4335, 4354, {{4305, 4}, {4342, 1}, {4291, 1}}, "inv_shirt_16", "inv_scroll_05", 2},
 {3873, "Black Swashbuckler's Shirt", 200, 4336, 10728, {{4305, 5}, {2325, 1}, {4291, 1}}, "inv_shirt_black_01", "inv_scroll_03", 3},
-{3908, "Tailoring", 9999, "", "", "", "", "", 1},
-{3909, "Tailoring", 50, "", "", "", "", "", 1},
-{3910, "Tailoring", 125, "", "", "", "", "", 1},
 {3914, "Brown Linen Pants", 30, 4343, "", {{2996, 2}, {2320, 1}}, "inv_pants_06", "", 1},
 {3915, "Brown Linen Shirt", 1, 4344, "", {{2996, 1}, {2320, 1}}, "inv_shirt_02", "", nil},
 {6521, "Pearl-clasped Cloak", 90, 5542, "", {{2997, 3}, {2321, 2}, {5498, 1}}, "inv_misc_cape_11", "", 1},
@@ -155,7 +151,6 @@ Craftie.Profession.Tailoring = {
 {12091, "White Wedding Dress", 250, 10040, 10325, {{4339, 5}, {8343, 3}, {2324, 1}}, "inv_chest_cloth_04", "inv_scroll_03", 3},
 {12092, "Dreamweave Circlet", 250, 10041, "", {{4339, 8}, {8153, 4}, {10286, 2}, {8343, 3}, {6037, 1}, {1529, 1}}, "inv_crown_01", "", 1},
 {12093, "Tuxedo Jacket", 250, 10036, 10326, {{4339, 5}, {8343, 3}}, "inv_shirt_black_01", "inv_scroll_03", 3},
-{12180, "Tailoring", 200, "", "", "", "", "", 1},
 {18401, "Bolt of Runecloth", 250, 14048, "", {{14047, 5}}, "inv_fabric_purplefire_02", "", 1},
 {18402, "Runecloth Belt", 255, 13856, "", {{14048, 3}, {14341, 1}}, "inv_belt_15", "", 1},
 {18403, "Frostweave Tunic", 255, 13869, 14466, {{14048, 5}, {7079, 2}, {14341, 1}}, "inv_chest_cloth_08", "inv_scroll_06", 1},

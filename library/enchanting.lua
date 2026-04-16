@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---spellID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
+--itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
 Craftie.Profession.Enchanting = {
 {7418, "Enchant Bracer - Minor Health", 70, "", "", {{10940, 1}}, "", "", "", 1},
 {7420, "Enchant Chest - Minor Health", 15, "", "", {{10940, 1}}, "", "", 1},
@@ -39,7 +39,6 @@ Craftie.Profession.Enchanting = {
 {7861, "Enchant Cloak - Lesser Fire Resistance", 125, "", "", {{6371, 1 }, {10998, 1}}, "", "", 1},
 {7863, "Enchant Boots - Minor Stamina", 125, "", "", {{10940, 8}}, "", "", 1},
 {7867, "Enchant Boots - Minor Agility", 125, "", 6377, {{10940, 6 }, {10998, 2}}, "", "inv_misc_note_01", 3, 1},
-{13262, "Disenchant", 20, "", "", "", "", "", "", 1},
 {13378, "Enchant Shield - Minor Stamina", 105, "", "", {{10998, 1 }, {10940, 2}}, "", "", 1},
 {13380, "Enchant 2H Weapon - Lesser Spirit", 110, "", 11038, {{10998, 1 }, {10940, 6}}, "", "inv_misc_note_01", 2, 1},
 {13419, "Enchant Cloak - Minor Agility", 110, "", 11039, {{10998, 1}}, "", "inv_misc_note_01", 2},
@@ -97,7 +96,6 @@ Craftie.Profession.Enchanting = {
 {13905, "Enchant Shield - Greater Spirit", 230, "", "", {{11175, 1 }, {11176, 2}}, "", "", 1},
 {13915, "Enchant Weapon - Demonslaying", 230, "", 11208, {{11177, 1 }, {11176, 2 }, {9224, 1}}, "", "inv_misc_note_01", 2, 1},
 {13917, "Enchant Chest - Superior Mana", 230, "", "", {{11175, 1 }, {11174, 2}}, "", "", 1},
-{13920, "Enchanting", 200, "", "", "", "", "", 1},
 {13931, "Enchant Bracer - Deflection", 235, "", 11223, {{11175, 1 }, {11176, 2}}, "", "inv_misc_note_01", 3, 1},
 {13933, "Enchant Shield - Frost Resistance", 235, "", 11224, {{11178, 1 }, {3829, 1}}, "", "", 2, 1},
 {13935, "Enchant Boots - Agility", 235, "", "", {{11175, 2}}, "", "", 1},
@@ -208,7 +206,6 @@ Craftie.Profession.Enchanting = {
 {28022, "Large Prismatic Shard", 335, 22449, 22565, {{22448, 3}}, "inv_enchant_shardprismaticlarge", "inv_misc_note_01", 3, 1},
 {28027, "Prismatic Sphere", 325, 22460, "", {{22449, 4}}, "inv_enchant_prismaticsphere", "", 1},
 {28028, "Void Sphere", 350, 22459, "", {{22450, 2}}, "inv_enchant_voidsphere", "", 1},
-{28029, "Enchanting", 275, "", "", "", "", "", 1},
 {32664, "Runed Fel Iron Rod", 300, 22461, "", {{25843, 1 }, {16203, 4 }, {14344, 6 }, {16207, 1}}, "inv_rod_enchantedfelsteel", "", 1},
 {32665, "Runed Adamantite Rod", 350, 22462, 25848, {{25844, 1 }, {22446, 8 }, {22449, 8 }, {23571, 1 }, {22461, 1}}, "inv_rod_enchantedadamantite", "", 3, 1},
 {32667, "Runed Eternium Rod", 375, 22463, 25849, {{25845, 1 }, {22446, 12 }, {22450, 2 }, {23571, 4 }, {22462, 1}}, "inv_rod_enchantedeternium", "", 3, 1},
@@ -240,5 +237,4 @@ Craftie.Profession.Enchanting = {
 {46578, "Enchant Weapon - Deathfrost", 350, "", "", {{22456, 2 }, {21885, 2}}, "", "", "", 1},
 {46594, "Enchant Chest - Defense", 360, "", 35500, {{22446, 4 }, {22445, 8 }, {23427, 4}}, "", "inv_misc_note_01", 3, 1},
 {47051, "Enchant Cloak - Steelweave", 375, "", 35756, {{22446, 8 }, {22452, 8}}, "", "inv_misc_note_01", 2, 1},
-
 }
