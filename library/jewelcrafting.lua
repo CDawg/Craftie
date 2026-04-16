@@ -14,7 +14,6 @@ the copyright holders.
 ]==]--
 
 --itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
-
 Craftie.Profession.Jewelcrafting = {
 {25255, "Delicate Copper Wire", 20, 20816, "", {{2840, 2}}, "inv_jewelcrafting_delicatecopperwire", "", 1},
 {25278, "Bronze Setting", 50, 20817, "", {{2841, 2}}, "inv_jewelcrafting_bronzesetting", "", 1},

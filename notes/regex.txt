@@ -4,6 +4,31 @@ sourceDetail = \{.*\},
 \[[0-9]\]
 
 
+select entry, name, ItemLevel from item_template where name like "Elixir%" and ItemLevel < 80 and spellid_1 > 0 order by entry ASC;
+
+SELECT DISTINCT i.entry, i.name FROM item_template i JOIN spell s ON ((s.Effect1 = 24 AND s.EffectItemType1 = i.entry) OR (s.Effect2 = 24 AND s.EffectItemType2 = i.entry) OR (s.Effect3 = 24 AND s.EffectItemType3 = i.entry));
+
+SELECT DISTINCT i.entry AS item_id, i.name, sla.skillId FROM item_template i JOIN spell s ON ((s.Effect1 = 24 AND s.EffectItemType1 = i.entry) OR (s.Effect2 = 24 AND s.EffectItemType2 = i.entry) OR (s.Effect3 = 24 AND s.EffectItemType3 = i.entry)) JOIN skill_line_ability sla ON sla.spellId = s.Id WHERE sla.skillId IN (164, 165, 171, 185, 197, 202, 333, 755, 773);
+
+SELECT DISTINCT i.entry AS item_id, i.name, sla.skillId FROM item_template i JOIN spell_dbc s ON ((s.Effect1 = 24 AND s.EffectItemType1 = i.entry) OR (s.Effect2 = 24 AND s.EffectItemType2 = i.entry) OR (s.Effect3 = 24 AND s.EffectItemType3 = i.entry)) JOIN skill_line_ability sla ON sla.spellId = s.Id WHERE sla.skillId IN (164, 165, 171, 185, 197, 202, 333, 755, 773);
+
+TrinityCore DB
+SELECT DISTINCT i.entry AS item_id, i.name, sla.skillId FROM item_template i JOIN spell_dbc s ON ((s.Effect1 = 24 AND s.EffectItemType1 = i.entry) OR (s.Effect2 = 24 AND s.EffectItemType2 = i.entry) OR (s.Effect3 = 24 AND s.EffectItemType3 = i.entry)) JOIN skill_discovery_template sla ON sla.spellId = s.Id WHERE sla.skillId IN (164, 165, 171, 185, 197, 202, 333, 755, 773);
+
+    164, -- Blacksmithing
+    165, -- Leatherworking
+    171, -- Alchemy
+    185, -- Cooking
+    197, -- Tailoring
+    202, -- Engineering
+    333, -- Enchanting
+    755, -- Jewelcrafting
+    773  -- Inscription
+)
+
+ORDER BY sla.skillId, i.name;
+
+
 LUA For Windows
 local max_reagents = 6
 local sqltable = ' OR `entry`="'
