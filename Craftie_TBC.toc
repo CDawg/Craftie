@@ -14,6 +14,13 @@ core/CraftieLibrary.lua
 core/CraftieEventManager.lua
 library/reagents.lua
 library/alchemy.lua
+library/blacksmithing.lua
+# library/cooking.lua
+library/enchanting.lua
+library/engineering.lua
+library/jewelcrafting.lua
+library/leatherworking.lua
+library/tailoring.lua
 
 # Localization
 # core/locales/localization.en.lua

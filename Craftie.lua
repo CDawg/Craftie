@@ -82,6 +82,9 @@ function Craftie.GetItemInfo(item)
   
 end
 
+--Craftie.Profession.Query = {}
+Craftie.Profession.Query = Craftie.Profession.Enchanting
+
 local max_reagents = 6
 
 Craftie.Frame.Reagent = {}
@@ -139,7 +142,7 @@ function Craftie.ReagentList(item)
   end
 end
 
-for i=1, getn(Craftie.Profession.Alchemy) do
+for i=1, getn(Craftie.Profession.Query) do
   Craftie.Frame.Scroll.Recipes.List.Item[i] = CreateFrame("Button", Craftie.Frame.Scroll.Recipes.List.Item[i], Craftie.Frame.Scroll.Recipes.ListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetWidth(Craftie.Frame.Scroll.Recipes_Width-26) --scrollbar size
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetHeight(20)
@@ -159,7 +162,7 @@ for i=1, getn(Craftie.Profession.Alchemy) do
   Craftie.Frame.Scroll.Text[i] = Craftie.Frame.Scroll.Recipes.List.Item[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.Scroll.Text[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
   Craftie.Frame.Scroll.Text[i]:SetPoint("TOPLEFT", 8, -4)
-  Craftie.Frame.Scroll.Text[i]:SetText(Craftie.Profession.Alchemy[i][2])
+  Craftie.Frame.Scroll.Text[i]:SetText(Craftie.Profession.Query[i][2])
   Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
 
   if (i % 2 == 0) then
@@ -182,31 +185,6 @@ for i=1, getn(Craftie.Profession.Alchemy) do
   end)
 
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
-    --print(C_TradeSkillUI.GetRecipeOutputItemData(Craftie.Profession.Alchemy[i][1]))
-
-    --for _, id in pairs(C_TradeSkillUI.GetAllRecipeIDs()) do
-      --local recipeInfo = C_TradeSkillUI.GetRecipeInfo(5)
-      --print(recipeInfo.recipeID, recipeInfo.name)
-    --end
-    --Craftie.Notification("line " .. i, true)
-    --print(C_TradeSkillUI.GetBaseProfessionInfo())
-
-    --[==[
-    local categories = {C_TradeSkillUI.GetCategories()}
-    for _, categoryID in pairs(categories) do
-	    print(categoryID, C_TradeSkillUI.GetCategoryInfo(categoryID).name)
-    end
-    --name, rank, maxRank = GetTradeSkillLine()
-    --items = C_TradeSkillUI.GetCraftingTargetItems(1015)
-    --print(items)
-    --skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps, indentLevel, showProgressBar, currentRank, maxRank, startingRank = GetTradeSkillInfo(3)
-    --print(skillName)
-    ]==]--
-     --name, rank, maxRank = GetTradeSkillLine()
-    --print(C_TradeSkillUI.GetCraftingTargetItems(1015))
-    --print(items)
-    --skillName, skillType, numAvailable, isExpanded, altVerb, numSkillUps, indentLevel, showProgressBar, currentRank, maxRank, startingRank = GetTradeSkillInfo(3)
-    --print(skillName)
 
   --[==[
   -- this works!
@@ -238,55 +216,9 @@ for i=1, getn(Craftie.Profession.Alchemy) do
 
   --C_TradeSkillUI.OpenTradeSkill(3)
 
-  --local numberOfCrafts = GetNumCrafts()
-  --local numSkills = GetNumTradeSkills()
-  --print("crafts: " .. numberOfCrafts)
-  --print("skills: " .. numSkills)
-
-  --print(C_TradeSkillUI.GetProfessionInfoByRecipeID(Craftie.Profession.Alchemy[i][1]))
-  --print(C_TradeSkillUI.GetItemCraftedQualityInfo(Craftie.Profession.Alchemy[i][2]))
-  --print(GetItemInfo(Craftie.Profession.Alchemy[i][1]))
-
-  --print(C_TradeSkillUI.GetRecipeInfo(256777))
---ProfessionsFrame.CraftingPage.SchematicForm:GetRecipeInfo()
---print(C_TradeSkillUI.GetBaseProfessionInfo())
-
---print(GetProfessions())
-
---itemName, itemLink, itemQuality, itemLevel, itemMinLevel, itemType, itemSubType, itemStackCount, itemEquipLoc, itemTexture, sellPrice, classID, subclassID, bindType, expansionID, setID, isCraftingReagent = C_Item.GetItemInfo(Craftie.Profession.Alchemy[i][1])
---local itemName, itemLink = C_Item.GetItemInfo(Craftie.Profession.Alchemy[i][2])
-
---works
---print(GetItemIcon(Craftie.Profession.Alchemy[i][1]))
---link = GetCraftRecipeLink(Craftie.Profession.Alchemy[i][1])
---print(link)
-  print("craftie " .. Craftie.Profession.Alchemy[i][1])
-  --print(Craftie.Profession.Alchemy[i][6][1][1])
-  Craftie.ReagentList(Craftie.Profession.Alchemy[i])
-  --local r1 = getKeyFromValue(Craftie.Reagent, 2449, 1)
-  --print(Craftie.Reagent[r1][2])
-  --print(GetTradeSkillRecipeLink(Craftie.Profession.Alchemy[i][1]))
-  --print(C_TradeSkillUI.GetCraftingTargetItems(Craftie.Profession.Alchemy[i][1]))
-  --local result = C_Item.GetItemChildInfo(Craftie.Profession.Alchemy[i][2])
-  --for k, v in pairs(result) do 
-    --print(k, v) 
-  --end
-  --print(C_Item.GetItemSpell(Craftie.Profession.Alchemy[i][1]))
-
-
---[==[
-for _, v in ipairs({Craftie.GetProfessionsPlayer()}) do
-  if v then
-    local name, texture, rank, maxRank, numSpells, spelloffset, skillLine, rankModifier = GetSkillLineInfo( v )
-    print("GetProfessions " .. name .. " [" .. maxRank .. "]")
-  end
-end
-]==]--
-
---for k, v in ipairs(Craftie.Profession.Alchemy) do
-  --print(v[2])
---end
-
+  --print("craftie " .. Craftie.Profession.Query[i][1])
+  Craftie.ReagentList(Craftie.Profession.Query[i])
+ 
   --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
   --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
   --Craftie.SendPacket("WHISPER", false)
