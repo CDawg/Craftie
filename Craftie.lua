@@ -136,7 +136,7 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.Icon[i]:SetTexture(C_Item.GetItemIconByID(Craftie.Reagent[r][1]))
       Craftie.Frame.Reagent.Main[i]:Show()
       if (inv_count >= inv_req) then
-        Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.4, 1)
+        Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
         Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 1)
       end
@@ -160,6 +160,15 @@ end
 
 Craftie.item_selected = 1
 Craftie.Profession.Query = Craftie.Profession.Tailoring
+
+Craftie.Frame.CraftWindow = {}
+Craftie.Frame.CraftWindow = CreateFrame("Frame", Craftie.Frame.CraftWindow, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.CraftWindow:SetWidth(300)
+Craftie.Frame.CraftWindow:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.CraftWindow:SetPoint("TOPRIGHT", -8, -61)
+Craftie.Frame.CraftWindow:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.CraftWindow:SetBackdropColor(0, 1, 0, 0.2)
+Craftie.Frame.CraftWindow:SetBackdropBorderColor(0.5, 0.5, 0.5, 0.8)
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame, "BackdropTemplate")
