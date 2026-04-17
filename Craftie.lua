@@ -17,7 +17,7 @@ the copyright holders.
 --	print("Craftie.Event " .. event)
 --end
 
-Craftie._G.Width = 800
+Craftie._G.Width = 820
 Craftie._G.Height= 400
 
 Craftie.Frame={}
@@ -46,20 +46,59 @@ Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
 
 
 Craftie.Frame.Parent = {}
-Craftie.Frame.Parent.Scroll = CreateFrame("Frame", Craftie.Frame.ScrollParent, Craftie.Frame, "InsetFrameTemplate")
-Craftie.Frame.Parent.Scroll:SetWidth(300)
-Craftie.Frame.Parent.Scroll:SetHeight(Craftie._G.Height-88)
-Craftie.Frame.Parent.Scroll:SetPoint("TOPLEFT", 28, -61)
+--Craftie.Frame.Parent
+
+Craftie.Frame.Parent.Scroll = {}
+Craftie.Frame.Parent.Scroll.Players = CreateFrame("Frame", Craftie.Frame.ScrollParent, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.Parent.Scroll.Players:SetWidth(210)
+Craftie.Frame.Parent.Scroll.Players:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.Parent.Scroll.Players:SetPoint("TOPLEFT", 2, -61)
 
 Craftie.Frame.Scroll = {}
+
+Craftie.Frame.Scroll.Players = {}
+Craftie.Frame.Scroll.Players.List = {}
+Craftie.Frame.Scroll.Players_Width = 210
+Craftie.Frame.Scroll.Players_Height= 310
+Craftie.Frame.Scroll.Players = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players)
+Craftie.Frame.Scroll.Players:SetWidth(Craftie.Frame.Scroll.Players_Width)
+Craftie.Frame.Scroll.Players:SetHeight(Craftie.Frame.Scroll.Players_Height)
+Craftie.Frame.Scroll.Players:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
+Craftie.Frame.Scroll.Players:SetFrameStrata("DIALOG")
+Craftie.Frame.Scroll.Players.List = CreateFrame("Frame", Craftie.Frame.Scroll.Players.List, Craftie.Frame.Scroll.Players, "BackdropTemplate")
+Craftie.Frame.Scroll.Players.List:SetWidth(Craftie.Frame.Scroll.Players_Width)
+Craftie.Frame.Scroll.Players.List:SetHeight(Craftie.Frame.Scroll.Players_Height)
+Craftie.Frame.Scroll.Players.List:SetPoint("CENTER", 0, 0)
+Craftie.Frame.Scroll.Players.List:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.Scroll.Players.List:SetBackdropColor(0, 0, 0, 0)
+Craftie.Frame.Scroll.Players.List:SetBackdropBorderColor(1, 1, 1, 0)
+Craftie.Frame.Scroll.Players.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Players.List, "UIPanelScrollFrameTemplate")
+--Craftie.Frame.Scroll.Players.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Players.List, "ScrollFrameTemplate")
+Craftie.Frame.Scroll.Players.List.Child:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Players.List, "TOPLEFT", 3, -3)
+Craftie.Frame.Scroll.Players.List.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Players.List, "BOTTOMRIGHT", 10, 4)
+Craftie.Frame.Scroll.Players.ListChildFrame = CreateFrame("Frame", Craftie.Frame.Scroll.Players.ListChildFrame, Craftie.Frame.Scroll.Players.List.Child)
+Craftie.Frame.Scroll.Players.ListChildFrame:SetSize(Craftie.Frame.Scroll.Players_Width, Craftie.Frame.Scroll.Players_Height)
+Craftie.Frame.Scroll.Players.List.Child:SetScrollChild(Craftie.Frame.Scroll.Players.ListChildFrame)
+Craftie.Frame.Scroll.Players.List.Child.ScrollBar:ClearAllPoints()
+Craftie.Frame.Scroll.Players.List.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Players.List.Child, "TOPRIGHT", 0, -17)
+Craftie.Frame.Scroll.Players.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Players.List.Child, "BOTTOMRIGHT", -42, 14)
+
+Craftie.Frame.Scroll.Players.List.Item = {}
+
+Craftie.Frame.Parent.Scroll = {}
+Craftie.Frame.Parent.Scroll.Recipes = CreateFrame("Frame", Craftie.Frame.ScrollParent, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.Parent.Scroll.Recipes:SetWidth(300)
+Craftie.Frame.Parent.Scroll.Recipes:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.Parent.Scroll.Recipes:SetPoint("TOPLEFT", 212, -61)
+
 Craftie.Frame.Scroll.Recipes = {}
 Craftie.Frame.Scroll.Recipes.List = {}
 Craftie.Frame.Scroll.Recipes_Width = 300
 Craftie.Frame.Scroll.Recipes_Height= 310
-Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame)
+Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Recipes)
 Craftie.Frame.Scroll.Recipes:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
 Craftie.Frame.Scroll.Recipes:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
-Craftie.Frame.Scroll.Recipes:SetPoint("TOPLEFT", 8, -62) --low, due to the portrait frame
+Craftie.Frame.Scroll.Recipes:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
 Craftie.Frame.Scroll.Recipes:SetFrameStrata("DIALOG")
 Craftie.Frame.Scroll.Recipes.List = CreateFrame("Frame", Craftie.Frame.Scroll.Recipes.List, Craftie.Frame.Scroll.Recipes, "BackdropTemplate")
 Craftie.Frame.Scroll.Recipes.List:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
@@ -69,6 +108,13 @@ Craftie.Frame.Scroll.Recipes.List:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0, 0, 0, 0)
 Craftie.Frame.Scroll.Recipes.List:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.Scroll.Recipes.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Recipes.List, "UIPanelScrollFrameTemplate")
+--Craftie.Frame.Scroll.Recipes.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Recipes.List, "ScrollFrameTemplate")
+
+--local ScrollTexture = ScrollChild:CreateTexture(nil, "OVERLAY")
+--ScrollTexture:SetAllPoints(ScrollChild)
+--ScrollTexture:SetColorTexture(1, 0, 0, 1)
+--ScrollTexture:SetGradient("VERTICAL", CreateColor(1, 0, 0, 1), CreateColor(0, 0, 0, 1))
+
 Craftie.Frame.Scroll.Recipes.List.Child:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Recipes.List, "TOPLEFT", 3, -3)
 Craftie.Frame.Scroll.Recipes.List.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Recipes.List, "BOTTOMRIGHT", 10, 4)
 Craftie.Frame.Scroll.Recipes.ListChildFrame = CreateFrame("Frame", Craftie.Frame.Scroll.Recipes.ListChildFrame, Craftie.Frame.Scroll.Recipes.List.Child)
