@@ -44,13 +44,18 @@ Craftie.Icon:SetSize(54, 54)
 Craftie.Icon:SetPoint("TOPLEFT", -4, 4)
 Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
 
-Craftie.Frame.Scroll = {}
 
+Craftie.Frame.Parent = {}
+Craftie.Frame.Parent.Scroll = CreateFrame("Frame", Craftie.Frame.ScrollParent, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.Parent.Scroll:SetWidth(300)
+Craftie.Frame.Parent.Scroll:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.Parent.Scroll:SetPoint("TOPLEFT", 28, -61)
+
+Craftie.Frame.Scroll = {}
 Craftie.Frame.Scroll.Recipes = {}
 Craftie.Frame.Scroll.Recipes.List = {}
 Craftie.Frame.Scroll.Recipes_Width = 300
 Craftie.Frame.Scroll.Recipes_Height= 310
-
 Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame)
 Craftie.Frame.Scroll.Recipes:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
 Craftie.Frame.Scroll.Recipes:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
@@ -162,17 +167,14 @@ end
 Craftie.item_selected = 1
 Craftie.Profession.Query = Craftie.Profession.Tailoring
 
-Craftie.Frame.CraftWindow = {}
-Craftie.Frame.CraftWindow = CreateFrame("Frame", Craftie.Frame.CraftWindow, Craftie.Frame, "BackdropTemplate")
-Craftie.Frame.CraftWindow:SetWidth(300)
-Craftie.Frame.CraftWindow:SetHeight(Craftie._G.Height-88)
-Craftie.Frame.CraftWindow:SetPoint("TOPRIGHT", -8, -61)
-Craftie.Frame.CraftWindow:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.CraftWindow:SetBackdropColor(0, 1, 0, 0)
-Craftie.Frame.CraftWindow:SetBackdropBorderColor(0.5, 0.5, 0.5, 0.8)
+Craftie.Frame.Parent.Craft= {}
+Craftie.Frame.Parent.Craft= CreateFrame("Frame", Craftie.Frame.Parent.Craft, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.Parent.Craft:SetWidth(300)
+Craftie.Frame.Parent.Craft:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.Parent.Craft:SetPoint("TOPRIGHT", -8, -61)
 
 Craftie.Frame.Craft = {}
-Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftWindow, "BackdropTemplate")
+Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.Parent.Craft, "BackdropTemplate")
 Craftie.Frame.Craft:SetWidth(220)
 Craftie.Frame.Craft:SetHeight(35)
 Craftie.Frame.Craft:SetPoint("TOPLEFT", 14, -50)
@@ -243,7 +245,7 @@ Craftie.Frame.Reagent_Height= 35
 Craftie.Frame.Reagent_PosX  = 50
 Craftie.Frame.Reagent_PosY  = 50
 for i=1, Craftie.MAX_REAGENTS do
-  Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftWindow, "BackdropTemplate")
+  Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.Parent.Craft, "BackdropTemplate")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
   Craftie.Frame.Reagent.Main[i]:SetHeight(Craftie.Frame.Reagent_Height)
   if (i % 2 == 0) then
@@ -321,6 +323,7 @@ function Craftie.GetLineItemRecipe(prof)
 end
 
 function Craftie.DrawListFromProf(prof)
+
 end
 
 for i=1, #Craftie.Profession.Query do
