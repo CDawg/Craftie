@@ -60,7 +60,20 @@ function Craftie.Notification(msg, debug)
 end
 
 function Craftie.Init()
---init
+
+ --[==[
+  -- this works!
+  --print(ClassicGetProfessions())
+  --profession window must be open in order to extract trade info??
+  local name, type;
+  for i=1,GetNumTradeSkills() do
+   name, type, _, _, _, _ = GetTradeSkillInfo(i)
+    if (name and type ~= "header") then
+       --DEFAULT_CHAT_FRAME:AddMessage("Found: "..name)
+       print(name .. " | " .. type)
+    end
+  end
+  ]==]--
 end
 
 Craftie.Professions = {
