@@ -88,7 +88,8 @@ Craftie.MAX_RECIPES = 600
 
 local function SetItemTooltip(frame, itemID)
   GetItemInfo(itemID) --preload
-  GameTooltip:SetOwner(frame, "ANCHOR_CURSOR")
+  --GameTooltip:SetOwner(frame, "ANCHOR_CURSOR")
+  GameTooltip:SetOwner(frame, "ANCHOR_CURSOR_RIGHT")
   GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
   --GameTooltip:AddLine("|nCraftie")
   GameTooltip:Show()
@@ -167,14 +168,14 @@ Craftie.Frame.CraftWindow:SetWidth(300)
 Craftie.Frame.CraftWindow:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.CraftWindow:SetPoint("TOPRIGHT", -8, -61)
 Craftie.Frame.CraftWindow:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.CraftWindow:SetBackdropColor(0, 1, 0, 0.2)
+Craftie.Frame.CraftWindow:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.CraftWindow:SetBackdropBorderColor(0.5, 0.5, 0.5, 0.8)
 
 Craftie.Frame.Craft = {}
-Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftWindow, "BackdropTemplate")
 Craftie.Frame.Craft:SetWidth(220)
 Craftie.Frame.Craft:SetHeight(35)
-Craftie.Frame.Craft:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Recipes_Width+18, -100)
+Craftie.Frame.Craft:SetPoint("TOPLEFT", 14, -50)
 Craftie.Frame.Craft:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.Craft:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.Craft:SetBackdropBorderColor(1, 1, 1, 0)
@@ -195,8 +196,7 @@ Craftie.Frame.Craft.HLink = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.HLink:SetFont(Craftie._G.font, 20, "OUTLINE")
 Craftie.Frame.Craft.HLink:SetPoint("TOPLEFT", -4, -8)
 Craftie.Frame.Craft.HLink:SetText("")
---Craftie.Frame.Craft.HLink:EnableMouse(false)
---Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 0)
+--Craftie.Frame.Craft.HLink:SetWidth(300)
 Craftie.Frame.Craft.ID = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.ID:SetFont(Craftie._G.font, 12, "OUTLINE")
 Craftie.Frame.Craft.ID:SetPoint("CENTER", 10, 0)
@@ -240,16 +240,17 @@ Craftie.Frame.Reagent.Dash = {}
 Craftie.Frame.Reagent.Data = {} --ID
 Craftie.Frame.Reagent_Width = 100
 Craftie.Frame.Reagent_Height= 35
+Craftie.Frame.Reagent_PosX  = 50
 Craftie.Frame.Reagent_PosY  = 50
 for i=1, Craftie.MAX_REAGENTS do
-  Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame, "BackdropTemplate")
+  Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftWindow, "BackdropTemplate")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
   Craftie.Frame.Reagent.Main[i]:SetHeight(Craftie.Frame.Reagent_Height)
   if (i % 2 == 0) then
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width+35, (-i*18)+Craftie.Frame.Reagent_PosY)
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-20, (-i*18)+Craftie.Frame.Reagent_PosY)
   else
     local p = i+1
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", 0, (-p*18)+Craftie.Frame.Reagent_PosY)
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -55, (-p*18)+Craftie.Frame.Reagent_PosY)
   end
 
   Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.General)
