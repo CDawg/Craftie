@@ -73,7 +73,6 @@ Craftie.Frame.Scroll.Players.List:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.Scroll.Players.List:SetBackdropColor(0, 0, 0, 0)
 Craftie.Frame.Scroll.Players.List:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.Scroll.Players.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Players.List, "UIPanelScrollFrameTemplate")
---Craftie.Frame.Scroll.Players.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Players.List, "ScrollFrameTemplate")
 Craftie.Frame.Scroll.Players.List.Child:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Players.List, "TOPLEFT", 3, -3)
 Craftie.Frame.Scroll.Players.List.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Players.List, "BOTTOMRIGHT", 10, 4)
 Craftie.Frame.Scroll.Players.ListChildFrame = CreateFrame("Frame", Craftie.Frame.Scroll.Players.ListChildFrame, Craftie.Frame.Scroll.Players.List.Child)
@@ -96,10 +95,12 @@ Craftie.Frame.Scroll.Recipes.List = {}
 Craftie.Frame.Scroll.Recipes_Width = 300
 Craftie.Frame.Scroll.Recipes_Height= 310
 Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Recipes)
+
 Craftie.Frame.Scroll.Recipes:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
 Craftie.Frame.Scroll.Recipes:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
 Craftie.Frame.Scroll.Recipes:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
 Craftie.Frame.Scroll.Recipes:SetFrameStrata("DIALOG")
+
 Craftie.Frame.Scroll.Recipes.List = CreateFrame("Frame", Craftie.Frame.Scroll.Recipes.List, Craftie.Frame.Scroll.Recipes, "BackdropTemplate")
 Craftie.Frame.Scroll.Recipes.List:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
 Craftie.Frame.Scroll.Recipes.List:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
@@ -107,14 +108,9 @@ Craftie.Frame.Scroll.Recipes.List:SetPoint("CENTER", 0, 0)
 Craftie.Frame.Scroll.Recipes.List:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0, 0, 0, 0)
 Craftie.Frame.Scroll.Recipes.List:SetBackdropBorderColor(1, 1, 1, 0)
-Craftie.Frame.Scroll.Recipes.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Recipes.List, "UIPanelScrollFrameTemplate")
+
+Craftie.Frame.Scroll.Recipes.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Recipes.List, "UIPanelScrollFrameTemplate") -- "MinimalScrollBar"
 --Craftie.Frame.Scroll.Recipes.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Recipes.List, "ScrollFrameTemplate")
-
---local ScrollTexture = ScrollChild:CreateTexture(nil, "OVERLAY")
---ScrollTexture:SetAllPoints(ScrollChild)
---ScrollTexture:SetColorTexture(1, 0, 0, 1)
---ScrollTexture:SetGradient("VERTICAL", CreateColor(1, 0, 0, 1), CreateColor(0, 0, 0, 1))
-
 Craftie.Frame.Scroll.Recipes.List.Child:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Recipes.List, "TOPLEFT", 3, -3)
 Craftie.Frame.Scroll.Recipes.List.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Recipes.List, "BOTTOMRIGHT", 10, 4)
 Craftie.Frame.Scroll.Recipes.ListChildFrame = CreateFrame("Frame", Craftie.Frame.Scroll.Recipes.ListChildFrame, Craftie.Frame.Scroll.Recipes.List.Child)
@@ -126,7 +122,6 @@ Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Crafti
 
 Craftie.Frame.Scroll.Recipes.List.Item = {}
 
---for i=1, 40 do
 Craftie.Frame.Scroll.Text={}
 Craftie.Frame.Scroll.Select={}
 
@@ -146,23 +141,6 @@ local function SetItemTooltip(frame, itemID)
   GameTooltip:Show()
 end
 
---[==[
-hooksecurefunc("SetItemRef", function(link, text)
-	print(link, text:gsub("|", "||"))
-end)
-
-LinkFrame:HookScript("OnEnter", function()
-  if (itemLink) then
-    GameTooltip:SetOwner(LinkFrame, "ANCHOR_TOP")
-    GameTooltip:SetHyperlink(itemLink)
-    GameTooltip:Show()
-  end
-end)
- 
-LinkFrame:HookScript("OnLeave", function()
-  GameTooltip:Hide()
-end
-]==]--
 
 function Craftie.ItemDetails(item)
   local reagent = {}
@@ -211,7 +189,6 @@ function Craftie.ItemDetails(item)
 end
 
 Craftie.item_selected = 1
-Craftie.Profession.Query = Craftie.Profession.Tailoring
 
 Craftie.Frame.Parent.Craft= {}
 Craftie.Frame.Parent.Craft= CreateFrame("Frame", Craftie.Frame.Parent.Craft, Craftie.Frame, "InsetFrameTemplate")
@@ -350,8 +327,8 @@ for i=1, Craftie.MAX_REAGENTS do
   end)
 end
 
-function Craftie.ClearItemSelected()
-  for i=1, #Craftie.Profession.Query do
+function Craftie.ClearSelectedItem()
+  for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
     Craftie.Frame.Scroll.Recipes.List.Item[Craftie.item_selected]:SetBackdropColor(0.6, 0.7, 1, 0.5)
     Craftie.Frame.Scroll.Text[Craftie.item_selected]:SetTextColor(1, 1, 0.8, 1)
@@ -362,18 +339,10 @@ function Craftie.ClearItemSelected()
   end
 end
 
-function Craftie.GetLineItemRecipe(prof)
-  --for i=1, #recipe do
-    --Craftie.Profession.Query[recipe][2]
-  --end
-end
+--Craftie.Profession.Query = Craftie.Profession.Tailoring
 
-function Craftie.DrawListFromProf(prof)
-
-end
-
-for i=1, #Craftie.Profession.Query do
---for i=1, Craftie.MAX_RECIPES do
+--for i=1, #Craftie.Profession.Query do
+for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.Scroll.Recipes.List.Item[i] = CreateFrame("Button", Craftie.Frame.Scroll.Recipes.List.Item[i], Craftie.Frame.Scroll.Recipes.ListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetWidth(Craftie.Frame.Scroll.Recipes_Width-26) --scrollbar size
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetHeight(20)
@@ -386,8 +355,7 @@ for i=1, #Craftie.Profession.Query do
   Craftie.Frame.Scroll.Text[i] = Craftie.Frame.Scroll.Recipes.List.Item[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.Scroll.Text[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
   Craftie.Frame.Scroll.Text[i]:SetPoint("TOPLEFT", 8, -4)
-  Craftie.Frame.Scroll.Text[i]:SetText(Craftie.Profession.Query[i][2])
-  --Craftie.Frame.Scroll.Text[i]:SetText("")
+  Craftie.Frame.Scroll.Text[i]:SetText("")
   Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
 
   if (i % 2 == 0) then
@@ -399,20 +367,53 @@ for i=1, #Craftie.Profession.Query do
   end)
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnLeave", function(self)
     GameTooltip:Hide()
-    Craftie.ClearItemSelected()
+    Craftie.ClearSelectedItem()
   end)
 
+  --[==[
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
     Craftie.ItemDetails(Craftie.Profession.Query[i])
     --print(Craftie.Profession.Query[i][2])
     Craftie.item_selected = i
-    Craftie.ClearItemSelected()
+    Craftie.ClearSelectedItem()
 
   --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
   --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
   --Craftie.SendPacket("WHISPER", false)
   end)
+  ]==]--
 end
+
+function Craftie.OpenProfessionList(prof)
+  --print("prof count " .. #prof)
+  local total_recipes = #prof + 1
+  for i=1, Craftie.MAX_RECIPES do
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
+  end
+
+  C_Timer.After(0.12, function()
+    for i=1, total_recipes do
+      Craftie.Frame.Scroll.Text[i]:SetText(prof[i][2])
+      Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
+        Craftie.ItemDetails(prof[i])
+        print(prof[i][2])
+        Craftie.item_selected = i
+        Craftie.ClearSelectedItem()
+
+        --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
+        --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
+        --Craftie.SendPacket("WHISPER", false)
+      end)
+      Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
+    end
+  end)
+end
+
+C_Timer.After(1, function()
+  Craftie.OpenProfessionList(Craftie.Profession.Tailoring)
+end)
+
+print(Craftie.Profession.Tailoring[8][2])
 
 --[==[
 for i=1, 4 do
