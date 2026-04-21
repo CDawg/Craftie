@@ -23,9 +23,18 @@ Craftie._G = {
   dir    = "Interface/Addons/Craftie/",
   prefix = "CRAHH",
   suffix = "TBC Anniversary",
+  color  = "|cffF58E27",
   date   = date("%Y%m%d"),
   update = 20260608,
 }
+--Craftie._G.version = C_AddOns.GetAddOnMetadata(Craftie._G.prefix, "version")
+Craftie._G.version = C_AddOns.GetAddOnMetadata("Craftie", "version")
+
+Craftie.Game={}
+Craftie.Game.version = tonumber(string.sub(__Gversion, 1, 1))
+if (Craftie.Game.version == 1) then
+  Craftie._G.suffix = "Classic"
+end
 
 Craftie.Framelevel = {
   Background= 0,
@@ -54,8 +63,11 @@ Craftie.Backdrop = {
 }
 
 function Craftie.Notification(msg, debug)
-  if (debug) then
-    print(msg)
+  if ((debug) and (Craftie.DEBUG)) then
+    print(Craftie._G.title .. " DEBUG: " .. msg)
+  end
+  if (not debug) then
+    print(Craftie._G.title .. " " .. msg)
   end
 end
 
@@ -144,5 +156,50 @@ function Craftie.ParsePacket(netpacket, code)
       parse = string.gsub(netpacket, code, "")
       return parse
     end
+  end
+end
+
+--SPELLBOOK/UI-SpellBook-Tab1-Selected
+
+SLASH_Craftie1 = Craftie._G.CMD
+function SlashCmdList.Craftie(cmd)
+  if ((cmd == nil) or (cmd == "")) then
+    --Craftie.Notification("Craftie")
+    print(Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version)
+    --Craftie.Notification
+		--for int,list in pairs(Craftie._L.COMMANDS) do
+			--print("|cffffff00".. list[1] .. "|r : " .. list[2] .. "|n")
+		--end
+	end
+	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
+	--if (cmd == Craftie._L.COMMANDS[1][1]) then
+	  --Craftie.FrameOptions:Show()
+  --end
+  if (cmd == "show") then
+    Craftie.Frame:Show()
+  end
+  if (cmd == "p1") then
+    Craftie.OpenProfessionList(Craftie.Profession.Alchemy)
+  end
+  if (cmd == "p2") then
+    Craftie.OpenProfessionList(Craftie.Profession.Blacksmithing)
+  end
+  --if (cmd == "p3") then
+    --Craftie.OpenProfessionList(Craftie.Profession.Cooking)
+  --end
+  if (cmd == "p4") then
+    Craftie.OpenProfessionList(Craftie.Profession.Enchanting)
+  end
+  if (cmd == "p5") then
+    Craftie.OpenProfessionList(Craftie.Profession.Engineering)
+  end
+  if (cmd == "p6") then
+    Craftie.OpenProfessionList(Craftie.Profession.Jewelcrafting)
+  end
+  if (cmd == "p7") then
+    Craftie.OpenProfessionList(Craftie.Profession.Leatherworking)
+  end
+  if (cmd == "p8") then
+    Craftie.OpenProfessionList(Craftie.Profession.Tailoring)
   end
 end

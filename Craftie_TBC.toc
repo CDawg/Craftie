@@ -6,7 +6,7 @@
 ## Author: Porthias (aka Port)
 ## SavedVariables: CraftieDB
 ## SavedVariablesPerCharacter: CraftieDB
-## OptionalDeps: Blizzard_RaidFrame, Blizzard_RaidUI, Blizzard_CompactRaidFrames, Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
+## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
 
 # Library
 core/external/luazw.lua

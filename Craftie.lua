@@ -43,10 +43,32 @@ Craftie.Icon = Craftie.Frame:CreateTexture(nil, "ARTWORK")
 Craftie.Icon:SetSize(54, 54)
 Craftie.Icon:SetPoint("TOPLEFT", -4, 4)
 Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
-
+--Craftie.Icon:SetTexture(Craftie._G.dir .. "images/Trade_Engraving")
 
 Craftie.Frame.Parent = {}
 --Craftie.Frame.Parent
+
+--[==[
+Craftie.Tab={}
+Craftie.Tab.Frame = CreateFrame("Button", Craftie.Tab, Craftie.Frame, "BackdropTemplate")
+Craftie.Tab.Frame:SetWidth(80)
+Craftie.Tab.Frame:SetHeight(35)
+Craftie.Tab.Frame:SetPoint("BOTTOMLEFT", 10, -35)
+Craftie.Tab.Frame:SetID(1)
+Craftie.Tab.Frame:SetBackdrop(Craftie.Backdrop.Tab)
+Craftie.Tab.Frame:SetBackdropColor(0, 0, 0, 0)
+Craftie.Tab.Frame:SetBackdropBorderColor(1, 1, 1, 0)
+Craftie.Tab.Border = Craftie.Tab.Frame:CreateTexture(nil, "ARTWORK")
+Craftie.Tab.Border:SetSize(80, 35)
+Craftie.Tab.Border:SetPoint("TOPLEFT", 0, 0)
+--Craftie.Tab.Border:SetTexture("Interface/OPTIONSFRAME/UI-OptionsFrame-InactiveTab")
+--Craftie.Tab.Border:SetTexture("Interface/HELPFRAME/HelpFrameTab-Active")
+Craftie.Tab.Border:SetTexture("Interface/HELPFRAME/HelpFrameTab-Inactive")
+Craftie.Tab.Border:SetRotation(math.pi)
+Craftie.Tab.Frame:SetScript("OnClick", function()
+  Craftie.Tab.Border:SetTexture("Interface/HELPFRAME/HelpFrameTab-Active")
+end)
+]==]--
 
 Craftie.Frame.Parent.Scroll = {}
 Craftie.Frame.Parent.Scroll.Players = CreateFrame("Frame", Craftie.Frame.ScrollParent, Craftie.Frame, "InsetFrameTemplate")
@@ -132,15 +154,17 @@ end
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 
-local function SetItemTooltip(frame, itemID)
-  GetItemInfo(itemID) --preload
+local function SetItemTooltip(frame, itemID, enchant)
   --GameTooltip:SetOwner(frame, "ANCHOR_CURSOR")
   GameTooltip:SetOwner(frame, "ANCHOR_CURSOR_RIGHT")
-  GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
-  --GameTooltip:AddLine("|nCraftie")
+  if (enchant) then
+    GameTooltip:SetHyperlink("enchant:" .. itemID .. ":0:0:0:0:0:0:0")
+  else
+    GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
+  end
+  GameTooltip:AddLine("|nCraftie")
   GameTooltip:Show()
 end
-
 
 function Craftie.ItemDetails(item)
   local reagent = {}
@@ -175,17 +199,41 @@ function Craftie.ItemDetails(item)
   end
   Craftie.Frame.Craft.ID:SetText(item[4])
   Craftie.Frame.Craft.Text:SetText(item[2])
-  Craftie.Frame.Craft.Icon:SetTexture(C_Item.GetItemIconByID(item[4]))
-  C_Timer.After(0.12, function() --give it time to register
-    local name, link, quality = GetItemInfo(item[4])
-    Craftie.Frame.Craft.HLink:SetText(link)
-    Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
-    Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 1)
-    if (quality ~= nil) then
-      local r, g, b, qs = C_Item.GetItemQualityColor(quality)
-      Craftie.Frame.Craft.Text:SetTextColor(r, g, b, 1)
-    end
-  end)
+  local item_detail = item[4]
+  local is_enchant = false
+  --local get_tooltip = C_Item.GetItemByID(item[4])
+  if (item_detail == "") then --blank or possibly enchant
+    local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(item[1])
+    --print("spell? " .. name .. " | " .. icon)
+    Craftie.Frame.Craft.ID:SetText(item[1])
+    Craftie.Frame.Craft.Icon:SetTexture(icon)
+    is_enchant = true
+    --GameTooltip:SetHyperlink("enchant:" .. 7418 .. ":0:0:0:0:0:0:0")
+  else
+    Craftie.Frame.Craft.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
+  end
+
+    C_Timer.After(0.12, function() --give it time to register
+      Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 1)
+      if (is_enchant) then
+        Craftie.Frame.Craft.HLink:SetText("ENCHANT DATA TEXT HERE")
+        --print(is_enchant)
+        Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
+          SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), true)
+        end)
+      else
+        local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item_detail)
+        Craftie.Frame.Craft.HLink:SetText(link)
+        if (quality ~= nil) then
+          local r, g, b, qs = C_Item.GetItemQualityColor(quality)
+          Craftie.Frame.Craft.Text:SetTextColor(r, g, b, 1)
+        end
+        Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
+          SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), false)
+        end)
+      end
+      Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
+    end)
 end
 
 Craftie.item_selected = 1
@@ -212,6 +260,7 @@ Craftie.Frame.Craft.Icon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.Icon:SetSize(35, 35)
 Craftie.Frame.Craft.Icon:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/inv_misc_questionmark")
+--Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/Trade_Engraving")
 Craftie.Frame.Craft.Text = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Text:SetFont(Craftie._G.font, 12, "OUTLINE")
 Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 40, -10)
@@ -229,30 +278,12 @@ Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
 Craftie.Frame.Craft:Hide()
 
-Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
-  SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText())
-end)
+--Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
+  --SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), false)
+--end)
 Craftie.Frame.Craft.HLink:SetScript("OnLeave", function(self)
   GameTooltip:Hide()
 end)
-
---[==[
-Craftie.Frame.Craft.Hover = CreateFrame("Frame", Craftie.Frame.Craft.Hover, Craftie.Frame.Craft, "BackdropTemplate")
-Craftie.Frame.Craft.Hover:SetWidth(220)
-Craftie.Frame.Craft.Hover:SetHeight(35)
-Craftie.Frame.Craft.Hover:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.Craft.Hover:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.Craft.Hover:SetBackdropColor(0, 1, 0, 1)
-Craftie.Frame.Craft.Hover:SetBackdropBorderColor(1, 1, 1, 0)
-Craftie.Frame.Craft.Hover:EnableMouse(false)
-
-Craftie.Frame.Craft.Hover:SetScript("OnEnter", function(self)
-  SetItemTooltip(self, Craftie.Frame.Craft.ID:GetText())
-end)
-Craftie.Frame.Craft.Hover:SetScript("OnLeave", function(self)
-  GameTooltip:Hide()
-end)
-]==]--
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
@@ -320,7 +351,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i]:Hide()
 
   Craftie.Frame.Reagent.Tooltip[i]:SetScript("OnEnter", function(self)
-    SetItemTooltip(self, Craftie.Frame.Reagent.Data[i]:GetText())
+    SetItemTooltip(self, Craftie.Frame.Reagent.Data[i]:GetText(), false)
   end)
   Craftie.Frame.Reagent.Tooltip[i]:SetScript("OnLeave", function(self)
     GameTooltip:Hide()
@@ -338,8 +369,6 @@ function Craftie.ClearSelectedItem()
     end
   end
 end
-
---Craftie.Profession.Query = Craftie.Profession.Tailoring
 
 --for i=1, #Craftie.Profession.Query do
 for i=1, Craftie.MAX_RECIPES do
@@ -386,7 +415,7 @@ end
 
 function Craftie.OpenProfessionList(prof)
   --print("prof count " .. #prof)
-  local total_recipes = #prof + 1
+  local total_recipes = #prof -- + 1
   for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
   end
@@ -396,7 +425,7 @@ function Craftie.OpenProfessionList(prof)
       Craftie.Frame.Scroll.Text[i]:SetText(prof[i][2])
       Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
         Craftie.ItemDetails(prof[i])
-        print(prof[i][2])
+        --print(prof[i][2])
         Craftie.item_selected = i
         Craftie.ClearSelectedItem()
 
@@ -412,8 +441,6 @@ end
 C_Timer.After(1, function()
   Craftie.OpenProfessionList(Craftie.Profession.Tailoring)
 end)
-
-print(Craftie.Profession.Tailoring[8][2])
 
 --[==[
 for i=1, 4 do
@@ -451,3 +478,4 @@ Craftie.Frame.Background:SetFrameLevel(Craftie.Framelevel.Background)
 
 --Craftie.KeyBindsSetOnLoad = 1
 ]==]--
+
