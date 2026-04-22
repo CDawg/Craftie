@@ -97,7 +97,7 @@ end
 local function insertUnique(t, value)
   local seen = {}
   for _, v in ipairs(t) do seen[v] = true end
-  
+
   if not seen[value] then
       table.insert(t, value)
   end
@@ -176,4 +176,10 @@ function round(number)
     number = (number - (number % 1)) + 1
   end
  return number
+end
+
+function SortTableByString(tbl) --alpha second key
+  table.sort(tbl, function(a, b)
+    return string.lower(a[2]) < string.lower(b[2])
+  end)
 end

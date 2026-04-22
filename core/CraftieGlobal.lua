@@ -184,9 +184,9 @@ function SlashCmdList.Craftie(cmd)
   if (cmd == "p2") then
     Craftie.OpenProfessionList(Craftie.Profession.Blacksmithing)
   end
-  --if (cmd == "p3") then
-    --Craftie.OpenProfessionList(Craftie.Profession.Cooking)
-  --end
+  if (cmd == "p3") then
+    Craftie.OpenProfessionList(Craftie.Profession.Cooking)
+  end
   if (cmd == "p4") then
     Craftie.OpenProfessionList(Craftie.Profession.Enchanting)
   end

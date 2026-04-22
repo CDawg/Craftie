@@ -416,6 +416,7 @@ end
 function Craftie.OpenProfessionList(prof)
   --print("prof count " .. #prof)
   local total_recipes = #prof -- + 1
+  SortTableByString(prof)
   for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
   end

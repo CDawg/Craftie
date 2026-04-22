@@ -35,7 +35,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.prefix)) then
 	    --TOCA.Notification(TOCA.Addon .. " " .. TOCA._L.INIT[6] .. ". Type " .. TOCA._G.CMD .. " for commands.")
 	    Craftie.Init()
-      print("Craftie.Event " .. prefix .. " | " .. event)
+      --print("Craftie.Event " .. prefix .. " | " .. event)
 	  end
     --print("Craftie.Event " .. prefix .. " | " .. event)
   end
