@@ -13,8 +13,6 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---22840 Elixir of Major Mageblood
-
 __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 
 Craftie = {
@@ -182,4 +180,63 @@ function SortTableByString(tbl) --alpha second key
   table.sort(tbl, function(a, b)
     return string.lower(a[2]) < string.lower(b[2])
   end)
+end
+
+function SortTableByMatch(tbl, search)
+  search = string.lower(search or "")
+
+  table.sort(tbl, function(a, b)
+    local nameA = string.lower(a[2] or "")
+    local nameB = string.lower(b[2] or "")
+
+    local matchA = string.find(nameA, search, 1, true)
+    local matchB = string.find(nameB, search, 1, true)
+
+    -- Matches come first
+    if matchA and not matchB then
+      return true
+    elseif not matchA and matchB then
+      return false
+    end
+
+    -- If both match or both don't, sort alphabetically
+    return nameA < nameB
+  end)
+end
+
+
+function SortTableByBestMatch(tbl, search)
+    search = string.lower(search or "")
+    local matchCount = 0
+
+    -- First pass: count matches
+    if search ~= "" then
+        for _, item in ipairs(tbl) do
+            local name = string.lower(item[2] or "")
+            if string.find(name, search, 1, true) then
+                matchCount = matchCount + 1
+            end
+        end
+    else
+        matchCount = #tbl -- Empty search = everything matches
+    end
+
+    -- Sort table
+    table.sort(tbl, function(a, b)
+        local nameA = string.lower(a[2] or "")
+        local nameB = string.lower(b[2] or "")
+
+        local posA = string.find(nameA, search, 1, true) or math.huge
+        local posB = string.find(nameB, search, 1, true) or math.huge
+
+        -- Earlier match wins
+        if posA ~= posB then
+            return posA < posB
+        end
+
+        -- Alphabetical fallback
+        return nameA < nameB
+    end)
+
+    return matchCount
 end

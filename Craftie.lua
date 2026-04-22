@@ -20,7 +20,9 @@ the copyright holders.
 Craftie._G.Width = 820
 Craftie._G.Height= 400
 
-Craftie.Frame={}
+Craftie.Profession.Query = Craftie.Profession.Tailoring
+
+Craftie.Frame = {}
 Craftie.Frame = CreateFrame("Frame", Craftie.Frame, UIParent, "ButtonFrameTemplate")
 Craftie.Frame:SetWidth(Craftie._G.Width)
 Craftie.Frame:SetHeight(Craftie._G.Height)
@@ -69,6 +71,32 @@ Craftie.Tab.Frame:SetScript("OnClick", function()
   Craftie.Tab.Border:SetTexture("Interface/HELPFRAME/HelpFrameTab-Active")
 end)
 ]==]--
+
+Craftie.Frame.Search = {}
+
+Craftie.Frame.Search = CreateFrame("Frame", nil, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.Search:SetWidth(150)
+Craftie.Frame.Search:SetHeight(24)
+Craftie.Frame.Search:SetPoint("TOPLEFT", 220, -30)
+Craftie.Frame.Search:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.Search:SetBackdropColor(0, 0, 0, 0.5)
+Craftie.Frame.Search:SetBackdropBorderColor(1, 1, 1, 0.5)
+Craftie.Frame.Search.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search)
+Craftie.Frame.Search.Text:SetWidth(200)
+Craftie.Frame.Search.Text:SetHeight(35)
+Craftie.Frame.Search.Text:SetFontObject(GameFontWhite)
+Craftie.Frame.Search.Text:SetPoint("TOPLEFT", 6, 4)
+--Craftie.Frame.Search.Text:SetMultiLine(true)
+--Craftie.Frame.Search.Text:ClearFocus(self)
+Craftie.Frame.Search.Text:SetAutoFocus(false)
+Craftie.Frame.Search.Text:SetText("Search")
+Craftie.Frame.Search.Text:SetScript("OnKeyUp", function(self, key)
+  if (key == "ENTER") then
+    local search_array = Craftie.Profession.Query
+    local search_index = Craftie.Frame.Search.Text:GetText()
+    Craftie.OpenProfessionList(search_array, search_index)
+  end
+end)
 
 Craftie.Frame.Parent.Scroll = {}
 Craftie.Frame.Parent.Scroll.Players = CreateFrame("Frame", Craftie.Frame.ScrollParent, Craftie.Frame, "InsetFrameTemplate")
@@ -413,10 +441,23 @@ for i=1, Craftie.MAX_RECIPES do
   ]==]--
 end
 
-function Craftie.OpenProfessionList(prof)
+function Craftie.ResetSearch()
+  Craftie.Frame.Search.Text:SetText("")
+  Craftie.OpenProfessionList(prof, "")
+end
+
+function Craftie.OpenProfessionList(prof, search)
   --print("prof count " .. #prof)
   local total_recipes = #prof -- + 1
-  SortTableByString(prof)
+  local total_search = 0
+  if (search:len() >= 3) then
+    local matches = SortTableByBestMatch(prof, search)
+    if (matches >= 1) then
+      total_recipes = matches
+    end
+  else
+    SortTableByString(prof)
+  end
   for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
   end
@@ -440,17 +481,17 @@ function Craftie.OpenProfessionList(prof)
 end
 
 C_Timer.After(1, function()
-  Craftie.OpenProfessionList(Craftie.Profession.Tailoring)
+  Craftie.OpenProfessionList(Craftie.Profession.Query, "")
 end)
 
 --[==[
 for i=1, 4 do
-  TOCA.SlotGrid.VerticalTimerX = TOCA.SlotGrid.VerticalTimerX+TOCA.Slot_w
-  TOCA.SlotGrid.VerticalTimer[i]= TOCA.FrameMain:CreateFontString(nil, "ARTWORK")
-  TOCA.SlotGrid.VerticalTimer[i]:SetFont(TOCA._G.font, 12, "OUTLINE")
-  TOCA.SlotGrid.VerticalTimer[i]:SetPoint("TOPLEFT", TOCA.SlotGrid.VerticalTimerX-TOCA.Slot_w+5, -28)
-  TOCA.SlotGrid.VerticalTimer[i]:SetText("")
-  TOCA.SlotGrid.VerticalTimer[i]:Hide()
+  Craftie.SlotGrid.VerticalTimerX = Craftie.SlotGrid.VerticalTimerX+Craftie.Slot_w
+  Craftie.SlotGrid.VerticalTimer[i]= Craftie.FrameMain:CreateFontString(nil, "ARTWORK")
+  Craftie.SlotGrid.VerticalTimer[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
+  Craftie.SlotGrid.VerticalTimer[i]:SetPoint("TOPLEFT", Craftie.SlotGrid.VerticalTimerX-Craftie.Slot_w+5, -28)
+  Craftie.SlotGrid.VerticalTimer[i]:SetText("")
+  Craftie.SlotGrid.VerticalTimer[i]:Hide()
 ]==]--
 
 --[==[

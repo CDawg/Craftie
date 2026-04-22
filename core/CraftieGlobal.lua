@@ -166,6 +166,7 @@ function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
     --Craftie.Notification("Craftie")
     print(Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version)
+    Craftie.Frame:Show()
     --Craftie.Notification
 		--for int,list in pairs(Craftie._L.COMMANDS) do
 			--print("|cffffff00".. list[1] .. "|r : " .. list[2] .. "|n")
