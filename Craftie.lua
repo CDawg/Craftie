@@ -148,7 +148,7 @@ for i,v in pairs(Craftie.Professions) do
     GameTooltip:Hide()
   end)
   Craftie.Tab.Frame[i]:SetScript("OnClick", function(self)
-    --Craftie.ClearFocusAll()
+    Craftie.ClearFocusAll()
     Craftie.ResetTab(i)
     Craftie.Frame.Title:SetText(v[1])
     --Craftie.Tab.Frame[i].Border:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
@@ -179,7 +179,10 @@ Craftie.Frame.Search = {}
 
 function Craftie.ClearFocusAll()
   Craftie.Frame.Search.Recipes.Text:ClearFocus()
-  print("clearing focus")
+  if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
+    Craftie.Frame.Search.Recipes.Text:SetText(placeholder_recipes)
+    Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
+  end
 end
 
 Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame, "BackdropTemplate", 2)
@@ -331,6 +334,7 @@ end
 function Craftie.ItemDetails(item)
   local reagent = {}
   Craftie.Frame.Craft:Show()
+  Craftie.ClearFocusAll()
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0
      Craftie.Frame.Reagent.Main[i]:Hide()
