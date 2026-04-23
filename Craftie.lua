@@ -48,7 +48,7 @@ Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.font, 14, "OUTLINE")
 Craftie.Frame.Title:SetPoint("TOPLEFT", 65, -5)
-Craftie.Frame.Title:SetText("Craftie")
+Craftie.Frame.Title:SetText("Alchemy")
 
 Craftie.Frame.Parent = {}
 
@@ -62,7 +62,7 @@ Craftie.Frame.Header:SetTexture("Interface/ACHIEVEMENTFRAME/UI-Achievement-Compa
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 
-function Craftie.ResetTab(tab)
+function Craftie.TabSelect(tab)
   for i=1, #Craftie.Professions do
     Craftie.Tab.Frame[i].Glow:Hide()
     Craftie.Tab.Frame[i].Shadow:Show()
@@ -76,19 +76,6 @@ end
 
 Craftie.Tab={}
 Craftie.Tab.Frame={}
-
---for i,v in pairs(Craftie.Professions) do
-  --print(i .. " | " .. v[1] .. " | " .. v[2])
---end
-
---[==[
-GameTooltip:HookScript("OnShow", function(self)
-  print("|cff00ff00------")
-  for i=1, self:NumLines() do 
-    print(_G["GameTooltipTextLeft"..i]:GetText())
-  end
-end)
-]==]--
 
 local placeholder_recipes = "Search Recipes..."
 local placeholder_players = "Search Players..."
@@ -150,7 +137,7 @@ for i,v in pairs(Craftie.Professions) do
   end)
   Craftie.Tab.Frame[i]:SetScript("OnClick", function(self)
     Craftie.ClearFocusAll()
-    Craftie.ResetTab(i)
+    Craftie.TabSelect(i)
     Craftie.Frame.Title:SetText(v[1])
     --Craftie.Tab.Frame[i].Border:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
 
@@ -200,12 +187,12 @@ Craftie.Frame.Parent.Scroll.Players:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.Parent.Scroll.Players:SetPoint("TOPLEFT", 2, -61)
 
 Craftie.Frame.Parent.Scroll.Players.Back = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Parent.Scroll.Players.Back:SetSize(Craftie.Frame.Parent.Scroll.Players:GetWidth()+162, Craftie.Frame.Parent.Scroll.Players:GetHeight()-170)
-Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", -77, -88)
+Craftie.Frame.Parent.Scroll.Players.Back:SetSize(Craftie.Frame.Parent.Scroll.Players:GetWidth()+88, Craftie.Frame.Parent.Scroll.Players:GetHeight()+62)
+Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", 0, 0)
 --Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/EncounterJournal/UI-EJ-Classic")
-Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/EncounterJournal/UI-EJ-BurningCrusade")
-Craftie.Frame.Parent.Scroll.Players.Back:SetRotation(-math.pi/2)
-Craftie.Frame.Parent.Scroll.Players.Back:SetDesaturation(0.84)
+Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/Garrison/TalentTreeChromie")
+--Craftie.Frame.Parent.Scroll.Players.Back:SetRotation(-math.pi/2)
+--Craftie.Frame.Parent.Scroll.Players.Back:SetDesaturation(0.84)
 --Craftie.Frame.Parent.Back:SetTexture("Interface/ACHIEVEMENTFRAME/UI-Achievement-Parchment-Horizontal")
 --UI-Achievement-Parchment-Horizontal-Desaturated
 --LoadScreens/LoadScreen-LeftBookend
@@ -709,7 +696,6 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     Craftie.Profession.Query = prof
 
     local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title:GetText(), 1)
-    --local prof_color = Craftie.Professions[prof_list][3]
     local prof_color = split(Craftie.Professions[prof_list][3], ",")
     Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
     --print(prof_color)
@@ -717,6 +703,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
 end
 
 C_Timer.After(1, function()
+  Craftie.TabSelect(1)
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
 end)
 
