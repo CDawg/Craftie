@@ -89,19 +89,13 @@ function Craftie.Init()
 end
 
 Craftie.Professions = {
---in order
-  {"FirstAid"},
-  {"Blacksmithing", "Trade_BlackSmithing", "0.60, 0.54, 0.48"}, --["Alchemy"] = "Interface\\Icons\\Trade_Alchemy",
-  {"Leatherworking","Trade_LeatherWorking","0.76, 0.63, 0.42"},
   {"Alchemy",       "Trade_Alchemy",       "0.72, 0.80, 0.19"},
-  {"Herbalism"},
+  {"Blacksmithing", "Trade_BlackSmithing", "0.60, 0.54, 0.48"}, --["Alchemy"] = "Interface\\Icons\\Trade_Alchemy",
   {"Cooking",       "INV_Misc_Food_15",    "0.88, 0.44, 0.13"},
-  {"Mining"},
-  {"Tailoring",     "Trade_Tailoring",     "0.91, 0.69, 0.88"},
-  {"Engineering",   "Trade_Engineering",   "0.91, 0.75, 0.25"},
   {"Enchanting",    "Trade_Engraving",     "0.73, 0.33, 0.83"},
-  {"Fishing"},
-  {"Skinning"},
+  {"Engineering",   "Trade_Engineering",   "0.91, 0.75, 0.25"},
+  {"Leatherworking","Trade_LeatherWorking","0.76, 0.63, 0.42"},
+  {"Tailoring",     "Trade_Tailoring",     "0.91, 0.69, 0.88"},
   {"Jewelcrafting", "INV_Misc_Gem_02",     "1.00, 0.25, 0.25"},
 }
 
@@ -179,28 +173,12 @@ function SlashCmdList.Craftie(cmd)
   if (cmd == "show") then
     Craftie.Frame:Show()
   end
-  if (cmd == "p1") then
-    Craftie.OpenProfessionList(Craftie.Profession.Alchemy)
-  end
-  if (cmd == "p2") then
-    Craftie.OpenProfessionList(Craftie.Profession.Blacksmithing)
-  end
-  if (cmd == "p3") then
-    Craftie.OpenProfessionList(Craftie.Profession.Cooking)
-  end
-  if (cmd == "p4") then
-    Craftie.OpenProfessionList(Craftie.Profession.Enchanting)
-  end
-  if (cmd == "p5") then
-    Craftie.OpenProfessionList(Craftie.Profession.Engineering)
-  end
-  if (cmd == "p6") then
-    Craftie.OpenProfessionList(Craftie.Profession.Jewelcrafting)
-  end
-  if (cmd == "p7") then
-    Craftie.OpenProfessionList(Craftie.Profession.Leatherworking)
-  end
-  if (cmd == "p8") then
-    Craftie.OpenProfessionList(Craftie.Profession.Tailoring)
+
+  for k,v in pairs(Craftie.Professions) do
+    local profcmd = "p" .. k
+    if (cmd == profcmd) then
+      print("DEBUG: View ALL recipes [" .. Craftie.Professions[k][1] .. "]") --Craftie.Profession[Craftie.Professions[k][1]])
+      Craftie.OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "")
+    end
   end
 end

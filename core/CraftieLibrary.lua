@@ -183,29 +183,6 @@ function SortTableByString(tbl) --alpha second key
 end
 
 function SortTableByMatch(tbl, search)
-  search = string.lower(search or "")
-
-  table.sort(tbl, function(a, b)
-    local nameA = string.lower(a[2] or "")
-    local nameB = string.lower(b[2] or "")
-
-    local matchA = string.find(nameA, search, 1, true)
-    local matchB = string.find(nameB, search, 1, true)
-
-    -- Matches come first
-    if matchA and not matchB then
-      return true
-    elseif not matchA and matchB then
-      return false
-    end
-
-    -- If both match or both don't, sort alphabetically
-    return nameA < nameB
-  end)
-end
-
-
-function SortTableByBestMatch(tbl, search)
     search = string.lower(search or "")
     local matchCount = 0
 
