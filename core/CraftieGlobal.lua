@@ -99,6 +99,8 @@ Craftie.Professions = {
   {"Jewelcrafting", "INV_Misc_Gem_02",     "1.00, 0.25, 0.25"},
 }
 
+Craftie.Profession.Query = Craftie.Profession.Alchemy --default
+
 function Craftie.GetProfessionsPlayer()
 	local pass = false
 	local skills = {}
@@ -127,10 +129,6 @@ function Craftie.GetProfessionsPlayer()
 	return skills[1], skills[2], skills[3], skills[4], skills[5]
 end
 
-function Craftie.GetProfessionsLibrary(lib)
-
-end
-
 function Craftie.SendPacket(packet, channel, compress)
   compressPacket = packet
   if (compress) then
@@ -152,8 +150,6 @@ function Craftie.ParsePacket(netpacket, code)
     end
   end
 end
-
---SPELLBOOK/UI-SpellBook-Tab1-Selected
 
 SLASH_Craftie1 = Craftie._G.CMD
 function SlashCmdList.Craftie(cmd)

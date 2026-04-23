@@ -18,7 +18,6 @@ __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 Craftie = {
 	_L={},
 
-	--Category = "|cff0070DDTotem Caddy", --options/keybindings
 	player = {
 	  name   = UnitName("player"),
 	  realm  = GetRealmName(),

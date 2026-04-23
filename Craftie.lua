@@ -20,8 +20,6 @@ the copyright holders.
 Craftie._G.Width = 820
 Craftie._G.Height= 460
 
-Craftie.Profession.Query = Craftie.Profession.Tailoring
-
 Craftie.Frame = {}
 Craftie.Frame = CreateFrame("Frame", Craftie.Frame, UIParent, "ButtonFrameTemplate")
 Craftie.Frame:SetWidth(Craftie._G.Width)
@@ -48,8 +46,8 @@ Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
 --Craftie.Icon:SetTexture(Craftie._G.dir .. "images/Trade_Engraving")
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Title:SetFont(Craftie._G.font, 12, "OUTLINE")
-Craftie.Frame.Title:SetPoint("TOPLEFT", 30, -12)
+Craftie.Frame.Title:SetFont(Craftie._G.font, 14, "OUTLINE")
+Craftie.Frame.Title:SetPoint("TOPLEFT", 65, -5)
 Craftie.Frame.Title:SetText("Craftie")
 
 Craftie.Frame.Parent = {}
@@ -129,8 +127,9 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.Tab.Frame[i].Select:Hide()
   Craftie.Tab.Frame[i]:SetScript("OnEnter", function(self)
     Craftie.Tab.Frame[i].Select:Show()
-    GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-    GameTooltip:AddLine(v[1])
+    --GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+    GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    GameTooltip:AddLine("|cffffffff" .. v[1] .. "|r")
     GameTooltip:Show()
   end)
   Craftie.Tab.Frame[i]:SetScript("OnLeave", function()
@@ -139,7 +138,17 @@ for i,v in pairs(Craftie.Professions) do
   end)
   Craftie.Tab.Frame[i]:SetScript("OnClick", function()
     Craftie.ResetTab(i)
+    Craftie.Frame.Title:SetText(v[1])
     --Craftie.Tab.Frame[i].Border:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
+
+    Craftie.Profession.Query = Craftie.Profession[v[1]]
+    C_Timer.After(0.30, function() --give it time to register
+      local search_index = Craftie.Frame.Search.Text:GetText()
+      if (search_index == "Search") then
+        search_index = ""
+      end
+      Craftie.OpenProfessionList(Craftie.Profession.Query, search_index)
+    end)
   end)
 end
 --Interface/COMMON/GreyBorder64-Left
@@ -266,6 +275,17 @@ Craftie.Frame.Scroll.Recipes.List.Child:SetScrollChild(Craftie.Frame.Scroll.Reci
 Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Recipes.List.Child, "TOPRIGHT", 0, -17)
 Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Recipes.List.Child, "BOTTOMRIGHT", -42, 14)
+
+Craftie.Frame.Scroll.Recipes.Results = Craftie.Frame.Scroll.Recipes:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Scroll.Recipes.Results:SetFont(Craftie._G.font, 12, "OUTLINE")
+Craftie.Frame.Scroll.Recipes.Results:SetPoint("BOTTOMRIGHT", 0, -20)
+Craftie.Frame.Scroll.Recipes.Results:SetText("")
+
+Craftie.Frame.Scroll.Recipes.Empty = Craftie.Frame.Scroll.Recipes:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Scroll.Recipes.Empty:SetFont(Craftie._G.font, 12, "OUTLINE")
+Craftie.Frame.Scroll.Recipes.Empty:SetPoint("CENTER", -10, 0)
+Craftie.Frame.Scroll.Recipes.Empty:SetTextColor(1, 1, 1, 0.6)
+Craftie.Frame.Scroll.Recipes.Empty:SetText("")
 
 Craftie.Frame.Scroll.Recipes.List.Item = {}
 
@@ -553,11 +573,18 @@ function Craftie.OpenProfessionList(prof, search)
   --print("prof count " .. #prof)
   local total_recipes = #prof -- + 1
   local total_search = 0
+  Craftie.Frame.Scroll.Recipes.Results:SetText("")
+  Craftie.Frame.Scroll.Recipes.Empty:SetText("")
   if (search:len() >= 3) then
     local matches = SortTableByMatch(prof, search)
     if (matches >= 1) then
       total_recipes = matches
+    else
+      matches = 0
+      total_recipes = 0
+      Craftie.Frame.Scroll.Recipes.Empty:SetText('No Recipes|n"' .. search .. '"')
     end
+    Craftie.Frame.Scroll.Recipes.Results:SetText(matches .. " |cfffffb63Result(s)")
   else
     SortTableByString(prof)
   end
