@@ -51,6 +51,12 @@ Craftie.Backdrop = {
     edgeSize= 12,
     insets  = {left=2, right=2, top=2, bottom=2},
   },
+  Opaque = {
+    bgFile  = "Interface/Tooltips/CHATBUBBLE-BACKGROUND",
+    edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
+    edgeSize= 12,
+    insets  = {left=2, right=2, top=2, bottom=2},
+  },
   Button = {
     bgFile  = "Interface/Buttons/GoldGradiant",
     edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
