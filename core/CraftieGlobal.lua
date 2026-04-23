@@ -96,7 +96,7 @@ end
 
 Craftie.Professions = {
   {"Alchemy",       "Trade_Alchemy",       "0.72, 0.80, 0.19"},
-  {"Blacksmithing", "Trade_BlackSmithing", "0.60, 0.54, 0.48"}, --["Alchemy"] = "Interface\\Icons\\Trade_Alchemy",
+  {"Blacksmithing", "Trade_BlackSmithing", "0.60, 0.54, 0.48"},
   {"Cooking",       "INV_Misc_Food_15",    "0.88, 0.44, 0.13"},
   {"Enchanting",    "Trade_Engraving",     "0.73, 0.33, 0.83"},
   {"Engineering",   "Trade_Engineering",   "0.91, 0.75, 0.25"},

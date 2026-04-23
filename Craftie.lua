@@ -199,6 +199,34 @@ Craftie.Frame.Parent.Scroll.Players:SetWidth(210)
 Craftie.Frame.Parent.Scroll.Players:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.Parent.Scroll.Players:SetPoint("TOPLEFT", 2, -61)
 
+Craftie.Frame.Parent.Scroll.Players.Back = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Parent.Scroll.Players.Back:SetSize(Craftie.Frame.Parent.Scroll.Players:GetWidth()+162, Craftie.Frame.Parent.Scroll.Players:GetHeight()-170)
+Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", -77, -88)
+--Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/EncounterJournal/UI-EJ-Classic")
+Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/EncounterJournal/UI-EJ-BurningCrusade")
+Craftie.Frame.Parent.Scroll.Players.Back:SetRotation(-math.pi/2)
+Craftie.Frame.Parent.Scroll.Players.Back:SetDesaturation(0.84)
+--Craftie.Frame.Parent.Back:SetTexture("Interface/ACHIEVEMENTFRAME/UI-Achievement-Parchment-Horizontal")
+--UI-Achievement-Parchment-Horizontal-Desaturated
+--LoadScreens/LoadScreen-LeftBookend
+
+--[==[
+Craftie.Frame.Parent.Scroll.Players.Top = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Parent.Scroll.Players.Top:SetSize(60, Craftie.Frame.Parent.Scroll.Players:GetWidth()-8)
+Craftie.Frame.Parent.Scroll.Players.Top:SetPoint("TOPLEFT", 80, 70)
+Craftie.Frame.Parent.Scroll.Players.Top:SetTexture(Craftie._G.dir .. "images/LoadScreen-LeftBookend.png")
+Craftie.Frame.Parent.Scroll.Players.Top:SetDesaturation(0.10)
+--Craftie.Frame.Parent.Scroll.Players.Top:SetRotation(-math.pi/2)
+Craftie.Frame.Parent.Scroll.Players.Top:SetRotation(math.pi/2)
+--Craftie.Frame.Parent.Scroll.Players.Left:SetBlendMode("ADD")
+
+Craftie.Frame.Parent.Scroll.Players.Right = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Parent.Scroll.Players.Right:SetSize(Craftie.Frame.Parent.Scroll.Players:GetWidth()-90, Craftie.Frame.Parent.Scroll.Players:GetHeight())
+Craftie.Frame.Parent.Scroll.Players.Right:SetPoint("TOPLEFT", Craftie.Frame.Parent.Scroll.Players:GetWidth()/2-20, 0)
+Craftie.Frame.Parent.Scroll.Players.Right:SetTexture(Craftie._G.dir .. "images/LoadScreen-LeftBookend.png")
+Craftie.Frame.Parent.Scroll.Players.Right:SetDesaturation(0.40)
+]==]--
+
 Craftie.Frame.Scroll = {}
 
 Craftie.Frame.Scroll.Players = {}
@@ -210,12 +238,13 @@ Craftie.Frame.Scroll.Players:SetWidth(Craftie.Frame.Scroll.Players_Width)
 Craftie.Frame.Scroll.Players:SetHeight(Craftie.Frame.Scroll.Players_Height)
 Craftie.Frame.Scroll.Players:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
 Craftie.Frame.Scroll.Players:SetFrameStrata("DIALOG")
+
 Craftie.Frame.Scroll.Players.List = CreateFrame("Frame", Craftie.Frame.Scroll.Players.List, Craftie.Frame.Scroll.Players, "BackdropTemplate")
 Craftie.Frame.Scroll.Players.List:SetWidth(Craftie.Frame.Scroll.Players_Width)
 Craftie.Frame.Scroll.Players.List:SetHeight(Craftie.Frame.Scroll.Players_Height)
 Craftie.Frame.Scroll.Players.List:SetPoint("CENTER", 0, 0)
 Craftie.Frame.Scroll.Players.List:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.Scroll.Players.List:SetBackdropColor(0, 0, 0, 0)
+Craftie.Frame.Scroll.Players.List:SetBackdropColor(0, 0, 0, 0.8)
 Craftie.Frame.Scroll.Players.List:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.Scroll.Players.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Players.List, "UIPanelScrollFrameTemplate")
 Craftie.Frame.Scroll.Players.List.Child:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Players.List, "TOPLEFT", 3, -30)
@@ -227,20 +256,22 @@ Craftie.Frame.Scroll.Players.List.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.Scroll.Players.List.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Players.List.Child, "TOPRIGHT", 0, 10)
 Craftie.Frame.Scroll.Players.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Players.List.Child, "BOTTOMRIGHT", -42, 12)
 
+--QUESTFRAME/QuestBookBG
+
 Craftie.Frame.Search.Player = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players, "BackdropTemplate", 2)
 Craftie.Frame.Search.Player:SetWidth(150)
 Craftie.Frame.Search.Player:SetHeight(24)
-Craftie.Frame.Search.Player:SetPoint("TOPLEFT", 4, -2)
+Craftie.Frame.Search.Player:SetPoint("TOPLEFT", 4, -1)
 Craftie.Frame.Search.Player:SetBackdrop(Craftie.Backdrop.Opaque)
 Craftie.Frame.Search.Player:SetBackdropColor(1, 0, 0, 1)
 Craftie.Frame.Search.Player:SetBackdropBorderColor(1, 1, 1, 0.4)
 Craftie.Frame.Search.Player:SetFrameStrata("TOOLTIP")
 Craftie.Frame.Search.Player:SetFrameLevel(Craftie.Framelevel.Foreground)
 Craftie.Frame.Search.Player.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search.Player)
-Craftie.Frame.Search.Player.Text:SetWidth(200)
-Craftie.Frame.Search.Player.Text:SetHeight(35)
+Craftie.Frame.Search.Player.Text:SetWidth(Craftie.Frame.Search.Player:GetWidth()-6)
+Craftie.Frame.Search.Player.Text:SetHeight(Craftie.Frame.Search.Player:GetHeight())
 Craftie.Frame.Search.Player.Text:SetFontObject(GameFontDisable)
-Craftie.Frame.Search.Player.Text:SetPoint("TOPLEFT", 6, 4)
+Craftie.Frame.Search.Player.Text:SetPoint("TOPLEFT", 6, 0)
 Craftie.Frame.Search.Player.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Player.Text:SetText(placeholder_players)
 Craftie.Frame.Search.Player.Text:SetScript("OnKeyUp", function(self, key)
@@ -272,6 +303,11 @@ Craftie.Frame.Parent.Scroll.Recipes:SetWidth(300)
 Craftie.Frame.Parent.Scroll.Recipes:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.Parent.Scroll.Recipes:SetPoint("TOPLEFT", 212, -61)
 
+Craftie.Frame.Parent.Scroll.Recipes.Back = Craftie.Frame.Parent.Scroll.Recipes:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Parent.Scroll.Recipes.Back:SetSize(Craftie.Frame.Parent.Scroll.Recipes:GetWidth()+166, Craftie.Frame.Parent.Scroll.Recipes:GetHeight()+185)
+Craftie.Frame.Parent.Scroll.Recipes.Back:SetPoint("TOPLEFT", 6, -5)
+Craftie.Frame.Parent.Scroll.Recipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
+
 Craftie.Frame.Scroll.Recipes = {}
 Craftie.Frame.Scroll.Recipes.List = {}
 Craftie.Frame.Scroll.Recipes_Width = 300
@@ -288,7 +324,8 @@ Craftie.Frame.Scroll.Recipes.List:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
 Craftie.Frame.Scroll.Recipes.List:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
 Craftie.Frame.Scroll.Recipes.List:SetPoint("CENTER", 0, 0)
 Craftie.Frame.Scroll.Recipes.List:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0.1) --slight blue
+--Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0.1) --slight blue
+Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue
 Craftie.Frame.Scroll.Recipes.List:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.Frame.Scroll.Recipes.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Recipes.List, "UIPanelScrollFrameTemplate") -- "MinimalScrollBar"
@@ -629,12 +666,13 @@ function Craftie.ResetSearch()
   Craftie.OpenProfessionList(prof, "")
 end
 
-function Craftie.OpenProfessionList(prof, search)
+function Craftie.OpenProfessionList(prof, search) --need to add player
   --print("prof count " .. #prof)
-  local total_recipes = #prof -- + 1
+  local total_recipes = #prof
   local total_search = 0
   Craftie.Frame.Scroll.Recipes.Results:SetText("")
   Craftie.Frame.Scroll.Recipes.Empty:SetText("")
+  --Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
   if (search:len() >= 3) then
     local matches = SortTableByMatch(prof, search)
     if (matches >= 1) then
@@ -669,6 +707,12 @@ function Craftie.OpenProfessionList(prof, search)
       Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
     end
     Craftie.Profession.Query = prof
+
+    local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title:GetText(), 1)
+    --local prof_color = Craftie.Professions[prof_list][3]
+    local prof_color = split(Craftie.Professions[prof_list][3], ",")
+    Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
+    --print(prof_color)
   end)
 end
 
