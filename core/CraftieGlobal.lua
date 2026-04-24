@@ -36,6 +36,9 @@ if (Craftie.Game.version == 1) then
   Craftie._G.suffix = "Classic"
 end
 
+Craftie._G.Width = 820
+Craftie._G.Height= 460
+
 Craftie.Framelevel = {
   Background= 0,
   Foreground= 1,
@@ -77,21 +80,12 @@ function Craftie.Notification(msg, debug)
   end
 end
 
-function Craftie.Init()
+Craftie.MAX_REAGENTS = 6
+Craftie.MAX_RECIPES = 600
 
- --[==[
-  -- this works!
-  --print(ClassicGetProfessions())
-  --profession window must be open in order to extract trade info??
-  local name, type;
-  for i=1,GetNumTradeSkills() do
-   name, type, _, _, _, _ = GetTradeSkillInfo(i)
-    if (name and type ~= "header") then
-       --DEFAULT_CHAT_FRAME:AddMessage("Found: "..name)
-       print(name .. " | " .. type)
-    end
-  end
-  ]==]--
+function Craftie.Init()
+  Craftie.TabSelect(1, false)
+  Craftie.OpenProfessionList(Craftie.Profession.Query, "")
 end
 
 Craftie.Professions = {
@@ -106,6 +100,44 @@ Craftie.Professions = {
 }
 
 Craftie.Profession.Query = Craftie.Profession.Alchemy --default
+
+function Craftie.TabSelect(tab, sound)
+  for i=1, #Craftie.Professions do
+    Craftie.Tab.Frame[i].Glow:Hide()
+    Craftie.Tab.Frame[i].Shadow:Show()
+  end
+  Craftie.Tab.Frame[tab].Glow:Show()
+  Craftie.Tab.Frame[tab].Shadow:Hide()
+  if (sound) then
+    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+  end
+end
+
+function Craftie.ClearFocusAll()
+  Craftie.Frame.Search.Recipes.Text:ClearFocus()
+  if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
+    Craftie.Frame.Search.Recipes.Text:SetText(placeholder_recipes)
+    Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
+  end
+  Craftie.Frame.Search.Player.Text:ClearFocus()
+  if (Craftie.Frame.Search.Player.Text:GetText() == "") then
+    Craftie.Frame.Search.Player.Text:SetText(placeholder_players)
+    Craftie.Frame.Search.Player.Text:SetFontObject(GameFontDisable)
+  end
+  PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+end
+
+function SetItemTooltip(frame, itemID, enchant)
+  --GameTooltip:SetOwner(frame, "ANCHOR_CURSOR")
+  GameTooltip:SetOwner(frame, "ANCHOR_CURSOR_RIGHT")
+  if (enchant) then
+    GameTooltip:SetHyperlink("enchant:" .. itemID .. ":0:0:0:0:0:0:0")
+  else
+    GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
+  end
+  GameTooltip:AddLine("|nCraftie")
+  GameTooltip:Show()
+end
 
 function Craftie.GetProfessionsPlayer()
 	local pass = false
@@ -157,6 +189,147 @@ function Craftie.ParsePacket(netpacket, code)
   end
 end
 
+
+function Craftie.ItemDetails(item)
+  local reagent = {}
+  Craftie.Frame.Craft:Show()
+  Craftie.ClearFocusAll()
+  for i=1, Craftie.MAX_REAGENTS do
+    reagent[i] = 0
+     Craftie.Frame.Reagent.Main[i]:Hide()
+    if (not isempty(item[6][i])) then
+      local r = 0
+      local inv_count= C_Item.GetItemCount(item[6][i][1])
+      local inv_req = item[6][i][2]
+
+      --reset
+      Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
+      Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
+      Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
+
+      r = getKeyFromValue(Craftie.Reagent, item[6][i][1], 1)
+      Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
+      Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
+      Craftie.Frame.Reagent.QuanI[i]:SetText(inv_count)
+      Craftie.Frame.Reagent.QuanR[i]:SetText(inv_req)
+      Craftie.Frame.Reagent.Icon[i]:SetTexture(C_Item.GetItemIconByID(Craftie.Reagent[r][1]))
+      Craftie.Frame.Reagent.Main[i]:Show()
+      if (inv_count >= inv_req) then
+        Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
+        Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
+        Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 1)
+      end
+      --print("craftie count " .. Craftie.Reagent[r][2] .. ": " .. item[6][i][2] .. " | " .. inv_count)
+    end
+  end
+  Craftie.Frame.Craft.ID:SetText(item[4])
+  Craftie.Frame.Craft.Text:SetText(item[2])
+  local item_detail = item[4]
+  local is_enchant = false
+  --local get_tooltip = C_Item.GetItemByID(item[4])
+  if (item_detail == "") then --blank or possibly enchant
+    local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(item[1])
+    --print("spell? " .. name .. " | " .. icon)
+    Craftie.Frame.Craft.ID:SetText(item[1])
+    Craftie.Frame.Craft.Icon:SetTexture(icon)
+    is_enchant = true
+    --GameTooltip:SetHyperlink("enchant:" .. 7418 .. ":0:0:0:0:0:0:0")
+  else
+    Craftie.Frame.Craft.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
+  end
+
+    C_Timer.After(0.12, function() --give it time to register
+      Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 1)
+      if (is_enchant) then
+        Craftie.Frame.Craft.HLink:SetText("ENCHANT DATA TEXT HERE")
+        --print(is_enchant)
+        Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
+          SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), true)
+        end)
+      else
+        local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item_detail)
+        Craftie.Frame.Craft.HLink:SetText(link)
+        if (quality ~= nil) then
+          local r, g, b, qs = C_Item.GetItemQualityColor(quality)
+          Craftie.Frame.Craft.Text:SetTextColor(r, g, b, 1)
+        end
+        Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
+          SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), false)
+        end)
+      end
+      Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
+    end)
+end
+
+
+function Craftie.ClearSelectedItem()
+  for i=1, Craftie.MAX_RECIPES do
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
+    Craftie.Frame.Scroll.Recipes.List.Item[Craftie.item_selected]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+    Craftie.Frame.Scroll.Text[Craftie.item_selected]:SetTextColor(1, 1, 0.8, 1)
+    Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
+    if (i % 2 == 0) then
+      Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+    end
+  end
+end
+
+
+function Craftie.ResetSearch()
+  Craftie.Frame.Search.Recipes.Text:SetText("")
+  Craftie.OpenProfessionList(prof, "")
+end
+
+function Craftie.OpenProfessionList(prof, search) --need to add player
+  --print("prof count " .. #prof)
+  local total_recipes = #prof
+  local total_search = 0
+  Craftie.Frame.Scroll.Recipes.Results:SetText("")
+  Craftie.Frame.Scroll.Recipes.Empty:SetText("")
+  --Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
+  if (search:len() >= 3) then
+    local matches = SortTableByMatch(prof, search)
+    if (matches >= 1) then
+      total_recipes = matches
+    else
+      matches = 0
+      total_recipes = 0
+      Craftie.Frame.Scroll.Recipes.Empty:SetText('No Recipes|n"' .. search .. '"')
+    end
+    Craftie.Frame.Scroll.Recipes.Results:SetText(matches .. " |cfffffb63Result(s)")
+  else
+    SortTableByString(prof)
+    Craftie.Frame.Scroll.Recipes.Results:SetText(total_recipes .. " |cfffffb63Result(s)")
+  end
+  for i=1, Craftie.MAX_RECIPES do
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
+  end
+
+  --C_Timer.After(0.06, function()
+    for i=1, total_recipes do
+      Craftie.Frame.Scroll.Text[i]:SetText(prof[i][2])
+      Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
+        Craftie.ItemDetails(prof[i])
+        --print(prof[i][2])
+        Craftie.item_selected = i
+        Craftie.ClearSelectedItem()
+
+        --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
+        --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
+        --Craftie.SendPacket("WHISPER", false)
+      end)
+      Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
+    end
+    Craftie.Profession.Query = prof
+
+    local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title:GetText(), 1)
+    local prof_color = split(Craftie.Professions[prof_list][3], ",")
+    Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
+    Craftie.Frame.Title:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+    --print(prof_color)
+  --end)
+end
+
 SLASH_Craftie1 = Craftie._G.CMD
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
@@ -184,3 +357,7 @@ function SlashCmdList.Craftie(cmd)
     end
   end
 end
+
+C_Timer.After(0.5, function()
+  Craftie.Init()
+end)

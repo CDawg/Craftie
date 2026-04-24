@@ -14,20 +14,17 @@ the copyright holders.
 ]==]--
 
 --[==[
-
 Alchemy
- ├── Potions
- ├── Elixirs
- │    ├── Battle Elixirs
- │    └── Guardian Elixirs
- ├── Flasks
- ├── Transmutation
- ├── Oils
- └── Miscellaneous
-
+1 Potions
+2 Elixirs
+3 Flasks
+4 Transmutation
+5 Oils
+6 Miscellaneous
 ]==]--
 
---itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop], category
+--itemID, Cat, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop], category
+
 Craftie.Profession.Alchemy = {
 {2329, "Elixir of Lion's Strength", 1, 2454, "", {{2449, 1}, {765, 1}, {3371, 1}}, "inv_potion_56", "", 1},
 {2330, "Minor Healing Potion", 1, 118, "", {{2447, 1}, {765, 1}, {3371, 1}}, "inv_potion_49", "", 1},
