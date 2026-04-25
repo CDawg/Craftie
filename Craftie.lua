@@ -57,7 +57,6 @@ Craftie.Tab.Frame={}
 local placeholder_recipes = "Search Recipes..."
 local placeholder_players = "Search Crafters..."
 
---for i=1, #Craftie.Professions do
 for i,v in pairs(Craftie.Professions) do
   Craftie.Tab.Frame[i] = CreateFrame("Button", Craftie.Tab.Frame[i], Craftie.Frame, "BackdropTemplate")
   Craftie.Tab.Frame[i]:SetWidth(40)
@@ -458,55 +457,4 @@ for i=1, Craftie.MAX_RECIPES do
     GameTooltip:Hide()
     Craftie.ClearSelectedItem()
   end)
-
-  --[==[
-  Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
-    Craftie.ItemDetails(Craftie.Profession.Query[i])
-    --print(Craftie.Profession.Query[i][2])
-    Craftie.item_selected = i
-    Craftie.ClearSelectedItem()
-
-  --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
-  --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
-  --Craftie.SendPacket("WHISPER", false)
-  end)
-  ]==]--
 end
-
---[==[
-for i=1, 4 do
-  Craftie.SlotGrid.VerticalTimerX = Craftie.SlotGrid.VerticalTimerX+Craftie.Slot_w
-  Craftie.SlotGrid.VerticalTimer[i]= Craftie.FrameMain:CreateFontString(nil, "ARTWORK")
-  Craftie.SlotGrid.VerticalTimer[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
-  Craftie.SlotGrid.VerticalTimer[i]:SetPoint("TOPLEFT", Craftie.SlotGrid.VerticalTimerX-Craftie.Slot_w+5, -28)
-  Craftie.SlotGrid.VerticalTimer[i]:SetText("")
-  Craftie.SlotGrid.VerticalTimer[i]:Hide()
-]==]--
-
---[==[
-Craftie.Frame.Scroll.Recipes.text = CreateFrame("EditBox", nil, Craftie.Frame.Scroll.Recipes.ListChildFrame)
-Craftie.Frame.Scroll.Recipes.text:SetWidth(Craftie.Frame.Scroll.Recipes_Width-20)
-Craftie.Frame.Scroll.Recipes.text:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
-Craftie.Frame.Scroll.Recipes.text:SetFontObject(GameFontWhite)
-Craftie.Frame.Scroll.Recipes.text:SetPoint("TOPLEFT", 4, -4)
-Craftie.Frame.Scroll.Recipes.text:SetMultiLine(true)
-Craftie.Frame.Scroll.Recipes.text:ClearFocus(self)
-Craftie.Frame.Scroll.Recipes.text:SetAutoFocus(false)
-Craftie.Frame.Scroll.Recipes.text:SetText(arrayToString(texthere))
-]==]--
-
---[==[
---Craftie.Frame.Background = CreateFrame("Frame", Craftie.Frame.Background, Craftie.Frame, "BasicFrameTemplateWithInset", -6)
-Craftie.Frame.Background = CreateFrame("Frame", Craftie.Frame.Background, Craftie.Frame, "EtherealFrameTemplate", -6)
-Craftie.Frame.Background:SetWidth(Craftie._G.Width)
-Craftie.Frame.Background:SetHeight(Craftie._G.Height)
-Craftie.Frame.Background:SetPoint("CENTER", 0, 0)
---Craftie.Frame.Background:SetBackdrop(Craftie.Backdrop.General)
---Craftie.Frame.Background:SetBackdrop(BACKDROP_DARK_DIALOG_32_32)
---Craftie.Frame.Background:SetBackdropColor(0, 0, 0, 1)
---Craftie.Frame.Background:SetBackdropBorderColor(1, 1, 1, 0.6)
-Craftie.Frame.Background:SetFrameLevel(Craftie.Framelevel.Background)
-
---Craftie.KeyBindsSetOnLoad = 1
-]==]--
-
