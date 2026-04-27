@@ -40,6 +40,8 @@ end
 Craftie._G.Width = 820
 Craftie._G.Height= 460
 
+Craftie.Stamp = Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version
+
 Craftie.Framelevel = {
   Background= 0,
   Foreground= 1,
@@ -86,8 +88,10 @@ Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --be careful increasing this!
 
 function Craftie.Init()
-  Craftie.TabSelect(1, false)
+  print(Craftie.Stamp .. " Loaded")
+  Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
+  print(Craftie.Stamp .. " Loaded")
 end
 
 Craftie.Professions = {

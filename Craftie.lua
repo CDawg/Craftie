@@ -40,7 +40,7 @@ Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.font, 12, "OUTLINE")
 Craftie.Frame.Title:SetPoint("TOPLEFT", 65, -5)
-Craftie.Frame.Title:SetText(Craftie._G.prefix .. " v" .. Craftie._G.version)
+Craftie.Frame.Title:SetText(Craftie.Stamp)
 
 Craftie.Frame.Title.Prof = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Prof:SetFont(Craftie._G.font, 14, "OUTLINE")
