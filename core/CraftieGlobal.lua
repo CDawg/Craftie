@@ -88,7 +88,6 @@ Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --be careful increasing this!
 
 function Craftie.Init()
-  print(Craftie.Stamp .. " Loaded")
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
   print(Craftie.Stamp .. " Loaded")

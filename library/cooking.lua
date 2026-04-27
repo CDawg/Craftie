@@ -15,6 +15,7 @@ the copyright holders.
 
 --itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
 Craftie.Profession.Cooking = {
+{7751, "Brilliant Smallfish", 5, 6290, "", {{6291, 1}}, "inv_shirt_05", "", 1},
 {2385, "Brown Linen Vest", 10, 2568, "", {{2996, 1}, {2320, 1}}, "inv_shirt_05", "", 1},
 {2386, "Linen Boots", 65, 2569, "", {{2996, 3}, {2320, 1}, {2318, 1}}, "inv_boots_09", "", 1},
 }

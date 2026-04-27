@@ -1,0 +1,4449 @@
+
+  [
+    {
+      "spell_id": 7751,
+      "name": "Brilliant Smallfish",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 6290,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6291,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6325,
+        "name": "Recipe: Brilliant Smallfish",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 15935,
+      "name": "Crispy Bat Wing",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 12224,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12223,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12226,
+        "name": "Recipe: Crispy Bat Wing",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Abigail Shiel",
+            "t": 1,
+            "ti": 2118,
+            "z": 85
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 43779,
+      "name": "Delicious Chocolate Cake",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 50,
+        "green": 62,
+        "gray": 75
+      },
+      "creates": {
+        "item_id": 33924,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 30817,
+          "count": 8
+        },
+        {
+          "item_id": 1179,
+          "count": 4
+        },
+        {
+          "item_id": 2678,
+          "count": 4
+        },
+        {
+          "item_id": 6889,
+          "count": 8
+        },
+        {
+          "item_id": 2593,
+          "count": 1
+        },
+        {
+          "item_id": 785,
+          "count": 3
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 33925,
+        "name": "Recipe: Delicious Chocolate Cake",
+        "quality": 3,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 21143,
+      "name": "Gingerbread Cookie",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 17197,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6889,
+          "count": 1
+        },
+        {
+          "item_id": 17194,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 17200,
+        "name": "Recipe: Gingerbread Cookie",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 8604,
+      "name": "Herb Baked Egg",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 6888,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6889,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6891,
+        "name": "Recipe: Herb Baked Egg",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 33276,
+      "name": "Lynx Steak",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 27635,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27668,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27685,
+        "name": "Recipe: Lynx Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Landraelanis",
+            "t": 1,
+            "ti": 16262,
+            "z": 3430
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33277,
+      "name": "Roasted Moongraze Tenderloin",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 24105,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23676,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27686,
+        "name": "Recipe: Roasted Moongraze Tenderloin",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": 3524,
+            "c2": 1,
+            "n": "The Great Moongraze Hunt",
+            "t": 5,
+            "ti": 9454
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 7752,
+      "name": "Slitherskin Mackerel",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 787,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6303,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6326,
+        "name": "Recipe: Slitherskin Mackerel",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 37836,
+      "name": "Spice Bread",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 30,
+        "green": 35,
+        "gray": 40
+      },
+      "creates": {
+        "item_id": 30816,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 30817,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10
+    },
+    {
+      "spell_id": 6412,
+      "name": "Kaldorei Spider Kabob",
+      "learned_at": 10,
+      "skill_thresholds": {
+        "orange": 10,
+        "yellow": 50,
+        "green": 70,
+        "gray": 90
+      },
+      "creates": {
+        "item_id": 5472,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5465,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5482,
+        "name": "Recipe: Kaldorei Spider Kabob",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": -304,
+            "c2": 5,
+            "n": "Recipe of the Kaldorei",
+            "t": 5,
+            "ti": 4161
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 2539,
+      "name": "Spiced Wolf Meat",
+      "learned_at": 10,
+      "skill_thresholds": {
+        "orange": 10,
+        "yellow": 50,
+        "green": 70,
+        "gray": 90
+      },
+      "creates": {
+        "item_id": 2680,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2672,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 50
+    },
+    {
+      "spell_id": 6413,
+      "name": "Scorpid Surprise",
+      "learned_at": 20,
+      "skill_thresholds": {
+        "orange": 20,
+        "yellow": 60,
+        "green": 80,
+        "gray": 100
+      },
+      "creates": {
+        "item_id": 5473,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5466,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5483,
+        "name": "Recipe: Scorpid Surprise",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Grimtak",
+            "t": 1,
+            "ti": 3881,
+            "z": 14
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 818,
+      "name": "Basic Campfire",
+      "learned_at": 25,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 25,
+        "green": 50,
+        "gray": 75
+      },
+      "creates": {
+        "item_id": null,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4470,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 2795,
+      "name": "Beer Basted Boar Ribs",
+      "learned_at": 25,
+      "skill_thresholds": {
+        "orange": 25,
+        "yellow": 60,
+        "green": 80,
+        "gray": 100
+      },
+      "creates": {
+        "item_id": 2888,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2886,
+          "count": 1
+        },
+        {
+          "item_id": 2894,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2889,
+        "name": "Recipe: Beer Basted Boar Ribs",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": -304,
+            "c2": 5,
+            "n": "Beer Basted Boar Ribs",
+            "t": 5,
+            "ti": 384
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 21144,
+      "name": "Egg Nog",
+      "learned_at": 35,
+      "skill_thresholds": {
+        "orange": 35,
+        "yellow": 75,
+        "green": 95,
+        "gray": 115
+      },
+      "creates": {
+        "item_id": 17198,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6889,
+          "count": 1
+        },
+        {
+          "item_id": 1179,
+          "count": 1
+        },
+        {
+          "item_id": 17196,
+          "count": 1
+        },
+        {
+          "item_id": 17194,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 17201,
+        "name": "Recipe: Egg Nog",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 6414,
+      "name": "Roasted Kodo Meat",
+      "learned_at": 35,
+      "skill_thresholds": {
+        "orange": 35,
+        "yellow": 75,
+        "green": 95,
+        "gray": 115
+      },
+      "creates": {
+        "item_id": 5474,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 5467,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5484,
+        "name": "Recipe: Roasted Kodo Meat",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Wunna Darkmane",
+            "t": 1,
+            "ti": 3081,
+            "z": 215
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 8607,
+      "name": "Smoked Bear Meat",
+      "learned_at": 40,
+      "skill_thresholds": {
+        "orange": 40,
+        "yellow": 80,
+        "green": 100,
+        "gray": 120
+      },
+      "creates": {
+        "item_id": 6890,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3173,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6892,
+        "name": "Recipe: Smoked Bear Meat",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 33278,
+      "name": "Bat Bites",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 27636,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27669,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27687,
+        "name": "Recipe: Bat Bites",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Master Chef Mouldier",
+            "t": 1,
+            "ti": 16253,
+            "z": 3433
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 6499,
+      "name": "Boiled Clams",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 5525,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5503,
+          "count": 1
+        },
+        {
+          "item_id": 159,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 100
+    },
+    {
+      "spell_id": 2541,
+      "name": "Coyote Steak",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 2684,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2673,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 100
+    },
+    {
+      "spell_id": 6415,
+      "name": "Fillet of Frenzy",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 5476,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 5468,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5485,
+        "name": "Recipe: Fillet of Frenzy",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Laird",
+            "t": 1,
+            "ti": 4200,
+            "z": 148
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 2542,
+      "name": "Goretusk Liver Pie",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 724,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 723,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2697,
+        "name": "Recipe: Goretusk Liver Pie",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 40,
+            "c2": 0,
+            "n": "Goretusk Liver Pie",
+            "t": 5,
+            "ti": 22
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 7754,
+      "name": "Loch Frenzy Delight",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 6316,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6317,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6329,
+        "name": "Recipe: Loch Frenzy Delight",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Khara Deepwater",
+            "t": 1,
+            "ti": 1684,
+            "z": 38
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 7753,
+      "name": "Longjaw Mud Snapper",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 4592,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6289,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6328,
+        "name": "Recipe: Longjaw Mud Snapper",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 7827,
+      "name": "Rainbow Fin Albacore",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 5095,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6361,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6368,
+        "name": "Recipe: Rainbow Fin Albacore",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 6416,
+      "name": "Strider Stew",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 5477,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 5469,
+          "count": 1
+        },
+        {
+          "item_id": 4536,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5486,
+        "name": "Recipe: Strider Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": -304,
+            "c2": 5,
+            "n": "Easy Strider Living",
+            "t": 5,
+            "ti": 2178
+          },
+          {
+            "n": "Tari'qa",
+            "t": 1,
+            "ti": 3482,
+            "z": 17
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3371,
+      "name": "Blood Sausage",
+      "learned_at": 60,
+      "skill_thresholds": {
+        "orange": 60,
+        "yellow": 100,
+        "green": 120,
+        "gray": 140
+      },
+      "creates": {
+        "item_id": 3220,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 3173,
+          "count": 1
+        },
+        {
+          "item_id": 3172,
+          "count": 1
+        },
+        {
+          "item_id": 3174,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3679,
+        "name": "Recipe: Blood Sausage",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 38,
+            "c2": 0,
+            "n": "Thelsamar Blood Sausages",
+            "t": 5,
+            "ti": 418
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28267,
+      "name": "Crunchy Spider Surprise",
+      "learned_at": 60,
+      "skill_thresholds": {
+        "orange": 60,
+        "yellow": 100,
+        "green": 120,
+        "gray": 140
+      },
+      "creates": {
+        "item_id": 22645,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22644,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22647,
+        "name": "Recipe: Crunchy Spider Surprise",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 3433,
+            "c2": 0,
+            "n": "Culinary Crunch",
+            "t": 5,
+            "ti": 9171
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 9513,
+      "name": "Thistle Tea",
+      "learned_at": 60,
+      "skill_thresholds": {
+        "orange": 60,
+        "yellow": 100,
+        "green": 120,
+        "gray": 140
+      },
+      "creates": {
+        "item_id": 7676,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2452,
+          "count": 1
+        },
+        {
+          "item_id": 159,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 18160,
+        "name": "Recipe: Thistle Tea",
+        "quality": 2,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Smudge Thunderwood",
+            "t": 1,
+            "ti": 6779,
+            "z": 36
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 2544,
+      "name": "Crab Cake",
+      "learned_at": 75,
+      "skill_thresholds": {
+        "orange": 75,
+        "yellow": 115,
+        "green": 135,
+        "gray": 155
+      },
+      "creates": {
+        "item_id": 2683,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2674,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 200
+    },
+    {
+      "spell_id": 2543,
+      "name": "Westfall Stew",
+      "learned_at": 75,
+      "skill_thresholds": {
+        "orange": 75,
+        "yellow": 115,
+        "green": 135,
+        "gray": 155
+      },
+      "creates": {
+        "item_id": 733,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 729,
+          "count": 1
+        },
+        {
+          "item_id": 730,
+          "count": 1
+        },
+        {
+          "item_id": 731,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 728,
+        "name": "Recipe: Westfall Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 40,
+            "c2": 0,
+            "n": "Westfall Stew",
+            "t": 5,
+            "ti": 38
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3370,
+      "name": "Crocolisk Steak",
+      "learned_at": 80,
+      "skill_thresholds": {
+        "orange": 80,
+        "yellow": 120,
+        "green": 140,
+        "gray": 160
+      },
+      "creates": {
+        "item_id": 3662,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2924,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3678,
+        "name": "Recipe: Crocolisk Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 38,
+            "c2": 0,
+            "n": "Crocolisk Hunting",
+            "t": 5,
+            "ti": 385
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 2546,
+      "name": "Dry Pork Ribs",
+      "learned_at": 80,
+      "skill_thresholds": {
+        "orange": 80,
+        "yellow": 120,
+        "green": 140,
+        "gray": 160
+      },
+      "creates": {
+        "item_id": 2687,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2677,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 150
+    },
+    {
+      "spell_id": 25704,
+      "name": "Smoked Sagefish",
+      "learned_at": 80,
+      "skill_thresholds": {
+        "orange": 80,
+        "yellow": 120,
+        "green": 140,
+        "gray": 160
+      },
+      "creates": {
+        "item_id": 21072,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21071,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 21099,
+        "name": "Recipe: Smoked Sagefish",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 2545,
+      "name": "Cooked Crab Claw",
+      "learned_at": 85,
+      "skill_thresholds": {
+        "orange": 85,
+        "yellow": 125,
+        "green": 145,
+        "gray": 165
+      },
+      "creates": {
+        "item_id": 2682,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2675,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2698,
+        "name": "Recipe: Cooked Crab Claw",
+        "quality": 1,
+        "drop_sources": [
+          "Drop",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 8238,
+      "name": "Savory Deviate Delight",
+      "learned_at": 85,
+      "skill_thresholds": {
+        "orange": 85,
+        "yellow": 125,
+        "green": 145,
+        "gray": 165
+      },
+      "creates": {
+        "item_id": 6657,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6522,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6661,
+        "name": "Recipe: Savory Deviate Delight",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 17
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 6501,
+      "name": "Clam Chowder",
+      "learned_at": 90,
+      "skill_thresholds": {
+        "orange": 90,
+        "yellow": 130,
+        "green": 150,
+        "gray": 170
+      },
+      "creates": {
+        "item_id": 5526,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5503,
+          "count": 1
+        },
+        {
+          "item_id": 1179,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5528,
+        "name": "Recipe: Clam Chowder",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 6417,
+      "name": "Dig Rat Stew",
+      "learned_at": 90,
+      "skill_thresholds": {
+        "orange": 90,
+        "yellow": 130,
+        "green": 150,
+        "gray": 170
+      },
+      "creates": {
+        "item_id": 5478,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 5051,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5487,
+        "name": "Recipe: Dig Rat Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": -304,
+            "c2": 5,
+            "n": "Dig Rat Stew",
+            "t": 5,
+            "ti": 862
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3372,
+      "name": "Murloc Fin Soup",
+      "learned_at": 90,
+      "skill_thresholds": {
+        "orange": 90,
+        "yellow": 130,
+        "green": 150,
+        "gray": 170
+      },
+      "creates": {
+        "item_id": 3663,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 1468,
+          "count": 2
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3680,
+        "name": "Recipe: Murloc Fin Soup",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 44,
+            "c2": 0,
+            "n": "Selling Fish",
+            "t": 5,
+            "ti": 127
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 7755,
+      "name": "Bristle Whisker Catfish",
+      "learned_at": 100,
+      "skill_thresholds": {
+        "orange": 100,
+        "yellow": 140,
+        "green": 160,
+        "gray": 180
+      },
+      "creates": {
+        "item_id": 4593,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6308,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6330,
+        "name": "Recipe: Bristle Whisker Catfish",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 45695,
+      "name": "Captain Rumsey's Lager",
+      "learned_at": 100,
+      "skill_thresholds": {
+        "orange": 100,
+        "yellow": 100,
+        "green": 105,
+        "gray": 110
+      },
+      "creates": {
+        "item_id": 34832,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 2596,
+          "count": 1
+        },
+        {
+          "item_id": 2594,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 34834,
+        "name": "Recipe: Captain Rumsey's Lager",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 6418,
+      "name": "Crispy Lizard Tail",
+      "learned_at": 100,
+      "skill_thresholds": {
+        "orange": 100,
+        "yellow": 140,
+        "green": 160,
+        "gray": 180
+      },
+      "creates": {
+        "item_id": 5479,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 5470,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5488,
+        "name": "Recipe: Crispy Lizard Tail",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Tari'qa",
+            "t": 1,
+            "ti": 3482,
+            "z": 17
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 2547,
+      "name": "Redridge Goulash",
+      "learned_at": 100,
+      "skill_thresholds": {
+        "orange": 100,
+        "yellow": 135,
+        "green": 155,
+        "gray": 175
+      },
+      "creates": {
+        "item_id": 1082,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 1081,
+          "count": 1
+        },
+        {
+          "item_id": 1080,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2699,
+        "name": "Recipe: Redridge Goulash",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 44,
+            "c2": 0,
+            "n": "Redridge Goulash",
+            "t": 5,
+            "ti": 92
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 2549,
+      "name": "Seasoned Wolf Kabob",
+      "learned_at": 100,
+      "skill_thresholds": {
+        "orange": 100,
+        "yellow": 140,
+        "green": 160,
+        "gray": 180
+      },
+      "creates": {
+        "item_id": 1017,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 1015,
+          "count": 2
+        },
+        {
+          "item_id": 2665,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2701,
+        "name": "Recipe: Seasoned Wolf Kabob",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 10,
+            "c2": 0,
+            "n": "Seasoned Wolf Kabobs",
+            "t": 5,
+            "ti": 90
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3397,
+      "name": "Big Bear Steak",
+      "learned_at": 110,
+      "skill_thresholds": {
+        "orange": 110,
+        "yellow": 150,
+        "green": 170,
+        "gray": 190
+      },
+      "creates": {
+        "item_id": 3726,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3730,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3734,
+        "name": "Recipe: Big Bear Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 267,
+            "c2": 0,
+            "n": "The Rescue",
+            "t": 5,
+            "ti": 498
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3377,
+      "name": "Gooey Spider Cake",
+      "learned_at": 110,
+      "skill_thresholds": {
+        "orange": 110,
+        "yellow": 150,
+        "green": 170,
+        "gray": 190
+      },
+      "creates": {
+        "item_id": 3666,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2251,
+          "count": 2
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3683,
+        "name": "Recipe: Gooey Spider Cake",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 10,
+            "c2": 0,
+            "n": "Dusky Crab Cakes",
+            "t": 5,
+            "ti": 93
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 6419,
+      "name": "Lean Venison",
+      "learned_at": 110,
+      "skill_thresholds": {
+        "orange": 110,
+        "yellow": 150,
+        "green": 170,
+        "gray": 190
+      },
+      "creates": {
+        "item_id": 5480,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 5471,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5489,
+        "name": "Recipe: Lean Venison",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 2548,
+      "name": "Succulent Pork Ribs",
+      "learned_at": 110,
+      "skill_thresholds": {
+        "orange": 110,
+        "yellow": 130,
+        "green": 150,
+        "gray": 170
+      },
+      "creates": {
+        "item_id": 2685,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2677,
+          "count": 2
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2700,
+        "name": "Recipe: Succulent Pork Ribs",
+        "quality": 1,
+        "drop_sources": [
+          "Drop",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3373,
+      "name": "Crocolisk Gumbo",
+      "learned_at": 120,
+      "skill_thresholds": {
+        "orange": 120,
+        "yellow": 160,
+        "green": 180,
+        "gray": 200
+      },
+      "creates": {
+        "item_id": 3664,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3667,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3681,
+        "name": "Recipe: Crocolisk Gumbo",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 11,
+            "c2": 0,
+            "n": "Apprentice's Duties",
+            "t": 5,
+            "ti": 471
+          },
+          {
+            "n": "Kendor Kabonka",
+            "t": 1,
+            "ti": 340,
+            "z": 1519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 6500,
+      "name": "Goblin Deviled Clams",
+      "learned_at": 125,
+      "skill_thresholds": {
+        "orange": 125,
+        "yellow": 165,
+        "green": 185,
+        "gray": 205
+      },
+      "creates": {
+        "item_id": 5527,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5504,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 300
+    },
+    {
+      "spell_id": 3398,
+      "name": "Hot Lion Chops",
+      "learned_at": 125,
+      "skill_thresholds": {
+        "orange": 125,
+        "yellow": 175,
+        "green": 195,
+        "gray": 215
+      },
+      "creates": {
+        "item_id": 3727,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3731,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3735,
+        "name": "Recipe: Hot Lion Chops",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 267,
+            "c2": 0,
+            "n": "Elixir of Pain",
+            "t": 5,
+            "ti": 501
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 15853,
+      "name": "Lean Wolf Steak",
+      "learned_at": 125,
+      "skill_thresholds": {
+        "orange": 125,
+        "yellow": 165,
+        "green": 185,
+        "gray": 205
+      },
+      "creates": {
+        "item_id": 12209,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 1015,
+          "count": 1
+        },
+        {
+          "item_id": 2678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12227,
+        "name": "Recipe: Lean Wolf Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Super-Seller 680",
+            "t": 1,
+            "ti": 12246,
+            "z": 405
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3376,
+      "name": "Curiously Tasty Omelet",
+      "learned_at": 130,
+      "skill_thresholds": {
+        "orange": 130,
+        "yellow": 170,
+        "green": 190,
+        "gray": 210
+      },
+      "creates": {
+        "item_id": 3665,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3685,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3682,
+        "name": "Recipe: Curiously Tasty Omelet",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 11,
+            "c2": 0,
+            "n": "Ormer's Revenge",
+            "t": 5,
+            "ti": 296
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 24418,
+      "name": "Heavy Crocolisk Stew",
+      "learned_at": 150,
+      "skill_thresholds": {
+        "orange": 150,
+        "yellow": 160,
+        "green": 180,
+        "gray": 200
+      },
+      "creates": {
+        "item_id": 20074,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3667,
+          "count": 2
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 20075,
+        "name": "Recipe: Heavy Crocolisk Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Ogg'marr",
+            "t": 1,
+            "ti": 4879,
+            "z": 15
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3399,
+      "name": "Tasty Lion Steak",
+      "learned_at": 150,
+      "skill_thresholds": {
+        "orange": 150,
+        "yellow": 190,
+        "green": 210,
+        "gray": 230
+      },
+      "creates": {
+        "item_id": 3728,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3731,
+          "count": 2
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3736,
+        "name": "Recipe: Tasty Lion Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": 267,
+            "c2": 0,
+            "n": "Costly Menace",
+            "t": 5,
+            "ti": 564
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 4094,
+      "name": "Barbecued Buzzard Wing",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 4457,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3404,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 500
+    },
+    {
+      "spell_id": 15863,
+      "name": "Carrion Surprise",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 12213,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12037,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12232,
+        "name": "Recipe: Carrion Surprise",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 7213,
+      "name": "Giant Clam Scorcho",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 6038,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4655,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6039,
+        "name": "Recipe: Giant Clam Scorcho",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Kelsey Yance",
+            "t": 1,
+            "ti": 2664,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 13028,
+      "name": "Goldthorn Tea",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 175,
+        "green": 190,
+        "gray": 205
+      },
+      "creates": {
+        "item_id": 10841,
+        "min_qty": 4,
+        "max_qty": 4
+      },
+      "reagents": [
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 159,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 15856,
+      "name": "Hot Wolf Ribs",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 13851,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12203,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12229,
+        "name": "Recipe: Hot Wolf Ribs",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 15861,
+      "name": "Jungle Stew",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 12212,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 12202,
+          "count": 1
+        },
+        {
+          "item_id": 159,
+          "count": 1
+        },
+        {
+          "item_id": 4536,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12231,
+        "name": "Recipe: Jungle Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 20916,
+      "name": "Mithril Headed Trout",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 8364,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8365,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 15865,
+      "name": "Mystery Stew",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 12214,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12037,
+          "count": 1
+        },
+        {
+          "item_id": 2596,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12233,
+        "name": "Recipe: Mystery Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 15855,
+      "name": "Roast Raptor",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 12210,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12184,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12228,
+        "name": "Recipe: Roast Raptor",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 7828,
+      "name": "Rockscale Cod",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 190,
+        "green": 210,
+        "gray": 230
+      },
+      "creates": {
+        "item_id": 4594,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6362,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6369,
+        "name": "Recipe: Rockscale Cod",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 25954,
+      "name": "Sagefish Delight",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 21217,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21153,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 21219,
+        "name": "Recipe: Sagefish Delight",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 3400,
+      "name": "Soothing Turtle Bisque",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 3729,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3712,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3737,
+        "name": "Recipe: Soothing Turtle Bisque",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "z": 267
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 15906,
+      "name": "Dragonbreath Chili",
+      "learned_at": 200,
+      "skill_thresholds": {
+        "orange": 200,
+        "yellow": 225,
+        "green": 237,
+        "gray": 250
+      },
+      "creates": {
+        "item_id": 12217,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12037,
+          "count": 1
+        },
+        {
+          "item_id": 4402,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12239,
+        "name": "Recipe: Dragonbreath Chili",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 15910,
+      "name": "Heavy Kodo Stew",
+      "learned_at": 200,
+      "skill_thresholds": {
+        "orange": 200,
+        "yellow": 225,
+        "green": 237,
+        "gray": 250
+      },
+      "creates": {
+        "item_id": 12215,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 12204,
+          "count": 2
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        },
+        {
+          "item_id": 159,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12240,
+        "name": "Recipe: Heavy Kodo Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 405
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 21175,
+      "name": "Spider Sausage",
+      "learned_at": 200,
+      "skill_thresholds": {
+        "orange": 200,
+        "yellow": 225,
+        "green": 237,
+        "gray": 250
+      },
+      "creates": {
+        "item_id": 17222,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12205,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 4000
+    },
+    {
+      "spell_id": 18239,
+      "name": "Cooked Glossy Mightfish",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 250,
+        "green": 262,
+        "gray": 275
+      },
+      "creates": {
+        "item_id": 13927,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13754,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13940,
+        "name": "Recipe: Cooked Glossy Mightfish",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Kelsey Yance",
+            "t": 1,
+            "ti": 2664,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18241,
+      "name": "Filet of Redgill",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 250,
+        "green": 262,
+        "gray": 275
+      },
+      "creates": {
+        "item_id": 13930,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13758,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13941,
+        "name": "Recipe: Filet of Redgill",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Kelsey Yance",
+            "t": 1,
+            "ti": 2664,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 15933,
+      "name": "Monster Omelet",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 250,
+        "green": 262,
+        "gray": 275
+      },
+      "creates": {
+        "item_id": 12218,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12207,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 16110,
+        "name": "Recipe: Monster Omelet",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 15915,
+      "name": "Spiced Chili Crab",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 250,
+        "green": 262,
+        "gray": 275
+      },
+      "creates": {
+        "item_id": 12216,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12206,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 16111,
+        "name": "Recipe: Spiced Chili Crab",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 18238,
+      "name": "Spotted Yellowtail",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 250,
+        "green": 262,
+        "gray": 275
+      },
+      "creates": {
+        "item_id": 6887,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4603,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13939,
+        "name": "Recipe: Spotted Yellowtail",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Gikkix",
+            "t": 1,
+            "ti": 8137,
+            "z": 440
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 22480,
+      "name": "Tender Wolf Steak",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 250,
+        "green": 262,
+        "gray": 275
+      },
+      "creates": {
+        "item_id": 18045,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12208,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 18046,
+        "name": "Recipe: Tender Wolf Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 20626,
+      "name": "Undermine Clam Chowder",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 250,
+        "green": 262,
+        "gray": 275
+      },
+      "creates": {
+        "item_id": 16766,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 7974,
+          "count": 2
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        },
+        {
+          "item_id": 1179,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 16767,
+        "name": "Recipe: Undermine Clam Chowder",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Jabbey",
+            "t": 1,
+            "ti": 8139,
+            "z": 440
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18240,
+      "name": "Grilled Squid",
+      "learned_at": 240,
+      "skill_thresholds": {
+        "orange": 240,
+        "yellow": 265,
+        "green": 277,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 13928,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13755,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13942,
+        "name": "Recipe: Grilled Squid",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Gikkix",
+            "t": 1,
+            "ti": 8137,
+            "z": 440
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18242,
+      "name": "Hot Smoked Bass",
+      "learned_at": 240,
+      "skill_thresholds": {
+        "orange": 240,
+        "yellow": 265,
+        "green": 277,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 13929,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13756,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13943,
+        "name": "Recipe: Hot Smoked Bass",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Kelsey Yance",
+            "t": 1,
+            "ti": 2664,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 46684,
+      "name": "Charred Bear Kabobs",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 275,
+        "green": 285,
+        "gray": 295
+      },
+      "creates": {
+        "item_id": 35563,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 35562,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35564,
+        "name": "Recipe: Charred Bear Kabobs",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 361
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 46688,
+      "name": "Juicy Bear Burger",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 275,
+        "green": 285,
+        "gray": 295
+      },
+      "creates": {
+        "item_id": 35565,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 35562,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35566,
+        "name": "Recipe: Juicy Bear Burger",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 361
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18243,
+      "name": "Nightfin Soup",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 275,
+        "green": 285,
+        "gray": 295
+      },
+      "creates": {
+        "item_id": 13931,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13759,
+          "count": 1
+        },
+        {
+          "item_id": 159,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13945,
+        "name": "Recipe: Nightfin Soup",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Gikkix",
+            "t": 1,
+            "ti": 8137,
+            "z": 440
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18244,
+      "name": "Poached Sunscale Salmon",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 275,
+        "green": 285,
+        "gray": 295
+      },
+      "creates": {
+        "item_id": 13932,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13760,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13946,
+        "name": "Recipe: Poached Sunscale Salmon",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Gikkix",
+            "t": 1,
+            "ti": 8137,
+            "z": 440
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18247,
+      "name": "Baked Salmon",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 300,
+        "green": 312,
+        "gray": 325
+      },
+      "creates": {
+        "item_id": 13935,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13889,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13949,
+        "name": "Recipe: Baked Salmon",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 357
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18245,
+      "name": "Lobster Stew",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 300,
+        "green": 312,
+        "gray": 325
+      },
+      "creates": {
+        "item_id": 13933,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13888,
+          "count": 1
+        },
+        {
+          "item_id": 159,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13947,
+        "name": "Recipe: Lobster Stew",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 357
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 18246,
+      "name": "Mightfish Steak",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 300,
+        "green": 312,
+        "gray": 325
+      },
+      "creates": {
+        "item_id": 13934,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13893,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13948,
+        "name": "Recipe: Mightfish Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 357
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 22761,
+      "name": "Runn Tum Tuber Surprise",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 300,
+        "green": 312,
+        "gray": 325
+      },
+      "creates": {
+        "item_id": 18254,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 18255,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 18267,
+        "name": "Recipe: Runn Tum Tuber Surprise",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "bd": 1,
+            "dd": -1,
+            "n": "Pusillin",
+            "t": 1,
+            "ti": 14354,
+            "z": 2557
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 24801,
+      "name": "Smoked Desert Dumplings",
+      "learned_at": 285,
+      "skill_thresholds": {
+        "orange": 285,
+        "yellow": 310,
+        "green": 322,
+        "gray": 335
+      },
+      "creates": {
+        "item_id": 20452,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 20424,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 33290,
+      "name": "Blackened Trout",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 320,
+        "green": 330,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 27661,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27422,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27694,
+        "name": "Recipe: Blackened Trout",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 43761,
+      "name": "Broiled Bloodfin",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 320,
+        "green": 330,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 33867,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 33823,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 33869,
+        "name": "Recipe: Broiled Bloodfin",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "icon": "inv_cask_01",
+            "n": "Barrel of Fish",
+            "q": 1,
+            "t": 3,
+            "ti": 33844
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33279,
+      "name": "Buzzard Bites",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 320,
+        "green": 330,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 27651,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27671,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27684,
+        "name": "Recipe: Buzzard Bites",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": 3483,
+            "c2": 8,
+            "n": "Smooth as Butter",
+            "t": 5,
+            "ti": 9356
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 36210,
+      "name": "Clam Bar",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 320,
+        "green": 330,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 30155,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 24477,
+          "count": 2
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 30156,
+        "name": "Recipe: Clam Bar",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Mycah",
+            "t": 1,
+            "ti": 18382,
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 25659,
+      "name": "Dirge's Kickin' Chimaerok Chops",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 325,
+        "green": 337,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 21023,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 2692,
+          "count": 1
+        },
+        {
+          "item_id": 9061,
+          "count": 1
+        },
+        {
+          "item_id": 8150,
+          "count": 1
+        },
+        {
+          "item_id": 21024,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 21025,
+        "name": "Recipe: Dirge's Kickin' Chimaerok Chops",
+        "quality": 4,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": 440,
+            "c2": 1,
+            "n": "Dirge's Kickin' Chimaerok Chops",
+            "t": 5,
+            "ti": 8586
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33291,
+      "name": "Feltail Delight",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 320,
+        "green": 330,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 27662,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27425,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27695,
+        "name": "Recipe: Feltail Delight",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 43772,
+      "name": "Kibler's Bits",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 345,
+        "green": 355,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 33874,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27671,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 33875,
+        "name": "Recipe: Kibler's Bits",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 33284,
+      "name": "Ravager Dog",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 320,
+        "green": 330,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 27655,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27674,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27688,
+        "name": "Recipe: Ravager Dog",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3483
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 43758,
+      "name": "Stormchops",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 320,
+        "green": 330,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 33866,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27678,
+          "count": 1
+        },
+        {
+          "item_id": 13757,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 33871,
+        "name": "Recipe: Stormchops",
+        "quality": 3,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 33292,
+      "name": "Blackened Sporefish",
+      "learned_at": 310,
+      "skill_thresholds": {
+        "orange": 310,
+        "yellow": 330,
+        "green": 340,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 27663,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27429,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27696,
+        "name": "Recipe: Blackened Sporefish",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Juno Dufrain",
+            "t": 1,
+            "ti": 18911,
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33285,
+      "name": "Sporeling Snack",
+      "learned_at": 310,
+      "skill_thresholds": {
+        "orange": 310,
+        "yellow": 330,
+        "green": 340,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 27656,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27676,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27689,
+        "name": "Recipe: Sporeling Snack",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Mycah",
+            "t": 1,
+            "ti": 18382,
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33286,
+      "name": "Blackened Basilisk",
+      "learned_at": 315,
+      "skill_thresholds": {
+        "orange": 315,
+        "yellow": 335,
+        "green": 345,
+        "gray": 355
+      },
+      "creates": {
+        "item_id": 27657,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27677,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27690,
+        "name": "Recipe: Blackened Basilisk",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33293,
+      "name": "Grilled Mudfish",
+      "learned_at": 320,
+      "skill_thresholds": {
+        "orange": 320,
+        "yellow": 340,
+        "green": 350,
+        "gray": 360
+      },
+      "creates": {
+        "item_id": 27664,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27435,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27697,
+        "name": "Recipe: Grilled Mudfish",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3518
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33294,
+      "name": "Poached Bluefish",
+      "learned_at": 320,
+      "skill_thresholds": {
+        "orange": 320,
+        "yellow": 340,
+        "green": 350,
+        "gray": 360
+      },
+      "creates": {
+        "item_id": 27665,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27437,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27698,
+        "name": "Recipe: Poached Bluefish",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3518
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33295,
+      "name": "Golden Fish Sticks",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 345,
+        "green": 355,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 27666,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27438,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27699,
+        "name": "Recipe: Golden Fish Sticks",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 45022,
+      "name": "Hot Apple Cider",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 325,
+        "green": 325,
+        "gray": 325
+      },
+      "creates": {
+        "item_id": 34411,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 34412,
+          "count": 1
+        },
+        {
+          "item_id": 17196,
+          "count": 1
+        },
+        {
+          "item_id": 17194,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 34413,
+        "name": "Recipe: Hot Apple Cider",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 33287,
+      "name": "Roasted Clefthoof",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 345,
+        "green": 355,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 27658,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27678,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27691,
+        "name": "Recipe: Roasted Clefthoof",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3518
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 43707,
+      "name": "Skullfish Soup",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 335,
+        "green": 345,
+        "gray": 355
+      },
+      "creates": {
+        "item_id": 33825,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 33824,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 33870,
+        "name": "Recipe: Skullfish Soup",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "icon": "inv_cask_01",
+            "n": "Barrel of Fish",
+            "q": 1,
+            "t": 3,
+            "ti": 33844
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 43765,
+      "name": "Spicy Hot Talbuk",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 335,
+        "green": 345,
+        "gray": 355
+      },
+      "creates": {
+        "item_id": 33872,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27682,
+          "count": 1
+        },
+        {
+          "item_id": 2692,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 33873,
+        "name": "Recipe: Spicy Hot Talbuk",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "icon": "inv_crate_05",
+            "n": "Crate of Meat",
+            "q": 1,
+            "t": 3,
+            "ti": 33857
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33289,
+      "name": "Talbuk Steak",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 345,
+        "green": 355,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 27660,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27682,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27693,
+        "name": "Recipe: Talbuk Steak",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3518
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33288,
+      "name": "Warp Burger",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 345,
+        "green": 355,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 27659,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27681,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27692,
+        "name": "Recipe: Warp Burger",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 38868,
+      "name": "Crunchy Serpent",
+      "learned_at": 335,
+      "skill_thresholds": {
+        "orange": 335,
+        "yellow": 355,
+        "green": 365,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 31673,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 31671,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31674,
+        "name": "Recipe: Crunchy Serpent",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 3522,
+            "c2": 8,
+            "n": "Mok'Nathal Treats",
+            "t": 5,
+            "ti": 10860
+          },
+          {
+            "z": 3522
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 38867,
+      "name": "Mok'Nathal Shortribs",
+      "learned_at": 335,
+      "skill_thresholds": {
+        "orange": 335,
+        "yellow": 355,
+        "green": 365,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 31672,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 31670,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31675,
+        "name": "Recipe: Mok'Nathal Shortribs",
+        "quality": 1,
+        "drop_sources": [
+          "Quest",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "c": 3522,
+            "c2": 8,
+            "n": "Mok'Nathal Treats",
+            "t": 5,
+            "ti": 10860
+          },
+          {
+            "z": 3522
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 42296,
+      "name": "Stewed Trout",
+      "learned_at": 335,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 335,
+        "green": 345,
+        "gray": 355
+      },
+      "creates": {
+        "item_id": 33048,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27422,
+          "count": 1
+        },
+        {
+          "item_id": 2593,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 42000
+    },
+    {
+      "spell_id": 33296,
+      "name": "Spicy Crawdad",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 370,
+        "green": 380,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 27667,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 27439,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 27700,
+        "name": "Recipe: Spicy Crawdad",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3519
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 42302,
+      "name": "Fisherman's Feast",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 375,
+        "green": 380,
+        "gray": 385
+      },
+      "creates": {
+        "item_id": 33052,
+        "min_qty": 6,
+        "max_qty": 6
+      },
+      "reagents": [
+        {
+          "item_id": 27515,
+          "count": 1
+        },
+        {
+          "item_id": 4539,
+          "count": 5
+        },
+        {
+          "item_id": 3713,
+          "count": 5
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 60000
+    },
+    {
+      "spell_id": 42305,
+      "name": "Hot Buttered Trout",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 375,
+        "green": 380,
+        "gray": 385
+      },
+      "creates": {
+        "item_id": 33053,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 27516,
+          "count": 1
+        },
+        {
+          "item_id": 3713,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 60000
+    }
+  ]
