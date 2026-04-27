@@ -38,9 +38,14 @@ Craftie.Icon:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
 --Craftie.Icon:SetTexture(Craftie._G.dir .. "images/Trade_Engraving")
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Title:SetFont(Craftie._G.font, 14, "OUTLINE")
+Craftie.Frame.Title:SetFont(Craftie._G.font, 12, "OUTLINE")
 Craftie.Frame.Title:SetPoint("TOPLEFT", 65, -5)
-Craftie.Frame.Title:SetText("Alchemy")
+Craftie.Frame.Title:SetText(Craftie._G.prefix .. " v" .. Craftie._G.version)
+
+Craftie.Frame.Title.Prof = Craftie.Frame:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Title.Prof:SetFont(Craftie._G.font, 14, "OUTLINE")
+Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 65, -35)
+Craftie.Frame.Title.Prof:SetText("Alchemy")
 
 --light background template
 --Interface/Glues/COMMON/UIFrameTooltipGluesBackground
@@ -105,7 +110,7 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.Tab.Frame[i]:SetScript("OnClick", function(self)
     Craftie.ClearFocusAll()
     Craftie.TabSelect(i, true)
-    Craftie.Frame.Title:SetText(v[1])
+    Craftie.Frame.Title.Prof:SetText(v[1])
     --Craftie.Tab.Frame[i].Border:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
 
     Craftie.Profession.Query = Craftie.Profession[v[1]]
@@ -192,6 +197,7 @@ Craftie.Frame.Search.Player.Text = CreateFrame("EditBox", nil, Craftie.Frame.Sea
 Craftie.Frame.Search.Player.Text:SetWidth(Craftie.Frame.Search.Player:GetWidth()-6)
 Craftie.Frame.Search.Player.Text:SetHeight(Craftie.Frame.Search.Player:GetHeight())
 Craftie.Frame.Search.Player.Text:SetFontObject(GameFontDisable)
+Craftie.Frame.Search.Player.Text:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
 Craftie.Frame.Search.Player.Text:SetPoint("TOPLEFT", 6, 0)
 Craftie.Frame.Search.Player.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Player.Text:SetText(Craftie.Placeholder_Players)
@@ -228,11 +234,12 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.Scroll.Players.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
 
   Craftie.Frame.Scroll.Players.List.Text[i] = Craftie.Frame.Scroll.Players.List.Item[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.Scroll.Players.List.Text[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
-  Craftie.Frame.Scroll.Players.List.Text[i]:SetPoint("TOPLEFT", 8, -4)
-  Craftie.Frame.Scroll.Players.List.Text[i]:SetText("Player_" .. i)
+  Craftie.Frame.Scroll.Players.List.Text[i]:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
+  Craftie.Frame.Scroll.Players.List.Text[i]:SetPoint("TOPLEFT", 8, -5)
+  --Craftie.Frame.Scroll.Players.List.Text[i]:SetText("Player_" .. i)
+  Craftie.Frame.Scroll.Players.List.Text[i]:SetText("")
   if (i == 1) then
-    Craftie.Frame.Scroll.Players.List.Text[i]:SetText("View All Recipes")
+    Craftie.Frame.Scroll.Players.List.Text[i]:SetText(Craftie.Selected_ViewAll)
   end
   Craftie.Frame.Scroll.Players.List.Text[i]:SetTextColor(1, 1, 1, 0.8)
 
@@ -247,13 +254,15 @@ for i=1, Craftie.MAX_PLAYERS do
     GameTooltip:Hide()
     Craftie.ClearSelectedItem("Players")
   end)
+  Craftie.Frame.Scroll.Players.List.Item[i]:SetScript("OnClick", function(self)
+    Craftie.SelectCrafter(i, Craftie.Frame.Scroll.Players.List.Text[i]:GetText())
+  end)
 end
 
 
 --[==[
 SCROLL RECIPES
 ]==]--
-
 Craftie.Frame.Parent.Scroll.Recipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.Parent.Scroll.Recipes:SetWidth(300)
 Craftie.Frame.Parent.Scroll.Recipes:SetHeight(Craftie._G.Height-88)
@@ -296,16 +305,15 @@ Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Fr
 Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.Scroll.Recipes.List.Child, "BOTTOMRIGHT", -42, 12)
 
 Craftie.Frame.Scroll.Recipes.Results = Craftie.Frame.Scroll.Recipes:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Scroll.Recipes.Results:SetFont(Craftie._G.font, 12, "OUTLINE")
+Craftie.Frame.Scroll.Recipes.Results:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
 Craftie.Frame.Scroll.Recipes.Results:SetPoint("BOTTOMRIGHT", 0, -20)
 Craftie.Frame.Scroll.Recipes.Results:SetText("")
 
 Craftie.Frame.Scroll.Recipes.Empty = Craftie.Frame.Scroll.Recipes:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Scroll.Recipes.Empty:SetFont(Craftie._G.font, 12, "OUTLINE")
+Craftie.Frame.Scroll.Recipes.Empty:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
 Craftie.Frame.Scroll.Recipes.Empty:SetPoint("CENTER", -10, 0)
 Craftie.Frame.Scroll.Recipes.Empty:SetTextColor(1, 1, 1, 0.6)
 Craftie.Frame.Scroll.Recipes.Empty:SetText("")
-
 
 --[==[
 SEARCH PLAYERS
@@ -327,6 +335,7 @@ Craftie.Frame.Search.Recipes.Text = CreateFrame("EditBox", nil, Craftie.Frame.Se
 Craftie.Frame.Search.Recipes.Text:SetWidth(200)
 Craftie.Frame.Search.Recipes.Text:SetHeight(35)
 Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
+Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
 Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 6, 4)
 Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
@@ -355,7 +364,7 @@ Craftie.Frame.Parent.Craft:SetWidth(300)
 Craftie.Frame.Parent.Craft:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.Parent.Craft:SetPoint("TOPRIGHT", -8, -61)
 
-Craftie.Frame.Craft = {}
+--Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.Parent.Craft, "BackdropTemplate")
 Craftie.Frame.Craft:SetWidth(220)
 Craftie.Frame.Craft:SetHeight(35)
@@ -374,7 +383,7 @@ Craftie.Frame.Craft.Icon:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/inv_misc_questionmark")
 --Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/Trade_Engraving")
 Craftie.Frame.Craft.Text = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Craft.Text:SetFont(Craftie._G.font, 12, "OUTLINE")
+Craftie.Frame.Craft.Text:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
 Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 40, -10)
 Craftie.Frame.Craft.Text:SetText("")
 --designed to mask over the entire craft frame
@@ -384,7 +393,7 @@ Craftie.Frame.Craft.HLink:SetPoint("TOPLEFT", -4, -8)
 Craftie.Frame.Craft.HLink:SetText("")
 --Craftie.Frame.Craft.HLink:SetWidth(300)
 Craftie.Frame.Craft.ID = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Craft.ID:SetFont(Craftie._G.font, 12, "OUTLINE")
+Craftie.Frame.Craft.ID:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
 Craftie.Frame.Craft.ID:SetPoint("CENTER", 10, 0)
 Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
@@ -480,8 +489,8 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
 
   Craftie.Frame.Scroll.Recipes.List.Text[i] = Craftie.Frame.Scroll.Recipes.List.Item[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.Scroll.Recipes.List.Text[i]:SetFont(Craftie._G.font, 12, "OUTLINE")
-  Craftie.Frame.Scroll.Recipes.List.Text[i]:SetPoint("TOPLEFT", 8, -4)
+  Craftie.Frame.Scroll.Recipes.List.Text[i]:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
+  Craftie.Frame.Scroll.Recipes.List.Text[i]:SetPoint("TOPLEFT", 8, -5)
   Craftie.Frame.Scroll.Recipes.List.Text[i]:SetText("")
   Craftie.Frame.Scroll.Recipes.List.Text[i]:SetTextColor(1, 1, 1, 0.8)
 

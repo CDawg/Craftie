@@ -15,17 +15,18 @@ the copyright holders.
 
 Craftie._G = {
   --title  = TOCA.colors.class[7][4] .. TOCA._L.TITLE .."|r",
-  author = "Porthias",
-  CMD    = "/craftie",
+  author   = "Porthias",
+  CMD      = "/craftie",
   --width  = 150,
   --height = 85,
-  font   = "Interface/Addons/Craftie/fonts/FRIZQT__.TTF",
-  dir    = "Interface/Addons/Craftie/",
-  prefix = "CRAHH",
-  suffix = "TBC Anniversary",
-  color  = "|cffF58E27",
-  date   = date("%Y%m%d"),
-  update = 20260608,
+  font     = "Interface/Addons/Craftie/fonts/FRIZQT__.TTF",
+  fontSize = 10,
+  dir      = "Interface/Addons/Craftie/",
+  prefix   = "CRAHH",
+  suffix   = "TBC Anniversary",
+  color    = "|cffF58E27",
+  date     = date("%Y%m%d"),
+  update   = 20260608,
 }
 --Craftie._G.version = C_AddOns.GetAddOnMetadata(Craftie._G.prefix, "version")
 Craftie._G.version = C_AddOns.GetAddOnMetadata("Craftie", "version")
@@ -104,6 +105,9 @@ Craftie.Profession.Query = Craftie.Profession.Alchemy --default
 
 Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Placeholder_Players = "Search Crafters..."
+Craftie.Selected_Players = 1
+Craftie.Selected_Recipes = 1
+Craftie.Selected_ViewAll = "View All Recipes" --default
 
 -- Global Frames
 --[==[
@@ -126,9 +130,6 @@ Craftie.Tab.Frame={}
 
 Craftie.Frame.Parent.Craft= {}
 ]==]--
-
-Craftie.Selected_Players = 1
-Craftie.Selected_Recipes = 1
 
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
@@ -317,11 +318,6 @@ function Craftie.ClearSelectedItem(scrollFrame)
 end
 
 
-function Craftie.ResetSearch()
-  Craftie.Frame.Search.Recipes.Text:SetText("")
-  Craftie.OpenProfessionList(prof, "")
-end
-
 function Craftie.OpenProfessionList(prof, search) --need to add player
   --print("prof count " .. #prof)
   local total_recipes = #prof
@@ -354,7 +350,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
         Craftie.ItemDetails(prof[i])
         --print(prof[i][2])
         Craftie.Selected_Recipes = i
-        Craftie.ClearSelectedItem()
+        Craftie.ClearSelectedItem("Recipes")
 
         --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
         --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
@@ -364,12 +360,28 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     end
     Craftie.Profession.Query = prof
 
-    local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title:GetText(), 1)
+    local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
     local prof_color = split(Craftie.Professions[prof_list][3], ",")
     Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
-    Craftie.Frame.Title:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+    Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
     --print(prof_color)
   --end)
+end
+
+function Craftie.ListCrafters() --build or list from prof?
+
+end
+
+function Craftie.SelectCrafter(index, name)
+  if (index == 1) then
+    --clear player selection?
+  else
+    if (not isempty(name)) then
+      print(name)
+      Craftie.Selected_Players = index
+      Craftie.ClearSelectedItem("Players")
+    end
+  end
 end
 
 SLASH_Craftie1 = Craftie._G.CMD
