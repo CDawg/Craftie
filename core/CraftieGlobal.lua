@@ -82,6 +82,7 @@ end
 
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
+Craftie.MAX_PLAYERS = 100 --be careful increasing this!
 
 function Craftie.Init()
   Craftie.TabSelect(1, false)
@@ -101,6 +102,34 @@ Craftie.Professions = {
 
 Craftie.Profession.Query = Craftie.Profession.Alchemy --default
 
+Craftie.Placeholder_Recipes = "Search Recipes..."
+Craftie.Placeholder_Players = "Search Crafters..."
+
+-- Global Frames
+--[==[
+Craftie.Frame = {}
+Craftie.Frame.Parent={}
+Craftie.Frame.Parent.Scroll={}
+Craftie.Frame.Parent.Scroll.Players={}
+
+Craftie.Frame.Scroll = {}
+
+Craftie.Frame.Scroll.Recipes = {}
+Craftie.Frame.Scroll.Recipes.List = {}
+Craftie.Frame.Scroll.Recipes.List.Item = {}
+Craftie.Frame.Scroll.Recipes.List.Text={}
+Craftie.Frame.Scroll.Recipes.Results={}
+
+Craftie.Frame.Search = {}
+Craftie.Tab={}
+Craftie.Tab.Frame={}
+
+Craftie.Frame.Parent.Craft= {}
+]==]--
+
+Craftie.Selected_Players = 1
+Craftie.Selected_Recipes = 1
+
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
     Craftie.Tab.Frame[i].Glow:Hide()
@@ -116,12 +145,12 @@ end
 function Craftie.ClearFocusAll()
   Craftie.Frame.Search.Recipes.Text:ClearFocus()
   if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
-    Craftie.Frame.Search.Recipes.Text:SetText(placeholder_recipes)
+    Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
     Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
   end
   Craftie.Frame.Search.Player.Text:ClearFocus()
   if (Craftie.Frame.Search.Player.Text:GetText() == "") then
-    Craftie.Frame.Search.Player.Text:SetText(placeholder_players)
+    Craftie.Frame.Search.Player.Text:SetText(Craftie.Placeholder_Players)
     Craftie.Frame.Search.Player.Text:SetFontObject(GameFontDisable)
   end
   PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
@@ -262,14 +291,27 @@ function Craftie.ItemDetails(item)
 end
 
 
-function Craftie.ClearSelectedItem()
-  for i=1, Craftie.MAX_RECIPES do
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
-    Craftie.Frame.Scroll.Recipes.List.Item[Craftie.item_selected]:SetBackdropColor(0.6, 0.7, 1, 0.5)
-    Craftie.Frame.Scroll.Text[Craftie.item_selected]:SetTextColor(1, 1, 0.8, 1)
-    Craftie.Frame.Scroll.Text[i]:SetTextColor(1, 1, 1, 0.8)
-    if (i % 2 == 0) then
-      Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+function Craftie.ClearSelectedItem(scrollFrame)
+  if (scrollFrame == "Players") then
+    for i=1, Craftie.MAX_PLAYERS do
+      Craftie.Frame.Scroll.Players.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
+      Craftie.Frame.Scroll.Players.List.Item[Craftie.Selected_Players]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+      Craftie.Frame.Scroll.Players.List.Text[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.Scroll.Players.List.Text[i]:SetTextColor(1, 1, 1, 0.8)
+      if (i % 2 == 0) then
+        Craftie.Frame.Scroll.Players.List.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+      end
+    end
+  end
+  if (scrollFrame == "Recipes") then
+    for i=1, Craftie.MAX_RECIPES do
+      Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
+      Craftie.Frame.Scroll.Recipes.List.Item[Craftie.Selected_Recipes]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+      Craftie.Frame.Scroll.Recipes.List.Text[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.Scroll.Recipes.List.Text[i]:SetTextColor(1, 1, 1, 0.8)
+      if (i % 2 == 0) then
+        Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+      end
     end
   end
 end
@@ -307,11 +349,11 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
 
   --C_Timer.After(0.06, function()
     for i=1, total_recipes do
-      Craftie.Frame.Scroll.Text[i]:SetText(prof[i][2])
+      Craftie.Frame.Scroll.Recipes.List.Text[i]:SetText(prof[i][2])
       Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
         Craftie.ItemDetails(prof[i])
         --print(prof[i][2])
-        Craftie.item_selected = i
+        Craftie.Selected_Recipes = i
         Craftie.ClearSelectedItem()
 
         --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)

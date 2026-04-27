@@ -1,0 +1,77 @@
+-- 1. The Container (ScrollBox)
+local scrollBox = CreateFrame("Frame", nil, UIParent, "WowScrollBoxList")
+scrollBox:SetSize(300, 300)
+scrollBox:SetPoint("CENTER")
+
+-- 2. The Minimal ScrollBar
+local scrollBar = CreateFrame("EventFrame", nil, UIParent, "MinimalScrollBar")
+scrollBar:SetPoint("TOPLEFT", scrollBox, "TOPRIGHT")
+scrollBar:SetPoint("BOTTOMLEFT", scrollBox, "BOTTOMRIGHT")
+
+-- 3. The View (Handles how items look)
+local scrollView = CreateScrollBoxListLinearView()
+
+-- 4. Linking them together
+ScrollUtil.InitScrollBoxListWithScrollBar(scrollBox, scrollBar, scrollView)
+
+local dataProvider = CreateDataProvider()
+-- Add a single item
+--dataProvider:Insert({ name = "Item 1", id = 1 })
+-- Add multiple items from a table
+local items = {
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+  {name = "Apple"},
+  {name = "Banana"},
+  {name = "Cherry"},
+}
+dataProvider:InsertTable(items)
+
+--[==[
+scrollView:SetElementInitializer("BackdropTemplate", function(frame, data)
+  frame:SetText(data.name)
+end)
+]==]--
+
+scrollView:SetElementInitializer("UIPanelButtonTemplate", function(frame, data)
+    frame:SetText(data.name or "No Name")
+end)
+
+scrollBox:SetDataProvider(dataProvider)
