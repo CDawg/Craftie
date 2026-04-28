@@ -90,7 +90,7 @@ Craftie.MAX_PLAYERS = 100 --be careful increasing this!
 function Craftie.Init()
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
-  print(Craftie.Stamp .. " Loaded")
+  print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
 end
 
 Craftie.Professions = {

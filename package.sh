@@ -11,5 +11,5 @@ rm /e/Craftie/.gitignore
 rm /e/Craftie/package.sh
 rm -rf /e/Craftie/.vscode/
 rm -rf /e/Craftie/.git/
-rm -rf /e/Craftie/notes/
+rm -rf /e/Craftie/scripts/
 echo "Done!"

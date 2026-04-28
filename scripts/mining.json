@@ -1,0 +1,538 @@
+{
+  "profession": "Mining",
+  "skill_id": 186,
+  "expansion": "The Burning Crusade",
+  "total_recipes": 21,
+  "total_recipe_items": 0,
+  "recipes": [
+    {
+      "spell_id": 2657,
+      "name": "Smelt Copper",
+      "learned_at": 25,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 25,
+        "green": 47,
+        "gray": 70
+      },
+      "creates": {
+        "item_id": 2840,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2770,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 2659,
+      "name": "Smelt Bronze",
+      "learned_at": 65,
+      "skill_thresholds": {
+        "orange": 65,
+        "yellow": 65,
+        "green": 90,
+        "gray": 115
+      },
+      "creates": {
+        "item_id": 2841,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 2840,
+          "count": 1
+        },
+        {
+          "item_id": 3576,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 200
+    },
+    {
+      "spell_id": 3304,
+      "name": "Smelt Tin",
+      "learned_at": 65,
+      "skill_thresholds": {
+        "orange": 65,
+        "yellow": 65,
+        "green": 70,
+        "gray": 75
+      },
+      "creates": {
+        "item_id": 3576,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2771,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 50
+    },
+    {
+      "spell_id": 2658,
+      "name": "Smelt Silver",
+      "learned_at": 75,
+      "skill_thresholds": {
+        "orange": 75,
+        "yellow": 115,
+        "green": 122,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 2842,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2775,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 200
+    },
+    {
+      "spell_id": 3307,
+      "name": "Smelt Iron",
+      "learned_at": 125,
+      "skill_thresholds": {
+        "orange": 125,
+        "yellow": 130,
+        "green": 145,
+        "gray": 160
+      },
+      "creates": {
+        "item_id": 3575,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2772,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 500
+    },
+    {
+      "spell_id": 3308,
+      "name": "Smelt Gold",
+      "learned_at": 155,
+      "skill_thresholds": {
+        "orange": 155,
+        "yellow": 170,
+        "green": 177,
+        "gray": 185
+      },
+      "creates": {
+        "item_id": 3577,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2776,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 2500
+    },
+    {
+      "spell_id": 3569,
+      "name": "Smelt Steel",
+      "learned_at": 165,
+      "skill_thresholds": {
+        "orange": 165,
+        "yellow": 165,
+        "green": 165,
+        "gray": 165
+      },
+      "creates": {
+        "item_id": 3859,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3575,
+          "count": 1
+        },
+        {
+          "item_id": 3857,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 2500
+    },
+    {
+      "spell_id": 10097,
+      "name": "Smelt Mithril",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 175,
+        "green": 202,
+        "gray": 230
+      },
+      "creates": {
+        "item_id": 3860,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3858,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 5000
+    },
+    {
+      "spell_id": 10098,
+      "name": "Smelt Truesilver",
+      "learned_at": 230,
+      "skill_thresholds": {
+        "orange": 230,
+        "yellow": 235,
+        "green": 242,
+        "gray": 250
+      },
+      "creates": {
+        "item_id": 6037,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 7911,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 16153,
+      "name": "Smelt Thorium",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 250,
+        "green": 270,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 12359,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 10620,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 35750,
+      "name": "Earth Shatter",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 300,
+        "green": 300,
+        "gray": 300
+      },
+      "creates": {
+        "item_id": 22573,
+        "min_qty": 10,
+        "max_qty": 10
+      },
+      "reagents": [
+        {
+          "item_id": 22452,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 35751,
+      "name": "Fire Sunder",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 300,
+        "green": 300,
+        "gray": 300
+      },
+      "creates": {
+        "item_id": 22574,
+        "min_qty": 10,
+        "max_qty": 10
+      },
+      "reagents": [
+        {
+          "item_id": 21884,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 14891,
+      "name": "Smelt Dark Iron",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 300,
+        "green": 305,
+        "gray": 310
+      },
+      "creates": {
+        "item_id": 11371,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 11370,
+          "count": 8
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 29356,
+      "name": "Smelt Fel Iron",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 300,
+        "green": 307,
+        "gray": 315
+      },
+      "creates": {
+        "item_id": 23445,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23424,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 40000
+    },
+    {
+      "spell_id": 29358,
+      "name": "Smelt Adamantite",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 325,
+        "green": 332,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 23446,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23425,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 40000
+    },
+    {
+      "spell_id": 22967,
+      "name": "Smelt Elementium",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 350,
+        "green": 362,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 17771,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 18562,
+          "count": 1
+        },
+        {
+          "item_id": 12360,
+          "count": 10
+        },
+        {
+          "item_id": 17010,
+          "count": 1
+        },
+        {
+          "item_id": 18567,
+          "count": 3
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 29359,
+      "name": "Smelt Eternium",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 350,
+        "green": 357,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 23447,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23427,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 40000
+    },
+    {
+      "spell_id": 29360,
+      "name": "Smelt Felsteel",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 355,
+        "green": 367,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 23448,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23445,
+          "count": 3
+        },
+        {
+          "item_id": 23447,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 40000
+    },
+    {
+      "spell_id": 29686,
+      "name": "Smelt Hardened Adamantite",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 375,
+        "green": 375,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 23573,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23446,
+          "count": 10
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 100000
+    },
+    {
+      "spell_id": 46353,
+      "name": "Smelt Hardened Khorium",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 375,
+        "green": 375,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 35128,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23449,
+          "count": 3
+        },
+        {
+          "item_id": 23573,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 29361,
+      "name": "Smelt Khorium",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 375,
+        "green": 375,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 23449,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23426,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 100000
+    }
+  ],
+  "raw_recipe_items": []
+}

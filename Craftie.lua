@@ -146,6 +146,7 @@ Craftie.Frame.Parent.Scroll.Players.ScrollBar = Craftie.Frame.Parent.Scroll.Play
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetSize(14, Craftie.Frame.Parent.Scroll.Players:GetHeight()-8)
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Parent.Scroll.Players:GetWidth()-32, -4)
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetTexture("Interface/COMMON/ThinBorder-Right")
+--Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetDrawLayer("BORDER", 4)
 
 Craftie.Frame.Scroll={}
 Craftie.Frame.Scroll.Players={}
@@ -383,7 +384,7 @@ Craftie.Frame.Craft.Icon:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/inv_misc_questionmark")
 --Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/Trade_Engraving")
 Craftie.Frame.Craft.Text = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Craft.Text:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
+Craftie.Frame.Craft.Text:SetFont(Craftie._G.font, 12, "OUTLINE")
 Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 40, -10)
 Craftie.Frame.Craft.Text:SetText("")
 --designed to mask over the entire craft frame
@@ -398,10 +399,35 @@ Craftie.Frame.Craft.ID:SetPoint("CENTER", 10, 0)
 Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
 Craftie.Frame.Craft:Hide()
-
 Craftie.Frame.Craft.HLink:SetScript("OnLeave", function(self)
   GameTooltip:Hide()
 end)
+
+Craftie.Frame.Craft.Back = Craftie.Frame.Parent.Craft:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Craft.Back:SetSize(150, 110)
+Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", -150, 0)
+Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock")
+Craftie.Frame.Craft.Back = Craftie.Frame.Parent.Craft:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Craft.Back:SetSize(150, 110)
+Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", -2, 0)
+Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock")
+--Craftie.Frame.Craft.Back:SetTexture("Interface/TradeSkillFrame/UI-Tradeskill-BlacksmithBG-Top")
+Craftie.Frame.Craft.Divider = Craftie.Frame.Parent.Craft:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Craft.Divider:SetSize(400, 24)
+Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 98, 90)
+Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
+
+--[==[
+Craftie.Frame.Craft.BotLeft = Craftie.Frame.Parent.Craft:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Craft.BotLeft:SetSize(180, 90)
+Craftie.Frame.Craft.BotLeft:SetPoint("BOTTOMRIGHT", -124, -13)
+Craftie.Frame.Craft.BotLeft:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Honor-BottomLeft")
+Craftie.Frame.Craft.BotLeft:SetDrawLayer("BACKGROUND", 1)
+Craftie.Frame.Craft.BotRight= Craftie.Frame.Parent.Craft:CreateTexture(nil, "BORDER")
+Craftie.Frame.Craft.BotRight:SetSize(100, 90)
+Craftie.Frame.Craft.BotRight:SetPoint("BOTTOMRIGHT", 54, -13)
+Craftie.Frame.Craft.BotRight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Honor-BottomRight")
+]==]--
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
@@ -415,7 +441,7 @@ Craftie.Frame.Reagent.Data = {} --ID
 Craftie.Frame.Reagent_Width = 100
 Craftie.Frame.Reagent_Height= 35
 Craftie.Frame.Reagent_PosX  = 50
-Craftie.Frame.Reagent_PosY  = 50
+Craftie.Frame.Reagent_PosY  = 80
 for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.Parent.Craft, "BackdropTemplate")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
@@ -507,3 +533,44 @@ for i=1, Craftie.MAX_RECIPES do
   end)
 end
 
+
+Craftie.Button={}
+Craftie.Button.Frame={}
+
+--Store/category-icon-book
+
+--[==[
+Craftie.Button.Frame= CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
+Craftie.Button.Frame:SetSize(23, 23)
+Craftie.Button.Frame:SetPoint("TOPRIGHT", -16, -2)
+Craftie.Button.Frame:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Button.Frame:SetBackdropColor(0, 0, 0, 1)
+Craftie.Button.Frame:SetBackdropBorderColor(1, 1, 1, 0.6)
+]==]--
+Craftie.Button.Frame = Craftie.Frame:CreateTexture(nil, "BORDER")
+Craftie.Button.Frame:SetSize(30, 30)
+Craftie.Button.Frame:SetPoint("TOPRIGHT", -23, 0)
+Craftie.Button.Frame:SetTexture("Interface/DialogFrame/UI-DialogBox-Corner")
+
+--[==[
+Craftie.Button.Options= CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
+Craftie.Button.Options:SetSize(23, 23)
+Craftie.Button.Options:SetPoint("TOPRIGHT", -16, -2)
+Craftie.Button.Options:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Button.Options:SetBackdropColor(0, 0, 0, 1)
+Craftie.Button.Options:SetBackdropBorderColor(1, 1, 1, 0.6)
+Craftie.Button.Options.icon = Craftie.Button.Options:CreateTexture(nil, "ARTWORK")
+Craftie.Button.Options.icon:SetSize(12, 12)
+Craftie.Button.Options.icon:SetPoint("CENTER", 0, 0)
+Craftie.Button.Options.icon:SetTexture("Interface/Buttons/UI-OptionsButton")
+Craftie.Button.Options:SetScript("OnEnter", function(self)
+  --Craftie.TooltipDisplay(self, Craftie._G.title, Craftie.Addon)
+end)
+Craftie.Button.Options:SetScript("OnLeave", function(self)
+
+end)
+Craftie.Button.Options:SetScript("OnClick", function(self)
+  --Craftie.CloseAllMenus()
+  --Craftie.FrameOptions:Show()
+end)
+]==]--

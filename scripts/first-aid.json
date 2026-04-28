@@ -1,0 +1,582 @@
+{
+  "profession": "First Aid",
+  "skill_id": 129,
+  "expansion": "The Burning Crusade",
+  "total_recipes": 15,
+  "total_recipe_items": 11,
+  "recipes": [
+    {
+      "spell_id": 3275,
+      "name": "Linen Bandage",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 30,
+        "green": 45,
+        "gray": 60
+      },
+      "creates": {
+        "item_id": 1251,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2589,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 3276,
+      "name": "Heavy Linen Bandage",
+      "learned_at": 40,
+      "skill_thresholds": {
+        "orange": 40,
+        "yellow": 50,
+        "green": 75,
+        "gray": 100
+      },
+      "creates": {
+        "item_id": 2581,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2589,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 100
+    },
+    {
+      "spell_id": 7934,
+      "name": "Anti-Venom",
+      "learned_at": 80,
+      "skill_thresholds": {
+        "orange": 80,
+        "yellow": 80,
+        "green": 115,
+        "gray": 150
+      },
+      "creates": {
+        "item_id": 6452,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 1475,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 250
+    },
+    {
+      "spell_id": 3277,
+      "name": "Wool Bandage",
+      "learned_at": 80,
+      "skill_thresholds": {
+        "orange": 80,
+        "yellow": 80,
+        "green": 115,
+        "gray": 150
+      },
+      "creates": {
+        "item_id": 3530,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2592,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 250
+    },
+    {
+      "spell_id": 3278,
+      "name": "Heavy Wool Bandage",
+      "learned_at": 115,
+      "skill_thresholds": {
+        "orange": 115,
+        "yellow": 115,
+        "green": 150,
+        "gray": 185
+      },
+      "creates": {
+        "item_id": 3531,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2592,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 1000
+    },
+    {
+      "spell_id": 7935,
+      "name": "Strong Anti-Venom",
+      "learned_at": 130,
+      "skill_thresholds": {
+        "orange": 130,
+        "yellow": 130,
+        "green": 165,
+        "gray": 200
+      },
+      "creates": {
+        "item_id": 6453,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 1288,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6454,
+        "name": "Manual: Strong Anti-Venom",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 7928,
+      "name": "Silk Bandage",
+      "learned_at": 150,
+      "skill_thresholds": {
+        "orange": 150,
+        "yellow": 150,
+        "green": 180,
+        "gray": 210
+      },
+      "creates": {
+        "item_id": 6450,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4306,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 5000
+    },
+    {
+      "spell_id": 7929,
+      "name": "Heavy Silk Bandage",
+      "learned_at": 180,
+      "skill_thresholds": {
+        "orange": 180,
+        "yellow": 180,
+        "green": 210,
+        "gray": 240
+      },
+      "creates": {
+        "item_id": 6451,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4306,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 16112,
+        "name": "Manual: Heavy Silk Bandage",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 10840,
+      "name": "Mageweave Bandage",
+      "learned_at": 210,
+      "skill_thresholds": {
+        "orange": 210,
+        "yellow": 210,
+        "green": 240,
+        "gray": 270
+      },
+      "creates": {
+        "item_id": 8544,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4338,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 16113,
+        "name": "Manual: Mageweave Bandage",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 10841,
+      "name": "Heavy Mageweave Bandage",
+      "learned_at": 240,
+      "skill_thresholds": {
+        "orange": 240,
+        "yellow": 240,
+        "green": 270,
+        "gray": 300
+      },
+      "creates": {
+        "item_id": 8545,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4338,
+          "count": 2
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 18629,
+      "name": "Runecloth Bandage",
+      "learned_at": 260,
+      "skill_thresholds": {
+        "orange": 260,
+        "yellow": 260,
+        "green": 290,
+        "gray": 320
+      },
+      "creates": {
+        "item_id": 14529,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 14047,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 18630,
+      "name": "Heavy Runecloth Bandage",
+      "learned_at": 290,
+      "skill_thresholds": {
+        "orange": 290,
+        "yellow": 290,
+        "green": 320,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 14530,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 14047,
+          "count": 2
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 23787,
+      "name": "Powerful Anti-Venom",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 300,
+        "green": 330,
+        "gray": 360
+      },
+      "creates": {
+        "item_id": 19440,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 19441,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 19442,
+        "name": "Formula: Powerful Anti-Venom",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 27032,
+      "name": "Netherweave Bandage",
+      "learned_at": 330,
+      "skill_thresholds": {
+        "orange": 330,
+        "yellow": 330,
+        "green": 360,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 21990,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21877,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 21992,
+        "name": "Manual: Netherweave Bandage",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3483
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 27033,
+      "name": "Heavy Netherweave Bandage",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 360,
+        "green": 385,
+        "gray": 410
+      },
+      "creates": {
+        "item_id": 21991,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21877,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 21993,
+        "name": "Manual: Heavy Netherweave Bandage",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3483
+          }
+        ]
+      }
+    }
+  ],
+  "raw_recipe_items": [
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6454,
+      "level": 26,
+      "name": "Manual: Strong Anti-Venom",
+      "quality": 2,
+      "skill": 130,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 8547,
+      "level": 50,
+      "name": "Formula: Powerful Smelling Salts ",
+      "quality": 2,
+      "skill": 250,
+      "slot": 0,
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 16084,
+      "level": 30,
+      "name": "Expert First Aid - Under Wraps",
+      "quality": 1,
+      "skill": 125,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 16085,
+      "level": 45,
+      "name": "Artisan First Aid - Heal Thyself",
+      "quality": 1,
+      "skill": 200,
+      "slot": 0,
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 16112,
+      "level": 36,
+      "name": "Manual: Heavy Silk Bandage",
+      "quality": 1,
+      "skill": 180,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 16113,
+      "level": 42,
+      "name": "Manual: Mageweave Bandage",
+      "quality": 1,
+      "skill": 210,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 19442,
+      "level": 58,
+      "name": "Formula: Powerful Anti-Venom",
+      "quality": 1,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 21992,
+      "level": 64,
+      "name": "Manual: Netherweave Bandage",
+      "quality": 1,
+      "skill": 330,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "z": 3483
+        }
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 21993,
+      "level": 70,
+      "name": "Manual: Heavy Netherweave Bandage",
+      "quality": 1,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "z": 3483
+        }
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22012,
+      "level": 60,
+      "name": "Master First Aid - Doctor in the House",
+      "quality": 1,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "z": 3483
+        }
+      ],
+      "subclass": 7
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 23689,
+      "level": 60,
+      "name": "Manual: Crystal Infused Bandage",
+      "quality": 1,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        4
+      ],
+      "subclass": 7
+    }
+  ]
+}

@@ -1,0 +1,9036 @@
+{
+  "profession": "Alchemy",
+  "skill_id": 171,
+  "expansion": "The Burning Crusade",
+  "total_recipes": 182,
+  "total_recipe_items": 129,
+  "recipes": [
+    {
+      "spell_id": 2329,
+      "name": "Elixir of Lion's Strength",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 55,
+        "green": 75,
+        "gray": 95
+      },
+      "creates": {
+        "item_id": 2454,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2449,
+          "count": 1
+        },
+        {
+          "item_id": 765,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 7183,
+      "name": "Elixir of Minor Defense",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 55,
+        "green": 75,
+        "gray": 95
+      },
+      "creates": {
+        "item_id": 5997,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 765,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 2330,
+      "name": "Minor Healing Potion",
+      "learned_at": 1,
+      "skill_thresholds": {
+        "orange": 1,
+        "yellow": 55,
+        "green": 75,
+        "gray": 95
+      },
+      "creates": {
+        "item_id": 118,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2447,
+          "count": 1
+        },
+        {
+          "item_id": 765,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 3170,
+      "name": "Weak Troll's Blood Potion",
+      "learned_at": 15,
+      "skill_thresholds": {
+        "orange": 15,
+        "yellow": 60,
+        "green": 80,
+        "gray": 100
+      },
+      "creates": {
+        "item_id": 3382,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2447,
+          "count": 1
+        },
+        {
+          "item_id": 2449,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 50
+    },
+    {
+      "spell_id": 2331,
+      "name": "Minor Mana Potion",
+      "learned_at": 25,
+      "skill_thresholds": {
+        "orange": 25,
+        "yellow": 65,
+        "green": 85,
+        "gray": 105
+      },
+      "creates": {
+        "item_id": 2455,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 785,
+          "count": 1
+        },
+        {
+          "item_id": 765,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 100
+    },
+    {
+      "spell_id": 2332,
+      "name": "Minor Rejuvenation Potion",
+      "learned_at": 40,
+      "skill_thresholds": {
+        "orange": 40,
+        "yellow": 70,
+        "green": 90,
+        "gray": 110
+      },
+      "creates": {
+        "item_id": 2456,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 785,
+          "count": 2
+        },
+        {
+          "item_id": 2447,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 150
+    },
+    {
+      "spell_id": 4508,
+      "name": "Discolored Healing Potion",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 80,
+        "green": 100,
+        "gray": 120
+      },
+      "creates": {
+        "item_id": 4596,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3164,
+          "count": 1
+        },
+        {
+          "item_id": 2447,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 4597,
+        "name": "Recipe: Discolored Healing Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": 130,
+            "c2": 0,
+            "n": "Wild Hearts",
+            "t": 5,
+            "ti": 429
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 3230,
+      "name": "Elixir of Minor Agility",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 80,
+        "green": 100,
+        "gray": 120
+      },
+      "creates": {
+        "item_id": 2457,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2452,
+          "count": 1
+        },
+        {
+          "item_id": 765,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2553,
+        "name": "Recipe: Elixir of Minor Agility",
+        "quality": 2,
+        "drop_sources": [
+          "Drop",
+          "Event/Seasonal",
+          "Profession"
+        ]
+      }
+    },
+    {
+      "spell_id": 2334,
+      "name": "Elixir of Minor Fortitude",
+      "learned_at": 50,
+      "skill_thresholds": {
+        "orange": 50,
+        "yellow": 80,
+        "green": 100,
+        "gray": 120
+      },
+      "creates": {
+        "item_id": 2458,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2449,
+          "count": 2
+        },
+        {
+          "item_id": 2447,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 250
+    },
+    {
+      "spell_id": 2337,
+      "name": "Lesser Healing Potion",
+      "learned_at": 55,
+      "skill_thresholds": {
+        "orange": 55,
+        "yellow": 85,
+        "green": 105,
+        "gray": 125
+      },
+      "creates": {
+        "item_id": 858,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 118,
+          "count": 1
+        },
+        {
+          "item_id": 2450,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 1000
+    },
+    {
+      "spell_id": 6617,
+      "name": "Rage Potion",
+      "learned_at": 60,
+      "skill_thresholds": {
+        "orange": 60,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 5631,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5635,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5640,
+        "name": "Recipe: Rage Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 2335,
+      "name": "Swiftness Potion",
+      "learned_at": 60,
+      "skill_thresholds": {
+        "orange": 60,
+        "yellow": 90,
+        "green": 110,
+        "gray": 130
+      },
+      "creates": {
+        "item_id": 2459,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2452,
+          "count": 1
+        },
+        {
+          "item_id": 2450,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2555,
+        "name": "Recipe: Swiftness Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop",
+          "Profession"
+        ]
+      }
+    },
+    {
+      "spell_id": 7836,
+      "name": "Blackmouth Oil",
+      "learned_at": 80,
+      "skill_thresholds": {
+        "orange": 80,
+        "yellow": 80,
+        "green": 90,
+        "gray": 100
+      },
+      "creates": {
+        "item_id": 6370,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6358,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 250
+    },
+    {
+      "spell_id": 8240,
+      "name": "Elixir of Giant Growth",
+      "learned_at": 90,
+      "skill_thresholds": {
+        "orange": 90,
+        "yellow": 120,
+        "green": 140,
+        "gray": 160
+      },
+      "creates": {
+        "item_id": 6662,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6522,
+          "count": 1
+        },
+        {
+          "item_id": 2449,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6663,
+        "name": "Recipe: Elixir of Giant Growth",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 17
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 7179,
+      "name": "Elixir of Water Breathing",
+      "learned_at": 90,
+      "skill_thresholds": {
+        "orange": 90,
+        "yellow": 120,
+        "green": 140,
+        "gray": 160
+      },
+      "creates": {
+        "item_id": 5996,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3820,
+          "count": 1
+        },
+        {
+          "item_id": 6370,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 450
+    },
+    {
+      "spell_id": 3171,
+      "name": "Elixir of Wisdom",
+      "learned_at": 90,
+      "skill_thresholds": {
+        "orange": 90,
+        "yellow": 120,
+        "green": 140,
+        "gray": 160
+      },
+      "creates": {
+        "item_id": 3383,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 785,
+          "count": 1
+        },
+        {
+          "item_id": 2450,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 500
+    },
+    {
+      "spell_id": 7255,
+      "name": "Holy Protection Potion",
+      "learned_at": 100,
+      "skill_thresholds": {
+        "orange": 100,
+        "yellow": 130,
+        "green": 150,
+        "gray": 170
+      },
+      "creates": {
+        "item_id": 6051,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2453,
+          "count": 1
+        },
+        {
+          "item_id": 2452,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6053,
+        "name": "Recipe: Holy Protection Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 7841,
+      "name": "Swim Speed Potion",
+      "learned_at": 100,
+      "skill_thresholds": {
+        "orange": 100,
+        "yellow": 130,
+        "green": 150,
+        "gray": 170
+      },
+      "creates": {
+        "item_id": 6372,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2452,
+          "count": 1
+        },
+        {
+          "item_id": 6370,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 1000
+    },
+    {
+      "spell_id": 3447,
+      "name": "Healing Potion",
+      "learned_at": 110,
+      "skill_thresholds": {
+        "orange": 110,
+        "yellow": 135,
+        "green": 155,
+        "gray": 175
+      },
+      "creates": {
+        "item_id": 929,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2453,
+          "count": 1
+        },
+        {
+          "item_id": 2450,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 4000
+    },
+    {
+      "spell_id": 3172,
+      "name": "Minor Magic Resistance Potion",
+      "learned_at": 110,
+      "skill_thresholds": {
+        "orange": 110,
+        "yellow": 135,
+        "green": 155,
+        "gray": 175
+      },
+      "creates": {
+        "item_id": 3384,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 785,
+          "count": 3
+        },
+        {
+          "item_id": 3355,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3393,
+        "name": "Recipe: Minor Magic Resistance Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 3173,
+      "name": "Lesser Mana Potion",
+      "learned_at": 120,
+      "skill_thresholds": {
+        "orange": 120,
+        "yellow": 145,
+        "green": 165,
+        "gray": 185
+      },
+      "creates": {
+        "item_id": 3385,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 785,
+          "count": 1
+        },
+        {
+          "item_id": 3820,
+          "count": 1
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 1500
+    },
+    {
+      "spell_id": 3174,
+      "name": "Potion of Curing",
+      "learned_at": 120,
+      "skill_thresholds": {
+        "orange": 120,
+        "yellow": 145,
+        "green": 165,
+        "gray": 185
+      },
+      "creates": {
+        "item_id": 3386,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 1288,
+          "count": 1
+        },
+        {
+          "item_id": 2453,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3394,
+        "name": "Recipe: Potion of Curing",
+        "quality": 1,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 3176,
+      "name": "Strong Troll's Blood Potion",
+      "learned_at": 125,
+      "skill_thresholds": {
+        "orange": 125,
+        "yellow": 150,
+        "green": 170,
+        "gray": 190
+      },
+      "creates": {
+        "item_id": 3388,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2453,
+          "count": 2
+        },
+        {
+          "item_id": 2450,
+          "count": 2
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 1500
+    },
+    {
+      "spell_id": 3177,
+      "name": "Elixir of Defense",
+      "learned_at": 130,
+      "skill_thresholds": {
+        "orange": 130,
+        "yellow": 155,
+        "green": 175,
+        "gray": 195
+      },
+      "creates": {
+        "item_id": 3389,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3355,
+          "count": 1
+        },
+        {
+          "item_id": 3820,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 2000
+    },
+    {
+      "spell_id": 7837,
+      "name": "Fire Oil",
+      "learned_at": 130,
+      "skill_thresholds": {
+        "orange": 130,
+        "yellow": 150,
+        "green": 160,
+        "gray": 170
+      },
+      "creates": {
+        "item_id": 6371,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6359,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 1000
+    },
+    {
+      "spell_id": 7256,
+      "name": "Shadow Protection Potion",
+      "learned_at": 135,
+      "skill_thresholds": {
+        "orange": 135,
+        "yellow": 160,
+        "green": 180,
+        "gray": 200
+      },
+      "creates": {
+        "item_id": 6048,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3369,
+          "count": 1
+        },
+        {
+          "item_id": 3356,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6054,
+        "name": "Recipe: Shadow Protection Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 7845,
+      "name": "Elixir of Firepower",
+      "learned_at": 140,
+      "skill_thresholds": {
+        "orange": 140,
+        "yellow": 165,
+        "green": 185,
+        "gray": 205
+      },
+      "creates": {
+        "item_id": 6373,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6371,
+          "count": 2
+        },
+        {
+          "item_id": 3356,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 3000
+    },
+    {
+      "spell_id": 2333,
+      "name": "Elixir of Lesser Agility",
+      "learned_at": 140,
+      "skill_thresholds": {
+        "orange": 140,
+        "yellow": 165,
+        "green": 185,
+        "gray": 205
+      },
+      "creates": {
+        "item_id": 3390,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3355,
+          "count": 1
+        },
+        {
+          "item_id": 2452,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3396,
+        "name": "Recipe: Elixir of Lesser Agility",
+        "quality": 2,
+        "drop_sources": [
+          "Drop",
+          "Event/Seasonal"
+        ]
+      }
+    },
+    {
+      "spell_id": 3188,
+      "name": "Elixir of Ogre's Strength",
+      "learned_at": 150,
+      "skill_thresholds": {
+        "orange": 150,
+        "yellow": 175,
+        "green": 195,
+        "gray": 215
+      },
+      "creates": {
+        "item_id": 3391,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2449,
+          "count": 1
+        },
+        {
+          "item_id": 3356,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6211,
+        "name": "Recipe: Elixir of Ogre's Strength",
+        "quality": 1,
+        "drop_sources": [
+          "Drop",
+          "Event/Seasonal"
+        ]
+      }
+    },
+    {
+      "spell_id": 6624,
+      "name": "Free Action Potion",
+      "learned_at": 150,
+      "skill_thresholds": {
+        "orange": 150,
+        "yellow": 175,
+        "green": 195,
+        "gray": 215
+      },
+      "creates": {
+        "item_id": 5634,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6370,
+          "count": 2
+        },
+        {
+          "item_id": 3820,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5642,
+        "name": "Recipe: Free Action Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 7181,
+      "name": "Greater Healing Potion",
+      "learned_at": 155,
+      "skill_thresholds": {
+        "orange": 155,
+        "yellow": 175,
+        "green": 195,
+        "gray": 215
+      },
+      "creates": {
+        "item_id": 1710,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3357,
+          "count": 1
+        },
+        {
+          "item_id": 3356,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 5000
+    },
+    {
+      "spell_id": 3452,
+      "name": "Mana Potion",
+      "learned_at": 160,
+      "skill_thresholds": {
+        "orange": 160,
+        "yellow": 180,
+        "green": 200,
+        "gray": 220
+      },
+      "creates": {
+        "item_id": 3827,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3820,
+          "count": 1
+        },
+        {
+          "item_id": 3356,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 5000
+    },
+    {
+      "spell_id": 7257,
+      "name": "Fire Protection Potion",
+      "learned_at": 165,
+      "skill_thresholds": {
+        "orange": 165,
+        "yellow": 210,
+        "green": 230,
+        "gray": 250
+      },
+      "creates": {
+        "item_id": 6049,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4402,
+          "count": 1
+        },
+        {
+          "item_id": 6371,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6055,
+        "name": "Recipe: Fire Protection Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 3448,
+      "name": "Lesser Invisibility Potion",
+      "learned_at": 165,
+      "skill_thresholds": {
+        "orange": 165,
+        "yellow": 185,
+        "green": 205,
+        "gray": 225
+      },
+      "creates": {
+        "item_id": 3823,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3818,
+          "count": 1
+        },
+        {
+          "item_id": 3355,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 5000
+    },
+    {
+      "spell_id": 3449,
+      "name": "Shadow Oil",
+      "learned_at": 165,
+      "skill_thresholds": {
+        "orange": 165,
+        "yellow": 190,
+        "green": 210,
+        "gray": 230
+      },
+      "creates": {
+        "item_id": 3824,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3818,
+          "count": 4
+        },
+        {
+          "item_id": 3369,
+          "count": 4
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6068,
+        "name": "Recipe: Shadow Oil",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 3450,
+      "name": "Elixir of Fortitude",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 195,
+        "green": 215,
+        "gray": 235
+      },
+      "creates": {
+        "item_id": 3825,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3355,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 6000
+    },
+    {
+      "spell_id": 6618,
+      "name": "Great Rage Potion",
+      "learned_at": 175,
+      "skill_thresholds": {
+        "orange": 175,
+        "yellow": 195,
+        "green": 215,
+        "gray": 235
+      },
+      "creates": {
+        "item_id": 5633,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5637,
+          "count": 1
+        },
+        {
+          "item_id": 3356,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5643,
+        "name": "Recipe: Great Rage Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 3451,
+      "name": "Mighty Troll's Blood Potion",
+      "learned_at": 180,
+      "skill_thresholds": {
+        "orange": 180,
+        "yellow": 200,
+        "green": 220,
+        "gray": 240
+      },
+      "creates": {
+        "item_id": 3826,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3357,
+          "count": 1
+        },
+        {
+          "item_id": 2453,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3831,
+        "name": "Recipe: Mighty Troll's Blood Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 11449,
+      "name": "Elixir of Agility",
+      "learned_at": 185,
+      "skill_thresholds": {
+        "orange": 185,
+        "yellow": 205,
+        "green": 225,
+        "gray": 245
+      },
+      "creates": {
+        "item_id": 8949,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3820,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 6500
+    },
+    {
+      "spell_id": 21923,
+      "name": "Elixir of Frost Power",
+      "learned_at": 190,
+      "skill_thresholds": {
+        "orange": 190,
+        "yellow": 210,
+        "green": 230,
+        "gray": 250
+      },
+      "creates": {
+        "item_id": 17708,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3819,
+          "count": 2
+        },
+        {
+          "item_id": 3358,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 17709,
+        "name": "Recipe: Elixir of Frost Power",
+        "quality": 1,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 7258,
+      "name": "Frost Protection Potion",
+      "learned_at": 190,
+      "skill_thresholds": {
+        "orange": 190,
+        "yellow": 205,
+        "green": 225,
+        "gray": 245
+      },
+      "creates": {
+        "item_id": 6050,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3819,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6056,
+        "name": "Recipe: Frost Protection Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 7259,
+      "name": "Nature Protection Potion",
+      "learned_at": 190,
+      "skill_thresholds": {
+        "orange": 190,
+        "yellow": 210,
+        "green": 230,
+        "gray": 250
+      },
+      "creates": {
+        "item_id": 6052,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3357,
+          "count": 1
+        },
+        {
+          "item_id": 3820,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6057,
+        "name": "Recipe: Nature Protection Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 3453,
+      "name": "Elixir of Detect Lesser Invisibility",
+      "learned_at": 195,
+      "skill_thresholds": {
+        "orange": 195,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 3828,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3358,
+          "count": 1
+        },
+        {
+          "item_id": 3818,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3832,
+        "name": "Recipe: Elixir of Detect Lesser Invisibility",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 11450,
+      "name": "Elixir of Greater Defense",
+      "learned_at": 195,
+      "skill_thresholds": {
+        "orange": 195,
+        "yellow": 215,
+        "green": 235,
+        "gray": 255
+      },
+      "creates": {
+        "item_id": 8951,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3355,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 7500
+    },
+    {
+      "spell_id": 12609,
+      "name": "Catseye Elixir",
+      "learned_at": 200,
+      "skill_thresholds": {
+        "orange": 200,
+        "yellow": 220,
+        "green": 240,
+        "gray": 260
+      },
+      "creates": {
+        "item_id": 10592,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 3818,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 8000
+    },
+    {
+      "spell_id": 3454,
+      "name": "Frost Oil",
+      "learned_at": 200,
+      "skill_thresholds": {
+        "orange": 200,
+        "yellow": 220,
+        "green": 240,
+        "gray": 260
+      },
+      "creates": {
+        "item_id": 3829,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3358,
+          "count": 4
+        },
+        {
+          "item_id": 3819,
+          "count": 2
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 14634,
+        "name": "Recipe: Frost Oil",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Bro'kin",
+            "t": 1,
+            "ti": 2480,
+            "z": 36
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 11448,
+      "name": "Greater Mana Potion",
+      "learned_at": 205,
+      "skill_thresholds": {
+        "orange": 205,
+        "yellow": 220,
+        "green": 240,
+        "gray": 260
+      },
+      "creates": {
+        "item_id": 6149,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3358,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 9000
+    },
+    {
+      "spell_id": 11451,
+      "name": "Oil of Immolation",
+      "learned_at": 205,
+      "skill_thresholds": {
+        "orange": 205,
+        "yellow": 220,
+        "green": 240,
+        "gray": 260
+      },
+      "creates": {
+        "item_id": 8956,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4625,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 8000
+    },
+    {
+      "spell_id": 11456,
+      "name": "Goblin Rocket Fuel",
+      "learned_at": 210,
+      "skill_thresholds": {
+        "orange": 210,
+        "yellow": 225,
+        "green": 245,
+        "gray": 265
+      },
+      "creates": {
+        "item_id": 9061,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4625,
+          "count": 1
+        },
+        {
+          "item_id": 9260,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 10644,
+        "name": "Recipe: Goblin Rocket Fuel",
+        "quality": 1,
+        "drop_sources": [
+          "Crafted"
+        ],
+        "source_details": [
+          {
+            "c": 11,
+            "icon": "inv_scroll_03",
+            "n": "Goblin Rocket Fuel Recipe",
+            "s": 202,
+            "t": 6,
+            "ti": 12715
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 11453,
+      "name": "Magic Resistance Potion",
+      "learned_at": 210,
+      "skill_thresholds": {
+        "orange": 210,
+        "yellow": 225,
+        "green": 245,
+        "gray": 265
+      },
+      "creates": {
+        "item_id": 9036,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3358,
+          "count": 1
+        },
+        {
+          "item_id": 8831,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9293,
+        "name": "Recipe: Magic Resistance Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 22808,
+      "name": "Elixir of Greater Water Breathing",
+      "learned_at": 215,
+      "skill_thresholds": {
+        "orange": 215,
+        "yellow": 230,
+        "green": 250,
+        "gray": 270
+      },
+      "creates": {
+        "item_id": 18294,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 7972,
+          "count": 1
+        },
+        {
+          "item_id": 8831,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 4942,
+      "name": "Lesser Stoneshield Potion",
+      "learned_at": 215,
+      "skill_thresholds": {
+        "orange": 215,
+        "yellow": 230,
+        "green": 250,
+        "gray": 270
+      },
+      "creates": {
+        "item_id": 4623,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3858,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 4624,
+        "name": "Recipe: Lesser Stoneshield Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ],
+        "source_details": [
+          {
+            "c": 3,
+            "c2": 0,
+            "n": "Liquid Stone",
+            "t": 5,
+            "ti": 715
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 11452,
+      "name": "Restorative Potion",
+      "learned_at": 215,
+      "skill_thresholds": {
+        "orange": 215,
+        "yellow": 225,
+        "green": 245,
+        "gray": 265
+      },
+      "creates": {
+        "item_id": 9030,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 7067,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 11457,
+      "name": "Superior Healing Potion",
+      "learned_at": 215,
+      "skill_thresholds": {
+        "orange": 215,
+        "yellow": 230,
+        "green": 250,
+        "gray": 270
+      },
+      "creates": {
+        "item_id": 3928,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8838,
+          "count": 1
+        },
+        {
+          "item_id": 3358,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 11459,
+      "name": "Philosopher's Stone",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 240,
+        "green": 260,
+        "gray": 280
+      },
+      "creates": {
+        "item_id": 9149,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3575,
+          "count": 4
+        },
+        {
+          "item_id": 9262,
+          "count": 1
+        },
+        {
+          "item_id": 8831,
+          "count": 4
+        },
+        {
+          "item_id": 4625,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9303,
+        "name": "Recipe: Philosopher's Stone",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Alchemist Pestlezugg",
+            "t": 1,
+            "ti": 5594,
+            "z": 440
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 11479,
+      "name": "Transmute: Iron to Gold",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 240,
+        "green": 260,
+        "gray": 280
+      },
+      "creates": {
+        "item_id": 3577,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 3575,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 11480,
+      "name": "Transmute: Mithril to Truesilver",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 240,
+        "green": 260,
+        "gray": 280
+      },
+      "creates": {
+        "item_id": 6037,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 3860,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 11458,
+      "name": "Wildvine Potion",
+      "learned_at": 225,
+      "skill_thresholds": {
+        "orange": 225,
+        "yellow": 240,
+        "green": 260,
+        "gray": 280
+      },
+      "creates": {
+        "item_id": 9144,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8153,
+          "count": 1
+        },
+        {
+          "item_id": 8831,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9294,
+        "name": "Recipe: Wildvine Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 15833,
+      "name": "Dreamless Sleep Potion",
+      "learned_at": 230,
+      "skill_thresholds": {
+        "orange": 230,
+        "yellow": 245,
+        "green": 265,
+        "gray": 285
+      },
+      "creates": {
+        "item_id": 12190,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8831,
+          "count": 3
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 11460,
+      "name": "Elixir of Detect Undead",
+      "learned_at": 230,
+      "skill_thresholds": {
+        "orange": 230,
+        "yellow": 245,
+        "green": 265,
+        "gray": 285
+      },
+      "creates": {
+        "item_id": 9154,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8836,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 5000
+    },
+    {
+      "spell_id": 11461,
+      "name": "Arcane Elixir",
+      "learned_at": 235,
+      "skill_thresholds": {
+        "orange": 235,
+        "yellow": 250,
+        "green": 270,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 9155,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8839,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 10000
+    },
+    {
+      "spell_id": 11465,
+      "name": "Elixir of Greater Intellect",
+      "learned_at": 235,
+      "skill_thresholds": {
+        "orange": 235,
+        "yellow": 250,
+        "green": 270,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 9179,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8839,
+          "count": 1
+        },
+        {
+          "item_id": 3358,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 12000
+    },
+    {
+      "spell_id": 11464,
+      "name": "Invisibility Potion",
+      "learned_at": 235,
+      "skill_thresholds": {
+        "orange": 235,
+        "yellow": 250,
+        "green": 270,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 9172,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8845,
+          "count": 1
+        },
+        {
+          "item_id": 8838,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9295,
+        "name": "Recipe: Invisibility Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop",
+          "Event/Seasonal"
+        ]
+      }
+    },
+    {
+      "spell_id": 11468,
+      "name": "Elixir of Dream Vision",
+      "learned_at": 240,
+      "skill_thresholds": {
+        "orange": 240,
+        "yellow": 255,
+        "green": 275,
+        "gray": 295
+      },
+      "creates": {
+        "item_id": 9197,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8831,
+          "count": 3
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9297,
+        "name": "Recipe: Elixir of Dream Vision",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 11467,
+      "name": "Elixir of Greater Agility",
+      "learned_at": 240,
+      "skill_thresholds": {
+        "orange": 240,
+        "yellow": 255,
+        "green": 275,
+        "gray": 295
+      },
+      "creates": {
+        "item_id": 9187,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8838,
+          "count": 1
+        },
+        {
+          "item_id": 3821,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 12000
+    },
+    {
+      "spell_id": 11466,
+      "name": "Gift of Arthas",
+      "learned_at": 240,
+      "skill_thresholds": {
+        "orange": 240,
+        "yellow": 255,
+        "green": 275,
+        "gray": 295
+      },
+      "creates": {
+        "item_id": 9088,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8836,
+          "count": 1
+        },
+        {
+          "item_id": 8839,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9296,
+        "name": "Recipe: Gift of Arthas",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 28
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 11472,
+      "name": "Elixir of Giants",
+      "learned_at": 245,
+      "skill_thresholds": {
+        "orange": 245,
+        "yellow": 260,
+        "green": 280,
+        "gray": 300
+      },
+      "creates": {
+        "item_id": 9206,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8838,
+          "count": 1
+        },
+        {
+          "item_id": 8846,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9298,
+        "name": "Recipe: Elixir of Giants",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 11473,
+      "name": "Ghost Dye",
+      "learned_at": 245,
+      "skill_thresholds": {
+        "orange": 245,
+        "yellow": 260,
+        "green": 280,
+        "gray": 300
+      },
+      "creates": {
+        "item_id": 9210,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8845,
+          "count": 2
+        },
+        {
+          "item_id": 4342,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9302,
+        "name": "Recipe: Ghost Dye",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 357
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 11477,
+      "name": "Elixir of Demonslaying",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 265,
+        "green": 285,
+        "gray": 305
+      },
+      "creates": {
+        "item_id": 9224,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8846,
+          "count": 1
+        },
+        {
+          "item_id": 8845,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9300,
+        "name": "Recipe: Elixir of Demonslaying",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 11478,
+      "name": "Elixir of Detect Demon",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 265,
+        "green": 285,
+        "gray": 305
+      },
+      "creates": {
+        "item_id": 9233,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8846,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 14000
+    },
+    {
+      "spell_id": 26277,
+      "name": "Elixir of Greater Firepower",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 265,
+        "green": 285,
+        "gray": 305
+      },
+      "creates": {
+        "item_id": 21546,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6371,
+          "count": 3
+        },
+        {
+          "item_id": 4625,
+          "count": 3
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 21547,
+        "name": "Recipe: Elixir of Greater Firepower",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 51
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 11476,
+      "name": "Elixir of Shadow Power",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 265,
+        "green": 285,
+        "gray": 305
+      },
+      "creates": {
+        "item_id": 9264,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8845,
+          "count": 3
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 9301,
+        "name": "Recipe: Elixir of Shadow Power",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 3175,
+      "name": "Limited Invulnerability Potion",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 275,
+        "green": 295,
+        "gray": 315
+      },
+      "creates": {
+        "item_id": 3387,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8839,
+          "count": 2
+        },
+        {
+          "item_id": 8845,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 3395,
+        "name": "Recipe: Limited Invulnerability Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop",
+          "Event/Seasonal"
+        ]
+      }
+    },
+    {
+      "spell_id": 17551,
+      "name": "Stonescale Oil",
+      "learned_at": 250,
+      "skill_thresholds": {
+        "orange": 250,
+        "yellow": 250,
+        "green": 255,
+        "gray": 260
+      },
+      "creates": {
+        "item_id": 13423,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13422,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 15000
+    },
+    {
+      "spell_id": 17552,
+      "name": "Mighty Rage Potion",
+      "learned_at": 255,
+      "skill_thresholds": {
+        "orange": 255,
+        "yellow": 270,
+        "green": 290,
+        "gray": 310
+      },
+      "creates": {
+        "item_id": 13442,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8846,
+          "count": 3
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 15000
+    },
+    {
+      "spell_id": 17553,
+      "name": "Superior Mana Potion",
+      "learned_at": 260,
+      "skill_thresholds": {
+        "orange": 260,
+        "yellow": 275,
+        "green": 295,
+        "gray": 315
+      },
+      "creates": {
+        "item_id": 13443,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8838,
+          "count": 2
+        },
+        {
+          "item_id": 8839,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 15000
+    },
+    {
+      "spell_id": 17554,
+      "name": "Elixir of Superior Defense",
+      "learned_at": 265,
+      "skill_thresholds": {
+        "orange": 265,
+        "yellow": 280,
+        "green": 300,
+        "gray": 320
+      },
+      "creates": {
+        "item_id": 13445,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13423,
+          "count": 2
+        },
+        {
+          "item_id": 8838,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13478,
+        "name": "Recipe: Elixir of Superior Defense",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 17555,
+      "name": "Elixir of the Sages",
+      "learned_at": 270,
+      "skill_thresholds": {
+        "orange": 270,
+        "yellow": 285,
+        "green": 305,
+        "gray": 325
+      },
+      "creates": {
+        "item_id": 13447,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 13466,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 15000
+    },
+    {
+      "spell_id": 17557,
+      "name": "Elixir of Brute Force",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 290,
+        "green": 310,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 13453,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8846,
+          "count": 2
+        },
+        {
+          "item_id": 13466,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 24366,
+      "name": "Greater Dreamless Sleep Potion",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 290,
+        "green": 310,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 20002,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 2
+        },
+        {
+          "item_id": 13464,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 20012,
+        "name": "Recipe: Greater Dreamless Sleep Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Rin'wosho the Trader",
+            "t": 1,
+            "ti": 14921,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 24365,
+      "name": "Mageblood Potion",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 290,
+        "green": 310,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 20007,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 13466,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 20011,
+        "name": "Recipe: Mageblood Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Rin'wosho the Trader",
+            "t": 1,
+            "ti": 14921,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17556,
+      "name": "Major Healing Potion",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 290,
+        "green": 310,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 13446,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13464,
+          "count": 2
+        },
+        {
+          "item_id": 13465,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 17559,
+      "name": "Transmute: Air to Fire",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 7078,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 7082,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17187,
+      "name": "Transmute: Arcanite",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 12360,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 12359,
+          "count": 1
+        },
+        {
+          "item_id": 12363,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17566,
+      "name": "Transmute: Earth to Life",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 12803,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 7076,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17561,
+      "name": "Transmute: Earth to Water",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 7080,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 7076,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17560,
+      "name": "Transmute: Fire to Earth",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 7076,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 7078,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17565,
+      "name": "Transmute: Life to Earth",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 7076,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 12803,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17563,
+      "name": "Transmute: Undeath to Water",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 7080,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 12808,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17562,
+      "name": "Transmute: Water to Air",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 7082,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 7080,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17564,
+      "name": "Transmute: Water to Undeath",
+      "learned_at": 275,
+      "skill_thresholds": {
+        "orange": 275,
+        "yellow": 275,
+        "green": 282,
+        "gray": 290
+      },
+      "creates": {
+        "item_id": 12808,
+        "min_qty": 0,
+        "max_qty": 0
+      },
+      "reagents": [
+        {
+          "item_id": 7080,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17571,
+      "name": "Elixir of the Mongoose",
+      "learned_at": 280,
+      "skill_thresholds": {
+        "orange": 280,
+        "yellow": 295,
+        "green": 315,
+        "gray": 335
+      },
+      "creates": {
+        "item_id": 13452,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13465,
+          "count": 2
+        },
+        {
+          "item_id": 13466,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13491,
+        "name": "Recipe: Elixir of the Mongoose",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 17570,
+      "name": "Greater Stoneshield Potion",
+      "learned_at": 280,
+      "skill_thresholds": {
+        "orange": 280,
+        "yellow": 295,
+        "green": 315,
+        "gray": 335
+      },
+      "creates": {
+        "item_id": 13455,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13423,
+          "count": 2
+        },
+        {
+          "item_id": 10620,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13490,
+        "name": "Recipe: Greater Stoneshield Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 17573,
+      "name": "Greater Arcane Elixir",
+      "learned_at": 285,
+      "skill_thresholds": {
+        "orange": 285,
+        "yellow": 300,
+        "green": 320,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 13454,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 3
+        },
+        {
+          "item_id": 13465,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 24367,
+      "name": "Living Action Potion",
+      "learned_at": 285,
+      "skill_thresholds": {
+        "orange": 285,
+        "yellow": 300,
+        "green": 320,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 20008,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13467,
+          "count": 2
+        },
+        {
+          "item_id": 13465,
+          "count": 2
+        },
+        {
+          "item_id": 10286,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 20013,
+        "name": "Recipe: Living Action Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Rin'wosho the Trader",
+            "t": 1,
+            "ti": 14921,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17572,
+      "name": "Purification Potion",
+      "learned_at": 285,
+      "skill_thresholds": {
+        "orange": 285,
+        "yellow": 300,
+        "green": 320,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 13462,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13467,
+          "count": 2
+        },
+        {
+          "item_id": 13466,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 17577,
+      "name": "Greater Arcane Protection Potion",
+      "learned_at": 290,
+      "skill_thresholds": {
+        "orange": 290,
+        "yellow": 305,
+        "green": 325,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 13461,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 11176,
+          "count": 1
+        },
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13497,
+        "name": "Recipe: Greater Arcane Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "n": "Cobalt Mageweaver",
+            "t": 1,
+            "ti": 7437,
+            "z": 618
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17574,
+      "name": "Greater Fire Protection Potion",
+      "learned_at": 290,
+      "skill_thresholds": {
+        "orange": 290,
+        "yellow": 305,
+        "green": 325,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 13457,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 7068,
+          "count": 1
+        },
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13494,
+        "name": "Recipe: Greater Fire Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "dd": -1,
+            "z": 1583
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17575,
+      "name": "Greater Frost Protection Potion",
+      "learned_at": 290,
+      "skill_thresholds": {
+        "orange": 290,
+        "yellow": 305,
+        "green": 325,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 13456,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 7070,
+          "count": 1
+        },
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13495,
+        "name": "Recipe: Greater Frost Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "dd": -1,
+            "n": "Frostmaul Giant",
+            "t": 1,
+            "ti": 7428,
+            "z": 618
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17576,
+      "name": "Greater Nature Protection Potion",
+      "learned_at": 290,
+      "skill_thresholds": {
+        "orange": 290,
+        "yellow": 305,
+        "green": 325,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 13458,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 7067,
+          "count": 1
+        },
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13496,
+        "name": "Recipe: Greater Nature Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 28
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17578,
+      "name": "Greater Shadow Protection Potion",
+      "learned_at": 290,
+      "skill_thresholds": {
+        "orange": 290,
+        "yellow": 305,
+        "green": 325,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 13459,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3824,
+          "count": 1
+        },
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13499,
+        "name": "Recipe: Greater Shadow Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 139
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 24368,
+      "name": "Major Troll's Blood Potion",
+      "learned_at": 290,
+      "skill_thresholds": {
+        "orange": 290,
+        "yellow": 305,
+        "green": 325,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 20004,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8846,
+          "count": 1
+        },
+        {
+          "item_id": 13466,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 20014,
+        "name": "Recipe: Major Troll's Blood Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Rin'wosho the Trader",
+            "t": 1,
+            "ti": 14921,
+            "z": 33
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17580,
+      "name": "Major Mana Potion",
+      "learned_at": 295,
+      "skill_thresholds": {
+        "orange": 295,
+        "yellow": 310,
+        "green": 330,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 13444,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 3
+        },
+        {
+          "item_id": 13467,
+          "count": 2
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13501,
+        "name": "Recipe: Major Mana Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop",
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "dd": -1,
+            "n": "Darkmaster Gandling",
+            "t": 1,
+            "ti": 1853,
+            "z": 2057
+          },
+          {
+            "n": "Magnus Frostwake",
+            "t": 1,
+            "ti": 11278,
+            "z": 28
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33740,
+      "name": "Adept's Elixir",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 28103,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 17632,
+      "name": "Alchemist's Stone",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 13503,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 9149,
+          "count": 1
+        },
+        {
+          "item_id": 25867,
+          "count": 1
+        },
+        {
+          "item_id": 25868,
+          "count": 1
+        },
+        {
+          "item_id": 22794,
+          "count": 2
+        },
+        {
+          "item_id": 23571,
+          "count": 5
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13517,
+        "name": "Recipe: Alchemist's Stone",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Almaador",
+            "t": 1,
+            "ti": 21432,
+            "z": 3703
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17638,
+      "name": "Flask of Chromatic Resistance",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 13513,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13467,
+          "count": 7
+        },
+        {
+          "item_id": 13465,
+          "count": 3
+        },
+        {
+          "item_id": 13468,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31357,
+        "name": "Recipe: Flask of Chromatic Resistance",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Nakodu",
+            "t": 1,
+            "ti": 21655,
+            "z": 3703
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17636,
+      "name": "Flask of Distilled Wisdom",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 13511,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 7
+        },
+        {
+          "item_id": 13467,
+          "count": 3
+        },
+        {
+          "item_id": 13468,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31356,
+        "name": "Recipe: Flask of Distilled Wisdom",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Fedryen Swiftspear",
+            "t": 1,
+            "ti": 17904,
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17634,
+      "name": "Flask of Petrification",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 13506,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13423,
+          "count": 7
+        },
+        {
+          "item_id": 13465,
+          "count": 3
+        },
+        {
+          "item_id": 13468,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13518,
+        "name": "Recipe: Flask of Petrification",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 17637,
+      "name": "Flask of Supreme Power",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 13512,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13463,
+          "count": 7
+        },
+        {
+          "item_id": 13465,
+          "count": 3
+        },
+        {
+          "item_id": 13468,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31355,
+        "name": "Recipe: Flask of Supreme Power",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Alurmi",
+            "t": 1,
+            "ti": 21643,
+            "z": 440
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 17635,
+      "name": "Flask of the Titans",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 13510,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8846,
+          "count": 7
+        },
+        {
+          "item_id": 13423,
+          "count": 3
+        },
+        {
+          "item_id": 13468,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31354,
+        "name": "Recipe: Flask of the Titans",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Almaador",
+            "t": 1,
+            "ti": 21432,
+            "z": 3703
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 22732,
+      "name": "Major Rejuvenation Potion",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 310,
+        "green": 320,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 18253,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 10286,
+          "count": 1
+        },
+        {
+          "item_id": 13464,
+          "count": 4
+        },
+        {
+          "item_id": 13463,
+          "count": 4
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 18257,
+        "name": "Recipe: Major Rejuvenation Potion",
+        "quality": 3,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "bd": 1,
+            "z": 2717
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 33738,
+      "name": "Onslaught Elixir",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 28102,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13465,
+          "count": 1
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 25146,
+      "name": "Transmute: Elemental Fire",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 301,
+        "green": 305,
+        "gray": 310
+      },
+      "creates": {
+        "item_id": 7068,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 7077,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 33732,
+      "name": "Volatile Healing Potion",
+      "learned_at": 300,
+      "skill_thresholds": {
+        "orange": 300,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 28100,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13464,
+          "count": 1
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 28543,
+      "name": "Elixir of Camouflage",
+      "learned_at": 305,
+      "skill_thresholds": {
+        "orange": 305,
+        "yellow": 320,
+        "green": 327,
+        "gray": 335
+      },
+      "creates": {
+        "item_id": 22823,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22787,
+          "count": 1
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22900,
+        "name": "Recipe: Elixir of Camouflage",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 28544,
+      "name": "Elixir of Major Strength",
+      "learned_at": 305,
+      "skill_thresholds": {
+        "orange": 305,
+        "yellow": 320,
+        "green": 327,
+        "gray": 335
+      },
+      "creates": {
+        "item_id": 22824,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13465,
+          "count": 1
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 25000
+    },
+    {
+      "spell_id": 28545,
+      "name": "Elixir of Healing Power",
+      "learned_at": 310,
+      "skill_thresholds": {
+        "orange": 310,
+        "yellow": 325,
+        "green": 332,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 22825,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13464,
+          "count": 1
+        },
+        {
+          "item_id": 22786,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 25000
+    },
+    {
+      "spell_id": 39636,
+      "name": "Elixir of Major Fortitude",
+      "learned_at": 310,
+      "skill_thresholds": {
+        "orange": 310,
+        "yellow": 325,
+        "green": 332,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 32062,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22787,
+          "count": 2
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 25000
+    },
+    {
+      "spell_id": 33733,
+      "name": "Unstable Mana Potion",
+      "learned_at": 310,
+      "skill_thresholds": {
+        "orange": 310,
+        "yellow": 325,
+        "green": 332,
+        "gray": 340
+      },
+      "creates": {
+        "item_id": 28101,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22787,
+          "count": 2
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 25000
+    },
+    {
+      "spell_id": 33741,
+      "name": "Elixir of Mastery",
+      "learned_at": 315,
+      "skill_thresholds": {
+        "orange": 315,
+        "yellow": 330,
+        "green": 337,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 28104,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22789,
+          "count": 3
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 30000
+    },
+    {
+      "spell_id": 24266,
+      "name": "Gurubashi Mojo Madness",
+      "learned_at": 315,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 315,
+        "green": 322,
+        "gray": 330
+      },
+      "creates": {
+        "item_id": 19931,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 12938,
+          "count": 1
+        },
+        {
+          "item_id": 19943,
+          "count": 1
+        },
+        {
+          "item_id": 12804,
+          "count": 6
+        },
+        {
+          "item_id": 13468,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28546,
+      "name": "Sneaking Potion",
+      "learned_at": 315,
+      "skill_thresholds": {
+        "orange": 315,
+        "yellow": 330,
+        "green": 337,
+        "gray": 345
+      },
+      "creates": {
+        "item_id": 22826,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22787,
+          "count": 2
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22901,
+        "name": "Recipe: Sneaking Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 39637,
+      "name": "Earthen Elixir",
+      "learned_at": 320,
+      "skill_thresholds": {
+        "orange": 320,
+        "yellow": 335,
+        "green": 342,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 32063,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22786,
+          "count": 1
+        },
+        {
+          "item_id": 22787,
+          "count": 2
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 32070,
+        "name": "Recipe: Earthen Elixir",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Fedryen Swiftspear",
+            "t": 1,
+            "ti": 17904,
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 39638,
+      "name": "Elixir of Draenic Wisdom",
+      "learned_at": 320,
+      "skill_thresholds": {
+        "orange": 320,
+        "yellow": 335,
+        "green": 342,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 32067,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 22789,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 30000
+    },
+    {
+      "spell_id": 28549,
+      "name": "Elixir of Major Frost Power",
+      "learned_at": 320,
+      "skill_thresholds": {
+        "orange": 320,
+        "yellow": 335,
+        "green": 342,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 22827,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22578,
+          "count": 2
+        },
+        {
+          "item_id": 22790,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22902,
+        "name": "Recipe: Elixir of Major Frost Power",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28550,
+      "name": "Insane Strength Potion",
+      "learned_at": 320,
+      "skill_thresholds": {
+        "orange": 320,
+        "yellow": 335,
+        "green": 342,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 22828,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22789,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22903,
+        "name": "Recipe: Insane Strength Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 28552,
+      "name": "Elixir of the Searching Eye",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 340,
+        "green": 347,
+        "gray": 355
+      },
+      "creates": {
+        "item_id": 22830,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22787,
+          "count": 2
+        },
+        {
+          "item_id": 22789,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22904,
+        "name": "Recipe: Elixir of the Searching Eye",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 45061,
+      "name": "Mad Alchemist's Potion",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 335,
+        "green": 342,
+        "gray": 350
+      },
+      "creates": {
+        "item_id": 34440,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8925,
+          "count": 1
+        },
+        {
+          "item_id": 22787,
+          "count": 2
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 35000
+    },
+    {
+      "spell_id": 38070,
+      "name": "Mercurial Stone",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 340,
+        "green": 347,
+        "gray": 355
+      },
+      "creates": {
+        "item_id": 31080,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22452,
+          "count": 1
+        },
+        {
+          "item_id": 21886,
+          "count": 1
+        },
+        {
+          "item_id": 22457,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 20000
+    },
+    {
+      "spell_id": 28551,
+      "name": "Super Healing Potion",
+      "learned_at": 325,
+      "skill_thresholds": {
+        "orange": 325,
+        "yellow": 340,
+        "green": 347,
+        "gray": 355
+      },
+      "creates": {
+        "item_id": 22829,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22791,
+          "count": 2
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer",
+      "training_cost_copper": 50000
+    },
+    {
+      "spell_id": 39639,
+      "name": "Elixir of Ironskin",
+      "learned_at": 330,
+      "skill_thresholds": {
+        "orange": 330,
+        "yellow": 345,
+        "green": 352,
+        "gray": 360
+      },
+      "creates": {
+        "item_id": 32068,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22790,
+          "count": 1
+        },
+        {
+          "item_id": 22787,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 32071,
+        "name": "Recipe: Elixir of Ironskin",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "z": 3518
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28553,
+      "name": "Elixir of Major Agility",
+      "learned_at": 330,
+      "skill_thresholds": {
+        "orange": 330,
+        "yellow": 345,
+        "green": 352,
+        "gray": 360
+      },
+      "creates": {
+        "item_id": 22831,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22789,
+          "count": 1
+        },
+        {
+          "item_id": 22785,
+          "count": 2
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 24001,
+        "name": "Recipe: Elixir of Major Agility",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Quartermaster Urgronn",
+            "t": 1,
+            "ti": 17585,
+            "z": 3483
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 38960,
+      "name": "Fel Strength Elixir",
+      "learned_at": 335,
+      "skill_thresholds": {
+        "orange": 335,
+        "yellow": 350,
+        "green": 357,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 31679,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22789,
+          "count": 1
+        },
+        {
+          "item_id": 22792,
+          "count": 2
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31680,
+        "name": "Recipe: Fel Strength Elixir",
+        "quality": 3,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 3520
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28554,
+      "name": "Shrouding Potion",
+      "learned_at": 335,
+      "skill_thresholds": {
+        "orange": 335,
+        "yellow": 350,
+        "green": 357,
+        "gray": 365
+      },
+      "creates": {
+        "item_id": 22871,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22787,
+          "count": 3
+        },
+        {
+          "item_id": 22791,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22906,
+        "name": "Recipe: Shrouding Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Mycah",
+            "t": 1,
+            "ti": 18382,
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28555,
+      "name": "Super Mana Potion",
+      "learned_at": 340,
+      "skill_thresholds": {
+        "orange": 340,
+        "yellow": 355,
+        "green": 362,
+        "gray": 370
+      },
+      "creates": {
+        "item_id": 22832,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22786,
+          "count": 2
+        },
+        {
+          "item_id": 22785,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22907,
+        "name": "Recipe: Super Mana Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 28557,
+      "name": "Elixir of Major Defense",
+      "learned_at": 345,
+      "skill_thresholds": {
+        "orange": 345,
+        "yellow": 360,
+        "green": 367,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 22834,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22790,
+          "count": 3
+        },
+        {
+          "item_id": 22789,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22909,
+        "name": "Recipe: Elixir of Major Defense",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 28556,
+      "name": "Elixir of Major Firepower",
+      "learned_at": 345,
+      "skill_thresholds": {
+        "orange": 345,
+        "yellow": 360,
+        "green": 367,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 22833,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22574,
+          "count": 2
+        },
+        {
+          "item_id": 22790,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22908,
+        "name": "Recipe: Elixir of Major Firepower",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Quartermaster Enuril",
+            "t": 1,
+            "ti": 19331,
+            "z": 3703
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 38962,
+      "name": "Fel Regeneration Potion",
+      "learned_at": 345,
+      "skill_thresholds": {
+        "orange": 345,
+        "yellow": 360,
+        "green": 367,
+        "gray": 375
+      },
+      "creates": {
+        "item_id": 31676,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22785,
+          "count": 2
+        },
+        {
+          "item_id": 22792,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31681,
+        "name": "Recipe: Fel Regeneration Potion",
+        "quality": 3,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 3520
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28565,
+      "name": "Destruction Potion",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 22839,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22792,
+          "count": 2
+        },
+        {
+          "item_id": 22791,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22914,
+        "name": "Recipe: Destruction Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 28558,
+      "name": "Elixir of Major Shadow Power",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 22835,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22790,
+          "count": 1
+        },
+        {
+          "item_id": 22792,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22910,
+        "name": "Recipe: Elixir of Major Shadow Power",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Nakodu",
+            "t": 1,
+            "ti": 21655,
+            "z": 3703
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28564,
+      "name": "Haste Potion",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 22838,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22789,
+          "count": 2
+        },
+        {
+          "item_id": 22791,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35295,
+        "name": "Recipe: Haste Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "bd": 1,
+            "n": "Kael'thas Sunstrider",
+            "t": 1,
+            "ti": 24664,
+            "z": 4131
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28563,
+      "name": "Heroic Potion",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 22837,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22789,
+          "count": 2
+        },
+        {
+          "item_id": 22790,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22912,
+        "name": "Recipe: Heroic Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 28562,
+      "name": "Major Dreamless Sleep Potion",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 22836,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22786,
+          "count": 1
+        },
+        {
+          "item_id": 22792,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22911,
+        "name": "Recipe: Major Dreamless Sleep Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ]
+      }
+    },
+    {
+      "spell_id": 32765,
+      "name": "Transmute: Earthstorm Diamond",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 25867,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23079,
+          "count": 3
+        },
+        {
+          "item_id": 23107,
+          "count": 3
+        },
+        {
+          "item_id": 23112,
+          "count": 3
+        },
+        {
+          "item_id": 22452,
+          "count": 2
+        },
+        {
+          "item_id": 21885,
+          "count": 2
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28566,
+      "name": "Transmute: Primal Air to Fire",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 21884,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22451,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28567,
+      "name": "Transmute: Primal Earth to Water",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 21885,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22452,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28568,
+      "name": "Transmute: Primal Fire to Earth",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 22452,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21884,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 29688,
+      "name": "Transmute: Primal Might",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 23571,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22452,
+          "count": 1
+        },
+        {
+          "item_id": 21885,
+          "count": 1
+        },
+        {
+          "item_id": 22451,
+          "count": 1
+        },
+        {
+          "item_id": 21884,
+          "count": 1
+        },
+        {
+          "item_id": 22457,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28569,
+      "name": "Transmute: Primal Water to Air",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 22451,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21885,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 32766,
+      "name": "Transmute: Skyfire Diamond",
+      "learned_at": 350,
+      "skill_thresholds": {
+        "orange": 350,
+        "yellow": 365,
+        "green": 372,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 25868,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23077,
+          "count": 3
+        },
+        {
+          "item_id": 21929,
+          "count": 3
+        },
+        {
+          "item_id": 23117,
+          "count": 3
+        },
+        {
+          "item_id": 21884,
+          "count": 2
+        },
+        {
+          "item_id": 22451,
+          "count": 2
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28570,
+      "name": "Elixir of Major Mageblood",
+      "learned_at": 355,
+      "skill_thresholds": {
+        "orange": 355,
+        "yellow": 370,
+        "green": 377,
+        "gray": 385
+      },
+      "creates": {
+        "item_id": 22840,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22790,
+          "count": 1
+        },
+        {
+          "item_id": 22791,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22919,
+        "name": "Recipe: Elixir of Major Mageblood",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ]
+      }
+    },
+    {
+      "spell_id": 41458,
+      "name": "Cauldron of Major Arcane Protection",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 360,
+        "green": 370,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 32839,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22457,
+          "count": 2
+        },
+        {
+          "item_id": 22793,
+          "count": 7
+        },
+        {
+          "item_id": 23782,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 41500,
+      "name": "Cauldron of Major Fire Protection",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 360,
+        "green": 370,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 32849,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21884,
+          "count": 2
+        },
+        {
+          "item_id": 22793,
+          "count": 7
+        },
+        {
+          "item_id": 23782,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 41501,
+      "name": "Cauldron of Major Frost Protection",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 360,
+        "green": 370,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 32850,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21885,
+          "count": 2
+        },
+        {
+          "item_id": 22793,
+          "count": 7
+        },
+        {
+          "item_id": 23782,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 41502,
+      "name": "Cauldron of Major Nature Protection",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 360,
+        "green": 370,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 32851,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21886,
+          "count": 2
+        },
+        {
+          "item_id": 22793,
+          "count": 7
+        },
+        {
+          "item_id": 23782,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 41503,
+      "name": "Cauldron of Major Shadow Protection",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 360,
+        "green": 370,
+        "gray": 380
+      },
+      "creates": {
+        "item_id": 32852,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22456,
+          "count": 2
+        },
+        {
+          "item_id": 22793,
+          "count": 7
+        },
+        {
+          "item_id": 23782,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 38961,
+      "name": "Fel Mana Potion",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 375,
+        "green": 382,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 31677,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22793,
+          "count": 1
+        },
+        {
+          "item_id": 22792,
+          "count": 2
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 31682,
+        "name": "Recipe: Fel Mana Potion",
+        "quality": 3,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "dd": -1,
+            "z": 3520
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28575,
+      "name": "Major Arcane Protection Potion",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 375,
+        "green": 382,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 22845,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 22457,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 5
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22923,
+        "name": "Recipe: Major Arcane Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "n": "Vir'aani Arcanist",
+            "t": 1,
+            "ti": 17150,
+            "z": 3518
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28571,
+      "name": "Major Fire Protection Potion",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 375,
+        "green": 382,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 22841,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 21884,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 5
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22920,
+        "name": "Recipe: Major Fire Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "z": 3849
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28572,
+      "name": "Major Frost Protection Potion",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 375,
+        "green": 382,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 22842,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 21885,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 5
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22921,
+        "name": "Recipe: Major Frost Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "bd": 1,
+            "n": "Nexus-Prince Shaffar",
+            "t": 1,
+            "ti": 18344,
+            "z": 3792
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28577,
+      "name": "Major Holy Protection Potion",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 375,
+        "green": 382,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 22847,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 21886,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 5
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22925,
+        "name": "Recipe: Major Holy Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "n": "Abyssal Flamebringer",
+            "t": 1,
+            "ti": 19973,
+            "z": 3522
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28573,
+      "name": "Major Nature Protection Potion",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 375,
+        "green": 382,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 22844,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 21886,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 5
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22922,
+        "name": "Recipe: Major Nature Protection Potion",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Fedryen Swiftspear",
+            "t": 1,
+            "ti": 17904,
+            "z": 3521
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28576,
+      "name": "Major Shadow Protection Potion",
+      "learned_at": 360,
+      "skill_thresholds": {
+        "orange": 360,
+        "yellow": 375,
+        "green": 382,
+        "gray": 390
+      },
+      "creates": {
+        "item_id": 22846,
+        "min_qty": 5,
+        "max_qty": 5
+      },
+      "reagents": [
+        {
+          "item_id": 22456,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 5
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22924,
+        "name": "Recipe: Major Shadow Protection Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "n": "Shadow Council Warlock",
+            "t": 1,
+            "ti": 21302,
+            "z": 3520
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28578,
+      "name": "Elixir of Empowerment",
+      "learned_at": 365,
+      "skill_thresholds": {
+        "orange": 365,
+        "yellow": 380,
+        "green": 387,
+        "gray": 395
+      },
+      "creates": {
+        "item_id": 22848,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22791,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35294,
+        "name": "Recipe: Elixir of Empowerment",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "bd": 1,
+            "n": "Kael'thas Sunstrider",
+            "t": 1,
+            "ti": 24664,
+            "z": 4131
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28579,
+      "name": "Ironshield Potion",
+      "learned_at": 365,
+      "skill_thresholds": {
+        "orange": 365,
+        "yellow": 380,
+        "green": 387,
+        "gray": 395
+      },
+      "creates": {
+        "item_id": 22849,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22790,
+          "count": 2
+        },
+        {
+          "item_id": 22573,
+          "count": 3
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22927,
+        "name": "Recipe: Ironshield Potion",
+        "quality": 2,
+        "drop_sources": [
+          "Drop"
+        ],
+        "source_details": [
+          {
+            "bd": 1,
+            "n": "Captain Skarloc",
+            "t": 1,
+            "ti": 17862,
+            "z": 2367
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 47050,
+      "name": "Assassin's Alchemist Stone",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 35751,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13503,
+          "count": 1
+        },
+        {
+          "item_id": 22456,
+          "count": 6
+        },
+        {
+          "item_id": 30183,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35755,
+        "name": "Recipe: Assassin's Alchemist Stone",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Eldara Dawnrunner",
+            "t": 1,
+            "ti": 25032,
+            "z": 4080
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 42736,
+      "name": "Flask of Chromatic Wonder",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 33208,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22786,
+          "count": 7
+        },
+        {
+          "item_id": 22791,
+          "count": 3
+        },
+        {
+          "item_id": 22794,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 33209,
+        "name": "Recipe: Flask of Chromatic Wonder",
+        "quality": 2,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Apprentice Darius",
+            "t": 1,
+            "ti": 18255,
+            "z": 41
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 47046,
+      "name": "Guardian's Alchemist Stone",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 35748,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13503,
+          "count": 1
+        },
+        {
+          "item_id": 22451,
+          "count": 6
+        },
+        {
+          "item_id": 30183,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35752,
+        "name": "Recipe: Guardian's Alchemist Stone",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Eldara Dawnrunner",
+            "t": 1,
+            "ti": 25032,
+            "z": 4080
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 47049,
+      "name": "Redeemer's Alchemist Stone",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 35750,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13503,
+          "count": 1
+        },
+        {
+          "item_id": 21886,
+          "count": 6
+        },
+        {
+          "item_id": 30183,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35754,
+        "name": "Recipe: Redeemer's Alchemist Stone",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Eldara Dawnrunner",
+            "t": 1,
+            "ti": 25032,
+            "z": 4080
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 47048,
+      "name": "Sorcerer's Alchemist Stone",
+      "learned_at": 375,
+      "skill_thresholds": {
+        "orange": 375,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 35749,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 13503,
+          "count": 1
+        },
+        {
+          "item_id": 21884,
+          "count": 6
+        },
+        {
+          "item_id": 30183,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 35753,
+        "name": "Recipe: Sorcerer's Alchemist Stone",
+        "quality": 1,
+        "drop_sources": [
+          "Vendor"
+        ],
+        "source_details": [
+          {
+            "n": "Eldara Dawnrunner",
+            "t": 1,
+            "ti": 25032,
+            "z": 4080
+          }
+        ]
+      }
+    },
+    {
+      "spell_id": 28585,
+      "name": "Transmute: Primal Earth to Life",
+      "learned_at": 385,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 385,
+        "green": 392,
+        "gray": 400
+      },
+      "creates": {
+        "item_id": 21886,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22452,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28583,
+      "name": "Transmute: Primal Fire to Mana",
+      "learned_at": 385,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 385,
+        "green": 392,
+        "gray": 400
+      },
+      "creates": {
+        "item_id": 22457,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21884,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28584,
+      "name": "Transmute: Primal Life to Earth",
+      "learned_at": 385,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 385,
+        "green": 392,
+        "gray": 400
+      },
+      "creates": {
+        "item_id": 22452,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21886,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28582,
+      "name": "Transmute: Primal Mana to Fire",
+      "learned_at": 385,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 385,
+        "green": 392,
+        "gray": 400
+      },
+      "creates": {
+        "item_id": 21884,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22457,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28580,
+      "name": "Transmute: Primal Shadow to Water",
+      "learned_at": 385,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 385,
+        "green": 392,
+        "gray": 400
+      },
+      "creates": {
+        "item_id": 21885,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22456,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28581,
+      "name": "Transmute: Primal Water to Shadow",
+      "learned_at": 385,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 385,
+        "green": 392,
+        "gray": 400
+      },
+      "creates": {
+        "item_id": 22456,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21885,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28590,
+      "name": "Flask of Blinding Light",
+      "learned_at": 390,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 22861,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22794,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 22791,
+          "count": 7
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28587,
+      "name": "Flask of Fortification",
+      "learned_at": 390,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 22851,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22794,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 22790,
+          "count": 7
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28588,
+      "name": "Flask of Mighty Restoration",
+      "learned_at": 390,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 22853,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22794,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 22786,
+          "count": 7
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28591,
+      "name": "Flask of Pure Death",
+      "learned_at": 390,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 22866,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22794,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 22792,
+          "count": 7
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28589,
+      "name": "Flask of Relentless Assault",
+      "learned_at": 390,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 22854,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22794,
+          "count": 1
+        },
+        {
+          "item_id": 22793,
+          "count": 3
+        },
+        {
+          "item_id": 22789,
+          "count": 7
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 28586,
+      "name": "Super Rejuvenation Potion",
+      "learned_at": 390,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 390,
+        "green": 397,
+        "gray": 405
+      },
+      "creates": {
+        "item_id": 22850,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22793,
+          "count": 2
+        },
+        {
+          "item_id": 22786,
+          "count": 1
+        },
+        {
+          "item_id": 22791,
+          "count": 1
+        },
+        {
+          "item_id": 18256,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    }
+  ],
+  "raw_recipe_items": [
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 2553,
+      "level": 12,
+      "name": "Recipe: Elixir of Minor Agility",
+      "quality": 2,
+      "skill": 50,
+      "slot": 0,
+      "source": [
+        2,
+        16,
+        21
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 2555,
+      "level": 15,
+      "name": "Recipe: Swiftness Potion",
+      "quality": 2,
+      "skill": 60,
+      "slot": 0,
+      "source": [
+        2,
+        21
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 2556,
+      "level": 15,
+      "name": "Recipe: Elixir of Tongues",
+      "quality": 1,
+      "skill": 70,
+      "slot": 0,
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 3393,
+      "level": 22,
+      "name": "Recipe: Minor Magic Resistance Potion",
+      "quality": 1,
+      "skill": 110,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 3394,
+      "level": 24,
+      "name": "Recipe: Potion of Curing",
+      "quality": 1,
+      "skill": 120,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 3395,
+      "level": 50,
+      "name": "Recipe: Limited Invulnerability Potion",
+      "quality": 2,
+      "skill": 250,
+      "slot": 0,
+      "source": [
+        2,
+        16
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 3396,
+      "level": 28,
+      "name": "Recipe: Elixir of Lesser Agility",
+      "quality": 2,
+      "skill": 140,
+      "slot": 0,
+      "source": [
+        2,
+        16
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 3830,
+      "level": 35,
+      "name": "Recipe: Elixir of Fortitude",
+      "quality": 1,
+      "skill": 175,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 3831,
+      "level": 36,
+      "name": "Recipe: Mighty Troll's Blood Potion",
+      "quality": 1,
+      "skill": 180,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 3832,
+      "level": 39,
+      "name": "Recipe: Elixir of Detect Lesser Invisibility",
+      "quality": 2,
+      "skill": 195,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 4597,
+      "level": 10,
+      "name": "Recipe: Discolored Healing Potion",
+      "quality": 2,
+      "skill": 50,
+      "slot": 0,
+      "source": [
+        4
+      ],
+      "sourcemore": [
+        {
+          "c": 130,
+          "c2": 0,
+          "n": "Wild Hearts",
+          "t": 5,
+          "ti": 429
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 4624,
+      "level": 43,
+      "name": "Recipe: Lesser Stoneshield Potion",
+      "quality": 1,
+      "skill": 215,
+      "slot": 0,
+      "source": [
+        4
+      ],
+      "sourcemore": [
+        {
+          "c": 3,
+          "c2": 0,
+          "n": "Liquid Stone",
+          "t": 5,
+          "ti": 715
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 5640,
+      "level": 14,
+      "name": "Recipe: Rage Potion",
+      "quality": 1,
+      "skill": 60,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 5641,
+      "level": 25,
+      "name": "Recipe: Cowardly Flight Potion",
+      "quality": 1,
+      "skill": 125,
+      "slot": 0,
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 5642,
+      "level": 30,
+      "name": "Recipe: Free Action Potion",
+      "quality": 1,
+      "skill": 150,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 5643,
+      "level": 35,
+      "name": "Recipe: Great Rage Potion",
+      "quality": 1,
+      "skill": 175,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6053,
+      "level": 20,
+      "name": "Recipe: Holy Protection Potion",
+      "quality": 1,
+      "skill": 100,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6054,
+      "level": 27,
+      "name": "Recipe: Shadow Protection Potion",
+      "quality": 1,
+      "skill": 135,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6055,
+      "level": 33,
+      "name": "Recipe: Fire Protection Potion",
+      "quality": 1,
+      "skill": 165,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6056,
+      "level": 38,
+      "name": "Recipe: Frost Protection Potion",
+      "quality": 1,
+      "skill": 190,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6057,
+      "level": 38,
+      "name": "Recipe: Nature Protection Potion",
+      "quality": 1,
+      "skill": 190,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6068,
+      "level": 33,
+      "name": "Recipe: Shadow Oil",
+      "quality": 1,
+      "skill": 165,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6211,
+      "level": 30,
+      "name": "Recipe: Elixir of Ogre's Strength",
+      "quality": 1,
+      "skill": 150,
+      "slot": 0,
+      "source": [
+        2,
+        16
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 6663,
+      "level": 18,
+      "name": "Recipe: Elixir of Giant Growth",
+      "quality": 2,
+      "skill": 90,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 17
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 9293,
+      "level": 42,
+      "name": "Recipe: Magic Resistance Potion",
+      "quality": 2,
+      "skill": 210,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9294,
+      "level": 45,
+      "name": "Recipe: Wildvine Potion",
+      "quality": 2,
+      "skill": 225,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 9295,
+      "level": 47,
+      "name": "Recipe: Invisibility Potion",
+      "quality": 2,
+      "skill": 235,
+      "slot": 0,
+      "source": [
+        2,
+        16
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9296,
+      "level": 48,
+      "name": "Recipe: Gift of Arthas",
+      "quality": 2,
+      "skill": 240,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 28
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9297,
+      "level": 48,
+      "name": "Recipe: Elixir of Dream Vision",
+      "quality": 2,
+      "skill": 240,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 9298,
+      "level": 49,
+      "name": "Recipe: Elixir of Giants",
+      "quality": 2,
+      "skill": 245,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9300,
+      "level": 50,
+      "name": "Recipe: Elixir of Demonslaying",
+      "quality": 1,
+      "skill": 250,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9301,
+      "level": 50,
+      "name": "Recipe: Elixir of Shadow Power",
+      "quality": 2,
+      "skill": 250,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9302,
+      "level": 49,
+      "name": "Recipe: Ghost Dye",
+      "quality": 1,
+      "skill": 245,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "z": 357
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9303,
+      "level": 45,
+      "name": "Recipe: Philosopher's Stone",
+      "quality": 1,
+      "skill": 225,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Alchemist Pestlezugg",
+          "t": 1,
+          "ti": 5594,
+          "z": 440
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9304,
+      "level": 45,
+      "name": "Recipe: Transmute Iron to Gold",
+      "quality": 1,
+      "skill": 225,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Alchemist Pestlezugg",
+          "t": 1,
+          "ti": 5594,
+          "z": 440
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 9305,
+      "level": 45,
+      "name": "Recipe: Transmute Mithril to Truesilver",
+      "quality": 1,
+      "skill": 225,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Alchemist Pestlezugg",
+          "t": 1,
+          "ti": 5594,
+          "z": 440
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 10644,
+      "level": 42,
+      "name": "Recipe: Goblin Rocket Fuel",
+      "quality": 1,
+      "skill": 210,
+      "slot": 0,
+      "source": [
+        1
+      ],
+      "sourcemore": [
+        {
+          "c": 11,
+          "icon": "inv_scroll_03",
+          "n": "Goblin Rocket Fuel Recipe",
+          "s": 202,
+          "t": 6,
+          "ti": 12715
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 12958,
+      "level": 55,
+      "name": "Recipe: Transmute Arcanite",
+      "quality": 1,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Alchemist Pestlezugg",
+          "t": 1,
+          "ti": 5594,
+          "z": 440
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13476,
+      "level": 51,
+      "name": "Recipe: Mighty Rage Potion",
+      "quality": 2,
+      "skill": 255,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "n": "Blackrock Slayer",
+          "t": 1,
+          "ti": 7027,
+          "z": 46
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13477,
+      "level": 52,
+      "name": "Recipe: Superior Mana Potion",
+      "quality": 1,
+      "skill": 260,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13478,
+      "level": 53,
+      "name": "Recipe: Elixir of Superior Defense",
+      "quality": 1,
+      "skill": 265,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13479,
+      "level": 54,
+      "name": "Recipe: Elixir of the Sages",
+      "quality": 2,
+      "skill": 270,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "z": 139
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13480,
+      "level": 55,
+      "name": "Recipe: Major Healing Potion",
+      "quality": 1,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Evie Whirlbrew",
+          "t": 1,
+          "ti": 11188,
+          "z": 618
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13481,
+      "level": 55,
+      "name": "Recipe: Elixir of Brute Force",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "icon": "inv_misc_gift_05",
+          "n": "Small Brown-wrapped Package",
+          "q": 1,
+          "t": 3,
+          "ti": 15699
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13482,
+      "level": 55,
+      "name": "Recipe: Transmute Air to Fire",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13483,
+      "level": 55,
+      "name": "Recipe: Transmute Fire to Earth",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Plugger Spazzring",
+          "t": 1,
+          "ti": 9499,
+          "z": 1584
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13484,
+      "level": 55,
+      "name": "Recipe: Transmute Earth to Water",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Meilosh",
+          "t": 1,
+          "ti": 11557,
+          "z": 361
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13485,
+      "level": 55,
+      "name": "Recipe: Transmute Water to Air",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Magnus Frostwake",
+          "t": 1,
+          "ti": 11278,
+          "z": 28
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13486,
+      "level": 55,
+      "name": "Recipe: Transmute Undeath to Water",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13487,
+      "level": 55,
+      "name": "Recipe: Transmute Water to Undeath",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13488,
+      "level": 55,
+      "name": "Recipe: Transmute Life to Earth",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        2,
+        16
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13489,
+      "level": 55,
+      "name": "Recipe: Transmute Earth to Life",
+      "quality": 2,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 13490,
+      "level": 56,
+      "name": "Recipe: Greater Stoneshield Potion",
+      "quality": 2,
+      "skill": 280,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13491,
+      "level": 56,
+      "name": "Recipe: Elixir of the Mongoose",
+      "quality": 2,
+      "skill": 280,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "commondrop": true,
+      "flags2": 24580,
+      "id": 13492,
+      "level": 57,
+      "name": "Recipe: Purification Potion",
+      "quality": 2,
+      "skill": 285,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13493,
+      "level": 57,
+      "name": "Recipe: Greater Arcane Elixir",
+      "quality": 2,
+      "skill": 285,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13494,
+      "level": 58,
+      "name": "Recipe: Greater Fire Protection Potion",
+      "quality": 2,
+      "skill": 290,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "z": 1583
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13495,
+      "level": 58,
+      "name": "Recipe: Greater Frost Protection Potion",
+      "quality": 2,
+      "skill": 290,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "n": "Frostmaul Giant",
+          "t": 1,
+          "ti": 7428,
+          "z": 618
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13496,
+      "level": 58,
+      "name": "Recipe: Greater Nature Protection Potion",
+      "quality": 2,
+      "skill": 290,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 28
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13497,
+      "level": 58,
+      "name": "Recipe: Greater Arcane Protection Potion",
+      "quality": 2,
+      "skill": 290,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "n": "Cobalt Mageweaver",
+          "t": 1,
+          "ti": 7437,
+          "z": 618
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13499,
+      "level": 58,
+      "name": "Recipe: Greater Shadow Protection Potion",
+      "quality": 2,
+      "skill": 290,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 139
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13500,
+      "level": 58,
+      "name": "Recipe: Greater Holy Protection Potion",
+      "quality": 2,
+      "skill": 290,
+      "slot": 0,
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13501,
+      "level": 59,
+      "name": "Recipe: Major Mana Potion",
+      "quality": 2,
+      "skill": 295,
+      "slot": 0,
+      "source": [
+        2,
+        5
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "n": "Darkmaster Gandling",
+          "t": 1,
+          "ti": 1853,
+          "z": 2057
+        },
+        {
+          "n": "Magnus Frostwake",
+          "t": 1,
+          "ti": 11278,
+          "z": 28
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13517,
+      "level": 70,
+      "name": "Recipe: Alchemist's Stone",
+      "quality": 1,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Almaador",
+          "t": 1,
+          "ti": 21432,
+          "z": 3703
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13518,
+      "level": 60,
+      "name": "Recipe: Flask of Petrification",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13519,
+      "level": 60,
+      "name": "Recipe: Flask of the Titans",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "n": "General Drakkisath",
+          "t": 1,
+          "ti": 10363,
+          "z": 1583
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13520,
+      "level": 60,
+      "name": "Recipe: Flask of Distilled Wisdom",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "z": 2017
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13521,
+      "level": 60,
+      "name": "Recipe: Flask of Supreme Power",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "n": "Ras Frostwhisper",
+          "t": 1,
+          "ti": 10508,
+          "z": 2057
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 13522,
+      "level": 60,
+      "name": "Recipe: Flask of Chromatic Resistance",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "n": "Gyth",
+          "t": 1,
+          "ti": 10339,
+          "z": 1583
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 14634,
+      "level": 40,
+      "name": "Recipe: Frost Oil",
+      "quality": 2,
+      "skill": 200,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Bro'kin",
+          "t": 1,
+          "ti": 2480,
+          "z": 36
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 17709,
+      "level": 38,
+      "name": "Recipe: Elixir of Frost Power",
+      "quality": 1,
+      "skill": 190,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 18257,
+      "level": 60,
+      "name": "Recipe: Major Rejuvenation Potion",
+      "quality": 3,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "bd": 1,
+          "z": 2717
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 20011,
+      "level": 55,
+      "name": "Recipe: Mageblood Potion",
+      "quality": 1,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Rin'wosho the Trader",
+          "t": 1,
+          "ti": 14921,
+          "z": 33
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 20012,
+      "level": 55,
+      "name": "Recipe: Greater Dreamless Sleep Potion",
+      "quality": 1,
+      "skill": 275,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Rin'wosho the Trader",
+          "t": 1,
+          "ti": 14921,
+          "z": 33
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 20013,
+      "level": 57,
+      "name": "Recipe: Living Action Potion",
+      "quality": 1,
+      "skill": 285,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Rin'wosho the Trader",
+          "t": 1,
+          "ti": 14921,
+          "z": 33
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 20014,
+      "level": 58,
+      "name": "Recipe: Major Troll's Blood Potion",
+      "quality": 1,
+      "skill": 290,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Rin'wosho the Trader",
+          "t": 1,
+          "ti": 14921,
+          "z": 33
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 20761,
+      "level": 60,
+      "name": "Recipe: Transmute Elemental Fire",
+      "quality": 1,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Lokhtos Darkbargainer",
+          "t": 1,
+          "ti": 12944,
+          "z": 1584
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 21547,
+      "level": 50,
+      "name": "Recipe: Elixir of Greater Firepower",
+      "quality": 2,
+      "skill": 250,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 51
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22900,
+      "level": 61,
+      "name": "Recipe: Elixir of Camouflage",
+      "quality": 1,
+      "skill": 305,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22901,
+      "level": 63,
+      "name": "Recipe: Sneaking Potion",
+      "quality": 1,
+      "skill": 315,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22902,
+      "level": 64,
+      "name": "Recipe: Elixir of Major Frost Power",
+      "quality": 1,
+      "skill": 320,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22903,
+      "level": 64,
+      "name": "Recipe: Insane Strength Potion",
+      "quality": 2,
+      "skill": 320,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22904,
+      "level": 65,
+      "name": "Recipe: Elixir of the Searching Eye",
+      "quality": 2,
+      "skill": 325,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22905,
+      "level": 66,
+      "name": "Recipe: Elixir of Major Agility",
+      "quality": 1,
+      "skill": 330,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Logistics Officer Ulrike",
+          "t": 1,
+          "ti": 17657,
+          "z": 3483
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22906,
+      "level": 67,
+      "name": "Recipe: Shrouding Potion",
+      "quality": 2,
+      "skill": 335,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Mycah",
+          "t": 1,
+          "ti": 18382,
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22907,
+      "level": 68,
+      "name": "Recipe: Super Mana Potion",
+      "quality": 1,
+      "skill": 340,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22908,
+      "level": 69,
+      "name": "Recipe: Elixir of Major Firepower",
+      "quality": 2,
+      "skill": 345,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Quartermaster Enuril",
+          "t": 1,
+          "ti": 19331,
+          "z": 3703
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22909,
+      "level": 69,
+      "name": "Recipe: Elixir of Major Defense",
+      "quality": 1,
+      "skill": 345,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22910,
+      "level": 70,
+      "name": "Recipe: Elixir of Major Shadow Power",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Nakodu",
+          "t": 1,
+          "ti": 21655,
+          "z": 3703
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22911,
+      "level": 70,
+      "name": "Recipe: Major Dreamless Sleep Potion",
+      "quality": 1,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22912,
+      "level": 70,
+      "name": "Recipe: Heroic Potion",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22913,
+      "level": 70,
+      "name": "Recipe: Haste Potion",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22914,
+      "level": 70,
+      "name": "Recipe: Destruction Potion",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22915,
+      "level": 70,
+      "name": "Recipe: Transmute Primal Air to Fire",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Almaador",
+          "t": 1,
+          "ti": 21432,
+          "z": 3703
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22916,
+      "level": 70,
+      "name": "Recipe: Transmute Primal Earth to Water",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Mycah",
+          "t": 1,
+          "ti": 18382,
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22917,
+      "level": 70,
+      "name": "Recipe: Transmute Primal Fire to Earth",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Provisioner Nasela",
+          "t": 1,
+          "ti": 20241,
+          "z": 3518
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22918,
+      "level": 70,
+      "name": "Recipe: Transmute Primal Water to Air",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Fedryen Swiftspear",
+          "t": 1,
+          "ti": 17904,
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22919,
+      "level": 71,
+      "name": "Recipe: Elixir of Major Mageblood",
+      "quality": 2,
+      "skill": 355,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22920,
+      "level": 72,
+      "name": "Recipe: Major Fire Protection Potion",
+      "quality": 2,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 3849
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22921,
+      "level": 72,
+      "name": "Recipe: Major Frost Protection Potion",
+      "quality": 2,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "bd": 1,
+          "n": "Nexus-Prince Shaffar",
+          "t": 1,
+          "ti": 18344,
+          "z": 3792
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22922,
+      "level": 72,
+      "name": "Recipe: Major Nature Protection Potion",
+      "quality": 1,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Fedryen Swiftspear",
+          "t": 1,
+          "ti": 17904,
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22923,
+      "level": 72,
+      "name": "Recipe: Major Arcane Protection Potion",
+      "quality": 2,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "n": "Vir'aani Arcanist",
+          "t": 1,
+          "ti": 17150,
+          "z": 3518
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22924,
+      "level": 72,
+      "name": "Recipe: Major Shadow Protection Potion",
+      "quality": 2,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "n": "Shadow Council Warlock",
+          "t": 1,
+          "ti": 21302,
+          "z": 3520
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22925,
+      "level": 72,
+      "name": "Recipe: Major Holy Protection Potion",
+      "quality": 2,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "n": "Abyssal Flamebringer",
+          "t": 1,
+          "ti": 19973,
+          "z": 3522
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22926,
+      "level": 73,
+      "name": "Recipe: Elixir of Empowerment",
+      "quality": 2,
+      "skill": 365,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 22927,
+      "level": 73,
+      "name": "Recipe: Ironshield Potion",
+      "quality": 2,
+      "skill": 365,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "bd": 1,
+          "n": "Captain Skarloc",
+          "t": 1,
+          "ti": 17862,
+          "z": 2367
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 23574,
+      "level": 70,
+      "name": "Recipe: Transmute Primal Might",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 24001,
+      "level": 66,
+      "name": "Recipe: Elixir of Major Agility",
+      "quality": 1,
+      "skill": 330,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Quartermaster Urgronn",
+          "t": 1,
+          "ti": 17585,
+          "z": 3483
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 25869,
+      "level": 70,
+      "name": "Recipe: Transmute Earthstorm Diamond",
+      "quality": 1,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Fedryen Swiftspear",
+          "t": 1,
+          "ti": 17904,
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 25870,
+      "level": 70,
+      "name": "Recipe: Transmute Skyfire Diamond",
+      "quality": 1,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Logistics Officer Ulrike",
+          "t": 1,
+          "ti": 17657,
+          "z": 3483
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 29232,
+      "level": 70,
+      "name": "Recipe: Transmute Skyfire Diamond",
+      "quality": 1,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Quartermaster Urgronn",
+          "t": 1,
+          "ti": 17585,
+          "z": 3483
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 30443,
+      "level": 70,
+      "name": "Recipe: Transmute Primal Fire to Earth",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Trader Narasu",
+          "t": 1,
+          "ti": 20240,
+          "z": 3518
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 31354,
+      "level": 60,
+      "name": "Recipe: Flask of the Titans",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Almaador",
+          "t": 1,
+          "ti": 21432,
+          "z": 3703
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 31355,
+      "level": 60,
+      "name": "Recipe: Flask of Supreme Power",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Alurmi",
+          "t": 1,
+          "ti": 21643,
+          "z": 440
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 31356,
+      "level": 60,
+      "name": "Recipe: Flask of Distilled Wisdom",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Fedryen Swiftspear",
+          "t": 1,
+          "ti": 17904,
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 31357,
+      "level": 60,
+      "name": "Recipe: Flask of Chromatic Resistance",
+      "quality": 2,
+      "skill": 300,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Nakodu",
+          "t": 1,
+          "ti": 21655,
+          "z": 3703
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 31680,
+      "level": 67,
+      "name": "Recipe: Fel Strength Elixir",
+      "quality": 3,
+      "skill": 335,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 3520
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 31681,
+      "level": 69,
+      "name": "Recipe: Fel Regeneration Potion",
+      "quality": 3,
+      "skill": 345,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "z": 3520
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 31682,
+      "level": 72,
+      "name": "Recipe: Fel Mana Potion",
+      "quality": 3,
+      "skill": 360,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "dd": -1,
+          "z": 3520
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 32070,
+      "level": 64,
+      "name": "Recipe: Earthen Elixir",
+      "quality": 1,
+      "skill": 320,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Fedryen Swiftspear",
+          "t": 1,
+          "ti": 17904,
+          "z": 3521
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 32071,
+      "level": 66,
+      "name": "Recipe: Elixir of Ironskin",
+      "quality": 1,
+      "skill": 330,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "z": 3518
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 33209,
+      "level": 70,
+      "name": "Recipe: Flask of Chromatic Wonder",
+      "quality": 2,
+      "skill": 375,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Apprentice Darius",
+          "t": 1,
+          "ti": 18255,
+          "z": 41
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 34481,
+      "level": 65,
+      "name": "Recipe: Mad Alchemist's Potion",
+      "quality": 1,
+      "skill": 325,
+      "slot": 0,
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 35294,
+      "level": 73,
+      "name": "Recipe: Elixir of Empowerment",
+      "quality": 2,
+      "skill": 365,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "bd": 1,
+          "n": "Kael'thas Sunstrider",
+          "t": 1,
+          "ti": 24664,
+          "z": 4131
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 35295,
+      "level": 70,
+      "name": "Recipe: Haste Potion",
+      "quality": 2,
+      "skill": 350,
+      "slot": 0,
+      "source": [
+        2
+      ],
+      "sourcemore": [
+        {
+          "bd": 1,
+          "n": "Kael'thas Sunstrider",
+          "t": 1,
+          "ti": 24664,
+          "z": 4131
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 35752,
+      "level": 70,
+      "name": "Recipe: Guardian's Alchemist Stone",
+      "quality": 1,
+      "skill": 375,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Eldara Dawnrunner",
+          "t": 1,
+          "ti": 25032,
+          "z": 4080
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 35753,
+      "level": 70,
+      "name": "Recipe: Sorcerer's Alchemist Stone",
+      "quality": 1,
+      "skill": 375,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Eldara Dawnrunner",
+          "t": 1,
+          "ti": 25032,
+          "z": 4080
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 35754,
+      "level": 70,
+      "name": "Recipe: Redeemer's Alchemist Stone",
+      "quality": 1,
+      "skill": 375,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Eldara Dawnrunner",
+          "t": 1,
+          "ti": 25032,
+          "z": 4080
+        }
+      ],
+      "subclass": 6
+    },
+    {
+      "classs": 9,
+      "flags2": 24580,
+      "id": 35755,
+      "level": 70,
+      "name": "Recipe: Assassin's Alchemist Stone",
+      "quality": 1,
+      "skill": 375,
+      "slot": 0,
+      "source": [
+        5
+      ],
+      "sourcemore": [
+        {
+          "n": "Eldara Dawnrunner",
+          "t": 1,
+          "ti": 25032,
+          "z": 4080
+        }
+      ],
+      "subclass": 6
+    }
+  ]
+}
