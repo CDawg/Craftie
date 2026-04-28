@@ -1,0 +1,53 @@
+{
+  "profession": "Cooking",
+  "skill_id": 185,
+  "total": 2,
+  "recipes": [
+    {
+      "spell_id": 2538,
+      "name": "Charred Wolf Meat",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 2679,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2672,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 2540,
+      "name": "Roasted Boar Meat",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 45,
+        "green": 65,
+        "gray": 85
+      },
+      "creates": {
+        "item_id": 2681,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 769,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    }
+  ]
+}

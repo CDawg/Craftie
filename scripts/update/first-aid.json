@@ -1,0 +1,42 @@
+{
+  "profession": "First Aid",
+  "skill_id": 129,
+  "total": 1,
+  "recipes": [
+    {
+      "spell_id": 30021,
+      "name": "Crystal Infused Bandage",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 23684,
+        "min_qty": 4,
+        "max_qty": 4
+      },
+      "reagents": [
+        {
+          "item_id": 23567,
+          "count": 1
+        },
+        {
+          "item_id": 14047,
+          "count": 10
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 23689,
+        "name": "Manual: Crystal Infused Bandage",
+        "quality": 1,
+        "drop_sources": [
+          "Quest"
+        ]
+      }
+    }
+  ]
+}

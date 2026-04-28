@@ -1,0 +1,75 @@
+{
+  "profession": "Leatherworking",
+  "skill_id": 165,
+  "total": 2,
+  "recipes": [
+    {
+      "spell_id": 10550,
+      "name": "Nightscape Cloak",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 8195,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4304,
+          "count": 12
+        },
+        {
+          "item_id": 4291,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 8388,
+        "name": "Pattern: Nightscape Cloak",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 19106,
+      "name": "Onyxia Scale Breastplate",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 15141,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 8170,
+          "count": 40
+        },
+        {
+          "item_id": 15410,
+          "count": 12
+        },
+        {
+          "item_id": 15416,
+          "count": 60
+        },
+        {
+          "item_id": 14341,
+          "count": 2
+        }
+      ],
+      "source": "Trainer"
+    }
+  ]
+}

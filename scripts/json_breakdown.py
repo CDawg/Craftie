@@ -1,9 +1,18 @@
 import json
 
-with open('tailoring.json', 'r') as file:
+with open('update/alchemy.json', 'r') as file:
   items = json.load(file)
 
 #itemID, name, requiredSkill, craftedID, Reagents, source[1=trainer, 2=quest|drop|vendor]
+
+"""
+count = 0
+for list in items["recipes"]:
+  count += 1 
+  print(f'{list["name"]}')
+
+print(count)
+"""
 
 for list in items["recipes"]:
   craftedID = list["creates"]["item_id"]
@@ -27,3 +36,4 @@ for list in items["recipes"]:
   full_line = trunc1.replace('}, },', '}},')
   #print(first + ' {' + midd + '}, ' + ritem + '},')
   print(full_line)
+

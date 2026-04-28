@@ -1,0 +1,36 @@
+{
+  "profession": "Enchanting",
+  "skill_id": 333,
+  "total": 1,
+  "recipes": [
+    {
+      "spell_id": 28021,
+      "name": "Arcane Dust",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 22445,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 12363,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 22564,
+        "name": "Formula: Arcane Dust",
+        "quality": 1,
+        "drop_sources": []
+      }
+    }
+  ]
+}

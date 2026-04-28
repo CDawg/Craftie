@@ -1,0 +1,602 @@
+{
+  "profession": "Tailoring",
+  "skill_id": 197,
+  "total": 15,
+  "recipes": [
+    {
+      "spell_id": 7636,
+      "name": "Green Woolen Robe",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 6243,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2997,
+          "count": 3
+        },
+        {
+          "item_id": 2321,
+          "count": 2
+        },
+        {
+          "item_id": 2605,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6273,
+        "name": "Pattern: Green Woolen Robe",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 8778,
+      "name": "Boots of Darkness",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 7027,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4305,
+          "count": 3
+        },
+        {
+          "item_id": 2319,
+          "count": 2
+        },
+        {
+          "item_id": 6048,
+          "count": 1
+        },
+        {
+          "item_id": 2321,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 7093,
+        "name": "Pattern: Boots of Darkness",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 12062,
+      "name": "Stormcloth Pants",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10010,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4339,
+          "count": 4
+        },
+        {
+          "item_id": 7079,
+          "count": 2
+        },
+        {
+          "item_id": 8343,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 10303,
+        "name": "Pattern: Stormcloth Pants",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 12063,
+      "name": "Stormcloth Gloves",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10011,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4339,
+          "count": 3
+        },
+        {
+          "item_id": 7079,
+          "count": 2
+        },
+        {
+          "item_id": 8343,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 10304,
+        "name": "Pattern: Stormcloth Gloves",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 12068,
+      "name": "Stormcloth Vest",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10020,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4339,
+          "count": 5
+        },
+        {
+          "item_id": 7079,
+          "count": 3
+        },
+        {
+          "item_id": 8343,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 10313,
+        "name": "Pattern: Stormcloth Vest",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 12083,
+      "name": "Stormcloth Headband",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10032,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4339,
+          "count": 4
+        },
+        {
+          "item_id": 7079,
+          "count": 4
+        },
+        {
+          "item_id": 8343,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 10319,
+        "name": "Pattern: Stormcloth Headband",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 12087,
+      "name": "Stormcloth Shoulders",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10038,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4339,
+          "count": 5
+        },
+        {
+          "item_id": 7079,
+          "count": 6
+        },
+        {
+          "item_id": 8343,
+          "count": 3
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 10322,
+        "name": "Pattern: Stormcloth Shoulders",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 12090,
+      "name": "Stormcloth Boots",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10039,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 4339,
+          "count": 6
+        },
+        {
+          "item_id": 7079,
+          "count": 6
+        },
+        {
+          "item_id": 8343,
+          "count": 3
+        },
+        {
+          "item_id": 4304,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 10324,
+        "name": "Pattern: Stormcloth Boots",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 31461,
+      "name": "Heavy Netherweave Net",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 24269,
+        "min_qty": 2,
+        "max_qty": 2
+      },
+      "reagents": [
+        {
+          "item_id": 21877,
+          "count": 6
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 24315,
+        "name": "Pattern: Heavy Netherweave Net",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 36670,
+      "name": "Lifeblood Belt",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 30463,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21840,
+          "count": 6
+        },
+        {
+          "item_id": 21887,
+          "count": 4
+        },
+        {
+          "item_id": 21885,
+          "count": 3
+        },
+        {
+          "item_id": 21886,
+          "count": 3
+        },
+        {
+          "item_id": 21881,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 30473,
+        "name": "Pattern: Lifeblood Belt",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 36672,
+      "name": "Lifeblood Bracers",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 30464,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21840,
+          "count": 4
+        },
+        {
+          "item_id": 21887,
+          "count": 4
+        },
+        {
+          "item_id": 21885,
+          "count": 2
+        },
+        {
+          "item_id": 21886,
+          "count": 2
+        },
+        {
+          "item_id": 21881,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 30474,
+        "name": "Pattern: Lifeblood Bracers",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 36669,
+      "name": "Lifeblood Leggings",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 30465,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21840,
+          "count": 10
+        },
+        {
+          "item_id": 21885,
+          "count": 5
+        },
+        {
+          "item_id": 21886,
+          "count": 5
+        },
+        {
+          "item_id": 21881,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 30472,
+        "name": "Pattern: Lifeblood Leggings",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 36667,
+      "name": "Netherflame Belt",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 30460,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21840,
+          "count": 6
+        },
+        {
+          "item_id": 21887,
+          "count": 4
+        },
+        {
+          "item_id": 21884,
+          "count": 3
+        },
+        {
+          "item_id": 22456,
+          "count": 4
+        },
+        {
+          "item_id": 21881,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 30470,
+        "name": "Pattern: Netherflame Belt",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 36668,
+      "name": "Netherflame Boots",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 30461,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21840,
+          "count": 6
+        },
+        {
+          "item_id": 21887,
+          "count": 4
+        },
+        {
+          "item_id": 21884,
+          "count": 2
+        },
+        {
+          "item_id": 22456,
+          "count": 6
+        },
+        {
+          "item_id": 21881,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 30471,
+        "name": "Pattern: Netherflame Boots",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 36665,
+      "name": "Netherflame Robe",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 30459,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 21840,
+          "count": 10
+        },
+        {
+          "item_id": 21884,
+          "count": 5
+        },
+        {
+          "item_id": 22456,
+          "count": 6
+        },
+        {
+          "item_id": 21881,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 30469,
+        "name": "Pattern: Netherflame Robe",
+        "quality": 1,
+        "drop_sources": []
+      }
+    }
+  ]
+}

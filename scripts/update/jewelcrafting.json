@@ -1,0 +1,77 @@
+{
+  "profession": "Jewelcrafting",
+  "skill_id": 755,
+  "total": 2,
+  "recipes": [
+    {
+      "spell_id": 25614,
+      "name": "Silver Rose Pendant",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 20956,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 1206,
+          "count": 1
+        },
+        {
+          "item_id": 1529,
+          "count": 1
+        },
+        {
+          "item_id": 2842,
+          "count": 2
+        },
+        {
+          "item_id": 20817,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 20972,
+        "name": "Design: Silver Rose Pendant",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 32810,
+      "name": "Primal Stone Statue",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 25884,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 22452,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 25888,
+        "name": "Design: Primal Stone Statue",
+        "quality": 1,
+        "drop_sources": []
+      }
+    }
+  ]
+}

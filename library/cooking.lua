@@ -15,6 +15,8 @@ the copyright holders.
 
 --itemID, name, requiredSkill, craftedID, Reagents, source
 Craftie.Profession.Cooking = {
+{2538, 'Charred Wolf Meat', 0, 2679, {{2672, 1}}, 1},
+{2540, 'Roasted Boar Meat', 0, 2681, {{769, 1}}, 1},
 {7751, 'Brilliant Smallfish', 1, 6290, {{6291, 1}}, 2},
 {15935, 'Crispy Bat Wing', 1, 12224, {{12223, 1}, {2678, 1}}, 2},
 {43779, 'Delicious Chocolate Cake', 1, 33924, {{30817, 8}, {1179, 4}, {2678, 4}, {6889, 8}, {2593, 1}, {785, 3}}, 2},

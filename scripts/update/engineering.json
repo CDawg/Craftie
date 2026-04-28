@@ -1,0 +1,347 @@
+{
+  "profession": "Engineering",
+  "skill_id": 202,
+  "total": 10,
+  "recipes": [
+    {
+      "spell_id": 12719,
+      "name": "Explosive Arrow",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10579,
+        "min_qty": 100,
+        "max_qty": 100
+      },
+      "reagents": [
+        {
+          "item_id": 3030,
+          "count": 100
+        },
+        {
+          "item_id": 10505,
+          "count": 2
+        },
+        {
+          "item_id": 3860,
+          "count": 2
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 12720,
+      "name": "Goblin \"Boom\" Box",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10580,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 10561,
+          "count": 1
+        },
+        {
+          "item_id": 10505,
+          "count": 2
+        },
+        {
+          "item_id": 10558,
+          "count": 1
+        },
+        {
+          "item_id": 3860,
+          "count": 2
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 12722,
+      "name": "Goblin Radio",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10585,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 10561,
+          "count": 1
+        },
+        {
+          "item_id": 3860,
+          "count": 2
+        },
+        {
+          "item_id": 4389,
+          "count": 1
+        },
+        {
+          "item_id": 10560,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 12900,
+      "name": "Mobile Alarm",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10719,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 10559,
+          "count": 1
+        },
+        {
+          "item_id": 10560,
+          "count": 1
+        },
+        {
+          "item_id": 3860,
+          "count": 4
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 12904,
+      "name": "Gnomish Ham Radio",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 10723,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 10561,
+          "count": 1
+        },
+        {
+          "item_id": 3860,
+          "count": 2
+        },
+        {
+          "item_id": 4389,
+          "count": 1
+        },
+        {
+          "item_id": 10560,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 30342,
+      "name": "Red Smoke Flare",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 23769,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 23781,
+          "count": 1
+        },
+        {
+          "item_id": 21877,
+          "count": 1
+        },
+        {
+          "item_id": 2604,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 23812,
+        "name": "Schematic: Red Smoke Flare",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 30343,
+      "name": "Blue Smoke Flare",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 23770,
+        "min_qty": 3,
+        "max_qty": 3
+      },
+      "reagents": [
+        {
+          "item_id": 23781,
+          "count": 1
+        },
+        {
+          "item_id": 21877,
+          "count": 1
+        },
+        {
+          "item_id": 6260,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 23813,
+        "name": "Schematic: Blue Smoke Flare",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 30549,
+      "name": "Critter Enlarger",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 23820,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23784,
+          "count": 1
+        },
+        {
+          "item_id": 23783,
+          "count": 2
+        },
+        {
+          "item_id": 10558,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 23882,
+        "name": "Schematic: Critter Enlarger",
+        "quality": 3,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 30561,
+      "name": "Goblin Tonk Controller",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 23831,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23782,
+          "count": 1
+        },
+        {
+          "item_id": 23783,
+          "count": 4
+        },
+        {
+          "item_id": 10558,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 30573,
+      "name": "Gnomish Tonk Controller",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 23832,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 23782,
+          "count": 1
+        },
+        {
+          "item_id": 23783,
+          "count": 4
+        },
+        {
+          "item_id": 10558,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    }
+  ]
+}

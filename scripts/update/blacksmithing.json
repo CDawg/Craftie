@@ -1,0 +1,409 @@
+{
+  "profession": "Blacksmithing",
+  "skill_id": 164,
+  "total": 10,
+  "recipes": [
+    {
+      "spell_id": 2671,
+      "name": "Rough Bronze Bracers",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 2867,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2841,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5577,
+        "name": "Plans: Rough Bronze Bracers",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 8366,
+      "name": "Ironforge Chain",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 6730,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2840,
+          "count": 12
+        },
+        {
+          "item_id": 774,
+          "count": 2
+        },
+        {
+          "item_id": 3470,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6734,
+        "name": "Plans: Ironforge Chain",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 8368,
+      "name": "Ironforge Gauntlets",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 6733,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2841,
+          "count": 8
+        },
+        {
+          "item_id": 1210,
+          "count": 3
+        },
+        {
+          "item_id": 3478,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 6736,
+        "name": "Plans: Ironforge Gauntlets",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 9942,
+      "name": "Mithril Scale Gloves",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 7925,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 3860,
+          "count": 8
+        },
+        {
+          "item_id": 4234,
+          "count": 6
+        },
+        {
+          "item_id": 4338,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 7977,
+        "name": "Plans: Mithril Scale Gloves",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 16960,
+      "name": "Thorium Greatsword",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 12764,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12359,
+          "count": 16
+        },
+        {
+          "item_id": 12644,
+          "count": 2
+        },
+        {
+          "item_id": 8170,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12816,
+        "name": "Plans: Thorium Greatsword",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 16965,
+      "name": "Bleakwood Hew",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 12769,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12359,
+          "count": 30
+        },
+        {
+          "item_id": 12803,
+          "count": 6
+        },
+        {
+          "item_id": 8153,
+          "count": 6
+        },
+        {
+          "item_id": 12799,
+          "count": 6
+        },
+        {
+          "item_id": 12644,
+          "count": 2
+        },
+        {
+          "item_id": 8170,
+          "count": 8
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12817,
+        "name": "Plans: Bleakwood Hew",
+        "quality": 3,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 16967,
+      "name": "Inlaid Thorium Hammer",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 12772,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12359,
+          "count": 30
+        },
+        {
+          "item_id": 3577,
+          "count": 4
+        },
+        {
+          "item_id": 6037,
+          "count": 2
+        },
+        {
+          "item_id": 12361,
+          "count": 2
+        },
+        {
+          "item_id": 8170,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12818,
+        "name": "Plans: Inlaid Thorium Hammer",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 16980,
+      "name": "Rune Edge",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 12779,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12359,
+          "count": 30
+        },
+        {
+          "item_id": 12799,
+          "count": 2
+        },
+        {
+          "item_id": 12644,
+          "count": 2
+        },
+        {
+          "item_id": 8170,
+          "count": 4
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12826,
+        "name": "Plans: Rune Edge",
+        "quality": 2,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 16986,
+      "name": "Blood Talon",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 12795,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12655,
+          "count": 10
+        },
+        {
+          "item_id": 12360,
+          "count": 10
+        },
+        {
+          "item_id": 12662,
+          "count": 8
+        },
+        {
+          "item_id": 7910,
+          "count": 10
+        },
+        {
+          "item_id": 12644,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12831,
+        "name": "Plans: Blood Talon",
+        "quality": 3,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 16987,
+      "name": "Darkspear",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 12802,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 12655,
+          "count": 20
+        },
+        {
+          "item_id": 12804,
+          "count": 20
+        },
+        {
+          "item_id": 12364,
+          "count": 2
+        },
+        {
+          "item_id": 12800,
+          "count": 2
+        },
+        {
+          "item_id": 12644,
+          "count": 2
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 12832,
+        "name": "Plans: Darkspear",
+        "quality": 3,
+        "drop_sources": []
+      }
+    }
+  ]
+}

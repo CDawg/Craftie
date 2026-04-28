@@ -1,0 +1,149 @@
+{
+  "profession": "Alchemy",
+  "skill_id": 171,
+  "total": 4,
+  "recipes": [
+    {
+      "spell_id": 2336,
+      "name": "Elixir of Tongues",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 2460,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 2449,
+          "count": 2
+        },
+        {
+          "item_id": 785,
+          "count": 2
+        },
+        {
+          "item_id": 3371,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 2556,
+        "name": "Recipe: Elixir of Tongues",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 6619,
+      "name": "Cowardly Flight Potion",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 5632,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 5636,
+          "count": 1
+        },
+        {
+          "item_id": 3356,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 5641,
+        "name": "Recipe: Cowardly Flight Potion",
+        "quality": 1,
+        "drop_sources": []
+      }
+    },
+    {
+      "spell_id": 11447,
+      "name": "Elixir of Waterwalking",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 8827,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 6370,
+          "count": 1
+        },
+        {
+          "item_id": 3357,
+          "count": 1
+        },
+        {
+          "item_id": 3372,
+          "count": 1
+        }
+      ],
+      "source": "Trainer"
+    },
+    {
+      "spell_id": 17579,
+      "name": "Greater Holy Protection Potion",
+      "learned_at": 0,
+      "skill_thresholds": {
+        "orange": 0,
+        "yellow": 0,
+        "green": 0,
+        "gray": 0
+      },
+      "creates": {
+        "item_id": 13460,
+        "min_qty": 1,
+        "max_qty": 1
+      },
+      "reagents": [
+        {
+          "item_id": 7069,
+          "count": 1
+        },
+        {
+          "item_id": 13463,
+          "count": 1
+        },
+        {
+          "item_id": 8925,
+          "count": 1
+        }
+      ],
+      "source": "Recipe Item",
+      "recipe_item": {
+        "item_id": 13500,
+        "name": "Recipe: Greater Holy Protection Potion",
+        "quality": 2,
+        "drop_sources": []
+      }
+    }
+  ]
+}
