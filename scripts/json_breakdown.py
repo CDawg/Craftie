@@ -1,35 +1,29 @@
 import json
 
-# Open the file and load its content
-with open('cooking.json', 'r') as file:
-    items = json.load(file)
+with open('tailoring.json', 'r') as file:
+  items = json.load(file)
 
-#print(items)
-
-#itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop], category
-#{2329, "Elixir of Lion's Strength", 1, 2454, "", {{2449, 1}, {765, 1}, {3371, 1}}, "inv_potion_56", "", 1},
-
-"""
-for list in items:
-  print(f'{list["spell_id"], list["name"], list["learned_at"], list["creates"]["item_id"]}' + ',')
-  for reagent in list["reagents"]:
-    print(f'{reagent["item_id"], reagent["count"]}' + ',')
-  if "recipe_item" in list:
-    print(f'{list["recipe_item"]["drop_sources"]}')
-"""
+#itemID, name, requiredSkill, craftedID, Reagents, source[1=trainer, 2=quest|drop|vendor]
 
 for list in items["recipes"]:
-  beg = f'{list["spell_id"], list["name"], list["learned_at"], list["creates"]["item_id"]}' + ','
+  craftedID = list["creates"]["item_id"]
+  if not craftedID:
+    craftedID = ""
+  beg = f'{list["spell_id"], list["name"], list["learned_at"], craftedID}' + ','
   reag = ""
   for reagent in list["reagents"]:
     reag += f'{reagent["item_id"], reagent["count"]}' + ','
+  ritem = "ignore"
   if "recipe_item" in list:
-    ritem = "1"
+    ritem = "2"
+    #print(f'{list["recipe_item"]["drop_sources"]}')
   else:
-    ritem = "3"
+    ritem = "1" #trainer
+  #print(f'{list["source"]}')
+  #print(f'{list["recipe_item"]}')
   first = beg.replace("(", "{").replace(")", "")
   midd = reag.replace("(", "{").replace('),', "}, ")
-  trunc1 = first + ' {' + midd + '}, "", "", ' + ritem + '},'
+  trunc1 = first + ' {' + midd + '}, ' + ritem + '},'
   full_line = trunc1.replace('}, },', '}},')
-  #print(first + ' {' + midd + '}, "", "", ' + ritem + '},')
+  #print(first + ' {' + midd + '}, ' + ritem + '},')
   print(full_line)

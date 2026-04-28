@@ -111,6 +111,7 @@ Craftie.Placeholder_Players = "Search Crafters..."
 Craftie.Selected_Players = 1
 Craftie.Selected_Recipes = 1
 Craftie.Selected_ViewAll = "View All Recipes" --default
+Craftie.Preload = "Loading Data..."
 
 -- Global Frames
 --[==[
@@ -222,7 +223,6 @@ function Craftie.ParsePacket(netpacket, code)
   end
 end
 
-
 function Craftie.ItemDetails(item)
   local reagent = {}
   Craftie.Frame.Craft:Show()
@@ -230,29 +230,37 @@ function Craftie.ItemDetails(item)
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0
      Craftie.Frame.Reagent.Main[i]:Hide()
-    if (not isempty(item[6][i])) then
+    if (not isempty(item[5][i])) then
       local r = 0
-      local inv_count= C_Item.GetItemCount(item[6][i][1])
-      local inv_req = item[6][i][2]
+      local inv_count= C_Item.GetItemCount(item[5][i][1])
+      local inv_req = item[5][i][2]
 
       --reset
       Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
       Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
 
-      r = getKeyFromValue(Craftie.Reagent, item[6][i][1], 1)
+      r = getKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
+      C_Timer.After(0.12, function()
+      local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item[5][i][1])
+      if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip data
+        if (name ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
+          Craftie.Reagent[r][2] = name
+        end
+      end
       Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
       Craftie.Frame.Reagent.QuanI[i]:SetText(inv_count)
       Craftie.Frame.Reagent.QuanR[i]:SetText(inv_req)
       Craftie.Frame.Reagent.Icon[i]:SetTexture(C_Item.GetItemIconByID(Craftie.Reagent[r][1]))
       Craftie.Frame.Reagent.Main[i]:Show()
+      end)
       if (inv_count >= inv_req) then
         Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
         Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 1)
       end
-      --print("craftie count " .. Craftie.Reagent[r][2] .. ": " .. item[6][i][2] .. " | " .. inv_count)
+      --print("craftie count " .. Craftie.Reagent[r][2] .. ": " .. item[5][i][2] .. " | " .. inv_count)
     end
   end
   Craftie.Frame.Craft.ID:SetText(item[4])
@@ -415,6 +423,18 @@ function SlashCmdList.Craftie(cmd)
   end
 end
 
+--caching tooltip data. preload unknown data
+Craftie.Reagent = {}
+function Craftie.BuildReagentGaps()
+  for i=1, 55000 do
+    table.insert(Craftie.Reagent, {i, Craftie.Preload})
+  end
+  for k,v in pairs(Craftie.Reagents) do
+    Craftie.Reagent[v[1]] = {v[1], v[2]}
+  end
+end
+
 C_Timer.After(0.5, function()
+  Craftie.BuildReagentGaps()
   Craftie.Init()
 end)
