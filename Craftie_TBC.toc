@@ -9,7 +9,7 @@
 ## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
 
 # Library
-core/external/luazw.lua
+core/external/lualzw.lua
 core/CraftieLibrary.lua
 core/CraftieEventManager.lua
 library/reagents.lua

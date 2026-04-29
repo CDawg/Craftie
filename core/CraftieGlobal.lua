@@ -393,45 +393,37 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
   end
 
-  --C_Timer.After(0.06, function()
-    for i=1, total_recipes do
-      Craftie.Frame.Scroll.Recipes.List.Text[i]:SetText(prof[i][2])
-      Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
-        Craftie.ItemDetails(prof[i])
 
-        --[==[
-        local enchant = 0
-        GameTooltip:SetOwner(Craftie.Frame.Scroll.Recipes.List, "ANCHOR_CURSOR_RIGHT")
-        if (enchant) then
-          GameTooltip:SetHyperlink("enchant:" .. itemID .. ":0:0:0:0:0:0:0")
-        else
-          GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
-        end
-        --GameTooltip:Show()
-        ]==]--
+  for i=1, total_recipes do
+    Craftie.Frame.Scroll.Recipes.List.Text[i]:SetText(prof[i][2])
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
+      Craftie.ItemDetails(prof[i])
         
-        --print(prof[i][2])
-        Craftie.Selected_Recipes = i
-        Craftie.ClearSelectedItem("Recipes")
+      --print(prof[i][2])
+      Craftie.Selected_Recipes = i
+      Craftie.ClearSelectedItem("Recipes")
 
-        --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
-        --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
-        --Craftie.SendPacket("WHISPER", false)
+      --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
+      --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
+      --Craftie.SendPacket("WHISPER", false)
+
+      local _compress = lualzw.compress("3,375,10011100101001001001010101001000010001001000111000010010101010001011010100100100101010101110111010101010101010101111111110100010010101010101109010101010101001010010100100111")
+      print(_compress)
+
+      C_Timer.After(3, function()
+        local _decompress = lualzw.decompress(_compress)
+        print(_decompress)
       end)
-      Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
-    end
-    Craftie.Profession.Query = prof
+    end)
+    Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
+  end
+  Craftie.Profession.Query = prof
 
-    local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
-    local prof_color = split(Craftie.Professions[prof_list][3], ",")
-    Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
-    Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-    --Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
-    --Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-    --Craftie.Frame.Craft.Skill:Hide()
-    --Craftie.Frame.Craft.SkillIcon:Hide()
-    --Craftie.Frame.Craft.Icon:Hide()
-  --end)
+  local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
+  local prof_color = split(Craftie.Professions[prof_list][3], ",")
+  Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
+  Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+
 end
 
 function Craftie.ListCrafters() --build or list from prof?
