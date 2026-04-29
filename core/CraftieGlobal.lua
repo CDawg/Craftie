@@ -85,7 +85,7 @@ end
 
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
-Craftie.MAX_PLAYERS = 100 --be careful increasing this!
+Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
 
 function Craftie.Init()
   Craftie.TabSelect(1, false) --default 1st profession
@@ -169,7 +169,7 @@ function SetItemTooltip(frame, itemID, enchant)
   else
     GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
   end
-  GameTooltip:AddLine("|nCraftie")
+  --GameTooltip:AddLine("|nCraftie")
   GameTooltip:Show()
 end
 
@@ -227,6 +227,7 @@ function Craftie.ItemDetails(item)
   local reagent = {}
   Craftie.Frame.Craft:Show()
   Craftie.ClearFocusAll()
+
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0
      Craftie.Frame.Reagent.Main[i]:Hide()
@@ -241,12 +242,14 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
 
       r = getKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
-      C_Timer.After(0.12, function()
+      --C_Timer.After(0.12, function()
       local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item[5][i][1])
-      if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip data
+      local loadcache = 0
+      if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
         if (name ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
           Craftie.Reagent[r][2] = name
         end
+        loadcache = 1
       end
       Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
@@ -254,7 +257,14 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.QuanR[i]:SetText(inv_req)
       Craftie.Frame.Reagent.Icon[i]:SetTexture(C_Item.GetItemIconByID(Craftie.Reagent[r][1]))
       Craftie.Frame.Reagent.Main[i]:Show()
-      end)
+      --end)
+      if (loadcache == 1) then
+        loadcache = 0
+        C_Timer.After(0.6, function()
+          Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
+          print("DEBUG:[" .. item[2] .. "] reloading from tooltip data")
+        end)
+      end
       if (inv_count >= inv_req) then
         Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
@@ -263,18 +273,30 @@ function Craftie.ItemDetails(item)
       --print("craftie count " .. Craftie.Reagent[r][2] .. ": " .. item[5][i][2] .. " | " .. inv_count)
     end
   end
+
+--[==[
+  GameTooltip:HookScript("OnEnter", function(self)
+    for i=1, self:NumLines() do
+      print(_G["GameTooltipTextLeft"..i]:GetText())
+    end
+  end)
+]==]--
+
+--ChatFrame_OnHyperlinkShow(chatFrame, link, text, button)
+
   Craftie.Frame.Craft.ID:SetText(item[4])
   Craftie.Frame.Craft.Text:SetText(item[2])
+
   local item_detail = item[4]
   local is_enchant = false
   --local get_tooltip = C_Item.GetItemByID(item[4])
+
   if (item_detail == "") then --blank or possibly enchant
     local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(item[1])
     --print("spell? " .. name .. " | " .. icon)
     Craftie.Frame.Craft.ID:SetText(item[1])
     Craftie.Frame.Craft.Icon:SetTexture(icon)
     is_enchant = true
-    --GameTooltip:SetHyperlink("enchant:" .. 7418 .. ":0:0:0:0:0:0:0")
   else
     Craftie.Frame.Craft.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
   end
@@ -297,9 +319,18 @@ function Craftie.ItemDetails(item)
         Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
           SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), false)
         end)
+
+        --local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
+        --local prof_color = split(Craftie.Professions[prof_list][3], ",")
+        --Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
+        Craftie.Frame.Craft.Skill:SetText(Craftie.Frame.Title.Prof:GetText() .. " (" .. item[3] .. ")")
+        --Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
       end
       Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
     end)
+    Craftie.Frame.Craft.Icon:Show()
+    Craftie.Frame.Craft.Skill:Show()
+    Craftie.Frame.Craft.SkillIcon:Show()
 end
 
 
@@ -359,6 +390,18 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       Craftie.Frame.Scroll.Recipes.List.Text[i]:SetText(prof[i][2])
       Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
         Craftie.ItemDetails(prof[i])
+
+        --[==[
+        local enchant = 0
+        GameTooltip:SetOwner(Craftie.Frame.Scroll.Recipes.List, "ANCHOR_CURSOR_RIGHT")
+        if (enchant) then
+          GameTooltip:SetHyperlink("enchant:" .. itemID .. ":0:0:0:0:0:0:0")
+        else
+          GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
+        end
+        --GameTooltip:Show()
+        ]==]--
+        
         --print(prof[i][2])
         Craftie.Selected_Recipes = i
         Craftie.ClearSelectedItem("Recipes")
@@ -371,11 +414,17 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     end
     Craftie.Profession.Query = prof
 
+    Craftie.Frame.Craft.Icon:Hide()
+
     local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
     local prof_color = split(Craftie.Professions[prof_list][3], ",")
     Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
     Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-    --print(prof_color)
+    Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
+    --Craftie.Frame.Craft.Skill:SetText(Craftie.Frame.Title.Prof:GetText() .. " (" .. item[3] .. ")")
+    Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+    Craftie.Frame.Craft.Skill:Hide()
+    Craftie.Frame.Craft.SkillIcon:Hide()
   --end)
 end
 

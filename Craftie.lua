@@ -393,16 +393,25 @@ Craftie.Frame.Craft.HLink = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.HLink:SetFont(Craftie._G.font, 20, "OUTLINE")
 Craftie.Frame.Craft.HLink:SetPoint("TOPLEFT", -4, -8)
 Craftie.Frame.Craft.HLink:SetText("")
---Craftie.Frame.Craft.HLink:SetWidth(300)
+Craftie.Frame.Craft.HLink:SetScript("OnLeave", function(self)
+  GameTooltip:Hide()
+end)
 Craftie.Frame.Craft.ID = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.ID:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
 Craftie.Frame.Craft.ID:SetPoint("CENTER", 10, 0)
 Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
-Craftie.Frame.Craft:Hide()
-Craftie.Frame.Craft.HLink:SetScript("OnLeave", function(self)
-  GameTooltip:Hide()
-end)
+
+Craftie.Frame.Craft.SkillIcon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Craft.SkillIcon:SetSize(13, 13)
+Craftie.Frame.Craft.SkillIcon:SetPoint("BOTTOMLEFT", 0, -170)
+Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/inv_misc_questionmark")
+Craftie.Frame.Craft.Skill = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Craft.Skill:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
+Craftie.Frame.Craft.Skill:SetPoint("BOTTOMLEFT", 15, -168)
+Craftie.Frame.Craft.Skill:SetText("")
+Craftie.Frame.Craft.Skill:SetTextColor(1, 1, 1, 0.7)
+Craftie.Frame.Craft.Skill:Hide()
 
 Craftie.Frame.Craft.Back = Craftie.Frame.Parent.Craft:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(150, 110)
@@ -442,7 +451,7 @@ Craftie.Frame.Reagent.Data = {} --ID
 Craftie.Frame.Reagent_Width = 100
 Craftie.Frame.Reagent_Height= 35
 Craftie.Frame.Reagent_PosX  = 50
-Craftie.Frame.Reagent_PosY  = 80
+Craftie.Frame.Reagent_PosY  = 100
 for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.Parent.Craft, "BackdropTemplate")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
@@ -467,6 +476,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Text[i]:SetPoint("TOPLEFT", 2, -6)
   Craftie.Frame.Reagent.Text[i]:SetText(i)
   Craftie.Frame.Reagent.Text[i]:SetWidth(Craftie.Frame.Reagent_Width-10)
+  Craftie.Frame.Reagent.Text[i]:SetHeight(Craftie.Frame.Reagent_Height-10)
   Craftie.Frame.Reagent.Text[i]:SetWordWrap(true)
   Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Data[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "ARTWORK")
@@ -553,9 +563,8 @@ Craftie.Button.Frame:SetSize(30, 30)
 Craftie.Button.Frame:SetPoint("TOPRIGHT", -23, 0)
 Craftie.Button.Frame:SetTexture("Interface/DialogFrame/UI-DialogBox-Corner")
 
---[==[
 Craftie.Button.Options= CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
-Craftie.Button.Options:SetSize(23, 23)
+Craftie.Button.Options:SetSize(21, 21)
 Craftie.Button.Options:SetPoint("TOPRIGHT", -16, -2)
 Craftie.Button.Options:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Button.Options:SetBackdropColor(0, 0, 0, 1)
@@ -574,4 +583,4 @@ Craftie.Button.Options:SetScript("OnClick", function(self)
   --Craftie.CloseAllMenus()
   --Craftie.FrameOptions:Show()
 end)
-]==]--
+--UI-SquareButton-Up

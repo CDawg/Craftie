@@ -756,7 +756,7 @@ Craftie.Reagents = {
 {34057, "Abyss Crystal"},
 {34060, "Flying Machine Control"},
 {34113, "Field Repair Bot 110G"},
-{34249, "Hula Girl Doll"},
+--{34249, "Hula Girl Doll"},
 {34467, "Test Handful of Fel Iron Bolts"},
 {34645, "Earthen Ink"},
 {34647, "Rough Parchment"},
