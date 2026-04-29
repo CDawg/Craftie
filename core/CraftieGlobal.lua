@@ -328,6 +328,14 @@ function Craftie.ItemDetails(item)
       end
       Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
     end)
+
+    local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
+    local prof_color = split(Craftie.Professions[prof_list][3], ",")
+    Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
+    Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+    --Craftie.Frame.Craft.Skill:Hide()
+    --Craftie.Frame.Craft.SkillIcon:Hide()
+    --Craftie.Frame.Craft.Icon:Hide()
     Craftie.Frame.Craft.Icon:Show()
     Craftie.Frame.Craft.Skill:Show()
     Craftie.Frame.Craft.SkillIcon:Show()
@@ -414,17 +422,15 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     end
     Craftie.Profession.Query = prof
 
-    Craftie.Frame.Craft.Icon:Hide()
-
     local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
     local prof_color = split(Craftie.Professions[prof_list][3], ",")
     Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
     Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-    Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
-    --Craftie.Frame.Craft.Skill:SetText(Craftie.Frame.Title.Prof:GetText() .. " (" .. item[3] .. ")")
-    Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-    Craftie.Frame.Craft.Skill:Hide()
-    Craftie.Frame.Craft.SkillIcon:Hide()
+    --Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
+    --Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+    --Craftie.Frame.Craft.Skill:Hide()
+    --Craftie.Frame.Craft.SkillIcon:Hide()
+    --Craftie.Frame.Craft.Icon:Hide()
   --end)
 end
 

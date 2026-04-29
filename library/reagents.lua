@@ -691,8 +691,6 @@ Craftie.Reagents = {
 {27678, "Clefthoof Meat"},
 {27681, "Warped Flesh"},
 {27682, "Talbuk Venison"},
-{27774, "zzOLDMighty Blood Garnet"},
-{27811, "zzOLDMighty Blood Garnet"},
 {27860, "Purified Draenic Water"},
 {27863, "Extended Cost Bryanite"},
 {27864, "Brian's Bryanite of Extended Cost Copying"},
