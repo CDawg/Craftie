@@ -392,7 +392,6 @@ function Craftie.ClearSelectedItem(scrollFrame)
   end
 end
 
-
 function Craftie.OpenProfessionList(prof, search) --need to add player
   --print("prof count " .. #prof)
   local total_recipes = #prof
@@ -428,7 +427,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       Craftie.Selected_Recipes = i
       Craftie.ClearSelectedItem("Recipes")
       --example
-      --Craftie.SendPacket(Craftie.BinaryCompression(Craftie.Seed, false), "WHISPER", "Terraintest", true)
+      Craftie.SendPacket(Craftie.LowCompression(Craftie.Seed, false), "WHISPER", "Terraintest", true)
 
     end)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()

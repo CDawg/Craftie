@@ -75,7 +75,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
         print("Craftie.Event[3] " .. prefix .. " | " .. event .. " | " .. netpacket .. " | " .. _casted .. " | " .. _spellID)
         if (netpacket) then
           print("compressed " .. #netpacket)
-          local decompress = Craftie.BinaryCompression(netpacket, true)
+          local decompress = Craftie.LowCompression(netpacket, true)
           print(decompress)
           if (Craftie.Seed == decompress) then
             print("Match!")
