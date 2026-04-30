@@ -13,8 +13,9 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+Craftie.DEBUG = true
+
 Craftie._G = {
-  --title  = TOCA.colors.class[7][4] .. TOCA._L.TITLE .."|r",
   author   = "Porthias",
   CMD      = "/craftie",
   --width  = 150,
@@ -28,6 +29,8 @@ Craftie._G = {
   date     = date("%Y%m%d"),
   update   = 20260608,
 }
+Craftie._G.title = Craftie._G.color .. Craftie._G.prefix .. "|r"
+
 --Craftie._G.version = C_AddOns.GetAddOnMetadata(Craftie._G.prefix, "version")
 Craftie._G.version = C_AddOns.GetAddOnMetadata("Craftie", "version")
 
@@ -87,10 +90,35 @@ Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
 
+function Craftie.BinaryCompression(packet, decompress)
+
+  --local comp = {{"a", "101"},{"b", "000"},{"c", "111"},{"d", "010"},{"e", "100"},{"f", "001"},{"x", "011"}}
+  local comp = {{'\\', "101"},{"@", "000"},{"_", "111"},{"&", "010"},{'~', "100"},{"!", "001"},{"#", "011"}}
+  --local comp = {{"¥", "101"},{"ƒ", "000"},{"€", "111"},{"§", "010"},{"_", "100"},{"b", "001"},{"µ", "011"}}
+  local rate = {}
+  rate[0] = packet
+  for k,v in pairs(comp) do
+    if (decompress) then
+      rate[k] = string.gsub(rate[k-1], v[1], v[2])
+    else
+      rate[k] = string.gsub(rate[k-1], v[2], v[1])
+    end
+  end
+  return rate[#comp]
+end
+
+Craftie.Seed = "3,375,100111001010010010010101010010000100010010001110111011111100010010101010001011010100110010000001110101000001001011010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111100111001010010010010101010010000100010010001110000100101010100010110101001001001010101011101110101010101010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111"
+
 function Craftie.Init()
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
+
+  local name, realm = UnitName("player")
+  Craftie.SendPacket(name, "WHISPER", name, true) --whisper self to prep incoming comms
+
   print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
+
+  print("Craftie.Seed " .. #Craftie.Seed)
 end
 
 Craftie.Professions = {
@@ -201,16 +229,26 @@ function Craftie.GetProfessionsPlayer()
 	return skills[1], skills[2], skills[3], skills[4], skills[5]
 end
 
-function Craftie.SendPacket(packet, channel, compress)
+function Craftie.SendPacket(packet, channel, target, compress)
   compressPacket = packet
   if (compress) then
     compressPacket = packet:gsub("%s+", "") --filter spaces
   end
-  Craftie.Notification("sending packet " .. compressPacket, true)
-  if (channel == "GUILD") then
-    if (not IsInGuild()) then return end
+
+  --if (channel == "GUILD") then
+    --if (not IsInGuild()) then return end
+  --end
+
+  if (channel == "WHISPER") then
+    --C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel, target)
+    C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
+  	C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel, target)
+    print("Send Whisper " .. target)
+  else
+    C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel)
+    print("Send Channel")
   end
-  C_ChatInfo.SendAddonMessage("CRAHH", compressPacket, channel)
+
   Craftie.Notification("sending packet " .. compressPacket, true)
 end
 
@@ -218,6 +256,7 @@ function Craftie.ParsePacket(netpacket, code)
   if (netpacket) then
     if (string.sub(netpacket, 1, strlen(code)) == code) then
       parse = string.gsub(netpacket, code, "")
+      Craftie.Notification("parsing packet " .. parse, true)
       return parse
     end
   end
@@ -402,18 +441,8 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       --print(prof[i][2])
       Craftie.Selected_Recipes = i
       Craftie.ClearSelectedItem("Recipes")
+      --Craftie.SendPacket(Craftie.BinaryCompression(Craftie.Seed, false), "WHISPER", "Terraintest", true)
 
-      --Craftie.SendPacket(lualzw.compress("3,1001110010010101"), "WHISPER", false)
-      --Craftie.SendPacket("3[86]1110010010101", "WHISPER", false)
-      --Craftie.SendPacket("WHISPER", false)
-
-      local _compress = lualzw.compress("3,375,10011100101001001001010101001000010001001000111000010010101010001011010100100100101010101110111010101010101010101111111110100010010101010101109010101010101001010010100100111")
-      print(_compress)
-
-      C_Timer.After(3, function()
-        local _decompress = lualzw.decompress(_compress)
-        print(_decompress)
-      end)
     end)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
   end
@@ -481,7 +510,7 @@ function Craftie.BuildReagentGaps()
   end
 end
 
-C_Timer.After(0.5, function()
+C_Timer.After(1, function()
   Craftie.BuildReagentGaps()
   Craftie.Init()
 end)
