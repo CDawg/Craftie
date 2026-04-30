@@ -52,7 +52,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
       print("Craftie.Event[1] " .. prefix .. " | " .. event)
 	  end
 
-    --combat prevent here!
+    --combat prevent here?
 
     --if (prefix) then
       --C_ChatInfo.RegisterAddonMessagePrefix(prefix)

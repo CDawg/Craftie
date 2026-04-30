@@ -30,6 +30,26 @@ Craftie = {
 Craftie.Profession={}
 Craftie.Professions={}
 
+function Craftie.BinaryCompression(packet, decompress)
+  local package = ""
+--2 to the power of 4 = 16 [0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111]
+  local comp = {
+    {"{", "0000"},{"}", "0001"},{"]", "0010"},{";", "0011"},{"_", "0100"},{"!", "0101"},{"@", "0110"},{"#", "0111"},
+    {"&", "1000"},{"~", "1001"},{"\\", "1010"},{"/", "1011"},{"¥", "1100"},{"§", "1101"},{":", "1110"},{"?", "1111"},
+  }
+  local rate = {}
+  rate[0] = packet
+  for k,v in pairs(comp) do
+    if (decompress) then
+      rate[k] = string.gsub(rate[k-1], v[1], v[2])
+    else
+      rate[k] = string.gsub(rate[k-1], v[2], v[1])
+    end
+  end
+  package = rate[#comp] --last key
+  return package
+end
+
 function arrayToString(array)
   formstring=""
   for k,v in pairs(array) do
