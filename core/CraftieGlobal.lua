@@ -276,6 +276,13 @@ end
   --local decompress = Craftie.LowCompression(netpacket, true)
 --end
 
+
+Craftie.RecipeSource = {
+  "Trainer",
+  "Vendor/Drop",
+  "Unknown"
+}
+
 function Craftie.ItemDetails(item)
   local reagent = {}
   Craftie.Frame.Craft:Show()
@@ -375,6 +382,9 @@ function Craftie.ItemDetails(item)
       end
       Craftie.Frame.Craft.Skill:SetText(Craftie.Frame.Title.Prof:GetText() .. " (" .. item[3] .. ")")
       Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
+      if (tonumber(item[6])) then
+        Craftie.Frame.Craft.Source:SetText("Source: " .. Craftie.RecipeSource[tonumber(item[6])])
+      end
     end)
 
     local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
@@ -387,6 +397,7 @@ function Craftie.ItemDetails(item)
     Craftie.Frame.Craft.Icon:Show()
     Craftie.Frame.Craft.Skill:Show()
     Craftie.Frame.Craft.SkillIcon:Show()
+    Craftie.Frame.Craft.Source:Show()
 end
 
 
