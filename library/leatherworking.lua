@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
+--itemID, name, requiredSkill, craftedID, Reagents, source
 Craftie.Profession.Leatherworking = {
 {2149, 'Handstitched Leather Boots', 1, 2302, {{2318, 2}, {2320, 1}}, 1},
 {9059, 'Handstitched Leather Bracers', 1, 7277, {{2318, 2}, {2320, 3}}, 1},

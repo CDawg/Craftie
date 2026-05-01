@@ -13,8 +13,9 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source
+--itemID, name, requiredSkill, craftedID, Reagents, source
 Craftie.Profession.Enchanting = {
+{2737, 'Copper Mace', 15, 2844, {{2840, 6}, {2880, 1}, {2589, 2}}, 1},
 {7421, 'Runed Copper Rod', 1, 6218, {{6217, 1}, {10940, 1}, {10938, 1}}, 1},
 {14293, 'Lesser Magic Wand', 10, 11287, {{4470, 1}, {10938, 1}}, 1},
 {7420, 'Enchant Chest - Minor Health', 15, '', {{10940, 1}}, 1},

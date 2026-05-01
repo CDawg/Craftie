@@ -6,11 +6,20 @@
 ## Author: Porthias (aka Port)
 ## SavedVariables: CraftieDB
 ## SavedVariablesPerCharacter: CraftieDB
-## OptionalDeps: Blizzard_RaidFrame, Blizzard_RaidUI, Blizzard_CompactRaidFrames, Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
+## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
 
 # Library
-core/external/luazw.lua
-core/library/global.lua
+core/CraftieLibrary.lua
+core/CraftieEventManager.lua
+library/reagents.lua
+library/alchemy.lua
+library/blacksmithing.lua
+library/cooking.lua
+library/enchanting.lua
+library/engineering.lua
+library/jewelcrafting.lua
+library/leatherworking.lua
+library/tailoring.lua
 
 # Localization
 # core/locales/localization.en.lua

@@ -37,30 +37,6 @@ local items = {
   {name = "Apple"},
   {name = "Banana"},
   {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
-  {name = "Apple"},
-  {name = "Banana"},
-  {name = "Cherry"},
 }
 dataProvider:InsertTable(items)
 
@@ -75,3 +51,4 @@ scrollView:SetElementInitializer("UIPanelButtonTemplate", function(frame, data)
 end)
 
 scrollBox:SetDataProvider(dataProvider)
+

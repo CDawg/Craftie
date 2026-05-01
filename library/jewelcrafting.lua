@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
+--itemID, name, requiredSkill, craftedID, Reagents, source
 Craftie.Profession.Jewelcrafting = {
 {26926, 'Heavy Copper Ring', 5, 21932, {{2840, 4}, {20816, 2}}, 1},
 {25255, 'Delicate Copper Wire', 20, 20816, {{2840, 2}}, 1},

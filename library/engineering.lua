@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---itemID, name, requiredSkill, craftedID, RecipeItemID, Reagents, craftedIconID, RecipeIconID, source[1=trainer, 2=vendor, 3=drop]
+--itemID, name, requiredSkill, craftedID, Reagents, source
 Craftie.Profession.Engineering = {
 {3918, 'Rough Blasting Powder', 1, 4357, {{2835, 1}}, 1},
 {3919, 'Rough Dynamite', 1, 4358, {{4357, 2}, {2589, 1}}, 1},

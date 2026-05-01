@@ -27,7 +27,6 @@ Craftie.Event:RegisterEvent("CHAT_MSG_RAID")
 Craftie.Event:RegisterEvent("CHAT_MSG_SAY")
 Craftie.Event:RegisterEvent("CHAT_MSG_SYSTEM")
 Craftie.Event:RegisterEvent("CHAT_MSG_WHISPER")
---Craftie.Event:RegisterEvent("CHAT_MSG_WHISPER_INFORM")
 Craftie.Event:RegisterEvent("CRAFT_SHOW")
 Craftie.Event:RegisterEvent("CRAFT_CLOSE")
 Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
@@ -35,9 +34,9 @@ Craftie.Event:RegisterEvent("GROUP_ROSTER_UPDATE")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
 Craftie.Event:RegisterEvent("SKILL_LINES_CHANGED")
 Craftie.Event:RegisterEvent("TRADE_SKILL_CLOSE")
+Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
+Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
---Craftie.Event:RegisterEvent("UNIT_INVENTORY_CHANGED")
---Craftie.Event:RegisterEvent(ADDONS_UNLOADING)
 
 Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, _casted, _spellID)
   Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
@@ -72,6 +71,10 @@ function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
 
     if (event == "CHAT_MSG_ADDON") then
 			if (prefix == Craftie._G.prefix) then
+        if (netpacket) then
+          Craftie.ParsePacket(netpacket)
+        end
+        --[==[
         print("Craftie.Event[3] " .. prefix .. " | " .. event .. " | " .. netpacket .. " | " .. _casted .. " | " .. _spellID)
         if (netpacket) then
           print("compressed " .. #netpacket)
@@ -81,6 +84,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
             print("Match!")
           end
         end
+        ]==]--
       end
     end
 
