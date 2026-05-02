@@ -30,6 +30,45 @@ Craftie = {
 Craftie.Profession={}
 Craftie.Professions={}
 
+
+Craftie.Packet ={}
+Craftie.Packet.Prefix = {
+  Init = "!I",
+  Prof = "!P"
+}
+Craftie.Packet.Charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
+Craftie.Packet.Lookup = {}
+for i = 1, #Craftie.Packet.Charset do Craftie.Packet.Lookup[Craftie.Packet.Charset:sub(i,i)] = i - 1 end
+
+function Craftie.CompressBits(bitstring)
+  local out = {}
+  local len = #bitstring
+  for i = 1, len, 6 do
+    local chunk = bitstring:sub(i, i + 5)
+    if #chunk < 6 then chunk = chunk .. string.rep("0", 6 - #chunk) end
+    local value = tonumber(chunk, 2)
+    out[#out + 1] = Craftie.Packet.Charset:sub(value + 1, value + 1)
+  end
+  -- prepend original length so we can trim padding on decompress
+  return string.format("%d:", len) .. table.concat(out)
+end
+
+function Craftie.DecompressBits(encoded)
+  local len, body = encoded:match("^(%d+):(.*)$")
+  len = tonumber(len)
+  local bits = {}
+  for i = 1, #body do
+    local value = Craftie.Packet.Lookup[body:sub(i, i)]
+    local chunk = ""
+    for b = 5, 0, -1 do
+      chunk = chunk .. tostring(math.floor(value / (2 ^ b)) % 2)
+    end
+    bits[#bits + 1] = chunk
+  end
+  return table.concat(bits):sub(1, len)
+end
+
+--[==[
 function Craftie.LowCompression(packet, decompress)
   local package = ""
 --2 to the power of 4 = 16 [0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111]
@@ -49,6 +88,7 @@ function Craftie.LowCompression(packet, decompress)
   package = rate[#comp] --last key
   return package
 end
+]==]--
 
 function arrayToString(array)
   formstring=""
