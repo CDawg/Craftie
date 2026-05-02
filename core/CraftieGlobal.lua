@@ -18,10 +18,10 @@ Craftie.DEBUG = true
 Craftie._G = {
   author   = "Porthias",
   CMD      = "/craftie",
-  --width  = 150,
-  --height = 85,
+  Width  = 820,
+  Height = 460,
   font     = "Interface/Addons/Craftie/fonts/FRIZQT__.TTF",
-  fontSize = 10,
+  fontSize = 11,
   dir      = "Interface/Addons/Craftie/",
   prefix   = "CRAHH",
   suffix   = "TBC Anniversary",
@@ -39,9 +39,6 @@ Craftie.Game.version = tonumber(string.sub(__Gversion, 1, 1))
 if (Craftie.Game.version == 1) then
   Craftie._G.suffix = "Classic"
 end
-
-Craftie._G.Width = 820
-Craftie._G.Height= 460
 
 Craftie.Stamp = Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version
 
@@ -92,15 +89,16 @@ Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
 
 
 --Seed examples
---Craftie.Seed = "1,10,100000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000,Terraintest"
-Craftie.Seed = "3,375,111111111111111111111111111111111100111111111010010001110111011111100010010101010001011010100110010000001110101000001001011010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111100111001010010010010101010010000100010010001110000100101010100010110101001001001010101011101110101010101010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111,Portheus"
---Craftie.Seed = "3,101,11111111111111111111111111111111111101111111111111111111111111111011111111111011111111111111111111111110111111111111101111111110110111011111111111111111110111111101111111111101111111111011111111101111111111111111111111111111111111111111111111111111111111011111111111111111111111011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111,Terraintest"
+--Craftie.Seed = "Portheus,1,10,100000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+Craftie.Seed = "Portheus,3,375,111111111111111111111111111111111100111111111010010001110111011111100010010101010001011010100110010000001110101000001001011010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111100111001010010010010101010010000100010010001110000100101010100010110101001001001010101011101110101010101010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111"
+--Craftie.Seed = "Portheus,3,101,11111111111111111111111111111111111101111111111111111111111111111011111111111011111111111111111111111110111111111111101111111110110111011111111111111111110111111101111111111101111111111011111111101111111111111111111111111111111111111111111111111111111111011111111111111111111111011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
 
 function Craftie.Init()
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
 
-  Craftie.SendPacket(Craftie.player.name, "WHISPER", Craftie.player.name, true) --whisper self to prep incoming comms
+   --whisper self to prep incoming comms
+  Craftie.SendPacket(Craftie.Packet.Prefix.Init, Craftie.player.name, "WHISPER", Craftie.player.name)
 
   print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
 
@@ -120,8 +118,8 @@ Craftie.Professions = {
 
 Craftie.Profession.Query = Craftie.Profession.Alchemy --default
 
-Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Placeholder_Players = "Search Crafters..."
+Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Selected_Players = 1
 Craftie.Selected_Recipes = 1
 Craftie.Selected_ViewAll = "View All Recipes" --default
@@ -215,60 +213,52 @@ function Craftie.GetProfessionsPlayer()
 	return skills[1], skills[2], skills[3], skills[4], skills[5]
 end
 
-function Craftie.SendPacket(packet, channel, target, compress)
-  compressPacket = packet
-  if (compress) then
-    compressPacket = packet:gsub("%s+", "") --filter spaces
-  end
-
+function Craftie.SendPacket(prefix, data, channel, target)
   --if (channel == "GUILD") then
     --if (not IsInGuild()) then return end
   --end
-
-  if (channel == "WHISPER") then
-    --C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel, target)
-    C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
-  	C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel, target)
-    Craftie.Notification("Send Whisper " .. target, true)
-  else
-    C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel)
-    Craftie.Notification("Send " .. channel, true)
+  local repack = prefix .. "," .. data
+  local packet = split(data, ",")
+  if (prefix == Craftie.Packet.Prefix.Prof) then
+    -- code | sender | profNum | profLevel | profData
+    repack = prefix .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.CompressBits(packet[4])
   end
 
-  Craftie.Notification("Sending packet [" .. #compressPacket .. "] " .. compressPacket, true)
+  C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
+  if (channel == "WHISPER") then
+    --C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel, target)
+    --C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
+  	C_ChatInfo.SendAddonMessage(Craftie._G.prefix, repack, channel, target)
+    --Craftie.Notification("Send Whisper " .. target, true)
+  else
+    C_ChatInfo.SendAddonMessage(Craftie._G.prefix, repack, channel)
+    --Craftie.Notification("Send " .. channel, true)
+  end
+
+  Craftie.Notification("Sending Packet: " .. repack .. " [" .. #repack .. " / " .. #data .. "]", true)
 end
 
 function Craftie.ParsePacket(netpacket)
-  --[==[
-  if (netpacket) then
-    if (string.sub(netpacket, 1, strlen(code)) == code) then
-      parse = string.gsub(netpacket, code, "")
-      Craftie.Notification("parsing packet " .. parse, true)
-      return parse
-    end
-  end
-  ]==]--
-  local decompress = Craftie.LowCompression(netpacket, true)
-  if (netpacket) then
-    local packet = split(decompress, ",")
+  if (string.sub(netpacket, 1, 1) == "!") then
+    local packet = split(netpacket, ",")
     local get = {}
-    --print(packet)
-    if (tonumber(packet[1])) then
-      get.profnum = tonumber(packet[1])
-      get.level   = packet[2]
-      get.recipes = packet[3]
-      get.crafter = packet[4]
 
-      --print("Prof Name:" .. Craftie.Professions[get.profnum][1])
-      --print("Prof Level: " .. get.level)
-      --print("Prof Recipes: " .. get.recipes)
+    get.prefix  = packet[1]
+    --print("Prefix: " .. get.prefix)
+    if (get.prefix == Craftie.Packet.Prefix.Prof) then
+      get.crafter = packet[2]
+      get.profnum = tonumber(packet[3])
+      get.level   = packet[4]
+      get.profdata= Craftie.DecompressBits(packet[5])
+
+      --print("Prof Name: " .. Craftie.Professions[get.profnum][1])
       --print("Prof Crafter: " .. get.crafter)
+      --print("Prof Level: " .. get.level)
+      --print("Prof Data: " .. get.profdata)
     end
-    --print(Craftie.Professions[prof][1])
-    --Craftie.Professions
-    --if (string.sub(netpacket, 1, strlen(code)) == code) then
-    --end
-     --Craftie.Notification("parsing packet " .. parse, true)
+    Craftie.Notification("Parsing Packet: " .. netpacket, true)
+  else
+    Craftie.Notification("ERROR Malformed Packet: " .. netpacket, true)
   end
 end
 
@@ -459,7 +449,6 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
   end
 
-
   for i=1, total_recipes do
     Craftie.Frame.Scroll.Recipes.List.Text[i]:SetText(prof[i][2])
     Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
@@ -469,7 +458,8 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       Craftie.Selected_Recipes = i
       Craftie.ClearSelectedItem("Recipes")
       --example
-      --Craftie.SendPacket(Craftie.LowCompression(Craftie.Seed, false), "WHISPER", "Terraintest", true)
+      --Craftie.SendPacket(Craftie.LowCompression(Craftie.Seed, false), "WHISPER", "Terraintest")
+      Craftie.SendPacket(Craftie.Packet.Prefix.Prof, Craftie.Seed, "WHISPER", "Terraintest")
 
     end)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()

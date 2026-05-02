@@ -18,7 +18,7 @@ Craftie.Frame:SetWidth(Craftie._G.Width)
 Craftie.Frame:SetHeight(Craftie._G.Height)
 --Craftie.Frame:SetPoint("CENTER", 0, -140)
 Craftie.Frame:SetPoint("CENTER", 0, 0)
---Craftie.Frame:SetFrameStrata("LOW")
+Craftie.Frame:SetFrameStrata("MEDIUM")
 Craftie.Frame:SetMovable(true)
 Craftie.Frame:EnableMouse(true)
 Craftie.Frame:RegisterForDrag("LeftButton")
@@ -150,17 +150,17 @@ Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetTexture("Interface/COMMON/ThinB
 --Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetDrawLayer("BORDER", 4)
 
 Craftie.Frame.Scroll={}
-Craftie.Frame.Scroll.Players={}
-
 Craftie.Frame.Scroll.Players = {}
 Craftie.Frame.Scroll.Players.List = {}
 Craftie.Frame.Scroll.Players_Width = 210
-Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-90
+--Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-90
+Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-200
+
 Craftie.Frame.Scroll.Players = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players)
 Craftie.Frame.Scroll.Players:SetWidth(Craftie.Frame.Scroll.Players_Width)
 Craftie.Frame.Scroll.Players:SetHeight(Craftie.Frame.Scroll.Players_Height)
 Craftie.Frame.Scroll.Players:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
-Craftie.Frame.Scroll.Players:SetFrameStrata("DIALOG")
+--Craftie.Frame.Scroll.Players:SetFrameStrata("LOW")
 
 Craftie.Frame.Scroll.Players.List = CreateFrame("Frame", Craftie.Frame.Scroll.Players.List, Craftie.Frame.Scroll.Players, "BackdropTemplate")
 Craftie.Frame.Scroll.Players.List:SetWidth(Craftie.Frame.Scroll.Players_Width)
@@ -186,20 +186,20 @@ Craftie.Frame.Search={}
 Craftie.Frame.Search.Player={}
 Craftie.Frame.Search.Player.Text={}
 
-Craftie.Frame.Search.Player = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players, "BackdropTemplate", 2)
+Craftie.Frame.Search.Player = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players, "BackdropTemplate", 25)
 Craftie.Frame.Search.Player:SetWidth(150)
 Craftie.Frame.Search.Player:SetHeight(24)
 Craftie.Frame.Search.Player:SetPoint("TOPLEFT", 4, -1)
 Craftie.Frame.Search.Player:SetBackdrop(Craftie.Backdrop.Opaque)
 Craftie.Frame.Search.Player:SetBackdropColor(1, 0, 0, 1)
 Craftie.Frame.Search.Player:SetBackdropBorderColor(1, 1, 1, 0.4)
-Craftie.Frame.Search.Player:SetFrameStrata("TOOLTIP")
-Craftie.Frame.Search.Player:SetFrameLevel(Craftie.Framelevel.Foreground)
+Craftie.Frame.Search.Player:SetFrameStrata("MEDIUM")
+--Craftie.Frame.Search.Player:SetFrameLevel(Craftie.Framelevel.Foreground)
 Craftie.Frame.Search.Player.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search.Player)
 Craftie.Frame.Search.Player.Text:SetWidth(Craftie.Frame.Search.Player:GetWidth()-6)
 Craftie.Frame.Search.Player.Text:SetHeight(Craftie.Frame.Search.Player:GetHeight())
 Craftie.Frame.Search.Player.Text:SetFontObject(GameFontDisable)
-Craftie.Frame.Search.Player.Text:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
+Craftie.Frame.Search.Player.Text:SetFont(Craftie._G.font, 11, "OUTLINE")
 Craftie.Frame.Search.Player.Text:SetPoint("TOPLEFT", 6, 0)
 Craftie.Frame.Search.Player.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Player.Text:SetText(Craftie.Placeholder_Players)
@@ -220,7 +220,7 @@ Craftie.Frame.Search.Player.Text:SetScript("OnMouseDown", function(self)
     end
 end)
 Craftie.Frame.Search.Player.Text:SetScript("OnEditFocusLost", function(self)
-  Craftie.Frame.Search.Player.Text:SetText(Craftie.Placeholder_Players)
+  --Craftie.Frame.Search.Player.Text:SetText(Craftie.Placeholder_Players)
 end)
 
 Craftie.Frame.Scroll.Players.List.Item = {}
@@ -282,7 +282,7 @@ Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Parent.Sc
 Craftie.Frame.Scroll.Recipes:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
 Craftie.Frame.Scroll.Recipes:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
 Craftie.Frame.Scroll.Recipes:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.Scroll.Recipes:SetFrameStrata("DIALOG")
+--Craftie.Frame.Scroll.Recipes:SetFrameStrata("DIALOG")
 
 Craftie.Frame.Scroll.Recipes.List = CreateFrame("Frame", Craftie.Frame.Scroll.Recipes.List, Craftie.Frame.Scroll.Recipes, "BackdropTemplate")
 Craftie.Frame.Scroll.Recipes.List:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
@@ -331,13 +331,13 @@ Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -2)
 Craftie.Frame.Search.Recipes:SetBackdrop(Craftie.Backdrop.Opaque)
 Craftie.Frame.Search.Recipes:SetBackdropColor(1, 0, 0, 1)
 Craftie.Frame.Search.Recipes:SetBackdropBorderColor(1, 1, 1, 0.6)
-Craftie.Frame.Search.Recipes:SetFrameStrata("TOOLTIP")
+Craftie.Frame.Search.Recipes:SetFrameStrata("MEDIUM")
 Craftie.Frame.Search.Recipes:SetFrameLevel(Craftie.Framelevel.Foreground)
 Craftie.Frame.Search.Recipes.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search.Recipes)
 Craftie.Frame.Search.Recipes.Text:SetWidth(200)
 Craftie.Frame.Search.Recipes.Text:SetHeight(35)
 Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
-Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
+Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.font, 11, "OUTLINE")
 Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 6, 4)
 Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
