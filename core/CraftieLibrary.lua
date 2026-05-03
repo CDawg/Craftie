@@ -36,59 +36,29 @@ Craftie.Packet.Prefix = {
   Init = "!I",
   Prof = "!P"
 }
-Craftie.Packet.Charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789"
-Craftie.Packet.Lookup = {}
-for i = 1, #Craftie.Packet.Charset do Craftie.Packet.Lookup[Craftie.Packet.Charset:sub(i,i)] = i - 1 end
 
-function Craftie.CompressBits(bitstring)
-  local out = {}
-  local len = #bitstring
-  for i = 1, len, 6 do
-    local chunk = bitstring:sub(i, i + 5)
-    if #chunk < 6 then chunk = chunk .. string.rep("0", 6 - #chunk) end
-    local value = tonumber(chunk, 2)
-    out[#out + 1] = Craftie.Packet.Charset:sub(value + 1, value + 1)
-  end
-  -- prepend original length so we can trim padding on decompress
-  return string.format("%d:", len) .. table.concat(out)
-end
-
-function Craftie.DecompressBits(encoded)
-  local len, body = encoded:match("^(%d+):(.*)$")
-  len = tonumber(len)
-  local bits = {}
-  for i = 1, #body do
-    local value = Craftie.Packet.Lookup[body:sub(i, i)]
-    local chunk = ""
-    for b = 5, 0, -1 do
-      chunk = chunk .. tostring(math.floor(value / (2 ^ b)) % 2)
-    end
-    bits[#bits + 1] = chunk
-  end
-  return table.concat(bits):sub(1, len)
-end
-
---[==[
-function Craftie.LowCompression(packet, decompress)
+function Craftie.BitCompression(packet, decompress)
   local package = ""
---2 to the power of 4 = 16 [0000, 0001, 0010, 0011, 0100, 0101, 0110, 0111, 1000, 1001, 1010, 1011, 1100, 1101, 1110, 1111]
-  local comp = {
-    {";", "0000"},{"}", "0001"},{"]", "0010"},{"{", "0011"},{"_", "0100"},{"!", "0101"},{"@", "0110"},{"#", "0111"},
-    {"&", "1000"},{"~", "1001"},{"\\", "1010"},{"/", "1011"},{"=", "1100"},{"+", "1101"},{"?", "1110"},{":", "1111"},
+  --2 to the power of 5 = 32 (appears to be the safest compression)
+  local pos = {
+    {"00000","f"}, {"00001","a"}, {"00010","b"}, {"00011","c"}, {"00100","d"}, {"00101","e"}, {"00110","z"}, {"00111","g"},
+    {"01000","h"}, {"01001","k"}, {"01010","m"}, {"01011","n"}, {"01100","A"}, {"01101","B"}, {"01110","C"}, {"01111","D"},
+    {"10000","E"}, {"10001","F"}, {"10010","G"}, {"10011","H"}, {"10100","K"}, {"10101","M"}, {"10110","N"}, {"10111","P"},
+    {"11000","Q"}, {"11001","R"}, {"11010","S"}, {"11011","T"}, {"11100","U"}, {"11101","V"}, {"11110","W"}, {"11111",":"}
   }
+
   local rate = {}
   rate[0] = packet
-  for k,v in pairs(comp) do
+  for k,v in pairs(pos) do
     if (decompress) then
-      rate[k] = string.gsub(rate[k-1], v[1], v[2])
-    else
       rate[k] = string.gsub(rate[k-1], v[2], v[1])
+    else
+      rate[k] = string.gsub(rate[k-1], v[1], v[2])
     end
   end
-  package = rate[#comp] --last key
+  package = rate[#pos] --last key
   return package
 end
-]==]--
 
 function arrayToString(array)
   formstring=""

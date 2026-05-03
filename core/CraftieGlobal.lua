@@ -87,11 +87,11 @@ Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
 
-
 --Seed examples
+--sendpacket examples
 --Craftie.Seed = "Portheus,1,10,100000000000010000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
-Craftie.Seed = "Portheus,3,375,111111111111111111111111111111111100111111111010010001110111011111100010010101010001011010100110010000001110101000001001011010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111100111001010010010010101010010000100010010001110000100101010100010110101001001001010101011101110101010101010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111"
---Craftie.Seed = "Portheus,3,101,11111111111111111111111111111111111101111111111111111111111111111011111111111011111111111111111111111110111111111111101111111110110111011111111111111111110111111101111111111101111111111011111111101111111111111111111111111111111111111111111111111111111111011111111111111111111111011111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+--Craftie.Seed = "Portheus,3,101,111111111111111111111111111111111100111111111010010001110111011111100010010101010001011010100110010000001110101000001001011010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111100111001010010010010101010010000100010010001110000100101010100010110101001001001010101011101110101010101010101011111111101000100101010101011011111011010100101110100101010101010101001010010100100111"
+Craftie.Seed = "Portheus,3,375,1111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111101111111111111011111111101101110111111111111111111101111111011111111111111111111110111111111011111111111111111111111111111111111111111111111111111111110111111111111111111111110111111111111111111111111111111111111111111111111111111111111111111111101100011111111111111111111111111111111111111111111111111111111"
 
 function Craftie.Init()
   Craftie.TabSelect(1, false) --default 1st profession
@@ -221,7 +221,7 @@ function Craftie.SendPacket(prefix, data, channel, target)
   local packet = split(data, ",")
   if (prefix == Craftie.Packet.Prefix.Prof) then
     -- code | sender | profNum | profLevel | profData
-    repack = prefix .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.CompressBits(packet[4])
+    repack = prefix .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.BitCompression(packet[4], false)
   end
 
   C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
@@ -238,25 +238,34 @@ function Craftie.SendPacket(prefix, data, channel, target)
   Craftie.Notification("Sending Packet: " .. repack .. " [" .. #repack .. " / " .. #data .. "]", true)
 end
 
+Craftie.Get = {}
 function Craftie.ParsePacket(netpacket)
+  Craftie.Get = {} -- clear everytime
   if (string.sub(netpacket, 1, 1) == "!") then
     local packet = split(netpacket, ",")
-    local get = {}
-
-    get.prefix  = packet[1]
-    --print("Prefix: " .. get.prefix)
-    if (get.prefix == Craftie.Packet.Prefix.Prof) then
-      get.crafter = packet[2]
-      get.profnum = tonumber(packet[3])
-      get.level   = packet[4]
-      get.profdata= Craftie.DecompressBits(packet[5])
-
-      --print("Prof Name: " .. Craftie.Professions[get.profnum][1])
-      --print("Prof Crafter: " .. get.crafter)
-      --print("Prof Level: " .. get.level)
-      --print("Prof Data: " .. get.profdata)
-    end
     Craftie.Notification("Parsing Packet: " .. netpacket, true)
+
+    Craftie.Get.Prefix  = packet[1]
+
+    if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Prof) then
+      Craftie.Get.Crafter = packet[2]
+      Craftie.Get.ProfNum  = tonumber(packet[3])
+      Craftie.Get.ProfLevel= packet[4]
+      Craftie.Get.ProfData = Craftie.BitCompression(packet[5], true)
+      Craftie.Notification("Prof Name: " .. Craftie.Professions[Craftie.Get.ProfNum][1])
+      Craftie.Notification("Prof Crafter: " .. Craftie.Get.Crafter)
+      Craftie.Notification("Prof Level: " .. Craftie.Get.ProfLevel)
+      Craftie.Notification("Prof Data: " .. Craftie.Get.ProfData)
+
+      --TEST
+      local seed = split(Craftie.Seed, ",")
+      print("|n" .. seed[4])
+      if (seed[4] == Craftie.Get.ProfData) then
+        Craftie.Notification("Match!")
+      else
+        Craftie.Notification("Mismatch!")
+      end
+    end
   else
     Craftie.Notification("ERROR Malformed Packet: " .. netpacket, true)
   end
