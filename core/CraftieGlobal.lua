@@ -100,6 +100,23 @@ function Craftie.Init()
    --whisper self to prep incoming comms
   Craftie.SendPacket(Craftie.Packet.Prefix.Init, Craftie.player.name, "WHISPER", Craftie.player.name)
 
+  --TOCADB[TOCA.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
+  --CraftieDB[TOCA.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
+
+  if (CraftieDB == nil) then
+    CraftieDB = {}
+  end
+
+  --build everything bassed off of server and faction
+  if (CraftieDB[Craftie.player.realm]) then
+     CraftieDB[Craftie.player.realm] = {}
+  end
+
+  --build everything bassed off of server and faction
+  if (CraftieDB[Craftie.player.faction]) then
+     CraftieDB[Craftie.player.faction] = {}
+  end
+
   print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
 
   --print("Craftie.Seed " .. #Craftie.Seed)
@@ -217,11 +234,11 @@ function Craftie.SendPacket(prefix, data, channel, target)
   --if (channel == "GUILD") then
     --if (not IsInGuild()) then return end
   --end
-  local repack = prefix .. "," .. data
+  local repack = prefix .. "," .. Craftie._G.version .. "," .. data
   local packet = split(data, ",")
   if (prefix == Craftie.Packet.Prefix.Prof) then
     -- code | sender | profNum | profLevel | profData
-    repack = prefix .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.BitCompression(packet[4], false)
+    repack = prefix .. "," .. Craftie._G.version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.BitCompression(packet[4], false)
   end
 
   C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
@@ -241,33 +258,46 @@ end
 Craftie.Get = {}
 function Craftie.ParsePacket(netpacket)
   Craftie.Get = {} -- clear everytime
+  local stable_version = true --determine large version chunks or stability?!?
   if (string.sub(netpacket, 1, 1) == "!") then
     local packet = split(netpacket, ",")
     Craftie.Notification("Parsing Packet: " .. netpacket, true)
 
     Craftie.Get.Prefix  = packet[1]
+    Craftie.Get.Version = packet[2]
 
-    if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Prof) then
-      Craftie.Get.Crafter = packet[2]
-      Craftie.Get.ProfNum  = tonumber(packet[3])
-      Craftie.Get.ProfLevel= packet[4]
-      Craftie.Get.ProfData = Craftie.BitCompression(packet[5], true)
-      Craftie.Notification("Prof Name: " .. Craftie.Professions[Craftie.Get.ProfNum][1])
-      Craftie.Notification("Prof Crafter: " .. Craftie.Get.Crafter)
-      Craftie.Notification("Prof Level: " .. Craftie.Get.ProfLevel)
-      Craftie.Notification("Prof Data: " .. Craftie.Get.ProfData)
-
-      --TEST
-      local seed = split(Craftie.Seed, ",")
-      print("|n" .. seed[4])
-      if (seed[4] == Craftie.Get.ProfData) then
-        Craftie.Notification("Match!")
-      else
-        Craftie.Notification("Mismatch!")
-      end
+    if (Craftie.Get.Version > Craftie._G.version) then
+      Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.version .. "] of [" .. Craftie.Get.Version .. "]")
+      stable_version = false
     end
-  else
-    Craftie.Notification("ERROR Malformed Packet: " .. netpacket, true)
+    if (Craftie.Get.Version < Craftie._G.version) then
+      Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.version .. "]")
+      stable_version = false
+    end
+
+    if (stable_version) then
+      if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Prof) then
+        Craftie.Get.Crafter = packet[3]
+        Craftie.Get.ProfNum  = tonumber(packet[4])
+        Craftie.Get.ProfLevel= packet[5]
+        Craftie.Get.ProfData = Craftie.BitCompression(packet[6], true)
+        Craftie.Notification("Prof Name: " .. Craftie.Professions[Craftie.Get.ProfNum][1], true)
+        Craftie.Notification("Prof Crafter: " .. Craftie.Get.Crafter, true)
+        Craftie.Notification("Prof Level: " .. Craftie.Get.ProfLevel, true)
+        Craftie.Notification("Prof Data: " .. Craftie.Get.ProfData, true)
+
+        --DEBUG
+        local seed = split(Craftie.Seed, ",")
+        --Craftie.Notification("|nSeed Data: " .. seed[4], true)
+        if (seed[4] == Craftie.Get.ProfData) then
+          Craftie.Notification("|cFF00E033SUCCESS:|r Match!", true)
+        else
+          Craftie.Notification("|cFFFF0000ERROR:|r Mismatch!", true)
+        end
+      end
+    else
+      Craftie.Notification("|cFFFF0000ERROR:|r Malformed Packet: " .. netpacket, true)
+    end
   end
 end
 
@@ -469,7 +499,6 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       --example
       --Craftie.SendPacket(Craftie.LowCompression(Craftie.Seed, false), "WHISPER", "Terraintest")
       Craftie.SendPacket(Craftie.Packet.Prefix.Prof, Craftie.Seed, "WHISPER", "Terraintest")
-
     end)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
   end
@@ -501,7 +530,7 @@ end
 SLASH_Craftie1 = Craftie._G.CMD
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
-    --Craftie.Notification("Craftie")
+
     print(Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version)
     Craftie.Frame:Show()
     --Craftie.Notification
