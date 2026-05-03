@@ -33,7 +33,7 @@ Craftie.Professions={}
 Craftie.Packet ={}
 Craftie.Packet.Prefix = {
   Init = "!I", --init (onload)
-  Ping = "!P", --ask player
+  Ping = "!P", --request
   Prof = "!D", --bit data
 }
 

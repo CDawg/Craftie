@@ -261,21 +261,28 @@ function Craftie.ParsePacket(netpacket)
   local stable_version = true --determine large version chunks or stability?!?
   if (string.sub(netpacket, 1, 1) == "!") then
     local packet = split(netpacket, ",")
-    Craftie.Notification("Parsing Packet: " .. netpacket, true)
+    --Craftie.Notification("Parsing Packet: " .. netpacket, true)
 
     Craftie.Get.Prefix  = packet[1]
-    Craftie.Get.Version = packet[2]
+    Craftie.Get.Version = tonumber(packet[2])
 
-    if (Craftie.Get.Version > Craftie._G.version) then
+    if (Craftie.Get.Version > tonumber(Craftie._G.version)) then
       Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.version .. "] of [" .. Craftie.Get.Version .. "]")
       stable_version = false
     end
-    if (Craftie.Get.Version < Craftie._G.version) then
-      Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.version .. "]")
-      stable_version = false
+    if (Craftie.Get.Version < tonumber(Craftie._G.version)) then
+      if (Craftie.Get.Version < tonumber(Craftie._G.version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
+        Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.version .. "]")
+        stable_version = false
+      else
+        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.version .. "]")
+        stable_version = true
+      end
     end
 
     if (stable_version) then
+      Craftie.Notification("Parsing Packet: " .. netpacket, true)
+
       if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Prof) then
         Craftie.Get.Crafter = packet[3]
         Craftie.Get.ProfNum  = tonumber(packet[4])
