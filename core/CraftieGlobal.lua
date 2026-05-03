@@ -98,7 +98,7 @@ function Craftie.Init()
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
 
    --whisper self to prep incoming comms
-  Craftie.SendPacket(Craftie.Packet.Prefix.Init, Craftie.player.name, "WHISPER", Craftie.player.name)
+  Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.player.name, "WHISPER", Craftie.player.name)
 
   --TOCADB[TOCA.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
   --CraftieDB[TOCA.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
@@ -118,8 +118,6 @@ function Craftie.Init()
   end
 
   print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
-
-  --print("Craftie.Seed " .. #Craftie.Seed)
 end
 
 Craftie.Professions = {
@@ -236,7 +234,7 @@ function Craftie.SendPacket(prefix, data, channel, target)
   --end
   local repack = prefix .. "," .. Craftie._G.version .. "," .. data
   local packet = split(data, ",")
-  if (prefix == Craftie.Packet.Prefix.Prof) then
+  if (prefix == Craftie.Packet.Prefix.Data) then
     -- code | sender | profNum | profLevel | profData
     repack = prefix .. "," .. Craftie._G.version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.BitCompression(packet[4], false)
   end
@@ -256,6 +254,7 @@ function Craftie.SendPacket(prefix, data, channel, target)
 end
 
 Craftie.Get = {}
+Craftie.Notified = 0
 function Craftie.ParsePacket(netpacket)
   Craftie.Get = {} -- clear everytime
   local stable_version = true --determine large version chunks or stability?!?
@@ -267,8 +266,11 @@ function Craftie.ParsePacket(netpacket)
     Craftie.Get.Version = tonumber(packet[2])
 
     if (Craftie.Get.Version > tonumber(Craftie._G.version)) then
-      Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.version .. "] of [" .. Craftie.Get.Version .. "]")
+      if (Craftie.Notified ~= 1) then --dont spam the requester
+        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.version .. "] of [" .. Craftie.Get.Version .. "]")
+      end
       stable_version = false
+      Craftie.Notified = 1
     end
     if (Craftie.Get.Version < tonumber(Craftie._G.version)) then
       if (Craftie.Get.Version < tonumber(Craftie._G.version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
@@ -283,7 +285,8 @@ function Craftie.ParsePacket(netpacket)
     if (stable_version) then
       Craftie.Notification("Parsing Packet: " .. netpacket, true)
 
-      if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Prof) then
+      --get crafters book
+      if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Data) then
         Craftie.Get.Crafter = packet[3]
         Craftie.Get.ProfNum  = tonumber(packet[4])
         Craftie.Get.ProfLevel= packet[5]
@@ -302,6 +305,12 @@ function Craftie.ParsePacket(netpacket)
           Craftie.Notification("|cFFFF0000ERROR:|r Mismatch!", true)
         end
       end
+
+      --get ping request
+      if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Ping) then
+        --ping request, send book data, send built data from saved DB first?
+      end
+
     else
       Craftie.Notification("|cFFFF0000ERROR:|r Malformed Packet: " .. netpacket, true)
     end
@@ -505,7 +514,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       Craftie.ClearSelectedItem("Recipes")
       --example
       --Craftie.SendPacket(Craftie.LowCompression(Craftie.Seed, false), "WHISPER", "Terraintest")
-      Craftie.SendPacket(Craftie.Packet.Prefix.Prof, Craftie.Seed, "WHISPER", "Terraintest")
+      Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Terraintest")
     end)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
   end
@@ -538,7 +547,7 @@ SLASH_Craftie1 = Craftie._G.CMD
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
 
-    print(Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version)
+    --print(Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version)
     Craftie.Frame:Show()
     --Craftie.Notification
 		--for int,list in pairs(Craftie._L.COMMANDS) do
@@ -556,7 +565,7 @@ function SlashCmdList.Craftie(cmd)
   for k,v in pairs(Craftie.Professions) do
     local profcmd = "p" .. k
     if (cmd == profcmd) then
-      print("DEBUG: View ALL recipes [" .. Craftie.Professions[k][1] .. "]") --Craftie.Profession[Craftie.Professions[k][1]])
+      Craftie.Notification("View ALL recipes [" .. Craftie.Professions[k][1] .. "]", true) --Craftie.Profession[Craftie.Professions[k][1]])
       Craftie.OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "")
     end
   end

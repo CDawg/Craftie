@@ -32,9 +32,9 @@ Craftie.Professions={}
 
 Craftie.Packet ={}
 Craftie.Packet.Prefix = {
-  Init = "!I", --init (onload)
-  Ping = "!P", --request
-  Prof = "!D", --bit data
+  Load = "!L", --onload
+  Ping = "!P", --ping request
+  Data = "!D", --data chunk
 }
 
 function Craftie.BitCompression(packet, decompress)
