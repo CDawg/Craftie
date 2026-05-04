@@ -11,6 +11,7 @@
 # Library
 core/CraftieLibrary.lua
 core/CraftieEventManager.lua
+core/CraftieInit.lua
 library/reagents.lua
 library/alchemy.lua
 library/blacksmithing.lua

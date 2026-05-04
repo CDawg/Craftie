@@ -87,34 +87,6 @@ Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
 
-
-function Craftie.Init()
-  Craftie.TabSelect(1, false) --default 1st profession
-  Craftie.OpenProfessionList(Craftie.Profession.Query, "")
-
-   --whisper self to prep incoming comms
-  Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.player.name, "WHISPER", Craftie.player.name)
-
-  --TOCADB[TOCA.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
-  --CraftieDB[TOCA.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
-
-  if (CraftieDB == nil) then
-    CraftieDB = {}
-  end
-
-  --build everything bassed off of server and faction
-  if (CraftieDB[Craftie.player.realm]) then
-     CraftieDB[Craftie.player.realm] = {}
-  end
-
-  --build everything bassed off of server and faction
-  if (CraftieDB[Craftie.player.faction]) then
-     CraftieDB[Craftie.player.faction] = {}
-  end
-
-  print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
-end
-
 Craftie.Professions = {
   {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19"},
   {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48"},
@@ -597,8 +569,3 @@ function Craftie.BuildReagentGaps()
     Craftie.Reagent[v[1]] = {v[1], v[2]}
   end
 end
-
-C_Timer.After(1, function()
-  Craftie.BuildReagentGaps()
-  Craftie.Init()
-end)
