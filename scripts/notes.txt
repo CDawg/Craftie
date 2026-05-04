@@ -52,3 +52,20 @@ end)
 
 scrollBox:SetDataProvider(dataProvider)
 
+
+============= AI String Pattern Matching ==================
+
+In Lua, string.find is the primary tool for locating a substring or a specific pattern within a string. Unlike many other languages that use POSIX or PCRE regular expressions, Lua uses its own lightweight pattern-matching system designed for efficiency and a small memory footprint.The Basics of string.findThe function returns the start and end indices of the first match it finds. If it doesn't find a match, it returns nil.lualocal text = "The magic number is 42"
+local startIdx, endIdx = string.find(text, "magic")
+
+print(startIdx, endIdx) -- Output: 5 9
+Use code with caution.Character ClassesInstead of writing out every possibility, you use "classes" to represent groups of characters. In Lua, these usually start with a %.ClassDescription.All characters (wildcard)%aAll letters (upper and lower case)%dAll digits (0-9)%sAll whitespace characters (space, tab, newline)%wAll alphanumeric characters (letters and digits)%pAll punctuation characters%xAll hexadecimal digits%zThe character with representation 0 (null)Pro Tip: Using the uppercase version of any class (like %D or %S) matches the complement (anything except digits or except whitespace).Quantifiers (Repetition)Modifiers tell Lua how many times a character or class should appear:+: 1 or more repetitions (greedy).*: 0 or more repetitions (greedy).-: 0 or more repetitions (non-greedy/lazy).?: 0 or 1 occurrence (optional).Magic Characters & EscapingCharacters like ( ) . % + - * ? [ ^ $ have special meanings. To search for them literally, you must escape them with a %. For example, to find a literal period, use %..Anchors^: Matches at the start of the string.$: Matches at the end of the string.Quick Example: Finding a Phone NumberIf you want to find a simple pattern like (555) 123-4567:lualocal input = "Contact us at (555) 123-4567 today!"
+-- Pattern breakdown:
+-- %( %d%d%d %) : literal (, 3 digits, literal )
+-- %s+          : one or more spaces
+-- %d%d%d%-%d%d%d%d : 3 digits, literal -, 4 digits
+local s, e = string.find(input, "%(%d%d%d%)%s+%d%d%d%-%d%d%d%d")
+print(string.sub(input, s, e)) -- Output: (555) 123-4567
+Use code with caution.Plain SearchIf you don't want to deal with patterns at all and just want to find a literal string (ignoring all magic characters), you can pass true as the fourth argument:lua-- Find a literal "+" without escaping
+string.find("1 + 2", "+", 1, true) 
+Use code with caution.For more advanced needs, like replacing text or iterating through all matches, look into string.gsub and string.gmatch.

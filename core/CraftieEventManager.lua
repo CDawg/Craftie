@@ -38,20 +38,20 @@ Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
 
-Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, _casted, _spellID)
-  Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
+Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, data1, data2)
+  Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
 end)
 
 --C_ChatInfo.RegisterAddonMessagePrefix(prefix)
 
-function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
+function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.prefix)) then
 	    Craftie.Init()
       print("Craftie.Event[1] " .. prefix .. " | " .. event)
 	  end
 
-    --combat prevent here?
+    --print("event|n" .. event)
 
     --if (prefix) then
       --C_ChatInfo.RegisterAddonMessagePrefix(prefix)
@@ -69,13 +69,27 @@ function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
     end
     ]==]--
 
+    if (event == "CHAT_MSG_CHANNEL") then
+      --if string.find(prefix, "%[(..-) %((%d+)%)%]") then
+        --print("found it")
+      --end
+      --if string.find(prefix, "%[Craftie[%]]%") then
+      --string.gsub(prefix, "[Craftie[(%a+)]]", "")
+      --end
+      --print("who: " .. netpacket) --who
+
+      --print("data2: " .. data2)
+      --print("|cffF58E27|Hitem:payload|h[Blacksmithing]|h|r")
+      --|cffxxxxxx|Hitem:payload|h[text]|h|r
+    end
+
     if (event == "CHAT_MSG_ADDON") then
 			if (prefix == Craftie._G.prefix) then
         if (netpacket) then
           Craftie.ParsePacket(netpacket)
         end
         --[==[
-        print("Craftie.Event[3] " .. prefix .. " | " .. event .. " | " .. netpacket .. " | " .. _casted .. " | " .. _spellID)
+        print("Craftie.Event[3] " .. prefix .. " | " .. event .. " | " .. netpacket .. " | " .. data1 .. " | " .. data2)
         if (netpacket) then
           print("compressed " .. #netpacket)
           local decompress = Craftie.LowCompression(netpacket, true)
@@ -98,4 +112,29 @@ function Craftie.EventManager(self, event, prefix, netpacket, _casted, _spellID)
     end
     ]==]--
   end
+end
+
+function Craftie.ChatFilter(self, event, msg, author, ...)
+  --if msg:find("LINE TEST 1") then
+    --return true
+  --end
+  --local pattern = "[Craftie[(%a+)]]"
+  local pattern = "%[Craftie%[(%a+)%]%]"
+  if msg:find(pattern) then
+    return false, gsub(msg, pattern, "-HERE-"), author, ...
+  end
+end
+
+local ChannelList = {
+"CHAT_MSG_CHANNEL",
+"CHAT_MSG_SAY",
+"CHAT_MSG_YELL",
+"CHAT_MSG_WHISPER",
+"CHAT_MSG_RAID",
+"CHAT_MSG_GUILD",
+"CHAT_MSG_OFFICER",
+}
+
+for k,v in pairs(ChannelList) do
+  ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter)
 end
