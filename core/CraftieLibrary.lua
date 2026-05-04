@@ -37,7 +37,28 @@ Craftie.Packet.Prefix = {
   Data = "!D", --data chunk
 }
 
+function Craftie.BitDouble(packet, decompress)
+  local package = ""
+  local pos = {
+    {"fff","l"},{"101","j"},{"111",";"}, {"000","J"},
+    {":::","i"}, {"1m1","{"}, {"1D1","+"}, {"1B1","~"},
+  }
+
+  local rate = {}
+  rate[0] = packet
+  for k,v in pairs(pos) do
+    if (decompress) then
+      rate[k] = string.gsub(rate[k-1], v[2], v[1])
+    else
+      rate[k] = string.gsub(rate[k-1], v[1], v[2])
+    end
+  end
+  package = rate[#pos] --last key
+  return package
+end
+
 function Craftie.BitCompression(packet, decompress)
+  local dblcompression = true
   local package = ""
   --2 to the power of 5 = 32 (appears to be the safest compression)
   local pos = {
@@ -52,7 +73,16 @@ function Craftie.BitCompression(packet, decompress)
   }
 
   local rate = {}
-  rate[0] = packet
+  if (dblcompression) then
+    if (decompress) then
+      rate[0] = Craftie.BitDouble(packet, true)
+    else
+      rate[0] = packet
+    end
+  else
+    rate[0] = packet
+  end
+
   for k,v in pairs(pos) do
     if (decompress) then
       rate[k] = string.gsub(rate[k-1], v[2], v[1])
@@ -61,7 +91,16 @@ function Craftie.BitCompression(packet, decompress)
     end
   end
   package = rate[#pos] --last key
-  return package
+
+  if (dblcompression) then
+    if (decompress) then
+      return package
+    else
+      return Craftie.BitDouble(package, false)
+    end
+  else
+    return package
+  end
 end
 
 function arrayToString(array)
