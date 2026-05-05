@@ -20,13 +20,7 @@ Craftie.Event:RegisterEvent("CHAT_MSG_ADDON_LOGGED")
 Craftie.Event:RegisterEvent("CHAT_MSG_CHANNEL")
 Craftie.Event:RegisterEvent("CHAT_MSG_CHANNEL_LIST")
 Craftie.Event:RegisterEvent("CHAT_MSG_FILTERED")
-Craftie.Event:RegisterEvent("CHAT_MSG_GUILD")
-Craftie.Event:RegisterEvent("CHAT_MSG_PARTY")
-Craftie.Event:RegisterEvent("CHAT_MSG_PING")
-Craftie.Event:RegisterEvent("CHAT_MSG_RAID")
-Craftie.Event:RegisterEvent("CHAT_MSG_SAY")
-Craftie.Event:RegisterEvent("CHAT_MSG_SYSTEM")
-Craftie.Event:RegisterEvent("CHAT_MSG_WHISPER")
+--Craftie.Event:RegisterEvent("CHAT_MSG_PING")
 Craftie.Event:RegisterEvent("CRAFT_SHOW")
 Craftie.Event:RegisterEvent("CRAFT_CLOSE")
 Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
@@ -38,11 +32,25 @@ Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
 
+--channels used for linking and filtering
+Craftie.ChannelList = {
+"CHAT_MSG_CHANNEL",
+"CHAT_MSG_PARTY",
+"CHAT_MSG_SAY",
+"CHAT_MSG_SYSTEM",
+"CHAT_MSG_YELL",
+"CHAT_MSG_WHISPER",
+"CHAT_MSG_RAID",
+"CHAT_MSG_GUILD",
+"CHAT_MSG_OFFICER",
+}
+for k,v in pairs(Craftie.ChannelList) do
+  Craftie.Event:RegisterEvent(v)
+end
+
 Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, data1, data2)
   Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
 end)
-
---C_ChatInfo.RegisterAddonMessagePrefix(prefix)
 
 function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
@@ -68,20 +76,6 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
     ]==]--
-
-    if (event == "CHAT_MSG_CHANNEL") then
-      --if string.find(prefix, "%[(..-) %((%d+)%)%]") then
-        --print("found it")
-      --end
-      --if string.find(prefix, "%[Craftie[%]]%") then
-      --string.gsub(prefix, "[Craftie[(%a+)]]", "")
-      --end
-      --print("who: " .. netpacket) --who
-
-      --print("data2: " .. data2)
-      --print("|cffF58E27|Hitem:payload|h[Blacksmithing]|h|r")
-      --|cffxxxxxx|Hitem:payload|h[text]|h|r
-    end
 
     if (event == "CHAT_MSG_ADDON") then
 			if (prefix == Craftie._G.prefix) then
@@ -135,25 +129,6 @@ EventRegistry:RegisterCallback("SetItemRef", function(_, link, text, button, cha
     end
 end)
 
---[==[
-hooksecurefunc("SetItemRef", function(link)
-	local linkType, addonName, linkData = strsplit(":", link)
-	if linkType == "addon" and addonName == "Craftie" then
-        print("Link clicked: ", linkData)
-	end
-end)
-]==]--
-
-local ChannelList = {
-"CHAT_MSG_CHANNEL",
-"CHAT_MSG_SAY",
-"CHAT_MSG_YELL",
-"CHAT_MSG_WHISPER",
-"CHAT_MSG_RAID",
-"CHAT_MSG_GUILD",
-"CHAT_MSG_OFFICER",
-}
-
-for k,v in pairs(ChannelList) do
+for k,v in pairs(Craftie.ChannelList) do
   ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter)
 end
