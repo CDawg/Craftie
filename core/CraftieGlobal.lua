@@ -88,13 +88,13 @@ Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
 
 Craftie.Professions = {
-  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19"},
-  {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48"},
+  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmute Master"}},
+  {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48", {"Armorsmith", "Weaponsmith", "Swordsmith", "Hammersmith", "Axesmith"}},
   {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13"},
   {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83"},
-  {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25"},
-  {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42"},
-  {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88"},
+  {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25", {"Gnomish", "Goblin"}},
+  {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale", "Elemental", "Tribal"}},
+  {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth", "Shadoweave", "Spellfire"}},
   {"Jewelcrafting",  "INV_Misc_Gem_02",      "1.00, 0.25, 0.25"},
 }
 
