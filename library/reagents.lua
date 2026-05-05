@@ -2,7 +2,7 @@
 Copyright ©2026 Porthias of Dreamscythe
 
 The contents of this addon, excluding third-party resources, are
-copyrighted to Porthios with all rights reserved.
+copyrighted to Porthias with all rights reserved.
 This addon is free to use and the authors hereby grants you the following rights:
 1. You may make modifications to this addon for private use only, you
    may not publicize any portion of this addon.
