@@ -40,6 +40,7 @@ Craftie.Packet.Prefix = {
 function Craftie.BitDouble(packet, decompress)
   local package = ""
   local pos = {
+    {"fffff","L"},{":::::","r"},
     {"100","q"}, {"101","j"}, {"111",";"}, {"000","J"},
     {":::","i"}, {"1m1","{"}, {"1D1","+"}, {"1B1","~"},
     {"fff","l"}, {"ff0","x"}, {"ff0","X"}, {"f00","Z"}
