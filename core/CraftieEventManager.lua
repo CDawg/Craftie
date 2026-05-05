@@ -121,9 +121,28 @@ function Craftie.ChatFilter(self, event, msg, author, ...)
   --local pattern = "[Craftie[(%a+)]]"
   local pattern = "%[Craftie%[(%a+)%]%]"
   if msg:find(pattern) then
-    return false, gsub(msg, pattern, "-HERE-"), author, ...
+    return false, gsub(msg, pattern, "|cffF58E27|Haddon:Craftie:" .. author .. "|h[Blacksmithing]|h|r"), author, ...
   end
 end
+
+EventRegistry:RegisterCallback("SetItemRef", function(_, link, text, button, chatFrame)
+    local linkType, addonName, linkData = strsplit(":", link)
+    if ((linkType == "addon") and (addonName == "Craftie")) then
+      print("Link clicked:", linkData)
+      --GameTooltip:AddLine("Craftie")
+      --GameTooltip:Show()
+      Craftie.Frame:Show()
+    end
+end)
+
+--[==[
+hooksecurefunc("SetItemRef", function(link)
+	local linkType, addonName, linkData = strsplit(":", link)
+	if linkType == "addon" and addonName == "Craftie" then
+        print("Link clicked: ", linkData)
+	end
+end)
+]==]--
 
 local ChannelList = {
 "CHAT_MSG_CHANNEL",

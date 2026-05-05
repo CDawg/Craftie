@@ -15,6 +15,7 @@ the copyright holders.
 
 
 function Craftie.Init()
+  Craftie.BuildReagentGaps()
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
 
@@ -28,20 +29,17 @@ function Craftie.Init()
     CraftieDB = {}
   end
 
-  --build everything bassed off of server and faction
-  if (CraftieDB[Craftie.player.realm]) then
-     CraftieDB[Craftie.player.realm] = {}
-  end
-
-  --build everything bassed off of server and faction
-  if (CraftieDB[Craftie.player.faction]) then
-     CraftieDB[Craftie.player.faction] = {}
+  --build everything bassed off of server, then faction
+  if (CraftieDB[Craftie.player.realm] == nil) then
+    CraftieDB[Craftie.player.realm] = {}
+    if (CraftieDB[Craftie.player.realm][Craftie.player.faction] == nil) then
+      CraftieDB[Craftie.player.realm][Craftie.player.faction] = {}
+    end
   end
 
   print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
 end
 
-C_Timer.After(1, function()
-  Craftie.BuildReagentGaps()
+C_Timer.After(0.5, function()
   Craftie.Init()
 end)
