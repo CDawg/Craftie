@@ -46,7 +46,7 @@ function Craftie.Init()
  	    local minimapIconPos = Craftie.Split(CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MINIMAP"], ",")
 	    if ((minimapIconPos[1]) and (minimapIconPos[2])) then
         Craftie.UpdateMapButton()
-	      Craftie.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1]+130, minimapIconPos[2]+22)
+	      Craftie.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1]+126, minimapIconPos[2]+22)
       end
     end
     --if (CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["SHARE"]) then

@@ -630,25 +630,6 @@ Craftie.Button.Minimap.BorderOn:SetTexture("Interface/COMMON/portrait-ring-withb
 Craftie.Button.Minimap.BorderOn:SetAlpha(0.6)
 Craftie.Button.Minimap.BorderOn:Hide()
 
-local thisIconPos = 0
-function Craftie.SaveMapButtonPos()
-	--Craftie.UpdateMapButton()
-  local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Button.Minimap:GetPoint()
-	CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
-  --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
-  Craftie.UpdateMapButton()
-end
-
-function Craftie.UpdateMapButton()
-  local Xpoa, Ypoa = GetCursorPosition()
-  local Xmin, Ymin = Minimap:GetLeft(), Minimap:GetBottom()
-  Xpoa = Xmin - Xpoa / Minimap:GetEffectiveScale() + 70
-  Ypoa = Ypoa / Minimap:GetEffectiveScale() - Ymin - 70
-  thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
-  Craftie.Button.Minimap:ClearAllPoints()
-  Craftie.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-56)
-end
-
 Craftie.Button.Minimap:RegisterForDrag("LeftButton")
 Craftie.Button.Minimap:SetScript("OnDragStart", function()
     Craftie.Button.Minimap:StartMoving()
