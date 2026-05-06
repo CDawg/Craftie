@@ -40,7 +40,7 @@ if (Craftie.Game.version == 1) then
   Craftie._G.suffix = "Classic"
 end
 
-Craftie.Stamp = Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version
+Craftie._G.Stamp = Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version
 
 Craftie.Framelevel = {
   Background= 0,

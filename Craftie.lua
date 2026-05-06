@@ -28,7 +28,7 @@ end)
 Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Frame:StopMovingOrSizing()
   local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame:GetPoint()
-  CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS"] = point .. "," .. xOfs .. "," .. yOfs
+  CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
   Craftie.Notification("[" .. Craftie.player.combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true)
 end)
 
@@ -602,3 +602,77 @@ Craftie.Button.Options:SetScript("OnClick", function(self)
   --Craftie.FrameOptions:Show()
 end)
 --UI-SquareButton-Up
+
+Craftie.Button.Minimap={}
+--Craftie.Button.Minimap.Border={}
+
+Craftie.Button.Minimap = CreateFrame("Button", nil, Minimap)
+Craftie.Button.Minimap:SetFrameLevel(499)
+Craftie.Button.Minimap:SetFrameStrata("TOOLTIP")
+Craftie.Button.Minimap:SetSize(32, 32)
+Craftie.Button.Minimap:SetMovable(true)
+Craftie.Button.Minimap:SetPoint("TOPRIGHT", -5, 0)
+Craftie.Button.Minimap.Border = Craftie.Button.Minimap:CreateTexture(nil, "BORDER")
+Craftie.Button.Minimap.Border:SetSize(Craftie.Button.Minimap:GetWidth()-4, Craftie.Button.Minimap:GetHeight()-4)
+Craftie.Button.Minimap.Border:SetPoint("CENTER", 0, 0)
+--Craftie.Button.Minimap.Icon:SetTexture("Interface/UNITPOWERBARALT/WowUI_Circular_Frame")
+Craftie.Button.Minimap.Border:SetTexture("Interface/COMMON/ringborder")
+Craftie.Button.Minimap.Border:SetDrawLayer("BORDER", 6)
+Craftie.Button.Minimap.BorderBG = Craftie.Button.Minimap:CreateTexture(nil, "BORDER")
+Craftie.Button.Minimap.BorderBG:SetSize(Craftie.Button.Minimap:GetWidth()-4, Craftie.Button.Minimap:GetHeight()-4)
+Craftie.Button.Minimap.BorderBG:SetPoint("CENTER", 0, 0)
+Craftie.Button.Minimap.BorderBG:SetTexture(Craftie._G.dir .. "images/icon_default.tga")
+Craftie.Button.Minimap.Border:SetDrawLayer("BORDER", 4)
+Craftie.Button.Minimap.BorderOn = Craftie.Button.Minimap:CreateTexture(nil, "ARTWORK")
+Craftie.Button.Minimap.BorderOn:SetSize(Craftie.Button.Minimap:GetWidth()+24, Craftie.Button.Minimap:GetHeight()+24)
+Craftie.Button.Minimap.BorderOn:SetPoint("CENTER", 0, 0)
+Craftie.Button.Minimap.BorderOn:SetTexture("Interface/COMMON/portrait-ring-withbg-highlight")
+Craftie.Button.Minimap.BorderOn:SetAlpha(0.6)
+Craftie.Button.Minimap.BorderOn:Hide()
+
+local thisIconPos = 0
+function Craftie.SaveMapButtonPos()
+	--Craftie.UpdateMapButton()
+  local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Button.Minimap:GetPoint()
+	CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
+  --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
+  Craftie.UpdateMapButton()
+end
+
+function Craftie.UpdateMapButton()
+  local Xpoa, Ypoa = GetCursorPosition()
+  local Xmin, Ymin = Minimap:GetLeft(), Minimap:GetBottom()
+  Xpoa = Xmin - Xpoa / Minimap:GetEffectiveScale() + 70
+  Ypoa = Ypoa / Minimap:GetEffectiveScale() - Ymin - 70
+  thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
+  Craftie.Button.Minimap:ClearAllPoints()
+  Craftie.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-56)
+end
+
+Craftie.Button.Minimap:RegisterForDrag("LeftButton")
+Craftie.Button.Minimap:SetScript("OnDragStart", function()
+    Craftie.Button.Minimap:StartMoving()
+    Craftie.Button.Minimap:SetScript("OnUpdate", Craftie.UpdateMapButton)
+end)
+Craftie.Button.Minimap:SetScript("OnDragStop", function()
+    Craftie.Button.Minimap:StopMovingOrSizing()
+    Craftie.Button.Minimap:SetScript("OnUpdate", nil)
+		Craftie.SaveMapButtonPos()
+end)
+
+Craftie.Button.Minimap:SetScript("OnEnter", function(self)
+  GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+  GameTooltip:AddLine("|cffffffffCraftie|r")
+  GameTooltip:Show()
+	Craftie.Button.Minimap.BorderOn:Show()
+end)
+Craftie.Button.Minimap:SetScript("OnLeave", function(self)
+	--Craftie.CloseAllMenus()
+  GameTooltip:Hide()
+  Craftie.Button.Minimap.BorderOn:Hide()
+end)
+
+Craftie.Button.Minimap:SetScript("OnClick", function()
+  Craftie.Frame:Show()
+  PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+end)

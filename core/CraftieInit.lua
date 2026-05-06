@@ -29,24 +29,34 @@ function Craftie.Init()
     CraftieDB[Craftie.player.realm][Craftie.player.faction] = {}
     CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name] = {}
     CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"] = {}
- 
+
     if (CraftieDB[Craftie.player.realm][Craftie.player.faction]["CRAFTERS"] == nil) then
-      CraftieDB[Craftie.player.realm][Craftie.player.faction]["CRAFTERS"] = {} --shared for that server & faction
+      CraftieDB[Craftie.player.realm][Craftie.player.faction]["CRAFTERS"] = {} --shared across characters for server & faction
     end
 
     Craftie.Notification("Building Profile: " .. Craftie.player.realm .. "-" ..  Craftie.player.faction)
   else
-    if (CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS"]) then
+    if (CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MAIN"]) then
       local FramePos = {}
-      FramePos = Craftie.Split(CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS"], ",")
+      FramePos = Craftie.Split(CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MAIN"], ",")
       Craftie.Frame:ClearAllPoints()
       Craftie.Frame:SetPoint(FramePos[1], tonumber(FramePos[2]), tonumber(FramePos[3]))
     end
+    if (CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MINIMAP"]) then
+ 	    local minimapIconPos = Craftie.Split(CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MINIMAP"], ",")
+	    if ((minimapIconPos[1]) and (minimapIconPos[2])) then
+        Craftie.UpdateMapButton()
+	      Craftie.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1]+130, minimapIconPos[2]+22)
+      end
+    end
+    --if (CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["SHARE"]) then
+      -- disable sharing across characters of same server and faction?
+    --end
 
     Craftie.Notification("Loading Profile: " .. Craftie.player.realm .. "-" ..  Craftie.player.faction .. "-" .. Craftie.player.name)
   end
 
-  print(Craftie.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
+  print(Craftie._G.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
 
    --whisper self to prep incoming comms
   Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.player.name, "WHISPER", Craftie.player.name)
