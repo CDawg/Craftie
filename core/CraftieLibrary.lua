@@ -105,15 +105,17 @@ function Craftie.BitCompression(packet, decompress)
   end
 end
 
-function arrayToString(array)
+--[==[
+function Craftie.ArrayToString(array)
   formstring=""
   for k,v in pairs(array) do
     formstring = formstring .. v .. "|n"
   end
   return formstring
 end
+]==]--
 
-function split(s, delimiter)
+function Craftie.Split(s, delimiter)
   result = {}
   if (s) then
     for match in (s..delimiter):gmatch("(.-)"..delimiter) do
@@ -123,36 +125,15 @@ function split(s, delimiter)
   return result
 end
 
-function isempty(s)
+function Craftie.IsEmpty(s)
   return s == nil or s == ''
 end
 
-function table.merge(t1, t2)
- for k,v in ipairs(t2) do
-    table.insert(t1, v)
- end
-  return t1
-end
-
-function pairsByKeys(t, f)
-  local a = {}
-  for n in pairs(t) do table.insert(a, n) end
-  table.sort(a, f)
-  local i = 0
-  local iter = function()
-    i = i + 1
-    if a[i] == nil then return nil
-    else return a[i], t[a[i]]
-    end
-  end
-  return iter
-end
-
-function firstToUpper(str)
+function Craftie.FirstToUpper(str)
   return (str:gsub("^%l", string.upper))
 end
 
-function getKeyFromValue(_array, value, index)
+function Craftie.GetKeyFromValue(_array, value, index)
   if ((index == nil) or (index == 0)) then
 		for k,v in pairs(_array) do
 			if v==value then return k end
@@ -166,97 +147,13 @@ function getKeyFromValue(_array, value, index)
 	end
 end
 
-local function insertUnique(t, value)
-  local seen = {}
-  for _, v in ipairs(t) do seen[v] = true end
-
-  if not seen[value] then
-      table.insert(t, value)
-  end
-end
-
-function reindexArray(input, reval)
-  local n=#input
-  for i=1,n do
-    if reval[input[i]] then
-      input[i]=nil
-    end
-  end
-  local j=0
-  for i=1,n do
-    if input[i]~=nil then
-      j=j+1
-      input[j]=input[i]
-    end
-  end
-  for i=j+1,n do
-    input[i]=nil
-  end
-end
-
-function reindexArraySafe(array)
-  local n=0
-  local newArray={}
-  for i,v in pairs(array) do
-    n=n+1
-    newArray[n] = v
-  end
-  return newArray
-end
-
-function matchString(source, target)
-	local _source_match = ""
-	local _target_match = ""
-	local _source_reiterate = 1
-	local _target_reiterate = 1
-	if ((source) and (target)) then
-		for _split in string.gmatch(source, "%a+") do
-			_source_reiterate = _source_reiterate -1
-			if (_source_reiterate >= 0) then
-				_source_match = _source_match .. string.lower(_split)
-		  end
-		end
-		for _split in string.gmatch(target, "%a+") do
-			_target_reiterate = _target_reiterate -1
-			if (_target_reiterate >= 0) then
-				_target_match = _target_match .. string.lower(_split)
-			end
-		end
-
-		if (_source_match == _target_match) then
-			return 1
-		end
-	end
-end
-
-function TimeSecondsToMinutes(time)
-  local minutes = floor(mod(time, 3600)/60)
-  local seconds = floor(mod(time, 60))
-	if (minutes <= -1) then
-		minutes = 0
-	end
-	if (seconds <= -1) then
-		seconds = 0
-	end
-  return format("%2d:%02d", minutes, seconds)
-end
-
-function round(number)
-  if (number - (number % 0.1)) - (number - (number % 1)) < 0.5 then
-    number = number - (number % 1)
-  else
-    number = (number - (number % 1)) + 1
-  end
- return number
-end
-
-function SortTableByString(tbl) --alpha second key
+function Craftie.SortTableByString(tbl) --alpha second key
   table.sort(tbl, function(a, b)
     return string.lower(a[2]) < string.lower(b[2])
   end)
 end
 
-function SortTableByMatch(tbl, search)
+function Craftie.SortTableByMatch(tbl, search)
     search = string.lower(search or "")
     local matchCount = 0
 

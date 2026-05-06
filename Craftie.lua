@@ -28,7 +28,7 @@ end)
 Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Frame:StopMovingOrSizing()
   local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame:GetPoint()
-  -- CraftieDB[Craftie.player.combine]["CONFIG"]["MAINPOS"] = point .. "," .. xOfs .. "," .. yOfs
+  CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS"] = point .. "," .. xOfs .. "," .. yOfs
   Craftie.Notification("[" .. Craftie.player.combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true)
 end)
 
@@ -71,7 +71,6 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.TabSide.Frame[i].Icon:SetTexture("Interface/Icons/" .. v[2])
   Craftie.TabSide.Frame[i].Icon:SetDesaturation(0.30)
   Craftie.TabSide.Frame[i].Icon:SetDrawLayer("ARTWORK", -2)
-  --Craftie.TabSide.Frame[i].Icon:SetMask("Interface/ChatFrame/UI-ChatIcon-HotS")
   Craftie.TabSide.Frame[i].Shadow = CreateFrame("Frame", Craftie.TabSide.Frame[i].Shadow, Craftie.TabSide.Frame[i], "BackdropTemplate")
   Craftie.TabSide.Frame[i].Shadow:SetWidth(32)
   Craftie.TabSide.Frame[i].Shadow:SetHeight(32)

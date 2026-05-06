@@ -207,7 +207,7 @@ function Craftie.SendPacket(prefix, data, channel, target)
     --if (not IsInGuild()) then return end
   --end
   local repack = prefix .. "," .. Craftie._G.version .. "," .. data
-  local packet = split(data, ",")
+  local packet = Craftie.Split(data, ",")
   if (prefix == Craftie.Packet.Prefix.Data) then
     -- code | sender | profNum | profLevel | profData
     repack = prefix .. "," .. Craftie._G.version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.BitCompression(packet[4], false)
@@ -244,7 +244,7 @@ function Craftie.ParsePacket(netpacket)
   Craftie.Get = {} -- clear everytime
   local stable_version = true --determine large version chunks or stability?!?
   if (string.sub(netpacket, 1, 1) == "!") then
-    local packet = split(netpacket, ",")
+    local packet = Craftie.Split(netpacket, ",")
     --Craftie.Notification("Parsing Packet: " .. netpacket, true)
 
     Craftie.Get.Prefix  = packet[1]
@@ -286,7 +286,7 @@ function Craftie.ParsePacket(netpacket)
         local lperc = hperc -100
 
         --this is ONLY local seed data testing
-        local seed = split(Craftie.Seed, ",")
+        local seed = Craftie.Split(Craftie.Seed, ",")
         --Craftie.Notification("|nSeed Data: " .. seed[4], true)
         if (seed[4] == Craftie.Get.ProfData) then
           Craftie.Notification("|cFF00E033SUCCESS:|r Match!", true)
@@ -320,7 +320,7 @@ function Craftie.ItemDetails(item)
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0
      Craftie.Frame.Reagent.Main[i]:Hide()
-    if (not isempty(item[5][i])) then
+    if (not Craftie.IsEmpty(item[5][i])) then
       local r = 0
       local inv_count= C_Item.GetItemCount(item[5][i][1])
       local inv_req = item[5][i][2]
@@ -330,7 +330,7 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
       Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
 
-      r = getKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
+      r = Craftie.GetKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
       --C_Timer.After(0.12, function()
       local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item[5][i][1])
       local loadcache = 0
@@ -430,8 +430,8 @@ function Craftie.ItemDetails(item)
       end
     end)
 
-    local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
-    local prof_color = split(Craftie.Professions[prof_list][3], ",")
+    local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
+    local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
     Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
     Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
     --Craftie.Frame.Craft.Skill:Hide()
@@ -478,7 +478,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
   Craftie.Frame.Scroll.Recipes.Empty:SetText("")
   --Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
   if (search:len() >= 3) then
-    local matches = SortTableByMatch(prof, search)
+    local matches = Craftie.SortTableByMatch(prof, search)
     if (matches >= 1) then
       total_recipes = matches
     else
@@ -488,7 +488,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     end
     Craftie.Frame.Scroll.Recipes.Results:SetText(matches .. " |cfffffb63Result(s)")
   else
-    SortTableByString(prof)
+    Craftie.SortTableByString(prof)
     Craftie.Frame.Scroll.Recipes.Results:SetText(total_recipes .. " |cfffffb63Result(s)")
   end
   for i=1, Craftie.MAX_RECIPES do
@@ -510,8 +510,8 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
   end
   Craftie.Profession.Query = prof
 
-  local prof_list = getKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
-  local prof_color = split(Craftie.Professions[prof_list][3], ",")
+  local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
+  local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
 end
@@ -524,7 +524,7 @@ function Craftie.SelectCrafter(index, name)
   if (index == 1) then
     --clear player selection?
   else
-    if (not isempty(name)) then
+    if (not Craftie.IsEmpty(name)) then
       print(name)
       Craftie.Selected_Players = index
       Craftie.ClearSelectedItem("Players")
@@ -558,6 +558,7 @@ function SlashCmdList.Craftie(cmd)
       Craftie.OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "")
     end
   end
+
 end
 
 --caching tooltip data. preload unknown data
