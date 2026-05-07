@@ -16,7 +16,6 @@ the copyright holders.
 Craftie.Frame = CreateFrame("Frame", Craftie.Frame, UIParent, "ButtonFrameTemplate")
 Craftie.Frame:SetWidth(Craftie._G.Width)
 Craftie.Frame:SetHeight(Craftie._G.Height)
---Craftie.Frame:SetPoint("CENTER", 0, -140)
 Craftie.Frame:SetPoint("CENTER", 0, 0)
 Craftie.Frame:SetFrameStrata("MEDIUM")
 Craftie.Frame:SetMovable(true)
@@ -32,6 +31,23 @@ Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Notification("[" .. Craftie.player.combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true)
 end)
 
+--[==[
+Craftie.BotLeft = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
+Craftie.BotLeft:SetSize(40, 35)
+Craftie.BotLeft:SetPoint("BOTTOMLEFT", 4, -1)
+Craftie.BotLeft:SetTexture(Craftie._G.dir .. "images/UI_Craftie_InsetEnd.png")
+]==]--
+Craftie.BotMidd = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
+Craftie.BotMidd:SetSize(Craftie.Frame:GetWidth()-12, 35)
+Craftie.BotMidd:SetPoint("BOTTOMLEFT", 6, -1)
+Craftie.BotMidd:SetHorizTile(true)
+Craftie.BotMidd:SetTexture(Craftie._G.dir .. "images/UI_Craftie_InsetMidd.png", "REPEAT")
+--[==[
+Craftie.BotRight = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
+Craftie.BotRight:SetSize(64, 35)
+Craftie.BotRight:SetPoint("BOTTOMRIGHT", -2, -1)
+Craftie.BotRight:SetTexture(Craftie._G.dir .. "images/UI_Craftie_BotRight.png")
+]==]--
 Craftie.Icon = Craftie.Frame:CreateTexture(nil, "ARTWORK")
 Craftie.Icon:SetSize(54, 54)
 Craftie.Icon:SetPoint("TOPLEFT", -4, 4)
@@ -151,6 +167,7 @@ Craftie.Frame.Parent.Scroll.Players.Back:SetSize(Craftie.Frame.Parent.Scroll.Pla
 Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", 0, 0)
 --Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/EncounterJournal/UI-EJ-Classic")
 Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/Garrison/TalentTreeChromie")
+--Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/PetBattles/MountJournal-BG")
 
 Craftie.Frame.Parent.Scroll.Players.ScrollBar = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetSize(14, Craftie.Frame.Parent.Scroll.Players:GetHeight()-8)
@@ -161,8 +178,8 @@ Craftie.Frame.Scroll={}
 Craftie.Frame.Scroll.Players = {}
 Craftie.Frame.Scroll.Players.List = {}
 Craftie.Frame.Scroll.Players_Width = 210
---Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-90
-Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-200
+Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-90
+--Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-200
 
 Craftie.Frame.Scroll.Players = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players)
 Craftie.Frame.Scroll.Players:SetWidth(Craftie.Frame.Scroll.Players_Width)
@@ -315,7 +332,7 @@ Craftie.Frame.Scroll.Recipes.List.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Crafti
 
 Craftie.Frame.Scroll.Recipes.Results = Craftie.Frame.Scroll.Recipes:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Scroll.Recipes.Results:SetFont(Craftie._G.font, Craftie._G.fontSize, "OUTLINE")
-Craftie.Frame.Scroll.Recipes.Results:SetPoint("BOTTOMRIGHT", 0, -20)
+Craftie.Frame.Scroll.Recipes.Results:SetPoint("BOTTOMLEFT", 8, -20)
 Craftie.Frame.Scroll.Recipes.Results:SetText("")
 
 Craftie.Frame.Scroll.Recipes.Empty = Craftie.Frame.Scroll.Recipes:CreateFontString(nil, "ARTWORK")

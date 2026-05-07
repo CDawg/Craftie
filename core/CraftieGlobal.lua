@@ -504,7 +504,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       Craftie.Selected_Recipes = i
       Craftie.ClearSelectedItem("Recipes")
       --example
-      Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
+      --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
     end)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
   end

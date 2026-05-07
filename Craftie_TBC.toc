@@ -38,6 +38,7 @@ core/CraftieGlobal.lua
 # core/TotemInit.lua
 # core/TotemEventManager.lua
 Craftie.lua
+core/CraftieNavigation.lua
 # core/TotemHelp.lua
 # core/TotemOptions.lua
 # core/TotemSets.lua
