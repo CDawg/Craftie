@@ -13,28 +13,8 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.CREDIT = {
-  "Zzaps",
-  "|nAnd a few nameless heroes on Dreamscythe|n",
-  "Written by |cff006aa6Porthias|r (a.k.a. Port)",
-}
-Craftie.CONTACT = {
-  "|n|cffffdf96Curseforge|r|nhttps://www.curseforge.com/wow/addons/craftie/",
-  "|n|cffffdf96Discord (.porthios)|r|nhttps://discordapp.com/users/238146303324979200",
-}
-
-Craftie.INTRO = { --localize this?
-  {
-    "|cfffa7634 Totem Caddy Devs are looking for language translators! Please click the contact tab to get more details if you would like to contribute to Totem Caddy!|r",
-    "",
-    "|cfffab734First time using Totem Caddy?|r",
-    "Select the Help tab for more info|n|n",
-    "UPDATES",
-  },
-}
-
-Craftie.HELP={}
-Craftie.HELP.Tabs = {"Professions", "Updates", "Help", "Contact", "Logger"}
+Craftie.Nav={}
+Craftie.Nav.Tabs = {"Professions", "Updates", "Help", "Logger"}
 
 Craftie.Wrap = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
 Craftie.Wrap:SetSize(Craftie.Frame:GetWidth()-14, Craftie.Frame:GetHeight()-70)
@@ -50,21 +30,23 @@ Craftie.Wrap.BG:SetVertTile(true)
 Craftie.Wrap.BG:SetTexture("Interface/FrameGeneral/UI-Background-Marble", "REPEAT", "REPEAT")
 ]==]--
 
-function Craftie.TabBottomSelect(tab)
-
+function Craftie.TabBottomSelect(tab, sound)
   Craftie.Frame.Parent.Scroll.Players:Hide()
   Craftie.Frame.Parent.Scroll.Recipes:Hide()
   Craftie.Frame.Parent.Craft:Hide()
   Craftie.Logger:Hide()
-  Craftie.Frame.Title.Sub:Hide()
+  Craftie.Frame.Title.Sub:Show()
   Craftie.Frame.Title.Prof:Hide()
 
-  Craftie.Frame.Title.Sub:SetText(Craftie.HELP.Tabs[tab])
+  Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
+  
 
-  for k,v in pairs(Craftie.HELP.Tabs) do
+  for k,v in pairs(Craftie.Nav.Tabs) do
     Craftie.TabBottom[k].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab-InactiveTab")
+    Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   end
   if (tab == 1) then
+    Craftie.Frame.Title.Sub:Hide()
     Craftie.Frame.Title.Prof:Show()
     --Craftie.BotLeft:Hide()
     --Craftie.BotMidd:Hide()
@@ -72,19 +54,24 @@ function Craftie.TabBottomSelect(tab)
     Craftie.Frame.Parent.Scroll.Players:Show()
     Craftie.Frame.Parent.Scroll.Recipes:Show()
   end
-  if (tab == 5) then
-    Craftie.Frame.Title.Sub:Show()
+  if (tab == 4) then
     Craftie.Logger:Show()
   end
+
   Craftie.TabBottom[tab].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
-  PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+  Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
+
+  if (sound) then
+    PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+  end
 end
 
 Craftie.TabBottom={}
-for k,v in pairs(Craftie.HELP.Tabs) do
+local bottomTabOffset = 330
+for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(74, 32)
-  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -400+((Craftie.TabBottom[k]:GetWidth()+4)*k), -28)
+  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -28)
   Craftie.TabBottom[k]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.TabBottom[k]:SetBackdropColor(0, 1, 0, 0)
   Craftie.TabBottom[k]:SetBackdropBorderColor(1, 1, 1, 0)
@@ -106,9 +93,9 @@ for k,v in pairs(Craftie.HELP.Tabs) do
   Craftie.TabBottom[k].Text:SetFont(Craftie._G.font, 10, "OUTLINE")
   Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
   Craftie.TabBottom[k].Text:SetText(v)
-  Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 1)
+  Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   Craftie.TabBottom[k]:SetScript("OnClick", function(self)
-    Craftie.TabBottomSelect(k)
+    Craftie.TabBottomSelect(k, true)
   end)
   Craftie.TabBottom[k]:SetScript("OnEnter", function(self)
     --Craftie.TooltipDisplay(self, Craftie._G.title, Craftie.Addon)

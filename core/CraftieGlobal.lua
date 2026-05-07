@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.DEBUG = false
+Craftie.DEBUG = true
 
 Craftie._G = {
   author   = "Porthias",
@@ -84,7 +84,7 @@ function Craftie.Notification(msg, debug)
   if (Craftie.Frame ~= nil) then
     local history = Craftie.Logger.Data:GetText()
     --chrono top
-    Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%y%m%d %H:%M:%S") .. "]|r|n" .. msg .. "|n|n" .. history)
+    Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%Y%m%d %H:%M:%S") .. "]|r|n" .. msg .. "|n|n" .. history)
     --Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%Y%m%d%H%M%S") .. "]|r|n" .. msg .. "|n|n" .. history)
     --Craftie.Logger.Data:SetText(history .. "|n|n ----- " .. date("%Y%m%d [%H%M%S]") .. " -----|n" .. msg)
   end
@@ -151,7 +151,8 @@ function Craftie.TabSelect(tab, sound)
   Craftie.TabSide.Frame[tab].Glow:Show()
   Craftie.TabSide.Frame[tab].Shadow:Hide()
   if (sound) then
-    PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+    --PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+    PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
   end
 end
 
@@ -279,10 +280,10 @@ function Craftie.ParsePacket(netpacket)
         Craftie.Get.ProfNum  = Craftie.Professions[tonumber(packet[5])][1]
         Craftie.Get.ProfLevel= packet[6]
         Craftie.Get.ProfData = Craftie.BitCompression(packet[7], true)
-        Craftie.Notification("Prof Name: " .. Craftie.Get.ProfNum, true)
-        Craftie.Notification("Crafter Name: " .. Craftie.Get.CrafterN, true)
-        Craftie.Notification("Crafter Class: " .. Craftie.Get.CrafterC, true)
-        Craftie.Notification("Prof Level: " .. Craftie.Get.ProfLevel, true)
+        --Craftie.Notification("Prof Name: " .. Craftie.Get.ProfNum, true)
+        --Craftie.Notification("Crafter Name: " .. Craftie.Get.CrafterN, true)
+        --Craftie.Notification("Crafter Class: " .. Craftie.Get.CrafterC, true)
+        --Craftie.Notification("Prof Level: " .. Craftie.Get.ProfLevel, true)
         Craftie.Notification("Prof Data: " .. Craftie.Get.ProfData, true)
 
         --DEBUG

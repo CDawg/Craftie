@@ -17,6 +17,7 @@ the copyright holders.
 function Craftie.Init()
   Craftie.BuildReagentGaps()
   Craftie.TabSelect(1, false) --default 1st profession
+  Craftie.TabBottomSelect(1, false)
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
 
   if (CraftieDB == nil) then
