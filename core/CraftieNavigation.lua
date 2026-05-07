@@ -34,7 +34,7 @@ Craftie.INTRO = { --localize this?
 }
 
 Craftie.HELP={}
-Craftie.HELP.Tabs = {"Professions", "Updates", "Help", "Contact", "Credit"}
+Craftie.HELP.Tabs = {"Professions", "Updates", "Help", "Contact", "Logger"}
 
 Craftie.Wrap = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
 Craftie.Wrap:SetSize(Craftie.Frame:GetWidth()-14, Craftie.Frame:GetHeight()-70)
@@ -51,18 +51,30 @@ Craftie.Wrap.BG:SetTexture("Interface/FrameGeneral/UI-Background-Marble", "REPEA
 ]==]--
 
 function Craftie.TabBottomSelect(tab)
-  for k,v in pairs(Craftie.HELP.Tabs) do
-    Craftie.TabBottom[k].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab-InactiveTab")
-  end
+
   Craftie.Frame.Parent.Scroll.Players:Hide()
   Craftie.Frame.Parent.Scroll.Recipes:Hide()
   Craftie.Frame.Parent.Craft:Hide()
+  Craftie.Logger:Hide()
+  Craftie.Frame.Title.Sub:Hide()
+  Craftie.Frame.Title.Prof:Hide()
+
+  Craftie.Frame.Title.Sub:SetText(Craftie.HELP.Tabs[tab])
+
+  for k,v in pairs(Craftie.HELP.Tabs) do
+    Craftie.TabBottom[k].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab-InactiveTab")
+  end
   if (tab == 1) then
+    Craftie.Frame.Title.Prof:Show()
     --Craftie.BotLeft:Hide()
     --Craftie.BotMidd:Hide()
     Craftie.Frame.Parent.Craft:Show()
     Craftie.Frame.Parent.Scroll.Players:Show()
     Craftie.Frame.Parent.Scroll.Recipes:Show()
+  end
+  if (tab == 5) then
+    Craftie.Frame.Title.Sub:Show()
+    Craftie.Logger:Show()
   end
   Craftie.TabBottom[tab].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
   PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)

@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.DEBUG = true
+Craftie.DEBUG = false
 
 Craftie._G = {
   author   = "Porthias",
@@ -81,6 +81,13 @@ function Craftie.Notification(msg, debug)
   if (not debug) then
     print(Craftie._G.title .. " " .. msg)
   end
+  if (Craftie.Frame ~= nil) then
+    local history = Craftie.Logger.Data:GetText()
+    --chrono top
+    Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%y%m%d %H:%M:%S") .. "]|r|n" .. msg .. "|n|n" .. history)
+    --Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%Y%m%d%H%M%S") .. "]|r|n" .. msg .. "|n|n" .. history)
+    --Craftie.Logger.Data:SetText(history .. "|n|n ----- " .. date("%Y%m%d [%H%M%S]") .. " -----|n" .. msg)
+  end
 end
 
 Craftie.MAX_REAGENTS = 6
@@ -105,7 +112,7 @@ Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Selected_Players = 1
 Craftie.Selected_Recipes = 1
 Craftie.Selected_ViewAll = "View All Recipes" --default
-Craftie.Preload = "Loading Data..."
+Craftie.Preload = "|cFF27CCF5Loading Data...|r"
 
 -- Global Frames
 Craftie.Frame={}
@@ -224,7 +231,7 @@ function Craftie.SendPacket(prefix, data, channel, target)
     --Craftie.Notification("Send " .. channel, true)
   end
 
-  Craftie.Notification("Sending Packet: " .. repack .. " [" .. #repack .. "]", true)
+  Craftie.Notification("|CFF89DE49Sending Packet:|r " .. repack .. " [" .. #repack .. "]", true)
 end
 
 --Seed examples
@@ -241,7 +248,6 @@ function Craftie.ParsePacket(netpacket)
   local stable_version = true --determine large version chunks or stability?!?
   if (string.sub(netpacket, 1, 1) == "!") then
     local packet = Craftie.Split(netpacket, ",")
-    --Craftie.Notification("Parsing Packet: " .. netpacket, true)
 
     Craftie.Get.Prefix  = packet[1]
     Craftie.Get.Version = tonumber(packet[2])
@@ -264,7 +270,7 @@ function Craftie.ParsePacket(netpacket)
     end
 
     if (stable_version) then
-      Craftie.Notification("Parsing Packet: " .. netpacket, true)
+      Craftie.Notification("|CFFD177F7Parsing Packet: |r" .. netpacket, true)
 
       --get crafters data
       if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Data) then
@@ -503,7 +509,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       Craftie.Selected_Recipes = i
       Craftie.ClearSelectedItem("Recipes")
       --example
-      --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
+      Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
     end)
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
   end

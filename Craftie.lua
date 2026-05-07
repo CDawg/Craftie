@@ -48,6 +48,12 @@ Craftie.Frame.Title:SetFont(Craftie._G.font, 12, "OUTLINE")
 Craftie.Frame.Title:SetPoint("TOPLEFT", 65, -5)
 Craftie.Frame.Title:SetText(Craftie.Stamp)
 
+Craftie.Frame.Title.Sub = Craftie.Frame:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Title.Sub:SetFont(Craftie._G.font, 14, "OUTLINE")
+Craftie.Frame.Title.Sub:SetPoint("TOPLEFT", 65, -35)
+Craftie.Frame.Title.Sub:SetText("")
+Craftie.Frame.Title.Sub:Hide()
+
 Craftie.Frame.Title.Prof = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Prof:SetFont(Craftie._G.font, 14, "OUTLINE")
 Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 65, -35)
@@ -151,17 +157,17 @@ Craftie.Frame.Parent.Scroll.Players:SetWidth(210)
 Craftie.Frame.Parent.Scroll.Players:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.Parent.Scroll.Players:SetPoint("TOPLEFT", 2, -61)
 
---[==[
 Craftie.Frame.Parent.Scroll.Players.Back = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Parent.Scroll.Players.Back:SetSize(208, Craftie._G.Height-88)
-Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", 4, 0)
-Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/GLUES/Models/UI_MainMenu_Legion/UI_Legion_Rocks_02")
-]==]--
+Craftie.Frame.Parent.Scroll.Players.Back:SetSize(185, Craftie._G.Height-95)
+Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", 4, -5)
+Craftie.Frame.Parent.Scroll.Players.Back:SetTexture(Craftie._G.dir .. "images/stationary_players")
 
+--[==[
 Craftie.Frame.Parent.Scroll.Players.ScrollBar = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BORDER")
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetSize(14, Craftie.Frame.Parent.Scroll.Players:GetHeight()-8)
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Parent.Scroll.Players:GetWidth()-32, -4)
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetTexture("Interface/COMMON/ThinBorder-Right")
+]==]--
 
 Craftie.Frame.Scroll={}
 Craftie.Frame.Scroll.Players = {}
@@ -593,7 +599,6 @@ Craftie.Button.Options:SetScript("OnClick", function(self)
   Craftie.Frame:Hide()
   --Craftie.FrameOptions:Show()
 end)
---UI-SquareButton-Up
 
 Craftie.Button.Minimap={}
 --Craftie.Button.Minimap.Border={}
