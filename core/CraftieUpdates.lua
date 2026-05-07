@@ -55,3 +55,7 @@ Craftie.Updates.Data:ClearFocus(self)
 Craftie.Updates.Data:SetAutoFocus(false)
 Craftie.Updates.Data:SetText("")
 Craftie.Updates:Hide()
+
+--Craftie.Update = Craftie.ArrayToString(TOCA._L.INTRO[1]) .. "|n" .. TOCA.CHANGELOG:gsub("###", ""):gsub("*", "|cfffab734>|r") .. "|n|n|n"
+Craftie.Update = Craftie.CHANGELOG:gsub("###", ""):gsub("*", "|cfffab734>|r") .. "|n|n|n"
+Craftie.Updates.Data:SetText(Craftie.Update)

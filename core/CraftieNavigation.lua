@@ -35,24 +35,28 @@ function Craftie.TabBottomSelect(tab, sound)
   Craftie.Frame.Parent.Scroll.Recipes:Hide()
   Craftie.Frame.Parent.Craft:Hide()
   Craftie.Logger:Hide()
-  Craftie.Frame.Title.Sub:Show()
+  Craftie.Updates:Hide()
+  Craftie.Help:Hide()
   Craftie.Frame.Title.Prof:Hide()
-
-  Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
-  
+  Craftie.Frame.Title.Sub:Show()
 
   for k,v in pairs(Craftie.Nav.Tabs) do
     Craftie.TabBottom[k].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab-InactiveTab")
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   end
+
   if (tab == 1) then
     Craftie.Frame.Title.Sub:Hide()
     Craftie.Frame.Title.Prof:Show()
-    --Craftie.BotLeft:Hide()
-    --Craftie.BotMidd:Hide()
     Craftie.Frame.Parent.Craft:Show()
     Craftie.Frame.Parent.Scroll.Players:Show()
     Craftie.Frame.Parent.Scroll.Recipes:Show()
+  end
+  if (tab == 2) then
+    Craftie.Updates:Show()
+  end
+  if (tab == 3) then
+    Craftie.Help:Show()
   end
   if (tab == 4) then
     Craftie.Logger:Show()
@@ -60,6 +64,7 @@ function Craftie.TabBottomSelect(tab, sound)
 
   Craftie.TabBottom[tab].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
+  Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
 
   if (sound) then
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)

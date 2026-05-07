@@ -36,7 +36,8 @@ library/tailoring.lua
 
 core/CraftieGlobal.lua
 Craftie.lua
+changelog.lua
 core/CraftieLogger.lua
 core/CraftieNavigation.lua
-
-changelog.lua
+core/CraftieHelp.lua
+core/CraftieUpdates.lua
