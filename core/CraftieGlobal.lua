@@ -174,12 +174,12 @@ function SetItemTooltip(frame, itemID, enchant)
   GameTooltip:Show()
 end
 
-function Craftie.GetProfessionsPlayer()
+function Craftie.GetPlayerProfessions()
 	local pass = false
 	local skills = {}
 	local skillnum = 0
-	local header1 = string.lower( TRADE_SKILLS )
-	local header2 = string.lower( SECONDARY_SKILLS )
+	local header1 = string.lower(TRADE_SKILLS)
+	local header2 = string.lower(SECONDARY_SKILLS)
 	for k = 1, GetNumSkillLines( ) do
 		local name, header = GetSkillLineInfo( k )
 		if header ~= nil then
@@ -209,8 +209,8 @@ function Craftie.SendPacket(prefix, data, channel, target)
   local repack = prefix .. "," .. Craftie._G.version .. "," .. data
   local packet = Craftie.Split(data, ",")
   if (prefix == Craftie.Packet.Prefix.Data) then
-    -- code | sender | profNum | profLevel | profData
-    repack = prefix .. "," .. Craftie._G.version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. Craftie.BitCompression(packet[4], false)
+    -- code | senderVer | senderName | senderClass | profNum | profLevel | profData
+    repack = prefix .. "," .. Craftie._G.version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie.BitCompression(packet[5], false)
   end
 
   C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
@@ -224,19 +224,15 @@ function Craftie.SendPacket(prefix, data, channel, target)
     --Craftie.Notification("Send " .. channel, true)
   end
 
-  --local hperc = (#repack / #data)*100
-  --local lperc = hperc -100
-
-  --Craftie.Notification("Sending Packet: " .. repack .. " [" .. #repack .. " / " .. #data .. "][" .. math.ceil(lperc) .. "%]", true)
   Craftie.Notification("Sending Packet: " .. repack .. " [" .. #repack .. "]", true)
 end
 
 --Seed examples
 --sendpacket examples
---Craftie.Seed = "Portheus,1,32,10001010010000010101000101110101100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
---Craftie.Seed = "Portheus,1,62,100000000000010000000000000000111100000000000000000001000000000000000000010101010101101110111111111100000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000100000000000000000011000000000000000000000000000000000000000000000010000000000011100000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000010111111111111010111111111110000000"
-Craftie.Seed = "Portheus,3,131,11111111111111111111111111111111110111111111010010001110111011111100010010101010010110110011001000000111010100010010110101010111111111010001001010101010110111110110101001011101001010101010101010010100101001001111001110010100100100101010100100001000100100011100001001010101000101101010010010010101010111011101010101010101010111111111010001001010101010110111110110101001011111101001011111011101111011011011111111101100101111100101001001111111111111101111111110101111111111111111111111110"
---Craftie.Seed = "Portheus,3,375,111111111111111111011111111111111101111111111111111111111111111110001111111111111111111110111111111111111111111101111111111111011111111101101110111111111111111111101111111011111111111111111111110111111111011111111111111111111111111111111111111111111111111111111110111111111111111111111110111111111111111111111111111111111111111111111111111111111111111111111101100011111111111111111111111111111111111111111111111111111111"
+--Craftie.Seed = "Portheus,3,1,32,10001010010000010101000101110101100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
+--Craftie.Seed = "Portheus,3,1,62,100000000000010000000000000000111100000000000000000001000000000000000000010101010101101110111111111100000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000100000000000000000011000000000000000000000000000000000000000000000010000000000011100000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000010111111111111010111111111110000000"
+Craftie.Seed = "Portheus,3,3,131,11111111111111111111111111111111110111111111010010001110111011111100010010101010010110110011001000000111010100010010110101010111111111010001001010101010110111110110101001011101001010101010101010010100101001001111001110010100100100101010100100001000100100011100001001010101000101101010010010010101010111011101010101010101010111111111010001001010101010110111110110101001011111101001011111011101111011011011111111101100101111100101001001111111111111101111111110101111111111111111111111110"
+--Craftie.Seed = "Portheus,3,3,375,111111111111111111011111111111111101111111111111111111111111111110001111111111111111111110111111111111111111111101111111111111011111111101101110111111111111111111101111111011111111111111111111110111111111011111111111111111111111111111111111111111111111111111111110111111111111111111111110111111111111111111111111111111111111111111111111111111111111111111111101100011111111111111111111111111111111111111111111111111111111"
 
 Craftie.Get = {}
 Craftie.Notified = 0
@@ -270,14 +266,16 @@ function Craftie.ParsePacket(netpacket)
     if (stable_version) then
       Craftie.Notification("Parsing Packet: " .. netpacket, true)
 
-      --get crafters book
+      --get crafters data
       if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Data) then
-        Craftie.Get.Crafter = packet[3]
-        Craftie.Get.ProfNum  = tonumber(packet[4])
-        Craftie.Get.ProfLevel= packet[5]
-        Craftie.Get.ProfData = Craftie.BitCompression(packet[6], true)
-        Craftie.Notification("Prof Name: " .. Craftie.Professions[Craftie.Get.ProfNum][1], true)
-        Craftie.Notification("Prof Crafter: " .. Craftie.Get.Crafter, true)
+        Craftie.Get.CrafterN = packet[3]
+        Craftie.Get.CrafterC = Craftie.Class[tonumber(packet[4])][1]
+        Craftie.Get.ProfNum  = Craftie.Professions[tonumber(packet[5])][1]
+        Craftie.Get.ProfLevel= packet[6]
+        Craftie.Get.ProfData = Craftie.BitCompression(packet[7], true)
+        Craftie.Notification("Prof Name: " .. Craftie.Get.ProfNum, true)
+        Craftie.Notification("Crafter Name: " .. Craftie.Get.CrafterN, true)
+        Craftie.Notification("Crafter Class: " .. Craftie.Get.CrafterC, true)
         Craftie.Notification("Prof Level: " .. Craftie.Get.ProfLevel, true)
         Craftie.Notification("Prof Data: " .. Craftie.Get.ProfData, true)
 
@@ -288,7 +286,7 @@ function Craftie.ParsePacket(netpacket)
         --this is ONLY local seed data testing
         local seed = Craftie.Split(Craftie.Seed, ",")
         --Craftie.Notification("|nSeed Data: " .. seed[4], true)
-        if (seed[4] == Craftie.Get.ProfData) then
+        if (seed[5] == Craftie.Get.ProfData) then
           Craftie.Notification("|cFF00E033SUCCESS:|r Match!", true)
         else
           Craftie.Notification("|cFFFF0000ERROR:|r Mismatch!", true)
@@ -474,6 +472,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
   --print("prof count " .. #prof)
   local total_recipes = #prof
   local total_search = 0
+  local results = "|cfffffb63Recipe(s)"
   Craftie.Frame.Scroll.Recipes.Results:SetText("")
   Craftie.Frame.Scroll.Recipes.Empty:SetText("")
   --Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
@@ -486,10 +485,10 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       total_recipes = 0
       Craftie.Frame.Scroll.Recipes.Empty:SetText('No Recipes|n"' .. search .. '"')
     end
-    Craftie.Frame.Scroll.Recipes.Results:SetText(matches .. " |cfffffb63Result(s)")
+    Craftie.Frame.Scroll.Recipes.Results:SetText(matches .. " " .. results)
   else
     Craftie.SortTableByString(prof)
-    Craftie.Frame.Scroll.Recipes.Results:SetText(total_recipes .. " |cfffffb63Result(s)")
+    Craftie.Frame.Scroll.Recipes.Results:SetText(total_recipes .. " " .. results)
   end
   for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
@@ -512,7 +511,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
 
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
-  Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
+  --Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
 end
 
@@ -558,7 +557,6 @@ function SlashCmdList.Craftie(cmd)
       Craftie.OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "")
     end
   end
-
 end
 
 --caching tooltip data. preload unknown data

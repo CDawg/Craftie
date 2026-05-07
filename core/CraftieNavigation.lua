@@ -105,4 +105,6 @@ for k,v in pairs(Craftie.HELP.Tabs) do
     --Craftie.TooltipDisplay(self, Craftie._G.title, Craftie.Addon)
   end)
 end
+--first tab
+Craftie.TabBottom[1].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
 --UI-FriendsFrameTab-InactiveTab

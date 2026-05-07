@@ -31,23 +31,12 @@ Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Notification("[" .. Craftie.player.combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true)
 end)
 
---[==[
-Craftie.BotLeft = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
-Craftie.BotLeft:SetSize(40, 35)
-Craftie.BotLeft:SetPoint("BOTTOMLEFT", 4, -1)
-Craftie.BotLeft:SetTexture(Craftie._G.dir .. "images/UI_Craftie_InsetEnd.png")
-]==]--
 Craftie.BotMidd = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
 Craftie.BotMidd:SetSize(Craftie.Frame:GetWidth()-12, 35)
 Craftie.BotMidd:SetPoint("BOTTOMLEFT", 6, -1)
 Craftie.BotMidd:SetHorizTile(true)
-Craftie.BotMidd:SetTexture(Craftie._G.dir .. "images/UI_Craftie_InsetMidd.png", "REPEAT")
---[==[
-Craftie.BotRight = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
-Craftie.BotRight:SetSize(64, 35)
-Craftie.BotRight:SetPoint("BOTTOMRIGHT", -2, -1)
-Craftie.BotRight:SetTexture(Craftie._G.dir .. "images/UI_Craftie_BotRight.png")
-]==]--
+Craftie.BotMidd:SetTexture(Craftie._G.dir .. "images/UI_Craftie_InsetMidd_Dark.png", "REPEAT")
+
 Craftie.Icon = Craftie.Frame:CreateTexture(nil, "ARTWORK")
 Craftie.Icon:SetSize(54, 54)
 Craftie.Icon:SetPoint("TOPLEFT", -4, 4)
@@ -162,14 +151,14 @@ Craftie.Frame.Parent.Scroll.Players:SetWidth(210)
 Craftie.Frame.Parent.Scroll.Players:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.Parent.Scroll.Players:SetPoint("TOPLEFT", 2, -61)
 
+--[==[
 Craftie.Frame.Parent.Scroll.Players.Back = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Parent.Scroll.Players.Back:SetSize(Craftie.Frame.Parent.Scroll.Players:GetWidth()+88, Craftie.Frame.Parent.Scroll.Players:GetHeight()+62)
-Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", 0, 0)
---Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/EncounterJournal/UI-EJ-Classic")
-Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/Garrison/TalentTreeChromie")
---Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/PetBattles/MountJournal-BG")
+Craftie.Frame.Parent.Scroll.Players.Back:SetSize(208, Craftie._G.Height-88)
+Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", 4, 0)
+Craftie.Frame.Parent.Scroll.Players.Back:SetTexture("Interface/GLUES/Models/UI_MainMenu_Legion/UI_Legion_Rocks_02")
+]==]--
 
-Craftie.Frame.Parent.Scroll.Players.ScrollBar = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Parent.Scroll.Players.ScrollBar = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BORDER")
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetSize(14, Craftie.Frame.Parent.Scroll.Players:GetHeight()-8)
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Parent.Scroll.Players:GetWidth()-32, -4)
 Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetTexture("Interface/COMMON/ThinBorder-Right")
@@ -192,7 +181,7 @@ Craftie.Frame.Scroll.Players.List:SetWidth(Craftie.Frame.Scroll.Players_Width)
 Craftie.Frame.Scroll.Players.List:SetHeight(Craftie.Frame.Scroll.Players_Height)
 Craftie.Frame.Scroll.Players.List:SetPoint("CENTER", 0, 0)
 Craftie.Frame.Scroll.Players.List:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.Scroll.Players.List:SetBackdropColor(0, 0, 0, 0.2) --shade
+Craftie.Frame.Scroll.Players.List:SetBackdropColor(0, 0.4, 1, 0.05) --shade
 Craftie.Frame.Scroll.Players.List:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.Scroll.Players.List.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.Scroll.Players.List, "UIPanelScrollFrameTemplate")
 Craftie.Frame.Scroll.Players.List.Child:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Players.List, "TOPLEFT", 3, -30)
@@ -451,30 +440,16 @@ Craftie.Frame.Craft.Source:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.Craft.Source:Hide()
 
 Craftie.Frame.Craft.Back = Craftie.Frame.Parent.Craft:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Craft.Back:SetSize(150, 110)
-Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", -150, 0)
-Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock")
-Craftie.Frame.Craft.Back = Craftie.Frame.Parent.Craft:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Craft.Back:SetSize(150, 110)
-Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", -2, 0)
-Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock")
---Craftie.Frame.Craft.Back:SetTexture("Interface/TradeSkillFrame/UI-Tradeskill-BlacksmithBG-Top")
+Craftie.Frame.Craft.Back:SetSize(300, 110)
+Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", 0, 0)
+Craftie.Frame.Craft.Back:SetHorizTile(true)
+--Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock", "REPEAT")
+Craftie.Frame.Craft.Back:SetTexture("Interface/Garrison/GarrisonMissionUIInfoBoxBackgroundTile", "REPEAT")
+
 Craftie.Frame.Craft.Divider = Craftie.Frame.Parent.Craft:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.Divider:SetSize(400, 24)
 Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 98, 90)
 Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
-
---[==[
-Craftie.Frame.Craft.BotLeft = Craftie.Frame.Parent.Craft:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Craft.BotLeft:SetSize(180, 90)
-Craftie.Frame.Craft.BotLeft:SetPoint("BOTTOMRIGHT", -124, -13)
-Craftie.Frame.Craft.BotLeft:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Honor-BottomLeft")
-Craftie.Frame.Craft.BotLeft:SetDrawLayer("BACKGROUND", 1)
-Craftie.Frame.Craft.BotRight= Craftie.Frame.Parent.Craft:CreateTexture(nil, "BORDER")
-Craftie.Frame.Craft.BotRight:SetSize(100, 90)
-Craftie.Frame.Craft.BotRight:SetPoint("BOTTOMRIGHT", 54, -13)
-Craftie.Frame.Craft.BotRight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Honor-BottomRight")
-]==]--
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
