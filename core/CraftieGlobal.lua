@@ -16,18 +16,13 @@ the copyright holders.
 Craftie.DEBUG = true
 
 Craftie._G = {
-  author   = "Porthias",
-  CMD      = "/craftie",
+  Author   = "Porthias",
   Width  = 820,
   Height = 460,
   Prefix   = "CRAHH",
   Suffix   = "TBC Anniversary", --default
-  color    = "|cffF58E27",
-  date     = date("%Y%m%d"),
-  update   = 20260608,
+  Update   = 20260608,
 }
-
-Craftie._G.Title = Craftie._G.color .. Craftie._G.Prefix .. "|r"
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
 
@@ -38,10 +33,13 @@ if (Craftie.Game.Version == 1) then
 end
 
 Craftie._G.Font={}
-Craftie._G.Stamp = Craftie._G.color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version
 Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/FRIZQT__.ttf"
 Craftie._G.Font.Size = 11
+Craftie._G.Font.Color = "|cffF58E27"
+
 Craftie._G.Path = "Interface/Addons/Craftie/"
+Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
+Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
 Craftie.Framelevel = {
   Background= 0,
@@ -519,7 +517,7 @@ SLASH_Craftie1 = "/" .. Craftie._G.Prefix
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
 
-    --print(Craftie._G.color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version)
+    --print(Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version)
     Craftie.Frame:Show()
     --Craftie.Notification
 		--for int,list in pairs(Craftie._L.COMMANDS) do

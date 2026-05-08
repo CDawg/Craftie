@@ -56,7 +56,7 @@ function Craftie.Init()
     Craftie.Notification("Loading Profile: " .. Craftie.player.realm .. "-" ..  Craftie.player.faction .. "-" .. Craftie.player.name)
   end
 
-  print(Craftie._G.Stamp .. " Loaded. Type " .. Craftie._G.CMD .. " to open.")
+  print(Craftie._G.Stamp .. " Loaded. Type " .. SLASH_Craftie1 .. " to open.")
 
    --whisper self to prep incoming comms
   Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.player.name, "WHISPER", Craftie.player.name)
