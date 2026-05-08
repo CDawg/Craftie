@@ -31,8 +31,8 @@ Craftie.Wrap.BG:SetTexture("Interface/FrameGeneral/UI-Background-Marble", "REPEA
 ]==]--
 
 function Craftie.TabBottomSelect(tab, sound)
-  Craftie.Frame.Parent.Scroll.Players:Hide()
-  Craftie.Frame.Parent.Scroll.Recipes:Hide()
+  Craftie.Frame.Scroll.Parent.Players:Hide()
+  Craftie.Frame.Scroll.Parent.Recipes:Hide()
   Craftie.Frame.Parent.Craft:Hide()
   Craftie.Logger:Hide()
   Craftie.Updates:Hide()
@@ -49,8 +49,8 @@ function Craftie.TabBottomSelect(tab, sound)
     Craftie.Frame.Title.Sub:Hide()
     Craftie.Frame.Title.Prof:Show()
     Craftie.Frame.Parent.Craft:Show()
-    Craftie.Frame.Parent.Scroll.Players:Show()
-    Craftie.Frame.Parent.Scroll.Recipes:Show()
+    Craftie.Frame.Scroll.Parent.Players:Show()
+    Craftie.Frame.Scroll.Parent.Recipes:Show()
   end
   if (tab == 2) then
     Craftie.Updates:Show()

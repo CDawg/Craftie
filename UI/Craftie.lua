@@ -142,34 +142,35 @@ end
 --[==[
 SCROLL PLAYERS
 ]==]--
-Craftie.Frame.Parent={}
-Craftie.Frame.Parent.Scroll={}
-
-Craftie.Frame.Parent.Scroll.Players = CreateFrame("Frame", Craftie.Frame.Parent.Scroll.Players, Craftie.Frame, "InsetFrameTemplate")
-Craftie.Frame.Parent.Scroll.Players:SetWidth(210)
-Craftie.Frame.Parent.Scroll.Players:SetHeight(Craftie._G.Height-88)
-Craftie.Frame.Parent.Scroll.Players:SetPoint("TOPLEFT", 2, -61)
-
---[==[
-Craftie.Frame.Parent.Scroll.Players.Back = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Parent.Scroll.Players.Back:SetSize(185, Craftie._G.Height-95)
-Craftie.Frame.Parent.Scroll.Players.Back:SetPoint("TOPLEFT", 4, -5)
-Craftie.Frame.Parent.Scroll.Players.Back:SetTexture(Craftie._G.dir .. "images/stationary_players")
-]==]--
-
-Craftie.Frame.Parent.Scroll.Players.ScrollBar = Craftie.Frame.Parent.Scroll.Players:CreateTexture(nil, "BORDER")
-Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetSize(5, Craftie.Frame.Parent.Scroll.Players:GetHeight()-6)
-Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Parent.Scroll.Players:GetWidth()-25, -4)
-Craftie.Frame.Parent.Scroll.Players.ScrollBar:SetTexture("Interface/COMMON/ThinBorder-Right")
 
 Craftie.Frame.Scroll={}
+Craftie.Frame.Scroll.Parent={}
+
+Craftie.Frame.Scroll.Parent.Players = CreateFrame("Frame", Craftie.Frame.Scroll.Parent.Players, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.Scroll.Parent.Players:SetWidth(210)
+Craftie.Frame.Scroll.Parent.Players:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.Scroll.Parent.Players:SetPoint("TOPLEFT", 2, -61)
+
+--[==[
+Craftie.Frame.Scroll.Parent.Players.Back = Craftie.Frame.Scroll.Parent.Players:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Scroll.Parent.Players.Back:SetSize(185, Craftie._G.Height-95)
+Craftie.Frame.Scroll.Parent.Players.Back:SetPoint("TOPLEFT", 4, -5)
+Craftie.Frame.Scroll.Parent.Players.Back:SetTexture(Craftie._G.dir .. "images/stationary_players")
+]==]--
+
+Craftie.Frame.Scroll.Parent.Players.ScrollBar = Craftie.Frame.Scroll.Parent.Players:CreateTexture(nil, "BORDER")
+Craftie.Frame.Scroll.Parent.Players.ScrollBar:SetSize(5, Craftie.Frame.Scroll.Parent.Players:GetHeight()-6)
+Craftie.Frame.Scroll.Parent.Players.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.Scroll.Parent.Players:GetWidth()-25, -4)
+Craftie.Frame.Scroll.Parent.Players.ScrollBar:SetTexture("Interface/COMMON/ThinBorder-Right")
+
+--Craftie.Frame.Scroll={}
 Craftie.Frame.Scroll.Players = {}
 Craftie.Frame.Scroll.Players.List = {}
 Craftie.Frame.Scroll.Players_Width = 210
 Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-90
 --Craftie.Frame.Scroll.Players_Height= Craftie._G.Height-200
 
-Craftie.Frame.Scroll.Players = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players)
+Craftie.Frame.Scroll.Players = CreateFrame("Frame", nil, Craftie.Frame.Scroll.Parent.Players)
 Craftie.Frame.Scroll.Players:SetWidth(Craftie.Frame.Scroll.Players_Width)
 Craftie.Frame.Scroll.Players:SetHeight(Craftie.Frame.Scroll.Players_Height)
 Craftie.Frame.Scroll.Players:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
@@ -197,7 +198,7 @@ SEARCH PLAYERS
 ]==]--
 Craftie.Frame.Search={}
 Craftie.Frame.Search.Player={}
-Craftie.Frame.Search.Player = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players, "BackdropTemplate", 2)
+Craftie.Frame.Search.Player = CreateFrame("Frame", nil, Craftie.Frame.Scroll.Parent.Players, "BackdropTemplate", 2)
 Craftie.Frame.Search.Player:SetWidth(150)
 Craftie.Frame.Search.Player:SetHeight(24)
 Craftie.Frame.Search.Player:SetPoint("TOPLEFT", 4, -1)
@@ -275,19 +276,19 @@ end
 --[==[
 SCROLL RECIPES
 ]==]--
-Craftie.Frame.Parent.Scroll.Recipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "InsetFrameTemplate")
-Craftie.Frame.Parent.Scroll.Recipes:SetWidth(300)
-Craftie.Frame.Parent.Scroll.Recipes:SetHeight(Craftie._G.Height-88)
-Craftie.Frame.Parent.Scroll.Recipes:SetPoint("TOPLEFT", 212, -61)
+Craftie.Frame.Scroll.Parent.Recipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.Scroll.Parent.Recipes:SetWidth(300)
+Craftie.Frame.Scroll.Parent.Recipes:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.Scroll.Parent.Recipes:SetPoint("TOPLEFT", 212, -61)
 
-Craftie.Frame.Parent.Scroll.Recipes.Back = Craftie.Frame.Parent.Scroll.Recipes:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Parent.Scroll.Recipes.Back:SetSize(Craftie.Frame.Parent.Scroll.Recipes:GetWidth()+166, Craftie.Frame.Parent.Scroll.Recipes:GetHeight()+185)
-Craftie.Frame.Parent.Scroll.Recipes.Back:SetPoint("TOPLEFT", 6, -5)
-Craftie.Frame.Parent.Scroll.Recipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
+Craftie.Frame.Scroll.Parent.Recipes.Back = Craftie.Frame.Scroll.Parent.Recipes:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Scroll.Parent.Recipes.Back:SetSize(Craftie.Frame.Scroll.Parent.Recipes:GetWidth()+166, Craftie.Frame.Scroll.Parent.Recipes:GetHeight()+185)
+Craftie.Frame.Scroll.Parent.Recipes.Back:SetPoint("TOPLEFT", 6, -5)
+Craftie.Frame.Scroll.Parent.Recipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
 
 Craftie.Frame.Scroll.Recipes_Width = 300
 Craftie.Frame.Scroll.Recipes_Height= Craftie._G.Height-90
-Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Recipes)
+Craftie.Frame.Scroll.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Scroll.Parent.Recipes)
 
 Craftie.Frame.Scroll.Recipes:SetWidth(Craftie.Frame.Scroll.Recipes_Width)
 Craftie.Frame.Scroll.Recipes:SetHeight(Craftie.Frame.Scroll.Recipes_Height)
@@ -330,7 +331,7 @@ Craftie.Frame.Scroll.Recipes.Empty:SetText("")
 SEARCH RECIPES
 ]==]--
 Craftie.Frame.Search.Recipes={}
-Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Recipes, "BackdropTemplate", 2)
+Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Scroll.Parent.Recipes, "BackdropTemplate", 2)
 Craftie.Frame.Search.Recipes:SetWidth(150)
 Craftie.Frame.Search.Recipes:SetHeight(24)
 Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -2)
@@ -392,6 +393,7 @@ end)
 CRAFT ITEM
 ]==]--
 
+Craftie.Frame.Parent={}
 Craftie.Frame.Parent.Craft= CreateFrame("Frame", Craftie.Frame.Parent.Craft, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.Parent.Craft:SetWidth(300)
 Craftie.Frame.Parent.Craft:SetHeight(Craftie._G.Height-88)
