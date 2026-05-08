@@ -1,8 +1,9 @@
 Craftie.CHANGELOG = [==[
-### 1.2
-Hello Changelog
+### 1.01
+* Bugfix for packets
+* WoW API update
 
-### 1.1
-First Implementation
+### 1.00
+* First Alpha Implementation
 
 ]==]

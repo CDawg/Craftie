@@ -116,6 +116,11 @@ Craftie.Preload = "|cFF27CCF5Loading Data...|r"
 
 -- Global Frames
 Craftie.Frame={}
+--Craftie.Frame.Search={}
+
+Craftie.Button={}
+--Craftie.Button.Frame={}
+--Craftie.Button.Search={}
 
 --Craftie.Frame.Parent={}
 --Craftie.Frame.Parent.Scroll={}
@@ -137,6 +142,17 @@ Craftie.Frame.Search = {}
 
 Craftie.Frame.Parent.Craft= {}
 ]==]--
+
+
+--[==[
+function Craftie.Divider(parentFrame, W, X, Y)
+  Craftie.Frame.Craft.Divider = Craftie.Frame.Parent.Craft:CreateTexture(nil, "ARTWORK")
+  Craftie.Frame.Craft.Divider:SetSize(400, 24)
+  Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 98, 90)
+  Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
+end
+]==]--
+
 
 Craftie.TabSide={}
 Craftie.TabSide.Frame={}
@@ -594,4 +610,43 @@ function Craftie.UpdateMapButton()
   thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
   Craftie.Button.Minimap:ClearAllPoints()
   Craftie.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
+end
+
+function Craftie.DividerHorz(parentFrame, x, y, w)
+  local DividerFrame = {}
+  DividerFrame.Midd = parentFrame:CreateTexture(nil, "ARTWORK")
+  DividerFrame.Midd:SetSize(w, 12)
+  DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
+  DividerFrame.Midd:SetHorizTile(true)
+  DividerFrame.Midd:SetTexture(Craftie._G.dir .. "images/FrameDividerMidd.png", "REPEAT")
+  DividerFrame.Left = parentFrame:CreateTexture(nil, "ARTWORK")
+  DividerFrame.Left:SetSize(16, 12)
+  DividerFrame.Left:SetPoint("TOPLEFT", x, y)
+  DividerFrame.Left:SetTexture(Craftie._G.dir .. "images/FrameDividerEnd.png")
+  DividerFrame.Right = parentFrame:CreateTexture(nil, "ARTWORK")
+  DividerFrame.Right:SetSize(16, 12)
+  DividerFrame.Right:SetPoint("TOPLEFT", w, y)
+  DividerFrame.Right:SetTexture(Craftie._G.dir .. "images/FrameDividerEnd.png")
+  DividerFrame.Right:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1) --mirror
+  --DividerFrame.Right:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0) -- Flips vertically
+  --DividerFrame.Right:SetRotation(-math.pi)
+end
+
+function Craftie.DividerVert(parentFrame, x, y, h)
+  local DividerFrame = {}
+  DividerFrame.Midd = parentFrame:CreateTexture(nil, "ARTWORK")
+  DividerFrame.Midd:SetSize(12, h)
+  DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
+  DividerFrame.Midd:SetVertTile(true)
+  DividerFrame.Midd:SetTexture(Craftie._G.dir .. "images/FrameDividerMiddVert.png", "REPEAT")
+  DividerFrame.Top = parentFrame:CreateTexture(nil, "ARTWORK")
+  DividerFrame.Top:SetSize(12, 16)
+  DividerFrame.Top:SetPoint("TOPLEFT", x+16, y+16)
+  DividerFrame.Top:SetTexture(Craftie._G.dir .. "images/FrameDividerEndVert.png")
+  DividerFrame.Bot = parentFrame:CreateTexture(nil, "ARTWORK")
+  DividerFrame.Bot:SetSize(12, 16)
+  DividerFrame.Bot:SetPoint("TOPLEFT", x+16, -h-15)
+  DividerFrame.Bot:SetTexture(Craftie._G.dir .. "images/FrameDividerEndVert.png")
+  DividerFrame.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
+  DividerFrame.Bot:SetRotation(-math.pi)
 end

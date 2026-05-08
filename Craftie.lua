@@ -35,7 +35,8 @@ Craftie.BotMidd = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
 Craftie.BotMidd:SetSize(Craftie.Frame:GetWidth()-12, 35)
 Craftie.BotMidd:SetPoint("BOTTOMLEFT", 6, -1)
 Craftie.BotMidd:SetHorizTile(true)
-Craftie.BotMidd:SetTexture(Craftie._G.dir .. "images/UI_Craftie_InsetMidd.png", "REPEAT")
+Craftie.BotMidd:SetTexture(Craftie._G.dir .. "images/ShadowOverlay-Bottom.png", "REPEAT")
+--Craftie.BotMidd:SetTexture(Craftie._G.dir .. "images/UI_Craftie_InsetMidd.png", "REPEAT")
 
 Craftie.Icon = Craftie.Frame:CreateTexture(nil, "ARTWORK")
 Craftie.Icon:SetSize(54, 54)
@@ -139,14 +140,6 @@ for i,v in pairs(Craftie.Professions) do
 end
 
 --[==[
-Craftie.Tab = CreateFrame('Button', "$parentTab1", Craftie.Frame, "TabButtonTemplate")
-Craftie.Tab:SetID(1)
-Craftie.Tab:SetText('Details')
-Craftie.Tab:SetPoint("TOPLEFT", Craftie.Frame) --, "TOPLEFT", 100, 20)
-PanelTemplates_TabResize(Craftie.Tab, 8) -- Resize based on text
-]==]--
-
---[==[
 SCROLL PLAYERS
 ]==]--
 Craftie.Frame.Parent={}
@@ -204,8 +197,6 @@ SEARCH PLAYERS
 ]==]--
 Craftie.Frame.Search={}
 Craftie.Frame.Search.Player={}
-Craftie.Frame.Search.Player.Text={}
-
 Craftie.Frame.Search.Player = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Players, "BackdropTemplate", 2)
 Craftie.Frame.Search.Player:SetWidth(150)
 Craftie.Frame.Search.Player:SetHeight(24)
@@ -214,7 +205,6 @@ Craftie.Frame.Search.Player:SetBackdrop(Craftie.Backdrop.Opaque)
 Craftie.Frame.Search.Player:SetBackdropColor(1, 0, 0, 1)
 Craftie.Frame.Search.Player:SetBackdropBorderColor(1, 1, 1, 0.6)
 Craftie.Frame.Search.Player:SetFrameStrata("MEDIUM")
-Craftie.Frame.Search.Player:SetFrameLevel(Craftie.Framelevel.Foreground)
 Craftie.Frame.Search.Player.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search.Player)
 Craftie.Frame.Search.Player.Text:SetWidth(Craftie.Frame.Search.Player:GetWidth()-6)
 Craftie.Frame.Search.Player.Text:SetHeight(Craftie.Frame.Search.Player:GetHeight())
@@ -337,11 +327,9 @@ Craftie.Frame.Scroll.Recipes.Empty:SetTextColor(1, 1, 1, 0.6)
 Craftie.Frame.Scroll.Recipes.Empty:SetText("")
 
 --[==[
-SEARCH PLAYERS
+SEARCH RECIPES
 ]==]--
 Craftie.Frame.Search.Recipes={}
-Craftie.Frame.Search.Recipes.Text={}
-
 Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame.Parent.Scroll.Recipes, "BackdropTemplate", 2)
 Craftie.Frame.Search.Recipes:SetWidth(150)
 Craftie.Frame.Search.Recipes:SetHeight(24)
@@ -352,11 +340,11 @@ Craftie.Frame.Search.Recipes:SetBackdropBorderColor(1, 1, 1, 0.6)
 Craftie.Frame.Search.Recipes:SetFrameStrata("MEDIUM")
 --Craftie.Frame.Search.Recipes:SetFrameLevel(Craftie.Framelevel.Foreground)
 Craftie.Frame.Search.Recipes.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search.Recipes)
-Craftie.Frame.Search.Recipes.Text:SetWidth(200)
-Craftie.Frame.Search.Recipes.Text:SetHeight(35)
+Craftie.Frame.Search.Recipes.Text:SetWidth(Craftie.Frame.Search.Recipes:GetWidth()-8)
+Craftie.Frame.Search.Recipes.Text:SetHeight(Craftie.Frame.Search.Recipes:GetHeight())
 Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
 Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.font, 11, "OUTLINE")
-Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 6, 4)
+Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 6, 0)
 Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
@@ -364,7 +352,7 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
     local search_array = Craftie.Profession.Query
     local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
     Craftie.OpenProfessionList(search_array, search_index)
-    Craftie.ClearFocusAll()
+    --Craftie.ClearFocusAll()
     Craftie.Frame.Scroll.Recipes.List.Child:SetVerticalScroll(1)
   end
 end)
@@ -378,6 +366,31 @@ end)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnEditFocusLost", function(self)
   --Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 end)
+
+--[==[
+Craftie.Button.Search.Recipes = CreateFrame("Button", nil, Craftie.Frame.Search.Recipes, "UIPanelButtonTemplate")
+Craftie.Button.Search.Recipes:SetSize(24, 23)
+Craftie.Button.Search.Recipes:SetPoint("TOPRIGHT", 25, 1)
+Craftie.Button.Search.RecipesIcon = Craftie.Button.Search.Recipes:CreateTexture(nil, "ARTWORK")
+Craftie.Button.Search.RecipesIcon:SetSize(12, 12)
+Craftie.Button.Search.RecipesIcon:SetPoint("CENTER", 0, 0)
+Craftie.Button.Search.RecipesIcon:SetTexture("Interface/Buttons/UI-OptionsButton")
+Craftie.Button.Search.Recipes:SetScript("OnEnter", function(self)
+
+end)
+
+Craftie.Button.Search.Recipes:SetScript("OnLeave", function(self)
+
+end)
+
+Craftie.Button.Search.Recipes:SetScript("OnClick", function(self)
+
+end)
+]==]--
+
+--[==[
+CRAFT ITEM
+]==]--
 
 Craftie.Frame.Parent.Craft= CreateFrame("Frame", Craftie.Frame.Parent.Craft, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.Parent.Craft:SetWidth(300)
@@ -563,22 +576,9 @@ for i=1, Craftie.MAX_RECIPES do
 end
 
 
-Craftie.Button={}
-Craftie.Button.Frame={}
-
---Store/category-icon-book
-
---[==[
-Craftie.Button.Frame= CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
-Craftie.Button.Frame:SetSize(23, 23)
-Craftie.Button.Frame:SetPoint("TOPRIGHT", -16, -2)
-Craftie.Button.Frame:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Button.Frame:SetBackdropColor(0, 0, 0, 1)
-Craftie.Button.Frame:SetBackdropBorderColor(1, 1, 1, 0.6)
-]==]--
 Craftie.Button.Frame = Craftie.Frame:CreateTexture(nil, "BORDER")
 Craftie.Button.Frame:SetSize(30, 30)
-Craftie.Button.Frame:SetPoint("TOPRIGHT", -23, 0)
+Craftie.Button.Frame:SetPoint("TOPRIGHT", -25, 0)
 Craftie.Button.Frame:SetTexture("Interface/DialogFrame/UI-DialogBox-Corner")
 
 --Craftie.Button.Options= CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
