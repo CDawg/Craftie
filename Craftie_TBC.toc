@@ -34,9 +34,10 @@ Library/Leatherworking.lua
 Library/Reagents.lua
 Library/Tailoring.lua
 
-Core/CraftieGlobal.lua
-UI/Craftie.lua
 Changelog.lua
+Core/CraftieGlobal.lua
+
+UI/CraftieFrame.lua
 UI/CraftieLogger.lua
 UI/CraftieNavigation.lua
 UI/CraftieHelp.lua
