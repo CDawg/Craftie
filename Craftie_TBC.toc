@@ -38,6 +38,8 @@ Changelog.lua
 Core/CraftieGlobal.lua
 
 UI/CraftieFrame.lua
+UI/CraftiePlayers.lua
+UI/CraftieRecipes.lua
 UI/CraftieLogger.lua
 UI/CraftieNavigation.lua
 UI/CraftieHelp.lua

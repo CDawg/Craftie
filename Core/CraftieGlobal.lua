@@ -137,10 +137,10 @@ function Craftie.ClearFocusAll()
     Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
     Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
   end
-  Craftie.Frame.Search.Player.Text:ClearFocus()
-  if (Craftie.Frame.Search.Player.Text:GetText() == "") then
-    Craftie.Frame.Search.Player.Text:SetText(Craftie.Placeholder_Players)
-    Craftie.Frame.Search.Player.Text:SetFontObject(GameFontDisable)
+  Craftie.Frame.SearchPlayerText:ClearFocus()
+  if (Craftie.Frame.SearchPlayerText:GetText() == "") then
+    Craftie.Frame.SearchPlayerText:SetText(Craftie.Placeholder_Players)
+    Craftie.Frame.SearchPlayerText:SetFontObject(GameFontDisable)
   end
   PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 end
@@ -424,27 +424,28 @@ function Craftie.ItemDetails(item)
     Craftie.Frame.Craft.Source:Show()
 end
 
-
+Craftie.Frame.Scroll={}
+Craftie.Frame.ScrollPlayersListItem={}
 function Craftie.ClearSelectedItem(scrollFrame)
   if (scrollFrame == "Players") then
     for i=1, Craftie.MAX_PLAYERS do
-      Craftie.Frame.Scroll.Players.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
-      Craftie.Frame.Scroll.Players.List.Item[Craftie.Selected_Players]:SetBackdropColor(0.6, 0.7, 1, 0.5)
-      Craftie.Frame.Scroll.Players.List.Text[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
-      Craftie.Frame.Scroll.Players.List.Text[i]:SetTextColor(1, 1, 1, 0.8)
+      Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
+      Craftie.Frame.ScrollPlayersListItem[Craftie.Selected_Players]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+      Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
       if (i % 2 == 0) then
-        Craftie.Frame.Scroll.Players.List.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+        Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
       end
     end
   end
   if (scrollFrame == "Recipes") then
     for i=1, Craftie.MAX_RECIPES do
-      Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(1, 1, 1, 0)
-      Craftie.Frame.Scroll.Recipes.List.Item[Craftie.Selected_Recipes]:SetBackdropColor(0.6, 0.7, 1, 0.5)
-      Craftie.Frame.Scroll.Recipes.List.Text[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
-      Craftie.Frame.Scroll.Recipes.List.Text[i]:SetTextColor(1, 1, 1, 0.8)
+      Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(1, 1, 1, 0)
+      Craftie.Frame.ScrollRecipesList.Item[Craftie.Selected_Recipes]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+      Craftie.Frame.ScrollRecipesList.Text[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.ScrollRecipesList.Text[i]:SetTextColor(1, 1, 1, 0.8)
       if (i % 2 == 0) then
-        Craftie.Frame.Scroll.Recipes.List.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+        Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
       end
     end
   end
@@ -455,9 +456,9 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
   local total_recipes = #prof
   local total_search = 0
   local results = "|cfffffb63Recipe(s)"
-  Craftie.Frame.Scroll.Recipes.Results:SetText("")
-  Craftie.Frame.Scroll.Recipes.Empty:SetText("")
-  --Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
+  Craftie.Frame.ScrollRecipes.Results:SetText("")
+  Craftie.Frame.ScrollRecipes.Empty:SetText("")
+  --Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
   if (search:len() >= 3) then
     local matches = Craftie.SortTableByMatch(prof, search)
     if (matches >= 1) then
@@ -465,20 +466,20 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     else
       matches = 0
       total_recipes = 0
-      Craftie.Frame.Scroll.Recipes.Empty:SetText('No Recipes|n"' .. search .. '"')
+      Craftie.Frame.ScrollRecipes.Empty:SetText('No Recipes|n"' .. search .. '"')
     end
-    Craftie.Frame.Scroll.Recipes.Results:SetText(matches .. " " .. results)
+    Craftie.Frame.ScrollRecipes.Results:SetText(matches .. " " .. results)
   else
     Craftie.SortTableByString(prof)
-    Craftie.Frame.Scroll.Recipes.Results:SetText(total_recipes .. " " .. results)
+    Craftie.Frame.ScrollRecipes.Results:SetText(total_recipes .. " " .. results)
   end
   for i=1, Craftie.MAX_RECIPES do
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:Hide()
+    Craftie.Frame.ScrollRecipesList.Item[i]:Hide()
   end
 
   for i=1, total_recipes do
-    Craftie.Frame.Scroll.Recipes.List.Text[i]:SetText(prof[i][2])
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:SetScript("OnClick", function()
+    Craftie.Frame.ScrollRecipesList.Text[i]:SetText(prof[i][2])
+    Craftie.Frame.ScrollRecipesList.Item[i]:SetScript("OnClick", function()
       Craftie.ItemDetails(prof[i])
 
       --print(prof[i][2])
@@ -487,13 +488,13 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       --example
       Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
     end)
-    Craftie.Frame.Scroll.Recipes.List.Item[i]:Show()
+    Craftie.Frame.ScrollRecipesList.Item[i]:Show()
   end
   Craftie.Profession.Query = prof
 
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
-  --Craftie.Frame.Scroll.Recipes.List:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
+  --Craftie.Frame.ScrollRecipesList:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
 end
 
