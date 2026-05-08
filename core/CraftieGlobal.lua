@@ -119,40 +119,6 @@ Craftie.Frame={}
 --Craftie.Frame.Search={}
 
 Craftie.Button={}
---Craftie.Button.Frame={}
---Craftie.Button.Search={}
-
---Craftie.Frame.Parent={}
---Craftie.Frame.Parent.Scroll={}
---[==[
-Craftie.Frame = {}
-Craftie.Frame.Parent={}
-Craftie.Frame.Parent.Scroll={}
-Craftie.Frame.Parent.Scroll.Players={}
-
-Craftie.Frame.Scroll = {}
-
-Craftie.Frame.Scroll.Recipes = {}
-Craftie.Frame.Scroll.Recipes.List = {}
-Craftie.Frame.Scroll.Recipes.List.Item = {}
-Craftie.Frame.Scroll.Recipes.List.Text={}
-Craftie.Frame.Scroll.Recipes.Results={}
-
-Craftie.Frame.Search = {}
-
-Craftie.Frame.Parent.Craft= {}
-]==]--
-
-
---[==[
-function Craftie.Divider(parentFrame, W, X, Y)
-  Craftie.Frame.Craft.Divider = Craftie.Frame.Parent.Craft:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.Craft.Divider:SetSize(400, 24)
-  Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 98, 90)
-  Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
-end
-]==]--
-
 
 Craftie.TabSide={}
 Craftie.TabSide.Frame={}

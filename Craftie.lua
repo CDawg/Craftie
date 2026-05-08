@@ -600,7 +600,7 @@ Craftie.Button.Options:SetScript("OnClick", function(self)
   --Craftie.FrameOptions:Show()
 end)
 
-Craftie.Button.Minimap={}
+--Craftie.Button.Minimap={}
 --Craftie.Button.Minimap.Border={}
 
 Craftie.Button.Minimap = CreateFrame("Button", nil, Minimap)
