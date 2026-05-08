@@ -116,22 +116,17 @@ Craftie.Preload = "|cFF27CCF5Loading Data...|r"
 
 -- Global Frames
 Craftie.Frame={}
---Craftie.Frame.Search={}
-
 Craftie.Button={}
-
-Craftie.TabSide={}
-Craftie.TabSide.Frame={}
 
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
-    Craftie.TabSide.Frame[i].BorderSelect:Hide()
-    Craftie.TabSide.Frame[i].Glow:Hide()
-    Craftie.TabSide.Frame[i].Shadow:Show()
+    Craftie.Frame.TabSide[i].BorderSelect:Hide()
+    Craftie.Frame.TabSide[i].Glow:Hide()
+    Craftie.Frame.TabSide[i].Shadow:Show()
   end
-  Craftie.TabSide.Frame[tab].BorderSelect:Show()
-  Craftie.TabSide.Frame[tab].Glow:Show()
-  Craftie.TabSide.Frame[tab].Shadow:Hide()
+  Craftie.Frame.TabSide[tab].BorderSelect:Show()
+  Craftie.Frame.TabSide[tab].Glow:Show()
+  Craftie.Frame.TabSide[tab].Shadow:Hide()
   if (sound) then
     --PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
