@@ -20,27 +20,28 @@ Craftie._G = {
   CMD      = "/craftie",
   Width  = 820,
   Height = 460,
-  font     = "Interface/Addons/Craftie/fonts/FRIZQT__.TTF",
-  fontSize = 11,
-  dir      = "Interface/Addons/Craftie/",
-  prefix   = "CRAHH",
-  suffix   = "TBC Anniversary",
+  Prefix   = "CRAHH",
+  Suffix   = "TBC Anniversary", --default
   color    = "|cffF58E27",
   date     = date("%Y%m%d"),
   update   = 20260608,
 }
-Craftie._G.title = Craftie._G.color .. Craftie._G.prefix .. "|r"
 
---Craftie._G.version = C_AddOns.GetAddOnMetadata(Craftie._G.prefix, "version")
-Craftie._G.version = C_AddOns.GetAddOnMetadata("Craftie", "version")
+Craftie._G.Title = Craftie._G.color .. Craftie._G.Prefix .. "|r"
+
+Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
 
 Craftie.Game={}
-Craftie.Game.version = tonumber(string.sub(__Gversion, 1, 1))
-if (Craftie.Game.version == 1) then
-  Craftie._G.suffix = "Classic"
+Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))
+if (Craftie.Game.Version == 1) then
+  Craftie._G.Suffix = "Classic"
 end
 
-Craftie._G.Stamp = Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version
+Craftie._G.Font={}
+Craftie._G.Stamp = Craftie._G.color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version
+Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/FRIZQT__.ttf"
+Craftie._G.Font.Size = 11
+Craftie._G.Path = "Interface/Addons/Craftie/"
 
 Craftie.Framelevel = {
   Background= 0,
@@ -76,10 +77,10 @@ Craftie.Backdrop = {
 
 function Craftie.Notification(msg, debug)
   if ((debug) and (Craftie.DEBUG)) then
-    print(Craftie._G.title .. " DEBUG: " .. msg)
+    print(Craftie._G.Title .. " DEBUG: " .. msg)
   end
   if (not debug) then
-    print(Craftie._G.title .. " " .. msg)
+    print(Craftie._G.Title .. " " .. msg)
   end
   if (Craftie.Frame ~= nil) then
     local history = Craftie.Logger.Data:GetText()
@@ -190,21 +191,21 @@ function Craftie.SendPacket(prefix, data, channel, target)
   --if (channel == "GUILD") then
     --if (not IsInGuild()) then return end
   --end
-  local repack = prefix .. "," .. Craftie._G.version .. "," .. data
+  local repack = prefix .. "," .. Craftie._G.Version .. "," .. data
   local packet = Craftie.Split(data, ",")
   if (prefix == Craftie.Packet.Prefix.Data) then
     -- code | senderVer | senderName | senderClass | profNum | profLevel | profData
-    repack = prefix .. "," .. Craftie._G.version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie.BitCompression(packet[5], false)
+    repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie.BitCompression(packet[5], false)
   end
 
-  C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
+  C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
   if (channel == "WHISPER") then
-    --C_ChatInfo.SendAddonMessage(Craftie._G.prefix, compressPacket, channel, target)
-    --C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.prefix)
-  	C_ChatInfo.SendAddonMessage(Craftie._G.prefix, repack, channel, target)
+    --C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, compressPacket, channel, target)
+    --C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
+  	C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
     --Craftie.Notification("Send Whisper " .. target, true)
   else
-    C_ChatInfo.SendAddonMessage(Craftie._G.prefix, repack, channel)
+    C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
     --Craftie.Notification("Send " .. channel, true)
   end
 
@@ -229,19 +230,19 @@ function Craftie.ParsePacket(netpacket)
     Craftie.Get.Prefix  = packet[1]
     Craftie.Get.Version = tonumber(packet[2])
 
-    if (Craftie.Get.Version > tonumber(Craftie._G.version)) then
+    if (Craftie.Get.Version > tonumber(Craftie._G.Version)) then
       if (Craftie.Notified ~= 1) then --dont spam the requester
-        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.version .. "] of [" .. Craftie.Get.Version .. "]")
+        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.Version .. "] of [" .. Craftie.Get.Version .. "]")
       end
       stable_version = false
       Craftie.Notified = 1
     end
-    if (Craftie.Get.Version < tonumber(Craftie._G.version)) then
-      if (Craftie.Get.Version < tonumber(Craftie._G.version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
-        Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.version .. "]")
+    if (Craftie.Get.Version < tonumber(Craftie._G.Version)) then
+      if (Craftie.Get.Version < tonumber(Craftie._G.Version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
+        Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.Version .. "]")
         stable_version = false
       else
-        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.version .. "]")
+        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.Version .. "]")
         stable_version = true
       end
     end
@@ -514,11 +515,11 @@ function Craftie.SelectCrafter(index, name)
   end
 end
 
-SLASH_Craftie1 = Craftie._G.CMD
+SLASH_Craftie1 = "/" .. Craftie._G.Prefix
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
 
-    --print(Craftie._G.color .. Craftie._G.prefix .. "|r v" .. Craftie._G.version)
+    --print(Craftie._G.color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version)
     Craftie.Frame:Show()
     --Craftie.Notification
 		--for int,list in pairs(Craftie._L.COMMANDS) do
@@ -578,15 +579,15 @@ function Craftie.DividerHorz(parentFrame, x, y, w)
   DividerFrame.Midd:SetSize(w, 12)
   DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
   DividerFrame.Midd:SetHorizTile(true)
-  DividerFrame.Midd:SetTexture(Craftie._G.dir .. "images/FrameDividerMidd.png", "REPEAT")
+  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "images/FrameDividerMidd.png", "REPEAT")
   DividerFrame.Left = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Left:SetSize(16, 12)
   DividerFrame.Left:SetPoint("TOPLEFT", x, y)
-  DividerFrame.Left:SetTexture(Craftie._G.dir .. "images/FrameDividerEnd.png")
+  DividerFrame.Left:SetTexture(Craftie._G.Path .. "images/FrameDividerEnd.png")
   DividerFrame.Right = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Right:SetSize(16, 12)
   DividerFrame.Right:SetPoint("TOPLEFT", w, y)
-  DividerFrame.Right:SetTexture(Craftie._G.dir .. "images/FrameDividerEnd.png")
+  DividerFrame.Right:SetTexture(Craftie._G.Path .. "images/FrameDividerEnd.png")
   DividerFrame.Right:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1) --mirror
   --DividerFrame.Right:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0) -- Flips vertically
   --DividerFrame.Right:SetRotation(-math.pi)
@@ -598,15 +599,15 @@ function Craftie.DividerVert(parentFrame, x, y, h)
   DividerFrame.Midd:SetSize(12, h)
   DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
   DividerFrame.Midd:SetVertTile(true)
-  DividerFrame.Midd:SetTexture(Craftie._G.dir .. "images/FrameDividerMiddVert.png", "REPEAT")
+  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "images/FrameDividerMiddVert.png", "REPEAT")
   DividerFrame.Top = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Top:SetSize(12, 16)
   DividerFrame.Top:SetPoint("TOPLEFT", x+16, y+16)
-  DividerFrame.Top:SetTexture(Craftie._G.dir .. "images/FrameDividerEndVert.png")
+  DividerFrame.Top:SetTexture(Craftie._G.Path .. "images/FrameDividerEndVert.png")
   DividerFrame.Bot = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Bot:SetSize(12, 16)
   DividerFrame.Bot:SetPoint("TOPLEFT", x+16, -h-15)
-  DividerFrame.Bot:SetTexture(Craftie._G.dir .. "images/FrameDividerEndVert.png")
+  DividerFrame.Bot:SetTexture(Craftie._G.Path .. "images/FrameDividerEndVert.png")
   DividerFrame.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
   DividerFrame.Bot:SetRotation(-math.pi)
 end

@@ -95,7 +95,7 @@ for k,v in pairs(Craftie.Nav.Tabs) do
   ]==]--
 
   Craftie.TabBottom[k].Text = Craftie.TabBottom[k]:CreateFontString(nil, "ARTWORK")
-  Craftie.TabBottom[k].Text:SetFont(Craftie._G.font, 10, "OUTLINE")
+  Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style, 10, "OUTLINE")
   Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
   Craftie.TabBottom[k].Text:SetText(v)
   Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
@@ -103,10 +103,10 @@ for k,v in pairs(Craftie.Nav.Tabs) do
     Craftie.TabBottomSelect(k, true)
   end)
   Craftie.TabBottom[k]:SetScript("OnEnter", function(self)
-    --Craftie.TooltipDisplay(self, Craftie._G.title, Craftie.Addon)
+    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
   Craftie.TabBottom[k]:SetScript("OnLeave", function(self)
-    --Craftie.TooltipDisplay(self, Craftie._G.title, Craftie.Addon)
+    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
 end
 --first tab

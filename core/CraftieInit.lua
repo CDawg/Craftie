@@ -13,7 +13,6 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-
 function Craftie.Init()
   Craftie.BuildReagentGaps()
   Craftie.TabSelect(1, false) --default 1st profession

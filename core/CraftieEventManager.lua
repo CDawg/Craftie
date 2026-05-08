@@ -54,7 +54,7 @@ end)
 
 function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
-		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.prefix)) then
+		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.Prefix)) then
 	    Craftie.Init()
       print("Craftie.Event[1] " .. prefix .. " | " .. event)
 	  end
@@ -83,7 +83,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     end
 
     if (event == "CHAT_MSG_ADDON") then
-			if (prefix == Craftie._G.prefix) then
+			if (prefix == Craftie._G.Prefix) then
         if (netpacket) then
           Craftie.ParsePacket(netpacket)
         end
@@ -104,7 +104,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     --[==[
     if (prefix ~= nil) then
       print("Craftie.Event[2] " .. prefix .. " | " .. event)
-      if (prefix == Craftie._G.prefix) then
+      if (prefix == Craftie._G.Prefix) then
         print("Craftie.Event[2] " .. prefix .. " | " .. event)
         print("parse packet?")
       end

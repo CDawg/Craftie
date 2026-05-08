@@ -41,7 +41,7 @@ Craftie.Logger.Data = CreateFrame("EditBox", nil, Craftie.LoggerScrollFrameChild
 Craftie.Logger.Data:SetWidth(Craftie.Logger_w-20)
 Craftie.Logger.Data:SetHeight(Craftie.Logger_h)
 --Craftie.Logger.Data:SetFontObject(GameFontWhite)
-Craftie.Logger.Data:SetFont(Craftie._G.font, 10, "OUTLINE")
+Craftie.Logger.Data:SetFont(Craftie._G.Font.Style, 10, "OUTLINE")
 Craftie.Logger.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Logger.Data:SetMultiLine(true)
 Craftie.Logger.Data:ClearFocus(self)
