@@ -41,7 +41,24 @@ Craftie.Frame.ScrollRecipesList:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue
 Craftie.Frame.ScrollRecipesList:SetBackdropBorderColor(1, 1, 1, 0)
 
-Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate") -- "MinimalScrollBar"
+--[==[
+Craftie.Frame.ScrollParentRecipesBarMidd = Craftie.Frame.ScrollRecipesList:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.ScrollParentRecipesBarMidd:SetSize(26, Craftie.Frame.ScrollParentRecipes:GetHeight())
+Craftie.Frame.ScrollParentRecipesBarMidd:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentRecipes:GetWidth()-24, 0)
+Craftie.Frame.ScrollParentRecipesBarMidd:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarMidd.png")
+Craftie.Frame.ScrollParentRecipesBarTop = Craftie.Frame.ScrollRecipesList:CreateTexture(nil, "BORDER")
+Craftie.Frame.ScrollParentRecipesBarTop:SetSize(26, 130)
+Craftie.Frame.ScrollParentRecipesBarTop:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentRecipes:GetWidth()-24, 0)
+Craftie.Frame.ScrollParentRecipesBarTop:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
+Craftie.Frame.ScrollParentRecipesBarBot = Craftie.Frame.ScrollRecipesList:CreateTexture(nil, "BORDER")
+Craftie.Frame.ScrollParentRecipesBarBot:SetSize(26, 130)
+Craftie.Frame.ScrollParentRecipesBarBot:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentRecipes:GetWidth()-24, -Craftie.Frame.ScrollParentRecipes:GetHeight()+128)
+Craftie.Frame.ScrollParentRecipesBarBot:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
+Craftie.Frame.ScrollParentRecipesBarBot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
+Craftie.Frame.ScrollParentRecipesBarBot:SetRotation(-math.pi)
+]==]--
+
+Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
 --Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "ScrollFrameTemplate")
 --Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -3)
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -30) --room for search bar
@@ -107,26 +124,24 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnEditFocusLost", function(self)
   --Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 end)
 
---[==[
-Craftie.Frame.Button.Search.Recipes = CreateFrame("Button", nil, Craftie.Frame.Search.Recipes, "UIPanelButtonTemplate")
-Craftie.Frame.Button.Search.Recipes:SetSize(24, 23)
-Craftie.Frame.Button.Search.Recipes:SetPoint("TOPRIGHT", 25, 1)
-Craftie.Frame.Button.Search.RecipesIcon = Craftie.Frame.Button.Search.Recipes:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.Button.Search.RecipesIcon:SetSize(12, 12)
-Craftie.Frame.Button.Search.RecipesIcon:SetPoint("CENTER", 0, 0)
-Craftie.Frame.Button.Search.RecipesIcon:SetTexture("Interface/Buttons/UI-OptionsButton")
-Craftie.Frame.Button.Search.Recipes:SetScript("OnEnter", function(self)
+Craftie.Frame.Button.SearchRecipes = CreateFrame("Button", nil, Craftie.Frame.Search.Recipes, "UIPanelButtonTemplate")
+Craftie.Frame.Button.SearchRecipes:SetSize(24, 23)
+Craftie.Frame.Button.SearchRecipes:SetPoint("TOPLEFT", Craftie.Frame.Search.Recipes:GetWidth()-4, 1)
+Craftie.Frame.Button.SearchRecipesIcon = Craftie.Frame.Button.SearchRecipes:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Button.SearchRecipesIcon:SetSize(12, 12)
+Craftie.Frame.Button.SearchRecipesIcon:SetPoint("CENTER", 0, 0)
+Craftie.Frame.Button.SearchRecipesIcon:SetTexture("Interface/Buttons/UI-StopButton")
+Craftie.Frame.Button.SearchRecipes:SetScript("OnEnter", function(self)
 
 end)
 
-Craftie.Frame.Button.Search.Recipes:SetScript("OnLeave", function(self)
+Craftie.Frame.Button.SearchRecipes:SetScript("OnLeave", function(self)
 
 end)
 
-Craftie.Frame.Button.Search.Recipes:SetScript("OnClick", function(self)
+Craftie.Frame.Button.SearchRecipes:SetScript("OnClick", function(self)
 
 end)
-]==]--
 
 --[==[
 CRAFT ITEM
@@ -155,7 +170,6 @@ Craftie.Frame.Craft.Icon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.Icon:SetSize(35, 35)
 Craftie.Frame.Craft.Icon:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/inv_misc_questionmark")
---Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/Trade_Engraving")
 Craftie.Frame.Craft.Icon:Hide()
 Craftie.Frame.Craft.Text = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Text:SetFont(Craftie._G.Font.Style, 12, "SLUG")
@@ -199,17 +213,17 @@ Craftie.Frame.Craft.Source:SetText("")
 Craftie.Frame.Craft.Source:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.Craft.Source:Hide()
 
+Craftie.Frame.Craft.Divider = Craftie.Frame.CraftParent:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Craft.Divider:SetSize(400, 24)
+Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 98, 90)
+Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
+
 Craftie.Frame.Craft.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(300, 110)
 Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", 0, 0)
 Craftie.Frame.Craft.Back:SetHorizTile(true)
 --Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock", "REPEAT")
 Craftie.Frame.Craft.Back:SetTexture("Interface/Garrison/GarrisonMissionUIInfoBoxBackgroundTile", "REPEAT")
-
-Craftie.Frame.Craft.Divider = Craftie.Frame.CraftParent:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.Craft.Divider:SetSize(400, 24)
-Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 98, 90)
-Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}

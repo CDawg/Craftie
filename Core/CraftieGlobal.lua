@@ -162,7 +162,7 @@ function Craftie.GetPlayerProfessions()
 	local skills = {}
 	local skillnum = 0
 	local header1 = string.lower(TRADE_SKILLS)
-	local header2 = string.lower(SECONDARY_SKILLS)
+	local header2 = string.lower(SECONDARY_SKILLS) --need for cooking / include fishing?
 	for k = 1, GetNumSkillLines( ) do
 		local name, header = GetSkillLineInfo( k )
 		if header ~= nil then

@@ -25,11 +25,6 @@ Craftie.Frame.ScrollParentPlayers.Back:SetPoint("TOPLEFT", 4, -5)
 Craftie.Frame.ScrollParentPlayers.Back:SetTexture(Craftie._G.Path .. "images/stationary_players")
 ]==]--
 
-Craftie.Frame.ScrollParentPlayers.ScrollBar = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BORDER")
-Craftie.Frame.ScrollParentPlayers.ScrollBar:SetSize(5, Craftie.Frame.ScrollParentPlayers:GetHeight()-6)
-Craftie.Frame.ScrollParentPlayers.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-25, -4)
-Craftie.Frame.ScrollParentPlayers.ScrollBar:SetTexture("Interface/COMMON/ThinBorder-Right")
-
 Craftie.FrameScrollPlayers_Width = 210
 Craftie.FrameScrollPlayers_Height= Craftie._G.Height-90
 --Craftie.FrameScrollPlayers_Height= Craftie._G.Height-200
@@ -40,7 +35,7 @@ Craftie.Frame.ScrollPlayers:SetHeight(Craftie.FrameScrollPlayers_Height)
 Craftie.Frame.ScrollPlayers:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
 --Craftie.Frame.ScrollPlayers:SetFrameStrata("LOW")
 
-Craftie.Frame.ScrollPlayersList={}
+--Craftie.Frame.ScrollPlayersList={}
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", Craftie.Frame.ScrollPlayersList, Craftie.Frame.ScrollPlayers, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersList:SetWidth(Craftie.FrameScrollPlayers_Width)
 Craftie.Frame.ScrollPlayersList:SetHeight(Craftie.FrameScrollPlayers_Height)
@@ -48,6 +43,24 @@ Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 0, 0)
 Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.05) --shade
 Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
+
+--[==[
+Craftie.Frame.ScrollParentPlayersBarMidd = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.ScrollParentPlayersBarMidd:SetSize(26, Craftie.Frame.ScrollParentPlayers:GetHeight())
+Craftie.Frame.ScrollParentPlayersBarMidd:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-24, 0)
+Craftie.Frame.ScrollParentPlayersBarMidd:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarMidd.png")
+Craftie.Frame.ScrollParentPlayersBarTop = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BORDER")
+Craftie.Frame.ScrollParentPlayersBarTop:SetSize(26, 130)
+Craftie.Frame.ScrollParentPlayersBarTop:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-24, 0)
+Craftie.Frame.ScrollParentPlayersBarTop:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
+Craftie.Frame.ScrollParentPlayersBarBot = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BORDER")
+Craftie.Frame.ScrollParentPlayersBarBot:SetSize(26, 130)
+Craftie.Frame.ScrollParentPlayersBarBot:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-24, -Craftie.Frame.ScrollParentPlayers:GetHeight()+128)
+Craftie.Frame.ScrollParentPlayersBarBot:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
+Craftie.Frame.ScrollParentPlayersBarBot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
+Craftie.Frame.ScrollParentPlayersBarBot:SetRotation(-math.pi)
+]==]--
+
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -30)
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 10, 4)

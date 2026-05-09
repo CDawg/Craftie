@@ -59,9 +59,6 @@ Craftie.Frame.Title.Prof:SetFont(Craftie._G.Font.Style, 14, "SLUG")
 Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 65, -35)
 Craftie.Frame.Title.Prof:SetText("Alchemy")
 
---light background template
---Interface/Glues/COMMON/UIFrameTooltipGluesBackground
-
 local TabSideSpacing = 42 --height distance
 Craftie.Frame.TabSide={}
 for i,v in pairs(Craftie.Professions) do
@@ -177,7 +174,6 @@ Craftie.Frame.Button.Minimap:SetPoint("TOPRIGHT", -5, 0)
 Craftie.Frame.Button.Minimap.Border = Craftie.Frame.Button.Minimap:CreateTexture(nil, "BORDER")
 Craftie.Frame.Button.Minimap.Border:SetSize(Craftie.Frame.Button.Minimap:GetWidth()-4, Craftie.Frame.Button.Minimap:GetHeight()-4)
 Craftie.Frame.Button.Minimap.Border:SetPoint("CENTER", 0, 0)
---Craftie.Frame.Button.Minimap.Icon:SetTexture("Interface/UNITPOWERBARALT/WowUI_Circular_Frame")
 Craftie.Frame.Button.Minimap.Border:SetTexture("Interface/COMMON/ringborder")
 Craftie.Frame.Button.Minimap.Border:SetDrawLayer("BORDER", 6)
 Craftie.Frame.Button.Minimap.BorderBG = Craftie.Frame.Button.Minimap:CreateTexture(nil, "BORDER")
