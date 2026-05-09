@@ -62,6 +62,6 @@ function Craftie.Init()
   Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.player.name, "WHISPER", Craftie.player.name)
 end
 
-C_Timer.After(0.5, function()
+C_Timer.After(0.3, function()
   Craftie.Init()
 end)

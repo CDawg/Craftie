@@ -610,3 +610,22 @@ function Craftie.DividerVert(parentFrame, x, y, h)
   DividerFrame.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
   DividerFrame.Bot:SetRotation(-math.pi)
 end
+
+function Craftie.ScrollBarBack(parentFrame)
+  local ScrollBar={}
+  ScrollBar.Midd = parentFrame:CreateTexture(nil, "BACKGROUND")
+  ScrollBar.Midd:SetSize(28, parentFrame:GetHeight())
+  ScrollBar.Midd:SetPoint("TOPLEFT", parentFrame:GetWidth()-25, 0)
+  ScrollBar.Midd:SetVertTile(true)
+  ScrollBar.Midd:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png", "REPEAT")
+  ScrollBar.Top = parentFrame:CreateTexture(nil, "BORDER")
+  ScrollBar.Top:SetSize(28, 130)
+  ScrollBar.Top:SetPoint("TOPLEFT", parentFrame:GetWidth()-25, 0)
+  ScrollBar.Top:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
+  ScrollBar.Bot = parentFrame:CreateTexture(nil, "BORDER")
+  ScrollBar.Bot:SetSize(28, 130)
+  ScrollBar.Bot:SetPoint("TOPLEFT", parentFrame:GetWidth()-25, -parentFrame:GetHeight()+128)
+  ScrollBar.Bot:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
+  ScrollBar.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
+  ScrollBar.Bot:SetRotation(-math.pi)
+end

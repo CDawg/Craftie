@@ -13,7 +13,8 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollParentPlayers, Craftie.Frame, "InsetFrameTemplate")
+--Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollParentPlayers, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollParentPlayers, Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.ScrollParentPlayers:SetWidth(210)
 Craftie.Frame.ScrollParentPlayers:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentPlayers:SetPoint("TOPLEFT", 2, -61)
@@ -44,22 +45,7 @@ Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.05) --shade
 Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
---[==[
-Craftie.Frame.ScrollParentPlayersBarMidd = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.ScrollParentPlayersBarMidd:SetSize(26, Craftie.Frame.ScrollParentPlayers:GetHeight())
-Craftie.Frame.ScrollParentPlayersBarMidd:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-24, 0)
-Craftie.Frame.ScrollParentPlayersBarMidd:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarMidd.png")
-Craftie.Frame.ScrollParentPlayersBarTop = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BORDER")
-Craftie.Frame.ScrollParentPlayersBarTop:SetSize(26, 130)
-Craftie.Frame.ScrollParentPlayersBarTop:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-24, 0)
-Craftie.Frame.ScrollParentPlayersBarTop:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
-Craftie.Frame.ScrollParentPlayersBarBot = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BORDER")
-Craftie.Frame.ScrollParentPlayersBarBot:SetSize(26, 130)
-Craftie.Frame.ScrollParentPlayersBarBot:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-24, -Craftie.Frame.ScrollParentPlayers:GetHeight()+128)
-Craftie.Frame.ScrollParentPlayersBarBot:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
-Craftie.Frame.ScrollParentPlayersBarBot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
-Craftie.Frame.ScrollParentPlayersBarBot:SetRotation(-math.pi)
-]==]--
+Craftie.ScrollBarBack(Craftie.Frame.ScrollParentPlayers)
 
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -30)
