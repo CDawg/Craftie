@@ -317,6 +317,7 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0)
       Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.7)
       Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.7)
+      Craftie.Frame.Reagent.IconGlow[i]:Hide()
 
       r = Craftie.GetKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
       --C_Timer.After(0.12, function()
@@ -348,6 +349,7 @@ function Craftie.ItemDetails(item)
         Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 1)
         Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, .6, 1)
         Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, .6, 1)
+        Craftie.Frame.Reagent.IconGlow[i]:Show()
       end
       --print("craftie count " .. Craftie.Reagent[r][2] .. ": " .. item[5][i][2] .. " | " .. inv_count)
     end

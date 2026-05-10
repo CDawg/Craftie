@@ -146,14 +146,24 @@ Craftie.Frame.Craft:SetScript("OnHyperlinkClick", function(self, link, text, but
 	SetItemRef(link, text, nil, self)
 end)
 
+--Masks/CircleMaskScalable
 Craftie.Frame.Craft.Icon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.Icon:SetSize(35, 35)
 Craftie.Frame.Craft.Icon:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.Craft.Icon:SetTexture("Interface/Icons/inv_misc_questionmark")
+Craftie.Frame.Craft.Icon:SetMask("Interface/Masks/CircleMaskScalable")
 Craftie.Frame.Craft.Icon:Hide()
+Craftie.Frame.Craft.Border = Craftie.Frame.Craft:CreateTexture(nil, "OVERLAY")
+Craftie.Frame.Craft.Border:SetSize(75, 75)
+Craftie.Frame.Craft.Border:SetPoint("CENTER", -92, 0)
+Craftie.Frame.Craft.Border:SetTexture("Interface/UNITPOWERBARALT/WowUI_Circular_Frame")
+Craftie.Frame.Craft.Border:SetVertexColor(0.48, 0.48, 0.48)
+--Craftie.Frame.Craft.Border:Hide()
+--Interface/SPELLBOOK/RotationIconFrame
+
 Craftie.Frame.Craft.Text = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Text:SetFont(Craftie._G.Font.Style, 12, "SLUG")
-Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 40, -10)
+Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 45, -10)
 Craftie.Frame.Craft.Text:SetText("")
 --designed to mask over the entire craft frame
 Craftie.Frame.Craft.HLink = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
@@ -213,6 +223,8 @@ Craftie.Frame.Reagent.Main = {}
 Craftie.Frame.Reagent.Back = {}
 Craftie.Frame.Reagent.Tooltip = {}
 Craftie.Frame.Reagent.Icon = {}
+Craftie.Frame.Reagent.IconBorder={}
+Craftie.Frame.Reagent.IconGlow={}
 Craftie.Frame.Reagent.Text = {}
 Craftie.Frame.Reagent.QuanR = {} --required
 Craftie.Frame.Reagent.QuanI = {} --inventory
@@ -245,11 +257,20 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Back[i]:SetPoint(Craftie.Frame.Reagent.Main[i]:GetPoint())
   Craftie.Frame.Reagent.Back[i]:SetTexture(Craftie._G.Path  .. "Images/ItemToast.png")
   --Craftie.Frame.Reagent.Back[i]:SetAlpha(0.5)
-    Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
+  Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-10, Craftie.Frame.Reagent_Height-11)
   Craftie.Frame.Reagent.Icon[i]:SetPoint("TOPLEFT", 3, -5)
   Craftie.Frame.Reagent.Icon[i]:SetTexture("Interface/Icons/inv_misc_questionmark")
   --Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
+  Craftie.Frame.Reagent.IconBorder[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "OVERLAY")
+  Craftie.Frame.Reagent.IconBorder[i]:SetSize(Craftie.Frame.Reagent_Height, Craftie.Frame.Reagent_Height)
+  Craftie.Frame.Reagent.IconBorder[i]:SetPoint("TOPLEFT", -2, 0)
+  Craftie.Frame.Reagent.IconBorder[i]:SetTexture("Interface/SPELLBOOK/RotationIconFrame")
+  Craftie.Frame.Reagent.IconBorder[i]:SetVertexColor(0.70, 0.70, 0.70)
+  Craftie.Frame.Reagent.IconGlow[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "OVERLAY")
+  Craftie.Frame.Reagent.IconGlow[i]:SetSize(Craftie.Frame.Reagent_Height+13, Craftie.Frame.Reagent_Height+13)
+  Craftie.Frame.Reagent.IconGlow[i]:SetPoint("TOPLEFT", -8, 6)
+  Craftie.Frame.Reagent.IconGlow[i]:SetTexture("Interface/BUTTONS/CheckButtonGlow")
   Craftie.Frame.Reagent.Text[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.Reagent.Text[i]:SetFont(Craftie._G.Font.Style, 10, "SLUG")
   Craftie.Frame.Reagent.Text[i]:SetPoint("CENTER", 8, 3)
@@ -257,7 +278,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Text[i]:SetWidth(Craftie.Frame.Reagent_Width-50)
   Craftie.Frame.Reagent.Text[i]:SetHeight(Craftie.Frame.Reagent_Height-10)
   Craftie.Frame.Reagent.Text[i]:SetWordWrap(true)
-  Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.7)
+  Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Data[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.Reagent.Data[i]:SetFont(Craftie._G.Font.Style, 10, "SLUG")
   --Craftie.Frame.Reagent.Data[i]:SetPoint("TOPLEFT", 0, 0)
