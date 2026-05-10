@@ -135,7 +135,7 @@ for i=1, Craftie.MAX_PLAYERS do
   end)
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnLeave", function(self)
     GameTooltip:Hide()
-    Craftie.ClearSelectedItem("Players")
+    Craftie.SelectScrollItem("Players")
   end)
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnClick", function(self)
     Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListText[i]:GetText())

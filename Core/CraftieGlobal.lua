@@ -438,13 +438,13 @@ end
 
 Craftie.Frame.Scroll={}
 Craftie.Frame.ScrollPlayersListItem={}
-function Craftie.ClearSelectedItem(scrollFrame)
+function Craftie.SelectScrollItem(scrollFrame)
   if (scrollFrame == "Players") then
     for i=1, Craftie.MAX_PLAYERS do
       Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
       Craftie.Frame.ScrollPlayersListItem[Craftie.Selected_Players]:SetBackdropColor(0.6, 0.7, 1, 0.5)
-      Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
       Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
+      Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
       if (i % 2 == 0) then
         Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
       end
@@ -454,8 +454,8 @@ function Craftie.ClearSelectedItem(scrollFrame)
     for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(1, 1, 1, 0)
       Craftie.Frame.ScrollRecipesList.Item[Craftie.Selected_Recipes]:SetBackdropColor(0.6, 0.7, 1, 0.5)
-      Craftie.Frame.ScrollRecipesList.Text[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
       Craftie.Frame.ScrollRecipesList.Text[i]:SetTextColor(1, 1, 1, 0.8)
+      Craftie.Frame.ScrollRecipesList.Text[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
       if (i % 2 == 0) then
         Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
       end
@@ -496,7 +496,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
 
       --print(prof[i][2])
       Craftie.Selected_Recipes = i
-      Craftie.ClearSelectedItem("Recipes")
+      Craftie.SelectScrollItem("Recipes")
       --example
       Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
     end)
@@ -521,7 +521,7 @@ function Craftie.SelectCrafter(index, name)
     if (not Craftie.IsEmpty(name)) then
       print(name)
       Craftie.Selected_Players = index
-      Craftie.ClearSelectedItem("Players")
+      Craftie.SelectScrollItem("Players")
     end
   end
 end

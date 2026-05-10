@@ -133,6 +133,13 @@ Craftie.Frame.CraftParent:SetWidth(300)
 Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -61)
 
+--LFGFRAME/LFGDungeonToast
+
+Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
+Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
+Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/BackgroundFrameDecor.png")
+
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.Craft:SetWidth(220)
@@ -145,6 +152,11 @@ Craftie.Frame.Craft:SetHyperlinksEnabled(true)
 Craftie.Frame.Craft:SetScript("OnHyperlinkClick", function(self, link, text, button)
 	SetItemRef(link, text, nil, self)
 end)
+
+Craftie.Frame.Craft.Back = Craftie.Frame.Craft:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.Craft.Back:SetSize(310, 50)
+Craftie.Frame.Craft.Back:SetPoint("TOPLEFT", -4, 6)
+Craftie.Frame.Craft.Back:SetTexture(Craftie._G.Path .. "Images/CraftToast.png")
 
 --Masks/CircleMaskScalable
 Craftie.Frame.Craft.Icon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
@@ -163,7 +175,11 @@ Craftie.Frame.Craft.Border:SetVertexColor(0.48, 0.48, 0.48)
 
 Craftie.Frame.Craft.Text = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Text:SetFont(Craftie._G.Font.Style, 12, "SLUG")
-Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 45, -10)
+Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 45, -6)
+Craftie.Frame.Craft.Text:SetWidth(220)
+Craftie.Frame.Craft.Text:SetJustifyV("TOP")
+Craftie.Frame.Craft.Text:SetJustifyH("LEFT")
+Craftie.Frame.Craft.Text:SetWordWrap(true)
 Craftie.Frame.Craft.Text:SetText("")
 --designed to mask over the entire craft frame
 Craftie.Frame.Craft.HLink = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
@@ -347,6 +363,6 @@ for i=1, Craftie.MAX_RECIPES do
   end)
   Craftie.Frame.ScrollRecipesList.Item[i]:SetScript("OnLeave", function(self)
     GameTooltip:Hide()
-    Craftie.ClearSelectedItem("Recipes")
+    Craftie.SelectScrollItem("Recipes")
   end)
 end
