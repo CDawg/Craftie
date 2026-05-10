@@ -25,6 +25,8 @@ Craftie.Frame.ScrollParentRecipes.Back:SetSize(Craftie.Frame.ScrollParentRecipes
 Craftie.Frame.ScrollParentRecipes.Back:SetPoint("TOPLEFT", 6, -5)
 Craftie.Frame.ScrollParentRecipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
 
+Craftie.ScrollBarBack(Craftie.Frame.ScrollParentRecipes)
+
 Craftie.Frame.ScrollRecipes_Width = 300
 Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-90
 Craftie.Frame.ScrollRecipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentRecipes)
@@ -41,9 +43,6 @@ Craftie.Frame.ScrollRecipesList:SetBackdrop(Craftie.Backdrop.General)
 --Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0.1) --slight blue
 Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue
 Craftie.Frame.ScrollRecipesList:SetBackdropBorderColor(1, 1, 1, 0)
-
-Craftie.ScrollBarBack(Craftie.Frame.ScrollRecipesList)
-
 Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
 --Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "ScrollFrameTemplate")
 --Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -3)
@@ -81,13 +80,16 @@ Craftie.Frame.Search.Recipes:SetBackdrop(Craftie.Backdrop.Opaque)
 Craftie.Frame.Search.Recipes:SetBackdropColor(1, 0, 0, 1)
 Craftie.Frame.Search.Recipes:SetBackdropBorderColor(1, 1, 1, 0.6)
 Craftie.Frame.Search.Recipes:SetFrameStrata("MEDIUM")
---Craftie.Frame.Search.Recipes:SetFrameLevel(Craftie.Framelevel.Foreground)
+Craftie.Frame.Search.Recipes.Icon = Craftie.Frame.Search.Recipes:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Search.Recipes.Icon:SetSize(18, 18)
+Craftie.Frame.Search.Recipes.Icon:SetPoint("TOPLEFT", 4, -5)
+Craftie.Frame.Search.Recipes.Icon:SetTexture("Interface/COMMON/UI-Searchbox-Icon")
 Craftie.Frame.Search.Recipes.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search.Recipes)
-Craftie.Frame.Search.Recipes.Text:SetWidth(Craftie.Frame.Search.Recipes:GetWidth()-8)
+Craftie.Frame.Search.Recipes.Text:SetWidth(Craftie.Frame.Search.Recipes:GetWidth()-22)
 Craftie.Frame.Search.Recipes.Text:SetHeight(Craftie.Frame.Search.Recipes:GetHeight())
 Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
 Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.Font.Style, 11, "OUTLINE")
-Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 6, 0)
+Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 22, 0)
 Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
@@ -109,7 +111,6 @@ end)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnEditFocusLost", function(self)
   --Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 end)
-
 Craftie.Frame.Button.SearchRecipes = CreateFrame("Button", nil, Craftie.Frame.Search.Recipes, "UIPanelButtonTemplate")
 Craftie.Frame.Button.SearchRecipes:SetSize(24, 23)
 Craftie.Frame.Button.SearchRecipes:SetPoint("TOPLEFT", Craftie.Frame.Search.Recipes:GetWidth()-4, 1)
@@ -121,13 +122,6 @@ Craftie.Frame.Button.SearchRecipes:SetScript("OnEnter", function(self)
 
 end)
 
-Craftie.Frame.Button.SearchRecipes:SetScript("OnLeave", function(self)
-
-end)
-
-Craftie.Frame.Button.SearchRecipes:SetScript("OnClick", function(self)
-
-end)
 
 --[==[
 CRAFT ITEM

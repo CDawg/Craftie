@@ -13,12 +13,11 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---updates/credits
-Craftie.CREDIT = {
-  "Zzaps",
-  "|nAnd a few nameless heroes on Dreamscythe|n",
-  "Written by |cff006aa6Porthias|r (a.k.a. Port)",
-}
+Craftie.Credits = [==[
+Zzaps
+And a few nameless heroes on Dreamscythe
+Written by |cff006aa6Porthias|r (a.k.a. Port)
+]==]
 
 Craftie.Updates_w = Craftie.Frame:GetWidth()/2
 Craftie.Updates_h = Craftie.Frame:GetHeight()-60
@@ -29,7 +28,6 @@ Craftie.Updates:SetHeight(Craftie.Updates_h)
 Craftie.Updates:SetPoint("TOPLEFT", 10, -92)
 
 Craftie.DividerHorz(Craftie.Updates, -6, 8, Craftie.Frame:GetWidth()-32)
-
 Craftie.DividerVert(Craftie.Updates, 400, -15, 312)
 
 Craftie.UpdatesScrollFrame = CreateFrame("Frame", Craftie.UpdatesScrollFrame, Craftie.Updates, "BackdropTemplate")
@@ -52,26 +50,26 @@ Craftie.Updates.Data = CreateFrame("EditBox", nil, Craftie.UpdatesScrollFrameChi
 Craftie.Updates.Data:SetWidth(Craftie.Updates_w-20)
 Craftie.Updates.Data:SetHeight(Craftie.Updates_h)
 --Craftie.Updates.Data:SetFontObject(GameFontWhite)
-Craftie.Updates.Data:SetFont(Craftie._G.Font.Style, 10, "OUTLINE")
+Craftie.Updates.Data:SetFont(Craftie._G.Font.Style, 11, "OUTLINE")
 Craftie.Updates.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Updates.Data:SetMultiLine(true)
 Craftie.Updates.Data:ClearFocus(self)
 Craftie.Updates.Data:SetAutoFocus(false)
 Craftie.Updates:Hide()
+Craftie.ScrollBarBack(Craftie.UpdatesScrollFrame)
 
 --Craftie.Update = Craftie.ArrayToString(TOCA._L.INTRO[1]) .. "|n" .. TOCA.CHANGELOG:gsub("###", ""):gsub("*", "|cfffab734>|r") .. "|n|n|n"
 local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", "|cfffab734 >|r") .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
-
-Craftie.Credit_w = Craftie.Frame:GetWidth()/2
-Craftie.Credit_h = Craftie.Frame:GetHeight()-30
+Craftie.Credit_w = Craftie.Frame:GetWidth()/2-60
+Craftie.Credit_h = Craftie.Frame:GetHeight()-60
 
 Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame)
 Craftie.Credit:SetWidth(Craftie.Credit_w)
 Craftie.Credit:SetHeight(Craftie.Credit_h)
-Craftie.Credit:SetPoint("TOPLEFT", 10, -62)
-Craftie.CreditScrollFrame={}
+Craftie.Credit:SetPoint("TOPLEFT", 450, -92)
+--Craftie.CreditScrollFrame={}
 Craftie.CreditScrollFrame = CreateFrame("Frame", Craftie.CreditScrollFrame, Craftie.Credit, "BackdropTemplate")
 Craftie.CreditScrollFrame:SetWidth(Craftie.Credit_w+10)
 Craftie.CreditScrollFrame:SetHeight(Craftie.Credit_h-60)
@@ -92,12 +90,11 @@ Craftie.Credit.Data = CreateFrame("EditBox", nil, Craftie.CreditScrollFrameChild
 Craftie.Credit.Data:SetWidth(Craftie.Credit_w-20)
 Craftie.Credit.Data:SetHeight(Craftie.Credit_h)
 --Craftie.Credit.Data:SetFontObject(GameFontWhite)
-Craftie.Credit.Data:SetFont(Craftie._G.Font.Style, 10, "OUTLINE")
+Craftie.Credit.Data:SetFont(Craftie._G.Font.Style, 12, "OUTLINE")
 Craftie.Credit.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Credit.Data:SetMultiLine(true)
 Craftie.Credit.Data:ClearFocus(self)
 Craftie.Credit.Data:SetAutoFocus(false)
-Craftie.Credit.Data:SetText("")
+Craftie.Credit.Data:SetText(Craftie.Credits)
 Craftie.Credit:Hide()
-
---local credits = Craftie.ArrayToString()
+Craftie.ScrollBarBack(Craftie.CreditScrollFrame)

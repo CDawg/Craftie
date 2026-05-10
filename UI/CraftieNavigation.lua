@@ -36,6 +36,7 @@ function Craftie.TabBottomSelect(tab, sound)
   Craftie.Frame.CraftParent:Hide()
   Craftie.Logger:Hide()
   Craftie.Updates:Hide()
+  Craftie.Credit:Hide()
   Craftie.Help:Hide()
   Craftie.Frame.Title.Prof:Hide()
   Craftie.Frame.Title.Sub:Show()
@@ -54,6 +55,7 @@ function Craftie.TabBottomSelect(tab, sound)
   end
   if (tab == 2) then
     Craftie.Updates:Show()
+    Craftie.Credit:Show()
   end
   if (tab == 3) then
     Craftie.Help:Show()

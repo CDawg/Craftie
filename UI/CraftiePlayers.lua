@@ -26,6 +26,8 @@ Craftie.Frame.ScrollParentPlayers.Back:SetPoint("TOPLEFT", 4, -5)
 Craftie.Frame.ScrollParentPlayers.Back:SetTexture(Craftie._G.Path .. "images/stationary_players")
 ]==]--
 
+Craftie.ScrollBarBack(Craftie.Frame.ScrollParentPlayers)
+
 Craftie.FrameScrollPlayers_Width = 210
 Craftie.FrameScrollPlayers_Height= Craftie._G.Height-90
 --Craftie.FrameScrollPlayers_Height= Craftie._G.Height-200
@@ -45,8 +47,6 @@ Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.05) --shade
 Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
-Craftie.ScrollBarBack(Craftie.Frame.ScrollParentPlayers)
-
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -30)
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 10, 4)
@@ -57,6 +57,7 @@ Craftie.Frame.ScrollPlayersList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT", 0, 10)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, 12)
 
+--COMMON/UI-Searchbox-Icon
 --[==[
 SEARCH PLAYERS
 ]==]--
@@ -65,17 +66,21 @@ Craftie.Frame.Search.Players={}
 Craftie.Frame.Search.Players = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentPlayers, "BackdropTemplate", 2)
 Craftie.Frame.Search.Players:SetWidth(150)
 Craftie.Frame.Search.Players:SetHeight(24)
-Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 4, -1)
+Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 4, -2)
 Craftie.Frame.Search.Players:SetBackdrop(Craftie.Backdrop.Opaque)
 Craftie.Frame.Search.Players:SetBackdropColor(1, 0, 0, 1)
 Craftie.Frame.Search.Players:SetBackdropBorderColor(1, 1, 1, 0.6)
 Craftie.Frame.Search.Players:SetFrameStrata("MEDIUM")
+Craftie.Frame.Search.Players.Icon = Craftie.Frame.Search.Players:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Search.Players.Icon:SetSize(18, 18)
+Craftie.Frame.Search.Players.Icon:SetPoint("TOPLEFT", 4, -5)
+Craftie.Frame.Search.Players.Icon:SetTexture("Interface/COMMON/UI-Searchbox-Icon")
 Craftie.Frame.SearchPlayerText = CreateFrame("EditBox", nil, Craftie.Frame.Search.Players)
-Craftie.Frame.SearchPlayerText:SetWidth(Craftie.Frame.Search.Players:GetWidth()-6)
+Craftie.Frame.SearchPlayerText:SetWidth(Craftie.Frame.Search.Players:GetWidth()-22)
 Craftie.Frame.SearchPlayerText:SetHeight(Craftie.Frame.Search.Players:GetHeight())
 Craftie.Frame.SearchPlayerText:SetFontObject(GameFontDisable)
 Craftie.Frame.SearchPlayerText:SetFont(Craftie._G.Font.Style, 11, "OUTLINE")
-Craftie.Frame.SearchPlayerText:SetPoint("TOPLEFT", 6, 0)
+Craftie.Frame.SearchPlayerText:SetPoint("TOPLEFT", 22, 0)
 Craftie.Frame.SearchPlayerText:SetAutoFocus(false)
 Craftie.Frame.SearchPlayerText:SetText(Craftie.Placeholder_Players)
 Craftie.Frame.SearchPlayerText:SetScript("OnKeyUp", function(self, key)
