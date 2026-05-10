@@ -62,6 +62,12 @@ Craftie.Backdrop = {
     edgeSize= 12,
     insets  = {left=2, right=2, top=2, bottom=2},
   },
+  Borderless = {
+    bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
+    edgeFile= "",
+    edgeSize= 12,
+    insets  = {left=2, right=2, top=2, bottom=2},
+  },
   Button = {
     bgFile  = "Interface/Buttons/GoldGradiant",
     edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
@@ -308,7 +314,9 @@ function Craftie.ItemDetails(item)
       --reset
       Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
-      Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
+      Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0)
+      Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.7)
+      Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.7)
 
       r = Craftie.GetKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
       --C_Timer.After(0.12, function()
@@ -338,6 +346,8 @@ function Craftie.ItemDetails(item)
         Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
         Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 1)
+        Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, .6, 1)
+        Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, .6, 1)
       end
       --print("craftie count " .. Craftie.Reagent[r][2] .. ": " .. item[5][i][2] .. " | " .. inv_count)
     end

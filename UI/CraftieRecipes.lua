@@ -137,7 +137,7 @@ Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.Craft:SetWidth(220)
 Craftie.Frame.Craft:SetHeight(35)
-Craftie.Frame.Craft:SetPoint("TOPLEFT", 14, -50)
+Craftie.Frame.Craft:SetPoint("TOPLEFT", 14, -20)
 Craftie.Frame.Craft:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.Craft:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.Craft:SetBackdropBorderColor(1, 1, 1, 0)
@@ -169,26 +169,27 @@ Craftie.Frame.Craft.ID:SetPoint("CENTER", 10, 0)
 Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
 
+local SourcePosY = -174
 Craftie.Frame.Craft.SkillIcon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.SkillIcon:SetSize(13, 13)
-Craftie.Frame.Craft.SkillIcon:SetPoint("BOTTOMLEFT", 0, -154)
+Craftie.Frame.Craft.SkillIcon:SetPoint("BOTTOMLEFT", 0, SourcePosY)
 Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/inv_misc_questionmark")
 Craftie.Frame.Craft.SkillIcon:Hide()
 Craftie.Frame.Craft.Skill = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Skill:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.Skill:SetPoint("BOTTOMLEFT", 15, -152)
+Craftie.Frame.Craft.Skill:SetPoint("BOTTOMLEFT", 15, SourcePosY-2)
 Craftie.Frame.Craft.Skill:SetText("")
 Craftie.Frame.Craft.Skill:SetTextColor(1, 1, 1, 0.7)
 Craftie.Frame.Craft.Skill:Hide()
 Craftie.Frame.Craft.SourceTitle = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.SourceTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.SourceTitle:SetPoint("BOTTOMLEFT", 15, -168)
+Craftie.Frame.Craft.SourceTitle:SetPoint("BOTTOMLEFT", 15, SourcePosY-20)
 Craftie.Frame.Craft.SourceTitle:SetText("Sources:")
 Craftie.Frame.Craft.SourceTitle:SetTextColor(1, 1, 1, 1)
 Craftie.Frame.Craft.SourceTitle:Hide()
 Craftie.Frame.Craft.Source = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Source:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.Source:SetPoint("BOTTOMLEFT", 65, -168)
+Craftie.Frame.Craft.Source:SetPoint("BOTTOMLEFT", 65, SourcePosY-20)
 Craftie.Frame.Craft.Source:SetText("")
 Craftie.Frame.Craft.Source:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.Craft.Source:Hide()
@@ -209,6 +210,7 @@ Craftie.Frame.Craft.Back:SetVertexColor(0.80, 0.78, 0.78)
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
+Craftie.Frame.Reagent.Back = {}
 Craftie.Frame.Reagent.Tooltip = {}
 Craftie.Frame.Reagent.Icon = {}
 Craftie.Frame.Reagent.Text = {}
@@ -216,53 +218,70 @@ Craftie.Frame.Reagent.QuanR = {} --required
 Craftie.Frame.Reagent.QuanI = {} --inventory
 Craftie.Frame.Reagent.Dash = {}
 Craftie.Frame.Reagent.Data = {} --ID
-Craftie.Frame.Reagent_Width = 100
-Craftie.Frame.Reagent_Height= 35
+Craftie.Frame.Reagent_Width = 146
+Craftie.Frame.Reagent_Height= 38
 Craftie.Frame.Reagent_PosX  = 50
-Craftie.Frame.Reagent_PosY  = 100
+Craftie.Frame.Reagent_PosY  = 130
 for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent, "BackdropTemplate")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
   Craftie.Frame.Reagent.Main[i]:SetHeight(Craftie.Frame.Reagent_Height)
-  if (i % 2 == 0) then
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-20, (-i*18)+Craftie.Frame.Reagent_PosY)
+  if (i % 2 == 0) then --right row
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-74, (-i*18)+Craftie.Frame.Reagent_PosY)
   else
     local p = i+1
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -55, (-p*18)+Craftie.Frame.Reagent_PosY)
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -74, (-p*18)+Craftie.Frame.Reagent_PosY)
   end
 
   Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.General)
-  Craftie.Frame.Reagent.Main[i]:SetBackdropColor(0, 0, 0, 1)
-  Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0.6)
-  Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-2, Craftie.Frame.Reagent_Height-2)
-  Craftie.Frame.Reagent.Icon[i]:SetPoint("CENTER", -65, 0)
+  --Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.Borderless)
+  Craftie.Frame.Reagent.Main[i]:SetBackdropColor(0, 0, 0, 0)
+  Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(0, 0, 0, 0) -- controlled in global Craftie.ItemDetails
+
+  --Craftie.Frame.Reagent.Back[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.Reagent.Back[i] = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND") --always showing
+  Craftie.Frame.Reagent.Back[i]:SetSize(Craftie.Frame.Reagent_Width+13, Craftie.Frame.Reagent_Height+5)
+  --Craftie.Frame.Reagent.Back[i]:SetPoint("CENTER", 0, 1)
+  Craftie.Frame.Reagent.Back[i]:SetPoint(Craftie.Frame.Reagent.Main[i]:GetPoint())
+  Craftie.Frame.Reagent.Back[i]:SetTexture(Craftie._G.Path  .. "Images/ItemToast.png")
+  --Craftie.Frame.Reagent.Back[i]:SetAlpha(0.5)
+    Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
+  Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-10, Craftie.Frame.Reagent_Height-11)
+  Craftie.Frame.Reagent.Icon[i]:SetPoint("TOPLEFT", 3, -5)
   Craftie.Frame.Reagent.Icon[i]:SetTexture("Interface/Icons/inv_misc_questionmark")
-  Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
+  --Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
   Craftie.Frame.Reagent.Text[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.Reagent.Text[i]:SetFont(Craftie._G.Font.Style, 10, "SLUG")
-  Craftie.Frame.Reagent.Text[i]:SetPoint("TOPLEFT", 2, -6)
+  Craftie.Frame.Reagent.Text[i]:SetPoint("CENTER", 8, 3)
   Craftie.Frame.Reagent.Text[i]:SetText(i)
-  Craftie.Frame.Reagent.Text[i]:SetWidth(Craftie.Frame.Reagent_Width-10)
+  Craftie.Frame.Reagent.Text[i]:SetWidth(Craftie.Frame.Reagent_Width-50)
   Craftie.Frame.Reagent.Text[i]:SetHeight(Craftie.Frame.Reagent_Height-10)
   Craftie.Frame.Reagent.Text[i]:SetWordWrap(true)
-  Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.7)
   Craftie.Frame.Reagent.Data[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.Reagent.Data[i]:SetFont(Craftie._G.Font.Style, 10, "SLUG")
   --Craftie.Frame.Reagent.Data[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.Reagent.Data[i]:SetText(i)
+
+  local ReagentQPosX = 7
   Craftie.Frame.Reagent.QuanI[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.QuanI[i]:SetFont(Craftie._G.Font.Style, 11, "SLUG")
-  Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", -27, -20)
+  --Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", -27, -20)
+  Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", ReagentQPosX, -20)
   Craftie.Frame.Reagent.QuanI[i]:SetText("3")
+  Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Dash[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.Dash[i]:SetFont(Craftie._G.Font.Style, 12, "SLUG")
-  Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", -19, -20)
+  --Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", -19, -20)
+  Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", ReagentQPosX+8, -20)
   Craftie.Frame.Reagent.Dash[i]:SetText("/")
+  Craftie.Frame.Reagent.Dash[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.QuanR[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.QuanR[i]:SetFont(Craftie._G.Font.Style, 11, "SLUG")
-  Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", -14, -20)
+  --Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", -14, -20)
+  Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", ReagentQPosX+13, -20)
   Craftie.Frame.Reagent.QuanR[i]:SetText("3")
+  Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Tooltip[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Tooltip[i], Craftie.Frame.Reagent.Main[i], "BackdropTemplate")
   Craftie.Frame.Reagent.Tooltip[i]:SetWidth(Craftie.Frame.Reagent_Width+30)
   Craftie.Frame.Reagent.Tooltip[i]:SetHeight(Craftie.Frame.Reagent_Height)
@@ -270,7 +289,6 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Tooltip[i]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Frame.Reagent.Tooltip[i]:SetBackdropColor(1, 1, 1, 0)
   Craftie.Frame.Reagent.Tooltip[i]:SetBackdropBorderColor(1, 1, 1, 0)
-
   Craftie.Frame.Reagent.Main[i]:Hide()
 
   Craftie.Frame.Reagent.Tooltip[i]:SetScript("OnEnter", function(self)
