@@ -268,7 +268,7 @@ end
 --end
 
 Craftie.Animation = 0
-Craftie.TabBarHide = 1
+Craftie.TabBarHide = 0
 do
 	function Craftie.TimerAnim(frame, exptime) --different anim timers, sort by frames
     if (exptime) then

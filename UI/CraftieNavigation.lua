@@ -69,15 +69,14 @@ function Craftie.TabBottomSelect(tab, sound)
     Craftie.Logger:Show()
   end
 
-  Craftie.TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar
-  --Craftie.TabBottom[tab].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
+  if (sound) then
+    PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+    Craftie.TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar after Init()
+  end
+
   Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab.png")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
   Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
-
-  if (sound) then
-    PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
-  end
 end
 
 Craftie.TabBottom={}
