@@ -20,7 +20,7 @@ function Craftie.Init()
   Craftie.TabBottomSelect(1, false)
 
   if (CraftieDB == nil) then
-    CraftieDB = {}
+    --CraftieDB = {}
     Craftie.Notification("New Profile: " .. Craftie.player.realm .. "-" ..  Craftie.player.faction .. "-" .. Craftie.player.name, true)
   end
 
@@ -56,7 +56,8 @@ function Craftie.Init()
     Craftie.Notification("Loading Profile: " .. Craftie.player.realm .. "-" ..  Craftie.player.faction .. "-" .. Craftie.player.name)
   end
 
-  print(Craftie._G.Stamp .. " Loaded. Type " .. SLASH_Craftie1 .. " to open.")
+  --print(Craftie._G.Stamp .. " Loaded. Type " .. SLASH_Craftie1 .. " to open.")
+  Craftie.Notification(" Loaded. Type " .. SLASH_Craftie1 .. " to open.")
 
    --whisper self to prep incoming comms
   Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.player.name, "WHISPER", Craftie.player.name)

@@ -99,17 +99,6 @@ Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
 
-Craftie.Professions = {
-  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmute Master"}},
-  {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48", {"Armorsmith", "Weaponsmith", "Swordsmith", "Hammersmith", "Axesmith"}},
-  {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13"},
-  {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83"},
-  {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25", {"Gnomish", "Goblin"}},
-  {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale", "Elemental", "Tribal"}},
-  {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth", "Shadoweave", "Spellfire"}},
-  {"Jewelcrafting",  "INV_Misc_Gem_02",      "1.00, 0.25, 0.25"},
-}
-
 Craftie.Profession.Query = Craftie.Profession.Alchemy --default
 
 Craftie.Placeholder_Players = "Search Crafters..."
@@ -462,6 +451,7 @@ function Craftie.SelectScrollItem(scrollFrame)
   end
 end
 
+--[==[
 --https://warcraft.wiki.gg/wiki/API_GetProfessionInfo
 function Craftie.GetPlayerProfessions()
 	local pass = false
@@ -490,37 +480,14 @@ function Craftie.GetPlayerProfessions()
 	end
 	return skills[1], skills[2], skills[3], skills[4], skills[5]
 end
-
---[==[
-function Craftie.GetProfessionInfo()
-  for i = 1, GetNumSkillLines() do
-    local skillName, isHeader, _, skillRank = GetSkillLineInfo(i)
-    if (not isHeader) then
-      print(skillName, skillRank)
-    end
-  end
-
-  local numSkills = GetNumTradeSkills()
-
-  CastSpellByName("Alchemy")
-
-  for i = 1, numSkills do
-      local skillName, skillType = GetTradeSkillInfo(i)
-
-      -- Skip headers/categories
-      if skillType ~= "header" then
-          print(i, skillName, skillType)
-      end
-  end
-end
 ]==]--
 
 function Craftie.GetProfessionInfo()
   --get primary profession
   for i = 1, GetNumSkillLines() do
-    local skillName, isHeader, _, skillRank = GetSkillLineInfo(i)
+    local profName, isHeader, _, profLevel = GetSkillLineInfo(i)
     if (not isHeader) then
-      print(skillName, skillRank)
+      print(profName, profLevel)
     end
   end
   --[==[
@@ -624,12 +591,90 @@ function Craftie.SelectCrafter(index, name)
   end
 end
 
+Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
+--build seed
+function Craftie.BuildProfProfile(prof)
+  --print(prof)
+  for k,v in pairs(Craftie.Professions) do
+    if (v[1] == prof) then
+      if (Craftie.ProfileBuilt[prof] ~= 1) then
+        --print(prof)
+        local numRecipes = GetNumTradeSkills()
+        for i = 1, numRecipes do
+          local recipeName, recipeType = GetTradeSkillInfo(i)
+          if recipeType ~= "header" then
+            if (recipeName ~= nil) then
+              print(i-1, recipeName)
+            end
+          end
+        end
+        Craftie.ProfileBuilt[prof] = 1
+      end
+    end
+  end
+    --Craftie.ProfileBuilt[prof] = 1
+end
+
+--[==[
+function Craftie.BuildProfProfile()
+  --local numRecipes = GetNumTradeSkills()
+  local profCount = 0
+  if (Craftie.ProfileBuilt == 0) then
+    for k,v in pairs(Craftie.Professions) do
+      --print(v[1])
+      for i = 1, GetNumSkillLines() do
+        local profName, isHeader, isExp, profLevel = GetSkillLineInfo(i)
+        if (not isHeader) then
+          if (v[1] == profName) then
+            profCount = profCount+2
+            print(profName .. " | " .. profLevel)
+            print(profCount)
+            C_Timer.After(profCount, function()
+              print(profName .. " do something")
+
+              CastSpellByName(profName)
+              local numRecipes = GetNumTradeSkills()
+              for recipe = 1, numRecipes do
+                local recipeName, recipeType = GetTradeSkillInfo(recipe)
+                if recipeType ~= "header" then
+                  print(recipe, recipeName)
+                end
+              end
+              C_Timer.After(1, function()
+                print("close " .. profName)
+                CloseTradeSkill()
+              end)
+
+            end)
+          --print("Match: " .. profName .. " | " .. profLevel)
+          end
+        end
+      end
+    end
+    Craftie.ProfileBuilt = 1
+  end
+end
+]==]--
+
+Craftie.WindowOpen = 0
+function Craftie.OpenCraftie()
+  --PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+  if (Craftie.WindowOpen == 0) then
+    Craftie.Frame:Show()
+    Craftie.WindowOpen = 1
+    --Craftie.BuildProfProfile()
+  else
+    Craftie.Frame:Hide()
+    Craftie.WindowOpen = 0
+  end
+end
+
 SLASH_Craftie1 = "/" .. Craftie._G.Prefix
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
 
     --print(Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version)
-    Craftie.Frame:Show()
+    Craftie.OpenCraftie()
     --Craftie.Notification
 		--for int,list in pairs(Craftie._L.COMMANDS) do
 			--print("|cffffff00".. list[1] .. "|r : " .. list[2] .. "|n")
@@ -640,7 +685,7 @@ function SlashCmdList.Craftie(cmd)
 	  --Craftie.FrameOptions:Show()
   --end
   if (cmd == "show") then
-    Craftie.Frame:Show()
+    Craftie.OpenCraftie()
   end
 
   for k,v in pairs(Craftie.Professions) do

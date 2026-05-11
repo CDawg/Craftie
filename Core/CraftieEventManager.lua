@@ -78,8 +78,20 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     ]==]--
 
     if (event == "TRADE_SKILL_SHOW") then
-      print("opening trade skills")
-      Craftie.GetProfessionInfo()
+      local prof = GetTradeSkillLine()
+      Craftie.BuildProfProfile(prof)
+      --[==[
+      local numSkills = GetNumTradeSkills()
+
+      for i = 1, numSkills do
+        local skillName, skillType = GetTradeSkillInfo(i)
+
+        -- Skip headers/categories
+        if skillType ~= "header" then
+          print(i, skillName, skillType)
+        end
+      end
+      ]==]--
     end
 
     if (event == "CHAT_MSG_ADDON") then
@@ -130,7 +142,7 @@ EventRegistry:RegisterCallback("SetItemRef", function(_, link, text, button, cha
       print("Link clicked:", linkData)
       --GameTooltip:AddLine("Craftie")
       --GameTooltip:Show()
-      Craftie.Frame:Show()
+      Craftie.OpenCraftie()
     end
 end)
 

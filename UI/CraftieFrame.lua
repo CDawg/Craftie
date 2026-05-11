@@ -217,6 +217,10 @@ Craftie.Frame.Button.Minimap:SetScript("OnLeave", function(self)
 end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
-  Craftie.Frame:Show()
-  PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
+  Craftie.OpenCraftie()
 end)
+
+Craftie.Frame:SetScript("OnHide", function(self)
+  Craftie.WindowOpen = 0
+end)
+Craftie.Frame:Hide()
