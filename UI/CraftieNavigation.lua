@@ -42,7 +42,7 @@ function Craftie.TabBottomSelect(tab, sound)
   Craftie.Frame.Title.Sub:Show()
 
   for k,v in pairs(Craftie.Nav.Tabs) do
-    Craftie.TabBottom[k].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab-InactiveTab")
+    Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   end
 
@@ -70,7 +70,8 @@ function Craftie.TabBottomSelect(tab, sound)
   end
 
   Craftie.TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar
-  Craftie.TabBottom[tab].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
+  --Craftie.TabBottom[tab].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
+  Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab.png")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
   Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
 
@@ -80,18 +81,35 @@ function Craftie.TabBottomSelect(tab, sound)
 end
 
 Craftie.TabBottom={}
-local bottomTabOffset = 330
+local bottomTabOffset = 350
 for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
-  Craftie.TabBottom[k]:SetSize(74, 32)
-  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -28)
+  Craftie.TabBottom[k]:SetSize(80, 38)
+  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -32)
   Craftie.TabBottom[k]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.TabBottom[k]:SetBackdropColor(0, 1, 0, 0)
   Craftie.TabBottom[k]:SetBackdropBorderColor(1, 1, 1, 0)
-  Craftie.TabBottom[k].BG = Craftie.TabBottom[k]:CreateTexture(nil, "ARTWORK")
-  Craftie.TabBottom[k].BG:SetSize(Craftie.TabBottom[k]:GetWidth(), 64)
-  Craftie.TabBottom[k].BG:SetPoint("CENTER", 0, 0)
-  Craftie.TabBottom[k].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab-InactiveTab")
+  Craftie.TabBottom[k].BG = Craftie.TabBottom[k]:CreateTexture(nil, "BACKGROUND")
+  Craftie.TabBottom[k].BG:SetSize(Craftie.TabBottom[k]:GetWidth(), 44)
+  Craftie.TabBottom[k].BG:SetPoint("CENTER", 0, -4)
+  Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
+  Craftie.TabBottom[k].Highlight = Craftie.TabBottom[k]:CreateTexture(nil, "BORDER")
+  Craftie.TabBottom[k].Highlight:SetSize(Craftie.TabBottom[k]:GetWidth()-4, 14)
+  Craftie.TabBottom[k].Highlight:SetPoint("CENTER", 0, -2)
+  Craftie.TabBottom[k].Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-Highlight")
+  Craftie.TabBottom[k].Highlight:SetBlendMode("ADD")
+  Craftie.TabBottom[k].Highlight:SetAlpha(0.8)
+
+  Craftie.TabBottom[k].Highlight:Hide()
+  --[==[
+  Craftie.TabBottom[k].Select = Craftie.TabBottom[k]:CreateTexture(nil, "BORDER")
+  Craftie.TabBottom[k].Select:SetSize(Craftie.TabBottom[k]:GetWidth()+8, 32)
+  Craftie.TabBottom[k].Select:SetPoint("CENTER", 0, 0)
+  Craftie.TabBottom[k].Select:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-RealHighlight")
+  Craftie.TabBottom[k].Select:Hide()
+  ]==]--
+  --UI-CHARACTER-ACTIVETAB
+
   --[==[
   Craftie.TabBottom.Hover = Craftie.TabBottom:CreateTexture(nil, "ARTWORK")
   Craftie.TabBottom.Hover:SetSize(Craftie.TabBottom:GetWidth(), 64)
@@ -111,9 +129,11 @@ for k,v in pairs(Craftie.Nav.Tabs) do
     Craftie.TabBottomSelect(k, true)
   end)
   Craftie.TabBottom[k]:SetScript("OnEnter", function(self)
+    Craftie.TabBottom[k].Highlight:Show()
     --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
   Craftie.TabBottom[k]:SetScript("OnLeave", function(self)
+    Craftie.TabBottom[k].Highlight:Hide()
     --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
 end

@@ -124,15 +124,12 @@ Craftie.Frame={}
 
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
-    --Craftie.Frame.TabSide[i].BorderSelect:Hide()
     Craftie.Frame.TabSide[i].Glow:Hide()
     Craftie.Frame.TabSide[i].Shadow:Show()
   end
-  --Craftie.Frame.TabSide[tab].BorderSelect:Show()
   Craftie.Frame.TabSide[tab].Glow:Show()
   Craftie.Frame.TabSide[tab].Shadow:Hide()
   if (sound) then
-    --PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
   end
 end
@@ -161,34 +158,6 @@ function SetItemTooltip(frame, itemID, enchant)
   end
   --GameTooltip:AddLine("|nCraftie")
   GameTooltip:Show()
-end
-
-function Craftie.GetPlayerProfessions()
-	local pass = false
-	local skills = {}
-	local skillnum = 0
-	local header1 = string.lower(TRADE_SKILLS)
-	local header2 = string.lower(SECONDARY_SKILLS) --need for cooking / include fishing?
-	for k = 1, GetNumSkillLines( ) do
-		local name, header = GetSkillLineInfo( k )
-		if header ~= nil then
-			name = string.lower( name )
-			if string.match( header1, name ) or string.match( header2, name ) then
-				pass = true
-				if string.match( header2, name ) and skillnum < 2 then
-					skillnum = 2
-				end
-			else
-				pass = false
-			end
-		else
-			if (pass) then
-				skillnum = skillnum + 1
-				skills[skillnum] = k
-			end
-		end
-	end
-	return skills[1], skills[2], skills[3], skills[4], skills[5]
 end
 
 function Craftie.SendPacket(prefix, data, channel, target)
@@ -493,6 +462,88 @@ function Craftie.SelectScrollItem(scrollFrame)
   end
 end
 
+--https://warcraft.wiki.gg/wiki/API_GetProfessionInfo
+function Craftie.GetPlayerProfessions()
+	local pass = false
+	local skills = {}
+	local skillnum = 0
+	local header1 = string.lower(TRADE_SKILLS)
+	local header2 = string.lower(SECONDARY_SKILLS)
+	for k = 1, GetNumSkillLines( ) do
+		local name, header = GetSkillLineInfo( k )
+		if header ~= nil then
+			name = string.lower( name )
+			if string.match( header1, name ) or string.match( header2, name ) then
+				pass = true
+				if string.match( header2, name ) and skillnum < 2 then
+					skillnum = 2
+				end
+			else
+				pass = false
+			end
+		else
+			if (pass) then
+				skillnum = skillnum + 1
+				skills[skillnum] = k
+			end
+		end
+	end
+	return skills[1], skills[2], skills[3], skills[4], skills[5]
+end
+
+--[==[
+function Craftie.GetProfessionInfo()
+  for i = 1, GetNumSkillLines() do
+    local skillName, isHeader, _, skillRank = GetSkillLineInfo(i)
+    if (not isHeader) then
+      print(skillName, skillRank)
+    end
+  end
+
+  local numSkills = GetNumTradeSkills()
+
+  CastSpellByName("Alchemy")
+
+  for i = 1, numSkills do
+      local skillName, skillType = GetTradeSkillInfo(i)
+
+      -- Skip headers/categories
+      if skillType ~= "header" then
+          print(i, skillName, skillType)
+      end
+  end
+end
+]==]--
+
+function Craftie.GetProfessionInfo()
+  --get primary profession
+  for i = 1, GetNumSkillLines() do
+    local skillName, isHeader, _, skillRank = GetSkillLineInfo(i)
+    if (not isHeader) then
+      print(skillName, skillRank)
+    end
+  end
+  --[==[
+  local numSkills = GetNumTradeSkills()
+
+  for i = 1, numSkills do
+    local skillName, skillType = GetTradeSkillInfo(i)
+
+    -- Skip headers/categories
+    if skillType ~= "header" then
+      --print(i, skillName, skillType)
+      print(skillName)
+    end
+  end
+  ]==]--
+end
+
+--[==[
+if TradeSkillFrame and TradeSkillFrame:IsVisible() then
+  CloseTradeSkill()
+end
+]==]--
+
 function Craftie.OpenProfessionList(prof, search) --need to add player
   --print("prof count " .. #prof)
   local total_recipes = #prof
@@ -529,6 +580,23 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
       Craftie.SelectScrollItem("Recipes")
       --example
       --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
+      --Craftie.GetProfInfo()
+      --[==[
+      local prof1, prof2, archaeology, fishing, cooking, firstAid = GetProfessions()
+      if (prof1) then
+        local name, texture, rank, maxRank = GetProfessionInfo(prof1)
+        print("Prof 1 : " .. name .. " - " .. rank .. "/" .. maxRank)
+      end
+      if (prof2) then
+        local name, texture, rank, maxRank = GetProfessionInfo(prof2)
+        print("Prof 2 : " .. name .. " - " .. rank .. "/" .. maxRank)
+      end
+      if (cooking) then
+        local name, texture, rank, maxRank = GetProfessionInfo(cooking)
+        print("Cooking: " .. name .. " - " .. rank .. "/" .. maxRank)
+      end
+      ]==]--
+      --Craftie.GetProfessionInfo()
     end)
     Craftie.Frame.ScrollRecipesList.Item[i]:Show()
   end

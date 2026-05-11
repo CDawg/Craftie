@@ -79,7 +79,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
 
     if (event == "TRADE_SKILL_SHOW") then
       print("opening trade skills")
-      --Craftie.GetPlayerProfessions()
+      Craftie.GetProfessionInfo()
     end
 
     if (event == "CHAT_MSG_ADDON") then
