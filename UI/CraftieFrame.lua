@@ -59,21 +59,39 @@ Craftie.Frame.Title.Prof:SetFont(Craftie._G.Font.Style, 14, "SLUG")
 Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 65, -35)
 Craftie.Frame.Title.Prof:SetText("Alchemy")
 
-local TabSideSpacing = 42 --height distance
+--determine version and placement
+Craftie.Frame.TabBar = CreateFrame("Button", Craftie.Frame.TabBar, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.TabBar:SetWidth(40)
+Craftie.Frame.TabBar:SetHeight(330)
+Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42, -60)
+Craftie.Frame.TabBar:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.TabBar:SetBackdropColor(0, 1, 0, 0)
+Craftie.Frame.TabBar:SetBackdropBorderColor(1, 1, 1, 0)
+Craftie.Frame.TabBar:SetFrameStrata("LOW")
+Craftie.Frame.TabBarBack = Craftie.Frame.TabBar:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.TabBarBack:SetWidth(62)
+Craftie.Frame.TabBarBack:SetHeight(440)
+Craftie.Frame.TabBarBack:SetPoint("TOPLEFT", 0, 10)
+Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar_TBC.png")
+
+local TabSidePosY = 23
+local TabSideSpacing = 37.4 --distance spacing
 Craftie.Frame.TabSide={}
 for i,v in pairs(Craftie.Professions) do
-  Craftie.Frame.TabSide[i] = CreateFrame("Button", Craftie.Frame.TabSide[i], Craftie.Frame, "BackdropTemplate")
+  Craftie.Frame.TabSide[i] = CreateFrame("Button", Craftie.Frame.TabSide[i], Craftie.Frame.TabBar, "BackdropTemplate")
   Craftie.Frame.TabSide[i]:SetWidth(40)
   Craftie.Frame.TabSide[i]:SetHeight(40)
-  Craftie.Frame.TabSide[i]:SetPoint("TOPLEFT", -40, (-i*TabSideSpacing)-16)
+  Craftie.Frame.TabSide[i]:SetPoint("TOPLEFT", 2, (-i*TabSideSpacing)+TabSidePosY)
   Craftie.Frame.TabSide[i]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Frame.TabSide[i]:SetBackdropColor(0, 1, 0, 0)
   Craftie.Frame.TabSide[i]:SetBackdropBorderColor(1, 1, 1, 0)
+  --[==[
   Craftie.Frame.TabSide[i].Border = Craftie.Frame.TabSide[i]:CreateTexture(nil, "BORDER")
   Craftie.Frame.TabSide[i].Border:SetSize(60, 60)
   Craftie.Frame.TabSide[i].Border:SetPoint("TOPLEFT", -20, 14)
   Craftie.Frame.TabSide[i].Border:SetTexture("Interface/SPELLBOOK/SpellBook-SkillLineTab")
   Craftie.Frame.TabSide[i].Border:SetRotation(-math.pi)
+  ]==]--
   Craftie.Frame.TabSide[i].Icon = Craftie.Frame.TabSide[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.TabSide[i].Icon:SetSize(Craftie.Frame.TabSide[i]:GetWidth()-9, Craftie.Frame.TabSide[i]:GetHeight()-9)
   Craftie.Frame.TabSide[i].Icon:SetPoint("TOPLEFT", 7, -5)
@@ -87,19 +105,21 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.Frame.TabSide[i].Shadow:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Frame.TabSide[i].Shadow:SetBackdropColor(0, 0, 0, 0.6) --shadow strength
   Craftie.Frame.TabSide[i].Shadow:SetBackdropBorderColor(1, 1, 1, 0)
-  Craftie.Frame.TabSide[i].Shadow:SetFrameStrata("MEDIUM")
+  --Craftie.Frame.TabSide[i].Shadow:SetFrameStrata("MEDIUM")
   Craftie.Frame.TabSide[i].Glow = Craftie.Frame.TabSide[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.TabSide[i].Glow:SetSize(Craftie.Frame.TabSide[i]:GetWidth()-8, Craftie.Frame.TabSide[i]:GetHeight()-8)
   Craftie.Frame.TabSide[i].Glow:SetPoint("CENTER", 3, -1)
   Craftie.Frame.TabSide[i].Glow:SetTexture("Interface/ContainerFrame/UI-Icon-QuestBorder")
   Craftie.Frame.TabSide[i].Glow:SetDrawLayer("ARTWORK", 6)
   Craftie.Frame.TabSide[i].Glow:Hide()
+  --[==[
   Craftie.Frame.TabSide[i].BorderSelect = Craftie.Frame.TabSide[i]:CreateTexture(nil, "BORDER")
   Craftie.Frame.TabSide[i].BorderSelect:SetSize(Craftie.Frame.TabSide[i]:GetWidth()-3, Craftie.Frame.TabSide[i]:GetHeight())
   Craftie.Frame.TabSide[i].BorderSelect:SetPoint("TOPLEFT", 3, -1)
   Craftie.Frame.TabSide[i].BorderSelect:SetTexture("Interface/GLUES/CharacterSelect/Glues-CharacterSelect-Tab")
   Craftie.Frame.TabSide[i].BorderSelect:SetRotation(math.pi/2)
   Craftie.Frame.TabSide[i].BorderSelect:Hide()
+  ]==]--
   Craftie.Frame.TabSide[i].Hover = Craftie.Frame.TabSide[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.TabSide[i].Hover:SetSize(Craftie.Frame.TabSide[i]:GetWidth()-9, Craftie.Frame.TabSide[i]:GetHeight()-9)
   Craftie.Frame.TabSide[i].Hover:SetPoint("TOPLEFT", 7, -5)
@@ -107,6 +127,8 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.Frame.TabSide[i].Hover:SetBlendMode("ADD")
   Craftie.Frame.TabSide[i].Hover:SetDrawLayer("ARTWORK", 7)
   Craftie.Frame.TabSide[i].Hover:Hide()
+
+  --Craftie.Frame.TabSide[i]:Hide()
 
   Craftie.Frame.TabSide[i]:SetScript("OnEnter", function(self)
     Craftie.Frame.TabSide[i].Hover:Show()

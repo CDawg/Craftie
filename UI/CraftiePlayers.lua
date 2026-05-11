@@ -75,6 +75,7 @@ Craftie.Frame.Search.Players.Icon = Craftie.Frame.Search.Players:CreateTexture(n
 Craftie.Frame.Search.Players.Icon:SetSize(18, 18)
 Craftie.Frame.Search.Players.Icon:SetPoint("TOPLEFT", 4, -5)
 Craftie.Frame.Search.Players.Icon:SetTexture("Interface/COMMON/UI-Searchbox-Icon")
+Craftie.Frame.Search.Players.Icon:SetAlpha(0.5)
 Craftie.Frame.SearchPlayerText = CreateFrame("EditBox", nil, Craftie.Frame.Search.Players)
 Craftie.Frame.SearchPlayerText:SetWidth(Craftie.Frame.Search.Players:GetWidth()-22)
 Craftie.Frame.SearchPlayerText:SetHeight(Craftie.Frame.Search.Players:GetHeight())

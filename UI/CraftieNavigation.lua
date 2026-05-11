@@ -47,23 +47,29 @@ function Craftie.TabBottomSelect(tab, sound)
   end
 
   if (tab == 1) then
+    Craftie.TabBarHide = 0
     Craftie.Frame.Title.Sub:Hide()
     Craftie.Frame.Title.Prof:Show()
     Craftie.Frame.CraftParent:Show()
     Craftie.Frame.ScrollParentPlayers:Show()
     Craftie.Frame.ScrollParentRecipes:Show()
   end
+
   if (tab == 2) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
     Craftie.Updates:Show()
     Craftie.Credit:Show()
   end
   if (tab == 3) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
     Craftie.Help:Show()
   end
   if (tab == 4) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
     Craftie.Logger:Show()
   end
 
+  Craftie.TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar
   Craftie.TabBottom[tab].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
   Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])

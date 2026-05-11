@@ -124,11 +124,11 @@ Craftie.Frame={}
 
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
-    Craftie.Frame.TabSide[i].BorderSelect:Hide()
+    --Craftie.Frame.TabSide[i].BorderSelect:Hide()
     Craftie.Frame.TabSide[i].Glow:Hide()
     Craftie.Frame.TabSide[i].Shadow:Show()
   end
-  Craftie.Frame.TabSide[tab].BorderSelect:Show()
+  --Craftie.Frame.TabSide[tab].BorderSelect:Show()
   Craftie.Frame.TabSide[tab].Glow:Show()
   Craftie.Frame.TabSide[tab].Shadow:Hide()
   if (sound) then
@@ -299,6 +299,7 @@ end
 --end
 
 Craftie.Animation = 0
+Craftie.TabBarHide = 1
 do
 	function Craftie.TimerAnim(frame, exptime) --different anim timers, sort by frames
     if (exptime) then
@@ -308,13 +309,19 @@ do
 				Craftie.Animation = exptime - self.frame
 				AnimTime = Craftie.Animation / 60
         --print("Craftie.Animation " .. Craftie.Animation)
-        --print(frame:GetName())
         if (Craftie.Animation >= 0.01) then
-        if (frame == Craftie.Frame.Craft) then
-          print(Craftie.Animation)
-          Craftie.Frame.Craft.Glow:SetAlpha(Craftie.Animation)
+          if (frame == Craftie.Frame.Craft) then
+            Craftie.Frame.Craft.Glow:SetAlpha(Craftie.Animation)
+          end
+          if (frame == Craftie.Frame.TabBar) then
+            if (Craftie.TabBarHide == 0) then
+              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42*self.frame, -60)
+            end
+            if (Craftie.TabBarHide == 1) then
+              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42*Craftie.Animation, -60)
+            end
+          end
         end
-      end
 				if (AnimTime <= 0) then
 					frame:SetScript("OnUpdate", nil) --stop
 				end
