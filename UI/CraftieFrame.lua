@@ -26,8 +26,8 @@ end)
 Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Frame:StopMovingOrSizing()
   local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame:GetPoint()
-  CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
-  Craftie.Notification("[" .. Craftie.player.combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true)
+  CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
+  Craftie.Notification("[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true)
 end)
 
 Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
@@ -45,7 +45,7 @@ Craftie.Frame.Icon:SetMask("Interface/Masks/CircleMaskScalable")
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, 12, "SLUG")
 Craftie.Frame.Title:SetPoint("TOPLEFT", 65, -5)
-Craftie.Frame.Title:SetText(Craftie._G.Stamp)
+Craftie.Frame.Title:SetText(Craftie._G.Stamp .. " - " .. Craftie.Game.Name)
 
 Craftie.Frame.Title.Sub = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Sub:SetFont(Craftie._G.Font.Style, 14, "SLUG")
@@ -205,7 +205,7 @@ end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnEnter", function(self)
   GameTooltip:SetOwner(self, "ANCHOR_LEFT")
-  GameTooltip:AddLine(Craftie._G.Stamp)
+  GameTooltip:AddLine(Craftie._G.Stamp .. "|n" .. Craftie.Game.Name)
   GameTooltip:Show()
 	Craftie.Frame.Button.Minimap.BorderOn:Show()
 end)

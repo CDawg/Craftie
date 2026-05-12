@@ -20,17 +20,10 @@ Craftie._G = {
   Width  = 820,
   Height = 460,
   Prefix   = "CRAHH",
-  Suffix   = "TBC Anniversary", --default
   Update   = 20260608,
 }
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
-
-Craftie.Game={}
-Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))
-if (Craftie.Game.Version == 1) then
-  Craftie._G.Suffix = "Classic"
-end
 
 Craftie._G.Font={}
 Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/FRIZQT__.ttf"
@@ -106,7 +99,7 @@ Craftie.Placeholder_Players = "Search Crafters..."
 Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Selected_Players = 1
 Craftie.Selected_Recipes = 1
-Craftie.Selected_ViewAll = "View All Recipes" --default
+Craftie.Selected_ViewAll = "Every Recipe" --default
 Craftie.Preload = "|cFF27CCF5Loading Data...|r"
 Craftie.Page = "Alchemy" --default
 
@@ -537,10 +530,10 @@ function Craftie.BuildProfProfile(profName)
           end
           Craftie.Notification(profString, true)
           --senderName | senderClass | profNum | profLevel | profData
-          
-          --Craftie.player.name
+
+          --Craftie.Player.Name
           --Craftie.Seed = "Portheus,3,3,131,111111
-          --CraftieDB[Craftie.player.realm][Craftie.player.faction]["CRAFTERS"]
+          --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"]
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
@@ -693,7 +686,7 @@ end
 function Craftie.SaveMapButtonPos()
 	--Craftie.UpdateMapButton()
   local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.Button.Minimap:GetPoint()
-	CraftieDB[Craftie.player.realm][Craftie.player.faction][Craftie.player.name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
+	CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
   --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
   Craftie.UpdateMapButton()
 end

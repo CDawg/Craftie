@@ -18,15 +18,25 @@ __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 Craftie = {
 	_L={},
 
-	player = {
-	  name   = UnitName("player"),
-	  realm  = GetRealmName(),
-		classID= select(3, UnitClass("player")), --use the class ID, due to locales
-	  faction= UnitFactionGroup("player"),
-		GUID   = UnitGUID("player"),
-		combine= UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
+  Game = {
+    "Classic",
+    "Burning Crusade",
+    "Wrath",
+  },
+
+	Player = {
+	  Name    = UnitName("player"),
+	  Realm   = GetRealmName(),
+		ClassID = select(3, UnitClass("player")), --use the class ID, due to locales
+	  Faction = UnitFactionGroup("player"),
+		GUID    = UnitGUID("player"),
+		Combine = UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
 	},
 }
+
+Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))
+Craftie.Game.Name = Craftie.Game[tonumber(string.sub(__Gversion, 1, 1))]
+
 Craftie.Profession={}
 Craftie.Professions={}
 
