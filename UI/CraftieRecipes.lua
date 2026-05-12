@@ -252,6 +252,7 @@ Craftie.Frame.Reagent.QuanR = {} --required
 Craftie.Frame.Reagent.QuanI = {} --inventory
 Craftie.Frame.Reagent.Dash = {}
 Craftie.Frame.Reagent.Data = {} --ID
+
 Craftie.Frame.Reagent_Width = 146
 Craftie.Frame.Reagent_Height= 38
 Craftie.Frame.Reagent_PosX  = 50

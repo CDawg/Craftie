@@ -478,6 +478,14 @@ function Craftie.GetRecipeIDByName(recipeName)
   return nil
 end
 
+function Craftie.AlphaSortProfessionLib()
+  --very important so the order is always sorted
+  for k,v in pairs(Craftie.Professions) do
+    --print(v[1])
+    Craftie.SortTableByString(Craftie.Profession[v[1]])
+  end
+end
+
 Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
 function Craftie.BuildProfProfile(profName)
   local profArray = Craftie.Profession[profName]
@@ -506,15 +514,12 @@ function Craftie.BuildProfProfile(profName)
             end
           end
 
+          --alpha sort order
           local tkeys = {}
           for k in pairs(profData) do
             table.insert(tkeys, k)
           end
           table.sort(tkeys)
-          --for _, k in ipairs(tkeys) do
-            --print(k, t[k])
-          --end
-
           for _, k in ipairs(tkeys) do
             --profString = profString .. k .. ", " .. profData[k] .. ", "
             profString = profString .. profData[k]
@@ -527,10 +532,9 @@ function Craftie.BuildProfProfile(profName)
   end
 end
 
-function Craftie.OpenProfessionList(prof, search) --need to add player
-  local profArray = prof --do not sort the master list
+function Craftie.OpenProfessionList(profArray, search) --need to add player
   local total_recipes = #profArray
-  local total_search = 0
+  --local total_search = 0
   local results = "|cfffffb63Recipe(s)"
   Craftie.Frame.ScrollRecipes.Results:SetText("")
   Craftie.Frame.ScrollRecipes.Empty:SetText("")
@@ -546,7 +550,7 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     end
     Craftie.Frame.ScrollRecipes.Results:SetText(matches .. " " .. results)
   else
-    local profSort = Craftie.SortTableByString(profArray)
+    Craftie.SortTableByString(profArray) --just go back to a alpha sort
     Craftie.Frame.ScrollRecipes.Results:SetText(total_recipes .. " " .. results)
   end
 

@@ -69,3 +69,15 @@ print(string.sub(input, s, e)) -- Output: (555) 123-4567
 Use code with caution.Plain SearchIf you don't want to deal with patterns at all and just want to find a literal string (ignoring all magic characters), you can pass true as the fourth argument:lua-- Find a literal "+" without escaping
 string.find("1 + 2", "+", 1, true) 
 Use code with caution.For more advanced needs, like replacing text or iterating through all matches, look into string.gsub and string.gmatch.
+
+
+
+Guild Roster Feature: Open your guild tab (\(J\)), go to the professions tab, and select a profession from the drop-down menu to view what everyone in your guild can craft.
+
+Chat Linking: Type your message and shift-click the profession icon in your spellbook to link your entire recipe list into the chat.
+
+Trade Chat: Post specific items you can make, such as "/2 LF [Item Link]", to advertise your services, which is especially useful for high-level items like those listed in this Wowhead guide.
+
+Vendor Items: When sharing, remember to include items that come from vendors, quests, or drops, not just those learned from trainers.Key Crafting Information for CataclysmBoE Gear: Crafted Bind-on-Equip (BoE) gear in Cataclysm is categorized by levels 81, 82, 83, and 85.Important Materials: Many of the best recipes, specifically for item level 346 rare and 359 epic gear, require Chaos Orbs.
+
+Profession Bonuses: Note that all crafting and gathering professions offer specific stat bonuses, which are detailed in this Wowhead guide.

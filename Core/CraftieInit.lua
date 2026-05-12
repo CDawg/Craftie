@@ -18,6 +18,7 @@ function Craftie.Init()
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.Profession.Query, "")
   Craftie.TabBottomSelect(1, false)
+  Craftie.AlphaSortProfessionLib()
 
   if (CraftieDB == nil) then
     --CraftieDB = {}
