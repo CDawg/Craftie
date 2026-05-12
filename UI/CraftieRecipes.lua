@@ -233,8 +233,6 @@ Craftie.Frame.Craft.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGRO
 Craftie.Frame.Craft.Back:SetSize(300, 110)
 Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", 0, 0)
 Craftie.Frame.Craft.Back:SetHorizTile(true)
---Craftie.Frame.Craft.Back:SetTexture("Interface/Garrison/GarrisonMissionUIInfoBoxBackgroundTile", "REPEAT")
---Craftie.Frame.Craft.Back:SetVertexColor(0.92, 1, 1)
 Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock", "REPEAT")
 Craftie.Frame.Craft.Back:SetVertexColor(0.80, 0.78, 0.78)
 Craftie.Frame.Craft:Hide()

@@ -98,6 +98,7 @@ end
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
+Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
 Craftie.Profession.Query = Craftie.Profession.Alchemy --default
 
@@ -504,7 +505,7 @@ function Craftie.BuildProfProfile(profName)
     if (v[1] == profName) then
 
       if (Craftie.ProfileBuilt[profName] ~= 1) then
-        C_Timer.After(0.3, function()
+        C_Timer.After(0.5, function()
           --print(profName)
           for k,v in pairs(profArray) do
             profData[v[2]] = 0
@@ -529,17 +530,19 @@ function Craftie.BuildProfProfile(profName)
           end
           table.sort(tkeys)
           for _, k in ipairs(tkeys) do
-            --profString = profString .. k .. ", " .. profData[k] .. ", "
-            profString = profString .. profData[k]
+            if (profData[k] == 1) then
+              profString = profString .. k .. "|n"
+            end
+            --profString = profString .. profData[k]
           end
           Craftie.Notification(profString, true)
+          --CraftieDB[Craftie.player.realm][Craftie.player.faction]["CRAFTERS"]
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
     end
   end
 end
-
 
 function Craftie.OpenProfessionList(profArray, search) --need to add player
   local total_recipes = #profArray
@@ -675,7 +678,7 @@ end
 --caching tooltip data. preload unknown data
 Craftie.Reagent = {}
 function Craftie.BuildReagentGaps()
-  for i=1, 55000 do
+  for i=1, Craftie.MAX_ITEMIDS do
     table.insert(Craftie.Reagent, {i, Craftie.Preload})
   end
   for k,v in pairs(Craftie.Reagents) do

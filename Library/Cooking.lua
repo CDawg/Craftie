@@ -27,7 +27,7 @@ Craftie.Profession.Cooking = {
 {6412, 'Kaldorei Spider Kabob', 10, 5472, {{5465, 1}}, {'Quest'}},
 {2539, 'Spiced Wolf Meat', 10, 2680, {{2672, 1}, {2678, 1}}, {"Trainer"}},
 {6413, 'Scorpid Surprise', 20, 5473, {{5466, 1}}, {'Vendor'}},
-{818, 'Basic Campfire', 25, '', {{4470, 1}}, {"Trainer"}},
+--{818, 'Basic Campfire', 25, '', {{4470, 1}}, {"Trainer"}},
 {2795, 'Beer Basted Boar Ribs', 25, 2888, {{2886, 1}, {2894, 1}}, {'Quest', 'Vendor'}},
 {21144, 'Egg Nog', 35, 17198, {{6889, 1}, {1179, 1}, {17196, 1}, {17194, 1}}, {'Vendor'}},
 {6414, 'Roasted Kodo Meat', 35, 5474, {{5467, 1}, {2678, 1}}, {'Vendor'}},
