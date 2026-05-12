@@ -1,4 +1,3 @@
-
 --[==[
 Copyright ©2020 Porthias of Myzrael or Porthios of Myzrael
 
@@ -29,8 +28,8 @@ Craftie.ScrollBarBack(Craftie.Frame.ScrollParentRecipes)
 
 Craftie.Frame.ScrollRecipes_Width = 300
 Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-90
-Craftie.Frame.ScrollRecipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentRecipes)
 
+Craftie.Frame.ScrollRecipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentRecipes)
 Craftie.Frame.ScrollRecipes:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipes:SetHeight(Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipes:SetPoint("TOPLEFT", 0, 0)
@@ -70,7 +69,6 @@ Craftie.Frame.ScrollRecipes.Empty:SetText("")
 --[==[
 SEARCH RECIPES
 ]==]--
-Craftie.Frame.Search={}
 Craftie.Frame.Search.Recipes={}
 Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentRecipes, "BackdropTemplate", 2)
 Craftie.Frame.Search.Recipes:SetWidth(170)

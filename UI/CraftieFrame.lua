@@ -13,7 +13,6 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Frame = CreateFrame("Frame", Craftie.Frame, UIParent, "ButtonFrameTemplate")
 Craftie.Frame:SetWidth(Craftie._G.Width)
 Craftie.Frame:SetHeight(Craftie._G.Height)
 Craftie.Frame:SetPoint("CENTER", 0, 0)

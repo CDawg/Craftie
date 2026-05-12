@@ -18,30 +18,25 @@ Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollPar
 Craftie.Frame.ScrollParentPlayers:SetWidth(210)
 Craftie.Frame.ScrollParentPlayers:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentPlayers:SetPoint("TOPLEFT", 2, -61)
-
 --[==[
 Craftie.Frame.ScrollParentPlayers.Back = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ScrollParentPlayers.Back:SetSize(185, Craftie._G.Height-95)
 Craftie.Frame.ScrollParentPlayers.Back:SetPoint("TOPLEFT", 4, -5)
 Craftie.Frame.ScrollParentPlayers.Back:SetTexture(Craftie._G.Path .. "images/stationary_players")
 ]==]--
-
 Craftie.ScrollBarBack(Craftie.Frame.ScrollParentPlayers)
 
-Craftie.FrameScrollPlayers_Width = 210
-Craftie.FrameScrollPlayers_Height= Craftie._G.Height-90
---Craftie.FrameScrollPlayers_Height= Craftie._G.Height-200
+Craftie.Frame.ScrollPlayers_Width = 210
+Craftie.Frame.ScrollPlayers_Height= Craftie._G.Height-90
 
 Craftie.Frame.ScrollPlayers = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentPlayers)
-Craftie.Frame.ScrollPlayers:SetWidth(Craftie.FrameScrollPlayers_Width)
-Craftie.Frame.ScrollPlayers:SetHeight(Craftie.FrameScrollPlayers_Height)
+Craftie.Frame.ScrollPlayers:SetWidth(Craftie.Frame.ScrollPlayers_Width)
+Craftie.Frame.ScrollPlayers:SetHeight(Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayers:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
---Craftie.Frame.ScrollPlayers:SetFrameStrata("LOW")
 
---Craftie.Frame.ScrollPlayersList={}
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", Craftie.Frame.ScrollPlayersList, Craftie.Frame.ScrollPlayers, "BackdropTemplate")
-Craftie.Frame.ScrollPlayersList:SetWidth(Craftie.FrameScrollPlayers_Width)
-Craftie.Frame.ScrollPlayersList:SetHeight(Craftie.FrameScrollPlayers_Height)
+Craftie.Frame.ScrollPlayersList:SetWidth(Craftie.Frame.ScrollPlayers_Width)
+Craftie.Frame.ScrollPlayersList:SetHeight(Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 0, 0)
 Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.05) --shade
@@ -51,17 +46,15 @@ Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", nil, Craftie.
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -30)
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 10, 4)
 Craftie.Frame.ScrollPlayersListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListChildFrame, Craftie.Frame.ScrollPlayersList.Child)
-Craftie.Frame.ScrollPlayersListChildFrame:SetSize(Craftie.FrameScrollPlayers_Width, Craftie.FrameScrollPlayers_Height)
+Craftie.Frame.ScrollPlayersListChildFrame:SetSize(Craftie.Frame.ScrollPlayers_Width, Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayersList.Child:SetScrollChild(Craftie.Frame.ScrollPlayersListChildFrame)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT", 0, 10)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, 12)
 
---COMMON/UI-Searchbox-Icon
 --[==[
 SEARCH PLAYERS
 ]==]--
-Craftie.Frame.Search={}
 Craftie.Frame.Search.Players={}
 Craftie.Frame.Search.Players = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentPlayers, "BackdropTemplate", 2)
 Craftie.Frame.Search.Players:SetWidth(170)
@@ -76,29 +69,29 @@ Craftie.Frame.Search.Players.Icon:SetSize(18, 18)
 Craftie.Frame.Search.Players.Icon:SetPoint("TOPLEFT", 4, -5)
 Craftie.Frame.Search.Players.Icon:SetTexture("Interface/COMMON/UI-Searchbox-Icon")
 Craftie.Frame.Search.Players.Icon:SetAlpha(0.5)
-Craftie.Frame.SearchPlayerText = CreateFrame("EditBox", nil, Craftie.Frame.Search.Players)
-Craftie.Frame.SearchPlayerText:SetWidth(Craftie.Frame.Search.Players:GetWidth()-52)
-Craftie.Frame.SearchPlayerText:SetHeight(Craftie.Frame.Search.Players:GetHeight())
-Craftie.Frame.SearchPlayerText:SetFontObject(GameFontDisable)
-Craftie.Frame.SearchPlayerText:SetFont(Craftie._G.Font.Style, 11, "OUTLINE")
-Craftie.Frame.SearchPlayerText:SetPoint("TOPLEFT", 22, 0)
-Craftie.Frame.SearchPlayerText:SetAutoFocus(false)
-Craftie.Frame.SearchPlayerText:SetText(Craftie.Placeholder_Players)
-Craftie.Frame.SearchPlayerText:SetScript("OnKeyUp", function(self, key)
+Craftie.Frame.Search.Players.Text = CreateFrame("EditBox", nil, Craftie.Frame.Search.Players)
+Craftie.Frame.Search.Players.Text:SetWidth(Craftie.Frame.Search.Players:GetWidth()-52)
+Craftie.Frame.Search.Players.Text:SetHeight(Craftie.Frame.Search.Players:GetHeight())
+Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
+Craftie.Frame.Search.Players.Text:SetFont(Craftie._G.Font.Style, 11, "OUTLINE")
+Craftie.Frame.Search.Players.Text:SetPoint("TOPLEFT", 22, 0)
+Craftie.Frame.Search.Players.Text:SetAutoFocus(false)
+Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
+Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
     Craftie.ClearFocusAll()
     Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
   end
 end)
-Craftie.Frame.SearchPlayerText:SetScript("OnMouseDown", function(self)
-    local search_index = Craftie.Frame.SearchPlayerText:GetText()
+Craftie.Frame.Search.Players.Text:SetScript("OnMouseDown", function(self)
+    local search_index = Craftie.Frame.Search.Players.Text:GetText()
     if (search_index == Craftie.Placeholder_Players) then
-      Craftie.Frame.SearchPlayerText:SetText("")
-      Craftie.Frame.SearchPlayerText:SetFontObject(GameFontWhite)
+      Craftie.Frame.Search.Players.Text:SetText("")
+      Craftie.Frame.Search.Players.Text:SetFontObject(GameFontWhite)
     end
 end)
-Craftie.Frame.SearchPlayerText:SetScript("OnEditFocusLost", function(self)
-  --Craftie.Frame.SearchPlayerText:SetText(Craftie.Placeholder_Players)
+Craftie.Frame.Search.Players.Text:SetScript("OnEditFocusLost", function(self)
+  --Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
 end)
 Craftie.Frame.Button.SearchPlayers = CreateFrame("Button", nil, Craftie.Frame.Search.Players, "UIPanelButtonTemplate")
 Craftie.Frame.Button.SearchPlayers:SetSize(24, 23)
@@ -108,7 +101,7 @@ Craftie.Frame.Button.SearchPlayersIcon:SetSize(12, 12)
 Craftie.Frame.Button.SearchPlayersIcon:SetPoint("CENTER", 0, 0)
 Craftie.Frame.Button.SearchPlayersIcon:SetTexture("Interface/Buttons/UI-RefreshButton")
 Craftie.Frame.Button.SearchPlayers:SetScript("OnClick", function(self)
-  Craftie.Frame.SearchPlayerText:SetText("")
+  Craftie.Frame.Search.Players.Text:SetText("")
   Craftie.ClearFocusAll()
 end)
 
@@ -117,7 +110,7 @@ Craftie.Frame.ScrollPlayersListText={}
 
 for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetWidth(Craftie.FrameScrollPlayers_Width-26) --scrollbar size
+  Craftie.Frame.ScrollPlayersListItem[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
   Craftie.Frame.ScrollPlayersListItem[i]:SetHeight(20)
   Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -i*18)
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdrop(Craftie.Backdrop.General)

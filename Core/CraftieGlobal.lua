@@ -111,6 +111,8 @@ Craftie.Page = "Alchemy" --default
 
 -- Global Frames
 Craftie.Frame={}
+Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "ButtonFrameTemplate")
+Craftie.Frame.Search={}
 
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
@@ -130,10 +132,10 @@ function Craftie.ClearFocusAll()
     Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
     Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
   end
-  Craftie.Frame.SearchPlayerText:ClearFocus()
-  if (Craftie.Frame.SearchPlayerText:GetText() == "") then
-    Craftie.Frame.SearchPlayerText:SetText(Craftie.Placeholder_Players)
-    Craftie.Frame.SearchPlayerText:SetFontObject(GameFontDisable)
+  Craftie.Frame.Search.Players.Text:ClearFocus()
+  if (Craftie.Frame.Search.Players.Text:GetText() == "") then
+    Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
+    Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
   end
   PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 end
