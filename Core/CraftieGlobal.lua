@@ -308,8 +308,8 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.6)
       Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0)
-      --Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.7)
-      --Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.7)
+      Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.8)
+      Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.IconGlow[i]:Hide()
 
       r = Craftie.GetKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
@@ -324,7 +324,11 @@ function Craftie.ItemDetails(item)
       end
       Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
-      Craftie.Frame.Reagent.QuanI[i]:SetText(inv_count)
+      if (inv_count >= 10) then
+        Craftie.Frame.Reagent.QuanI[i]:SetText("..")
+      else
+        Craftie.Frame.Reagent.QuanI[i]:SetText(inv_count)
+      end
       Craftie.Frame.Reagent.QuanR[i]:SetText(inv_req)
       Craftie.Frame.Reagent.Icon[i]:SetTexture(C_Item.GetItemIconByID(Craftie.Reagent[r][1]))
       Craftie.Frame.Reagent.Main[i]:Show()
