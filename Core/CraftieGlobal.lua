@@ -107,6 +107,7 @@ Craftie.Selected_Players = 1
 Craftie.Selected_Recipes = 1
 Craftie.Selected_ViewAll = "View All Recipes" --default
 Craftie.Preload = "|cFF27CCF5Loading Data...|r"
+Craftie.Page = "Alchemy" --default
 
 -- Global Frames
 Craftie.Frame={}
@@ -410,7 +411,7 @@ function Craftie.ItemDetails(item)
     end
   end)
 
-  local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
+  local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
   Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
@@ -532,6 +533,7 @@ function Craftie.BuildProfProfile(profName)
   end
 end
 
+
 function Craftie.OpenProfessionList(profArray, search) --need to add player
   local total_recipes = #profArray
   --local total_search = 0
@@ -568,32 +570,17 @@ function Craftie.OpenProfessionList(profArray, search) --need to add player
       Craftie.SelectScrollItem("Recipes")
       --example
       --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
-      --Craftie.GetProfInfo()
-      --[==[
-      local prof1, prof2, archaeology, fishing, cooking, firstAid = GetProfessions()
-      if (prof1) then
-        local name, texture, rank, maxRank = GetProfessionInfo(prof1)
-        print("Prof 1 : " .. name .. " - " .. rank .. "/" .. maxRank)
-      end
-      if (prof2) then
-        local name, texture, rank, maxRank = GetProfessionInfo(prof2)
-        print("Prof 2 : " .. name .. " - " .. rank .. "/" .. maxRank)
-      end
-      if (cooking) then
-        local name, texture, rank, maxRank = GetProfessionInfo(cooking)
-        print("Cooking: " .. name .. " - " .. rank .. "/" .. maxRank)
-      end
-      ]==]--
-      --Craftie.GetProfessionInfo()
     end)
     Craftie.Frame.ScrollRecipesList.Item[i]:Show()
   end
   Craftie.Profession.Query = profArray
 
-  local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
+  local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   --Craftie.Frame.ScrollRecipesList:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+  --Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.tga")
+  Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
 end
 
 --[==[

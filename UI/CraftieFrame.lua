@@ -38,10 +38,10 @@ Craftie.Frame.BotShadow:SetHorizTile(true)
 Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "images/ShadowOverlay-Bottom.png", "REPEAT")
 
 Craftie.Frame.Icon = Craftie.Frame:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.Icon:SetSize(54, 54)
-Craftie.Frame.Icon:SetPoint("TOPLEFT", -4, 4)
+Craftie.Frame.Icon:SetSize(58, 58)
+Craftie.Frame.Icon:SetPoint("TOPLEFT", -5, 7)
 Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.tga")
---Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/Trade_Engraving")
+Craftie.Frame.Icon:SetMask("Interface/Masks/CircleMaskScalable")
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, 12, "SLUG")
@@ -138,9 +138,9 @@ for i,v in pairs(Craftie.Professions) do
       end
       Craftie.OpenProfessionList(Craftie.Profession.Query, search_index)
     end)
+    Craftie.Page = v[1]
   end)
 end
-
 
 Craftie.Frame.Button={}
 Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "BORDER")
