@@ -86,9 +86,6 @@ Craftie.Frame.SearchPlayerText:SetAutoFocus(false)
 Craftie.Frame.SearchPlayerText:SetText(Craftie.Placeholder_Players)
 Craftie.Frame.SearchPlayerText:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
-    --local search_array = Craftie.Profession.Query
-    --local search_index = Craftie.Frame.SearchPlayerText:GetText()
-    --Craftie.OpenProfessionList(search_array, search_index)
     Craftie.ClearFocusAll()
     Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
   end

@@ -78,8 +78,10 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     ]==]--
 
     if (event == "TRADE_SKILL_SHOW") then
-      local prof = GetTradeSkillLine()
-      Craftie.BuildProfProfile(prof)
+      local profName = GetTradeSkillLine()
+      if (profName) then
+        Craftie.BuildProfProfile(profName)
+      end
       --[==[
       local numSkills = GetNumTradeSkills()
 

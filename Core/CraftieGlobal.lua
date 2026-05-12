@@ -451,76 +451,92 @@ function Craftie.SelectScrollItem(scrollFrame)
   end
 end
 
---[==[
---https://warcraft.wiki.gg/wiki/API_GetProfessionInfo
-function Craftie.GetPlayerProfessions()
-	local pass = false
-	local skills = {}
-	local skillnum = 0
-	local header1 = string.lower(TRADE_SKILLS)
-	local header2 = string.lower(SECONDARY_SKILLS)
-	for k = 1, GetNumSkillLines( ) do
-		local name, header = GetSkillLineInfo( k )
-		if header ~= nil then
-			name = string.lower( name )
-			if string.match( header1, name ) or string.match( header2, name ) then
-				pass = true
-				if string.match( header2, name ) and skillnum < 2 then
-					skillnum = 2
-				end
-			else
-				pass = false
-			end
-		else
-			if (pass) then
-				skillnum = skillnum + 1
-				skills[skillnum] = k
-			end
-		end
-	end
-	return skills[1], skills[2], skills[3], skills[4], skills[5]
-end
-]==]--
 
-function Craftie.GetProfessionInfo()
-  --get primary profession
-  for i = 1, GetNumSkillLines() do
-    local profName, isHeader, _, profLevel = GetSkillLineInfo(i)
-    if (not isHeader) then
-      print(profName, profLevel)
+function Craftie.SelectCrafter(index, name)
+  if (index == 1) then
+    --clear player selection?
+  else
+    if (not Craftie.IsEmpty(name)) then
+      print(name)
+      Craftie.Selected_Players = index
+      Craftie.SelectScrollItem("Players")
     end
   end
-  --[==[
-  local numSkills = GetNumTradeSkills()
+end
 
-  for i = 1, numSkills do
-    local skillName, skillType = GetTradeSkillInfo(i)
-
-    -- Skip headers/categories
-    if skillType ~= "header" then
-      --print(i, skillName, skillType)
-      print(skillName)
+function Craftie.GetRecipeIDByName(recipeName)
+  for i = 1, GetNumTradeSkills() do
+    local name, skillType = GetTradeSkillInfo(i)
+    if skillType ~= "header" and name == recipeName then
+      local recipeLink = GetTradeSkillRecipeLink(i)
+      if recipeLink then
+        local spellID = string.match(recipeLink, "Hspell:(%d+)")
+        return tonumber(spellID)
+      end
     end
   end
-  ]==]--
+  return nil
 end
 
---[==[
-if TradeSkillFrame and TradeSkillFrame:IsVisible() then
-  CloseTradeSkill()
+Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
+function Craftie.BuildProfProfile(profName)
+  local profArray = Craftie.Profession[profName]
+  local profData={}
+  local profString = ""
+
+  for k,v in pairs(Craftie.Professions) do --I only care about the prio list
+    if (v[1] == profName) then
+
+      if (Craftie.ProfileBuilt[profName] ~= 1) then
+        C_Timer.After(0.3, function()
+          --print(profName)
+          for k,v in pairs(profArray) do
+            profData[v[2]] = 0
+            --Craftie.Notification(v[2], true)
+            --print(v[2])
+          end
+
+          local numRecipes = GetNumTradeSkills()
+          for i = 1, numRecipes do
+            local recipeName, recipeType = GetTradeSkillInfo(i)
+            if recipeType ~= "header" then
+              if (recipeName ~= nil) then
+                profData[recipeName] = 1
+              end
+            end
+          end
+
+          local tkeys = {}
+          for k in pairs(profData) do
+            table.insert(tkeys, k)
+          end
+          table.sort(tkeys)
+          --for _, k in ipairs(tkeys) do
+            --print(k, t[k])
+          --end
+
+          for _, k in ipairs(tkeys) do
+            --profString = profString .. k .. ", " .. profData[k] .. ", "
+            profString = profString .. profData[k]
+          end
+          Craftie.Notification(profString, true)
+        end)
+      end
+      Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
+    end
+  end
 end
-]==]--
 
 function Craftie.OpenProfessionList(prof, search) --need to add player
-  --print("prof count " .. #prof)
-  local total_recipes = #prof
+  local profArray = prof --do not sort the master list
+  local total_recipes = #profArray
   local total_search = 0
   local results = "|cfffffb63Recipe(s)"
   Craftie.Frame.ScrollRecipes.Results:SetText("")
   Craftie.Frame.ScrollRecipes.Empty:SetText("")
   --Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
   if (search:len() >= 3) then
-    local matches = Craftie.SortTableByMatch(prof, search)
+    local matches = Craftie.SortTableByMatch(profArray, search)
     if (matches >= 1) then
       total_recipes = matches
     else
@@ -530,19 +546,20 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     end
     Craftie.Frame.ScrollRecipes.Results:SetText(matches .. " " .. results)
   else
-    Craftie.SortTableByString(prof)
+    local profSort = Craftie.SortTableByString(profArray)
     Craftie.Frame.ScrollRecipes.Results:SetText(total_recipes .. " " .. results)
   end
+
   for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.ScrollRecipesList.Item[i]:Hide()
   end
 
   for i=1, total_recipes do
-    Craftie.Frame.ScrollRecipesList.Text[i]:SetText(prof[i][2])
+    Craftie.Frame.ScrollRecipesList.Text[i]:SetText(profArray[i][2])
     Craftie.Frame.ScrollRecipesList.Item[i]:SetScript("OnClick", function()
-      Craftie.ItemDetails(prof[i])
+      Craftie.ItemDetails(profArray[i])
 
-      --print(prof[i][2])
+      --print(profArray[i][2])
       Craftie.Selected_Recipes = i
       Craftie.SelectScrollItem("Recipes")
       --example
@@ -567,52 +584,12 @@ function Craftie.OpenProfessionList(prof, search) --need to add player
     end)
     Craftie.Frame.ScrollRecipesList.Item[i]:Show()
   end
-  Craftie.Profession.Query = prof
+  Craftie.Profession.Query = profArray
 
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Frame.Title.Prof:GetText(), 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   --Craftie.Frame.ScrollRecipesList:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-end
-
-function Craftie.ListCrafters() --build or list from prof?
-
-end
-
-function Craftie.SelectCrafter(index, name)
-  if (index == 1) then
-    --clear player selection?
-  else
-    if (not Craftie.IsEmpty(name)) then
-      print(name)
-      Craftie.Selected_Players = index
-      Craftie.SelectScrollItem("Players")
-    end
-  end
-end
-
-Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
---build seed
-function Craftie.BuildProfProfile(prof)
-  --print(prof)
-  for k,v in pairs(Craftie.Professions) do
-    if (v[1] == prof) then
-      if (Craftie.ProfileBuilt[prof] ~= 1) then
-        --print(prof)
-        local numRecipes = GetNumTradeSkills()
-        for i = 1, numRecipes do
-          local recipeName, recipeType = GetTradeSkillInfo(i)
-          if recipeType ~= "header" then
-            if (recipeName ~= nil) then
-              print(i-1, recipeName)
-            end
-          end
-        end
-        Craftie.ProfileBuilt[prof] = 1
-      end
-    end
-  end
-    --Craftie.ProfileBuilt[prof] = 1
 end
 
 --[==[
