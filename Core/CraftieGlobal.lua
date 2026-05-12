@@ -351,11 +351,12 @@ function Craftie.ItemDetails(item)
   Craftie.Frame.Craft.ID:SetText(item[4])
   Craftie.Frame.Craft.Text:SetText(item[2])
 
+  --[==[
   Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 45, -12)
-  if (#Craftie.Frame.Craft.Text:GetText() >= 35) then
+  if (#Craftie.Frame.Craft.Text:GetText() >= 30) then
     Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 45, -6)
   end
-  --print("craft len: " .. #Craftie.Frame.Craft.Text:GetText())
+  ]==]--
 
   local item_detail = item[4]
   local is_enchant = false
