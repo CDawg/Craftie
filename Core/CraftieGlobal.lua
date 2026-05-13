@@ -16,11 +16,11 @@ the copyright holders.
 Craftie.DEBUG = true
 
 Craftie._G = {
-  Author   = "Porthias",
+  Author = "Porthias",
   Width  = 820,
   Height = 460,
-  Prefix   = "CRAHH",
-  Update   = 20260608,
+  Prefix = "CRAHH",
+  Update = 20260608,
 }
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
@@ -99,7 +99,7 @@ Craftie.Placeholder_Players = "Search Crafters..."
 Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Selected_Players = 1
 Craftie.Selected_Recipes = 1
-Craftie.Selected_ViewAll = "Every Recipe" --default
+Craftie.Selected_ViewAll = "Loading Data..." --default
 Craftie.Preload = "|cFF27CCF5Loading Data...|r"
 Craftie.Page = "Alchemy" --default
 
@@ -496,7 +496,6 @@ function Craftie.BuildProfProfile(profName)
 
   for k,v in pairs(Craftie.Professions) do --I only care about the prio list
     if (v[1] == profName) then
-
       if (Craftie.ProfileBuilt[profName] ~= 1) then
         C_Timer.After(0.5, function()
           --print(profName)
@@ -516,6 +515,10 @@ function Craftie.BuildProfProfile(profName)
             end
           end
 
+          --senderName | senderClass | profNum | profLevel | profData
+          --profString = Craftie.Player.Name .. "," .. Craftie.Player.ClassID .. "," .. Craftie.GetKeyFromValue(Craftie.Professions, profName, 1)
+          print(Craftie.GetKeyFromValue(Craftie.Professions, profName, 1))
+
           --alpha sort order
           local tkeys = {}
           for k in pairs(profData) do
@@ -523,13 +526,15 @@ function Craftie.BuildProfProfile(profName)
           end
           table.sort(tkeys)
           for _, k in ipairs(tkeys) do
+            --[==[
             if (profData[k] == 1) then
               profString = profString .. k .. "|n"
             end
+            ]==]--
             --profString = profString .. profData[k]
           end
+
           Craftie.Notification(profString, true)
-          --senderName | senderClass | profNum | profLevel | profData
 
           --Craftie.Player.Name
           --Craftie.Seed = "Portheus,3,3,131,111111
@@ -588,6 +593,7 @@ function Craftie.OpenProfessionList(profArray, search) --need to add player
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
   --Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.tga")
   Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
+  Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Professions[prof_list][1] .. " Recipes")
 end
 
 --[==[
