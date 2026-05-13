@@ -135,7 +135,7 @@ for i,v in pairs(Craftie.Professions) do
       if (search_index == Craftie.Placeholder_Recipes) then
         search_index = ""
       end
-      Craftie.OpenProfessionList(Craftie.Profession.Query, search_index)
+      Craftie.OpenProfessionList(Craftie.Profession.Query, search_index, "")
     end)
     Craftie.Page = v[1]
   end)

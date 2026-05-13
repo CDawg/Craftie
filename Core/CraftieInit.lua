@@ -16,7 +16,7 @@ the copyright holders.
 function Craftie.Init()
   Craftie.BuildReagentGaps()
   Craftie.TabSelect(1, false) --default 1st profession
-  Craftie.OpenProfessionList(Craftie.Profession.Query, "")
+  Craftie.OpenProfessionList(Craftie.Profession.Query, "", "")
   Craftie.TabBottomSelect(1, false)
   Craftie.AlphaSortProfessionLib()
 
@@ -77,6 +77,8 @@ function Craftie.Init()
 
     --whisper self to prep incoming comms
     Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
+
+    Craftie.UpdateCrafterList()
   end
 end
 

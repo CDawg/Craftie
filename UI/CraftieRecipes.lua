@@ -95,7 +95,7 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
     local search_array = Craftie.Profession.Query
     local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
-    Craftie.OpenProfessionList(search_array, search_index)
+    Craftie.OpenProfessionList(search_array, search_index, "")
     --Craftie.ClearFocusAll()
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
   end
@@ -354,6 +354,8 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesList.Item[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(1, 1, 1, 0)
 
+  UI-Listbox-Highlight2
+
   Craftie.Frame.ScrollRecipesList.Text[i] = Craftie.Frame.ScrollRecipesList.Item[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollRecipesList.Text[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollRecipesList.Text[i]:SetPoint("TOPLEFT", 8, -5)
@@ -364,7 +366,7 @@ for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(0.6, 0.7, 1, 0.1)
   end
   Craftie.Frame.ScrollRecipesList.Item[i]:SetScript("OnEnter", function(self)
-    Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(1, 1, 1, 0.2)
+    self:SetBackdropColor(1, 1, 1, 0.2)
     Craftie.Frame.ScrollRecipesList.Text[i]:SetTextColor(1, 1, 0.8, 1)
   end)
   Craftie.Frame.ScrollRecipesList.Item[i]:SetScript("OnLeave", function(self)

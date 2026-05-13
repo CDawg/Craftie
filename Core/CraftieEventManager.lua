@@ -32,7 +32,7 @@ Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
 Craftie.Event:RegisterEvent("TRADE_SKILL_UPDATE")
-
+--Craftie.Event:RegisterEvent("WHO_LIST_UPDATE")
 --channels used for linking and filtering
 Craftie.ChannelList = {
 "CHAT_MSG_CHANNEL",
@@ -81,7 +81,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie.ResetCrafterBuild()
-      Craftie.Notification("SKILL_LINES_CHANGED", true) 
+      Craftie.Notification("SKILL_LINES_CHANGED", true)
     end
 
     if (event == "TRADE_SKILL_SHOW") then
@@ -96,17 +96,6 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
         if (netpacket) then
           Craftie.ParsePacket(netpacket)
         end
-        --[==[
-        print("Craftie.Event[3] " .. prefix .. " | " .. event .. " | " .. netpacket .. " | " .. data1 .. " | " .. data2)
-        if (netpacket) then
-          print("compressed " .. #netpacket)
-          local decompress = Craftie.LowCompression(netpacket, true)
-          print(decompress)
-          if (Craftie.Seed == decompress) then
-            print("Match!")
-          end
-        end
-        ]==]--
       end
     end
 
