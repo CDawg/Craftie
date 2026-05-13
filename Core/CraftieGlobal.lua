@@ -58,8 +58,8 @@ Craftie.Backdrop = {
   Borderless = {
     bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
     edgeFile= "",
-    edgeSize= 12,
-    insets  = {left=2, right=2, top=2, bottom=2},
+    edgeSize= 2,
+    insets  = {left=2, right=2, top=0, bottom=0},
   },
   Button = {
     bgFile  = "Interface/Buttons/GoldGradiant",
@@ -432,7 +432,8 @@ function Craftie.SelectScrollItem(scrollFrame)
   if (scrollFrame == "Players") then
     for i=1, Craftie.MAX_PLAYERS do
       Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
-      --Craftie.Frame.ScrollPlayersListItem[Craftie.Selected_Players]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+      Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
+      Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Players]:Show()
       Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
       if (i % 2 == 0) then
@@ -443,7 +444,8 @@ function Craftie.SelectScrollItem(scrollFrame)
   if (scrollFrame == "Recipes") then
     for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
-      --Craftie.Frame.ScrollRecipesListItem[Craftie.Selected_Recipes]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+      Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
+      Craftie.Frame.ScrollRecipesListSelect[Craftie.Selected_Recipes]:Show()
       Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
       if (i % 2 == 0) then
@@ -452,6 +454,7 @@ function Craftie.SelectScrollItem(scrollFrame)
     end
   end
 end
+
 
 function Craftie.GetRecipeIDByName(recipeName)
   for i = 1, GetNumTradeSkills() do

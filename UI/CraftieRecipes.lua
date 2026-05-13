@@ -344,16 +344,24 @@ end
 
 Craftie.Frame.ScrollRecipesListItem={}
 Craftie.Frame.ScrollRecipesListText={}
+Craftie.Frame.ScrollRecipesListSelect={}
 for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListItem[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollRecipesListItem[i]:SetWidth(Craftie.Frame.ScrollRecipes_Width-26) --scrollbar size
   Craftie.Frame.ScrollRecipesListItem[i]:SetHeight(20)
-  Craftie.Frame.ScrollRecipesListItem[i]:SetPoint("TOPLEFT", 2, -i*18)
-  Craftie.Frame.ScrollRecipesListItem[i]:SetBackdrop(Craftie.Backdrop.General)
+  Craftie.Frame.ScrollRecipesListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollRecipesListItem[i]:GetHeight())
+  Craftie.Frame.ScrollRecipesListItem[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollRecipesListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
-
+  Craftie.Frame.ScrollRecipesListSelect[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetSize(Craftie.Frame.ScrollRecipes_Width-30, Craftie.Frame.ScrollRecipesListItem[i]:GetHeight())
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetPoint("CENTER", 0, 0)
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetTexture("Interface/WORLDSTATEFRAME/WORLDSTATEFINALSCORE-HIGHLIGHT")
+  --Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.4)
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetBlendMode("ADD")
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetVertexColor(0.50, 0.50, 0.40)
+  Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
   --UI-Listbox-Highlight2
 
   Craftie.Frame.ScrollRecipesListText[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateFontString(nil, "ARTWORK")

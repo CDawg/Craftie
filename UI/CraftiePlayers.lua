@@ -107,6 +107,7 @@ end)
 
 Craftie.Frame.ScrollPlayersListItem={}
 Craftie.Frame.ScrollPlayersListText={}
+Craftie.Frame.ScrollPlayersListSelect={}
 Craftie.Frame.ScrollPlayersListFav={}
 Craftie.Frame.ScrollPlayersListNet={}
 
@@ -118,18 +119,25 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollPlayersListItem[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
   Craftie.Frame.ScrollPlayersListItem[i]:SetHeight(20)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -i*18)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetBackdrop(Craftie.Backdrop.General)
+  Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
+  Craftie.Frame.ScrollPlayersListItem[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollPlayersListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
-
   Craftie.Frame.ScrollPlayersListText[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListText[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListText[i]:SetPoint("TOPLEFT", 22, -5)
   --Craftie.Frame.ScrollPlayersListText[i]:SetText("Player_" .. i)
   Craftie.Frame.ScrollPlayersListText[i]:SetText("")
   Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayers_Width-30, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture("Interface/WORLDSTATEFRAME/WORLDSTATEFINALSCORE-HIGHLIGHT")
+  --Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.4)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetBlendMode("ADD")
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.40, 0.45, 0.50)
+  Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
 --[==[
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(12, 12)
