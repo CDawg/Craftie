@@ -442,17 +442,16 @@ function Craftie.SelectScrollItem(scrollFrame)
   end
   if (scrollFrame == "Recipes") then
     for i=1, Craftie.MAX_RECIPES do
-      Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(1, 1, 1, 0)
-      --Craftie.Frame.ScrollRecipesList.Item[Craftie.Selected_Recipes]:SetBackdropColor(0.6, 0.7, 1, 0.5)
-      Craftie.Frame.ScrollRecipesList.Text[i]:SetTextColor(1, 1, 1, 0.8)
-      Craftie.Frame.ScrollRecipesList.Text[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
+      --Craftie.Frame.ScrollRecipesListItem[Craftie.Selected_Recipes]:SetBackdropColor(0.6, 0.7, 1, 0.5)
+      Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 1, 0.8)
+      Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
       if (i % 2 == 0) then
-        Craftie.Frame.ScrollRecipesList.Item[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+        Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
       end
     end
   end
 end
-
 
 function Craftie.GetRecipeIDByName(recipeName)
   for i = 1, GetNumTradeSkills() do
@@ -566,12 +565,12 @@ function Craftie.OpenProfessionList(profArray, search, player)
   end
 
   for i=1, Craftie.MAX_RECIPES do
-    Craftie.Frame.ScrollRecipesList.Item[i]:Hide()
+    Craftie.Frame.ScrollRecipesListItem[i]:Hide()
   end
 
   for i=1, total_recipes do
-    Craftie.Frame.ScrollRecipesList.Text[i]:SetText(profArray[i][2])
-    Craftie.Frame.ScrollRecipesList.Item[i]:SetScript("OnClick", function()
+    Craftie.Frame.ScrollRecipesListText[i]:SetText(profArray[i][2])
+    Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
       Craftie.ItemDetails(profArray[i])
 
       --clear selections
@@ -583,7 +582,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
       --example
       --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
     end)
-    Craftie.Frame.ScrollRecipesList.Item[i]:Show()
+    Craftie.Frame.ScrollRecipesListItem[i]:Show()
   end
   Craftie.Profession.Query = profArray
 
