@@ -5,7 +5,6 @@
 ## Version: 1.02
 ## Author: Porthias (aka Port)
 ## SavedVariables: CraftieDB
-## SavedVariablesPerCharacter: CraftieDB
 ## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
 
 Core/CraftieLibrary.lua

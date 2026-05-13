@@ -489,7 +489,13 @@ function Craftie.AlphaSortProfessionLib()
 end
 
 Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
-function Craftie.BuildProfProfile(profName)
+function Craftie.ResetCrafterBuild()
+  for k,v in pairs(Craftie.Professions) do
+    Craftie.ProfileBuilt[v[1]] = 0
+  end
+end
+
+function Craftie.BuildProfProfile(profName, profLevel)
   local profArray = Craftie.Profession[profName]
   local profData={}
   local profString = ""
@@ -516,8 +522,10 @@ function Craftie.BuildProfProfile(profName)
           end
 
           --senderName | senderClass | profNum | profLevel | profData
-          --profString = Craftie.Player.Name .. "," .. Craftie.Player.ClassID .. "," .. Craftie.GetKeyFromValue(Craftie.Professions, profName, 1)
-          print(Craftie.GetKeyFromValue(Craftie.Professions, profName, 1))
+          --print(Craftie.GetKeyFromValue(Craftie.Professions, profName, 1))
+          --print(profName .. " | " .. profLevel)
+          --profString = Craftie.Player.Name .. "," .. Craftie.Player.ClassID .. "," .. Craftie.GetKeyFromValue(Craftie.Professions, profName, 1) .. "," .. profLevel .. ","
+          profString = Craftie.Player.ClassID .. "," .. Craftie.GetKeyFromValue(Craftie.Professions, profName, 1) .. "," .. profLevel .. ","
 
           --alpha sort order
           local tkeys = {}
@@ -531,10 +539,11 @@ function Craftie.BuildProfProfile(profName)
               profString = profString .. k .. "|n"
             end
             ]==]--
-            --profString = profString .. profData[k]
+            profString = profString .. profData[k]
           end
 
-          Craftie.Notification(profString, true)
+          Craftie.Notification(profString, true)          
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
 
           --Craftie.Player.Name
           --Craftie.Seed = "Portheus,3,3,131,111111

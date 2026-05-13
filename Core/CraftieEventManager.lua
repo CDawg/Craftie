@@ -31,6 +31,7 @@ Craftie.Event:RegisterEvent("TRADE_SKILL_CLOSE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
+Craftie.Event:RegisterEvent("TRADE_SKILL_UPDATE")
 
 --channels used for linking and filtering
 Craftie.ChannelList = {
@@ -77,23 +78,17 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     end
     ]==]--
 
+    if (event == "SKILL_LINES_CHANGED") then
+      --safe method for anti-spam & prof level increase
+      Craftie.ResetCrafterBuild()
+      Craftie.Notification("SKILL_LINES_CHANGED", true) 
+    end
+
     if (event == "TRADE_SKILL_SHOW") then
-      local profName = GetTradeSkillLine()
+      local profName, profLevel = GetTradeSkillLine()
       if (profName) then
-        Craftie.BuildProfProfile(profName)
+        Craftie.BuildProfProfile(profName, profLevel)
       end
-      --[==[
-      local numSkills = GetNumTradeSkills()
-
-      for i = 1, numSkills do
-        local skillName, skillType = GetTradeSkillInfo(i)
-
-        -- Skip headers/categories
-        if skillType ~= "header" then
-          print(i, skillName, skillType)
-        end
-      end
-      ]==]--
     end
 
     if (event == "CHAT_MSG_ADDON") then
