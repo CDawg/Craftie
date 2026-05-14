@@ -191,6 +191,10 @@ function Craftie.SortTableByString(tbl) --alpha second key
   end)
 end
 
+function _sanitize(str)
+  return str:gsub("[^%w]", "")
+end
+
 function Craftie.SortTableByMatch(tbl, search)
     search = string.lower(search or "")
     local matchCount = 0

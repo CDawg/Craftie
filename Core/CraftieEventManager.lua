@@ -87,7 +87,11 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "TRADE_SKILL_SHOW") then
       local profName, profLevel = GetTradeSkillLine()
       if (profName) then
-        Craftie.BuildProfProfile(profName, profLevel)
+        Craftie.CrafterDataBuild(profName, profLevel)
+        Craftie.ResetCrafterBuild()
+        C_Timer.After(0.5, function()
+          Craftie.CrafterDataBuild(profName, profLevel)
+        end)
       end
     end
 

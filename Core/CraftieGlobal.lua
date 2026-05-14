@@ -472,7 +472,7 @@ function Craftie.GetRecipeIDByName(recipeName)
 end
 
 function Craftie.AlphaSortProfessionLib()
-  --very important so the order is always sorted
+  --very important so the order is always sorted alphabetically
   for k,v in pairs(Craftie.Professions) do
     --print(v[1])
     Craftie.SortTableByString(Craftie.Profession[v[1]])
@@ -486,15 +486,16 @@ function Craftie.ResetCrafterBuild()
   end
 end
 
-function Craftie.BuildProfProfile(profName, profLevel)
+function Craftie.CrafterDataBuild(profName, profLevel)
   local profArray = Craftie.CopyTable(Craftie.Profession[profName])
+  Craftie.SortTableByString(profArray) --just in case
   local profData={}
   local profString = ""
 
   for k,v in pairs(Craftie.Professions) do --I only care about the prio list
     if (v[1] == profName) then
       if (Craftie.ProfileBuilt[profName] ~= 1) then
-        C_Timer.After(0.5, function()
+        C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profArray) do
             profData[v[2]] = 0
@@ -511,6 +512,7 @@ function Craftie.BuildProfProfile(profName, profLevel)
               end
             end
           end
+          --Craftie.SortTableByString(profData)
 
           --senderName | senderClass | profNum | profLevel | profData
           --print(Craftie.GetKeyFromValue(Craftie.Professions, profName, 1))
@@ -524,7 +526,7 @@ function Craftie.BuildProfProfile(profName, profLevel)
             table.insert(tkeys, k)
           end
           table.sort(tkeys)
-          for _, k in ipairs(tkeys) do
+          for _, k in pairs(tkeys) do
             --[==[
             if (profData[k] == 1) then
               profString = profString .. k .. "|n"
@@ -533,7 +535,7 @@ function Craftie.BuildProfProfile(profName, profLevel)
             profString = profString .. profData[k]
           end
 
-          Craftie.Notification(profString, true)          
+          Craftie.Notification(profString, true)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
 
           --Craftie.Player.Name
@@ -681,7 +683,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
 end
 
 --[==[
-function Craftie.BuildProfProfile()
+function Craftie.CrafterDataBuild()
   --local numRecipes = GetNumTradeSkills()
   local profCount = 0
   if (Craftie.ProfileBuilt == 0) then
@@ -727,7 +729,7 @@ function Craftie.OpenCraftie()
   if (Craftie.WindowOpen == 0) then
     Craftie.Frame:Show()
     Craftie.WindowOpen = 1
-    --Craftie.BuildProfProfile()
+    --Craftie.CrafterDataBuild()
   else
     Craftie.Frame:Hide()
     Craftie.WindowOpen = 0
