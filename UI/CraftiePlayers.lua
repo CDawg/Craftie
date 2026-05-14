@@ -201,14 +201,13 @@ for i=1, Craftie.MAX_PLAYERS do
 end
 
 function Craftie.SelectCrafter(index, name)
-  Craftie.Selected_Players = index
+  Craftie.Selected_Players = 1 --always one at first
   if (index == 1) then
     --Craftie.OpenProfessionList(Craftie.Profession.Query, "", "") --get whats in the search text?
   else
-    if (not Craftie.IsEmpty(name)) then
+    if (name ~= nil) then
       --print(name)
-      --Craftie.Selected_Players = index
-      --Craftie.SelectScrollItem("Players")
+      Craftie.Selected_Players = index
       Craftie.Notification("Craftie.SelectCrafter(" .. index .. ", " .. name .. ")", true)
       Craftie.OpenProfessionList(Craftie.Profession[Craftie.Page], "", name) --get whats in the search text?
     end

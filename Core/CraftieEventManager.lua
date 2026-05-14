@@ -32,7 +32,7 @@ Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
 Craftie.Event:RegisterEvent("TRADE_SKILL_UPDATE")
---Craftie.Event:RegisterEvent("WHO_LIST_UPDATE")
+
 --channels used for linking and filtering
 Craftie.ChannelList = {
 "CHAT_MSG_CHANNEL",

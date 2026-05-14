@@ -90,7 +90,7 @@ end
 
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
-Craftie.MAX_PLAYERS = 100 --per profession (be careful increasing this!)
+Craftie.MAX_PLAYERS = 300 --per profession (be careful increasing this!)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
 Craftie.Profession.Query = Craftie.Profession.Alchemy --default
@@ -131,6 +131,7 @@ function Craftie.ClearFocusAll()
     Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
     Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
   end
+  --Craftie.Notification("Craftie.ClearFocusAll()", true)
   PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 end
 
@@ -571,6 +572,10 @@ function Craftie.OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesListItem[i]:Hide()
   end
 
+  if (player ~= "") then
+    print("openproflist " .. player)
+  end
+
   for i=1, total_recipes do
     Craftie.Frame.ScrollRecipesListText[i]:SetText(profArray[i][2])
     Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
@@ -580,7 +585,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
       Craftie.Selected_Recipes = i
       Craftie.SelectScrollItem("Recipes")
       --Craftie.Selected_Players = i
-      Craftie.SelectScrollItem("Players")
+      --Craftie.SelectScrollItem("Players")
 
       --example
       --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
