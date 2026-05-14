@@ -228,6 +228,7 @@ function Craftie.UpdateCrafterList()
   Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Page .. " Recipes")
   Craftie.Frame.ScrollPlayersListText[1]:SetPoint("TOPLEFT", 6, -5)
 
+  C_Timer.After(0.3, function()
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
     for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
       i = i+1
@@ -236,4 +237,5 @@ function Craftie.UpdateCrafterList()
       Craftie.Frame.ScrollPlayersListFav[i]:Show()
     end
   end
+end)
 end

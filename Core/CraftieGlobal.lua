@@ -498,17 +498,16 @@ function Craftie.CrafterDataBuild(profName, profLevel)
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profArray) do
-            profData[v[2]] = 0
-            --Craftie.Notification(v[2], true)
-            --print(v[2])
+            profData[_sanitize(v[2])] = 0
+            Craftie.Notification(_sanitize(v[2]), true)
           end
 
           local numRecipes = GetNumTradeSkills()
           for i = 1, numRecipes do
             local recipeName, recipeType = GetTradeSkillInfo(i)
             if recipeType ~= "header" then
-              if (recipeName ~= nil) then
-                profData[recipeName] = 1
+              if (_sanitize(recipeName) ~= nil) then
+                profData[_sanitize(recipeName)] = 1
               end
             end
           end
@@ -526,21 +525,13 @@ function Craftie.CrafterDataBuild(profName, profLevel)
             table.insert(tkeys, k)
           end
           table.sort(tkeys)
-          for _, k in pairs(tkeys) do
-            --[==[
-            if (profData[k] == 1) then
-              profString = profString .. k .. "|n"
-            end
-            ]==]--
+          for _, k in ipairs(tkeys) do
             profString = profString .. profData[k]
           end
 
           Craftie.Notification(profString, true)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
 
-          --Craftie.Player.Name
-          --Craftie.Seed = "Portheus,3,3,131,111111
-          --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"]
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
@@ -582,7 +573,7 @@ function Craftie.CrafterDataParse(profName, player)
 
     local filtered = {}
     for key = 1, #profString do
-      if profString:sub(key, key) == "1" then
+      if (profString:sub(key, key) == "1") then
         table.insert(filtered, compareProf[key])
       end
     end
