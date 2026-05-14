@@ -93,7 +93,7 @@ Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 300 --per profession (be careful increasing this!)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
-Craftie.Profession.Query = Craftie.Profession.Alchemy --default
+Craftie.ProfessionDefault = Craftie.CopyTable(Craftie.Profession.Alchemy)
 
 Craftie.Placeholder_Players = "Search Crafters..."
 Craftie.Placeholder_Recipes = "Search Recipes..."
@@ -487,7 +487,7 @@ function Craftie.ResetCrafterBuild()
 end
 
 function Craftie.BuildProfProfile(profName, profLevel)
-  local profArray = Craftie.Profession[profName]
+  local profArray = Craftie.CopyTable(Craftie.Profession[profName])
   local profData={}
   local profString = ""
 
@@ -546,7 +546,86 @@ function Craftie.BuildProfProfile(profName, profLevel)
   end
 end
 
+function Craftie.CrafterDataParse(profName, player)
+  print(profName)
+  local crafterData = {}
+  local compareProf = Craftie.CopyTable(Craftie.Profession[profName])
+  local class = ""
+  local profLevel = ""
+  local profString = ""
+
+  --alpha sort table
+  Craftie.SortTableByString(compareProf)
+
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player] ~= nil) then
+    --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player])
+
+    crafterData = Craftie.Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player], ",")
+
+    class = crafterData[1] --Craftie.Class[tonumber(packet[4])][1]
+    profLevel= crafterData[3]
+    profString = crafterData[4]
+
+    Craftie.Notification(profString, true)
+
+    --[==[
+    local key=0
+    for Bit in profString:gmatch(".") do
+      key = key+1
+      if (Bit == "0") then
+        table.remove(compareProf, key)
+      end
+    end
+    ]==]--
+
+    local filtered = {}
+    for key = 1, #profString do
+      if profString:sub(key, key) == "1" then
+        table.insert(filtered, compareProf[key])
+      end
+    end
+    compareProf = filtered
+
+    --[==[
+    for i=1, #profString do
+      local Bit = profString:sub(i, i)
+      if (tonumber(Bit) ~= 1) then
+        --if (compareProf[i][2]) then
+          --compareProf[i][2] = "zzzEmpty"
+        --end
+        table.remove(compareProf, i)
+      end
+    end
+    ]==]--
+
+    --[==[
+    for k,v in pairs(crafterTable) do
+      if (v == "1") then
+        --print(cacheProf[k])
+        --print(v)
+        --table.remove(cachedProf, k)
+        print(cachedProf[k][2])
+      end
+      --print(k)
+    end
+    ]==]--
+
+    --print(cacheProf[1])
+    Craftie.Notification("compareProf " .. #compareProf, true)
+    Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], true)
+    --return cachedProf
+    --Craftie.ProfessionDefault = cachedProf
+  end
+  return compareProf
+end
+
 function Craftie.OpenProfessionList(profArray, search, player)
+  --local crafterProf = {}
+  if (player ~= "") then
+    profArray={}
+    profArray = Craftie.CrafterDataParse(Craftie.Page, player)
+  end
+
   local total_recipes = #profArray
   --local total_search = 0
   local results = "|cfffffb63Recipe(s)"
@@ -572,10 +651,6 @@ function Craftie.OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesListItem[i]:Hide()
   end
 
-  if (player ~= "") then
-    print("openproflist " .. player)
-  end
-
   for i=1, total_recipes do
     Craftie.Frame.ScrollRecipesListText[i]:SetText(profArray[i][2])
     Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
@@ -592,7 +667,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
     end)
     Craftie.Frame.ScrollRecipesListItem[i]:Show()
   end
-  Craftie.Profession.Query = profArray
+  --Craftie.ProfessionDefault = profArray
 
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
@@ -602,6 +677,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
   Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
   --Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Professions[prof_list][1] .. " Recipes")
   Craftie.UpdateCrafterList()
+  Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
 
 --[==[

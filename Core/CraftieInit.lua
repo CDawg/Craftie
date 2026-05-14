@@ -14,11 +14,11 @@ the copyright holders.
 ]==]--
 
 function Craftie.Init()
+  Craftie.AlphaSortProfessionLib() --prio the alpha sorting
   Craftie.BuildReagentGaps()
   Craftie.TabSelect(1, false) --default 1st profession
-  Craftie.OpenProfessionList(Craftie.Profession.Query, "", "")
+  Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "")
   Craftie.TabBottomSelect(1, false)
-  Craftie.AlphaSortProfessionLib()
 
   --new account
   if (CraftieDB == nil) then

@@ -129,15 +129,21 @@ for i,v in pairs(Craftie.Professions) do
     Craftie.ClearFocusAll()
     Craftie.TabSelect(i, true)
     Craftie.Frame.Title.Prof:SetText(v[1])
-    Craftie.Profession.Query = Craftie.Profession[v[1]]
+    Craftie.ProfessionDefault = Craftie.Profession[v[1]]
     C_Timer.After(0.10, function() --give it time to register
       local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
       if (search_index == Craftie.Placeholder_Recipes) then
         search_index = ""
       end
-      Craftie.OpenProfessionList(Craftie.Profession.Query, search_index, "")
+      Craftie.OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
     end)
     Craftie.Page = v[1]
+
+    Craftie.Selected_Players = 1
+    Craftie.Selected_Recipes = 1
+    Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
+    Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
+
   end)
 end
 

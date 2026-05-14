@@ -93,7 +93,7 @@ Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
-    local search_array = Craftie.Profession.Query
+    local search_array = Craftie.ProfessionDefault
     local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
     Craftie.OpenProfessionList(search_array, search_index, "")
     --Craftie.ClearFocusAll()

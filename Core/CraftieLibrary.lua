@@ -141,15 +141,17 @@ function Craftie.BitCompression(packet, decompress)
   end
 end
 
---[==[
-function Craftie.ArrayToString(array)
-  formstring=""
-  for k,v in pairs(array) do
-    formstring = formstring .. v .. "|n"
+--complex tree tables
+function Craftie.CopyTable(original)
+  local copy = {}
+  for k, v in pairs(original) do
+    if type(v) == "table" then
+      v = CopyTable(v) -- Recursive call for nested tables
+    end
+    copy[k] = v
   end
-  return formstring
+  return copy
 end
-]==]--
 
 function Craftie.Split(s, delimiter)
   result = {}
