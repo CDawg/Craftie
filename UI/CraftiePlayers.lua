@@ -203,7 +203,7 @@ end
 function Craftie.SelectCrafter(index, name)
   Craftie.Selected_Players = 1 --always one at first
   if (index == 1) then
-    --Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "") --get whats in the search text?
+    Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "") --get whats in the search text?
   else
     if (name ~= nil) then
       --print(name)

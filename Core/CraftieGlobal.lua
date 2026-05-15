@@ -668,7 +668,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
   --Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.tga")
   Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
   --Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Professions[prof_list][1] .. " Recipes")
-  Craftie.UpdateCrafterList()
+  --Craftie.UpdateCrafterList()
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
 

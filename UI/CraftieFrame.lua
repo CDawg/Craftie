@@ -41,6 +41,9 @@ Craftie.Frame.Icon:SetSize(58, 58)
 Craftie.Frame.Icon:SetPoint("TOPLEFT", -5, 7)
 Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.tga")
 Craftie.Frame.Icon:SetMask("Interface/Masks/CircleMaskScalable")
+C_Timer.After(2, function() --wow bugfix
+  Craftie.Frame.Icon:SetMask("Interface/Masks/CircleMaskScalable")
+end)
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, 12, "SLUG")
@@ -136,6 +139,7 @@ for i,v in pairs(Craftie.Professions) do
         search_index = ""
       end
       Craftie.OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
+      Craftie.UpdateCrafterList()
     end)
     Craftie.Page = v[1]
     Craftie.Selected_Players = 1
@@ -147,6 +151,7 @@ for i,v in pairs(Craftie.Professions) do
       Craftie.Frame.Reagent.Main[i]:Hide()
       Craftie.Frame.Reagent.Back[i]:Hide()
     end
+    --Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_" .. Craftie.Page .. ".png")
   end)
 end
 

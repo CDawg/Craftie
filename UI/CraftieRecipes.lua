@@ -122,23 +122,26 @@ Craftie.Frame.Button.SearchRecipes:SetScript("OnClick", function(self)
   Craftie.ClearFocusAll()
 end)
 
-
 --[==[
 CRAFT ITEM
 ]==]--
-
 Craftie.Frame.CraftParent={}
 Craftie.Frame.CraftParent= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.CraftParent:SetWidth(300)
 Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -61)
-
---LFGFRAME/LFGDungeonToast
-
+--[==[
 Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
 Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
+Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_alchemy.png")
+Craftie.Frame.CraftParent.Back:SetAlpha(0.2)
+]==]--
+Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER")
+Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
+Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
 Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/BackgroundFrameDecor.png")
+Craftie.Frame.CraftParent.Back:SetAlpha(0.6)
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftParent, "BackdropTemplate")
@@ -158,7 +161,6 @@ Craftie.Frame.Craft.Back:SetSize(310, 50)
 Craftie.Frame.Craft.Back:SetPoint("TOPLEFT", -4, 6)
 Craftie.Frame.Craft.Back:SetTexture(Craftie._G.Path .. "Images/CraftToast.png")
 
---Masks/CircleMaskScalable
 Craftie.Frame.Craft.Icon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.Icon:SetSize(35, 35)
 Craftie.Frame.Craft.Icon:SetPoint("TOPLEFT", 0, 0)
@@ -234,7 +236,8 @@ Craftie.Frame.Craft.Back:SetSize(300, 110)
 Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", 0, 0)
 Craftie.Frame.Craft.Back:SetHorizTile(true)
 Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock", "REPEAT")
-Craftie.Frame.Craft.Back:SetVertexColor(0.80, 0.78, 0.78)
+--Craftie.Frame.Craft.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background.png")
+Craftie.Frame.Craft.Back:SetVertexColor(0.72, 0.70, 0.70)
 Craftie.Frame.Craft:Hide()
 
 Craftie.Frame.Reagent = {}
