@@ -138,12 +138,15 @@ for i,v in pairs(Craftie.Professions) do
       Craftie.OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
     end)
     Craftie.Page = v[1]
-
     Craftie.Selected_Players = 1
     Craftie.Selected_Recipes = 1
     Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
-
+    Craftie.Frame.Craft:Hide()
+    for i=1, Craftie.MAX_REAGENTS do
+      Craftie.Frame.Reagent.Main[i]:Hide()
+      Craftie.Frame.Reagent.Back[i]:Hide()
+    end
   end)
 end
 

@@ -146,7 +146,7 @@ function Craftie.CopyTable(original)
   local copy = {}
   for k, v in pairs(original) do
     if type(v) == "table" then
-      v = CopyTable(v) -- Recursive call for nested tables
+      v = Craftie.CopyTable(v) -- Recursive call for nested tables
     end
     copy[k] = v
   end
@@ -154,7 +154,7 @@ function Craftie.CopyTable(original)
 end
 
 function Craftie.Split(s, delimiter)
-  result = {}
+  local result = {}
   if (s) then
     for match in (s..delimiter):gmatch("(.-)"..delimiter) do
       table.insert(result, match)

@@ -427,8 +427,7 @@ function Craftie.ItemDetails(item)
   Craftie.Frame.Craft.Source:Show()
 end
 
-Craftie.Frame.Scroll={}
-Craftie.Frame.ScrollPlayersListItem={}
+
 function Craftie.SelectScrollItem(scrollFrame)
   if (scrollFrame == "Players") then
     for i=1, Craftie.MAX_PLAYERS do
@@ -498,16 +497,16 @@ function Craftie.CrafterDataBuild(profName, profLevel)
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profArray) do
-            profData[_sanitize(v[2])] = 0
-            Craftie.Notification(_sanitize(v[2]), true)
+            profData[_sanitize(v[2]):lower()] = 0
+            --Craftie.Notification(_sanitize(v[2]):lower(), true)
           end
 
           local numRecipes = GetNumTradeSkills()
           for i = 1, numRecipes do
             local recipeName, recipeType = GetTradeSkillInfo(i)
             if recipeType ~= "header" then
-              if (_sanitize(recipeName) ~= nil) then
-                profData[_sanitize(recipeName)] = 1
+              if (_sanitize(recipeName):lower() ~= nil) then
+                profData[_sanitize(recipeName):lower()] = 1
               end
             end
           end
@@ -529,7 +528,7 @@ function Craftie.CrafterDataBuild(profName, profLevel)
             profString = profString .. profData[k]
           end
 
-          Craftie.Notification(profString, true)
+          --Craftie.Notification(profString, true)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
 
         end)
