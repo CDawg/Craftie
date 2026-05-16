@@ -135,9 +135,13 @@ function Craftie.ClearFocusAll()
   PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 end
 
-function SetItemTooltip(frame, itemID, enchant)
-  --GameTooltip:SetOwner(frame, "ANCHOR_CURSOR")
-  GameTooltip:SetOwner(frame, "ANCHOR_CURSOR_RIGHT")
+function SetItemTooltip(frame, itemID, enchant, anchor)
+
+  if (anchor) then
+    GameTooltip:SetOwner(frame, anchor)
+  else
+    GameTooltip:SetOwner(frame, "ANCHOR_CURSOR_RIGHT")
+  end
   if (enchant) then
     GameTooltip:SetHyperlink("enchant:" .. itemID .. ":0:0:0:0:0:0:0")
   else
@@ -310,17 +314,27 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.IconGlow[i]:Hide()
 
       r = Craftie.GetKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
-      --C_Timer.After(0.12, function()
-      local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item[5][i][1])
-      local loadcache = 0
-      if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
-        if (name ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
-          Craftie.Reagent[r][2] = name
+      local time = i*0.1
+      C_Timer.After(time, function()
+        --print("caching " .. i)
+        local name={}
+        local link={}
+        --local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item[5][i][1])
+        name[i], link[i] = GetItemInfo(item[5][i][1])
+        local loadcache = 0
+        if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
+          if (name[i] ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
+            Craftie.Reagent[r][2] = name[i]
+          end
+          loadcache = 1
         end
-        loadcache = 1
-      end
+
+        Craftie.Frame.Reagent.HLink[i]:SetText(link[i])
+      end)
+
       Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
+
       if (inv_count >= 10) then
         Craftie.Frame.Reagent.QuanI[i]:SetText("..")
       else
@@ -332,9 +346,10 @@ function Craftie.ItemDetails(item)
       --end)
       if (loadcache == 1) then
         loadcache = 0
-        C_Timer.After(0.6, function()
+        C_Timer.After(0.2, function()
           Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
           Craftie.Notification("[" .. item[2] .. "] reloading from tooltip data", true)
+          --Craftie.Frame.Reagent.HLink[i]:SetText(link)
         end)
       end
       if (inv_count >= inv_req) then
