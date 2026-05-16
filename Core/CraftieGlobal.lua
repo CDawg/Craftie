@@ -117,6 +117,7 @@ function Craftie.TabSelect(tab, sound)
   Craftie.Frame.TabSide[tab].Shadow:Hide()
   if (sound) then
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
+    --PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2) --request to craft?
   end
 end
 
@@ -292,6 +293,8 @@ end
 
 function Craftie.ItemDetails(item)
   local reagent = {}
+  local r_next = 0 --reagent integer population
+  local b_next = 0
   Craftie.Frame.Craft:Show()
   Craftie.ClearFocusAll()
   Craftie.TimerAnim(Craftie.Frame.Craft, 0.65) --animate the craft icon
@@ -299,7 +302,16 @@ function Craftie.ItemDetails(item)
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0
     Craftie.Frame.Reagent.Main[i]:Hide()
-    Craftie.Frame.Reagent.Back[i]:Show() --selection was laready made, draw backgrounds
+    --Craftie.Frame.Reagent.Back[i]:Show() --selection was already made, draw backgrounds
+    Craftie.Frame.Reagent.Back[i]:Hide()
+
+    local back_time = i*0.058
+    C_Timer.After(back_time, function()
+      b_next = b_next +1
+      Craftie.Frame.Reagent.Back[i]:Show()
+      --print("b_next " .. b_next)
+    end)
+
     if (not Craftie.IsEmpty(item[5][i])) then
       local r = 0
       local inv_count= C_Item.GetItemCount(item[5][i][1])
@@ -314,8 +326,10 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.IconGlow[i]:Hide()
 
       r = Craftie.GetKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
-      local time = i*0.1
-      C_Timer.After(time, function()
+  
+      local reagent_time = i*0.1
+      C_Timer.After(reagent_time, function()
+        r_next = r_next +1
         --print("caching " .. i)
         local name={}
         local link={}
@@ -330,7 +344,10 @@ function Craftie.ItemDetails(item)
         end
 
         Craftie.Frame.Reagent.HLink[i]:SetText(link[i])
+        Craftie.Frame.Reagent.Main[r_next]:Show()
       end)
+
+      --Craftie.Frame.Reagent.Back[i]:Show()
 
       Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
@@ -342,8 +359,8 @@ function Craftie.ItemDetails(item)
       end
       Craftie.Frame.Reagent.QuanR[i]:SetText(inv_req)
       Craftie.Frame.Reagent.Icon[i]:SetTexture(C_Item.GetItemIconByID(Craftie.Reagent[r][1]))
-      Craftie.Frame.Reagent.Main[i]:Show()
-      --end)
+      --Craftie.Frame.Reagent.Main[i]:Show()
+
       if (loadcache == 1) then
         loadcache = 0
         C_Timer.After(0.2, function()
