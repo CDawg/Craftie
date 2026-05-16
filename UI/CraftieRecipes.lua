@@ -153,7 +153,8 @@ Craftie.Frame.Craft:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.Craft:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.Craft:SetHyperlinksEnabled(true)
 Craftie.Frame.Craft:SetScript("OnHyperlinkClick", function(self, link, text, button)
-	SetItemRef(link, text, nil, self)
+  SetItemRef(link, text, button, self)
+  ItemRefTooltip:Hide()
 end)
 
 Craftie.Frame.Craft.Back = Craftie.Frame.Craft:CreateTexture(nil, "BACKGROUND")
@@ -262,12 +263,6 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent, "BackdropTemplate")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
   Craftie.Frame.Reagent.Main[i]:SetHeight(Craftie.Frame.Reagent_Height)
-  --[==[
-  Craftie.Frame.Reagent.Main[i]:SetHyperlinksEnabled(true)
-  Craftie.Frame.Reagent.Main[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
-	  SetItemRef(link, text, nil, self)
-  end)
-  ]==]--
   if (i % 2 == 0) then --right row
     Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-74, (-i*18)+Craftie.Frame.Reagent_PosY)
   else
@@ -384,19 +379,19 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.HLink[i]:SetAutoFocus(false)
   Craftie.Frame.Reagent.HLink[i]:SetText("")
   Craftie.Frame.Reagent.HLink[i]:SetEnabled(false) --dont interact with text
+  --Craftie.Frame.Reagent.HLink[i]:EnableMouse(false)
   Craftie.Frame.Reagent.HLink[i]:SetHyperlinksEnabled(true)
   --Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", ChatFrame_OnHyperlinkShow)
+  --Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
-	  SetItemRef(link, text, nil, self)
-    GameTooltip:Hide()
+    SetItemRef(link, text, button, self)
+    ItemRefTooltip:Hide()
   end)
-  Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkEnter", function(self, link, text, region, left, bottom, width, height)
-    SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true, "ANCHOR_RIGHT")
-    self:SetHyperlinksEnabled(true)
+  Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkEnter", function(self)
+    SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true)
   end)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkLeave", function(self)
     GameTooltip:Hide()
-    self:SetHyperlinksEnabled(true)
   end)
 
 end
