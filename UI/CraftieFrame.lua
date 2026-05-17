@@ -143,10 +143,15 @@ for i,v in pairs(Craftie.Professions) do
     end)
     Craftie.Page = v[1]
     Craftie.Selected_Players = 1
+    Craftie.SelectScrollItem("Players")
+    Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
+
     Craftie.Selected_Recipes = 1
-    Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
-    Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
+    Craftie.SelectScrollItem("Recipes")
+    Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
+
     Craftie.Frame.Craft:Hide()
+
     for i=1, Craftie.MAX_REAGENTS do
       Craftie.Frame.Reagent.Main[i]:Hide()
       Craftie.Frame.Reagent.Back[i]:Hide()
@@ -154,6 +159,24 @@ for i,v in pairs(Craftie.Professions) do
     --Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_" .. Craftie.Page .. ".png")
   end)
 end
+
+
+--ARCHAEOLOGY/Arch-Progress-Bg
+--PaperDollInfoFrame/UI-Character-Skills-BarBorder
+
+Craftie.Frame.CrafterProgBar = Craftie.Frame:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.CrafterProgBar:SetSize(246, 15)
+Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 400, -34)
+Craftie.Frame.CrafterProgBar:SetTexture("Interface/Buttons/GREENGRAD64")
+Craftie.Frame.CrafterProgBar:SetMask(Craftie._G.Path .. "Images/ProgBarMask.png")
+
+Craftie.Frame.CrafterProgBack = Craftie.Frame:CreateTexture(nil, "OVERLAY")
+Craftie.Frame.CrafterProgBack:SetSize(250, 34)
+Craftie.Frame.CrafterProgBack:SetPoint("TOPLEFT", 400, -25)
+Craftie.Frame.CrafterProgBack:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Skills-BarBorder")
+--Craftie.Frame.CrafterProgBack:SetBlendMode("ADD")
+--Craftie.Frame.CrafterProgBack:SetDrawLayer("OVERLAY", 7)
+--Craftie.Frame.CrafterProgBack:Hide()
 
 Craftie.Frame.Button={}
 Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "BORDER")

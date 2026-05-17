@@ -29,7 +29,7 @@ Craftie.ScrollBarBack(Craftie.Frame.ScrollParentPlayers)
 Craftie.Frame.ScrollPlayers_Width = 210
 Craftie.Frame.ScrollPlayers_Height= Craftie._G.Height-90
 
-Craftie.Frame.ScrollPlayers = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentPlayers)
+Craftie.Frame.ScrollPlayers = CreateFrame("Frame", Craftie.Frame.ScrollPlayers, Craftie.Frame.ScrollParentPlayers)
 Craftie.Frame.ScrollPlayers:SetWidth(Craftie.Frame.ScrollPlayers_Width)
 Craftie.Frame.ScrollPlayers:SetHeight(Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayers:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
@@ -42,7 +42,7 @@ Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.05) --shade
 Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
-Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
+Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollPlayersList.Child", Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -30)
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 10, 4)
 Craftie.Frame.ScrollPlayersListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListChildFrame, Craftie.Frame.ScrollPlayersList.Child)
@@ -146,8 +146,8 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListNet[i]:Hide()
 ]==]--
   Craftie.Frame.ScrollPlayersListFav[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.ScrollPlayersListFav[i]:SetSize(10, 10)
-  Craftie.Frame.ScrollPlayersListFav[i]:SetPoint("TOPLEFT", 6, -5)
+  Craftie.Frame.ScrollPlayersListFav[i]:SetSize(14, 14)
+  Craftie.Frame.ScrollPlayersListFav[i]:SetPoint("TOPLEFT", 6, -2)
   Craftie.Frame.ScrollPlayersListFav[i]:SetTexture("Interface/COMMON/ReputationStar")
   --Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(0, 0.5, 0, 0.5) --on
   Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(1, 0.5, 0, 0.5)
@@ -200,6 +200,7 @@ for i=1, Craftie.MAX_PLAYERS do
   end)
 end
 
+--might be easier to create a global
 function Craftie.SelectCrafter(index, name)
   Craftie.Selected_Players = 1 --always one at first
   if (index == 1) then
@@ -224,18 +225,38 @@ function Craftie.UpdateCrafterList()
     Craftie.Frame.ScrollPlayersListText[i]:SetText("")
   end
 
+  C_Timer.After(0.3, function()
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+      for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
+        i = i+1
+        Craftie.Frame.ScrollPlayersListText[i]:SetText(k)
+        --Craftie.Frame.ScrollPlayersListNet[i]:Show()
+        Craftie.Frame.ScrollPlayersListFav[i]:Show()
+      end
+    end
+  end)
+
   Craftie.Notification("Craftie.UpdateCrafterList()", true)
   Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Page .. " Recipes")
-  Craftie.Frame.ScrollPlayersListText[1]:SetPoint("TOPLEFT", 6, -5)
-
-  C_Timer.After(0.3, function()
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
-    for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
-      i = i+1
-      Craftie.Frame.ScrollPlayersListText[i]:SetText(k)
-      --Craftie.Frame.ScrollPlayersListNet[i]:Show()
-      Craftie.Frame.ScrollPlayersListFav[i]:Show()
-    end
-  end
-end)
+  --Craftie.Frame.ScrollPlayersListText[1]:SetPoint("TOPLEFT", 6, -5)
+  Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/LFGFRAME/UI-LFG-ICON-LOCK")
+  Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
+  Craftie.Frame.ScrollPlayersListFav[1]:Show()
+  Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(1, 0, 0, 1)
+  Craftie.Notification("Craftie.UpdateCrafterList()", true)
 end
+
+--[==[
+local scrollbar = _G[Craftie.Frame.ScrollPlayersList.Child:GetName() .. "ScrollBar"]
+local scrollUpButton = _G[scrollFrame:GetName() .. "ScrollBarScrollUpButton"]
+local scrollDownButton = _G[scrollFrame:GetName() .. "ScrollBarScrollDownButton"]
+
+-- Example of applying a custom texture to the Up Button
+scrollUpButton:SetNormalTexture("Interface\\AddOns\\MyAddon\\Media\\UpButton-Up")
+scrollUpButton:SetPushedTexture("Interface\\AddOns\\MyAddon\\Media\\UpButton-Down")
+scrollUpButton:SetDisabledTexture("Interface\\AddOns\\MyAddon\\Media\\UpButton-Disabled")
+
+-- Example of applying a color or custom image to the Thumb (Slider)
+local thumb = scrollbar:GetThumbTexture()
+thumb:SetTexture("Interface/Buttons/MinimalScrollbarProportional")
+]==]--

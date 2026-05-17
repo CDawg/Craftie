@@ -609,32 +609,10 @@ function Craftie.CrafterDataParse(profName, player)
       end
     end
     compareProf = filtered
-
-    --[==[
-    for i=1, #profString do
-      local Bit = profString:sub(i, i)
-      if (tonumber(Bit) ~= 1) then
-        --if (compareProf[i][2]) then
-          --compareProf[i][2] = "zzzEmpty"
-        --end
-        table.remove(compareProf, i)
-      end
-    end
-    ]==]--
-
-    --[==[
-    for k,v in pairs(crafterTable) do
-      if (v == "1") then
-        --print(cacheProf[k])
-        --print(v)
-        --table.remove(cachedProf, k)
-        print(cachedProf[k][2])
-      end
-      --print(k)
-    end
-    ]==]--
-
     --print(cacheProf[1])
+
+    Craftie.Notification("class " .. class, true) --not sure if this is relevant
+    Craftie.Notification("profLevel " .. profLevel, true)
     Craftie.Notification("compareProf " .. #compareProf, true)
     Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], true)
     --return cachedProf

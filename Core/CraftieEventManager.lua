@@ -115,12 +115,27 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
   end
 end
 
+Craftie.ChatProfessions = {} --version control?
+function Craftie.ChatHooks()
+  local i=0
+  for k,v in pairs(Craftie.Professions) do
+    i=i+1
+    table.insert(Craftie.ChatProfessions, i, v[1])
+    --print(i .. " | " .. v[1])
+  end
+  for k,v in pairs(Craftie.Masters) do
+    i=i+1
+    table.insert(Craftie.ChatProfessions, i, v)
+    --print(i .. " | " .. v)
+  end
+end
+
 function Craftie.ChatFilter(self, event, msg, author, ...)
   --if msg:find("LINE TEST 1") then
     --return true
   --end
-  --local pattern = "[Craftie[(%a+)]]"
-  local pattern = "%[Craftie%[(%a+)%]%]"
+  --local pattern = "%[Craftie%[(%a+)%]%]"
+  local pattern = "%[Jewelcrafting%]"
   if msg:find(pattern) then
     return false, gsub(msg, pattern, "|cffF58E27|Haddon:Craftie:" .. author .. "|h[Blacksmithing]|h|r"), author, ...
   end
