@@ -149,22 +149,23 @@ for k,v in pairs(Craftie.ChannelList) do
   ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter)
 end
 
---hooksecurefunc is cleaner than the registercallback
 hooksecurefunc("SetItemRef", function(link, text, button)
   -- Check if the clicked link is an item
   local linkType = Craftie.Split(link, ":")
 
   if (linkType[1] == "spell") then
-    print("text " .. text)
+    --print("text " .. text)
     local spellData = Craftie.Split(text, ":")
     --for k,v in pairs(spellData) do
       --print(v)
     --end
     if (spellData[4] == "Craftie") then
-      local player = Craftie.Split(spellData[5], "-") --remove realm data
+      local playerData = Craftie.Split(spellData[5], "-") --remove realm data
+      local player = playerData[1]
       local prof   = spellData[6]
-      print(player[1] .. " | " .. prof)
-      Craftie.OpenCraftie()
+      --print(player[1] .. " | " .. prof)
+      Craftie.Open(player, prof)
+      ItemRefTooltip:Hide()
     end
   end
 end)

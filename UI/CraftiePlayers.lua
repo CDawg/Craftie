@@ -218,6 +218,7 @@ end
 
 function Craftie.UpdateCrafterList()
   local i=1
+  Craftie.Notification("Craftie.UpdateCrafterList()", true)
 
   for i=1, Craftie.MAX_PLAYERS do
     --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
@@ -236,14 +237,12 @@ function Craftie.UpdateCrafterList()
     end
   end)
 
-  Craftie.Notification("Craftie.UpdateCrafterList()", true)
   Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Page .. " Recipes")
   --Craftie.Frame.ScrollPlayersListText[1]:SetPoint("TOPLEFT", 6, -5)
   Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/LFGFRAME/UI-LFG-ICON-LOCK")
   Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
   Craftie.Frame.ScrollPlayersListFav[1]:Show()
   Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(1, 0, 0, 1)
-  Craftie.Notification("Craftie.UpdateCrafterList()", true)
 end
 
 --[==[

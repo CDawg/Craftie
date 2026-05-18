@@ -723,8 +723,9 @@ function Craftie.CrafterDataBuild()
 end
 ]==]--
 
+--[==[
 Craftie.WindowOpen = 0
-function Craftie.OpenCraftie()
+function Craftie.Open(player, profession)
   --PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
   if (Craftie.WindowOpen == 0) then
     Craftie.Frame:Show()
@@ -735,13 +736,25 @@ function Craftie.OpenCraftie()
     Craftie.WindowOpen = 0
   end
 end
+]==]--
+
+function Craftie.Open(player, profession)
+  if (player) then
+    print("player: " .. player)
+    print("player: " .. profession)
+    C_Timer.After(0.4, function() --give it time to register
+      Craftie.Frame:Show()
+    end)
+  else
+    Craftie.Frame:Show()
+  end
+end
 
 SLASH_Craftie1 = "/" .. Craftie._G.Prefix
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
 
     --print(Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version)
-    Craftie.OpenCraftie()
     --Craftie.Notification
 		--for int,list in pairs(Craftie._L.COMMANDS) do
 			--print("|cffffff00".. list[1] .. "|r : " .. list[2] .. "|n")
@@ -752,7 +765,7 @@ function SlashCmdList.Craftie(cmd)
 	  --Craftie.FrameOptions:Show()
   --end
   if (cmd == "show") then
-    Craftie.OpenCraftie()
+    Craftie.Open()
   end
 
   for k,v in pairs(Craftie.Professions) do
