@@ -120,23 +120,27 @@ function Craftie.BuildChatHooks()
   local i=0
   for k,v in pairs(Craftie.Professions) do
     i=i+1
-    table.insert(Craftie.ChatProfessions, i, v[1])
-    --print(i .. " | " .. v[1])
+    table.insert(Craftie.ChatProfessions, i, {v[1], v[1]})
+    --print(i .. " | " .. v[1] .. " | " ..  v[1])
+    for a,b in pairs(v[4]) do
+      i=i+1
+      if (v[4][1] ~= nil) then
+        --print(i .. " | " .. v[1] .. " | " ..  b)
+        table.insert(Craftie.ChatProfessions, i, {v[1], b})
+      end
+    end
   end
-  for k,v in pairs(Craftie.ProfSpellIDs) do
-    i=i+1
-    table.insert(Craftie.ChatProfessions, i, v[1])
-  end
+  --for k,v in pairs(Craftie.ChatProfessions) do
+    --print(v[2])
+  --end
 end
 
 function Craftie.ChatFilter(self, event, msg, author, ...)
-
   for k,v in pairs(Craftie.ChatProfessions) do
-    local pattern = "%[" .. v .. "%]"
+    local pattern = "%[" .. v[2] .. "%]"
     if msg:find(pattern) then --register the author data
-      --return false, gsub(msg, pattern, "|cffF58E27|Haddon:Craftie:" .. author .. "|h" .. pattern .. "|h|r"), author, ...
-      --return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. "|h" .. pattern .. "|h|r"), author, ...
-      return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":prof:" .. v .. "|h" .. pattern .. "|h|r"), author, ...
+    --print(v[1])
+      return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h" .. pattern .. "|h|r"), author, ...
     end
   end
 end
@@ -144,12 +148,6 @@ end
 for k,v in pairs(Craftie.ChannelList) do
   ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter)
 end
-
---[==[
---WAY TOO BUGGY
-EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
-end)
-]==]--
 
 --hooksecurefunc is cleaner than the registercallback
 hooksecurefunc("SetItemRef", function(link, text, button)
@@ -159,19 +157,20 @@ hooksecurefunc("SetItemRef", function(link, text, button)
   if (linkType[1] == "spell") then
     print("text " .. text)
     local spellData = Craftie.Split(text, ":")
-    print(spellData[1])
-    print(spellData[2]) --profession spell id
-    print(spellData[3])
-    print(spellData[4])
-    print(spellData[5])
-    --print(spellData[6])
+    --for k,v in pairs(spellData) do
+      --print(v)
+    --end
     if (spellData[4] == "Craftie") then
-
-      print("spellID:" .. spellData[2])
-      --whisper 5
-      print("player: " .. spellData[5])
-
+      local player = Craftie.Split(spellData[5], "-") --remove realm data
+      local prof   = spellData[6]
+      print(player[1] .. " | " .. prof)
+      Craftie.OpenCraftie()
     end
   end
-
 end)
+
+--[==[
+--WAY TOO BUGGY
+EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
+end)
+]==]--

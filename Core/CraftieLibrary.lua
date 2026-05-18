@@ -25,12 +25,12 @@ Craftie = {
   },
 
 	Player = {
-	  Name    = UnitName("player"),
-	  Realm   = GetRealmName(),
-		ClassID = select(3, UnitClass("player")), --use the class ID, due to locales
-	  Faction = UnitFactionGroup("player"),
-		GUID    = UnitGUID("player"),
-		Combine = UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
+    Name    = UnitName("player"),
+    Realm   = GetRealmName(),
+    ClassID = select(3, UnitClass("player")), --use the class ID, due to locales
+    Faction = UnitFactionGroup("player"),
+    GUID    = UnitGUID("player"),
+    Combine = UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
 	},
 }
 
@@ -60,65 +60,16 @@ Craftie.Class = {
   {"Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"},
 }
 
---prio professions
 Craftie.Professions = {
-  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19"},
-  {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48"},
-  {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13"},
-  {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83"},
-  {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25"},
-  {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42"},
-  {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88"},
-  {"Jewelcrafting",  "INV_Misc_Gem_02",      "1.00, 0.25, 0.25"},
+  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmute Master"}},
+  {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48", {"Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"}},
+  {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13", {}},
+  {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83", {}},
+  {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25", {"Gnomish Engineer", "Goblin Engineer"}},
+  {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale Leatherworking", "Elemental Leatherworking", "Tribal Leatherworking"}},
+  {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Mooncloth Tailoring", "Spellfire Mooncloth Tailoring"}},
+  {"Jewelcrafting",  "INV_Misc_Gem_02",      "1.00, 0.25, 0.25", {}},
   --{"Inscription",    "inv_inscription_tradeskill01", "1.00, 0.25, 0.25"},
-}
-
- Craftie.ProfSpellIDs = { --spellIDs are linked in chat
-  {"Elixir Master", 28677},
-  {"Potion Master", 28675},
-  {"Transmute Master", 28672},
-  {"Armorsmith", 9788},
-  {"Weaponsmith", 9787},
-  {"Master Swordsmith", 17039},
-  {"Master Hammersmith", 17040},
-  {"Master Axesmith", 17041},
-  {"Gnomish Engineer", 20219},
-  {"Goblin Engineer", 20222},
-  {"Dragonscale Leatherworking", 10656},
-  {"Elemental Leatherworking", 10658},
-  {"Tribal Leatherworking", 10660},
-  {"Mooncloth Tailoring", 26798},
-  {"Shadoweave Tailoring", 26801},
-  {"Spellfire Tailoring", 26797},
-}
-
-Craftie.PROFESSION_SPECS = {
-    ["Alchemy"] = {
-        { spellID = 28672, name = "Transmute Master", short = "T" },
-        { spellID = 28675, name = "Potion Master", short = "P" },
-        { spellID = 28677, name = "Elixir Master", short = "E" },
-    },
-    ["Blacksmithing"] = {
-        { spellID = 9788,  name = "Armorsmith", short = "A" },
-        { spellID = 9787,  name = "Weaponsmith", short = "W" },
-        { spellID = 17039, name = "Master Swordsmith", short = "MS" },
-        { spellID = 17040, name = "Master Hammersmith", short = "MH" },
-        { spellID = 17041, name = "Master Axesmith", short = "MA" },
-    },
-    ["Engineering"] = {
-        { spellID = 20219, name = "Gnomish Engineer", short = "Gn" },
-        { spellID = 20222, name = "Goblin Engineer", short = "Go" },
-    },
-    ["Leatherworking"] = {
-        { spellID = 10656, name = "Dragonscale", short = "D" },
-        { spellID = 10658, name = "Elemental", short = "El" },
-        { spellID = 10660, name = "Tribal", short = "T" },
-    },
-    ["Tailoring"] = {
-        { spellID = 26798, name = "Mooncloth", short = "M" },
-        { spellID = 26801, name = "Shadoweave", short = "Sh" },
-        { spellID = 26797, name = "Spellfire", short = "Sp" },
-    },
 }
 
 function Craftie.BitDouble(packet, decompress)
