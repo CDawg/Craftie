@@ -81,3 +81,13 @@ Trade Chat: Post specific items you can make, such as "/2 LF [Item Link]", to ad
 Vendor Items: When sharing, remember to include items that come from vendors, quests, or drops, not just those learned from trainers.Key Crafting Information for CataclysmBoE Gear: Crafted Bind-on-Equip (BoE) gear in Cataclysm is categorized by levels 81, 82, 83, and 85.Important Materials: Many of the best recipes, specifically for item level 346 rare and 359 epic gear, require Chaos Orbs.
 
 Profession Bonuses: Note that all crafting and gathering professions offer specific stat bonuses, which are detailed in this Wowhead guide.
+
+
+***** SetItemRef *****
+item: Represents game items, handling item comparison and tooltip previews.
+spell: Encodes spell information to open the talent tree or display spell tooltips.
+quest: Displays quest log data or quest details.
+achievement: Opens the achievement frame.
+player/unit: Represents characters, allowing whisper, inspect, or invite options.
+currency: Displays currency tooltips.
+enchant:

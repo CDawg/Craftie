@@ -73,23 +73,52 @@ Craftie.Professions = {
   --{"Inscription",    "inv_inscription_tradeskill01", "1.00, 0.25, 0.25"},
 }
 
- Craftie.Masters = {
-  "Elixir Master",
-  "Potion Master",
-  "Transmute Master",
-  "Armorsmith",
-  "Weaponsmith",
-  "Master Swordsmith",
-  "Master Hammersmith",
-  "Master Axesmith",
-  "Gnomish Engineer",
-  "Goblin Engineer",
-  "Dragonscale",
-  "Elemental",
-  "Tribal",
-  "Mooncloth Tailoring",
-  "Shadoweave Tailoring",
-  "Spellfire Tailoring"
+ Craftie.ProfSpellIDs = { --spellIDs are linked in chat
+  {"Elixir Master", 28677},
+  {"Potion Master", 28675},
+  {"Transmute Master", 28672},
+  {"Armorsmith", 9788},
+  {"Weaponsmith", 9787},
+  {"Master Swordsmith", 17039},
+  {"Master Hammersmith", 17040},
+  {"Master Axesmith", 17041},
+  {"Gnomish Engineer", 20219},
+  {"Goblin Engineer", 20222},
+  {"Dragonscale Leatherworking", 10656},
+  {"Elemental Leatherworking", 10658},
+  {"Tribal Leatherworking", 10660},
+  {"Mooncloth Tailoring", 26798},
+  {"Shadoweave Tailoring", 26801},
+  {"Spellfire Tailoring", 26797},
+}
+
+Craftie.PROFESSION_SPECS = {
+    ["Alchemy"] = {
+        { spellID = 28672, name = "Transmute Master", short = "T" },
+        { spellID = 28675, name = "Potion Master", short = "P" },
+        { spellID = 28677, name = "Elixir Master", short = "E" },
+    },
+    ["Blacksmithing"] = {
+        { spellID = 9788,  name = "Armorsmith", short = "A" },
+        { spellID = 9787,  name = "Weaponsmith", short = "W" },
+        { spellID = 17039, name = "Master Swordsmith", short = "MS" },
+        { spellID = 17040, name = "Master Hammersmith", short = "MH" },
+        { spellID = 17041, name = "Master Axesmith", short = "MA" },
+    },
+    ["Engineering"] = {
+        { spellID = 20219, name = "Gnomish Engineer", short = "Gn" },
+        { spellID = 20222, name = "Goblin Engineer", short = "Go" },
+    },
+    ["Leatherworking"] = {
+        { spellID = 10656, name = "Dragonscale", short = "D" },
+        { spellID = 10658, name = "Elemental", short = "El" },
+        { spellID = 10660, name = "Tribal", short = "T" },
+    },
+    ["Tailoring"] = {
+        { spellID = 26798, name = "Mooncloth", short = "M" },
+        { spellID = 26801, name = "Shadoweave", short = "Sh" },
+        { spellID = 26797, name = "Spellfire", short = "Sp" },
+    },
 }
 
 function Craftie.BitDouble(packet, decompress)

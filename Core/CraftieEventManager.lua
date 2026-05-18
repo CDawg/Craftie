@@ -116,41 +116,62 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
 end
 
 Craftie.ChatProfessions = {} --version control?
-function Craftie.ChatHooks()
+function Craftie.BuildChatHooks()
   local i=0
   for k,v in pairs(Craftie.Professions) do
     i=i+1
     table.insert(Craftie.ChatProfessions, i, v[1])
     --print(i .. " | " .. v[1])
   end
-  for k,v in pairs(Craftie.Masters) do
+  for k,v in pairs(Craftie.ProfSpellIDs) do
     i=i+1
-    table.insert(Craftie.ChatProfessions, i, v)
-    --print(i .. " | " .. v)
+    table.insert(Craftie.ChatProfessions, i, v[1])
   end
 end
 
 function Craftie.ChatFilter(self, event, msg, author, ...)
-  --if msg:find("LINE TEST 1") then
-    --return true
-  --end
-  --local pattern = "%[Craftie%[(%a+)%]%]"
-  local pattern = "%[Jewelcrafting%]"
-  if msg:find(pattern) then
-    return false, gsub(msg, pattern, "|cffF58E27|Haddon:Craftie:" .. author .. "|h[Blacksmithing]|h|r"), author, ...
+
+  for k,v in pairs(Craftie.ChatProfessions) do
+    local pattern = "%[" .. v .. "%]"
+    if msg:find(pattern) then --register the author data
+      --return false, gsub(msg, pattern, "|cffF58E27|Haddon:Craftie:" .. author .. "|h" .. pattern .. "|h|r"), author, ...
+      --return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. "|h" .. pattern .. "|h|r"), author, ...
+      return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":prof:" .. v .. "|h" .. pattern .. "|h|r"), author, ...
+    end
   end
 end
-
-EventRegistry:RegisterCallback("SetItemRef", function(_, link, text, button, chatFrame)
-    local linkType, addonName, linkData = strsplit(":", link)
-    if ((linkType == "addon") and (addonName == "Craftie")) then
-      print("Link clicked:", linkData)
-      --GameTooltip:AddLine("Craftie")
-      --GameTooltip:Show()
-      Craftie.OpenCraftie()
-    end
-end)
 
 for k,v in pairs(Craftie.ChannelList) do
   ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter)
 end
+
+--[==[
+--WAY TOO BUGGY
+EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
+end)
+]==]--
+
+--hooksecurefunc is cleaner than the registercallback
+hooksecurefunc("SetItemRef", function(link, text, button)
+  -- Check if the clicked link is an item
+  local linkType = Craftie.Split(link, ":")
+
+  if (linkType[1] == "spell") then
+    print("text " .. text)
+    local spellData = Craftie.Split(text, ":")
+    print(spellData[1])
+    print(spellData[2]) --profession spell id
+    print(spellData[3])
+    print(spellData[4])
+    print(spellData[5])
+    --print(spellData[6])
+    if (spellData[4] == "Craftie") then
+
+      print("spellID:" .. spellData[2])
+      --whisper 5
+      print("player: " .. spellData[5])
+
+    end
+  end
+
+end)

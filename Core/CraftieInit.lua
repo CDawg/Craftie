@@ -19,7 +19,7 @@ function Craftie.Init()
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "")
   Craftie.TabBottomSelect(1, false)
-  Craftie.ChatHooks()
+  Craftie.BuildChatHooks()
 
   --new account
   if (CraftieDB == nil) then
