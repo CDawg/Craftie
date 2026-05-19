@@ -138,9 +138,11 @@ end
 function Craftie.ChatFilter(self, event, msg, author, ...)
   for k,v in pairs(Craftie.ChatProfessions) do
     local pattern = "%[" .. v[2] .. "%]"
-    if msg:find(pattern) then --register the author data
-    --print(v[1])
-      return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h" .. pattern .. "|h|r"), author, ...
+    if (msg:find(pattern)) then --register the author data
+      local icon_key = Craftie.GetKeyFromValue(Craftie.Professions, v[1], 1)
+      return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/icon_default.tga:14:14|t" .. pattern .. "|h|r"), author, ...
+      --return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|r|TInterface/ICONS/" .. Craftie.Professions[icon_key][2] .. ":14:14|t" .. msg), author, ...
+      --return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|r|T" .. Craftie._G.Path .. "Images/icon_default.tga:14:14|t" .. msg), author, ...
     end
   end
 end
@@ -152,22 +154,42 @@ end
 hooksecurefunc("SetItemRef", function(link, text, button)
   -- Check if the clicked link is an item
   local linkType = Craftie.Split(link, ":")
+  --print("linkType " .. linkType[1])
 
   if (linkType[1] == "spell") then
     --print("text " .. text)
     local spellData = Craftie.Split(text, ":")
     --for k,v in pairs(spellData) do
-      --print(v)
+      --print(k .. " | " .. v)
     --end
     if (spellData[4] == "Craftie") then
-      local playerData = Craftie.Split(spellData[5], "-") --remove realm data
+      local playerData = Craftie.Split(spellData[5], "pp") --remove realm data
       local player = playerData[1]
       local prof   = spellData[6]
-      --print(player[1] .. " | " .. prof)
+      print(player .. " | " .. prof)
       Craftie.Open(player, prof)
-      ItemRefTooltip:Hide()
+      ItemRefTooltip:Hide() --make this an option"
     end
   end
+
+  --may be an option later when posting patterns, but this is gets too spammy with NON crafters.
+  --[==[
+  if (linkType[1] == "enchant") then
+    --print("text " .. text)
+    local spellData = Craftie.Split(text, ":")
+    for k,v in pairs(spellData) do
+      print(k .. " | " .. v)
+    end
+    if (spellData[3] == "Craftie") then
+      local playerData = Craftie.Split(spellData[4], "-") --remove realm data
+      local player = playerData[1]
+      local prof   = spellData[5]
+      print(player .. " | " .. prof)
+      Craftie.Open(player, prof)
+      ItemRefTooltip:Hide() --make this an option"
+    end
+  end
+  ]==]--
 end)
 
 --[==[

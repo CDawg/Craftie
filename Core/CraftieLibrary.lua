@@ -64,7 +64,7 @@ Craftie.Professions = {
   {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmute Master"}},
   {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48", {"Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"}},
   {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13", {}},
-  {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83", {}},
+  {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83", {}}, --"Enchant.*" --too much
   {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25", {"Gnomish Engineer", "Goblin Engineer"}},
   {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale Leatherworking", "Elemental Leatherworking", "Tribal Leatherworking"}},
   {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Mooncloth Tailoring", "Spellfire Mooncloth Tailoring"}},
