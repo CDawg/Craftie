@@ -108,7 +108,21 @@ Craftie.Frame={}
 Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "ButtonFrameTemplate")
 Craftie.Frame.Search={}
 
-Craftie.DisableScrollFrames = 0
+Craftie.EnableScrollFrames = true
+
+function Craftie.CloseAllPlayerMenus()
+  for i=1, Craftie.MAX_PLAYERS do
+    Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Hide()
+    Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
+  end
+  Craftie.Frame.ScrollPlayersList.Child:SetAlpha(1)
+  Craftie.Frame.ScrollRecipesList.Child:SetAlpha(1)
+  Craftie.Frame.ScrollPlayersList.Child:EnableMouse(true)
+  Craftie.Frame.ScrollRecipesList.Child:EnableMouse(true)
+  Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(true)
+  Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(true)
+  Craftie.EnableScrollFrames = true
+end
 
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
@@ -469,27 +483,29 @@ end
 
 
 function Craftie.SelectScrollItem(scrollFrame)
-  if (scrollFrame == "Players") then
-    for i=1, Craftie.MAX_PLAYERS do
-      Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
-      Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
-      Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Players]:Show()
-      Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
-      Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
-      if (i % 2 == 0) then
-        Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+  if (Craftie.EnableScrollFrames) then
+    if (scrollFrame == "Players") then
+      for i=1, Craftie.MAX_PLAYERS do
+        Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
+        Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
+        Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Players]:Show()
+        Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
+        Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
+        if (i % 2 == 0) then
+          Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+        end
       end
     end
-  end
-  if (scrollFrame == "Recipes") then
-    for i=1, Craftie.MAX_RECIPES do
-      Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
-      Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
-      Craftie.Frame.ScrollRecipesListSelect[Craftie.Selected_Recipes]:Show()
-      Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 1, 0.8)
-      Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
-      if (i % 2 == 0) then
-        Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+    if (scrollFrame == "Recipes") then
+      for i=1, Craftie.MAX_RECIPES do
+        Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
+        Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
+        Craftie.Frame.ScrollRecipesListSelect[Craftie.Selected_Recipes]:Show()
+        Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 1, 0.8)
+        Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
+        if (i % 2 == 0) then
+          Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+        end
       end
     end
   end
@@ -536,7 +552,7 @@ function Craftie.CrafterDataBuild(profName, profLevel)
 
   for k,v in pairs(Craftie.Professions) do --I only care about the prio list
     if (v[1] == profName) then
-      if (Craftie.ProfileBuilt[profName] ~= 1) then
+      if (Craftie.ProfileBuilt[profName] <= 1) then
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profBuild) do
@@ -577,9 +593,8 @@ function Craftie.CrafterDataBuild(profName, profLevel)
 
         end)
       end
-      Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
+      Craftie.ProfileBuilt[profName] = Craftie.ProfileBuilt[profName] + 1 --we already pulled data, reset on learning new recipe
     end
-    --Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
   end
 end
 
@@ -670,16 +685,18 @@ function Craftie.OpenProfessionList(profArray, search, player)
   for i=1, total_recipes do
     Craftie.Frame.ScrollRecipesListText[i]:SetText(profCache[i][2])
     Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
-      Craftie.ItemDetails(profCache[i])
+      if (Craftie.EnableScrollFrames) then
+        Craftie.ItemDetails(profCache[i])
 
-      --clear selections
-      Craftie.Selected_Recipes = i
-      Craftie.SelectScrollItem("Recipes")
-      --Craftie.Selected_Players = i
-      --Craftie.SelectScrollItem("Players")
+        --clear selections
+        Craftie.Selected_Recipes = i
+        Craftie.SelectScrollItem("Recipes")
+        --Craftie.Selected_Players = i
+        --Craftie.SelectScrollItem("Players")
 
-      --example
-      --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
+        --example
+        --Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Seed, "WHISPER", "Addondev")
+      end
     end)
     Craftie.Frame.ScrollRecipesListItem[i]:Show()
   end

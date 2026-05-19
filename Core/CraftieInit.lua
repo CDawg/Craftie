@@ -24,10 +24,12 @@ function Craftie.Init()
 
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.WindowOpen = 0
+    Craftie.CloseAllPlayerMenus() --clear out the player sub menus
     Craftie.Notification("Craftie Closed", true)
   end)
   Craftie.Frame:SetScript("OnShow", function(self)
     Craftie.WindowOpen = 1
+    Craftie.CloseAllPlayerMenus()
     Craftie.Notification("Craftie Opened", true)
   end)
 
@@ -39,6 +41,6 @@ function Craftie.Init()
 end
 
 --run after everything has been built
-C_Timer.After(0.3, function() --wow bugfix
+C_Timer.After(0.3, function()
   Craftie.Init()
 end)

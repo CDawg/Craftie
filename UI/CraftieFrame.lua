@@ -129,6 +129,7 @@ for i,v in pairs(Craftie.Professions) do
     GameTooltip:Hide()
   end)
   Craftie.Frame.TabSide[i]:SetScript("OnClick", function(self)
+    Craftie.CloseAllPlayerMenus()
     Craftie.ClearFocusAll()
     Craftie.TabSelect(i, true)
     Craftie.Frame.Title.Prof:SetText(v[1])

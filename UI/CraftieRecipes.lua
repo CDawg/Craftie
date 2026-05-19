@@ -153,8 +153,10 @@ Craftie.Frame.Craft:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.Craft:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.Craft:SetHyperlinksEnabled(true)
 Craftie.Frame.Craft:SetScript("OnHyperlinkClick", function(self, link, text, button)
-  SetItemRef(link, text, button, self)
-  ItemRefTooltip:Hide()
+  if (Craftie.EnableScrollFrames) then
+    SetItemRef(link, text, button, self)
+    ItemRefTooltip:Hide()
+  end
 end)
 
 Craftie.Frame.Craft.Back = Craftie.Frame.Craft:CreateTexture(nil, "BACKGROUND")
@@ -385,15 +387,15 @@ for i=1, Craftie.MAX_REAGENTS do
   --Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", ChatFrame_OnHyperlinkShow)
   --Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
-    SetItemRef(link, text, button, self)
-    ItemRefTooltip:Hide()
+    if (Craftie.EnableScrollFrames) then
+      SetItemRef(link, text, button, self)
+      ItemRefTooltip:Hide()
+    end
   end)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkEnter", function(self)
-    SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true)
-     --local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
---       Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(0, 0, 0, 0)
-  --     local r, g, b, qs = C_Item.GetItemQualityColor(quality)
---        Craftie.Frame.Craft.Text:SetTextColor(r, g, b, 1)
+    if (Craftie.EnableScrollFrames) then
+      SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true)
+    end
   end)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkLeave", function(self)
     GameTooltip:Hide()
@@ -433,11 +435,15 @@ for i=1, Craftie.MAX_RECIPES do
     Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(0.6, 0.7, 1, 0.1)
   end
   Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnEnter", function(self)
-    self:SetBackdropColor(1, 1, 1, 0.2)
-    Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 0.8, 1)
+    if (Craftie.EnableScrollFrames) then
+      self:SetBackdropColor(1, 1, 1, 0.2)
+      Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 0.8, 1)
+    end
   end)
   Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnLeave", function(self)
-    GameTooltip:Hide()
-    Craftie.SelectScrollItem("Recipes")
+    if (Craftie.EnableScrollFrames) then
+      GameTooltip:Hide()
+      Craftie.SelectScrollItem("Recipes")
+    end
   end)
 end
