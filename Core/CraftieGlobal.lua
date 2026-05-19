@@ -556,8 +556,10 @@ function Craftie.CrafterDataBuild(profName, profLevel)
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profBuild) do
-            profData[_sanitize(v[2]):lower()] = 0 --build the an empty binary string
-            --Craftie.Notification(_sanitize(v[2]):lower(), true)
+            if (v[2] ~= nil) then
+              profData[_sanitize(v[2]):lower()] = "0" --build the empty binary string
+              --print(_sanitize(v[2]):lower() .. " = 0")
+            end
           end
 
           local numRecipes = GetNumTradeSkills()
@@ -565,11 +567,11 @@ function Craftie.CrafterDataBuild(profName, profLevel)
             local recipeName, recipeType = GetTradeSkillInfo(i)
             if recipeType ~= "header" then
               if (_sanitize(recipeName):lower() ~= nil) then
-                profData[_sanitize(recipeName):lower()] = 1
+                profData[_sanitize(recipeName):lower()] = "1"
+                --print(_sanitize(recipeName):lower() .. " = 1")
               end
             end
           end
-          --Craftie.SortTableByString(profData)
 
           --senderName | senderClass | profNum | profLevel | profData
           --print(Craftie.GetKeyFromValue(Craftie.Professions, profName, 1))
@@ -580,17 +582,21 @@ function Craftie.CrafterDataBuild(profName, profLevel)
           local tkeys = {}
           for k in pairs(profData) do
             table.insert(tkeys, k)
+            --print(k)
           end
+
           --alpha sort order
           table.sort(tkeys)
+          for k,v in pairs(tkeys) do
+            print(v)
+          end
           --Craftie.SortTableByString(tkeys)
-          for a, b in ipairs(tkeys) do
+          for a, b in pairs(tkeys) do
             profString = profString .. profData[b]
           end
 
           Craftie.Notification(profString, true)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
-
         end)
       end
       Craftie.ProfileBuilt[profName] = Craftie.ProfileBuilt[profName] + 1 --we already pulled data, reset on learning new recipe
@@ -621,17 +627,18 @@ function Craftie.CrafterDataParse(profName, player)
     profLevel = crafterData[3]
     profString = crafterData[4]
 
-    --Craftie.Notification(profString, true)
-
-    local i = 0
-    for key = 1, #profString do
+    for key, value in ipairs(compareProf) do
       if (profString:sub(key, key) == "1") then
-        i=i+1
-        table.insert(filtered, compareProf[key])
-        --print(key)
-        --print(filtered[i][2])
+        if (value ~= nil) then
+          table.insert(filtered, value)
+        end
       end
     end
+
+    --DEBUG
+    --for key = 1, #profString do
+      --print("bit:", key, profString:sub(key, key), "Table:", compareProf[key] and compareProf[key][1])
+    --end
 
     crafterProf = Craftie.CopyTable(filtered)
     Craftie.SortTableByString(crafterProf)

@@ -14,7 +14,7 @@ the copyright holders.
 ]==]--
 
 function Craftie.Init()
-  Craftie.AlphaSortProfessionLib() --prio the alpha sorting
+  Craftie.AlphaSortProfessionLib() --sanity alpha sorting
   Craftie.BuildReagentGaps()
   Craftie.TabSelect(1, false) --default 1st profession
   Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "")

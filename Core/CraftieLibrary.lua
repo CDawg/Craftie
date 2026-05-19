@@ -184,6 +184,16 @@ function Craftie.GetKeyFromValue(_array, value, index)
 	end
 end
 
+function Craftie.ReindexArraySafe(array)
+  local n=0
+  local newArray={}
+  for i,v in pairs(array) do
+    n=n+1
+    newArray[n] = v
+  end
+  return newArray
+end
+
 function Craftie.SortTableByString(tbl) --alpha second key
   table.sort(tbl, function(a, b)
     return string.lower(a[2]) < string.lower(b[2])
@@ -191,7 +201,7 @@ function Craftie.SortTableByString(tbl) --alpha second key
 end
 
 function _sanitize(str)
-  return str:gsub("[^%w]", "")
+  return str:gsub("%p", "")
 end
 
 function Craftie.SortTableByMatch(tbl, search)
