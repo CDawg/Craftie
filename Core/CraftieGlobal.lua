@@ -557,8 +557,8 @@ function Craftie.CrafterDataBuild(profName, profLevel)
           --print(profName)
           for k,v in pairs(profBuild) do
             if (v[2] ~= nil) then
-              profData[_sanitize(v[2]):lower()] = "0" --build the empty binary string
-              --print(_sanitize(v[2]):lower() .. " = 0")
+              profData[_sanitize(v[2])] = "0" --build the empty binary string
+              --print(_sanitize(v[2]) .. " = 0")
             end
           end
 
@@ -566,9 +566,9 @@ function Craftie.CrafterDataBuild(profName, profLevel)
           for i = 1, numRecipes do
             local recipeName, recipeType = GetTradeSkillInfo(i)
             if recipeType ~= "header" then
-              if (_sanitize(recipeName):lower() ~= nil) then
-                profData[_sanitize(recipeName):lower()] = "1"
-                --print(_sanitize(recipeName):lower() .. " = 1")
+              if (_sanitize(recipeName) ~= nil) then
+                profData[_sanitize(recipeName)] = "1"
+                --print(_sanitize(recipeName) .. " = 1")
               end
             end
           end

@@ -201,7 +201,7 @@ function Craftie.SortTableByString(tbl) --alpha second key
 end
 
 function _sanitize(str)
-  return str:gsub("%p", "")
+  return str:gsub("%p", ""):lower()
 end
 
 function Craftie.SortTableByMatch(tbl, search)
