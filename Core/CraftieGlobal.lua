@@ -327,7 +327,7 @@ function Craftie.ItemDetails(item)
     --Craftie.Frame.Reagent.Back[i]:Show() --selection was already made, draw backgrounds
     Craftie.Frame.Reagent.Back[i]:Hide()
 
-    local back_time = i*0.058
+    local back_time = i*0.026
     C_Timer.After(back_time, function()
       b_next = b_next +1
       Craftie.Frame.Reagent.Back[i]:Show()
@@ -348,8 +348,8 @@ function Craftie.ItemDetails(item)
       Craftie.Frame.Reagent.IconGlow[i]:Hide()
 
       r = Craftie.GetKeyFromValue(Craftie.Reagent, item[5][i][1], 1)
-  
-      local reagent_time = i*0.1
+
+      local reagent_time = i*0.028
       C_Timer.After(reagent_time, function()
         r_next = r_next +1
         --print("caching " .. i)
