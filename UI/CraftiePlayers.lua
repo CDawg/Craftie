@@ -114,6 +114,7 @@ Craftie.Frame.ScrollPlayersListNet={}
 Craftie.Frame.ScrollPlayersListOpt={}
 Craftie.Frame.ScrollPlayersListOpt.Back={}
 Craftie.Frame.ScrollPlayersListOpt.HL={}
+Craftie.Frame.ScrollPlayersListOpt.Menu={}
 
 for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
@@ -198,6 +199,29 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnClick", function(self)
     Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListText[i]:GetText())
   end)
+  Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnClick", function(self)
+    Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListText[i]:GetText())
+  end)
+
+  --Craftie.Frame.ScrollPlayersListOpt.Menu[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu[i], Craftie.Frame.ScrollPlayersListItem[i], "BackdropTemplate")
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu[i], Craftie.Frame.ScrollPlayers, "BackdropTemplate")
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetWidth(120)
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetHeight(120)
+  --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", 140, -40)
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint(Craftie.Frame.ScrollPlayersListOpt[i]:GetPoint())
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdrop(Craftie.Backdrop.General)
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdropColor(0, 0, 0, 1) --shade
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdropBorderColor(1, 1, 1, 1)
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetFrameLevel(300)
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetFrameStrata("HIGH")
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetToplevel(true)
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Hide()
+  Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnClick", function(self)
+    Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Show()
+    --temporarily disable the scrolling
+    Craftie.DisableScrollFrames = 1
+  end)
+
 end
 
 --might be easier to create a global

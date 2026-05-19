@@ -160,7 +160,6 @@ for i,v in pairs(Craftie.Professions) do
   end)
 end
 
-
 --ARCHAEOLOGY/Arch-Progress-Bg
 --PaperDollInfoFrame/UI-Character-Skills-BarBorder
 
@@ -256,7 +255,4 @@ Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
   Craftie.Open()
 end)
 
-Craftie.Frame:SetScript("OnHide", function(self)
-  Craftie.WindowOpen = 0
-end)
 Craftie.Frame:Hide()

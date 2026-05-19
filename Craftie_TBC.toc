@@ -21,7 +21,7 @@ Core/CraftieLibrary.lua
 # Core/locales/localization.tw.lua
 
 Core/CraftieEventManager.lua
-Core/CraftieInit.lua
+Core/CraftieSaves.lua
 
 Library/Alchemy.lua
 Library/Blacksmithing.lua
@@ -43,3 +43,5 @@ UI/CraftieLogger.lua
 UI/CraftieNavigation.lua
 UI/CraftieHelp.lua
 UI/CraftieUpdates.lua
+
+Core/CraftieInit.lua

@@ -108,6 +108,8 @@ Craftie.Frame={}
 Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "ButtonFrameTemplate")
 Craftie.Frame.Search={}
 
+Craftie.DisableScrollFrames = 0
+
 function Craftie.TabSelect(tab, sound)
   for i=1, #Craftie.Professions do
     Craftie.Frame.TabSide[i].Glow:Hide()
@@ -519,14 +521,16 @@ end
 
 Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
 function Craftie.ResetCrafterBuild()
+  --clear all profession flags
   for k,v in pairs(Craftie.Professions) do
     Craftie.ProfileBuilt[v[1]] = 0
   end
+  Craftie.Notification("Craftie.ResetCrafterBuild() flags", true)
 end
 
 function Craftie.CrafterDataBuild(profName, profLevel)
   local profBuild = Craftie.CopyTable(Craftie.Profession[profName])
-  Craftie.SortTableByString(profBuild) --alpha sort just in case
+  --Craftie.SortTableByString(profBuild) --alpha sort just in case
   local profData={}
   local profString = ""
 
@@ -575,11 +579,12 @@ function Craftie.CrafterDataBuild(profName, profLevel)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
     end
+    --Craftie.ProfileBuilt[profName] = 1 --we already pulled data, reset on learning new recipe
   end
 end
 
 function Craftie.CrafterDataParse(profName, player)
-  print(profName)
+  --print(profName)
   local crafterData = {}
   local compareProf = Craftie.CopyTable(Craftie.Profession[profName])
   local crafterProf = {}
@@ -587,9 +592,10 @@ function Craftie.CrafterDataParse(profName, player)
   local class = ""
   local profLevel = ""
   local profString = ""
+  local filtered = {}
 
-  --alpha sort table
-  --Craftie.SortTableByString(compareProf)
+  --alpha sort table (sanity check)
+  Craftie.SortTableByString(compareProf)
 
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player] ~= nil) then
     --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player])
@@ -597,19 +603,23 @@ function Craftie.CrafterDataParse(profName, player)
     crafterData = Craftie.Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player], ",")
 
     class = crafterData[1] --Craftie.Class[tonumber(packet[4])][1]
-    profLevel= crafterData[3]
+    profLevel = crafterData[3]
     profString = crafterData[4]
 
-    Craftie.Notification(profString, true)
+    --Craftie.Notification(profString, true)
 
-    local filtered = {}
+    local i = 0
     for key = 1, #profString do
       if (profString:sub(key, key) == "1") then
+        i=i+1
         table.insert(filtered, compareProf[key])
+        --print(key)
+        --print(filtered[i][2])
       end
     end
 
     crafterProf = Craftie.CopyTable(filtered)
+    Craftie.SortTableByString(crafterProf)
     --for k,v in pairs(crafterProf) do
       --print(v[2])
     --end
@@ -619,6 +629,7 @@ function Craftie.CrafterDataParse(profName, player)
     --Craftie.Notification("compareProf " .. #compareProf, true)
     Craftie.Notification("crafterProf " .. #crafterProf, true)
     Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], true)
+    Craftie.Notification("profString " .. profString, true)
   end
   return crafterProf
 end
@@ -683,21 +694,6 @@ function Craftie.OpenProfessionList(profArray, search, player)
   --Craftie.UpdateCrafterList()
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
-
---[==[
-Craftie.WindowOpen = 0
-function Craftie.Open(player, profession)
-  --PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
-  if (Craftie.WindowOpen == 0) then
-    Craftie.Frame:Show()
-    Craftie.WindowOpen = 1
-    --Craftie.CrafterDataBuild()
-  else
-    Craftie.Frame:Hide()
-    Craftie.WindowOpen = 0
-  end
-end
-]==]--
 
 function Craftie.Open(player, profession)
   if (player) then
