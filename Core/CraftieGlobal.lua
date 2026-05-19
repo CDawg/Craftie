@@ -184,30 +184,35 @@ end
 --Craftie.Seed = "Portheus,3,3,131,11111111111111111111111111111111110111111111010010001110111011111100010010101010010110110011001000000111010100010010110101010111111111010001001010101010110111110110101001011101001010101010101010010100101001001111001110010100100100101010100100001000100100011100001001010101000101101010010010010101010111011101010101010101010111111111010001001010101010110111110110101001011111101001011111011101111011011011111111101100101111100101001001111111111111101111111110101111111111111111111111110"
 --Craftie.Seed = "Portheus,3,3,375,111111111111111111011111111111111101111111111111111111111111111110001111111111111111111110111111111111111111111101111111111111011111111101101110111111111111111111101111111011111111111111111111110111111111011111111111111111111111111111111111111111111111111111111110111111111111111111111110111111111111111111111111111111111111111111111111111111111111111111111101100011111111111111111111111111111111111111111111111111111111"
 
-Craftie.Get = {}
 Craftie.Notified = 0
 function Craftie.ParsePacket(netpacket)
-  Craftie.Get = {} -- clear everytime
+  local prefix = ""
+  local version = 0
+  local crafterName = ""
+  local crafterClass = ""
+  local profNum = 1
+  local profLevel = 1
+  local crafterData = ""
   local stable_version = true --determine large version chunks or stability?!?
   if (string.sub(netpacket, 1, 1) == "!") then
     local packet = Craftie.Split(netpacket, ",")
 
-    Craftie.Get.Prefix  = packet[1]
-    Craftie.Get.Version = tonumber(packet[2])
+    prefix  = packet[1]
+    version = tonumber(packet[2])
 
-    if (Craftie.Get.Version > tonumber(Craftie._G.Version)) then
+    if (version > tonumber(Craftie._G.Version)) then
       if (Craftie.Notified ~= 1) then --dont spam the requester
-        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.Version .. "] of [" .. Craftie.Get.Version .. "]")
+        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]")
       end
       stable_version = false
       Craftie.Notified = 1
     end
-    if (Craftie.Get.Version < tonumber(Craftie._G.Version)) then
-      if (Craftie.Get.Version < tonumber(Craftie._G.Version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
-        Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.Version .. "]")
+    if (version < tonumber(Craftie._G.Version)) then
+      if (version < tonumber(Craftie._G.Version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
+        Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]")
         stable_version = false
       else
-        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. Craftie.Get.Version .. "] of [" .. Craftie._G.Version .. "]")
+        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]")
         stable_version = true
       end
     end
@@ -216,38 +221,39 @@ function Craftie.ParsePacket(netpacket)
       Craftie.Notification("|CFFD177F7Parsing Packet: |r" .. netpacket, true)
 
       --get crafters data
-      if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Data) then
-        Craftie.Get.CrafterN = packet[3]
-        Craftie.Get.CrafterC = Craftie.Class[tonumber(packet[4])][1]
-        Craftie.Get.ProfNum  = Craftie.Professions[tonumber(packet[5])][1]
-        Craftie.Get.ProfLevel= packet[6]
-        Craftie.Get.ProfData = Craftie.BitCompression(packet[7], true)
-        --Craftie.Notification("Prof Name: " .. Craftie.Get.ProfNum, true)
-        --Craftie.Notification("Crafter Name: " .. Craftie.Get.CrafterN, true)
-        --Craftie.Notification("Crafter Class: " .. Craftie.Get.CrafterC, true)
-        --Craftie.Notification("Prof Level: " .. Craftie.Get.ProfLevel, true)
-        Craftie.Notification("Prof Data: " .. Craftie.Get.ProfData, true)
+      if (prefix == Craftie.Packet.Prefix.Data) then
+        crafterName = packet[3]
+        crafterClass = Craftie.Class[tonumber(packet[4])][1]
+        profNum  = Craftie.Professions[tonumber(packet[5])][1]
+        profLevel= packet[6]
+        crafterData = Craftie.BitCompression(packet[7], true)
+        --Craftie.Notification("Prof Name: " .. profNum, true)
+        --Craftie.Notification("Crafter Name: " .. crafterName, true)
+        --Craftie.Notification("Crafter Class: " .. crafterClass, true)
+        --Craftie.Notification("Prof Level: " .. profLevel, true)
+        Craftie.Notification("Prof Data: " .. crafterData, true)
 
         --DEBUG
-        local hperc = (#netpacket / #Craftie.Get.ProfData)*100
+        --[==[
+        local hperc = (#netpacket / #crafterData)*100
         local lperc = hperc -100
 
         --this is ONLY local seed data testing
         local seed = Craftie.Split(Craftie.Seed, ",")
         --Craftie.Notification("|nSeed Data: " .. seed[4], true)
-        if (seed[5] == Craftie.Get.ProfData) then
+        if (seed[5] == crafterData) then
           Craftie.Notification("|cFF00E033SUCCESS:|r Match!", true)
         else
           Craftie.Notification("|cFFFF0000ERROR:|r Mismatch!", true)
         end
-
-        Craftie.Notification("[" .. #netpacket .. " / " .. #Craftie.Get.ProfData .. "][" .. math.floor(lperc) .. "%]", true)
+        Craftie.Notification("[" .. #netpacket .. " / " .. #crafterData .. "][" .. math.floor(lperc) .. "%]", true)
+        ]==]--
       end
 
       --get ping request
-      if (Craftie.Get.Prefix == Craftie.Packet.Prefix.Ping) then
+      --if (prefix == Craftie.Packet.Prefix.Ping) then
         --ping request, send book data, send built data from saved DB first?
-      end
+      --end
 
     else
       Craftie.Notification("|cFFFF0000ERROR:|r Malformed Packet: " .. netpacket, true)
@@ -487,7 +493,7 @@ function Craftie.SelectScrollItem(scrollFrame)
   end
 end
 
-
+--[==[ --doesnt work in Classic
 function Craftie.GetRecipeIDByName(recipeName)
   for i = 1, GetNumTradeSkills() do
     local name, skillType = GetTradeSkillInfo(i)
@@ -501,6 +507,7 @@ function Craftie.GetRecipeIDByName(recipeName)
   end
   return nil
 end
+]==]--
 
 function Craftie.AlphaSortProfessionLib()
   --very important so the order is always sorted alphabetically
@@ -518,8 +525,8 @@ function Craftie.ResetCrafterBuild()
 end
 
 function Craftie.CrafterDataBuild(profName, profLevel)
-  local profArray = Craftie.CopyTable(Craftie.Profession[profName])
-  Craftie.SortTableByString(profArray) --just in case
+  local profBuild = Craftie.CopyTable(Craftie.Profession[profName])
+  Craftie.SortTableByString(profBuild) --alpha sort just in case
   local profData={}
   local profString = ""
 
@@ -528,8 +535,8 @@ function Craftie.CrafterDataBuild(profName, profLevel)
       if (Craftie.ProfileBuilt[profName] ~= 1) then
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
-          for k,v in pairs(profArray) do
-            profData[_sanitize(v[2]):lower()] = 0
+          for k,v in pairs(profBuild) do
+            profData[_sanitize(v[2]):lower()] = 0 --build the an empty binary string
             --Craftie.Notification(_sanitize(v[2]):lower(), true)
           end
 
@@ -550,17 +557,18 @@ function Craftie.CrafterDataBuild(profName, profLevel)
           --profString = Craftie.Player.Name .. "," .. Craftie.Player.ClassID .. "," .. Craftie.GetKeyFromValue(Craftie.Professions, profName, 1) .. "," .. profLevel .. ","
           profString = Craftie.Player.ClassID .. "," .. Craftie.GetKeyFromValue(Craftie.Professions, profName, 1) .. "," .. profLevel .. ","
 
-          --alpha sort order
           local tkeys = {}
           for k in pairs(profData) do
             table.insert(tkeys, k)
           end
+          --alpha sort order
           table.sort(tkeys)
-          for _, k in ipairs(tkeys) do
-            profString = profString .. profData[k]
+          --Craftie.SortTableByString(tkeys)
+          for a, b in ipairs(tkeys) do
+            profString = profString .. profData[b]
           end
 
-          --Craftie.Notification(profString, true)
+          Craftie.Notification(profString, true)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
 
         end)
@@ -574,12 +582,14 @@ function Craftie.CrafterDataParse(profName, player)
   print(profName)
   local crafterData = {}
   local compareProf = Craftie.CopyTable(Craftie.Profession[profName])
+  local crafterProf = {}
+  local crafterFiltered= {}
   local class = ""
   local profLevel = ""
   local profString = ""
 
   --alpha sort table
-  Craftie.SortTableByString(compareProf)
+  --Craftie.SortTableByString(compareProf)
 
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player] ~= nil) then
     --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player])
@@ -592,50 +602,43 @@ function Craftie.CrafterDataParse(profName, player)
 
     Craftie.Notification(profString, true)
 
-    --[==[
-    local key=0
-    for Bit in profString:gmatch(".") do
-      key = key+1
-      if (Bit == "0") then
-        table.remove(compareProf, key)
-      end
-    end
-    ]==]--
-
     local filtered = {}
     for key = 1, #profString do
       if (profString:sub(key, key) == "1") then
         table.insert(filtered, compareProf[key])
       end
     end
-    compareProf = filtered
-    --print(cacheProf[1])
+
+    crafterProf = Craftie.CopyTable(filtered)
+    --for k,v in pairs(crafterProf) do
+      --print(v[2])
+    --end
 
     Craftie.Notification("class " .. class, true) --not sure if this is relevant
     Craftie.Notification("profLevel " .. profLevel, true)
-    Craftie.Notification("compareProf " .. #compareProf, true)
+    --Craftie.Notification("compareProf " .. #compareProf, true)
+    Craftie.Notification("crafterProf " .. #crafterProf, true)
     Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], true)
-    --return cachedProf
-    --Craftie.ProfessionDefault = cachedProf
   end
-  return compareProf
+  return crafterProf
 end
 
 function Craftie.OpenProfessionList(profArray, search, player)
-  --local crafterProf = {}
+  local profCache = {}
   if (player ~= "") then
-    profArray={}
-    profArray = Craftie.CrafterDataParse(Craftie.Page, player)
+    profCache = Craftie.CrafterDataParse(Craftie.Page, player)
+  else
+    profCache = Craftie.CopyTable(profArray)
   end
 
-  local total_recipes = #profArray
+  local total_recipes = #profCache
   --local total_search = 0
   local results = "|cfffffb63Recipe(s)"
   Craftie.Frame.ScrollRecipes.Results:SetText("")
   Craftie.Frame.ScrollRecipes.Empty:SetText("")
   --Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
   if (search:len() >= 3) then
-    local matches = Craftie.SortTableByMatch(profArray, search)
+    local matches = Craftie.SortTableByMatch(profCache, search)
     if (matches >= 1) then
       total_recipes = matches
     else
@@ -645,7 +648,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
     end
     Craftie.Frame.ScrollRecipes.Results:SetText(matches .. " " .. results)
   else
-    Craftie.SortTableByString(profArray) --just go back to a alpha sort
+    Craftie.SortTableByString(profCache) --just go back to a alpha sort
     Craftie.Frame.ScrollRecipes.Results:SetText(total_recipes .. " " .. results)
   end
 
@@ -654,9 +657,9 @@ function Craftie.OpenProfessionList(profArray, search, player)
   end
 
   for i=1, total_recipes do
-    Craftie.Frame.ScrollRecipesListText[i]:SetText(profArray[i][2])
+    Craftie.Frame.ScrollRecipesListText[i]:SetText(profCache[i][2])
     Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
-      Craftie.ItemDetails(profArray[i])
+      Craftie.ItemDetails(profCache[i])
 
       --clear selections
       Craftie.Selected_Recipes = i
@@ -669,7 +672,6 @@ function Craftie.OpenProfessionList(profArray, search, player)
     end)
     Craftie.Frame.ScrollRecipesListItem[i]:Show()
   end
-  --Craftie.ProfessionDefault = profArray
 
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
@@ -681,47 +683,6 @@ function Craftie.OpenProfessionList(profArray, search, player)
   --Craftie.UpdateCrafterList()
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
-
---[==[
-function Craftie.CrafterDataBuild()
-  --local numRecipes = GetNumTradeSkills()
-  local profCount = 0
-  if (Craftie.ProfileBuilt == 0) then
-    for k,v in pairs(Craftie.Professions) do
-      --print(v[1])
-      for i = 1, GetNumSkillLines() do
-        local profName, isHeader, isExp, profLevel = GetSkillLineInfo(i)
-        if (not isHeader) then
-          if (v[1] == profName) then
-            profCount = profCount+2
-            print(profName .. " | " .. profLevel)
-            print(profCount)
-            C_Timer.After(profCount, function()
-              print(profName .. " do something")
-
-              CastSpellByName(profName)
-              local numRecipes = GetNumTradeSkills()
-              for recipe = 1, numRecipes do
-                local recipeName, recipeType = GetTradeSkillInfo(recipe)
-                if recipeType ~= "header" then
-                  print(recipe, recipeName)
-                end
-              end
-              C_Timer.After(1, function()
-                print("close " .. profName)
-                CloseTradeSkill()
-              end)
-
-            end)
-          --print("Match: " .. profName .. " | " .. profLevel)
-          end
-        end
-      end
-    end
-    Craftie.ProfileBuilt = 1
-  end
-end
-]==]--
 
 --[==[
 Craftie.WindowOpen = 0

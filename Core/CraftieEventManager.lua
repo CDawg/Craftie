@@ -163,7 +163,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       --print(k .. " | " .. v)
     --end
     if (spellData[4] == "Craftie") then
-      local playerData = Craftie.Split(spellData[5], "pp") --remove realm data
+      local playerData = Craftie.Split(spellData[5], "-") --remove realm data
       local player = playerData[1]
       local prof   = spellData[6]
       print(player .. " | " .. prof)
