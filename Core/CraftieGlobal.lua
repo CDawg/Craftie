@@ -317,6 +317,7 @@ function Craftie.ItemDetails(item)
   local reagent = {}
   local r_next = 0 --reagent integer population
   local b_next = 0
+  local loadcache = 0
   Craftie.Frame.Craft:Show()
   Craftie.ClearFocusAll()
   Craftie.TimerAnim(Craftie.Frame.Craft, 0.65) --animate the craft icon
@@ -355,9 +356,8 @@ function Craftie.ItemDetails(item)
         --print("caching " .. i)
         local name={}
         local link={}
-        --local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item[5][i][1])
-        name[i], link[i] = GetItemInfo(item[5][i][1])
-        local loadcache = 0
+        name[i], link[i] = C_Item.GetItemInfo(item[5][i][1])
+        loadcache = 0
         if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
           if (name[i] ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
             Craftie.Reagent[r][2] = name[i]
@@ -418,7 +418,7 @@ function Craftie.ItemDetails(item)
   --local get_tooltip = C_Item.GetItemByID(item[4])
 
   if (item_detail == "") then --blank or possibly enchant
-    local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(item[1])
+    local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = C_Spell.GetSpellInfo(item[1])
     --print("spell? " .. name .. " | " .. icon)
     Craftie.Frame.Craft.ID:SetText(item[1])
     Craftie.Frame.Craft.Icon:SetTexture(icon)
@@ -436,7 +436,7 @@ function Craftie.ItemDetails(item)
         SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), true)
       end)
     else
-      local name, link, quality, level, minlevel, type, subtype = GetItemInfo(item_detail)
+      local name, link, quality, level, minlevel, type, subtype = C_Item.GetItemInfo(item_detail)
       Craftie.Frame.Craft.HLink:SetText(link)
       if (quality ~= nil) then
         local r, g, b, qs = C_Item.GetItemQualityColor(quality)

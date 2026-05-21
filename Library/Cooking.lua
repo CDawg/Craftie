@@ -17,7 +17,6 @@ the copyright holders.
 Craftie.Profession.Cooking = {
 {18247, 'Baked Salmon', 275, 13935, {{13889, 1}, {3713, 1}}, {'Vendor'}},
 {4094,  'Barbecued Buzzard Wing', 175, 4457, {{3404, 1}, {2692, 1}}, {'Trainer'}},
-{818,   'Basic Campfire', 25, '', {{4470, 1}}, {'Trainer'}},
 {33278, 'Bat Bites', 50, 27636, {{27669, 1}}, {'Vendor'}},
 {2795,  'Beer Basted Boar Ribs', 25, 2888, {{2886, 1}, {2894, 1}}, {'Quest', 'Vendor'}},
 {3397,  'Big Bear Steak', 110, 3726, {{3730, 1}, {2692, 1}}, {'Quest', 'Vendor'}},
