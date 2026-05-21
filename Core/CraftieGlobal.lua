@@ -415,13 +415,13 @@ function Craftie.ItemDetails(item)
 
   local item_detail = item[4]
   local is_enchant = false
-  --local get_tooltip = C_Item.GetItemByID(item[4])
 
   if (item_detail == "") then --blank or possibly enchant
-    local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = C_Spell.GetSpellInfo(item[1])
+    local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(item[1])
     --print("spell? " .. name .. " | " .. icon)
     Craftie.Frame.Craft.ID:SetText(item[1])
     Craftie.Frame.Craft.Icon:SetTexture(icon)
+    print(icon)
     is_enchant = true
   else
     Craftie.Frame.Craft.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
@@ -431,7 +431,7 @@ function Craftie.ItemDetails(item)
     Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 1)
     if (is_enchant) then
       Craftie.Frame.Craft.HLink:SetText("ENCHANT DATA TEXT HERE")
-      --print(is_enchant)
+      print(is_enchant)
       Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
         SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), true)
       end)
