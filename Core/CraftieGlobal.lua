@@ -609,7 +609,9 @@ function Craftie.SetProfLevel(level)
   local diff  = 161
   local uimax = 246 --UI Max width
   local calc = 0
+
   Craftie.Frame.CrafterLevel:Hide()
+  Craftie.Frame.CrafterProgBarS:Hide()
 
   if (level) then
     if (Craftie.Game.Version == 2) then
@@ -633,6 +635,10 @@ function Craftie.SetProfLevel(level)
         left = 5
       end
       Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0+left, -5)
+      if (level < profMax) then
+        Craftie.Frame.CrafterProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
+        Craftie.Frame.CrafterProgBarS:Show()
+      end
     end
   end
 end
