@@ -61,12 +61,6 @@ Craftie.Backdrop = {
     edgeSize= 2,
     insets  = {left=2, right=2, top=0, bottom=0},
   },
-  Button = {
-    bgFile  = "Interface/Buttons/GoldGradiant",
-    edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
-    edgeSize= 10,
-    insets  = {left=2, right=2, top=2, bottom=2},
-  },
   Slider = {
     Template = "UISliderTemplateWithLabels",
   }
