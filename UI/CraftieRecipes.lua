@@ -96,7 +96,6 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
     local search_array = Craftie.ProfessionDefault
     local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
     Craftie.OpenProfessionList(search_array, search_index, "")
-    --Craftie.ClearFocusAll()
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
   end
 end)
@@ -275,7 +274,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.General)
   --Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.Reagent.Main[i]:SetBackdropColor(0, 0, 0, 0)
-  Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(0, 0, 0, 0) -- controlled in global Craftie.ItemDetails
+  Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(0, 0, 0, 0)
 
   --Craftie.Frame.Reagent.Back[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.Reagent.Back[i] = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND") --always showing

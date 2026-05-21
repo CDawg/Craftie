@@ -149,7 +149,6 @@ function Craftie.ClearFocusAll()
     Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
   end
   --Craftie.Notification("Craftie.ClearFocusAll()", true)
-  PlaySound(SOUNDKIT.IG_MAINMENU_OPTION_CHECKBOX_ON)
 end
 
 function SetItemTooltip(frame, itemID, enchant, anchor)
@@ -321,6 +320,8 @@ function Craftie.ItemDetails(item)
   Craftie.Frame.Craft:Show()
   Craftie.ClearFocusAll()
   Craftie.TimerAnim(Craftie.Frame.Craft, 0.65) --animate the craft icon
+  --PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
+  PlaySound(SOUNDKIT.IG_QUEST_LOG_CLOSE)
 
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0

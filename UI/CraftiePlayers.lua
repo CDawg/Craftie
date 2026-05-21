@@ -256,6 +256,7 @@ end
 
 --might be easier to create a global
 function Craftie.SelectCrafter(index, name)
+  Craftie.ClearFocusAll()
   Craftie.Selected_Players = 1 --always one at first
   if (index == 1) then
     Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "") --get whats in the search text?
@@ -268,6 +269,8 @@ function Craftie.SelectCrafter(index, name)
     end
   end
   Craftie.SelectScrollItem("Players") --highlight
+  --PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
+  PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
 end
 
 function Craftie.UpdateCrafterList()

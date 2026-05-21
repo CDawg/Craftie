@@ -26,11 +26,13 @@ function Craftie.Init()
     Craftie.WindowOpen = 0
     Craftie.CloseAllPlayerMenus() --clear out the player sub menus
     Craftie.Notification("Craftie Closed", true)
+    PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE)
   end)
   Craftie.Frame:SetScript("OnShow", function(self)
     Craftie.WindowOpen = 1
     Craftie.CloseAllPlayerMenus()
     Craftie.Notification("Craftie Opened", true)
+    PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
   end)
 
   Craftie.Notification("Loaded. Type " .. SLASH_Craftie1 .. " to open.")
