@@ -206,13 +206,17 @@ for i=1, Craftie.MAX_PLAYERS do
     if (Craftie.EnableScrollFrames) then
       if (Craftie.Frame.ScrollPlayersListText[i]:GetText() ~= nil) then
         Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListText[i]:GetText())
-        Craftie.Frame.ScrollPlayersListOpt[i]:Show()
+        if (i > 1) then
+          Craftie.Frame.ScrollPlayersListOpt[i]:Show()
+        end
       end
     end
   end)
   Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnClick", function(self)
     if (Craftie.EnableScrollFrames) then
-      Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListText[i]:GetText())
+      if (i > 1) then
+        Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListText[i]:GetText())
+      end
     end
   end)
 
