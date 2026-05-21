@@ -604,6 +604,39 @@ function Craftie.CrafterDataBuild(profName, profLevel)
   end
 end
 
+function Craftie.SetProfLevel(level)
+  local profMax = 300
+  local diff  = 161
+  local uimax = 246 --UI Max width
+  local calc = 0
+  Craftie.Frame.CrafterLevel:Hide()
+
+  if (level) then
+    if (Craftie.Game.Version == 2) then
+      profMax = 375
+    end
+    if (Craftie.Game.Version == 3) then
+      profMax = 450
+    end
+    calc = math.ceil((level * diff) / uimax)
+    if (calc >= 1) then
+      Craftie.Frame.CrafterLevel:Show()
+      --print("level: " .. level .. " | " .. calc .. " [max: " .. uimax .. "]")
+
+      Craftie.Frame.CrafterProgBar:SetSize(calc, 15)
+      Craftie.Frame.CrafterProgLevel:SetText(level .. " / " .. profMax)
+      local left = 0
+      if (calc < 200) then
+        left = 4
+      end
+      if (calc <= 20) then
+        left = 5
+      end
+      Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0+left, -5)
+    end
+  end
+end
+
 function Craftie.CrafterDataParse(profName, player)
   --print(profName)
   local crafterData = {}
@@ -648,6 +681,7 @@ function Craftie.CrafterDataParse(profName, player)
 
     Craftie.Notification("class " .. class, true) --not sure if this is relevant
     Craftie.Notification("profLevel " .. profLevel, true)
+    Craftie.SetProfLevel(tonumber(profLevel))
     --Craftie.Notification("compareProf " .. #compareProf, true)
     Craftie.Notification("crafterProf " .. #crafterProf, true)
     Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], true)
@@ -658,6 +692,7 @@ end
 
 function Craftie.OpenProfessionList(profArray, search, player)
   local profCache = {}
+  Craftie.SetProfLevel(0)
   if (player ~= "") then
     profCache = Craftie.CrafterDataParse(Craftie.Page, player)
   else

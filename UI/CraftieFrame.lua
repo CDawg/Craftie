@@ -161,22 +161,31 @@ for i,v in pairs(Craftie.Professions) do
   end)
 end
 
---ARCHAEOLOGY/Arch-Progress-Bg
---PaperDollInfoFrame/UI-Character-Skills-BarBorder
+Craftie.Frame.CrafterLevel = CreateFrame("Frame", Craftie.Frame, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.CrafterLevel:SetWidth(250)
+Craftie.Frame.CrafterLevel:SetHeight(20)
+Craftie.Frame.CrafterLevel:SetPoint("TOPLEFT", 400, -30)
+Craftie.Frame.CrafterLevel:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.CrafterLevel:SetBackdropColor(0, 1, 0, 0)
+Craftie.Frame.CrafterLevel:SetBackdropBorderColor(1, 1, 1, 0)
+--Craftie.Frame.CrafterLevel:Hide() --this bugs out the mask on the prog bar. Draw first then hide later
 
-Craftie.Frame.CrafterProgBar = Craftie.Frame:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.CrafterProgBar = Craftie.Frame.CrafterLevel:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.CrafterProgBar:SetSize(246, 15)
-Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 400, -34)
+Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0, -5)
 Craftie.Frame.CrafterProgBar:SetTexture("Interface/Buttons/GREENGRAD64")
 Craftie.Frame.CrafterProgBar:SetMask(Craftie._G.Path .. "Images/ProgBarMask.png")
 
-Craftie.Frame.CrafterProgBack = Craftie.Frame:CreateTexture(nil, "OVERLAY")
-Craftie.Frame.CrafterProgBack:SetSize(250, 34)
-Craftie.Frame.CrafterProgBack:SetPoint("TOPLEFT", 400, -25)
-Craftie.Frame.CrafterProgBack:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Skills-BarBorder")
---Craftie.Frame.CrafterProgBack:SetBlendMode("ADD")
---Craftie.Frame.CrafterProgBack:SetDrawLayer("OVERLAY", 7)
---Craftie.Frame.CrafterProgBack:Hide()
+Craftie.Frame.CrafterProgBorder = Craftie.Frame.CrafterLevel:CreateTexture(nil, "OVERLAY")
+Craftie.Frame.CrafterProgBorder:SetSize(250, 34)
+Craftie.Frame.CrafterProgBorder:SetPoint("TOPLEFT", 0, 5)
+Craftie.Frame.CrafterProgBorder:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Skills-BarBorder")
+
+Craftie.Frame.CrafterProgLevel = Craftie.Frame.CrafterLevel:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.CrafterProgLevel:SetFont(Craftie._G.Font.Style, 11, "OUTLINE | SLUG")
+Craftie.Frame.CrafterProgLevel:SetPoint("CENTER", 4, -2)
+Craftie.Frame.CrafterProgLevel:SetJustifyH("LEFT")
+Craftie.Frame.CrafterProgLevel:SetText("0 / 0")
 
 Craftie.Frame.Button={}
 Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "BORDER")
