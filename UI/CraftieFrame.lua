@@ -65,16 +65,22 @@ Craftie.Frame.Title.Prof:SetText("Alchemy")
 Craftie.Frame.TabBar = CreateFrame("Button", Craftie.Frame.TabBar, Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.TabBar:SetWidth(40)
 Craftie.Frame.TabBar:SetHeight(330)
-Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42, -60)
+Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42, -50)
 Craftie.Frame.TabBar:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.TabBar:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.TabBar:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.TabBar:SetFrameStrata("LOW")
 Craftie.Frame.TabBarBack = Craftie.Frame.TabBar:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.TabBarBack:SetWidth(62)
-Craftie.Frame.TabBarBack:SetHeight(440)
+Craftie.Frame.TabBarBack:SetHeight(400)
 Craftie.Frame.TabBarBack:SetPoint("TOPLEFT", 0, 10)
-Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar_TBC.png")
+Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar.png")
+if (Craftie.Game.Version == 2) then
+  Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar_TBC.png")
+end
+if (Craftie.Game.Version == 3) then
+  Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar_Wrath.png")
+end
 
 local TabSidePosY = 23
 local TabSideSpacing = 37.4 --distance spacing
