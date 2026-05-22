@@ -93,9 +93,14 @@ Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
-    local search_array = Craftie.ProfessionDefault
+    local search_array = Craftie.ProfessionDefault --what player is selected?
     local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
-    Craftie.OpenProfessionList(search_array, search_index, "")
+    if (Craftie.Selected_Name ~= "") then
+      Craftie.OpenProfessionList(search_array, search_index, Craftie.Selected_Name)
+    else
+      Craftie.OpenProfessionList(search_array, search_index, "")
+    end
+
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
   end
 end)
@@ -120,6 +125,8 @@ Craftie.Frame.Button.SearchRecipesIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchRecipes:SetScript("OnClick", function(self)
   Craftie.Frame.Search.Recipes.Text:SetText("")
   Craftie.ClearFocusAll()
+  --Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "")
+  Craftie.SelectCrafter(1, "")
 end)
 Craftie.Frame.Button.SearchRecipes:SetScript("OnEnter", function(self)
   Craftie.Frame.Button.SearchRecipesIcon:SetAlpha(0.8)

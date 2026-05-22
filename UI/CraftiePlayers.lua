@@ -265,15 +265,25 @@ end
 --might be easier to create a global
 function Craftie.SelectCrafter(index, name)
   Craftie.ClearFocusAll()
+  Craftie.Selected_Name = ""
   Craftie.Selected_Players = 1 --always one at first
   if (index == 1) then
-    Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "") --get whats in the search text?
+    if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
+      Craftie.OpenProfessionList(Craftie.ProfessionDefault, Craftie.Frame.Search.Recipes.Text:GetText(), "") --pull all
+    else
+      Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "") --pull all
+    end
   else
     if (name ~= nil) then
       --print(name)
       Craftie.Selected_Players = index
+      Craftie.Selected_Name = name
       Craftie.Notification("Craftie.SelectCrafter(" .. index .. ", " .. name .. ")", true)
-      Craftie.OpenProfessionList(Craftie.Profession[Craftie.Page], "", name) --get whats in the search text?
+      if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
+        Craftie.OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
+      else
+        Craftie.OpenProfessionList(Craftie.Profession[Craftie.Page], "", name)
+      end
     end
   end
   Craftie.SelectScrollItem("Players") --highlight

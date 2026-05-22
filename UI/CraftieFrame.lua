@@ -133,6 +133,7 @@ for i,v in pairs(Craftie.Professions) do
     Craftie.ClearFocusAll()
     Craftie.TabSelect(i, true)
     Craftie.Frame.Title.Prof:SetText(v[1])
+    Craftie.Selected_Name = ""
     Craftie.ProfessionDefault = Craftie.Profession[v[1]]
     C_Timer.After(0.10, function() --give it time to register
       local search_index = Craftie.Frame.Search.Recipes.Text:GetText()

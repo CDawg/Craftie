@@ -88,12 +88,14 @@ Craftie.MAX_PLAYERS = 300 --per profession (be careful increasing this!)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
 Craftie.ProfessionDefault = Craftie.CopyTable(Craftie.Profession.Alchemy)
+Craftie.ProfessionSearch = Craftie.CopyTable(Craftie.Profession.Alchemy)
 
 Craftie.Placeholder_Players = "Search Crafters..."
 Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Selected_Players = 1
 Craftie.Selected_Recipes = 1
 Craftie.Selected_ViewAll = "All Alchemy Recipes" --default
+Craftie.Selected_Name = ""
 Craftie.Preload = "|cFF27CCF5Loading Data...|r"
 Craftie.Page = "Alchemy" --default
 
@@ -695,8 +697,10 @@ function Craftie.OpenProfessionList(profArray, search, player)
   local profCache = {}
   Craftie.SetProfLevel(0)
   if (player ~= "") then
+    Craftie.Notification("Using " .. player .. "Crafting book", true)
     profCache = Craftie.CrafterDataParse(Craftie.Page, player)
   else
+    Craftie.Notification("Using a default Crafting book", true)
     profCache = Craftie.CopyTable(profArray)
   end
 
@@ -713,7 +717,13 @@ function Craftie.OpenProfessionList(profArray, search, player)
     else
       matches = 0
       total_recipes = 0
-      Craftie.Frame.ScrollRecipes.Empty:SetText('No Recipes|n"' .. search .. '"')
+      local search_text = 'No ' .. Craftie.Frame.Title.Prof:GetText():lower() .. ' recipes|n"' .. search .. '"|n '
+      if (Craftie.Selected_Name ~= "") then
+        Craftie.Frame.Title.Prof:GetText()
+        Craftie.Frame.ScrollRecipes.Empty:SetText(search_text .. "from " .. Craftie.Selected_Name)
+      else
+        Craftie.Frame.ScrollRecipes.Empty:SetText(search_text)
+      end
     end
     Craftie.Frame.ScrollRecipes.Results:SetText(matches .. " " .. results)
   else
@@ -752,6 +762,9 @@ function Craftie.OpenProfessionList(profArray, search, player)
   Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
   --Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Professions[prof_list][1] .. " Recipes")
   --Craftie.UpdateCrafterList()
+
+  --Craftie.ProfessionDefault = Craftie.CopyTable(profArray) --used for search indexing on the player's craft book
+  --Craftie.ProfessionSearch = Craftie.CopyTable(profArray) --used for search indexing on the player's craft book
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
 
@@ -865,7 +878,7 @@ end
 
 function Craftie.ScrollBarBack(parentFrame)
   local ScrollBar={}
-  ScrollBar.Midd = parentFrame:CreateTexture(nil, "BACKGROUND")
+  ScrollBar.Midd = parentFrame:CreateTexture(nil, "BORDER")
   ScrollBar.Midd:SetSize(28, parentFrame:GetHeight())
   ScrollBar.Midd:SetPoint("TOPLEFT", parentFrame:GetWidth()-25, 0)
   ScrollBar.Midd:SetVertTile(true)
