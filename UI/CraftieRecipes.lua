@@ -94,7 +94,7 @@ Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
     local search_array = Craftie.ProfessionDefault --what player is selected?
-    local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
+    local search_index = self:GetText()
     if (Craftie.Selected_Name ~= "") then
       Craftie.OpenProfessionList(search_array, search_index, Craftie.Selected_Name)
     else
@@ -105,10 +105,10 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
   end
 end)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnMouseDown", function(self)
-    local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
+    local search_index = self:GetText()
     if (search_index == Craftie.Placeholder_Recipes) then
-      Craftie.Frame.Search.Recipes.Text:SetText("")
-      Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontWhite)
+      self:SetText("")
+      self:SetFontObject(GameFontWhite)
     end
 end)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnEditFocusLost", function(self)
@@ -154,6 +154,7 @@ Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "B
 Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
 Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
 Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/BackgroundFrameDecor.png")
+Craftie.Frame.CraftParent.Back:SetDesaturation(0.6)
 Craftie.Frame.CraftParent.Back:SetAlpha(0.6)
 
 Craftie.Frame.Craft = {}

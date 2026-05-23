@@ -247,3 +247,28 @@ Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
 end)
 
 Craftie.Frame:Hide()
+
+--[==[
+-- 1. Create the main UI frame for your settings
+local MyAddonOptionsFrame = CreateFrame("Frame", "MyUniqueAddonSettingsFrame", UIParent)
+
+-- 2. Create the category structure using Blizzard's Settings API
+-- This sets the display name that appears in the AddOns sidebar list
+local category = Settings.RegisterCanvasLayoutCategory(MyAddonOptionsFrame, "My Addon Name")
+
+-- 3. Register the category into the game's settings window
+Settings.RegisterAddOnCategory(category)
+
+-- (Optional) Add a basic title inside your frame so players see it
+local title = MyAddonOptionsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+title:SetPoint("TOPLEFT", 16, -16)
+title:SetText("My Addon Options Configurations")
+
+======================
+
+SLASH_MYADDONCONFIG1 = "/myaddon"
+SlashCmdList["MYADDONCONFIG"] = function(msg)
+    -- This opens the game Options menu directly to your addon's tab
+    Settings.OpenToCategory(category:GetID())
+end
+]==]--

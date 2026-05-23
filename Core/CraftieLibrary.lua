@@ -204,12 +204,25 @@ function _sanitize(str)
   return str:gsub("%p", ""):lower()
 end
 
+function Craftie.SearchTable(tbl, search) --basic table
+    local results = {}
+    search = string.lower(search or "")
+
+    for _, name in ipairs(tbl) do
+        if string.find(string.lower(name), search, 1, true) then
+            table.insert(results, name)
+        end
+    end
+
+    return results, #results
+end
+
 function Craftie.SortTableByMatch(tbl, search)
     search = string.lower(search or "")
     local matchCount = 0
 
     -- First pass: count matches
-    if search ~= "" then
+    if (search ~= "") then
       for _, item in ipairs(tbl) do
         local name = string.lower(item[2] or "")
         if string.find(name, search, 1, true) then

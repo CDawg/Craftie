@@ -112,11 +112,13 @@ function Craftie.CloseAllPlayerMenus()
     Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
   end
   Craftie.Frame.ScrollPlayersList.Child:SetAlpha(1)
-  Craftie.Frame.ScrollRecipesList.Child:SetAlpha(1)
   Craftie.Frame.ScrollPlayersList.Child:EnableMouse(true)
-  Craftie.Frame.ScrollRecipesList.Child:EnableMouse(true)
   Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(true)
+
+  Craftie.Frame.ScrollRecipesList.Child:SetAlpha(1)
+  Craftie.Frame.ScrollRecipesList.Child:EnableMouse(true)
   Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(true)
+
   Craftie.EnableScrollFrames = true
 end
 
@@ -146,7 +148,7 @@ function Craftie.TabSelect(tab, sound)
     Craftie.OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
     Craftie.UpdateCrafterList()
   end)
-  
+
   Craftie.Selected_Players = 1
   Craftie.SelectScrollItem("Players")
   Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
