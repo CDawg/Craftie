@@ -719,7 +719,6 @@ function Craftie.OpenProfessionList(profArray, search, player)
       total_recipes = 0
       local search_text = 'No ' .. Craftie.Frame.Title.Prof:GetText():lower() .. ' recipes|n"' .. search .. '"|n '
       if (Craftie.Selected_Name ~= "") then
-        Craftie.Frame.Title.Prof:GetText()
         Craftie.Frame.ScrollRecipes.Empty:SetText(search_text .. "from " .. Craftie.Selected_Name)
       else
         Craftie.Frame.ScrollRecipes.Empty:SetText(search_text)

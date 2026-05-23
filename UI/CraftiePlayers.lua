@@ -245,11 +245,13 @@ for i=1, Craftie.MAX_PLAYERS do
     --open the sub menu
     --temporarily disable the scrolling
     Craftie.CloseAllPlayerMenus()
+    --players
     Craftie.Frame.ScrollPlayersList.Child:SetAlpha(0.4)
-    Craftie.Frame.ScrollRecipesList.Child:SetAlpha(0.4)
     Craftie.Frame.ScrollPlayersList.Child:EnableMouse(false)
-    Craftie.Frame.ScrollRecipesList.Child:EnableMouse(false)
     Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(false)
+    --recipes
+    Craftie.Frame.ScrollRecipesList.Child:SetAlpha(0.4)
+    Craftie.Frame.ScrollRecipesList.Child:EnableMouse(false)
     Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(false)
     Craftie.EnableScrollFrames = false
     if (Craftie.Frame.ScrollPlayersListText[i]:GetText() ~= nil) then
@@ -267,6 +269,7 @@ function Craftie.SelectCrafter(index, name)
   Craftie.ClearFocusAll()
   Craftie.Selected_Name = ""
   Craftie.Selected_Players = 1 --always one at first
+
   if (index == 1) then
     if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
       Craftie.OpenProfessionList(Craftie.ProfessionDefault, Craftie.Frame.Search.Recipes.Text:GetText(), "") --pull all
