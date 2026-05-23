@@ -449,7 +449,7 @@ function Craftie.ItemDetails(item)
     if (tonumber(item[3]) > 375) then
       SkillLevel = 375 --wowhead bug
     end
-    Craftie.Frame.Craft.Skill:SetText(Craftie.Frame.Title.Prof:GetText() .. " (" .. SkillLevel .. ")")
+    Craftie.Frame.Craft.Skill:SetText(Craftie.Page .. " (" .. SkillLevel .. ")")
     Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
     local source = item[6]
     local sources = source[1]
