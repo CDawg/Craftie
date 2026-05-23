@@ -135,37 +135,7 @@ for i,v in pairs(Craftie.Professions) do
     GameTooltip:Hide()
   end)
   Craftie.Frame.TabSide[i]:SetScript("OnClick", function(self)
-    Craftie.CloseAllPlayerMenus()
-    Craftie.ClearFocusAll()
     Craftie.TabSelect(i, true)
-    --Craftie.Frame.Title.Prof:SetText(v[1])
-    Craftie.Selected_Name = ""
-    Craftie.ProfessionDefault = Craftie.Profession[v[1]]
-
-    C_Timer.After(0.10, function() --give it time to register
-      local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
-      if (search_index == Craftie.Placeholder_Recipes) then
-        search_index = ""
-      end
-      Craftie.OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
-      Craftie.UpdateCrafterList()
-    end)
-    Craftie.Page = v[1]
-    Craftie.Selected_Players = 1
-    Craftie.SelectScrollItem("Players")
-    Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
-
-    Craftie.Selected_Recipes = 1
-    Craftie.SelectScrollItem("Recipes")
-    Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
-
-    Craftie.Frame.Craft:Hide()
-
-    for i=1, Craftie.MAX_REAGENTS do
-      Craftie.Frame.Reagent.Main[i]:Hide()
-      Craftie.Frame.Reagent.Back[i]:Hide()
-    end
-    --Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_" .. Craftie.Page .. ".png")
   end)
 end
 

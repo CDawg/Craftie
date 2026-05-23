@@ -121,6 +121,9 @@ function Craftie.CloseAllPlayerMenus()
 end
 
 function Craftie.TabSelect(tab, sound)
+  local prof_name = Craftie.Professions[tab][1]
+  Craftie.CloseAllPlayerMenus()
+  Craftie.ClearFocusAll()
   for i=1, #Craftie.Professions do
     Craftie.Frame.TabSide[i].Glow:Hide()
     Craftie.Frame.TabSide[i].Shadow:Show()
@@ -131,6 +134,34 @@ function Craftie.TabSelect(tab, sound)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
     --PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2) --request to craft?
   end
+  Craftie.Selected_Name = ""
+  Craftie.Page = prof_name
+  Craftie.ProfessionDefault = Craftie.Profession[prof_name]
+
+  C_Timer.After(0.10, function() --give it time to register
+    local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
+    if (search_index == Craftie.Placeholder_Recipes) then
+      search_index = ""
+    end
+    Craftie.OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
+    Craftie.UpdateCrafterList()
+  end)
+  
+  Craftie.Selected_Players = 1
+  Craftie.SelectScrollItem("Players")
+  Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
+
+  Craftie.Selected_Recipes = 1
+  Craftie.SelectScrollItem("Recipes")
+  Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
+
+  Craftie.Frame.Craft:Hide()
+
+  for i=1, Craftie.MAX_REAGENTS do
+    Craftie.Frame.Reagent.Main[i]:Hide()
+    Craftie.Frame.Reagent.Back[i]:Hide()
+  end
+  --Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_" .. Craftie.Page .. ".png")
 end
 
 function Craftie.ClearFocusAll()
@@ -717,7 +748,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
     else
       matches = 0
       total_recipes = 0
-      local search_text = 'No ' .. Craftie.Frame.Title.Prof:GetText():lower() .. ' recipes|n"' .. search .. '"|n '
+      local search_text = 'No ' .. Craftie.Page:lower() .. ' recipes|n"' .. search .. '"|n '
       if (Craftie.Selected_Name ~= "") then
         Craftie.Frame.ScrollRecipes.Empty:SetText(search_text .. "from " .. Craftie.Selected_Name)
       else
@@ -753,17 +784,12 @@ function Craftie.OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesListItem[i]:Show()
   end
 
+  Craftie.Frame.Title.Prof:SetText(Craftie.Page)
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
-  --Craftie.Frame.ScrollRecipesList:SetBackdropColor(prof_color[1], prof_color[2], prof_color[3], 0.14)
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-  --Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.tga")
   Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
-  --Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Professions[prof_list][1] .. " Recipes")
-  --Craftie.UpdateCrafterList()
 
-  --Craftie.ProfessionDefault = Craftie.CopyTable(profArray) --used for search indexing on the player's craft book
-  --Craftie.ProfessionSearch = Craftie.CopyTable(profArray) --used for search indexing on the player's craft book
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
 
