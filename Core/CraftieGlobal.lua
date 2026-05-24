@@ -803,7 +803,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-  Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
+  --Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
 
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
