@@ -19,8 +19,9 @@ Craftie._G = {
   Author = "Porthias",
   Width  = 820,
   Height = 460,
-  Prefix = "CRAHH",
+  Prefix = "Craftie",
   Update = 20260608,
+  Icon   = "icon_default_simple.png",
 }
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
@@ -28,7 +29,7 @@ Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
 Craftie._G.Font={}
 Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/FRIZQT__.ttf"
 Craftie._G.Font.Size = 11
-Craftie._G.Font.Color = "|cffF58E27"
+Craftie._G.Font.Color = "|cffFF9524"
 
 Craftie._G.Path = "Interface/Addons/Craftie/"
 Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
@@ -84,7 +85,7 @@ end
 
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
-Craftie.MAX_PLAYERS = 300 --per profession (be careful increasing this!)
+Craftie.MAX_PLAYERS = 300 --per profession
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
 Craftie.ProfessionDefault = Craftie.CopyTable(Craftie.Profession.Alchemy)
@@ -735,6 +736,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
   if (player ~= "") then
     Craftie.Notification("Using " .. player .. "Crafting book", true)
     profCache = Craftie.CrafterDataParse(Craftie.Page, player)
+    --Craftie.Frame.Title.Sub:SetText(player)
   else
     Craftie.Notification("Using a default Crafting book", true)
     profCache = Craftie.CopyTable(profArray)
@@ -790,6 +792,14 @@ function Craftie.OpenProfessionList(profArray, search, player)
   end
 
   Craftie.Frame.Title.Prof:SetText(Craftie.Page)
+  if (player ~= "") then
+    local lastChar = player:sub(-1)
+    local plural = "s"
+    if (lastChar == plural) then
+      plural = ""
+    end
+    Craftie.Frame.Title.Prof:SetText(player .. "'".. plural .. " " .. Craftie.Page .. " Recipes")
+  end
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
@@ -798,6 +808,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
 
+--add a timer and parse data here?
 function Craftie.Open(player, profession)
   if (player) then
     print("player: " .. player)

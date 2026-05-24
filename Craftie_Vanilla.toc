@@ -5,8 +5,8 @@
 ## Version: 1.02
 ## Author: Porthias (aka Port)
 ## SavedVariables: CraftieDB
-## SavedVariablesPerCharacter: CraftieDB
 ## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
+## IconTexture: Interface\AddOns\Craftie\Images\icon_default_simple.png
 
 Core/CraftieLibrary.lua
 # Localization
@@ -22,7 +22,7 @@ Core/CraftieLibrary.lua
 # Core/locales/localization.tw.lua
 
 Core/CraftieEventManager.lua
-Core/CraftieInit.lua
+Core/CraftieSaves.lua
 
 Library/Alchemy.lua
 Library/Blacksmithing.lua
@@ -34,10 +34,15 @@ Library/Leatherworking.lua
 Library/Reagents.lua
 Library/Tailoring.lua
 
-Core/CraftieGlobal.lua
-UI/Craftie.lua
 Changelog.lua
+Core/CraftieGlobal.lua
+
+UI/CraftieFrame.lua
+UI/CraftiePlayers.lua
+UI/CraftieRecipes.lua
 UI/CraftieLogger.lua
 UI/CraftieNavigation.lua
 UI/CraftieHelp.lua
 UI/CraftieUpdates.lua
+
+Core/CraftieInit.lua

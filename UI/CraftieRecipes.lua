@@ -177,6 +177,7 @@ Craftie.Frame.Craft:SetScript("OnHyperlinkClick", function(self, link, text, but
     ItemRefTooltip:Hide()
   end
 end)
+Craftie.Frame.Craft:Hide()
 
 Craftie.Frame.Craft.Back = Craftie.Frame.Craft:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(310, 50)
@@ -253,6 +254,8 @@ Craftie.Frame.Craft.Divider:SetSize(396, 24)
 Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 96, 90)
 Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
 
+--COMMON/InsetShadow
+
 Craftie.Frame.Craft.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(300, 110)
 Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", 0, 0)
@@ -260,7 +263,10 @@ Craftie.Frame.Craft.Back:SetHorizTile(true)
 Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock", "REPEAT")
 --Craftie.Frame.Craft.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background.png")
 Craftie.Frame.Craft.Back:SetVertexColor(0.72, 0.70, 0.70)
-Craftie.Frame.Craft:Hide()
+Craftie.Frame.Craft.Shade = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER")
+Craftie.Frame.Craft.Shade:SetSize(294, 130)
+Craftie.Frame.Craft.Shade:SetPoint("BOTTOMRIGHT", -4, -27)
+Craftie.Frame.Craft.Shade:SetTexture("Interface/COMMON/InsetShadow")
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
