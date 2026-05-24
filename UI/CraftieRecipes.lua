@@ -13,7 +13,6 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---Craftie.Frame.ScrollParentRecipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollParentRecipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.ScrollParentRecipes:SetWidth(300)
 Craftie.Frame.ScrollParentRecipes:SetHeight(Craftie._G.Height-88)
@@ -34,7 +33,7 @@ Craftie.Frame.ScrollRecipes:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipes:SetHeight(Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipes:SetPoint("TOPLEFT", 0, 0)
 
-Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", Craftie.Frame.ScrollRecipesList, Craftie.Frame.ScrollRecipes, "BackdropTemplate")
+Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", Craftie.Frame.ScrollRecipesList, Craftie.Frame.ScrollRecipes, "BackdropTemplate", 4)
 Craftie.Frame.ScrollRecipesList:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesList:SetHeight(Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 0, 0)
@@ -46,18 +45,24 @@ Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.
 --Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "ScrollFrameTemplate")
 --Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -3)
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -30) --room for search bar
-Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 10, 4)
+Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 10, 24)
 Craftie.Frame.ScrollRecipesListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipesListChildFrame, Craftie.Frame.ScrollRecipesList.Child)
 Craftie.Frame.ScrollRecipesListChildFrame:SetSize(Craftie.Frame.ScrollRecipes_Width, Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipesList.Child:SetScrollChild(Craftie.Frame.ScrollRecipesListChildFrame)
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:ClearAllPoints()
---Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT", 0, -17)
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT", 0, 10) --room for search bar
-Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -42, 12)
+Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -42, -9) --room for results
 
-Craftie.Frame.ScrollRecipes.Results = Craftie.Frame.ScrollRecipes:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollRecipes.ResultsBack = CreateFrame("Frame", Craftie.Frame.ScrollRecipes.ResultsBack, Craftie.Frame.ScrollRecipes, "BackdropTemplate", 5)
+Craftie.Frame.ScrollRecipes.ResultsBack:SetWidth(Craftie.Frame.ScrollRecipes_Width-25) --scrollbar size
+Craftie.Frame.ScrollRecipes.ResultsBack:SetHeight(25)
+Craftie.Frame.ScrollRecipes.ResultsBack:SetPoint("BOTTOMLEFT", 3, 0)
+Craftie.Frame.ScrollRecipes.ResultsBack:SetBackdrop(Craftie.Backdrop.Borderless)
+--Craftie.Frame.ScrollRecipes.ResultsBack:SetFrameLevel(Craftie.Framelevel.Cover)
+Craftie.Frame.ScrollRecipes.ResultsBack:SetBackdropColor(0, 0, 0, 0.5)
+Craftie.Frame.ScrollRecipes.Results = Craftie.Frame.ScrollRecipes.ResultsBack:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipes.Results:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.ScrollRecipes.Results:SetPoint("BOTTOMLEFT", 8, -20)
+Craftie.Frame.ScrollRecipes.Results:SetPoint("TOPLEFT", 8, -8)
 Craftie.Frame.ScrollRecipes.Results:SetText("")
 
 Craftie.Frame.ScrollRecipes.Empty = Craftie.Frame.ScrollRecipes:CreateFontString(nil, "ARTWORK")

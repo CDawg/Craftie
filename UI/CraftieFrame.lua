@@ -65,7 +65,7 @@ Craftie.Frame.Title.Prof:SetText("Alchemy")
 Craftie.Frame.TabBar = CreateFrame("Button", Craftie.Frame.TabBar, Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.TabBar:SetWidth(40)
 Craftie.Frame.TabBar:SetHeight(330)
-Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42, -50)
+Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar_X, -Craftie.TabBar_Y)
 Craftie.Frame.TabBar:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.TabBar:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.TabBar:SetBackdropBorderColor(1, 1, 1, 0)
@@ -248,24 +248,16 @@ end)
 
 Craftie.Frame:Hide()
 
---[==[
--- 1. Create the main UI frame for your settings
-local MyAddonOptionsFrame = CreateFrame("Frame", "MyUniqueAddonSettingsFrame", UIParent)
-
--- 2. Create the category structure using Blizzard's Settings API
--- This sets the display name that appears in the AddOns sidebar list
-local category = Settings.RegisterCanvasLayoutCategory(MyAddonOptionsFrame, "My Addon Name")
-
--- 3. Register the category into the game's settings window
+Craftie.Settings={}
+Craftie.Frame.Settings = CreateFrame("Frame", "CraftieSettingsFrame", UIParent)
+local category = Settings.RegisterCanvasLayoutCategory(Craftie.Frame.Settings, Craftie._G.Title)
 Settings.RegisterAddOnCategory(category)
 
--- (Optional) Add a basic title inside your frame so players see it
-local title = MyAddonOptionsFrame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-title:SetPoint("TOPLEFT", 16, -16)
-title:SetText("My Addon Options Configurations")
+Craftie.Settings.Title = Craftie.Frame.Settings:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
+Craftie.Settings.Title:SetPoint("TOPLEFT", 16, -16)
+Craftie.Settings.Title:SetText(Craftie._G.Title .. " Settings")
 
-======================
-
+--[==[
 SLASH_MYADDONCONFIG1 = "/myaddon"
 SlashCmdList["MYADDONCONFIG"] = function(msg)
     -- This opens the game Options menu directly to your addon's tab

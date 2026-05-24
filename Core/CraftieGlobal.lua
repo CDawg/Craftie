@@ -106,6 +106,9 @@ Craftie.Frame.Search={}
 
 Craftie.EnableScrollFrames = true
 
+Craftie.TabBar_X = 42
+Craftie.TabBar_Y = 50
+
 function Craftie.CloseAllPlayerMenus()
   for i=1, Craftie.MAX_PLAYERS do
     Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Hide()
@@ -326,10 +329,10 @@ do
           end
           if (frame == Craftie.Frame.TabBar) then
             if (Craftie.TabBarHide == 0) then
-              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42*self.frame, -60)
+              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar_X*self.frame, -Craftie.TabBar_Y)
             end
             if (Craftie.TabBarHide == 1) then
-              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -42*Craftie.Animation, -60)
+              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar_X*Craftie.Animation, -Craftie.TabBar_Y)
             end
           end
         end

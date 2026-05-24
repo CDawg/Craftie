@@ -44,13 +44,25 @@ Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollPlayersList.Child", Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -30)
-Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 10, 4)
+Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 10, 24)
 Craftie.Frame.ScrollPlayersListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListChildFrame, Craftie.Frame.ScrollPlayersList.Child)
 Craftie.Frame.ScrollPlayersListChildFrame:SetSize(Craftie.Frame.ScrollPlayers_Width, Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayersList.Child:SetScrollChild(Craftie.Frame.ScrollPlayersListChildFrame)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT", -20, 10)
-Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, 12)
+Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, -9)
+
+Craftie.Frame.ScrollPlayers.ResultsBack = CreateFrame("Frame", Craftie.Frame.ScrollPlayers.ResultsBack, Craftie.Frame.ScrollPlayers, "BackdropTemplate", 25)
+Craftie.Frame.ScrollPlayers.ResultsBack:SetWidth(Craftie.Frame.ScrollPlayers_Width-25) --scrollbar size
+Craftie.Frame.ScrollPlayers.ResultsBack:SetHeight(25)
+Craftie.Frame.ScrollPlayers.ResultsBack:SetPoint("BOTTOMLEFT", 3, 0)
+Craftie.Frame.ScrollPlayers.ResultsBack:SetBackdrop(Craftie.Backdrop.Borderless)
+--Craftie.Frame.ScrollPlayers.ResultsBack:SetFrameLevel(Craftie.Framelevel.Cover)
+Craftie.Frame.ScrollPlayers.ResultsBack:SetBackdropColor(0, 0, 0, 0.5)
+Craftie.Frame.ScrollPlayers.Results = Craftie.Frame.ScrollPlayers.ResultsBack:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollPlayers.Results:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.ScrollPlayers.Results:SetPoint("TOPLEFT", 8, -8)
+Craftie.Frame.ScrollPlayers.Results:SetText("")
 
 --[==[
 SEARCH PLAYERS
@@ -312,6 +324,7 @@ function Craftie.UpdateCrafterList(search)
   local crafter_list = {}
   local search_list = {}
   Craftie.Notification("Craftie.UpdateCrafterList", true)
+  Craftie.Frame.ScrollPlayers.Results:SetText("")
 
   for i=1, Craftie.MAX_PLAYERS do
     --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
@@ -337,7 +350,9 @@ function Craftie.UpdateCrafterList(search)
       Craftie.Frame.ScrollPlayersListText[k+1]:SetText(v)
       Craftie.Frame.ScrollPlayersListFav[k+1]:Show()
     end
-    print("num crafters " .. #search_list)
+
+    local results = "|cfffffb63Crafter(s)"
+    Craftie.Frame.ScrollPlayers.Results:SetText(#search_list .. " " .. results)
     --[==[
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
       for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
