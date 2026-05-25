@@ -168,6 +168,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
             --Craftie.Open(player, prof) --need to cache player data loading
           end
           Craftie.UpdateCrafterList()
+          --Craftie.OpenProfessionList()
         end)
       end
       --we still need to open the book, but cache the incoming data

@@ -24,6 +24,7 @@ Craftie.Frame.ScrollParentRecipes.Back:SetSize(Craftie.Frame.ScrollParentRecipes
 Craftie.Frame.ScrollParentRecipes.Back:SetPoint("TOPLEFT", 0, 0)
 --Craftie.Frame.ScrollParentRecipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
 Craftie.Frame.ScrollParentRecipes.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Recipes.png")
+Craftie.Frame.ScrollParentRecipes.Back:SetAlpha(0.5)
 
 Craftie.ScrollBarBack(Craftie.Frame.ScrollParentRecipes)
 
@@ -44,16 +45,14 @@ Craftie.Frame.ScrollRecipesList:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue
 Craftie.Frame.ScrollRecipesList:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
---Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "ScrollFrameTemplate")
---Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -3)
-Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -30) --room for search bar
-Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 10, 24)
+Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -25) --room for search bar
+Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 10, 25) --room for results
 Craftie.Frame.ScrollRecipesListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipesListChildFrame, Craftie.Frame.ScrollRecipesList.Child)
 Craftie.Frame.ScrollRecipesListChildFrame:SetSize(Craftie.Frame.ScrollRecipes_Width, Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipesList.Child:SetScrollChild(Craftie.Frame.ScrollRecipesListChildFrame)
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:ClearAllPoints()
-Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT", 0, 10) --room for search bar
-Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -42, -9) --room for results
+Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT", 0, 5) --room for search bar
+Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -42, -10) --room for results
 
 Craftie.Frame.ScrollRecipes.ResultsBack = CreateFrame("Frame", Craftie.Frame.ScrollRecipes.ResultsBack, Craftie.Frame.ScrollRecipes, "BackdropTemplate", 5)
 Craftie.Frame.ScrollRecipes.ResultsBack:SetWidth(Craftie.Frame.ScrollRecipes_Width-25) --scrollbar size
@@ -61,11 +60,17 @@ Craftie.Frame.ScrollRecipes.ResultsBack:SetHeight(25)
 Craftie.Frame.ScrollRecipes.ResultsBack:SetPoint("BOTTOMLEFT", 3, 0)
 Craftie.Frame.ScrollRecipes.ResultsBack:SetBackdrop(Craftie.Backdrop.Borderless)
 --Craftie.Frame.ScrollRecipes.ResultsBack:SetFrameLevel(Craftie.Framelevel.Cover)
-Craftie.Frame.ScrollRecipes.ResultsBack:SetBackdropColor(0, 0, 0, 0.5)
+Craftie.Frame.ScrollRecipes.ResultsBack:SetBackdropColor(0.11, 0.11, 0.1, 0.1)
 Craftie.Frame.ScrollRecipes.Results = Craftie.Frame.ScrollRecipes.ResultsBack:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipes.Results:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Frame.ScrollRecipes.Results:SetPoint("TOPLEFT", 8, -8)
 Craftie.Frame.ScrollRecipes.Results:SetText("")
+
+Craftie.Frame.ScrollRecipes.Loading = Craftie.Frame.ScrollRecipes:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollRecipes.Loading:SetFont(Craftie._G.Font.Style, 13, "OUTLINE | SLUG")
+Craftie.Frame.ScrollRecipes.Loading:SetPoint("CENTER", -2, 40)
+Craftie.Frame.ScrollRecipes.Loading:SetTextColor(1, 1, 0.9, 0.8)
+Craftie.Frame.ScrollRecipes.Loading:SetText("Loading...")
 
 Craftie.Frame.ScrollRecipes.Empty = Craftie.Frame.ScrollRecipes:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipes.Empty:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")

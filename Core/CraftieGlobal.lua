@@ -722,6 +722,8 @@ end
 
 function Craftie.OpenProfessionList(profArray, search, player)
   local profCache = {}
+  Craftie.Frame.ScrollRecipes.Loading:Show()
+  Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie.SetProfLevel(0)
   if (player ~= "") then
     Craftie.Notification("Using " .. player .. "Crafting book", true)
@@ -794,6 +796,11 @@ function Craftie.OpenProfessionList(profArray, search, player)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
   --Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
+
+  C_Timer.After(0.35, function()
+    Craftie.Frame.ScrollRecipes.Loading:Hide()
+    Craftie.Frame.ScrollRecipesList:SetAlpha(1)
+  end)
 
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
