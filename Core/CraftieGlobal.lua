@@ -267,13 +267,23 @@ function Craftie.ParsePacket(netpacket)
       --ping another crafter for their data
       if (prefix == Craftie.Packet.Prefix.Ping) then
         local requester = packet[3]
-        local profParse = packet[4]
-        local prof = Craftie.Split(profParse, "|")
+        local profPack = packet[4]
+        local profParse = Craftie.Split(profPack, "|")
+        local profName = profParse[1]
+        --Craftie.Open
+        if (requester == Craftie.Player.Name) then --second fail safe?
+          --rather than a break, just ignore
+          Craftie.Notification("Requester == Self. Ignoring", true)
+        else
+          print("Ignoring own reqeust")
         --print("you were pinged by")
-        Craftie.Notification("You were pinged by " .. requester .. " for " .. prof[1], true)
-        local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof[1]:upper()][Craftie.Player.Name]
-        --print("requester " .. requester)
-        Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
+          Craftie.Notification("You were pinged by " .. requester .. " for " .. profName, true)
+          local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
+          --print("requester " .. requester)
+          Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
+          --rather than a break, just ignore
+          Craftie.Notification("Send Packet?", true)
+        end
       end
 
       --handshake, get crafters data
@@ -812,12 +822,15 @@ function Craftie.OpenProfessionList(profArray, search, player)
   Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
 end
 
---add a timer and parse data here?
+--add a timer for parsed data
 function Craftie.Open(player, profession)
   if (player) then
-    print("player: " .. player)
-    print("player: " .. profession)
-    C_Timer.After(0.4, function() --give it time to register
+    print("Craftie.Open player: " .. player)
+    print("Craftie.Open profession: " .. profession)
+    --local prof = profession
+    C_Timer.After(0.1, function() --give it time to register
+      local page = Craftie.GetKeyFromValue(Craftie.Professions, profession, 1)
+      Craftie.TabSelect(page, true)
       Craftie.Frame:Show()
     end)
   else

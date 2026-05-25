@@ -162,14 +162,15 @@ hooksecurefunc("SetItemRef", function(link, text, button)
     if (spellData[4] == "Craftie") then
       local playerData = Craftie.Split(spellData[5], "-") --remove realm data
       local player = playerData[1]
-      local prof   = spellData[6]
-      print(player .. " | " .. prof)
-      --[==[
-      Craftie.Open(player, prof)
-      ItemRefTooltip:Hide() --make this an option in settings
-      ]==]--
-      ItemRefTooltip:Hide() --make this an option
-      Craftie.SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
+      local profLink   = spellData[6]
+      local profSplit = Craftie.Split(profLink, "|") --clean up link
+      local prof = profSplit[1]
+      --print(player .. " | " .. prof)
+      ItemRefTooltip:Hide() --make this an option?
+      if ((player ~= Craftie.Player.Name) or (Craftie.DEBUG)) then
+        Craftie.SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
+      end
+      Craftie.Open(player, prof) --need to cache player data loading
     end
   end
 
@@ -194,7 +195,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
 end)
 
 --[==[
---WAY TOO BUGGY
+--Dont use, too many filters and lags
 EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
 end)
 ]==]--
