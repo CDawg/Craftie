@@ -102,15 +102,6 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
 
-    --[==[
-    if (prefix ~= nil) then
-      print("Craftie.Event[2] " .. prefix .. " | " .. event)
-      if (prefix == Craftie._G.Prefix) then
-        print("Craftie.Event[2] " .. prefix .. " | " .. event)
-        print("parse packet?")
-      end
-    end
-    ]==]--
   end
 end
 
@@ -173,25 +164,6 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       Craftie.Open(player, prof) --need to cache player data loading
     end
   end
-
-  --may be an option later when posting patterns, but this is gets too spammy with NON crafters.
-  --[==[
-  if (linkType[1] == "enchant") then
-    --print("text " .. text)
-    local spellData = Craftie.Split(text, ":")
-    for k,v in pairs(spellData) do
-      print(k .. " | " .. v)
-    end
-    if (spellData[3] == "Craftie") then
-      local playerData = Craftie.Split(spellData[4], "-") --remove realm data
-      local player = playerData[1]
-      local prof   = spellData[5]
-      print(player .. " | " .. prof)
-      Craftie.Open(player, prof)
-      ItemRefTooltip:Hide() --make this an option"
-    end
-  end
-  ]==]--
 end)
 
 --[==[
