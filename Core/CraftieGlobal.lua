@@ -614,11 +614,8 @@ function Craftie.CrafterDataBuild(profName, profLevel)
 
           --alpha sort order
           table.sort(tkeys)
-          for k,v in pairs(tkeys) do
-            print(v)
-          end
-          --Craftie.SortTableByString(tkeys)
           for a, b in pairs(tkeys) do
+            --print(b)
             profString = profString .. profData[b]
           end
 

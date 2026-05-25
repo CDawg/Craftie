@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollParentPlayers, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollParentPlayers, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollParentPlayers:SetWidth(210)
 Craftie.Frame.ScrollParentPlayers:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentPlayers:SetPoint("TOPLEFT", 2, -61)

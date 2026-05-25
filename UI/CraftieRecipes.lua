@@ -13,7 +13,8 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Frame.ScrollParentRecipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "BackdropTemplate")
+--Craftie.Frame.ScrollParentRecipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.ScrollParentRecipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollParentRecipes:SetWidth(300)
 Craftie.Frame.ScrollParentRecipes:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentRecipes:SetPoint("TOPLEFT", 212, -61)
