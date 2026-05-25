@@ -360,46 +360,9 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Main[i]:Hide()
 
-  --[==[
-  Craftie.Frame.Reagent.Tooltip[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Tooltip[i], Craftie.Frame.Reagent.Main[i], "BackdropTemplate")
-  Craftie.Frame.Reagent.Tooltip[i]:SetWidth(Craftie.Frame.Reagent_Width+30)
-  Craftie.Frame.Reagent.Tooltip[i]:SetHeight(Craftie.Frame.Reagent_Height)
-  Craftie.Frame.Reagent.Tooltip[i]:SetPoint("TOPLEFT", -30, 0)
-  Craftie.Frame.Reagent.Tooltip[i]:SetBackdrop(Craftie.Backdrop.General)
-  Craftie.Frame.Reagent.Tooltip[i]:SetBackdropColor(1, 1, 1, 0)
-  Craftie.Frame.Reagent.Tooltip[i]:SetBackdropBorderColor(1, 1, 1, 0)
-
-  Craftie.Frame.Reagent.Tooltip[i]:SetScript("OnEnter", function(self)
-    SetItemTooltip(self, Craftie.Frame.Reagent.Data[i]:GetText(), false)
-  end)
-  Craftie.Frame.Reagent.Tooltip[i]:SetScript("OnLeave", function(self)
-    GameTooltip:Hide()
-  end)
-  ]==]--
-
-  --[==[
-  Craftie.Frame.Reagent.HLink[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, 13, "OUTLINE")
-  Craftie.Frame.Reagent.HLink[i]:SetPoint("TOPLEFT", -8, -12)
-  --Craftie.Frame.Reagent.HLink[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.Reagent.HLink[i]:SetText(i)
-  Craftie.Frame.Reagent.HLink[i]:SetWidth(Craftie.Frame.Reagent.Main[i]:GetWidth())
-  Craftie.Frame.Reagent.HLink[i]:SetWordWrap(true)
-  Craftie.Frame.Reagent.HLink[i]:SetTextColor(1, 1, 1, 0) --hide
-  Craftie.Frame.Reagent.HLink[i]:SetScript("OnEnter", function(self)
-    SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true, "ANCHOR_RIGHT")
-  end)
-  Craftie.Frame.Reagent.HLink[i]:SetScript("OnLeave", function(self)
-    GameTooltip:Hide()
-  end)
-]==]--
-
   Craftie.Frame.Reagent.HLink[i] = CreateFrame("EditBox", nil, Craftie.Frame.Reagent.Main[i])
   Craftie.Frame.Reagent.HLink[i]:SetWidth(Craftie.Frame.Reagent.Main[i]:GetWidth())
-  --Craftie.Frame.Reagent.HLink[i]:SetHeight(50)
-  --Craftie.Frame.Reagent.HLink[i]:SetFontObject(GameFontWhite)
   Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, 14, "OUTLINE")
-  --Craftie.Frame.Reagent.HLink[i]:SetPoint("TOPLEFT", 4, -4)
   Craftie.Frame.Reagent.HLink[i]:SetPoint("CENTER", 12, 0)
   Craftie.Frame.Reagent.HLink[i]:SetMultiLine(true)
   Craftie.Frame.Reagent.HLink[i]:ClearFocus(self)
@@ -409,8 +372,6 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.HLink[i]:SetEnabled(false) --dont interact with text
   --Craftie.Frame.Reagent.HLink[i]:EnableMouse(false)
   Craftie.Frame.Reagent.HLink[i]:SetHyperlinksEnabled(true)
-  --Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", ChatFrame_OnHyperlinkShow)
-  --Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
     if (Craftie.EnableScrollFrames) then
       SetItemRef(link, text, button, self)

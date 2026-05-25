@@ -164,8 +164,12 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       local player = playerData[1]
       local prof   = spellData[6]
       print(player .. " | " .. prof)
+      --[==[
       Craftie.Open(player, prof)
-      ItemRefTooltip:Hide() --make this an option"
+      ItemRefTooltip:Hide() --make this an option in settings
+      ]==]--
+      ItemRefTooltip:Hide() --make this an option
+      Craftie.SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
     end
   end
 

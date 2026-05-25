@@ -200,6 +200,7 @@ function SetItemTooltip(frame, itemID, enchant, anchor)
   GameTooltip:Show()
 end
 
+--sendpacket builds the string, then compresses before submitting
 function Craftie.SendPacket(prefix, data, channel, target)
   --if (channel == "GUILD") then
     --if (not IsInGuild()) then return end
@@ -236,11 +237,6 @@ Craftie.Notified = 0
 function Craftie.ParsePacket(netpacket)
   local prefix = ""
   local version = 0
-  local crafterName = ""
-  local crafterClass = ""
-  local profNum = 1
-  local profLevel = 1
-  local crafterData = ""
   local stable_version = true --determine large version chunks or stability?!?
   if (string.sub(netpacket, 1, 1) == "!") then
     local packet = Craftie.Split(netpacket, ",")
@@ -268,13 +264,25 @@ function Craftie.ParsePacket(netpacket)
     if (stable_version) then
       Craftie.Notification("|CFFD177F7Parsing Packet: |r" .. netpacket, true)
 
-      --get crafters data
+      --ping another crafter for their data
+      if (prefix == Craftie.Packet.Prefix.Ping) then
+        local requester = packet[3]
+        local profParse = packet[4]
+        local prof = Craftie.Split(profParse, "|")
+        --print("you were pinged by")
+        Craftie.Notification("You were pinged by " .. requester .. " for " .. prof[1], true)
+        local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof[1]:upper()][Craftie.Player.Name]
+        --print("requester " .. requester)
+        Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
+      end
+
+      --handshake, get crafters data
       if (prefix == Craftie.Packet.Prefix.Data) then
-        crafterName = packet[3]
-        crafterClass = Craftie.Class[tonumber(packet[4])][1]
-        profNum  = Craftie.Professions[tonumber(packet[5])][1]
-        profLevel= packet[6]
-        crafterData = Craftie.BitCompression(packet[7], true)
+        local crafterName = packet[3]
+        local crafterClass = Craftie.Class[tonumber(packet[4])][1]
+        local profNum  = Craftie.Professions[tonumber(packet[5])][1]
+        local profLevel= packet[6]
+        local crafterData = Craftie.BitCompression(packet[7], true)
         --Craftie.Notification("Prof Name: " .. profNum, true)
         --Craftie.Notification("Crafter Name: " .. crafterName, true)
         --Craftie.Notification("Crafter Class: " .. crafterClass, true)
@@ -297,11 +305,6 @@ function Craftie.ParsePacket(netpacket)
         Craftie.Notification("[" .. #netpacket .. " / " .. #crafterData .. "][" .. math.floor(lperc) .. "%]", true)
         ]==]--
       end
-
-      --get ping request
-      --if (prefix == Craftie.Packet.Prefix.Ping) then
-        --ping request, send book data, send built data from saved DB first?
-      --end
 
     else
       Craftie.Notification("|cFFFF0000ERROR:|r Malformed Packet: " .. netpacket, true)
@@ -464,8 +467,9 @@ function Craftie.ItemDetails(item)
   C_Timer.After(0.12, function() --give it time to register
     Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 1)
     if (is_enchant) then
-      Craftie.Frame.Craft.HLink:SetText("ENCHANT DATA TEXT HERE")
-      --print(is_enchant)
+      local link = GetSpellLink(item[1])
+      --Craftie.Frame.Craft.HLink:SetText("ENCHANT DATA TEXT HERE")
+      Craftie.Frame.Craft.HLink:SetText(link)
       Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
         SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), true)
       end)
