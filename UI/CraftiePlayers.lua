@@ -296,6 +296,25 @@ for i=1, Craftie.MAX_PLAYERS do
 end
 
 --might be easier to create a global
+function Craftie.GetCrafterIndex(player)
+  C_Timer.After(0.1, function() --give the update time to create cached tables
+    for i=1, Craftie.MAX_PLAYERS do
+      if (player == Craftie.Frame.ScrollPlayersListText[i]:GetText()) then
+        print(player .. " index = " .. i)
+        Craftie.SelectCrafter(i, player)
+      end
+    end
+  end)
+
+  --[==[
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+    for crafter_name in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()]) do
+      tset
+    end
+  end
+  ]==]--
+end
+
 function Craftie.SelectCrafter(index, name)
   Craftie.ClearFocusAll()
   Craftie.Selected_Name = ""
@@ -374,6 +393,8 @@ function Craftie.UpdateCrafterList(search)
   C_Timer.After(0.3, function()
     Craftie.Frame.ScrollPlayers.Loading:Hide()
     Craftie.Frame.ScrollPlayersList:SetAlpha(1)
+    --Craftie.Frame.ScrollPlayersList.Child:SetSelected(1)
+    --Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(20)
   end)
 
   Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Page .. " Recipes")

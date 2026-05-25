@@ -169,6 +169,8 @@ hooksecurefunc("SetItemRef", function(link, text, button)
           end
           Craftie.UpdateCrafterList()
           --Craftie.OpenProfessionList()
+          print("open book to player " .. player)
+          Craftie.GetCrafterIndex(player)
         end)
       end
       --we still need to open the book, but cache the incoming data
