@@ -37,8 +37,8 @@ Craftie.Frame.BotShadow:SetHorizTile(true)
 Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "images/ShadowOverlay-Bottom.png", "REPEAT")
 
 Craftie.Frame.Icon = Craftie.Frame:CreateTexture(nil, "OVERLAY")
-Craftie.Frame.Icon:SetSize(70, 70)
-Craftie.Frame.Icon:SetPoint("TOPLEFT", -11, 13)
+Craftie.Frame.Icon:SetSize(74, 74)
+Craftie.Frame.Icon:SetPoint("TOPLEFT", -12, 14)
 Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.png")
 Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 7)
 --[==[
@@ -100,7 +100,7 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.Frame.TabSide[i].Icon:SetSize(Craftie.Frame.TabSide[i]:GetWidth()-9, Craftie.Frame.TabSide[i]:GetHeight()-9)
   Craftie.Frame.TabSide[i].Icon:SetPoint("TOPLEFT", 7, -5)
   Craftie.Frame.TabSide[i].Icon:SetTexture("Interface/Icons/" .. v[2])
-  Craftie.Frame.TabSide[i].Icon:SetDesaturation(0.30)
+  Craftie.Frame.TabSide[i].Icon:SetDesaturation(0.40)
   Craftie.Frame.TabSide[i].Icon:SetDrawLayer("ARTWORK", -2)
   Craftie.Frame.TabSide[i].Shadow = CreateFrame("Frame", Craftie.Frame.TabSide[i].Shadow, Craftie.Frame.TabSide[i], "BackdropTemplate")
   Craftie.Frame.TabSide[i].Shadow:SetWidth(32)
@@ -193,6 +193,7 @@ Craftie.Frame.Button.Options:SetScript("OnLeave", function(self)
 end)
 Craftie.Frame.Button.Options:SetScript("OnClick", function(self)
   Craftie.Frame:Hide()
+  Settings.OpenToCategory(Craftie.Settings.Category:GetID())
   --Craftie.FrameOptions:Show()
 end)
 
@@ -247,17 +248,9 @@ Craftie.Frame:Hide()
 
 Craftie.Settings={}
 Craftie.Frame.Settings = CreateFrame("Frame", "CraftieSettingsFrame", UIParent)
-local category = Settings.RegisterCanvasLayoutCategory(Craftie.Frame.Settings, Craftie._G.Title)
-Settings.RegisterAddOnCategory(category)
+Craftie.Settings.Category = Settings.RegisterCanvasLayoutCategory(Craftie.Frame.Settings, Craftie._G.Title)
+Settings.RegisterAddOnCategory(Craftie.Settings.Category)
 
 Craftie.Settings.Title = Craftie.Frame.Settings:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 Craftie.Settings.Title:SetPoint("TOPLEFT", 16, -16)
-Craftie.Settings.Title:SetText(Craftie._G.Title .. " Settings")
-
---[==[
-SLASH_MYADDONCONFIG1 = "/myaddon"
-SlashCmdList["MYADDONCONFIG"] = function(msg)
-    -- This opens the game Options menu directly to your addon's tab
-    Settings.OpenToCategory(category:GetID())
-end
-]==]--
+Craftie.Settings.Title:SetText(Craftie._G.Title)

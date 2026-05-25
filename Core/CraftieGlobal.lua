@@ -276,8 +276,8 @@ function Craftie.ParsePacket(netpacket)
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
           --print("requester " .. requester)
           Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
-          --rather than a break, just ignore
-          Craftie.Notification("Send Packet?", true)
+          Craftie.Packet.ACK = 1
+          --Craftie.Open(player, prof) --need to cache player data loading
         else
           --rather than a break, just ignore
           Craftie.Notification("Requester == Self. Ignoring", true)
@@ -291,27 +291,8 @@ function Craftie.ParsePacket(netpacket)
         local profNum  = Craftie.Professions[tonumber(packet[5])][1]
         local profLevel= packet[6]
         local crafterData = Craftie.BitCompression(packet[7], true)
-        --Craftie.Notification("Prof Name: " .. profNum, true)
-        --Craftie.Notification("Crafter Name: " .. crafterName, true)
-        --Craftie.Notification("Crafter Class: " .. crafterClass, true)
-        --Craftie.Notification("Prof Level: " .. profLevel, true)
-        Craftie.Notification("Prof Data: " .. crafterData, true)
-
-        --DEBUG
-        --[==[
-        local hperc = (#netpacket / #crafterData)*100
-        local lperc = hperc -100
-
-        --this is ONLY local seed data testing
-        local seed = Craftie.Split(Craftie.Seed, ",")
-        --Craftie.Notification("|nSeed Data: " .. seed[4], true)
-        if (seed[5] == crafterData) then
-          Craftie.Notification("|cFF00E033SUCCESS:|r Match!", true)
-        else
-          Craftie.Notification("|cFFFF0000ERROR:|r Mismatch!", true)
-        end
-        Craftie.Notification("[" .. #netpacket .. " / " .. #crafterData .. "][" .. math.floor(lperc) .. "%]", true)
-        ]==]--
+        Craftie.Notification("Receiving Data:|n" .. crafterName .. "|n" .. crafterData, true)
+        --Craftie.Open(player, prof) --need to cache player data loading
       end
 
     else
@@ -839,12 +820,7 @@ end
 SLASH_Craftie1 = "/" .. Craftie._G.Prefix
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
-
-    --print(Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r v" .. Craftie._G.Version)
-    --Craftie.Notification
-		--for int,list in pairs(Craftie._L.COMMANDS) do
-			--print("|cffffff00".. list[1] .. "|r : " .. list[2] .. "|n")
-		--end
+    print("list of commands")
 	end
 	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
 	--if (cmd == Craftie._L.COMMANDS[1][1]) then

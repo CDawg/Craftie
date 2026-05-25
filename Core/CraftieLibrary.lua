@@ -40,12 +40,14 @@ Craftie.Game.Name = Craftie.Game[tonumber(string.sub(__Gversion, 1, 1))]
 Craftie.Profession={}
 Craftie.Professions={}
 
-Craftie.Packet ={}
+Craftie.Packet = {}
 Craftie.Packet.Prefix = {
   Load = "!L", --onload
   Ping = "!P", --ping request
   Data = "!D", --data chunk
 }
+Craftie.Packet.Timeout = 2 --timeout if no data recieved
+Craftie.Packet.ACK = 0
 
 Craftie.Class = {
   {"Druid",       {1.00, 0.49, 0.04}, "|CFFFF7C0A", "ClassIcon_Druid"},

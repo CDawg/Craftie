@@ -160,8 +160,20 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       ItemRefTooltip:Hide() --make this an option?
       if ((player ~= Craftie.Player.Name) or (Craftie.DEBUG)) then
         Craftie.SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
+        Craftie.Packet.ACK = 0
+        C_Timer.After(Craftie.Packet.Timeout, function()
+          if (Craftie.Packet.ACK == 0) then
+            Craftie.Notification("|cffF54927Crafter [" .. player .. "] has outdated data|r|n")
+          --else
+            --Craftie.Open(player, prof) --need to cache player data loading
+          end
+          Craftie.UpdateCrafterList()
+        end)
       end
-      Craftie.Open(player, prof) --need to cache player data loading
+      --we still need to open the book, but cache the incoming data
+      C_Timer.After(0.3, function()
+        Craftie.Open(player, prof) --need to cache player data loading
+      end)
     end
   end
 end)
