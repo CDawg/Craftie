@@ -19,9 +19,10 @@ Craftie.Frame.ScrollParentRecipes:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentRecipes:SetPoint("TOPLEFT", 212, -61)
 
 Craftie.Frame.ScrollParentRecipes.Back = Craftie.Frame.ScrollParentRecipes:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.ScrollParentRecipes.Back:SetSize(Craftie.Frame.ScrollParentRecipes:GetWidth()+166, Craftie.Frame.ScrollParentRecipes:GetHeight()+185)
-Craftie.Frame.ScrollParentRecipes.Back:SetPoint("TOPLEFT", 6, -5)
-Craftie.Frame.ScrollParentRecipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
+Craftie.Frame.ScrollParentRecipes.Back:SetSize(Craftie.Frame.ScrollParentRecipes:GetWidth()-20, Craftie.Frame.ScrollParentRecipes:GetHeight())
+Craftie.Frame.ScrollParentRecipes.Back:SetPoint("TOPLEFT", 0, 0)
+--Craftie.Frame.ScrollParentRecipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
+Craftie.Frame.ScrollParentRecipes.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Recipes.png")
 
 Craftie.ScrollBarBack(Craftie.Frame.ScrollParentRecipes)
 

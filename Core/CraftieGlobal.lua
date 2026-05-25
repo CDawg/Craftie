@@ -271,18 +271,16 @@ function Craftie.ParsePacket(netpacket)
         local profParse = Craftie.Split(profPack, "|")
         local profName = profParse[1]
         --Craftie.Open
-        if (requester == Craftie.Player.Name) then --second fail safe?
-          --rather than a break, just ignore
-          Craftie.Notification("Requester == Self. Ignoring", true)
-        else
-          print("Ignoring own reqeust")
-        --print("you were pinged by")
+        if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUG)) then
           Craftie.Notification("You were pinged by " .. requester .. " for " .. profName, true)
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
           --print("requester " .. requester)
           Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
           --rather than a break, just ignore
           Craftie.Notification("Send Packet?", true)
+        else
+          --rather than a break, just ignore
+          Craftie.Notification("Requester == Self. Ignoring", true)
         end
       end
 
