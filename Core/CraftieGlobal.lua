@@ -277,7 +277,6 @@ function Craftie.ParsePacket(netpacket)
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
           --print("requester " .. requester)
           Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
-          Craftie.Packet.ACK = 1 --got an ack
         else
           --rather than a break, just ignore
           Craftie.Notification("Requester == Self. Ignoring", true)
@@ -295,6 +294,7 @@ function Craftie.ParsePacket(netpacket)
         local crafterData = Craftie.BitCompression(packet[7], true) --decompress
         Craftie.Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, true)
         --store it
+        Craftie.Packet.ACK[crafterName] = 1 --got an ack
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData
         Craftie.Notification("Storing Data:|n" .. profString, true)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString

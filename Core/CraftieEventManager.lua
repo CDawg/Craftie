@@ -160,9 +160,10 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       ItemRefTooltip:Hide() --make this an option?
       if ((player ~= Craftie.Player.Name) or (Craftie.DEBUG)) then
         Craftie.SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
-        Craftie.Packet.ACK = 0
+        Craftie.Packet.ACK[player] = 0
         C_Timer.After(Craftie.Packet.Timeout, function()
-          if (Craftie.Packet.ACK == 0) then
+           --if the ack doesnt come back from the backet within this timeframe, timeout!
+          if (Craftie.Packet.ACK[player] == 0) then
             Craftie.Notification("|cffF54927Crafter [" .. player .. "] has outdated data|r|n")
           --else
             --Craftie.Open(player, prof) --need to cache player data loading
