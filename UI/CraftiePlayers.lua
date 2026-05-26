@@ -18,6 +18,13 @@ Craftie.Frame.ScrollParentPlayers:SetWidth(210)
 Craftie.Frame.ScrollParentPlayers:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentPlayers:SetPoint("TOPLEFT", 2, -61)
 
+Craftie.Frame.ScrollParentPlayers.Back = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.ScrollParentPlayers.Back:SetSize(Craftie.Frame.ScrollParentPlayers:GetWidth()-10, Craftie.Frame.ScrollParentPlayers:GetHeight()-150)
+Craftie.Frame.ScrollParentPlayers.Back:SetPoint("CENTER", -5, 10)
+Craftie.Frame.ScrollParentPlayers.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-" .. Craftie.Player.Faction .. ".png")
+Craftie.Frame.ScrollParentPlayers.Back:SetDesaturation(1)
+Craftie.Frame.ScrollParentPlayers.Back:SetAlpha(0.18)
+
 Craftie.ScrollBarBack(Craftie.Frame.ScrollParentPlayers)
 
 Craftie.Frame.ScrollPlayers_Width = 210
@@ -36,25 +43,25 @@ Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.Borderless)
 Craftie.Frame.ScrollPlayersList:SetBackdropColor(0.2, 0.6, 1, 0.07)
 Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
-Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollPlayersList.Child, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
-Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -25)
+Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollPlayersList.Child", Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
+Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 3, -28)
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 10, 25)
 Craftie.Frame.ScrollPlayersListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListChildFrame, Craftie.Frame.ScrollPlayersList.Child)
 Craftie.Frame.ScrollPlayersListChildFrame:SetSize(Craftie.Frame.ScrollPlayers_Width, Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayersList.Child:SetScrollChild(Craftie.Frame.ScrollPlayersListChildFrame)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:ClearAllPoints()
-Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT", -20, 5)
+Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT", -20, 8)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, -10)
 
 Craftie.Frame.ScrollPlayers.ResultsFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayers.ResultsFrame, Craftie.Frame.ScrollPlayers, "BackdropTemplate", 25)
 Craftie.Frame.ScrollPlayers.ResultsFrame:SetWidth(Craftie.Frame.ScrollPlayers_Width-25) --scrollbar size
 Craftie.Frame.ScrollPlayers.ResultsFrame:SetHeight(25)
-Craftie.Frame.ScrollPlayers.ResultsFrame:SetPoint("BOTTOMLEFT", 3, -4)
+Craftie.Frame.ScrollPlayers.ResultsFrame:SetPoint("BOTTOMLEFT", 4, -4)
 Craftie.Frame.ScrollPlayers.ResultsBack = Craftie.Frame.ScrollPlayers.ResultsFrame:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.ScrollPlayers.ResultsBack:SetSize(Craftie.Frame.ScrollPlayers.ResultsFrame:GetWidth(), 32)
-Craftie.Frame.ScrollPlayers.ResultsBack:SetPoint("TOPLEFT", 0, 10)
+Craftie.Frame.ScrollPlayers.ResultsBack:SetSize(Craftie.Frame.ScrollPlayers.ResultsFrame:GetWidth()-1, 32)
+Craftie.Frame.ScrollPlayers.ResultsBack:SetPoint("TOPLEFT", 1, 10)
 Craftie.Frame.ScrollPlayers.ResultsBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
---Craftie.Frame.ScrollPlayers.ResultsBack:SetAlpha(0.8)
+Craftie.Frame.ScrollPlayers.ResultsBack:SetAlpha(0.6)
 Craftie.Frame.ScrollPlayers.Results = Craftie.Frame.ScrollPlayers.ResultsFrame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.ScrollPlayers.Results:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Frame.ScrollPlayers.Results:SetPoint("TOPLEFT", 8, -4)
@@ -71,14 +78,19 @@ SEARCH PLAYERS
 ]==]--
 Craftie.Frame.Search.Players={}
 Craftie.Frame.Search.Players = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentPlayers, "BackdropTemplate", 2)
-Craftie.Frame.Search.Players:SetWidth(185)
+Craftie.Frame.Search.Players:SetWidth(182)
 Craftie.Frame.Search.Players:SetHeight(24)
-Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 4, -1)
-Craftie.Frame.Search.Players:SetBackdrop(Craftie.Backdrop.Opaque)
-Craftie.Frame.Search.Players:SetBackdropColor(1, 0, 0, 1)
-Craftie.Frame.Search.Players:SetBackdropBorderColor(1, 1, 1, 0.6)
+Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 5, -1)
 Craftie.Frame.Search.Players:SetFrameStrata("MEDIUM")
-Craftie.Frame.Search.Players.Icon = Craftie.Frame.Search.Players:CreateTexture(nil, "ARTWORK")
+
+Craftie.Frame.Search.Players.Back = Craftie.Frame.Search.Players:CreateTexture(nil, "BORDER")
+Craftie.Frame.Search.Players.Back:SetSize(Craftie.Frame.Search.Players:GetWidth()-1, 28)
+Craftie.Frame.Search.Players.Back:SetPoint("TOPLEFT", 0, -2)
+Craftie.Frame.Search.Players.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
+Craftie.Frame.Search.Players.Back:SetAlpha(0.6)
+Craftie.Frame.Search.Players.Back:SetRotation(-math.pi)
+
+Craftie.Frame.Search.Players.Icon = Craftie.Frame.Search.Players:CreateTexture(nil, "OVERLAY")
 Craftie.Frame.Search.Players.Icon:SetSize(18, 18)
 Craftie.Frame.Search.Players.Icon:SetPoint("TOPLEFT", 4, -5)
 Craftie.Frame.Search.Players.Icon:SetTexture("Interface/COMMON/UI-Searchbox-Icon")
@@ -402,18 +414,3 @@ function Craftie.UpdateCrafterList(search)
   Craftie.Frame.ScrollPlayersListFav[1]:Show()
   Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(1, 0, 0, 1)
 end
-
---[==[
-local scrollbar = _G[Craftie.Frame.ScrollPlayersList.Child:GetName() .. "ScrollBar"]
-local scrollUpButton = _G[scrollFrame:GetName() .. "ScrollBarScrollUpButton"]
-local scrollDownButton = _G[scrollFrame:GetName() .. "ScrollBarScrollDownButton"]
-
--- Example of applying a custom texture to the Up Button
-scrollUpButton:SetNormalTexture("Interface\\AddOns\\MyAddon\\Media\\UpButton-Up")
-scrollUpButton:SetPushedTexture("Interface\\AddOns\\MyAddon\\Media\\UpButton-Down")
-scrollUpButton:SetDisabledTexture("Interface\\AddOns\\MyAddon\\Media\\UpButton-Disabled")
-
--- Example of applying a color or custom image to the Thumb (Slider)
-local thumb = scrollbar:GetThumbTexture()
-thumb:SetTexture("Interface/Buttons/MinimalScrollbarProportional")
-]==]--

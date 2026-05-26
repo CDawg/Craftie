@@ -39,17 +39,17 @@ Craftie.Frame.ScrollRecipesList:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesList:SetHeight(Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 0, 0)
 Craftie.Frame.ScrollRecipesList:SetBackdrop(Craftie.Backdrop.General)
---Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0.1) --slight blue
-Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue
+Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0)
 Craftie.Frame.ScrollRecipesList:SetBackdropBorderColor(1, 1, 1, 0)
+
 Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollRecipesList.Child, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
-Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -25) --room for search bar
+Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -28) --room for search bar
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 10, 25) --room for results
 Craftie.Frame.ScrollRecipesListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipesListChildFrame, Craftie.Frame.ScrollRecipesList.Child)
 Craftie.Frame.ScrollRecipesListChildFrame:SetSize(Craftie.Frame.ScrollRecipes_Width, Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipesList.Child:SetScrollChild(Craftie.Frame.ScrollRecipesListChildFrame)
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:ClearAllPoints()
-Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT", 0, 5) --room for search bar
+Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT", 0, 8) --room for search bar
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -42, -10) --room for results
 
 Craftie.Frame.ScrollRecipes.ResultsFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipes.ResultsFrame, Craftie.Frame.ScrollRecipes, "BackdropTemplate", 525)
@@ -60,7 +60,7 @@ Craftie.Frame.ScrollRecipes.ResultsBack = Craftie.Frame.ScrollRecipes.ResultsFra
 Craftie.Frame.ScrollRecipes.ResultsBack:SetSize(Craftie.Frame.ScrollRecipes.ResultsFrame:GetWidth(), 32)
 Craftie.Frame.ScrollRecipes.ResultsBack:SetPoint("TOPLEFT", 0, 10)
 Craftie.Frame.ScrollRecipes.ResultsBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
---Craftie.Frame.ScrollRecipes.ResultsBack:SetAlpha(0.8)
+Craftie.Frame.ScrollRecipes.ResultsBack:SetAlpha(0.6)
 Craftie.Frame.ScrollRecipes.Results = Craftie.Frame.ScrollRecipes.ResultsFrame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipes.Results:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Frame.ScrollRecipes.Results:SetPoint("TOPLEFT", 8, -4)
@@ -86,11 +86,19 @@ Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollPar
 Craftie.Frame.Search.Recipes:SetWidth(276)
 Craftie.Frame.Search.Recipes:SetHeight(24)
 Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -1)
-Craftie.Frame.Search.Recipes:SetBackdrop(Craftie.Backdrop.Opaque)
-Craftie.Frame.Search.Recipes:SetBackdropColor(0, 0, 0, 1)
-Craftie.Frame.Search.Recipes:SetBackdropBorderColor(1, 1, 1, 0.5)
+--Craftie.Frame.Search.Recipes:SetBackdrop(Craftie.Backdrop.Opaque)
+--Craftie.Frame.Search.Recipes:SetBackdropColor(0, 0, 0, 1)
+--Craftie.Frame.Search.Recipes:SetBackdropBorderColor(1, 1, 1, 0.5)
 Craftie.Frame.Search.Recipes:SetFrameStrata("MEDIUM")
-Craftie.Frame.Search.Recipes.Icon = Craftie.Frame.Search.Recipes:CreateTexture(nil, "ARTWORK")
+
+Craftie.Frame.Search.Recipes.Back = Craftie.Frame.Search.Recipes:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Search.Recipes.Back:SetSize(Craftie.Frame.Search.Recipes:GetWidth()-1, 28)
+Craftie.Frame.Search.Recipes.Back:SetPoint("TOPLEFT", 0, -2)
+Craftie.Frame.Search.Recipes.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
+Craftie.Frame.Search.Recipes.Back:SetAlpha(0.6)
+Craftie.Frame.Search.Recipes.Back:SetRotation(-math.pi)
+
+Craftie.Frame.Search.Recipes.Icon = Craftie.Frame.Search.Recipes:CreateTexture(nil, "OVERLAY")
 Craftie.Frame.Search.Recipes.Icon:SetSize(18, 18)
 Craftie.Frame.Search.Recipes.Icon:SetPoint("TOPLEFT", 4, -5)
 Craftie.Frame.Search.Recipes.Icon:SetTexture("Interface/COMMON/UI-Searchbox-Icon")
