@@ -453,7 +453,7 @@ for i=1, Craftie.MAX_RECIPES do
 
   Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
-      self:SetBackdropColor(1, 0.9, 0.8, 0.4)
+      self:SetBackdropColor(1, 0.9, 0.8, 0.2)
       Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 0.8, 1)
     end
   end)

@@ -171,7 +171,7 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth(), 20)
   Craftie.Frame.ScrollPlayersListBack[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
-  Craftie.Frame.ScrollPlayersListBack[i]:SetAlpha(0.6)
+  Craftie.Frame.ScrollPlayersListBack[i]:SetAlpha(0.5)
 
   Craftie.Frame.ScrollPlayersListText[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListText[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
@@ -228,7 +228,6 @@ for i=1, Craftie.MAX_PLAYERS do
     end
   end)
   Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnLeave", function(self)
-    --self:Hide()
     Craftie.Frame.ScrollPlayersListOpt.HL[i]:Hide()
   end)
 
@@ -240,7 +239,7 @@ for i=1, Craftie.MAX_PLAYERS do
   end
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
-      self:SetBackdropColor(0.8, 0.85, 1, 0.42)
+      self:SetBackdropColor(0.8, 0.85, 1, 0.2)
     end
   end)
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnLeave", function(self)

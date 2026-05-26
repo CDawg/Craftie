@@ -78,13 +78,7 @@ Craftie.Frame.TabBarBack = Craftie.Frame.TabBar:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.TabBarBack:SetWidth(62)
 Craftie.Frame.TabBarBack:SetHeight(400)
 Craftie.Frame.TabBarBack:SetPoint("TOPLEFT", 0, 10)
-Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar.png")
-if (Craftie.Game.Version == 2) then
-  Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar_TBC.png")
-end
-if (Craftie.Game.Version == 3) then
-  Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/CraftBar_Wrath.png")
-end
+Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-ProfBar" .. Craftie.Game.Version .. ".png")
 
 local TabSidePosY = 23
 local TabSideSpacing = 37.4 --distance spacing
