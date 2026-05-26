@@ -19,16 +19,10 @@ Craftie.Nav.Tabs = {"Professions", "Updates", "Help", "Logger"}
 Craftie.Wrap = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
 Craftie.Wrap:SetSize(Craftie.Frame:GetWidth()-14, Craftie.Frame:GetHeight()-70)
 Craftie.Wrap:SetPoint("TOPLEFT", 6, -64)
-Craftie.Wrap:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Wrap:SetBackdropColor(0, 1, 0, 0)
-Craftie.Wrap:SetBackdropBorderColor(1, 1, 1, 0)
---[==[
-Craftie.Wrap.BG = Craftie.Wrap:CreateTexture(nil, "BACKGROUND")
-Craftie.Wrap.BG:SetAllPoints(Craftie.Wrap)
-Craftie.Wrap.BG:SetHorizTile(true)
-Craftie.Wrap.BG:SetVertTile(true)
-Craftie.Wrap.BG:SetTexture("Interface/FrameGeneral/UI-Background-Marble", "REPEAT", "REPEAT")
-]==]--
+--Craftie.Wrap:SetBackdrop(Craftie.Backdrop.General)
+--Craftie.Wrap:SetBackdropColor(0, 1, 0, 0)
+--Craftie.Wrap:SetBackdropBorderColor(1, 1, 1, 0)
+
 
 function Craftie.TabBottomSelect(tab, sound)
   Craftie.Frame.ScrollParentPlayers:Hide()

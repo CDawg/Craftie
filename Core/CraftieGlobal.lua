@@ -144,7 +144,7 @@ function Craftie.TabSelect(tab, sound)
   Craftie.Page = prof_name
   Craftie.ProfessionDefault = Craftie.Profession[prof_name]
 
-  C_Timer.After(0.10, function() --give it time to register
+  C_Timer.After(0.1, function() --give it time to register
     local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
     if (search_index == Craftie.Placeholder_Recipes) then
       search_index = ""
@@ -298,7 +298,6 @@ function Craftie.ParsePacket(netpacket)
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData
         Craftie.Notification("Storing Data:|n" .. profString, true)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
-        --Craftie.Open(player, prof) --need to cache player data loading
       end
 
     else
@@ -463,7 +462,6 @@ function Craftie.ItemDetails(item)
     Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 1)
     if (is_enchant) then
       local link = GetSpellLink(item[1])
-      --Craftie.Frame.Craft.HLink:SetText("ENCHANT DATA TEXT HERE")
       Craftie.Frame.Craft.HLink:SetText(link)
       Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
         SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), true)
@@ -760,30 +758,38 @@ function Craftie.OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipes.Results:SetText(total_recipes .. " " .. results)
   end
 
-  if (total_recipes >= 15) then
-    for i=1, Craftie.MAX_RECIPES do
-      Craftie.Frame.ScrollRecipesListItem[i]:Hide() --hide the remainder for high level crafters
-    end
-  else
+  if (total_recipes < 15) then
     for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
       Craftie.Frame.ScrollRecipesListText[i]:SetText("")
       Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
+        --do nothing
       end)
+    end
+  else
+    --hide the remainder for high level crafters
+    for i=1, Craftie.MAX_RECIPES do
+      Craftie.Frame.ScrollRecipesListItem[i]:Hide()
     end
   end
 
-  for i=1, total_recipes do
-    Craftie.Frame.ScrollRecipesListText[i]:SetText(profCache[i][2])
-    Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
-      if (Craftie.EnableScrollFrames) then
-        Craftie.ItemDetails(profCache[i])
-        --clear selections
-        Craftie.Selected_Recipes = i
-        Craftie.SelectScrollItem("Recipes")
-      end
-    end)
-    Craftie.Frame.ScrollRecipesListItem[i]:Show()
+  if (total_recipes == 0) then
+    for i=1, Craftie.MAX_RECIPES do
+      Craftie.Frame.ScrollRecipesListItem[i]:Hide() --just clear the board
+    end
+  else
+    for i=1, total_recipes do
+      Craftie.Frame.ScrollRecipesListText[i]:SetText(profCache[i][2])
+      Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
+        if (Craftie.EnableScrollFrames) then
+          Craftie.ItemDetails(profCache[i])
+          --clear selections
+          Craftie.Selected_Recipes = i
+          Craftie.SelectScrollItem("Recipes")
+        end
+      end)
+      Craftie.Frame.ScrollRecipesListItem[i]:Show()
+    end
   end
 
   Craftie.Frame.Title.Prof:SetText(Craftie.Page)
@@ -816,6 +822,7 @@ function Craftie.Open(player, profession)
     --local prof = profession
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie.GetKeyFromValue(Craftie.Professions, profession, 1)
+      Craftie.Notification("Craftie.Open: Go to " .. profession .. " => " .. player, true)
       Craftie.TabSelect(page, true)
       Craftie.Frame:Show()
     end)

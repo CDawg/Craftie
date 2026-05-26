@@ -164,18 +164,15 @@ hooksecurefunc("SetItemRef", function(link, text, button)
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
-            Craftie.Notification("|cffF54927Crafter [" .. player .. "] has outdated data|r|n")
-          --else
-            --Craftie.Open(player, prof) --need to cache player data loading
+            Craftie.Notification("|cffF54927Warning!|rCrafter [" .. player .. "] has outdated data|n")
           end
           Craftie.UpdateCrafterList()
-          --Craftie.OpenProfessionList()
           --print("open book to player " .. player)
           Craftie.GetCrafterIndex(player)
         end)
       end
       --we still need to open the book, but cache the incoming data
-      C_Timer.After(0.3, function()
+      C_Timer.After(0.2, function()
         Craftie.Open(player, prof) --need to cache player data loading
       end)
     end
