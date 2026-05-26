@@ -21,7 +21,7 @@ Craftie._G = {
   Height = 460,
   Prefix = "Craftie",
   Update = 20260608,
-  Icon   = "icon_default_simple.png",
+  Icon   = "icon_default_simple",
 }
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
