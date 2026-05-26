@@ -33,8 +33,7 @@ Craftie.Frame.ScrollPlayersList:SetWidth(Craftie.Frame.ScrollPlayers_Width+10)
 Craftie.Frame.ScrollPlayersList:SetHeight(Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 5, 0)
 Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.Borderless)
-Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0, 0, 0)
-Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.07)
+Craftie.Frame.ScrollPlayersList:SetBackdropColor(0.2, 0.6, 1, 0.07)
 Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollPlayersList.Child", Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
@@ -148,6 +147,7 @@ Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
 end)
 
 Craftie.Frame.ScrollPlayersListItem={}
+Craftie.Frame.ScrollPlayersListBack={}
 Craftie.Frame.ScrollPlayersListText={}
 Craftie.Frame.ScrollPlayersListSelect={}
 Craftie.Frame.ScrollPlayersListFav={}
@@ -166,18 +166,24 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollPlayersListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
+
+  Craftie.Frame.ScrollPlayersListBack[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth(), 20)
+  Craftie.Frame.ScrollPlayersListBack[i]:SetPoint("TOPLEFT", 0, 0)
+  Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollPlayersListBack[i]:SetAlpha(0.6)
+
   Craftie.Frame.ScrollPlayersListText[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListText[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListText[i]:SetPoint("TOPLEFT", 22, -5)
+
   --Craftie.Frame.ScrollPlayersListText[i]:SetText("Player_" .. i)
   Craftie.Frame.ScrollPlayersListText[i]:SetText("")
   Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayers_Width-30, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
   Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture("Interface/WORLDSTATEFRAME/WORLDSTATEFINALSCORE-HIGHLIGHT")
-  --Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.4)
   Craftie.Frame.ScrollPlayersListSelect[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.50, 0.75, 1)
   Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.6)
@@ -210,7 +216,7 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListOpt.HL[i] = Craftie.Frame.ScrollPlayersListOpt[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetSize(22, 22)
   Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetTexture("Interface/FriendsFrame/UI-FriendsList-Highlight")
+  Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Button-HL-Blue.png")
   Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollPlayersListOpt.HL[i]:Hide()
   Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnEnter", function(self)
@@ -227,17 +233,19 @@ for i=1, Craftie.MAX_PLAYERS do
   end)
 
   if (i % 2 == 0) then
-    Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(0.6, 0.7, 1, 0.1)
+    Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
+  end
+  if (i % 4 == 0) then
+    Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row4.png")
   end
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
-      self:SetBackdropColor(0.8, 0.85, 1, 0.2)
-      --Craftie.Frame.ScrollPlayersListOpt[1]:Hide()
+      self:SetBackdropColor(0.8, 0.85, 1, 0.42)
     end
   end)
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnLeave", function(self)
     if (Craftie.EnableScrollFrames) then
-      --Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
+      self:SetBackdropColor(0.8, 0.85, 1, 0)
       GameTooltip:Hide()
       Craftie.SelectScrollItem("Players")
     end
