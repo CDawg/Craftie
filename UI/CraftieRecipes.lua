@@ -29,12 +29,12 @@ Craftie.ScrollBarBack(Craftie.Frame.ScrollParentRecipes)
 Craftie.Frame.ScrollRecipes_Width = 300
 Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-90
 
-Craftie.Frame.ScrollRecipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentRecipes)
+Craftie.Frame.ScrollRecipes = CreateFrame("Frame", Craftie.Frame.ScrollRecipes, Craftie.Frame.ScrollParentRecipes)
 Craftie.Frame.ScrollRecipes:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipes:SetHeight(Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipes:SetPoint("TOPLEFT", 0, 0)
 
-Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", Craftie.Frame.ScrollRecipesList, Craftie.Frame.ScrollRecipes, "BackdropTemplate", 4)
+Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", Craftie.Frame.ScrollRecipesList, Craftie.Frame.ScrollRecipes, "BackdropTemplate")
 Craftie.Frame.ScrollRecipesList:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesList:SetHeight(Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 0, 0)
@@ -42,7 +42,7 @@ Craftie.Frame.ScrollRecipesList:SetBackdrop(Craftie.Backdrop.General)
 --Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0.1) --slight blue
 Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue
 Craftie.Frame.ScrollRecipesList:SetBackdropBorderColor(1, 1, 1, 0)
-Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", nil, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
+Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollRecipesList.Child, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 3, -25) --room for search bar
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 10, 25) --room for results
 Craftie.Frame.ScrollRecipesListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipesListChildFrame, Craftie.Frame.ScrollRecipesList.Child)
@@ -52,18 +52,15 @@ Craftie.Frame.ScrollRecipesList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT", 0, 5) --room for search bar
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -42, -10) --room for results
 
-Craftie.Frame.ScrollRecipes.ResultsFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipes.ResultsFrame, Craftie.Frame.ScrollRecipes, "BackdropTemplate")
+Craftie.Frame.ScrollRecipes.ResultsFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipes.ResultsFrame, Craftie.Frame.ScrollRecipes, "BackdropTemplate", 525)
 Craftie.Frame.ScrollRecipes.ResultsFrame:SetWidth(Craftie.Frame.ScrollRecipes_Width-25) --scrollbar size
 Craftie.Frame.ScrollRecipes.ResultsFrame:SetHeight(25)
 Craftie.Frame.ScrollRecipes.ResultsFrame:SetPoint("BOTTOMLEFT", 3, -4)
---Craftie.Frame.ScrollRecipes.ResultsFrame:SetBackdrop(Craftie.Backdrop.Borderless)
---Craftie.Frame.ScrollRecipes.ResultsFrame:SetFrameLevel(Craftie.Framelevel.Cover)
---Craftie.Frame.ScrollRecipes.ResultsFrame:SetBackdropColor(0.11, 0.11, 0.1, 0.1)
 Craftie.Frame.ScrollRecipes.ResultsBack = Craftie.Frame.ScrollRecipes.ResultsFrame:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipes.ResultsBack:SetSize(Craftie.Frame.ScrollRecipes.ResultsFrame:GetWidth(), 32)
 Craftie.Frame.ScrollRecipes.ResultsBack:SetPoint("TOPLEFT", 0, 10)
 Craftie.Frame.ScrollRecipes.ResultsBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
-Craftie.Frame.ScrollRecipes.ResultsBack:SetAlpha(0.6)
+--Craftie.Frame.ScrollRecipes.ResultsBack:SetAlpha(0.8)
 Craftie.Frame.ScrollRecipes.Results = Craftie.Frame.ScrollRecipes.ResultsFrame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipes.Results:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Frame.ScrollRecipes.Results:SetPoint("TOPLEFT", 8, -4)
