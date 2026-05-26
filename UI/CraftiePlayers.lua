@@ -17,12 +17,7 @@ Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollPar
 Craftie.Frame.ScrollParentPlayers:SetWidth(210)
 Craftie.Frame.ScrollParentPlayers:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentPlayers:SetPoint("TOPLEFT", 2, -61)
---[==[
-Craftie.Frame.ScrollParentPlayers.Back = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.ScrollParentPlayers.Back:SetSize(185, Craftie._G.Height-95)
-Craftie.Frame.ScrollParentPlayers.Back:SetPoint("TOPLEFT", 4, -5)
-Craftie.Frame.ScrollParentPlayers.Back:SetTexture(Craftie._G.Path .. "images/stationary_players")
-]==]--
+
 Craftie.ScrollBarBack(Craftie.Frame.ScrollParentPlayers)
 
 Craftie.Frame.ScrollPlayers_Width = 210
@@ -37,8 +32,9 @@ Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", Craftie.Frame.ScrollPlaye
 Craftie.Frame.ScrollPlayersList:SetWidth(Craftie.Frame.ScrollPlayers_Width+10)
 Craftie.Frame.ScrollPlayersList:SetHeight(Craftie.Frame.ScrollPlayers_Height)
 Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 5, 0)
-Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.05) --shade
+Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.Borderless)
+Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0, 0, 0)
+Craftie.Frame.ScrollPlayersList:SetBackdropColor(0, 0.4, 1, 0.07)
 Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollPlayersList.Child", Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
@@ -183,7 +179,8 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture("Interface/WORLDSTATEFRAME/WORLDSTATEFINALSCORE-HIGHLIGHT")
   --Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.4)
   Craftie.Frame.ScrollPlayersListSelect[i]:SetBlendMode("ADD")
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.40, 0.45, 0.50)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.50, 0.75, 1)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.6)
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
 --[==[
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
@@ -234,7 +231,7 @@ for i=1, Craftie.MAX_PLAYERS do
   end
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
-      self:SetBackdropColor(1, 1, 1, 0.2)
+      self:SetBackdropColor(0.8, 0.85, 1, 0.2)
       --Craftie.Frame.ScrollPlayersListOpt[1]:Hide()
     end
   end)
@@ -295,24 +292,16 @@ for i=1, Craftie.MAX_PLAYERS do
   end)
 end
 
---might be easier to create a global
+--this also goes to the player scroll item
 function Craftie.GetCrafterIndex(player)
   C_Timer.After(0.1, function() --give the update time to create cached tables
     for i=1, Craftie.MAX_PLAYERS do
       if (player == Craftie.Frame.ScrollPlayersListText[i]:GetText()) then
-        print(player .. " index = " .. i)
+        --print(player .. " index = " .. i)
         Craftie.SelectCrafter(i, player)
       end
     end
   end)
-
-  --[==[
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
-    for crafter_name in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()]) do
-      tset
-    end
-  end
-  ]==]--
 end
 
 function Craftie.SelectCrafter(index, name)

@@ -161,13 +161,21 @@ Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, C
 Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
 Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_alchemy.png")
 Craftie.Frame.CraftParent.Back:SetAlpha(0.2)
-]==]--
+
 Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER")
 Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
 Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
 Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/BackgroundFrameDecor.png")
 Craftie.Frame.CraftParent.Back:SetDesaturation(0.6)
 Craftie.Frame.CraftParent.Back:SetAlpha(0.6)
+]==]--
+
+Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
+Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
+Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background.png")
+--Craftie.Frame.CraftParent.Back:SetDesaturation(0.6)
+Craftie.Frame.CraftParent.Back:SetAlpha(0.3)
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftParent, "BackdropTemplate")
@@ -257,11 +265,14 @@ Craftie.Frame.Craft.Source:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.Craft.Source:Hide()
 
 Craftie.Frame.Craft.Divider = Craftie.Frame.CraftParent:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.Craft.Divider:SetSize(396, 24)
-Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 96, 90)
+Craftie.Frame.Craft.Divider:SetSize(394, 24)
+Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 95, 150)
 Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
 
---COMMON/InsetShadow
+Craftie.Frame.Craft.Divider = Craftie.Frame.CraftParent:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Craft.Divider:SetSize(394, 24)
+Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 95, 90)
+Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
 
 Craftie.Frame.Craft.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(300, 110)
@@ -414,7 +425,8 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListSelect[i]:SetTexture("Interface/WORLDSTATEFRAME/WORLDSTATEFINALSCORE-HIGHLIGHT")
   --Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.4)
   Craftie.Frame.ScrollRecipesListSelect[i]:SetBlendMode("ADD")
-  Craftie.Frame.ScrollRecipesListSelect[i]:SetVertexColor(0.50, 0.50, 0.40)
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetVertexColor(0.70, 0.70, 0.60)
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.8)
   Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
   --UI-Listbox-Highlight2
 

@@ -167,7 +167,7 @@ function Craftie.TabSelect(tab, sound)
     Craftie.Frame.Reagent.Main[i]:Hide()
     Craftie.Frame.Reagent.Back[i]:Hide()
   end
-  --Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_" .. Craftie.Page .. ".png")
+
 end
 
 function Craftie.ClearFocusAll()
@@ -270,28 +270,34 @@ function Craftie.ParsePacket(netpacket)
         local profPack = packet[4]
         local profParse = Craftie.Split(profPack, "|")
         local profName = profParse[1]
-        --Craftie.Open
+
         if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUG)) then
           Craftie.Notification("You were pinged by " .. requester .. " for " .. profName, true)
+          --get my saved prof data and send it
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
           --print("requester " .. requester)
           Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
-          Craftie.Packet.ACK = 1
-          --Craftie.Open(player, prof) --need to cache player data loading
+          Craftie.Packet.ACK = 1 --got an ack
         else
           --rather than a break, just ignore
           Craftie.Notification("Requester == Self. Ignoring", true)
         end
       end
 
-      --handshake, get crafters data
+      --handshake, get crafters data and store it
       if (prefix == Craftie.Packet.Prefix.Data) then
         local crafterName = packet[3]
-        local crafterClass = Craftie.Class[tonumber(packet[4])][1]
-        local profNum  = Craftie.Professions[tonumber(packet[5])][1]
-        local profLevel= packet[6]
-        local crafterData = Craftie.BitCompression(packet[7], true)
-        Craftie.Notification("Receiving Data:|n" .. crafterName .. "|n" .. crafterData, true)
+        --local crafterClass = Craftie.Class[tonumber(packet[4])][1]
+        local crafterClass = packet[4]
+        local profName  = Craftie.Professions[tonumber(packet[5])][1]
+        local profNum   = packet[5]
+        local profLevel = packet[6]
+        local crafterData = Craftie.BitCompression(packet[7], true) --decompress
+        Craftie.Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, true)
+        --store it
+        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData
+        Craftie.Notification("Storing Data:|n" .. profString, true)
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
         --Craftie.Open(player, prof) --need to cache player data loading
       end
 
@@ -519,7 +525,7 @@ function Craftie.SelectScrollItem(scrollFrame)
         Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
         Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
         if (i % 2 == 0) then
-          Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(0.8, 0.9, 1, 0.1)
+          Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(0.6, 0.7, 1, 0.1)
         end
       end
     end

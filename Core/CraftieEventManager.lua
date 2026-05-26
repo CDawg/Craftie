@@ -169,7 +169,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
           end
           Craftie.UpdateCrafterList()
           --Craftie.OpenProfessionList()
-          print("open book to player " .. player)
+          --print("open book to player " .. player)
           Craftie.GetCrafterIndex(player)
         end)
       end
