@@ -760,13 +760,17 @@ function Craftie.OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipes.Results:SetText(total_recipes .. " " .. results)
   end
 
-  for i=1, Craftie.MAX_RECIPES do
-    --Craftie.Frame.ScrollRecipesListItem[i]:Hide()
-    Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
-    Craftie.Frame.ScrollRecipesListText[i]:SetText("")
-    Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
-      --do nothing?
-    end)
+  if (total_recipes >= 15) then
+    for i=1, Craftie.MAX_RECIPES do
+      Craftie.Frame.ScrollRecipesListItem[i]:Hide() --hide the remainder for high level crafters
+    end
+  else
+    for i=1, Craftie.MAX_RECIPES do
+      Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
+      Craftie.Frame.ScrollRecipesListText[i]:SetText("")
+      Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
+      end)
+    end
   end
 
   for i=1, total_recipes do
