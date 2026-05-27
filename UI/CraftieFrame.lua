@@ -171,26 +171,24 @@ Craftie.Frame.CrafterProgLevel:SetJustifyH("LEFT")
 Craftie.Frame.CrafterProgLevel:SetText("0 / 0")
 
 Craftie.Frame.Button={}
-Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "BORDER")
+Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "OVERLAY")
 Craftie.Frame.Button.Frame:SetSize(64, 64)
-Craftie.Frame.Button.Frame:SetPoint("TOPRIGHT", -1, 0)
+Craftie.Frame.Button.Frame:SetPoint("TOPRIGHT", -1, 1)
 Craftie.Frame.Button.Frame:SetTexture(Craftie._G.Path .. "Images/UIFrameMetal-RightDouble.png")
+Craftie.Frame.Button.Frame:SetDrawLayer("OVERLAY", 1)
 
 Craftie.Frame.Button.Options= CreateFrame("Button", nil, Craftie.Frame, "UIPanelButtonTemplate")
-Craftie.Frame.Button.Options:SetSize(25, 23)
-Craftie.Frame.Button.Options:SetPoint("TOPRIGHT", -23, 1)
+Craftie.Frame.Button.Options:SetSize(25, 24)
+Craftie.Frame.Button.Options:SetPoint("TOPRIGHT", -23, 2)
 Craftie.Frame.Button.Options.icon = Craftie.Frame.Button.Options:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Button.Options.icon:SetSize(12, 12)
-Craftie.Frame.Button.Options.icon:SetPoint("CENTER", 0, 0)
+Craftie.Frame.Button.Options.icon:SetPoint("CENTER", 0, -1)
 Craftie.Frame.Button.Options.icon:SetTexture("Interface/Buttons/UI-OptionsButton")
 Craftie.Frame.Button.Options:SetScript("OnClick", function(self)
   Craftie.Frame:Hide()
   Settings.OpenToCategory(Craftie.Settings.Category:GetID())
   --Craftie.FrameOptions:Show()
 end)
-
---Craftie.Frame.Button.Minimap={}
---Craftie.Frame.Button.Minimap.Border={}
 
 Craftie.Frame.Button.Minimap = CreateFrame("Button", nil, Minimap)
 Craftie.Frame.Button.Minimap:SetFrameLevel(499)
