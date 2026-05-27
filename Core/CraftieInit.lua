@@ -35,14 +35,9 @@ function Craftie.Init()
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
   end)
 
-  Craftie.Notification("Loaded. Type " .. SLASH_Craftie1 .. " to open.")
+  --Craftie.Notification("Loaded. Type " .. SLASH_Craftie1 .. " to open.")
   --whisper self to prep incoming comms
   Craftie.SendPacket(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
 
   Craftie.UpdateCrafterList()
 end
-
---run after everything has been built
-C_Timer.After(0.3, function()
-  Craftie.Init()
-end)

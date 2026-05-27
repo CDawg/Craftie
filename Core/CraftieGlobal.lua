@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.DEBUG = false
+Craftie.DEBUG = true
 
 Craftie._G = {
   Author = "Porthias",
