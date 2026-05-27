@@ -14,7 +14,7 @@ the copyright holders.
 ]==]--
 
 Craftie.Nav={}
-Craftie.Nav.Tabs = {"Professions", "Updates", "Help", "Logger"}
+Craftie.Nav.Tabs = {"Professions", "Updates", "Help"}
 
 Craftie.Wrap = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
 Craftie.Wrap:SetSize(Craftie.Frame:GetWidth()-14, Craftie.Frame:GetHeight()-70)
@@ -28,7 +28,6 @@ function Craftie.TabBottomSelect(tab, sound)
   Craftie.Frame.ScrollParentPlayers:Hide()
   Craftie.Frame.ScrollParentRecipes:Hide()
   Craftie.Frame.CraftParent:Hide()
-  Craftie.Logger:Hide()
   Craftie.Updates:Hide()
   Craftie.Credit:Hide()
   Craftie.Help:Hide()
@@ -60,7 +59,7 @@ function Craftie.TabBottomSelect(tab, sound)
   end
   if (tab == 4) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Logger:Show()
+    --Craftie.Logger:Show()
   end
 
   if (sound) then
@@ -74,7 +73,7 @@ function Craftie.TabBottomSelect(tab, sound)
 end
 
 Craftie.TabBottom={}
-local bottomTabOffset = 350
+local bottomTabOffset = 265
 for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(80, 38)

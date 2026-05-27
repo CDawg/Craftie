@@ -98,3 +98,83 @@ SetTexCoord(0.5, 1, 0, 1)
 
 --slice right side
 SetTexCoord(1, 0.5, 0, 1)
+
+
+
+
+-- Create Main Frame
+local f = CreateFrame("Frame", "MinimalScrollFrameTest", UIParent, "BackdropTemplate")
+f:SetSize(300, 400)
+f:SetPoint("CENTER")
+f:SetBackdrop({
+    bgFile = "Interface\\Tooltips\\UI-Tooltip-Background",
+    edgeFile = "Interface\\Tooltips\\UI-Tooltip-Border",
+    edgeSize = 16,
+    insets = { left = 4, right = 4, top = 4, bottom = 4 }
+})
+f:SetBackdropColor(0, 0, 0, 0.8)
+
+-- Create Scroll Frame
+local scrollFrame = CreateFrame("ScrollFrame", "$parent_ScrollFrame", f)
+scrollFrame:SetPoint("TOPLEFT", f, "TOPLEFT", 10, -10)
+scrollFrame:SetPoint("BOTTOMRIGHT", f, "BOTTOMRIGHT", -30, 10)
+
+-- Create Content Frame (Child of Scroll Frame)
+local content = CreateFrame("Frame", "$parent_Content", scrollFrame)
+content:SetSize(280, 800) -- Set a taller height to enable scrolling
+scrollFrame:SetScrollChild(content)
+
+-- Add some content to demonstrate scrolling
+for i = 1, 10 do
+    local text = content:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+    text:SetPoint("TOPLEFT", 10, -(i - 1) * 50)
+    text:SetText("Minimal Scroll Line " .. i)
+end
+
+-- Create Minimal ScrollBar
+local scrollBar = CreateFrame("Slider", "$parent_ScrollBar", scrollFrame, "UIPanelScrollBarTemplate")
+scrollBar:SetPoint("TOPLEFT", scrollFrame, "TOPRIGHT", 4, 0)
+scrollBar:SetPoint("BOTTOMLEFT", scrollFrame, "BOTTOMRIGHT", 4, 0)
+scrollBar:SetWidth(12)
+
+-- Hide default textures for a minimalist look
+_G[scrollBar:GetName() .. "BG"]:Hide()
+_G[scrollBar:GetName() .. "Top"]:Hide()
+_G[scrollBar:GetName() .. "Bottom"]:Hide()
+_G[scrollBar:GetName() .. "Middle"]:Hide()
+
+-- Style the Thumb (Slider)
+local thumb = _G[scrollBar:GetName() .. "ThumbTexture"]
+thumb:SetTexture("Interface\\Tooltips\\UI-Tooltip-Background")
+thumb:SetColorTexture(0.5, 0.5, 0.5, 0.8)
+thumb:SetWidth(8)
+
+-- Hook Scroll Frame to automatically handle scrollbar visibility and range
+scrollFrame:SetScript("OnScrollRangeChanged", function(self, xrange, yrange)
+    local _, maxRange = scrollBar:GetMinMaxValues()
+    if yrange > 0 then
+        scrollBar:SetMinMaxValues(0, yrange)
+        scrollBar:Show()
+    else
+        scrollBar:SetMinMaxValues(0, 0)
+        scrollBar:Hide()
+    end
+end)
+
+-- Enable Mouse Wheel Scrolling
+f:EnableMouseWheel(true)
+f:SetScript("OnMouseWheel", function(self, delta)
+    local current = scrollBar:GetValue()
+    if delta < 0 then
+        scrollBar:SetValue(current + 20)
+    else
+        scrollBar:SetValue(current - 20)
+    end
+end)
+
+-- Hide/Show the scrollbar thumb if it doesn't need scrolling
+scrollBar:SetScript("OnValueChanged", function(self, value)
+    scrollFrame:SetVerticalScroll(value)
+end)
+
+ScrollUpButton:Hide()

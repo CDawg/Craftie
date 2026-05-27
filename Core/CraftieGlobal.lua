@@ -77,7 +77,7 @@ function Craftie.Notification(msg, debug)
   if (Craftie.Frame ~= nil) then
     local history = Craftie.Logger.Data:GetText()
     --chrono top
-    Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%Y%m%d %H:%M:%S") .. "]|r|n" .. msg .. "|n|n" .. history)
+    Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%m%d %H:%M:%S") .. "]|r " .. msg .. "|n" .. history)
     --Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%Y%m%d%H%M%S") .. "]|r|n" .. msg .. "|n|n" .. history)
     --Craftie.Logger.Data:SetText(history .. "|n|n ----- " .. date("%Y%m%d [%H%M%S]") .. " -----|n" .. msg)
   end
@@ -570,7 +570,7 @@ function Craftie.ResetCrafterBuild()
   for k,v in pairs(Craftie.Professions) do
     Craftie.ProfileBuilt[v[1]] = 0
   end
-  Craftie.Notification("Craftie.ResetCrafterBuild() flags", true)
+  Craftie.Notification("Craftie.ResetCrafterBuild()", true)
 end
 
 function Craftie.CrafterDataBuild(profName, profLevel)
