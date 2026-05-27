@@ -91,3 +91,10 @@ achievement: Opens the achievement frame.
 player/unit: Represents characters, allowing whisper, inspect, or invite options.
 currency: Displays currency tooltips.
 enchant:
+
+
+--slice left side
+SetTexCoord(0.5, 1, 0, 1)
+
+--slice right side
+SetTexCoord(1, 0.5, 0, 1)

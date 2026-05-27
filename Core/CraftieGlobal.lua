@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.DEBUG = true
+Craftie.DEBUG = false
 
 Craftie._G = {
   Author = "Porthias",
@@ -21,7 +21,7 @@ Craftie._G = {
   Height = 460,
   Prefix = "Craftie",
   Update = 20260608,
-  Icon   = "icon_default_simple",
+  Icon   = "UI-Craftie-Icon-Simple",
 }
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
@@ -817,8 +817,8 @@ end
 --add a timer for parsed data
 function Craftie.Open(player, profession)
   if (player) then
-    print("Craftie.Open player: " .. player)
-    print("Craftie.Open profession: " .. profession)
+    Craftie.Notification("Craftie.Open player: " .. player, true)
+    Craftie.Notification("Craftie.Open profession: " .. profession, true)
     --local prof = profession
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie.GetKeyFromValue(Craftie.Professions, profession, 1)
@@ -889,15 +889,15 @@ function Craftie.DividerHorz(parentFrame, x, y, w)
   DividerFrame.Midd:SetSize(w, 12)
   DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
   DividerFrame.Midd:SetHorizTile(true)
-  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "images/FrameDividerMidd.png", "REPEAT")
+  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "Images/FrameDividerMidd.png", "REPEAT")
   DividerFrame.Left = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Left:SetSize(16, 12)
   DividerFrame.Left:SetPoint("TOPLEFT", x, y)
-  DividerFrame.Left:SetTexture(Craftie._G.Path .. "images/FrameDividerEnd.png")
+  DividerFrame.Left:SetTexture(Craftie._G.Path .. "Images/FrameDividerEnd.png")
   DividerFrame.Right = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Right:SetSize(16, 12)
   DividerFrame.Right:SetPoint("TOPLEFT", w, y)
-  DividerFrame.Right:SetTexture(Craftie._G.Path .. "images/FrameDividerEnd.png")
+  DividerFrame.Right:SetTexture(Craftie._G.Path .. "Images/FrameDividerEnd.png")
   DividerFrame.Right:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1) --mirror
   --DividerFrame.Right:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0) -- Flips vertically
   --DividerFrame.Right:SetRotation(-math.pi)
@@ -909,15 +909,15 @@ function Craftie.DividerVert(parentFrame, x, y, h)
   DividerFrame.Midd:SetSize(12, h)
   DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
   DividerFrame.Midd:SetVertTile(true)
-  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "images/FrameDividerMiddVert.png", "REPEAT")
+  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "Images/FrameDividerMiddVert.png", "REPEAT")
   DividerFrame.Top = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Top:SetSize(12, 16)
   DividerFrame.Top:SetPoint("TOPLEFT", x+16, y+16)
-  DividerFrame.Top:SetTexture(Craftie._G.Path .. "images/FrameDividerEndVert.png")
+  DividerFrame.Top:SetTexture(Craftie._G.Path .. "Images/FrameDividerEndVert.png")
   DividerFrame.Bot = parentFrame:CreateTexture(nil, "ARTWORK")
   DividerFrame.Bot:SetSize(12, 16)
   DividerFrame.Bot:SetPoint("TOPLEFT", x+16, -h-15)
-  DividerFrame.Bot:SetTexture(Craftie._G.Path .. "images/FrameDividerEndVert.png")
+  DividerFrame.Bot:SetTexture(Craftie._G.Path .. "Images/FrameDividerEndVert.png")
   DividerFrame.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
   DividerFrame.Bot:SetRotation(-math.pi)
 end

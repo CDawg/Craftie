@@ -34,12 +34,12 @@ Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.BotShadow:SetSize(Craftie.Frame:GetWidth()-12, 35)
 Craftie.Frame.BotShadow:SetPoint("BOTTOMLEFT", 6, -1)
 Craftie.Frame.BotShadow:SetHorizTile(true)
-Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "images/ShadowOverlay-Bottom.png", "REPEAT")
+Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "Images/ShadowOverlay-Bottom.png", "REPEAT")
 
 Craftie.Frame.Icon = Craftie.Frame:CreateTexture(nil, "OVERLAY")
 Craftie.Frame.Icon:SetSize(74, 74)
 Craftie.Frame.Icon:SetPoint("TOPLEFT", -12, 14)
-Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "images/icon_default.png")
+Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png")
 Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 7)
 Craftie.Frame.Icon:Hide()
 --[==[
@@ -208,7 +208,7 @@ Craftie.Frame.Button.Minimap.Icon:SetTexture(Craftie._G.Path .. "Images/" .. Cra
 Craftie.Frame.Button.Minimap.IconGlow = Craftie.Frame.Button.Minimap:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Button.Minimap.IconGlow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+4, Craftie.Frame.Button.Minimap:GetHeight()+4)
 Craftie.Frame.Button.Minimap.IconGlow:SetPoint("CENTER", 0, 0)
-Craftie.Frame.Button.Minimap.IconGlow:SetTexture(Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. "_glow.png")
+Craftie.Frame.Button.Minimap.IconGlow:SetTexture(Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. "-Glow.png")
 Craftie.Frame.Button.Minimap.IconGlow:SetAlpha(0.6)
 Craftie.Frame.Button.Minimap.IconGlow:Hide()
 

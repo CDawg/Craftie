@@ -6,7 +6,7 @@
 ## Author: Porthias (aka Port)
 ## SavedVariables: CraftieDB
 ## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
-## IconTexture: Interface\AddOns\Craftie\Images\icon_default_simple.png
+## IconTexture: Interface\AddOns\Craftie\Images\UI-Crafie-Icon-Simple.png
 
 Core/CraftieLibrary.lua
 # Localization
