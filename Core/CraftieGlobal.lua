@@ -126,6 +126,15 @@ function Craftie.CloseAllPlayerMenus()
   Craftie.EnableScrollFrames = true
 end
 
+function Craftie.ClearCraftWindow()
+  Craftie.Frame.Craft:Hide()
+
+  for i=1, Craftie.MAX_REAGENTS do
+    Craftie.Frame.Reagent.Main[i]:Hide()
+    Craftie.Frame.Reagent.Back[i]:Hide()
+  end
+end
+
 function Craftie.TabSelect(tab, sound)
   local prof_name = Craftie.Professions[tab][1]
   Craftie.CloseAllPlayerMenus()
@@ -161,12 +170,7 @@ function Craftie.TabSelect(tab, sound)
   Craftie.SelectScrollItem("Recipes")
   Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
 
-  Craftie.Frame.Craft:Hide()
-
-  for i=1, Craftie.MAX_REAGENTS do
-    Craftie.Frame.Reagent.Main[i]:Hide()
-    Craftie.Frame.Reagent.Back[i]:Hide()
-  end
+  --Craftie.ClearCraftWindow()
 
 end
 
@@ -735,6 +739,9 @@ function Craftie.OpenProfessionList(profArray, search, player)
   local total_recipes = #profCache
   --local total_search = 0
   local results = "|cfffffb63Recipe(s)"
+
+  Craftie.ClearCraftWindow()
+
   Craftie.Frame.ScrollRecipes.Results:SetText("")
   Craftie.Frame.ScrollRecipes.Empty:SetText("")
   --Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
