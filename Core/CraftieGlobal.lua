@@ -260,7 +260,6 @@ function Craftie.ParsePacket(netpacket)
 
     prefix  = packet[1]
     version = tonumber(packet[2])
-
     if (version > tonumber(Craftie._G.Version)) then
       if (Craftie.Notified ~= 1) then --dont spam the requester
         Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]")
@@ -536,10 +535,10 @@ function Craftie.SelectScrollItem(scrollFrame)
       for i=1, Craftie.MAX_PLAYERS do
         Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
-        Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
+        Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
       end
       Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Players]:Show()
-      Craftie.Frame.ScrollPlayersListText[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.ScrollPlayersListName[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
     end
     if (scrollFrame == "Recipes") then
       for i=1, Craftie.MAX_RECIPES do

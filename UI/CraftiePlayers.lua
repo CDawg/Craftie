@@ -155,7 +155,7 @@ end)
 
 Craftie.Frame.ScrollPlayersListItem={}
 Craftie.Frame.ScrollPlayersListBack={}
-Craftie.Frame.ScrollPlayersListText={}
+Craftie.Frame.ScrollPlayersListName={}
 Craftie.Frame.ScrollPlayersListSelect={}
 Craftie.Frame.ScrollPlayersListFav={}
 Craftie.Frame.ScrollPlayersListNet={}
@@ -180,13 +180,12 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
   Craftie.Frame.ScrollPlayersListBack[i]:SetAlpha(0.5)
 
-  Craftie.Frame.ScrollPlayersListText[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollPlayersListText[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Frame.ScrollPlayersListText[i]:SetPoint("TOPLEFT", 28, -5)
-
-  --Craftie.Frame.ScrollPlayersListText[i]:SetText("Player_" .. i)
-  Craftie.Frame.ScrollPlayersListText[i]:SetText("")
-  Craftie.Frame.ScrollPlayersListText[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollPlayersListName[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollPlayersListName[i]:SetPoint("TOPLEFT", 20, -5)
+  --Craftie.Frame.ScrollPlayersListName[i]:SetText("Player_" .. i)
+  Craftie.Frame.ScrollPlayersListName[i]:SetText("")
+  Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
@@ -197,11 +196,10 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
 
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.ScrollPlayersListNet[i]:SetSize(10, 10)
-  Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 18, -5)
+  Craftie.Frame.ScrollPlayersListNet[i]:SetSize(8, 8)
+  Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 18, -6)
   Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
-  Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Online")
-  --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
+  Craftie.Frame.ScrollPlayersListNet[i]:Hide()
 
   Craftie.Frame.ScrollPlayersListFav[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListFav[i]:SetSize(14, 14)
@@ -229,7 +227,7 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListOpt.HL[i]:Hide()
   Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
-      if (Craftie.Frame.ScrollPlayersListText[i]:GetText() ~= nil) then
+      if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
         self:Show()
       end
       Craftie.Frame.ScrollPlayersListOpt.HL[i]:Show()
@@ -261,8 +259,8 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnClick", function(self)
     Craftie.CloseAllPlayerMenus()
     if (Craftie.EnableScrollFrames) then
-      if (Craftie.Frame.ScrollPlayersListText[i]:GetText() ~= nil) then
-        Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListText[i]:GetText())
+      if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
+        Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
         if (i > 1) then
           Craftie.Frame.ScrollPlayersListOpt[i]:Show()
         end
@@ -295,7 +293,7 @@ for i=1, Craftie.MAX_PLAYERS do
     Craftie.Frame.ScrollRecipesList.Child:EnableMouse(false)
     Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(false)
     Craftie.EnableScrollFrames = false
-    local crafter = Craftie.Frame.ScrollPlayersListText[i]:GetText()
+    local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
     if (crafter ~= nil) then
       Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Show()
       local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListOpt[i]:GetPoint()
@@ -311,7 +309,7 @@ end
 function Craftie.GetCrafterIndex(player)
   C_Timer.After(0.1, function() --give the update time to create cached tables
     for i=1, Craftie.MAX_PLAYERS do
-      if (player == Craftie.Frame.ScrollPlayersListText[i]:GetText()) then
+      if (player == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
         --print(player .. " index = " .. i)
         Craftie.SelectCrafter(i, player)
       end
@@ -359,7 +357,7 @@ function Craftie.UpdateCrafterList(search)
   for i=1, Craftie.MAX_PLAYERS do
     --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
     Craftie.Frame.ScrollPlayersListFav[i]:Hide()
-    Craftie.Frame.ScrollPlayersListText[i]:SetText("")
+    Craftie.Frame.ScrollPlayersListName[i]:SetText("")
   end
 
   C_Timer.After(0.10, function()
@@ -377,7 +375,7 @@ function Craftie.UpdateCrafterList(search)
       --print("num matches " .. matches)
     end
     for k,v in ipairs(search_list) do
-      Craftie.Frame.ScrollPlayersListText[k+1]:SetText(v)
+      Craftie.Frame.ScrollPlayersListName[k+1]:SetText(v)
       Craftie.Frame.ScrollPlayersListFav[k+1]:Show()
     end
 
@@ -387,7 +385,7 @@ function Craftie.UpdateCrafterList(search)
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
       for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
         --i = i+1
-        Craftie.Frame.ScrollPlayersListText[i]:SetText(k)
+        Craftie.Frame.ScrollPlayersListName[i]:SetText(k)
         --Craftie.Frame.ScrollPlayersListNet[i]:Show() --online status only works for guildies
         Craftie.Frame.ScrollPlayersListFav[i]:Show()
       end
@@ -401,7 +399,7 @@ function Craftie.UpdateCrafterList(search)
     --Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(20)
   end)
 
-  Craftie.Frame.ScrollPlayersListText[1]:SetText("All " .. Craftie.Page .. " Recipes")
+  Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
   --[==[
   Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/LFGFRAME/UI-LFG-ICON-LOCK")
   Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
