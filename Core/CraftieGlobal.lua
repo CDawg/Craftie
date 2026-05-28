@@ -941,6 +941,30 @@ function Craftie.DividerVert(parentFrame, x, y, h)
   DividerFrame.Bot:SetRotation(-math.pi)
 end
 
+function Craftie.ScrollBarFrame(frame)
+  local _scrollUp = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Arr.png"
+  local _scrollDn = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Dn.png"
+  local _scrollSlider = frame.ScrollBar:GetThumbTexture()
+  _scrollSlider:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Slider.png")
+  _scrollSlider:SetSize(10, 44)
+  frame.ScrollBar.ScrollUpButton:SetNormalTexture(_scrollUp)
+  frame.ScrollBar.ScrollUpButton:SetPushedTexture(_scrollUp)
+  frame.ScrollBar.ScrollUpButton:SetHighlightTexture(_scrollUp, "ADD")
+  frame.ScrollBar.ScrollUpButton:SetDisabledTexture(_scrollUp, "ADD")
+  frame.ScrollBar.ScrollUpButton:SetSize(15, 12)
+  frame.ScrollBar.ScrollDownButton:SetNormalTexture(_scrollDn)
+  frame.ScrollBar.ScrollDownButton:SetPushedTexture(_scrollDn)
+  frame.ScrollBar.ScrollDownButton:SetHighlightTexture(_scrollDn, "ADD")
+  frame.ScrollBar.ScrollDownButton:SetDisabledTexture(_scrollDn, "ADD")
+  frame.ScrollBar.ScrollDownButton:SetSize(15, 12)
+  ScrollBack = frame:CreateTexture(nil, "BORDER")
+  ScrollBack:SetSize(21, frame:GetHeight()-30)
+  ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, 0)
+  ScrollBack:SetVertTile(true)
+  ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")
+end
+
+--[==[
 function Craftie.ScrollBarBack(parentFrame)
   local ScrollBar={}
   ScrollBar.Midd = parentFrame:CreateTexture(nil, "BORDER")
@@ -959,3 +983,4 @@ function Craftie.ScrollBarBack(parentFrame)
   ScrollBar.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
   ScrollBar.Bot:SetRotation(-math.pi)
 end
+]==]--
