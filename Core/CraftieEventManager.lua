@@ -81,7 +81,6 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie.ResetCrafterBuild()
-      Craftie.Notification("SKILL_LINES_CHANGED", true)
     end
 
     if (event == "TRADE_SKILL_SHOW") then
@@ -100,6 +99,10 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
           Craftie.ParsePacket(netpacket)
         end
       end
+    end
+
+    if (prefix == Craftie._G.Prefix) then
+      Craftie.Notification("|cFF92CEFCEvent:|r " .. event, true)
     end
 
   end
@@ -164,7 +167,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
-            Craftie.Notification("|cffF54927Warning!|r [" .. player .. "] has outdated data|n")
+            Craftie.Notification("|cffF54927Warning!|r [" .. player .. "] has outdated data")
           end
           Craftie.UpdateCrafterList()
           --print("open book to player " .. player)

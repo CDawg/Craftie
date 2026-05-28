@@ -67,19 +67,32 @@ Craftie.Backdrop = {
   }
 }
 
+Craftie.LogKey = 0
+Craftie.Log = {}
+Craftie.SortOrder = 0
 function Craftie.Notification(msg, debug)
+  local logstring = ""
   if ((debug) and (Craftie.DEBUG)) then
     print(Craftie._G.Title .. " DEBUG: " .. msg)
   end
   if (not debug) then
     print(Craftie._G.Title .. " " .. msg)
   end
+  --log everything, regardless of debug mode
   if (Craftie.Frame ~= nil) then
-    local history = Craftie.Logger.Data:GetText()
-    --chrono top
-    Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%m%d %H:%M:%S") .. "]|r " .. msg .. "|n" .. history)
-    --Craftie.Logger.Data:SetText("|cFFFFFC99[" .. date("%Y%m%d%H%M%S") .. "]|r|n" .. msg .. "|n|n" .. history)
-    --Craftie.Logger.Data:SetText(history .. "|n|n ----- " .. date("%Y%m%d [%H%M%S]") .. " -----|n" .. msg)
+    Craftie.LogKey = Craftie.LogKey +1
+    Craftie.Log[Craftie.LogKey] = "|cFFFFFC99[" .. date("%m%d%H%M%S") .. "]|r " .. msg
+
+    if (Craftie.SortOrder == 1) then
+      for k,v in Craftie.SortReverseByKey(Craftie.Log) do
+        logstring = logstring .. v .. "|n"
+      end
+    else
+      for k,v in ipairs(Craftie.Log) do
+        logstring = logstring .. v .. "|n"
+      end
+    end
+    Craftie.Logger.Data:SetText(logstring)
   end
 end
 
@@ -732,7 +745,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
     profCache = Craftie.CrafterDataParse(Craftie.Page, player)
     --Craftie.Frame.Title.Sub:SetText(player)
   else
-    Craftie.Notification("Using a default Crafting book", true)
+    --Craftie.Notification("Using a default Crafting book", true)
     profCache = Craftie.CopyTable(profArray)
   end
 

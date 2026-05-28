@@ -254,3 +254,17 @@ function Craftie.SortTableByMatch(tbl, search)
 
     return matchCount
 end
+
+function Craftie.SortReverseByKey(t)
+  local keys = {}
+  for k in pairs(t) do table.insert(keys, k) end
+  table.sort(keys, function(a, b) return a > b end)
+
+  local i = 0
+  return function()
+      i = i + 1
+      if keys[i] then
+          return keys[i], t[keys[i]]
+      end
+  end
+end
