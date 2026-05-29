@@ -13,33 +13,29 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+Craftie.Frame.ScrollRecipes_Width = 300
+Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-134
+
 Craftie.Frame.ScrollParentRecipes = CreateFrame("Frame", Craftie.Frame.ScrollMain, Craftie.Frame, "InsetFrameTemplate")
-Craftie.Frame.ScrollParentRecipes:SetWidth(300)
+Craftie.Frame.ScrollParentRecipes:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollParentRecipes:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentRecipes:SetPoint("TOPLEFT", 212, -61)
 
 Craftie.Frame.ScrollParentRecipes.Back = Craftie.Frame.ScrollParentRecipes:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ScrollParentRecipes.Back:SetSize(Craftie.Frame.ScrollParentRecipes:GetWidth()-20, Craftie.Frame.ScrollParentRecipes:GetHeight())
 Craftie.Frame.ScrollParentRecipes.Back:SetPoint("TOPLEFT", 0, 0)
---Craftie.Frame.ScrollParentRecipes.Back:SetTexture("Interface/QUESTFRAME/QuestBookBG")
 Craftie.Frame.ScrollParentRecipes.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Recipes.png")
-
-Craftie.Frame.ScrollRecipes_Width = 300
-Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-90
 
 Craftie.Frame.ScrollRecipes = CreateFrame("Frame", Craftie.Frame.ScrollRecipes, Craftie.Frame.ScrollParentRecipes)
 Craftie.Frame.ScrollRecipes:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipes:SetHeight(Craftie.Frame.ScrollRecipes_Height)
-Craftie.Frame.ScrollRecipes:SetPoint("TOPLEFT", 0, 0)
+Craftie.Frame.ScrollRecipes:SetPoint("TOPLEFT", 0, -20)
 
 Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", Craftie.Frame.ScrollRecipesList, Craftie.Frame.ScrollRecipes, "BackdropTemplate")
 Craftie.Frame.ScrollRecipesList:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesList:SetHeight(Craftie.Frame.ScrollRecipes_Height-2)
 Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 0, 0)
---Craftie.Frame.ScrollRecipesList:SetBackdrop(Craftie.Backdrop.General)
---Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0)
---Craftie.Frame.ScrollRecipesList:SetBackdropBorderColor(1, 1, 1, 0)
---Interface/Buttons/UI-Panel-MinimizeButton-Up
+
 Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollRecipesList.Child, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT", 5, -24)
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 10, 0)
@@ -52,10 +48,10 @@ Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.
 
 Craftie.ScrollBarFrame(Craftie.Frame.ScrollRecipesList.Child)
 
-Craftie.Frame.ScrollRecipes.ResultsFrame = CreateFrame("Frame", "Craftie.Frame.ScrollRecipes.ResultsFrame", Craftie.Frame.ScrollRecipes, "BackdropTemplate", 525)
-Craftie.Frame.ScrollRecipes.ResultsFrame:SetWidth(Craftie.Frame.ScrollRecipes_Width-25)
+Craftie.Frame.ScrollRecipes.ResultsFrame = CreateFrame("Frame", "Craftie.Frame.ScrollRecipes.ResultsFrame", Craftie.Frame.ScrollParentRecipes, "BackdropTemplate", 25)
+Craftie.Frame.ScrollRecipes.ResultsFrame:SetWidth(Craftie.Frame.ScrollRecipes_Width-8)
 Craftie.Frame.ScrollRecipes.ResultsFrame:SetHeight(25)
-Craftie.Frame.ScrollRecipes.ResultsFrame:SetPoint("BOTTOMLEFT", 3, -3)
+Craftie.Frame.ScrollRecipes.ResultsFrame:SetPoint("BOTTOMLEFT", 3, 0)
 Craftie.Frame.ScrollRecipes.ResultsFrame:SetFrameLevel(50)
 Craftie.Frame.ScrollRecipes.ResultsBack = Craftie.Frame.ScrollRecipes.ResultsFrame:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipes.ResultsBack:SetSize(Craftie.Frame.ScrollRecipes.ResultsFrame:GetWidth()+2, 32)
@@ -84,7 +80,7 @@ SEARCH RECIPES
 ]==]--
 Craftie.Frame.Search.Recipes={}
 Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentRecipes, "BackdropTemplate")
-Craftie.Frame.Search.Recipes:SetWidth(Craftie.Frame.ScrollRecipes_Width-24)
+Craftie.Frame.Search.Recipes:SetWidth(Craftie.Frame.ScrollRecipes_Width-5)
 Craftie.Frame.Search.Recipes:SetHeight(24)
 Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -1)
 --Craftie.Frame.Search.Recipes:SetBackdrop(Craftie.Backdrop.Opaque)

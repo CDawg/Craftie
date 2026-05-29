@@ -13,33 +13,24 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+Craftie.Frame.ScrollPlayers_Width = 210
+Craftie.Frame.ScrollPlayers_Height= Craftie._G.Height-134
+
 Craftie.Frame.ScrollParentPlayers = CreateFrame("Frame", Craftie.Frame.ScrollParentPlayers, Craftie.Frame, "InsetFrameTemplate")
-Craftie.Frame.ScrollParentPlayers:SetWidth(210)
+Craftie.Frame.ScrollParentPlayers:SetWidth(Craftie.Frame.ScrollPlayers_Width)
 Craftie.Frame.ScrollParentPlayers:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentPlayers:SetPoint("TOPLEFT", 2, -61)
 
---[==[
-Craftie.Frame.ScrollParentPlayers.Divider = Craftie.Frame.ScrollParentPlayers:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.ScrollParentPlayers.Divider:SetSize(24, Craftie.Frame.ScrollParentPlayers:GetHeight())
-Craftie.Frame.ScrollParentPlayers.Divider:SetPoint("TOPLEFT", Craftie.Frame.ScrollParentPlayers:GetWidth()-25, 0)
-Craftie.Frame.ScrollParentPlayers.Divider:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Divider-Vert.png")
-]==]--
-
-Craftie.Frame.ScrollPlayers_Width = 210
-Craftie.Frame.ScrollPlayers_Height= Craftie._G.Height-90
 
 Craftie.Frame.ScrollPlayers = CreateFrame("Frame", Craftie.Frame.ScrollPlayers, Craftie.Frame.ScrollParentPlayers)
 Craftie.Frame.ScrollPlayers:SetWidth(Craftie.Frame.ScrollPlayers_Width)
 Craftie.Frame.ScrollPlayers:SetHeight(Craftie.Frame.ScrollPlayers_Height)
-Craftie.Frame.ScrollPlayers:SetPoint("TOPLEFT", 0, 0) --low, due to the portrait frame
+Craftie.Frame.ScrollPlayers:SetPoint("TOPLEFT", 0, -20)
 
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", Craftie.Frame.ScrollPlayersList, Craftie.Frame.ScrollPlayers, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersList:SetWidth(Craftie.Frame.ScrollPlayers_Width)
 Craftie.Frame.ScrollPlayersList:SetHeight(Craftie.Frame.ScrollPlayers_Height-2)
 Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 0, 0)
---Craftie.Frame.ScrollPlayersList:SetBackdrop(Craftie.Backdrop.Borderless)
---Craftie.Frame.ScrollPlayersList:SetBackdropColor(0.2, 0.6, 1, 0.07)
---Craftie.Frame.ScrollPlayersList:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollPlayersList.Child, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT", 5, -24)
@@ -53,10 +44,10 @@ Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.
 
 Craftie.ScrollBarFrame(Craftie.Frame.ScrollPlayersList.Child)
 
-Craftie.Frame.ScrollPlayers.ResultsFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayers.ResultsFrame, Craftie.Frame.ScrollPlayers, "BackdropTemplate", 25)
-Craftie.Frame.ScrollPlayers.ResultsFrame:SetWidth(Craftie.Frame.ScrollPlayers_Width-25)
+Craftie.Frame.ScrollPlayers.ResultsFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayers.ResultsFrame, Craftie.Frame.ScrollParentPlayers, "BackdropTemplate", 25)
+Craftie.Frame.ScrollPlayers.ResultsFrame:SetWidth(Craftie.Frame.ScrollPlayers_Width-7)
 Craftie.Frame.ScrollPlayers.ResultsFrame:SetHeight(25)
-Craftie.Frame.ScrollPlayers.ResultsFrame:SetPoint("BOTTOMLEFT", 4, -3)
+Craftie.Frame.ScrollPlayers.ResultsFrame:SetPoint("BOTTOMLEFT", 4, 0)
 Craftie.Frame.ScrollPlayers.ResultsFrame:SetFrameLevel(50)
 Craftie.Frame.ScrollPlayers.ResultsBack = Craftie.Frame.ScrollPlayers.ResultsFrame:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.ScrollPlayers.ResultsBack:SetSize(Craftie.Frame.ScrollPlayers.ResultsFrame:GetWidth()-1, 32)
@@ -79,7 +70,7 @@ SEARCH PLAYERS
 ]==]--
 Craftie.Frame.Search.Players={}
 Craftie.Frame.Search.Players = CreateFrame("Frame", nil, Craftie.Frame.ScrollParentPlayers, "BackdropTemplate", 2)
-Craftie.Frame.Search.Players:SetWidth(Craftie.Frame.ScrollPlayers_Width-24)
+Craftie.Frame.Search.Players:SetWidth(Craftie.Frame.ScrollPlayers_Width-6)
 Craftie.Frame.Search.Players:SetHeight(24)
 Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 5, -1)
 Craftie.Frame.ScrollPlayers.ResultsFrame:SetFrameLevel(50)
