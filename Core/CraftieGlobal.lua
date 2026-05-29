@@ -736,7 +736,7 @@ end
 
 function Craftie.OpenProfessionList(profArray, search, player)
   local profCache = {}
-  Craftie.Frame.ScrollRecipes.Loading:Show()
+  Craftie.Frame.ScrollRecipesLoading:Show()
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie.SetProfLevel(0)
   if (player ~= "") then
@@ -754,8 +754,8 @@ function Craftie.OpenProfessionList(profArray, search, player)
 
   Craftie.ClearCraftWindow()
 
-  Craftie.Frame.ScrollRecipes.Results:SetText("")
-  Craftie.Frame.ScrollRecipes.Empty:SetText("")
+  Craftie.Frame.ScrollRecipesResults:SetText("")
+  Craftie.Frame.ScrollRecipesEmpty:Hide()
   --Craftie.Frame.ScrollRecipesList:SetBackdropColor(0.1, 0.6, 1, 0) --slight blue  
   if (search:len() >= 3) then
     local matches = Craftie.SortTableByMatch(profCache, search)
@@ -766,15 +766,16 @@ function Craftie.OpenProfessionList(profArray, search, player)
       total_recipes = 0
       local search_text = 'No ' .. Craftie.Page:lower() .. ' recipes|n"' .. search .. '"|n '
       if (Craftie.Selected_Name ~= "") then
-        Craftie.Frame.ScrollRecipes.Empty:SetText(search_text .. "from " .. Craftie.Selected_Name)
+        Craftie.Frame.ScrollRecipesEmpty:SetText(search_text .. "from " .. Craftie.Selected_Name)
       else
-        Craftie.Frame.ScrollRecipes.Empty:SetText(search_text)
+        Craftie.Frame.ScrollRecipesEmpty:SetText(search_text)
       end
+      Craftie.Frame.ScrollRecipesEmpty:Show()
     end
-    Craftie.Frame.ScrollRecipes.Results:SetText(matches .. " " .. results)
+    Craftie.Frame.ScrollRecipesResults:SetText(matches .. " " .. results)
   else
     Craftie.SortTableByString(profCache) --just go back to a alpha sort
-    Craftie.Frame.ScrollRecipes.Results:SetText(total_recipes .. " " .. results)
+    Craftie.Frame.ScrollRecipesResults:SetText(total_recipes .. " " .. results)
   end
 
   if (total_recipes < 15) then
@@ -826,7 +827,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
   --Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
 
   C_Timer.After(0.35, function()
-    Craftie.Frame.ScrollRecipes.Loading:Hide()
+    Craftie.Frame.ScrollRecipesLoading:Hide()
     Craftie.Frame.ScrollRecipesList:SetAlpha(1)
   end)
 
@@ -958,8 +959,8 @@ function Craftie.ScrollBarFrame(frame)
   frame.ScrollBar.ScrollDownButton:SetDisabledTexture(_scrollDn, "ADD")
   frame.ScrollBar.ScrollDownButton:SetSize(15, 12)
   ScrollBack = frame:CreateTexture(nil, "BORDER")
-  ScrollBack:SetSize(21, frame:GetHeight()-30)
-  ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, 0)
+  ScrollBack:SetSize(21, frame:GetHeight()-40)
+  ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, -20)
   ScrollBack:SetVertTile(true)
   ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")
 end

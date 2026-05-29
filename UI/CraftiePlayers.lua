@@ -22,6 +22,10 @@ Craftie.Frame.ScrollParentPlayers:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollParentPlayers:SetPoint("TOPLEFT", 2, -61)
 
 
+
+
+
+
 Craftie.Frame.ScrollPlayers = CreateFrame("Frame", Craftie.Frame.ScrollPlayers, Craftie.Frame.ScrollParentPlayers)
 Craftie.Frame.ScrollPlayers:SetWidth(Craftie.Frame.ScrollPlayers_Width)
 Craftie.Frame.ScrollPlayers:SetHeight(Craftie.Frame.ScrollPlayers_Height)
@@ -64,6 +68,13 @@ Craftie.Frame.ScrollPlayers.Loading:SetFont(Craftie._G.Font.Style, 13, "OUTLINE 
 Craftie.Frame.ScrollPlayers.Loading:SetPoint("CENTER", -2, 40)
 Craftie.Frame.ScrollPlayers.Loading:SetTextColor(0.9, 0.9, 1, 0.8)
 Craftie.Frame.ScrollPlayers.Loading:SetText("Loading...")
+
+Craftie.Frame.ScrollPlayers.Empty = Craftie.Frame.ScrollPlayers:CreateFontString(nil, "OVERLAY")
+Craftie.Frame.ScrollPlayers.Empty:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
+Craftie.Frame.ScrollPlayers.Empty:SetPoint("CENTER", -10, 0)
+Craftie.Frame.ScrollPlayers.Empty:SetTextColor(1, 1, 1, 0.8)
+Craftie.Frame.ScrollPlayers.Empty:SetText("")
+Craftie.Frame.ScrollPlayers.Empty:Hide()
 
 --[==[
 SEARCH PLAYERS
