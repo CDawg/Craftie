@@ -408,17 +408,19 @@ function Craftie.ItemDetails(item)
         if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
           if (name[i] ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
             Craftie.Reagent[r][2] = name[i]
+            Craftie.Notification("|CFFF55D5DMissing Reagent Precache:|r " .. "[" .. item[5][i][1] .. "] " .. name[i], true)
           end
           loadcache = 1
         end
 
         Craftie.Frame.Reagent.HLink[i]:SetText(link[i])
         Craftie.Frame.Reagent.Main[r_next]:Show()
+        Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       end)
 
       --Craftie.Frame.Reagent.Back[i]:Show()
 
-      Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
+      --Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
 
       if (inv_count >= 10) then
@@ -882,6 +884,7 @@ function Craftie.BuildReagentGaps()
   for k,v in pairs(Craftie.Reagents) do
     Craftie.Reagent[v[1]] = {v[1], v[2]}
   end
+  Craftie.Notification("Craftie.BuildReagentGaps()", true)
 end
 
 function Craftie.SaveMapButtonPos()
@@ -960,28 +963,7 @@ function Craftie.ScrollBarFrame(frame)
   frame.ScrollBar.ScrollDownButton:SetSize(15, 12)
   ScrollBack = frame:CreateTexture(nil, "BORDER")
   ScrollBack:SetSize(21, frame:GetHeight()-40)
-  ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, -20)
+  ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, -18)
   ScrollBack:SetVertTile(true)
   ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")
 end
-
---[==[
-function Craftie.ScrollBarBack(parentFrame)
-  local ScrollBar={}
-  ScrollBar.Midd = parentFrame:CreateTexture(nil, "BORDER")
-  ScrollBar.Midd:SetSize(28, parentFrame:GetHeight())
-  ScrollBar.Midd:SetPoint("TOPLEFT", parentFrame:GetWidth()-25, 0)
-  ScrollBar.Midd:SetVertTile(true)
-  ScrollBar.Midd:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png", "REPEAT")
-  ScrollBar.Top = parentFrame:CreateTexture(nil, "BORDER")
-  ScrollBar.Top:SetSize(28, 130)
-  ScrollBar.Top:SetPoint("TOPLEFT", parentFrame:GetWidth()-25, 0)
-  ScrollBar.Top:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
-  ScrollBar.Bot = parentFrame:CreateTexture(nil, "BORDER")
-  ScrollBar.Bot:SetSize(28, 130)
-  ScrollBar.Bot:SetPoint("TOPLEFT", parentFrame:GetWidth()-25, -parentFrame:GetHeight()+128)
-  ScrollBar.Bot:SetTexture(Craftie._G.Path .. "Images/FrameScrollBarEnd.png")
-  ScrollBar.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
-  ScrollBar.Bot:SetRotation(-math.pi)
-end
-]==]--

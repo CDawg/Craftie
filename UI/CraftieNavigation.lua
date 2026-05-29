@@ -25,8 +25,8 @@ Craftie.Wrap:SetPoint("TOPLEFT", 6, -64)
 
 
 function Craftie.TabBottomSelect(tab, sound)
-  Craftie.Frame.ScrollParentPlayers:Hide()
-  Craftie.Frame.ScrollParentRecipes:Hide()
+  Craftie.Frame.ScrollPlayersParent:Hide()
+  Craftie.Frame.ScrollRecipesParent:Hide()
   Craftie.Frame.CraftParent:Hide()
   Craftie.Updates:Hide()
   Craftie.Credit:Hide()
@@ -44,8 +44,8 @@ function Craftie.TabBottomSelect(tab, sound)
     Craftie.Frame.Title.Sub:Hide()
     Craftie.Frame.Title.Prof:Show()
     Craftie.Frame.CraftParent:Show()
-    Craftie.Frame.ScrollParentPlayers:Show()
-    Craftie.Frame.ScrollParentRecipes:Show()
+    Craftie.Frame.ScrollPlayersParent:Show()
+    Craftie.Frame.ScrollRecipesParent:Show()
   end
 
   if (tab == 2) then
