@@ -34,6 +34,38 @@ Craftie = {
 	},
 }
 
+Craftie.Framelevel = {
+  Background= 0,
+  Foreground= 1,
+  Menu      = 2,
+  Buttons   = 3,
+  Cover     = 4,
+}
+
+Craftie.Backdrop = {
+  General = {
+    bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
+    edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
+    edgeSize= 12,
+    insets  = {left=2, right=2, top=2, bottom=2},
+  },
+  Opaque = {
+    bgFile  = "Interface/Tooltips/CHATBUBBLE-BACKGROUND",
+    edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
+    edgeSize= 12,
+    insets  = {left=2, right=2, top=2, bottom=2},
+  },
+  Borderless = {
+    bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
+    edgeFile= "",
+    edgeSize= 2,
+    insets  = {left=2, right=2, top=0, bottom=0},
+  },
+  Slider = {
+    Template = "UISliderTemplateWithLabels",
+  }
+}
+
 Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))
 Craftie.Game.Name = Craftie.Game[tonumber(string.sub(__Gversion, 1, 1))]
 

@@ -35,38 +35,6 @@ Craftie._G.Path = "Interface/Addons/Craftie/"
 Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
-Craftie.Framelevel = {
-  Background= 0,
-  Foreground= 1,
-  Menu      = 2,
-  Buttons   = 3,
-  Cover     = 4,
-}
-
-Craftie.Backdrop = {
-  General = {
-    bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
-    edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
-    edgeSize= 12,
-    insets  = {left=2, right=2, top=2, bottom=2},
-  },
-  Opaque = {
-    bgFile  = "Interface/Tooltips/CHATBUBBLE-BACKGROUND",
-    edgeFile= "Interface/ToolTips/UI-Tooltip-Border",
-    edgeSize= 12,
-    insets  = {left=2, right=2, top=2, bottom=2},
-  },
-  Borderless = {
-    bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
-    edgeFile= "",
-    edgeSize= 2,
-    insets  = {left=2, right=2, top=0, bottom=0},
-  },
-  Slider = {
-    Template = "UISliderTemplateWithLabels",
-  }
-}
-
 Craftie.LogKey = 0
 Craftie.Log = {}
 Craftie.SortOrder = 0
@@ -862,8 +830,16 @@ function SlashCmdList.Craftie(cmd)
 	--if (cmd == Craftie._L.COMMANDS[1][1]) then
 	  --Craftie.FrameOptions:Show()
   --end
+  if (cmd == "options") then
+    Settings.OpenToCategory(Craftie.Settings.Category:GetID())
+    Craftie.Frame:Hide()
+  end
   if (cmd == "show") then
     Craftie.Open()
+  end
+
+  if (cmd == "debug") then
+    Craftie.Logger:Show()
   end
 
   for k,v in pairs(Craftie.Professions) do
@@ -906,51 +882,12 @@ function Craftie.UpdateMapButton()
   Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
 end
 
-function Craftie.DividerHorz(parentFrame, x, y, w)
-  local DividerFrame = {}
-  DividerFrame.Midd = parentFrame:CreateTexture(nil, "ARTWORK")
-  DividerFrame.Midd:SetSize(w, 12)
-  DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
-  DividerFrame.Midd:SetHorizTile(true)
-  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "Images/FrameDividerMidd.png", "REPEAT")
-  DividerFrame.Left = parentFrame:CreateTexture(nil, "ARTWORK")
-  DividerFrame.Left:SetSize(16, 12)
-  DividerFrame.Left:SetPoint("TOPLEFT", x, y)
-  DividerFrame.Left:SetTexture(Craftie._G.Path .. "Images/FrameDividerEnd.png")
-  DividerFrame.Right = parentFrame:CreateTexture(nil, "ARTWORK")
-  DividerFrame.Right:SetSize(16, 12)
-  DividerFrame.Right:SetPoint("TOPLEFT", w, y)
-  DividerFrame.Right:SetTexture(Craftie._G.Path .. "Images/FrameDividerEnd.png")
-  DividerFrame.Right:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1) --mirror
-  --DividerFrame.Right:SetTexCoord(0, 1, 1, 1, 0, 0, 1, 0) -- Flips vertically
-  --DividerFrame.Right:SetRotation(-math.pi)
-end
-
-function Craftie.DividerVert(parentFrame, x, y, h)
-  local DividerFrame = {}
-  DividerFrame.Midd = parentFrame:CreateTexture(nil, "ARTWORK")
-  DividerFrame.Midd:SetSize(12, h)
-  DividerFrame.Midd:SetPoint("TOPLEFT", x+16, y)
-  DividerFrame.Midd:SetVertTile(true)
-  DividerFrame.Midd:SetTexture(Craftie._G.Path .. "Images/FrameDividerMiddVert.png", "REPEAT")
-  DividerFrame.Top = parentFrame:CreateTexture(nil, "ARTWORK")
-  DividerFrame.Top:SetSize(12, 16)
-  DividerFrame.Top:SetPoint("TOPLEFT", x+16, y+16)
-  DividerFrame.Top:SetTexture(Craftie._G.Path .. "Images/FrameDividerEndVert.png")
-  DividerFrame.Bot = parentFrame:CreateTexture(nil, "ARTWORK")
-  DividerFrame.Bot:SetSize(12, 16)
-  DividerFrame.Bot:SetPoint("TOPLEFT", x+16, -h-15)
-  DividerFrame.Bot:SetTexture(Craftie._G.Path .. "Images/FrameDividerEndVert.png")
-  DividerFrame.Bot:SetTexCoord(1, 0, 1, 1, 0, 0, 0, 1)
-  DividerFrame.Bot:SetRotation(-math.pi)
-end
-
 function Craftie.ScrollBarFrame(frame)
   local _scrollUp = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Arr.png"
   local _scrollDn = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Dn.png"
   local _scrollSlider = frame.ScrollBar:GetThumbTexture()
   _scrollSlider:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Slider.png")
-  _scrollSlider:SetSize(10, 44)
+  _scrollSlider:SetSize(10, 40)
   frame.ScrollBar.ScrollUpButton:SetNormalTexture(_scrollUp)
   frame.ScrollBar.ScrollUpButton:SetPushedTexture(_scrollUp)
   frame.ScrollBar.ScrollUpButton:SetHighlightTexture(_scrollUp, "ADD")
@@ -962,7 +899,7 @@ function Craftie.ScrollBarFrame(frame)
   frame.ScrollBar.ScrollDownButton:SetDisabledTexture(_scrollDn, "ADD")
   frame.ScrollBar.ScrollDownButton:SetSize(15, 12)
   ScrollBack = frame:CreateTexture(nil, "BORDER")
-  ScrollBack:SetSize(21, frame:GetHeight()-40)
+  ScrollBack:SetSize(40, frame:GetHeight()-42)
   ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, -18)
   ScrollBack:SetVertTile(true)
   ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")

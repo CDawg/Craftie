@@ -233,7 +233,7 @@ Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
   Craftie.Open()
 end)
 
-Craftie.Frame:Hide()
+--Craftie.Frame:Hide()
 
 Craftie.Settings={}
 Craftie.Frame.Settings = CreateFrame("Frame", "CraftieSettingsFrame", UIParent)
