@@ -36,9 +36,8 @@ Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
 Craftie.LogKey = 0
-Craftie.Log = {}
 Craftie.SortOrder = 0
-function Craftie.Notification(msg, debug)
+function Craftie.Notification(msg, debug, type)
   local logstring = ""
   if ((debug) and (Craftie.DEBUG)) then
     print(Craftie._G.Title .. " DEBUG: " .. msg)
@@ -49,8 +48,10 @@ function Craftie.Notification(msg, debug)
   --log everything, regardless of debug mode
   if (Craftie.Frame ~= nil) then
     Craftie.LogKey = Craftie.LogKey +1
-    Craftie.Log[Craftie.LogKey] = "|cFFFFFC99[" .. date("%m%d%H%M%S") .. "]|r " .. msg
-
+    print("log key " .. Craftie.LogKey)
+    Craftie.Log(Craftie.LogKey, type, msg)
+    --[==[
+    Craftie.Log[Craftie.LogKey] = "|cFFFFFC99" .. date("%m%d%H%M%S") .. "|r  " .. msg
     if (Craftie.SortOrder == 1) then
       for k,v in Craftie.SortReverseByKey(Craftie.Log) do
         logstring = logstring .. v .. "|n"
@@ -61,6 +62,7 @@ function Craftie.Notification(msg, debug)
       end
     end
     Craftie.Logger.Data:SetText(logstring)
+    ]==]--
   end
 end
 
@@ -882,6 +884,7 @@ function Craftie.UpdateMapButton()
   Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
 end
 
+--use the classic frame, but updated images. The updated frame has major bugs
 function Craftie.ScrollBarFrame(frame)
   local _scrollUp = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Arr.png"
   local _scrollDn = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Dn.png"

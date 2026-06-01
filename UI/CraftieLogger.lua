@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Logger_w = 500
+Craftie.Logger_w = 800
 Craftie.Logger_h = 600
 
 Craftie.Logger = CreateFrame("Frame", Craftie.Logger, UIParent, "BackdropTemplate")
@@ -53,26 +53,26 @@ Craftie.Logger.Title:SetText(Craftie._G.Title .. " Debug Logger")
 Craftie.Logger.ScrollFrame={}
 Craftie.Logger.ScrollFrame = CreateFrame("Frame", Craftie.Logger.ScrollFrame, Craftie.Logger, "BackdropTemplate")
 Craftie.Logger.ScrollFrame:SetWidth(Craftie.Logger_w-20)
-Craftie.Logger.ScrollFrame:SetHeight(Craftie.Logger_h-32)
-Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 15, -24)
+Craftie.Logger.ScrollFrame:SetHeight(Craftie.Logger_h-250)
+Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 15, -50)
 Craftie.Logger.ScrollFrame:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Logger.ScrollFrame:SetBackdropColor(0, 0, 0, 0)
+Craftie.Logger.ScrollFrame:SetBackdropColor(1, 0, 0, 0)
 Craftie.Logger.ScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.Logger.ScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.Logger.ScrollFrame, "UIPanelScrollFrameTemplate")
-Craftie.Logger.ScrollFrame.Child:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame, "TOPLEFT", -5, -30)
-Craftie.Logger.ScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame, "BOTTOMRIGHT", 8, 4)
+Craftie.Logger.ScrollFrame.Child:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame, "TOPLEFT", -5, -10)
+Craftie.Logger.ScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame, "BOTTOMRIGHT", 8, 5)
 Craftie.Logger.ScrollFrameChildFrame = CreateFrame("Frame", Craftie.Logger.ScrollFrameChildFrame, Craftie.Logger.ScrollFrame.Child)
-Craftie.Logger.ScrollFrameChildFrame:SetSize(Craftie.Logger_w-40, Craftie.Logger_h)
+Craftie.Logger.ScrollFrameChildFrame:SetSize(Craftie.Logger_w, Craftie.Logger_h)
 Craftie.Logger.ScrollFrame.Child:SetScrollChild(Craftie.Logger.ScrollFrameChildFrame)
 Craftie.Logger.ScrollFrame.Child.ScrollBar:ClearAllPoints()
-Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame.Child, "TOPRIGHT", -5, 10)
-Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame.Child, "BOTTOMRIGHT", -36, 14)
+Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame.Child, "TOPRIGHT", -5, -5)
+Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame.Child, "BOTTOMRIGHT", -36, 10)
 
 Craftie.ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
 
 Craftie.Logger.ColStamp = CreateFrame("Button", Craftie.Logger.ScrollFrame, Craftie.Logger, "BackdropTemplate")
-Craftie.Logger.ColStamp:SetWidth(90)
+Craftie.Logger.ColStamp:SetWidth(84)
 Craftie.Logger.ColStamp:SetHeight(28)
 Craftie.Logger.ColStamp:SetPoint("TOPLEFT", 6, -26)
 Craftie.Logger.ColStamp:SetBackdrop(Craftie.Backdrop.General)
@@ -87,12 +87,12 @@ Craftie.Logger.ColStamp:SetScript("OnClick", function()
     Craftie.SortOrder = 0
     Craftie.Logger.ColStampArrUp:Show()
     Craftie.Logger.ColStampArrDn:Hide()
-    Craftie.Notification("Craftie.LoggerSort(AtoZ)", true)
+    Craftie.Notification("--", true)
   else
     Craftie.SortOrder = 1
     Craftie.Logger.ColStampArrUp:Hide()
     Craftie.Logger.ColStampArrDn:Show()
-    Craftie.Notification("Craftie.LoggerSort(ZtoA)", true)
+    Craftie.Notification("--", true)
   end
 end)
 Craftie.Logger.ColStampArr = Craftie.Logger.ColStamp:CreateTexture(nil, "ARTWORK")
@@ -114,7 +114,7 @@ Craftie.Logger.ColStampArrDn:Hide()
 Craftie.Logger.ColData = CreateFrame("Button", Craftie.Logger.ScrollFrame, Craftie.Logger, "BackdropTemplate")
 Craftie.Logger.ColData:SetWidth(380)
 Craftie.Logger.ColData:SetHeight(28)
-Craftie.Logger.ColData:SetPoint("TOPLEFT", 94, -26)
+Craftie.Logger.ColData:SetPoint("TOPLEFT", 90, -26)
 Craftie.Logger.ColData:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Logger.ColData:SetBackdropColor(0.6, 0.6, 0.5, 0.8)
 Craftie.Logger.ColData:SetBackdropBorderColor(0.2, 0.2, 0.2, 0.5)
@@ -123,6 +123,74 @@ Craftie.Logger.ColDataText:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, 
 Craftie.Logger.ColDataText:SetPoint("TOPLEFT", 15, -10)
 Craftie.Logger.ColDataText:SetText("Log")
 
+
+Craftie.Logger.Row = {}
+function Craftie.Log(row, type, data)
+  local row_height = 24 --default
+  if (type == nil) then
+    type = "FUNC"
+  end
+
+  Craftie.Logger.Row[row] = CreateFrame("Button", Craftie.Logger.Row[row], Craftie.Logger.ScrollFrameChildFrame, "BackdropTemplate", -1)
+  Craftie.Logger.Row[row]:SetWidth(Craftie.Logger:GetWidth()-40)
+  Craftie.Logger.Row[row]:SetHeight(row_height)
+  Craftie.Logger.Row[row]:SetPoint("TOPLEFT", 0, -row*Craftie.Logger.Row[row]:GetHeight())
+  Craftie.Logger.Row[row]:SetPoint(Craftie.Logger.Row[row]:GetPoint())
+  Craftie.Logger.Row[row]:SetBackdrop(Craftie.Backdrop.Borderless)
+  Craftie.Logger.Row[row]:SetBackdropColor(0, 0, 0, 0)
+  if (row % 2 == 0) then
+    Craftie.Logger.Row[row]:SetBackdropColor(1, 1, 0.8, 0.1)
+  end
+  Craftie.Logger.Row[row]:SetBackdropBorderColor(0, 0, 0, 0)
+  Craftie.Logger.Row[row]:SetFrameLevel(Craftie.Framelevel.Background)
+  Craftie.Logger.Row[row]:SetScript("OnEnter", function(self)
+    Craftie.Logger.Row[row]:SetBackdropColor(1, 1, 0.8, 0.2)
+  end)
+  Craftie.Logger.Row[row]:SetScript("OnLeave", function(self)
+    Craftie.Logger.Row[row]:SetBackdropColor(0, 0, 0, 0)
+    if (row % 2 == 0) then
+      Craftie.Logger.Row[row]:SetBackdropColor(1, 1, 0.8, 0.1)
+    end
+  end)
+  Craftie.Logger.Row[row]:SetScript("OnClick", function(self)
+    print(Craftie.Logger.Row[row].Data:GetText())
+  end)
+
+  Craftie.Logger.Row[row].Num = Craftie.Logger.Row[row]:CreateFontString(nil, "ARTWORK")
+  Craftie.Logger.Row[row].Num:SetWidth(60)
+  Craftie.Logger.Row[row].Num:SetHeight(row_height)
+  Craftie.Logger.Row[row].Num:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Logger.Row[row].Num:SetPoint("TOPLEFT", 0, 0)
+  Craftie.Logger.Row[row].Num:SetText(row)
+  Craftie.Logger.Row[row].Num:SetTextColor(1, 1, 0.8, 0.5)
+
+  Craftie.Logger.Row[row].Timestamp = Craftie.Logger.Row[row]:CreateFontString(nil, "ARTWORK")
+  Craftie.Logger.Row[row].Timestamp:SetWidth(100)
+  Craftie.Logger.Row[row].Timestamp:SetHeight(row_height)
+  Craftie.Logger.Row[row].Timestamp:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Logger.Row[row].Timestamp:SetPoint("TOPLEFT", 70, 0)
+  Craftie.Logger.Row[row].Timestamp:SetText(date("%y%m%d%H%M%S"))
+  Craftie.Logger.Row[row].Timestamp:SetTextColor(1, 1, 0.8, 0.8)
+
+  Craftie.Logger.Row[row].Type = Craftie.Logger.Row[row]:CreateFontString(nil, "ARTWORK")
+  Craftie.Logger.Row[row].Type:SetWidth(110)
+  Craftie.Logger.Row[row].Type:SetHeight(row_height)
+  Craftie.Logger.Row[row].Type:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Logger.Row[row].Type:SetPoint("TOPLEFT", 150, 0)
+  Craftie.Logger.Row[row].Type:SetText(type)
+
+  Craftie.Logger.Row[row].Data = Craftie.Logger.Row[row]:CreateFontString(nil, "ARTWORK")
+  Craftie.Logger.Row[row].Data:SetWidth(450)
+  Craftie.Logger.Row[row].Data:SetHeight(row_height)
+  Craftie.Logger.Row[row].Data:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Logger.Row[row].Data:SetPoint("TOPLEFT", 260, 0)
+  Craftie.Logger.Row[row].Data:SetText(data)
+  Craftie.Logger.Row[row].Data:SetWordWrap(true)
+  Craftie.Logger.Row[row].Data:SetJustifyH("LEFT")
+  --Craftie.Logger.Row[row].Type:SetTextColor(1, 1, 1, 0.8)
+end
+
+--[==[
 Craftie.Logger.Data = CreateFrame("EditBox", nil, Craftie.Logger.ScrollFrameChildFrame)
 Craftie.Logger.Data:SetWidth(Craftie.Logger_w-45)
 Craftie.Logger.Data:SetHeight(Craftie.Logger_h)
@@ -132,5 +200,6 @@ Craftie.Logger.Data:SetMultiLine(true)
 Craftie.Logger.Data:ClearFocus(self)
 Craftie.Logger.Data:SetAutoFocus(false)
 Craftie.Logger.Data:SetText("")
+]==]--
 
 --Craftie.Logger:Hide()
