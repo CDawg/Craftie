@@ -36,41 +36,26 @@ Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
 Craftie.TYPE = {
-  CHAT = "cCHAT",
-  WARN = "|CFFFFC300WARNING|r",
-  ERROR= "|CFFFF0000ERROR|r",
-  FUNC = "|CFFE0F5B3FUNC|r",
-  EVENT= "|CFF92CEFCEVENT|r",
-  SEND = "|CFF89DE49SEND|r",
-  ACK  = "|CFFD177F7ACK|r",
+  CHAT = {1, "|CFFFFFFF0CHAT|r"},
+  WARN = {2, "|CFFFFC300WARNING|r"},
+  ERROR= {3, "|CFFFF0000ERROR|r"},
+  FUNC = {4, "|CFF85847AFUNC|r"},
+  EVENT= {5, "|CFF92CEFCEVENT|r"},
+  SEND = {6, "|CFF89DE49SEND|r"},
+  ACK  = {7, "|CFFD177F7ACK|r"},
 }
-
-function Craftie._GetIntFromKey(arr, val)
-  --local int = 0
-  local num = 0
-  for k,v in pairs(arr) do
-    num = num +1
-    if (val == v) then
-      print(num .. " | " .. val .. " | " .. v .. " | " .. k)
-      return num
-    end
-  end
-  return nil
-end
 
 Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie.Notification(msg, type)
   local logstring = ""
-  --if (type == Craftie.TYPE.CHAT) then
-    --print(type .. " | " .. Craftie.TYPE.CHAT)
-    --print(Craftie.GetIntFromKey(Craftie.TYPE, type))
-    --print(type .. " - " .. Craftie.TYPE.CHAT)
+  if (type[1] <= 3) then
     print(Craftie._G.Title .. " " .. msg)
-  --end
+  end
+  --print("type: " .. type[1] .. " | " .. type[2])
   --log everything, regardless of debug mode
   if (Craftie.Frame ~= nil) then
-    Craftie.Log(type, msg)
+    Craftie.Log(type[2], msg)
   end
 end
 
@@ -283,12 +268,12 @@ function Craftie.ParsePacket(netpacket)
         local profName  = Craftie.Professions[tonumber(packet[5])][1]
         local profNum   = packet[5]
         local profLevel = packet[6]
-        local crafterData = Craftie.BitCompression(packet[7], true) --decompress
-        Craftie.Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, true)
+        local crafterData = Craftie.BitCompression(packet[7], Craftie.TYPE.ACK) --decompress
+        Craftie.Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, Craftie.TYPE.ACK)
         --store it
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData
-        Craftie.Notification("Storing Data:|n" .. profString, true)
+        Craftie.Notification("Storing Data:|n" .. profString, Craftie.TYPE.ACK)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
       end
 

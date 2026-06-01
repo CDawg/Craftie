@@ -31,7 +31,7 @@ Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Frame:StopMovingOrSizing()
   local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame:GetPoint()
   CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
-  Craftie.Notification("[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, true, Craftie.TYPE.FUNC)
+  Craftie.Notification("[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, Craftie.TYPE.FUNC)
 end)
 
 Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND")

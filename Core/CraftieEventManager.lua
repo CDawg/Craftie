@@ -168,7 +168,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
-            Craftie.Notification("|cffF54927Warning!|r [" .. player .. "] has outdated data", Craftie.TYPE.CHAT)
+            Craftie.Notification("|cffF54927Warning!|r [" .. player .. "] has outdated data", Craftie.TYPE.WARN)
           end
           Craftie.UpdateCrafterList()
           --print("open book to player " .. player)
