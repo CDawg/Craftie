@@ -48,8 +48,12 @@ function Craftie.Notification(msg, debug, type)
   --log everything, regardless of debug mode
   if (Craftie.Frame ~= nil) then
     Craftie.LogKey = Craftie.LogKey +1
-    print("log key " .. Craftie.LogKey)
-    Craftie.Log(Craftie.LogKey, type, msg)
+    --print("log key " .. Craftie.LogKey)
+    Craftie.Log(Craftie.LogKey)
+    Craftie.Logger.Row[Craftie.LogKey][1]:SetText(Craftie.LogKey)
+    Craftie.Logger.Row[Craftie.LogKey][2]:SetText(date("%y%m%d%H%M%S"))
+    Craftie.Logger.Row[Craftie.LogKey][3]:SetText(type)
+    Craftie.Logger.Row[Craftie.LogKey][4]:SetText(msg)
     --[==[
     Craftie.Log[Craftie.LogKey] = "|cFFFFFC99" .. date("%m%d%H%M%S") .. "|r  " .. msg
     if (Craftie.SortOrder == 1) then
