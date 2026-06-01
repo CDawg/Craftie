@@ -338,7 +338,7 @@ function Craftie.SelectCrafter(index, name)
       --print(name)
       Craftie.Selected_Players = index
       Craftie.Selected_Name = name
-      Craftie.Notification("Craftie.SelectCrafter(" .. index .. ", " .. name .. ")", true)
+      Craftie.Notification("Craftie.SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.TYPE.FUNC)
       if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
         Craftie.OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
       else
@@ -354,7 +354,7 @@ end
 function Craftie.UpdateCrafterList(search)
   local crafter_list = {}
   local search_list = {}
-  Craftie.Notification("Craftie.UpdateCrafterList()", true)
+  Craftie.Notification("Craftie.UpdateCrafterList()", Craftie.TYPE.FUNC)
   Craftie.Frame.ScrollPlayersResults:SetText("")
   Craftie.Frame.ScrollPlayersLoading:Show()
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)

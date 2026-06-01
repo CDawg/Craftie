@@ -35,38 +35,42 @@ Craftie._G.Path = "Interface/Addons/Craftie/"
 Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
+Craftie.TYPE = {
+  CHAT = "cCHAT",
+  WARN = "|CFFFFC300WARNING|r",
+  ERROR= "|CFFFF0000ERROR|r",
+  FUNC = "|CFFE0F5B3FUNC|r",
+  EVENT= "|CFF92CEFCEVENT|r",
+  SEND = "|CFF89DE49SEND|r",
+  ACK  = "|CFFD177F7ACK|r",
+}
+
+function Craftie._GetIntFromKey(arr, val)
+  --local int = 0
+  local num = 0
+  for k,v in pairs(arr) do
+    num = num +1
+    if (val == v) then
+      print(num .. " | " .. val .. " | " .. v .. " | " .. k)
+      return num
+    end
+  end
+  return nil
+end
+
 Craftie.LogKey = 0
 Craftie.SortOrder = 0
-function Craftie.Notification(msg, debug, type)
+function Craftie.Notification(msg, type)
   local logstring = ""
-  if ((debug) and (Craftie.DEBUG)) then
-    print(Craftie._G.Title .. " DEBUG: " .. msg)
-  end
-  if (not debug) then
+  --if (type == Craftie.TYPE.CHAT) then
+    --print(type .. " | " .. Craftie.TYPE.CHAT)
+    --print(Craftie.GetIntFromKey(Craftie.TYPE, type))
+    --print(type .. " - " .. Craftie.TYPE.CHAT)
     print(Craftie._G.Title .. " " .. msg)
-  end
+  --end
   --log everything, regardless of debug mode
   if (Craftie.Frame ~= nil) then
-    Craftie.LogKey = Craftie.LogKey +1
-    --print("log key " .. Craftie.LogKey)
-    Craftie.Log(Craftie.LogKey)
-    Craftie.Logger.Row[Craftie.LogKey][1]:SetText(Craftie.LogKey)
-    Craftie.Logger.Row[Craftie.LogKey][2]:SetText(date("%y%m%d%H%M%S"))
-    Craftie.Logger.Row[Craftie.LogKey][3]:SetText(type)
-    Craftie.Logger.Row[Craftie.LogKey][4]:SetText(msg)
-    --[==[
-    Craftie.Log[Craftie.LogKey] = "|cFFFFFC99" .. date("%m%d%H%M%S") .. "|r  " .. msg
-    if (Craftie.SortOrder == 1) then
-      for k,v in Craftie.SortReverseByKey(Craftie.Log) do
-        logstring = logstring .. v .. "|n"
-      end
-    else
-      for k,v in ipairs(Craftie.Log) do
-        logstring = logstring .. v .. "|n"
-      end
-    end
-    Craftie.Logger.Data:SetText(logstring)
-    ]==]--
+    Craftie.Log(type, msg)
   end
 end
 
@@ -172,7 +176,7 @@ function Craftie.ClearFocusAll()
     Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
     Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
   end
-  --Craftie.Notification("Craftie.ClearFocusAll()", true)
+  Craftie.Notification("Craftie.ClearFocusAll()", Craftie.TYPE.FUNC)
 end
 
 function SetItemTooltip(frame, itemID, enchant, anchor)
@@ -208,13 +212,11 @@ function Craftie.SendPacket(prefix, data, channel, target)
     --C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, compressPacket, channel, target)
     --C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
   	C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
-    --Craftie.Notification("Send Whisper " .. target, true)
   else
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
-    --Craftie.Notification("Send " .. channel, true)
   end
 
-  Craftie.Notification("|CFF89DE49Sending Packet:|r " .. repack .. " [" .. #repack .. "]", true)
+  Craftie.Notification(repack .. " [" .. #repack .. "]", Craftie.TYPE.SEND)
 end
 
 --Seed examples
@@ -236,23 +238,23 @@ function Craftie.ParsePacket(netpacket)
     version = tonumber(packet[2])
     if (version > tonumber(Craftie._G.Version)) then
       if (Craftie.Notified ~= 1) then --dont spam the requester
-        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]")
+        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]", Craftie.TYPE.ERROR)
       end
       stable_version = false
       Craftie.Notified = 1
     end
     if (version < tonumber(Craftie._G.Version)) then
       if (version < tonumber(Craftie._G.Version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
-        Craftie.Notification("|cFFFF0000ERROR:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]")
+        Craftie.Notification("ERROR:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.ERROR)
         stable_version = false
       else
-        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]")
+        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.WARN)
         stable_version = true
       end
     end
 
     if (stable_version) then
-      Craftie.Notification("|CFFD177F7Parsing Packet: |r" .. netpacket, true)
+      Craftie.Notification(netpacket, Craftie.TYPE.ACK)
 
       --ping another crafter for their data
       if (prefix == Craftie.Packet.Prefix.Ping) then
@@ -262,14 +264,14 @@ function Craftie.ParsePacket(netpacket)
         local profName = profParse[1]
 
         if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUG)) then
-          Craftie.Notification("You were pinged by " .. requester .. " for " .. profName, true)
+          Craftie.Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.TYPE.ACK)
           --get my saved prof data and send it
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
           --print("requester " .. requester)
           Craftie.SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
         else
           --rather than a break, just ignore
-          Craftie.Notification("Requester == Self. Ignoring", true)
+          Craftie.Notification("Requester == Self. Ignoring", Craftie.TYPE.ACK)
         end
       end
 
@@ -291,7 +293,7 @@ function Craftie.ParsePacket(netpacket)
       end
 
     else
-      Craftie.Notification("|cFFFF0000ERROR:|r Malformed Packet: " .. netpacket, true)
+      Craftie.Notification("|cFFFF0000ERROR:|r Malformed Packet: " .. netpacket, Craftie.TYPE.ERROR)
     end
   end
 end
@@ -382,7 +384,7 @@ function Craftie.ItemDetails(item)
         if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
           if (name[i] ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
             Craftie.Reagent[r][2] = name[i]
-            Craftie.Notification("|CFFF55D5DMissing Reagent Precache:|r " .. "[" .. item[5][i][1] .. "] " .. name[i], true)
+            Craftie.Notification("|CFFF55D5DMissing Reagent Precache:|r " .. "[" .. item[5][i][1] .. "] " .. name[i], Craftie.TYPE.FUNC)
           end
           loadcache = 1
         end
@@ -410,7 +412,7 @@ function Craftie.ItemDetails(item)
         loadcache = 0
         C_Timer.After(0.2, function()
           Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
-          Craftie.Notification("[" .. item[2] .. "] reloading from tooltip data", true)
+          Craftie.Notification("[" .. item[2] .. "] reloading from tooltip data", Craftie.TYPE.FUNC)
           --Craftie.Frame.Reagent.HLink[i]:SetText(link)
         end)
       end
@@ -558,7 +560,7 @@ function Craftie.ResetCrafterBuild()
   for k,v in pairs(Craftie.Professions) do
     Craftie.ProfileBuilt[v[1]] = 0
   end
-  Craftie.Notification("Craftie.ResetCrafterBuild()", true)
+  Craftie.Notification("Craftie.ResetCrafterBuild()", Craftie.TYPE.FUNC)
 end
 
 function Craftie.CrafterDataBuild(profName, profLevel)
@@ -609,7 +611,7 @@ function Craftie.CrafterDataBuild(profName, profLevel)
             profString = profString .. profData[b]
           end
 
-          Craftie.Notification(profString, true)
+          Craftie.Notification(profString, Craftie.TYPE.FUNC)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
         end)
       end
@@ -699,13 +701,13 @@ function Craftie.CrafterDataParse(profName, player)
       --print(v[2])
     --end
 
-    Craftie.Notification("class " .. class, true) --not sure if this is relevant
-    Craftie.Notification("profLevel " .. profLevel, true)
+    Craftie.Notification("class " .. class, Craftie.TYPE.FUNC) --not sure if this is relevant
+    Craftie.Notification("profLevel " .. profLevel, Craftie.TYPE.FUNC)
     Craftie.SetProfLevel(tonumber(profLevel))
-    --Craftie.Notification("compareProf " .. #compareProf, true)
-    Craftie.Notification("crafterProf " .. #crafterProf, true)
-    Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], true)
-    Craftie.Notification("profString " .. profString, true)
+    --Craftie.Notification("compareProf " .. #compareProf, Craftie.TYPE.FUNC)
+    Craftie.Notification("crafterProf " .. #crafterProf, Craftie.TYPE.FUNC)
+    Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.TYPE.FUNC)
+    Craftie.Notification("profString " .. profString, Craftie.TYPE.FUNC)
   end
   return crafterProf
 end
@@ -716,11 +718,11 @@ function Craftie.OpenProfessionList(profArray, search, player)
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie.SetProfLevel(0)
   if (player ~= "") then
-    Craftie.Notification("Using " .. player .. "Crafting book", true)
+    Craftie.Notification("Using " .. player .. "Crafting book", Craftie.TYPE.FUNC)
     profCache = Craftie.CrafterDataParse(Craftie.Page, player)
     --Craftie.Frame.Title.Sub:SetText(player)
   else
-    --Craftie.Notification("Using a default Crafting book", true)
+    --Craftie.Notification("Using a default Crafting book", Craftie.TYPE.FUNC)
     profCache = Craftie.CopyTable(profArray)
   end
 
@@ -807,18 +809,18 @@ function Craftie.OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesList:SetAlpha(1)
   end)
 
-  Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", true)
+  Craftie.Notification("Craftie.OpenProfessionList(" .. player .. ")", Craftie.TYPE.FUNC)
 end
 
 --add a timer for parsed data
 function Craftie.Open(player, profession)
   if (player) then
-    Craftie.Notification("Craftie.Open player: " .. player, true)
-    Craftie.Notification("Craftie.Open profession: " .. profession, true)
+    Craftie.Notification("Craftie.Open player: " .. player, Craftie.TYPE.FUNC)
+    Craftie.Notification("Craftie.Open profession: " .. profession, Craftie.TYPE.FUNC)
     --local prof = profession
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie.GetKeyFromValue(Craftie.Professions, profession, 1)
-      Craftie.Notification("Craftie.Open: Go to " .. profession .. " => " .. player, true)
+      Craftie.Notification("Craftie.Open: Go to " .. profession .. " => " .. player, Craftie.TYPE.FUNC)
       Craftie.TabSelect(page, true)
       Craftie.Frame:Show()
     end)
@@ -851,7 +853,7 @@ function SlashCmdList.Craftie(cmd)
   for k,v in pairs(Craftie.Professions) do
     local profcmd = "p" .. k
     if (cmd == profcmd) then
-      Craftie.Notification("View ALL recipes [" .. Craftie.Professions[k][1] .. "]", true) --Craftie.Profession[Craftie.Professions[k][1]])
+      Craftie.Notification("View ALL recipes [" .. Craftie.Professions[k][1] .. "]", Craftie.TYPE.FUNC) --Craftie.Profession[Craftie.Professions[k][1]])
       Craftie.OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "", "")
     end
   end
@@ -866,7 +868,7 @@ function Craftie.BuildReagentGaps()
   for k,v in pairs(Craftie.Reagents) do
     Craftie.Reagent[v[1]] = {v[1], v[2]}
   end
-  Craftie.Notification("Craftie.BuildReagentGaps()", true)
+  Craftie.Notification("Craftie.BuildReagentGaps()", Craftie.TYPE.FUNC)
 end
 
 function Craftie.SaveMapButtonPos()

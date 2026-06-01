@@ -57,7 +57,8 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.Prefix)) then
 	    Craftie.Init()
-      print("Craftie.Event[1] " .. prefix .. " | " .. event)
+      --print("Craftie.Event[1] " .. prefix .. " | " .. event)
+      Craftie.Notification("Craftie.EventManager[1] " .. event, Craftie.TYPE.EVENT)
 	  end
 
     --print("event|n" .. event)
@@ -102,7 +103,7 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     end
 
     if (prefix == Craftie._G.Prefix) then
-      Craftie.Notification("|cFF92CEFCEvent:|r " .. event, true)
+      Craftie.Notification("Craftie.EventManager[2] " .. event, Craftie.TYPE.EVENT)
     end
 
   end
@@ -167,7 +168,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
-            Craftie.Notification("|cffF54927Warning!|r [" .. player .. "] has outdated data")
+            Craftie.Notification("|cffF54927Warning!|r [" .. player .. "] has outdated data", Craftie.TYPE.CHAT)
           end
           Craftie.UpdateCrafterList()
           --print("open book to player " .. player)

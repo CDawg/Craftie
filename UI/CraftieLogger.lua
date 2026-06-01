@@ -72,11 +72,12 @@ Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logge
 Craftie.ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
 
 local ColHeight = 28
+--colName, colWidth, colX, colColor, 
 Craftie.Logger.Cols = {
   {"ID",   60,  0,   {1, 1, 0.8, 0.4}},
   {"Date", 100, 60,  {1, 1, 0.7, 0.8}},
   {"Type", 110, 160, {}},
-  {"Log",  450, 270, {}},
+  {"Log",  500, 270, {}},
 }
 Craftie.Logger.Col={}
 
@@ -86,7 +87,6 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k]:SetHeight(ColHeight)
   --Craftie.Logger.Col[k]:SetPoint("TOPLEFT", 0, -ColHeight)
   Craftie.Logger.Col[k]:SetPoint("TOPLEFT", v[3], -ColHeight)
-  print(v[3])
   Craftie.Logger.Col[k]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Logger.Col[k]:SetBackdropColor(0.6, 0.6, 0.5, 0.7)
   Craftie.Logger.Col[k]:SetBackdropBorderColor(0.2, 0.2, 0.2, 0)
@@ -97,8 +97,9 @@ for k,v in ipairs(Craftie.Logger.Cols) do
 end
 
 Craftie.Logger.Row = {}
-
-function Craftie.Log(id)
+function Craftie.Log(type, log)
+  Craftie.LogKey = Craftie.LogKey +1
+  local id = Craftie.LogKey
   local RowHeight = 24 --default
   if (type == nil) then
     type = "FUNC"
@@ -108,7 +109,6 @@ function Craftie.Log(id)
   Craftie.Logger.Row[id]:SetWidth(Craftie.Logger:GetWidth()-40)
   Craftie.Logger.Row[id]:SetHeight(RowHeight)
   Craftie.Logger.Row[id]:SetPoint("TOPLEFT", 0, -id*Craftie.Logger.Row[id]:GetHeight())
-  Craftie.Logger.Row[id]:SetPoint(Craftie.Logger.Row[id]:GetPoint())
   Craftie.Logger.Row[id]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Logger.Row[id]:SetBackdropColor(0, 0, 0, 0)
   if (id % 2 == 0) then
@@ -127,10 +127,13 @@ function Craftie.Log(id)
   end)
   Craftie.Logger.Row[id]:SetScript("OnClick", function(self)
     local detail = ""
-   for k,v in ipairs(Craftie.Logger.Cols) do
-    detail = "[" .. Craftie.Logger.Row[id][1]:GetText() .. "]|n" .. Craftie.Logger.Row[id][2]:GetText() .. "|nLOG:|n" .. Craftie.Logger.Row[id][4]:GetText()
-    Craftie.Logger.Text:SetText(detail)
-   end
+    for k,v in ipairs(Craftie.Logger.Cols) do
+      detail = "[" .. Craftie.Logger.Row[id][1]:GetText() .. "]|n" ..
+      Craftie.Logger.Row[id][2]:GetText() ..
+      "|nTYPE: " .. Craftie.Logger.Row[id][3]:GetText() ..
+      "|n|nLOG:|n" .. Craftie.Logger.Row[id][4]:GetText()
+      Craftie.Logger.Text:SetText(detail)
+    end
   end)
 
   for k,v in ipairs(Craftie.Logger.Cols) do
@@ -139,7 +142,19 @@ function Craftie.Log(id)
     Craftie.Logger.Row[id][k]:SetHeight(RowHeight)
     Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
     Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3], 0)
-    Craftie.Logger.Row[id][k]:SetText(v[1])
+    if (k > 1) then
+      Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]-5, 0)
+    end
+    Craftie.Logger.Row[id][k]:SetText(id)
+    if (k == 2) then
+      Craftie.Logger.Row[id][k]:SetText(date("%y%m%d%H%M%S"))
+    end
+    if (k == 3) then
+      Craftie.Logger.Row[id][k]:SetText(tostring(type))
+    end
+    if (k == 4) then
+      Craftie.Logger.Row[id][k]:SetText(log)
+    end
     Craftie.Logger.Row[id][k]:SetWordWrap(true)
     Craftie.Logger.Row[id][k]:SetJustifyH("LEFT")
     if (v[4][1]) then
@@ -162,6 +177,6 @@ Craftie.Logger.Text:SetPoint("TOPLEFT", 15, -15)
 Craftie.Logger.Text:SetMultiLine(true)
 Craftie.Logger.Text:ClearFocus(self)
 Craftie.Logger.Text:SetAutoFocus(false)
-Craftie.Logger.Text:SetText("This is a test")
+Craftie.Logger.Text:SetText("")
 
 --Craftie.Logger:Hide()
