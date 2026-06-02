@@ -279,7 +279,7 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdropColor(0, 0, 0, 1) --shade
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdropBorderColor(1, 1, 1, 1)
+  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdropBorderColor(1, 1, 1, 0.5)
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetFrameLevel(300)
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetFrameStrata("HIGH")
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetToplevel(true)
@@ -289,25 +289,32 @@ for i=1, Craftie.MAX_PLAYERS do
     --open the sub menu
     --temporarily disable the scrolling
     Craftie.CloseAllPlayerMenus()
-    --players
-    Craftie.Frame.ScrollPlayersList.Child:SetAlpha(0.4)
-    Craftie.Frame.ScrollPlayersList.Child:EnableMouse(false)
-    Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(false)
-    --recipes
-    Craftie.Frame.ScrollRecipesList.Child:SetAlpha(0.4)
-    Craftie.Frame.ScrollRecipesList.Child:EnableMouse(false)
-    Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(false)
-    Craftie.EnableScrollFrames = false
+    Craftie.ScrollBarDisable()
+
     local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
     if (crafter ~= nil) then
       Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Show()
-      local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListOpt[i]:GetPoint()
-      Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", 180, yOfs-80)
-
-      --print("clicking on " .. crafter)
+      local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
+      --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
+      Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint(point, relativeTo, relativePoint, xOfs+160, yOfs)
+      print("clicking on " .. crafter)
       --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
     end
   end)
+end
+
+function Craftie.ScrollBarDisable()
+  --players
+    Craftie.Frame.ScrollPlayersList.Child:SetAlpha(0.4)
+    Craftie.Frame.ScrollPlayersList.Child:EnableMouse(false)
+    Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(false)
+    --Craftie.Frame.ScrollPlayersList.Child:SetClipsChildren(true)
+  --recipes
+    Craftie.Frame.ScrollRecipesList.Child:SetAlpha(0.4)
+    Craftie.Frame.ScrollRecipesList.Child:EnableMouse(false)
+    Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(false)
+    --Craftie.Frame.ScrollRecipesList.Child:SetClipsChildren(true)
+    Craftie.EnableScrollFrames = false
 end
 
 --this also goes to the player scroll item
