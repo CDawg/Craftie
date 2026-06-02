@@ -197,6 +197,7 @@ Craftie.Reagents = {
 {4461, "Raptor Hide"},
 {4470, "Simple Wood"},
 {4471, "Flint and Tinder"},
+{4536, "Shiny Red Apple"},
 {4589, "Long Elegant Feather"},
 {4603, "Raw Spotted Yellowtail"},
 {4611, "Blue Pearl"},

@@ -66,15 +66,18 @@ Craftie.Backdrop = {
   }
 }
 
+Craftie.DEBUG = true
+Craftie.DEBUGLEVEL = 2 --default [chat|error]
+
 Craftie.TYPE = {
   CHAT = {1, "|CFFFFFFF0CHAT|r"},
-  WARN = {2, "|CFFF54927WARNING|r"},
-  ERROR= {3, "|CFFFF0000ERROR|r"},
-  FUNC = {4, "|CFF385EC2FUNC|r"},
-  EVENT= {5, "|CFF92CEFCEVENT|r"},
-  SEND = {6, "|CFF89DE49SEND|r"},
-  ACK  = {7, "|CFFD177F7ACK|r"},
-  SAVE = {8, "|CFF66D1A2SAVE|r"},
+  ERROR= {2, "|CFFFF0000ERROR|r"},
+  WARN = {3, "|CFFF54927WARNING|r"},
+  EVENT= {4, "|CFF92CEFCEVENT|r"},
+  SEND = {5, "|CFF89DE49SEND|r"},
+  ACK  = {6, "|CFFD177F7ACK|r"},
+  SAVE = {7, "|CFF66D1A2SAVE|r"},
+  FUNC = {8, "|CFF385EC2FUNC|r"},
 }
 
 Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))

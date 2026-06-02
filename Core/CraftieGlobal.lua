@@ -13,8 +13,6 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.DEBUG = true
-
 Craftie._G = {
   Author = "Porthias",
   Width  = 820,
@@ -39,7 +37,7 @@ Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie.Notification(msg, type)
   local logstring= ""
-  if ((type[1] <= 3) or (Craftie.DEBUG)) then
+  if ((type[1] <= Craftie.DEBUGLEVEL) or (Craftie.DEBUG)) then
     print(Craftie._G.Title .. " " .. type[2] .. ": " .. msg)
   end
   --print("type: " .. type[1] .. " | " .. type[2])
@@ -358,7 +356,7 @@ function Craftie.ItemDetails(item)
         if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
           if (name[i] ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
             Craftie.Reagent[r][2] = name[i]
-            Craftie.Notification("|CFFF55D5DMissing Reagent Precache:|r " .. "[" .. item[5][i][1] .. "] " .. name[i], Craftie.TYPE.FUNC)
+            Craftie.Notification("Missing Reagent Precache: " .. "[" .. item[5][i][1] .. "] " .. name[i], Craftie.TYPE.WARN)
           end
           loadcache = 1
         end
