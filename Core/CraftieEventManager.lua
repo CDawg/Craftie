@@ -110,6 +110,8 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
 end
 
 Craftie.Chat = {}
+Craftie.ChatFilter = {}
+
 function Craftie.BuildChatHooks()
   local prof_parent = ""
   for k,v in pairs(Craftie.Professions) do
@@ -130,106 +132,23 @@ function Craftie.BuildChatHooks()
   end
 end
 
-Craftie.ChatFilter = {}
-
-for _,prof in pairs(Craftie.Professions) do
-  local Parent = prof[1]
-  print(Parent)
-  --function Craftie.ChatFilter:Parent(self, event, msg, author, ...)
-  --end
-end
-
-function Craftie.ChatFilter.Alchemy(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Alchemy[1]
-  for k,v in pairs(Craftie.Chat.Alchemy) do
-    local pattern= "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
-    end
-  end
-end
-
-function Craftie.ChatFilter.Blacksmithing(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Blacksmithing[1]
-  for k,v in pairs(Craftie.Chat.Blacksmithing) do
-    local pattern = "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
-    end
-  end
-end
-
-function Craftie.ChatFilter.Cooking(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Cooking[1]
-  for k,v in pairs(Craftie.Chat.Cooking) do
-    local pattern = "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
-    end
-  end
-end
-
-function Craftie.ChatFilter.Enchanting(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Enchanting[1]
-  for k,v in pairs(Craftie.Chat.Enchanting) do
-    local pattern = "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
-    end
-  end
-end
-
-function Craftie.ChatFilter.Engineering(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Engineering[1]
-  for k,v in pairs(Craftie.Chat.Engineering) do
-    local pattern = "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
-    end
-  end
-end
-
-function Craftie.ChatFilter.Leatherworking(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Leatherworking[1]
-  for k,v in pairs(Craftie.Chat.Leatherworking) do
-    local pattern = "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
-    end
-  end
-end
-
-function Craftie.ChatFilter.Tailoring(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Tailoring[1]
-  for k,v in pairs(Craftie.Chat.Tailoring) do
-    local pattern = "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
-    end
-  end
-end
-
-function Craftie.ChatFilter.Jewelcrafting(self, event, msg, author, ...)
-  local parent = Craftie.Chat.Jewelcrafting[1]
-  for k,v in pairs(Craftie.Chat.Jewelcrafting) do
-    local pattern = "%[" .. v .. "%]"
-    if (msg:find(pattern)) then --register the author data
-      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-      return false, filter, author, ...
+for k,v in pairs(Craftie.Professions) do
+   Craftie.ChatFilter[v[1]] = function(self, event, msg, author, ...)
+    --local parent = Craftie.Chat.Alchemy[1]
+    for a,b in pairs(Craftie.Chat[v[1]]) do
+      local pattern= "%[" .. b .. "%]"
+      if (msg:find(pattern)) then --register the author data
+        local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+        return false, filter, author, ...
+      end
     end
   end
 end
 
 for k,v in pairs(Craftie.ChannelList) do
   for _,prof in pairs(Craftie.Professions) do
-    --ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])
+    --segment each primary profession
+    ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])
   end
 end
 
