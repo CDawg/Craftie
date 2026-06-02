@@ -74,6 +74,7 @@ Craftie.TYPE = {
   EVENT= {5, "|CFF92CEFCEVENT|r"},
   SEND = {6, "|CFF89DE49SEND|r"},
   ACK  = {7, "|CFFD177F7ACK|r"},
+  SAVE = {8, "|CFF66D1A2SAVE|r"},
 }
 
 Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))

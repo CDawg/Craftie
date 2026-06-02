@@ -38,7 +38,7 @@ Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie.Notification(msg, type)
-  local logstring = ""
+  local logstring= ""
   if ((type[1] <= 3) or (Craftie.DEBUG)) then
     print(Craftie._G.Title .. " " .. type[2] .. ": " .. msg)
   end
@@ -193,7 +193,7 @@ function Craftie.SendPacket(prefix, data, channel, target)
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
   end
 
-  Craftie.Notification(repack .. " [" .. #repack .. "]", Craftie.TYPE.SEND)
+  Craftie.Notification(repack .. " [" .. #repack .. "] -> " .. target, Craftie.TYPE.SEND)
 end
 
 --Seed examples
@@ -265,16 +265,16 @@ function Craftie.ParsePacket(netpacket)
         --store it
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData
-        Craftie.Notification("Storing Data:|n" .. profString, Craftie.TYPE.ACK)
+        Craftie.Notification(profString, Craftie.TYPE.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
       end
 
     else
-      Craftie.Notification("Malformed Packet: " .. netpacket, Craftie.TYPE.ERROR)
+      Craftie.Notification("Malformed Packet [Version Mismatch]: " .. netpacket, Craftie.TYPE.ERROR)
     end
+    --Craftie.Notification("Malformed Packet [Bad Prefix]: " .. netpacket, Craftie.TYPE.ERROR)
   end
 end
-
 
 Craftie.Animation = 0
 Craftie.TabBarHide = 0
@@ -585,7 +585,7 @@ function Craftie.CrafterDataBuild(profName, profLevel)
             profString = profString .. profData[b]
           end
 
-          Craftie.Notification(profString, Craftie.TYPE.FUNC)
+          Craftie.Notification(profString, Craftie.TYPE.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
         end)
       end
@@ -675,13 +675,14 @@ function Craftie.CrafterDataParse(profName, player)
       --print(v[2])
     --end
 
-    Craftie.Notification("class " .. class, Craftie.TYPE.FUNC) --not sure if this is relevant
-    Craftie.Notification("profLevel " .. profLevel, Craftie.TYPE.FUNC)
+    --Craftie.Notification("class " .. class, Craftie.TYPE.FUNC) --not sure if this is relevant
+    --Craftie.Notification("profLevel " .. profLevel, Craftie.TYPE.FUNC)
     Craftie.SetProfLevel(tonumber(profLevel))
     --Craftie.Notification("compareProf " .. #compareProf, Craftie.TYPE.FUNC)
-    Craftie.Notification("crafterProf " .. #crafterProf, Craftie.TYPE.FUNC)
-    Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.TYPE.FUNC)
-    Craftie.Notification("profString " .. profString, Craftie.TYPE.FUNC)
+    --Craftie.Notification("crafterProf " .. #crafterProf, Craftie.TYPE.FUNC)
+    --Craftie.Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.TYPE.FUNC)
+    --Craftie.Notification("profString " .. profString, Craftie.TYPE.FUNC)
+    Craftie.Notification("CrafterDataParse(): [crafterClass]"  .. class .. " [profLevel]" .. profLevel .. " [profString]" .. profString, Craftie.TYPE.FUNC)
   end
   return crafterProf
 end

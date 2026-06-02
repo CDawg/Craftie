@@ -44,6 +44,7 @@ end)
 Craftie.Logger:SetScript("OnShow", function(self)
   Craftie.Logger.Background:Show()
 end)
+Craftie.Logger:Hide()
 
 Craftie.Logger.Title = Craftie.Logger:CreateFontString(nil, "ARTWORK")
 Craftie.Logger.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
@@ -178,5 +179,3 @@ Craftie.Logger.Text:SetMultiLine(true)
 Craftie.Logger.Text:ClearFocus(self)
 Craftie.Logger.Text:SetAutoFocus(false)
 Craftie.Logger.Text:SetText("")
-
---Craftie.Logger:Hide()
