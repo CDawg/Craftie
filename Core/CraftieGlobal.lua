@@ -37,6 +37,9 @@ Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie.Notification(msg, type)
   local logstring= ""
+  if (Craftie.DEBUG <= 0) then
+    Craftie.DEBUG = 1 --prevent errors, but always show chat
+  end
   if (type[1] <= Craftie.DEBUG) then
     print(Craftie._G.Title .. " " .. type[2] .. ": " .. msg)
   end

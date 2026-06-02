@@ -130,6 +130,7 @@ function Craftie.BuildChatHooks()
 end
 
 function Craftie.ChatFilter(self, event, msg, author, ...)
+  --[==[
   for k,v in pairs(Craftie.ChatProfessions) do
     local pattern = "%[" .. v[2] .. "%]"
     if (msg:find(pattern)) then --register the author data
@@ -137,6 +138,41 @@ function Craftie.ChatFilter(self, event, msg, author, ...)
       return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r"), author, ...
     end
   end
+  ]==]--
+
+  local prof_count = 0
+  for k,v in pairs(Craftie.ChatProfessions) do
+    local pattern = "%[" .. v[2] .. "%]"
+      if (msg:find(pattern)) then --register the author data
+        prof_count = prof_count +1
+        print("prof_count " .. prof_count)
+        local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+        return false, filter, author, ...
+      end
+    end
+  --return false
+end
+
+local function MyChatFilter(self, event, msg, sender, ...)
+    -- Convert message to lowercase for case-insensitive matching
+    local lowerMsg = string.lower(msg)
+    
+    -- List of patterns to check (you can add as many as needed)
+    local patterns = {
+        "badword",
+        "spammer phrase",
+        "filter this text"
+    }
+    
+    -- Check if the message matches any pattern
+    for _, pattern in ipairs(patterns) do
+        if string.find(lowerMsg, pattern) then
+            return true -- Returns true to suppress/hide the message
+        end
+    end
+    
+    -- Return false/nil to allow the message to display normally
+    return false 
 end
 
 for k,v in pairs(Craftie.ChannelList) do
