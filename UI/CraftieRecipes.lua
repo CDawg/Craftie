@@ -141,6 +141,7 @@ Craftie.Frame.Button.SearchRecipesIcon:SetTexture(Craftie._G.Path ..  "Images/UI
 Craftie.Frame.Button.SearchRecipesIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchRecipes:SetScript("OnClick", function(self)
   Craftie.Frame.Search.Recipes.Text:SetText("")
+  Craftie.CloseAllPlayerMenus()
   Craftie.ClearFocusAll()
   --Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "")
   Craftie.SelectCrafter(1, "")

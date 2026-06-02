@@ -204,6 +204,7 @@ Craftie.Reagents = {
 {4625, "Firebloom"},
 {4655, "Giant Clam Meat"},
 {4852, "Flash Bomb"},
+{5051, "Dig Rat"},
 {5082, "Thin Kodo Leather"},
 {5116, "Long Tail Feather"},
 {5373, "Lucky Charm"},

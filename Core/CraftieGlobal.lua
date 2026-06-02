@@ -37,7 +37,7 @@ Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie.Notification(msg, type)
   local logstring= ""
-  if ((type[1] <= Craftie.DEBUGLEVEL) or (Craftie.DEBUG)) then
+  if (type[1] <= Craftie.DEBUG) then
     print(Craftie._G.Title .. " " .. type[2] .. ": " .. msg)
   end
   --print("type: " .. type[1] .. " | " .. type[2])
@@ -238,7 +238,7 @@ function Craftie.ParsePacket(netpacket)
         local profParse = Craftie.Split(profPack, "|")
         local profName = profParse[1]
 
-        if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUG)) then
+        if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUG >= 3)) then
           Craftie.Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.TYPE.ACK)
           --get my saved prof data and send it
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
