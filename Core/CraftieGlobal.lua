@@ -56,7 +56,7 @@ Craftie.MAX_PLAYERS = 300 --per profession
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
 Craftie.ProfessionDefault = Craftie.CopyTable(Craftie.Profession.Alchemy)
-Craftie.ProfessionSearch = Craftie.CopyTable(Craftie.Profession.Alchemy)
+--Craftie.ProfessionSearch = Craftie.CopyTable(Craftie.Profession.Alchemy)
 
 Craftie.Placeholder_Players = "Search Crafters..."
 Craftie.Placeholder_Recipes = "Search Recipes..."
@@ -694,7 +694,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie.SetProfLevel(0)
   if (player ~= "") then
-    Craftie.Notification("Using " .. player .. "Crafting book", Craftie.TYPE.FUNC)
+    Craftie.Notification("Using [" .. player .. "] Crafting book", Craftie.TYPE.FUNC)
     profCache = Craftie.CrafterDataParse(Craftie.Page, player)
     --Craftie.Frame.Title.Sub:SetText(player)
   else

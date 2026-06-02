@@ -109,74 +109,128 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
   end
 end
 
-Craftie.ChatProfessions = {} --version control?
+Craftie.Chat = {}
 function Craftie.BuildChatHooks()
-  local i=0
+  local prof_parent = ""
   for k,v in pairs(Craftie.Professions) do
-    i=i+1
-    table.insert(Craftie.ChatProfessions, i, {v[1], v[1]})
-    --print(i .. " | " .. v[1] .. " | " ..  v[1])
-    for a,b in pairs(v[4]) do
-      i=i+1
-      if (v[4][1] ~= nil) then
-        --print(i .. " | " .. v[1] .. " | " ..  b)
-        table.insert(Craftie.ChatProfessions, i, {v[1], b})
+    Craftie.Chat[v[1]] = {}
+  end
+
+  for k,v in pairs(Craftie.Professions) do
+    prof_parent = "[" .. v[1]
+    table.insert(Craftie.Chat[v[1]], v[1])
+    if (v[4][1] ~= nil) then
+      for a,b in pairs(v[4]) do
+        --print(" - " .. b)
+        table.insert(Craftie.Chat[v[1]], b)
+        prof_parent = prof_parent .. " | " .. b
       end
     end
+    Craftie.Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.TYPE.FUNC)
   end
-  --for k,v in pairs(Craftie.ChatProfessions) do
-    --print(v[2])
+end
+
+Craftie.ChatFilter = {}
+
+for _,prof in pairs(Craftie.Professions) do
+  local Parent = prof[1]
+  print(Parent)
+  --function Craftie.ChatFilter:Parent(self, event, msg, author, ...)
   --end
 end
 
-function Craftie.ChatFilter(self, event, msg, author, ...)
-  --[==[
-  for k,v in pairs(Craftie.ChatProfessions) do
-    local pattern = "%[" .. v[2] .. "%]"
+function Craftie.ChatFilter.Alchemy(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Alchemy[1]
+  for k,v in pairs(Craftie.Chat.Alchemy) do
+    local pattern= "%[" .. v .. "%]"
     if (msg:find(pattern)) then --register the author data
-      local icon_key = Craftie.GetKeyFromValue(Craftie.Professions, v[1], 1)
-      return false, gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r"), author, ...
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
     end
   end
-  ]==]--
-
-  local prof_count = 0
-  for k,v in pairs(Craftie.ChatProfessions) do
-    local pattern = "%[" .. v[2] .. "%]"
-      if (msg:find(pattern)) then --register the author data
-        prof_count = prof_count +1
-        print("prof_count " .. prof_count)
-        local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-        return false, filter, author, ...
-      end
-    end
-  --return false
 end
 
-local function MyChatFilter(self, event, msg, sender, ...)
-    -- Convert message to lowercase for case-insensitive matching
-    local lowerMsg = string.lower(msg)
-    
-    -- List of patterns to check (you can add as many as needed)
-    local patterns = {
-        "badword",
-        "spammer phrase",
-        "filter this text"
-    }
-    
-    -- Check if the message matches any pattern
-    for _, pattern in ipairs(patterns) do
-        if string.find(lowerMsg, pattern) then
-            return true -- Returns true to suppress/hide the message
-        end
+function Craftie.ChatFilter.Blacksmithing(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Blacksmithing[1]
+  for k,v in pairs(Craftie.Chat.Blacksmithing) do
+    local pattern = "%[" .. v .. "%]"
+    if (msg:find(pattern)) then --register the author data
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
     end
-    
-    -- Return false/nil to allow the message to display normally
-    return false 
+  end
+end
+
+function Craftie.ChatFilter.Cooking(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Cooking[1]
+  for k,v in pairs(Craftie.Chat.Cooking) do
+    local pattern = "%[" .. v .. "%]"
+    if (msg:find(pattern)) then --register the author data
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
+    end
+  end
+end
+
+function Craftie.ChatFilter.Enchanting(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Enchanting[1]
+  for k,v in pairs(Craftie.Chat.Enchanting) do
+    local pattern = "%[" .. v .. "%]"
+    if (msg:find(pattern)) then --register the author data
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
+    end
+  end
+end
+
+function Craftie.ChatFilter.Engineering(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Engineering[1]
+  for k,v in pairs(Craftie.Chat.Engineering) do
+    local pattern = "%[" .. v .. "%]"
+    if (msg:find(pattern)) then --register the author data
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
+    end
+  end
+end
+
+function Craftie.ChatFilter.Leatherworking(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Leatherworking[1]
+  for k,v in pairs(Craftie.Chat.Leatherworking) do
+    local pattern = "%[" .. v .. "%]"
+    if (msg:find(pattern)) then --register the author data
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
+    end
+  end
+end
+
+function Craftie.ChatFilter.Tailoring(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Tailoring[1]
+  for k,v in pairs(Craftie.Chat.Tailoring) do
+    local pattern = "%[" .. v .. "%]"
+    if (msg:find(pattern)) then --register the author data
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
+    end
+  end
+end
+
+function Craftie.ChatFilter.Jewelcrafting(self, event, msg, author, ...)
+  local parent = Craftie.Chat.Jewelcrafting[1]
+  for k,v in pairs(Craftie.Chat.Jewelcrafting) do
+    local pattern = "%[" .. v .. "%]"
+    if (msg:find(pattern)) then --register the author data
+      local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. parent .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+      return false, filter, author, ...
+    end
+  end
 end
 
 for k,v in pairs(Craftie.ChannelList) do
-  ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter)
+  for _,prof in pairs(Craftie.Professions) do
+    --ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])
+  end
 end
 
 hooksecurefunc("SetItemRef", function(link, text, button)
@@ -213,6 +267,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       end
       --we still need to open the book, but cache the incoming data
       C_Timer.After(0.2, function()
+        Craftie.Notification("SetItemRef " .. prof, Craftie.TYPE.FUNC)
         Craftie.Open(player, prof) --need to cache player data loading
       end)
     end

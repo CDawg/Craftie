@@ -44,7 +44,7 @@ end)
 Craftie.Logger:SetScript("OnShow", function(self)
   Craftie.Logger.Background:Show()
 end)
-Craftie.Logger:Hide()
+--Craftie.Logger:Hide()
 
 Craftie.Logger.Title = Craftie.Logger:CreateFontString(nil, "ARTWORK")
 Craftie.Logger.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
@@ -142,7 +142,7 @@ function Craftie.Log(type, log)
     Craftie.Logger.Row[id][k]:SetWidth(v[2])
     Craftie.Logger.Row[id][k]:SetHeight(RowHeight)
     Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-    Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3], 0)
+    Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]+5, 0)
     if (k > 1) then
       Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]-5, 0)
     end
