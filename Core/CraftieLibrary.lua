@@ -114,9 +114,14 @@ Craftie.Professions = {
   {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25", {"Gnomish Engineer", "Goblin Engineer"}},
   {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale Leatherworking", "Elemental Leatherworking", "Tribal Leatherworking"}},
   {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"}},
-  {"Jewelcrafting",  "INV_Misc_Gem_02",      "1.00, 0.25, 0.25", {}},
-  --{"Inscription",    "inv_inscription_tradeskill01", "1.00, 0.25, 0.25"},
 }
+
+if (Craftie.Game.Version >= 2) then
+  table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
+end
+if (Craftie.Game.Version >= 3) then
+  table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
+end
 
 function Craftie.BitDouble(packet, decompress)
   local package = ""

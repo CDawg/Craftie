@@ -808,7 +808,7 @@ end
 SLASH_Craftie1 = "/" .. Craftie._G.Prefix
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
-    print("list of commands")
+    Craftie.Open()
 	end
 	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
 	--if (cmd == Craftie._L.COMMANDS[1][1]) then
