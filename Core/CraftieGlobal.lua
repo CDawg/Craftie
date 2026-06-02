@@ -35,22 +35,12 @@ Craftie._G.Path = "Interface/Addons/Craftie/"
 Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
-Craftie.TYPE = {
-  CHAT = {1, "|CFFFFFFF0CHAT|r"},
-  WARN = {2, "|CFFFFC300WARNING|r"},
-  ERROR= {3, "|CFFFF0000ERROR|r"},
-  FUNC = {4, "|CFF85847AFUNC|r"},
-  EVENT= {5, "|CFF92CEFCEVENT|r"},
-  SEND = {6, "|CFF89DE49SEND|r"},
-  ACK  = {7, "|CFFD177F7ACK|r"},
-}
-
 Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie.Notification(msg, type)
   local logstring = ""
-  if (type[1] <= 3) then
-    print(Craftie._G.Title .. " " .. msg)
+  if ((type[1] <= 3) or (Craftie.DEBUG)) then
+    print(Craftie._G.Title .. " " .. type[2] .. ": " .. msg)
   end
   --print("type: " .. type[1] .. " | " .. type[2])
   --log everything, regardless of debug mode
@@ -225,17 +215,17 @@ function Craftie.ParsePacket(netpacket)
     version = tonumber(packet[2])
     if (version > tonumber(Craftie._G.Version)) then
       if (Craftie.Notified ~= 1) then --dont spam the requester
-        Craftie.Notification("|cFFFF0000ERROR:|r You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]", Craftie.TYPE.ERROR)
+        Craftie.Notification("You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]", Craftie.TYPE.ERROR)
       end
       stable_version = false
       Craftie.Notified = 1
     end
     if (version < tonumber(Craftie._G.Version)) then
       if (version < tonumber(Craftie._G.Version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
-        Craftie.Notification("ERROR:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.ERROR)
+        Craftie.Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.ERROR)
         stable_version = false
       else
-        Craftie.Notification("|cFFFFC300WARNING:|r Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.WARN)
+        Craftie.Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.WARN)
         stable_version = true
       end
     end
@@ -280,14 +270,11 @@ function Craftie.ParsePacket(netpacket)
       end
 
     else
-      Craftie.Notification("|cFFFF0000ERROR:|r Malformed Packet: " .. netpacket, Craftie.TYPE.ERROR)
+      Craftie.Notification("Malformed Packet: " .. netpacket, Craftie.TYPE.ERROR)
     end
   end
 end
 
---function Craftie.ParsePlayer(netpacket)
-  --local decompress = Craftie.LowCompression(netpacket, true)
---end
 
 Craftie.Animation = 0
 Craftie.TabBarHide = 0

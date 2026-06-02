@@ -48,7 +48,7 @@ end)
 Craftie.Logger.Title = Craftie.Logger:CreateFontString(nil, "ARTWORK")
 Craftie.Logger.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Logger.Title:SetPoint("TOPLEFT", 8, -6)
-Craftie.Logger.Title:SetText(Craftie._G.Title .. " Debug Logger")
+Craftie.Logger.Title:SetText(Craftie._G.Title .. " Logger")
 
 Craftie.Logger.ScrollFrame={}
 Craftie.Logger.ScrollFrame = CreateFrame("Frame", Craftie.Logger.ScrollFrame, Craftie.Logger, "BackdropTemplate")

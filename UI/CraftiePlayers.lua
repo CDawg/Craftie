@@ -285,46 +285,16 @@ for i=1, Craftie.MAX_PLAYERS do
       Craftie.Frame.ScrollPlayersListOpt.Menu:Show()
       local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
       --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
-      Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint(point, relativeTo, relativePoint, xOfs+160, yOfs)
+      Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
       print("clicking on " .. crafter)
       --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
     end
   end)
-  --[==[
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu[i], Craftie.Frame.ScrollPlayers, "BackdropTemplate")
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetWidth(120)
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetHeight(120)
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", 0, 0)
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdrop(Craftie.Backdrop.General)
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdropColor(0, 0, 0, 1) --shade
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetBackdropBorderColor(1, 1, 1, 0.5)
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetFrameLevel(300)
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetFrameStrata("HIGH")
-  Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetToplevel(true)
-  --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Hide()
-  Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnClick", function(self)
-    self:Hide()
-    --open the sub menu
-    --temporarily disable the scrolling
-    Craftie.CloseAllPlayerMenus()
-    Craftie.ScrollBarDisable()
-
-    local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
-    if (crafter ~= nil) then
-      Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Show()
-      local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
-      --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
-      Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint(point, relativeTo, relativePoint, xOfs+160, yOfs)
-      print("clicking on " .. crafter)
-      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
-    end
-  end)
-  ]==]--
 end
 
 Craftie.Frame.ScrollPlayersListOpt.Menu = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu, Craftie.Frame.ScrollPlayers, "BackdropTemplate")
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetWidth(120)
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetHeight(120)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetWidth(150)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetHeight(150)
 Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdropColor(0, 0, 0, 1) --shade

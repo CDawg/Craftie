@@ -66,6 +66,16 @@ Craftie.Backdrop = {
   }
 }
 
+Craftie.TYPE = {
+  CHAT = {1, "|CFFFFFFF0CHAT|r"},
+  WARN = {2, "|CFFF54927WARNING|r"},
+  ERROR= {3, "|CFFFF0000ERROR|r"},
+  FUNC = {4, "|CFF385EC2FUNC|r"},
+  EVENT= {5, "|CFF92CEFCEVENT|r"},
+  SEND = {6, "|CFF89DE49SEND|r"},
+  ACK  = {7, "|CFFD177F7ACK|r"},
+}
+
 Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))
 Craftie.Game.Name = Craftie.Game[tonumber(string.sub(__Gversion, 1, 1))]
 
