@@ -88,9 +88,11 @@ Craftie.TabBar_Y = 50
 
 function Craftie.CloseAllPlayerMenus()
   for i=1, Craftie.MAX_PLAYERS do
-    Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Hide()
+    --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Hide()
     Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
   end
+  Craftie.Frame.ScrollPlayersListOpt.Menu:Hide()
+
   Craftie.Frame.ScrollPlayersList.Child:SetAlpha(1)
   Craftie.Frame.ScrollPlayersList.Child:EnableMouse(true)
   Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(true)

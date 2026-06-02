@@ -272,7 +272,25 @@ for i=1, Craftie.MAX_PLAYERS do
       end
     end
   end)
-  --Craftie.Frame.ScrollPlayersListOpt.Menu[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu[i], Craftie.Frame.ScrollPlayersListItem[i], "BackdropTemplate")
+
+  Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnClick", function(self)
+    self:Hide()
+    --open the sub menu
+    --temporarily disable the scrolling
+    Craftie.CloseAllPlayerMenus()
+    Craftie.ScrollBarDisable()
+
+    local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
+    if (crafter ~= nil) then
+      Craftie.Frame.ScrollPlayersListOpt.Menu:Show()
+      local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
+      --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
+      Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint(point, relativeTo, relativePoint, xOfs+160, yOfs)
+      print("clicking on " .. crafter)
+      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
+    end
+  end)
+  --[==[
   Craftie.Frame.ScrollPlayersListOpt.Menu[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu[i], Craftie.Frame.ScrollPlayers, "BackdropTemplate")
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetWidth(120)
   Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetHeight(120)
@@ -301,7 +319,21 @@ for i=1, Craftie.MAX_PLAYERS do
       --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
     end
   end)
+  ]==]--
 end
+
+Craftie.Frame.ScrollPlayersListOpt.Menu = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu, Craftie.Frame.ScrollPlayers, "BackdropTemplate")
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetWidth(120)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetHeight(120)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint("TOPLEFT", 0, 0)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdropColor(0, 0, 0, 1) --shade
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdropBorderColor(1, 1, 1, 0.5)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetFrameLevel(300)
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetFrameStrata("HIGH")
+Craftie.Frame.ScrollPlayersListOpt.Menu:SetToplevel(true)
+Craftie.Frame.ScrollPlayersListOpt.Menu:Hide()
+
 
 function Craftie.ScrollBarDisable()
   --players
