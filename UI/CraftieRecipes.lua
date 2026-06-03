@@ -13,13 +13,13 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Frame.ScrollRecipes_Width = 300
+Craftie.Frame.ScrollRecipes_Width = 294
 Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-134
 
 Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", Craftie.Frame.ScrollRecipesParent, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollRecipesParent:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesParent:SetHeight(Craftie._G.Height-88)
-Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 212, -61)
+Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 216, -62)
 Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:CreateTexture(nil, "BACKGROUND")
@@ -153,27 +153,13 @@ Craftie.Frame.Button.SearchRecipesClear:SetScript("OnLeave", function(self)
 end)
 
 --[==[
-CRAFT ITEM
+CRAFT FRAME
 ]==]--
 Craftie.Frame.CraftParent={}
 Craftie.Frame.CraftParent= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.CraftParent:SetWidth(300)
 Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
-Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -61)
---[==[
-Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
-Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
-Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/back_alchemy.png")
-Craftie.Frame.CraftParent.Back:SetAlpha(0.2)
-
-Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER")
-Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
-Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
-Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/BackgroundFrameDecor.png")
-Craftie.Frame.CraftParent.Back:SetDesaturation(0.6)
-Craftie.Frame.CraftParent.Back:SetAlpha(0.6)
-]==]--
+Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -62)
 
 Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
@@ -199,6 +185,10 @@ Craftie.Frame.Craft:SetScript("OnHyperlinkClick", function(self, link, text, but
 end)
 Craftie.Frame.Craft:Hide()
 
+
+--[==[
+CRAFT ITEM
+]==]--
 Craftie.Frame.Craft.Back = Craftie.Frame.Craft:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(310, 50)
 Craftie.Frame.Craft.Back:SetPoint("TOPLEFT", -4, 6)
