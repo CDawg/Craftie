@@ -279,6 +279,7 @@ Craftie.Frame.Craft.Divider:SetSize(394, 24)
 Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 95, 90)
 Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
 
+--[==[
 Craftie.Frame.Craft.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(300, 110)
 Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", 0, 0)
@@ -290,6 +291,7 @@ Craftie.Frame.Craft.Shade = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER
 Craftie.Frame.Craft.Shade:SetSize(294, 130)
 Craftie.Frame.Craft.Shade:SetPoint("BOTTOMRIGHT", -4, -27)
 Craftie.Frame.Craft.Shade:SetTexture("Interface/COMMON/InsetShadow")
+]==]--
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
