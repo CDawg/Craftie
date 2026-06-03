@@ -41,11 +41,11 @@ Craftie.Frame.BotShadow:SetHorizTile(true)
 Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "Images/ShadowOverlay-Bottom.png", "REPEAT")
 
 Craftie.Frame.Icon = Craftie.Frame:CreateTexture(nil, "OVERLAY")
-Craftie.Frame.Icon:SetSize(112, 112)
-Craftie.Frame.Icon:SetPoint("TOPLEFT", -12, 14)
-Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png")
-Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 7)
-Craftie.Frame.Icon:Hide()
+Craftie.Frame.Icon:SetSize(250, 100)
+Craftie.Frame.Icon:SetPoint("TOPLEFT", -26, 14)
+Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png")
+Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 4)
+--Craftie.Frame.Icon:Hide()
 --[==[
 Craftie.Frame.Icon:SetMask("Interface/Masks/CircleMaskScalable")
 C_Timer.After(2, function() --wow bugfix
@@ -55,8 +55,9 @@ end)
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, 12, "SLUG")
-Craftie.Frame.Title:SetPoint("TOPLEFT", 65, -5)
-Craftie.Frame.Title:SetText(Craftie._G.Stamp .. " - " .. Craftie.Game.Name)
+Craftie.Frame.Title:SetPoint("TOPLEFT", 150, -6)
+--Craftie.Frame.Title:SetText(Craftie._G.Stamp .. " - " .. Craftie.Game.Name)
+Craftie.Frame.Title:SetText("v" .. Craftie._G.Version .. " - " .. Craftie.Game.Name)
 
 Craftie.Frame.Title.Sub = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Sub:SetFont(Craftie._G.Font.Style, 14, "SLUG")
