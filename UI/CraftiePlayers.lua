@@ -20,6 +20,7 @@ Craftie.Frame.ScrollPlayersParent = CreateFrame("Frame", Craftie.Frame.ScrollPla
 Craftie.Frame.ScrollPlayersParent:SetWidth(Craftie.Frame.ScrollPlayers_Width)
 Craftie.Frame.ScrollPlayersParent:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollPlayersParent:SetPoint("TOPLEFT", 2, -61)
+Craftie.Frame.ScrollPlayersParent:SetFrameStrata("MEDIUM")
 
 --Craftie.Frame.ScrollPlayersParent.Back = Craftie.Frame.ScrollPlayersParent:CreateTexture(nil, "BACKGROUND")
 --Craftie.Frame.ScrollPlayersParent.Back:SetSize(Craftie.Frame.ScrollPlayersParent:GetWidth()-20, Craftie.Frame.ScrollPlayersParent:GetHeight())

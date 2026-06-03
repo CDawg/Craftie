@@ -26,6 +26,7 @@ Craftie.Updates = CreateFrame("Frame", nil, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Updates:SetWidth(Craftie.Updates_w)
 Craftie.Updates:SetHeight(Craftie.Updates_h)
 Craftie.Updates:SetPoint("TOPLEFT", 4, -62)
+Craftie.Updates:SetFrameStrata("MEDIUM")
 
 Craftie.ScrollFrameUpdates = CreateFrame("Frame", Craftie.ScrollFrameUpdates, Craftie.Updates, "BackdropTemplate")
 Craftie.ScrollFrameUpdates:SetWidth(Craftie.Updates:GetWidth())
@@ -60,7 +61,6 @@ Craftie.Updates:Hide()
 local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", "|cfffab734 >|r") .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
-
 Craftie.Credit_w = Craftie.Frame:GetWidth()/2-35
 Craftie.Credit_h = Craftie.Frame:GetHeight()-88
 
@@ -68,6 +68,7 @@ Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Credit:SetWidth(Craftie.Credit_w)
 Craftie.Credit:SetHeight(Craftie.Credit_h)
 Craftie.Credit:SetPoint("TOPLEFT", 435, -62)
+Craftie.Credit:SetFrameStrata("MEDIUM")
 
 Craftie.ScrollFrameCredits = CreateFrame("Frame", Craftie.ScrollFrameCredits, Craftie.Credit, "BackdropTemplate")
 Craftie.ScrollFrameCredits:SetWidth(Craftie.Credit:GetWidth())

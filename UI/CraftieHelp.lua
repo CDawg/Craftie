@@ -36,6 +36,8 @@ Craftie.Help = CreateFrame("Frame", nil, Craftie.Frame)
 Craftie.Help:SetWidth(Craftie.Help_w)
 Craftie.Help:SetHeight(Craftie.Help_h)
 Craftie.Help:SetPoint("TOPLEFT", 10, -62)
+--Craftie.Help:SetFrameStrata("MEDIUM")
+
 Craftie.HelpScrollFrame={}
 Craftie.HelpScrollFrame = CreateFrame("Frame", Craftie.HelpScrollFrame, Craftie.Help, "BackdropTemplate")
 Craftie.HelpScrollFrame:SetWidth(Craftie.Help_w+10)

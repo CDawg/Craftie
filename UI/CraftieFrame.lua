@@ -16,8 +16,10 @@ the copyright holders.
 Craftie.Frame:SetWidth(Craftie._G.Width)
 Craftie.Frame:SetHeight(Craftie._G.Height)
 Craftie.Frame:SetPoint("CENTER", 0, 0)
-Craftie.Frame:SetFrameStrata("MEDIUM")
+--Craftie.Frame:SetFrameStrata("MEDIUM")
+Craftie.Frame:SetFrameStrata("LOW")
 
+Craftie.Frame.TopLeftCorner:Hide()
 Craftie.Frame.TopRightCorner:Hide()
 --ButtonFrameTemplate_HidePortrait(Craftie.Frame)
 
@@ -41,9 +43,9 @@ Craftie.Frame.BotShadow:SetHorizTile(true)
 Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "Images/ShadowOverlay-Bottom.png", "REPEAT")
 
 Craftie.Frame.Icon = Craftie.Frame:CreateTexture(nil, "OVERLAY")
-Craftie.Frame.Icon:SetSize(250, 100)
-Craftie.Frame.Icon:SetPoint("TOPLEFT", -26, 14)
-Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png")
+Craftie.Frame.Icon:SetSize(220, 100)
+Craftie.Frame.Icon:SetPoint("TOPLEFT", -42, 24)
+Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header2.png")
 Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 4)
 --Craftie.Frame.Icon:Hide()
 --[==[
