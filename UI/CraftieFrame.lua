@@ -40,7 +40,7 @@ Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.BotShadow:SetSize(Craftie.Frame:GetWidth()-6, 35)
 Craftie.Frame.BotShadow:SetPoint("BOTTOMLEFT", 2, -1)
 Craftie.Frame.BotShadow:SetHorizTile(true)
-Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "Images/ShadowOverlay-Bottom.png", "REPEAT")
+Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Shadow-Overlay.png", "REPEAT")
 
 Craftie.Frame.Icon = Craftie.Frame:CreateTexture(nil, "OVERLAY")
 Craftie.Frame.Icon:SetSize(160, 80)

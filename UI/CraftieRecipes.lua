@@ -326,14 +326,14 @@ for i=1, Craftie.MAX_REAGENTS do
   --Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.Reagent.Main[i]:SetBackdropColor(0, 0, 0, 0)
   Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(0, 0, 0, 0)
+  --Craftie.Frame.Reagent.Main[i]:SetFrameStrata("HIGH")
 
   --Craftie.Frame.Reagent.Back[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.Reagent.Back[i] = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND") --always showing
+  Craftie.Frame.Reagent.Back[i] = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER") --always showing
   Craftie.Frame.Reagent.Back[i]:SetSize(Craftie.Frame.Reagent_Width+13, Craftie.Frame.Reagent_Height+5)
   --Craftie.Frame.Reagent.Back[i]:SetPoint("CENTER", 0, 1)
   Craftie.Frame.Reagent.Back[i]:SetPoint(Craftie.Frame.Reagent.Main[i]:GetPoint())
-  Craftie.Frame.Reagent.Back[i]:SetTexture(Craftie._G.Path  .. "Images/UI-Craftie-Reagent-Toast.png")
-  --Craftie.Frame.Reagent.Back[i]:SetAlpha(0.5)
+  Craftie.Frame.Reagent.Back[i]:SetTexture(Craftie._G.Path  .. "Images/UI-Craftie-Reagent-Toast2.png")
   Craftie.Frame.Reagent.Back[i]:Hide()
   Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-10, Craftie.Frame.Reagent_Height-11)

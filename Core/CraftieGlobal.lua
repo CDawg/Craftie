@@ -395,7 +395,7 @@ function Craftie.ItemDetails(item)
       if (inv_count >= inv_req) then
         Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
-        Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 1)
+        Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, .85, 1)
         Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, .6, 1)
         Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, .6, 1)
         Craftie.Frame.Reagent.IconGlow[i]:Show()
