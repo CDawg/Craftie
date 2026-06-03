@@ -163,21 +163,13 @@ Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -62)
 Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
 
---[==[
-Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
-Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
-Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Craft.png")
---Craftie.Frame.CraftParent.Back:SetDesaturation(0.6)
-Craftie.Frame.CraftParent.Back:SetAlpha(0.4)
-]==]--
 
 Craftie.Frame.CraftBackTop={}
-Craftie.Frame.CraftBackTop= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackTop= CreateFrame("Frame", Craftie.Frame.CraftBackTop, Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackTop:SetWidth(300)
 Craftie.Frame.CraftBackTop:SetHeight(190)
-Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", -8, -62)
-Craftie.Frame.CraftBackTop:SetFrameStrata("MEDIUM")
+Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", 0, 0)
+--Craftie.Frame.CraftBackTop:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftParent, "BackdropTemplate")
@@ -246,11 +238,11 @@ Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
 
 Craftie.Frame.CraftBackMid={}
-Craftie.Frame.CraftBackMid= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackMid= CreateFrame("Frame", Craftie.Frame.CraftBackMid, Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackMid:SetWidth(300)
 Craftie.Frame.CraftBackMid:SetHeight(50)
-Craftie.Frame.CraftBackMid:SetPoint("TOPRIGHT", -8, -255)
-Craftie.Frame.CraftBackMid:SetFrameStrata("MEDIUM")
+Craftie.Frame.CraftBackMid:SetPoint("TOPRIGHT", 0, -194)
+--Craftie.Frame.CraftBackMid:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.Craft.SkillIcon = Craftie.Frame.CraftBackMid:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.SkillIcon:SetSize(13, 13)
@@ -464,8 +456,7 @@ for i=1, Craftie.MAX_RECIPES do
 end
 
 Craftie.Frame.CraftBackBot={}
-Craftie.Frame.CraftBackBot= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackBot= CreateFrame("Frame", Craftie.Frame.CraftBackBot, Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackBot:SetWidth(300)
-Craftie.Frame.CraftBackBot:SetHeight(126)
-Craftie.Frame.CraftBackBot:SetPoint("TOPRIGHT", -8, -308)
---Craftie.Frame.CraftBackBot:SetFrameStrata("MEDIUM")
+Craftie.Frame.CraftBackBot:SetHeight(125)
+Craftie.Frame.CraftBackBot:SetPoint("TOPRIGHT", 0, -248)
