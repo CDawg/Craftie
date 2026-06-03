@@ -16,68 +16,12 @@ the copyright holders.
 Craftie.Nav={}
 Craftie.Nav.Tabs = {"Professions", "Updates", "Help"}
 
-Craftie.Wrap = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
-Craftie.Wrap:SetSize(Craftie.Frame:GetWidth()-14, Craftie.Frame:GetHeight()-70)
-Craftie.Wrap:SetPoint("TOPLEFT", 6, -64)
---Craftie.Wrap:SetBackdrop(Craftie.Backdrop.General)
---Craftie.Wrap:SetBackdropColor(0, 1, 0, 0)
---Craftie.Wrap:SetBackdropBorderColor(1, 1, 1, 0)
-
-
-function Craftie.TabBottomSelect(tab, sound)
-  Craftie.Frame.ScrollPlayersParent:Hide()
-  Craftie.Frame.ScrollRecipesParent:Hide()
-  Craftie.Frame.CraftParent:Hide()
-  Craftie.Updates:Hide()
-  Craftie.Credit:Hide()
-  Craftie.Help:Hide()
-  Craftie.Frame.Title.Prof:Hide()
-  Craftie.Frame.Title.Sub:Show()
-
-  for k,v in pairs(Craftie.Nav.Tabs) do
-    Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
-    Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
-  end
-
-  if (tab == 1) then
-    Craftie.TabBarHide = 0
-    Craftie.Frame.Title.Sub:Hide()
-    Craftie.Frame.Title.Prof:Show()
-    Craftie.Frame.CraftParent:Show()
-    Craftie.Frame.ScrollPlayersParent:Show()
-    Craftie.Frame.ScrollRecipesParent:Show()
-  end
-
-  if (tab == 2) then
-    Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Updates:Show()
-    Craftie.Credit:Show()
-  end
-  if (tab == 3) then
-    Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Help:Show()
-  end
-  if (tab == 4) then
-    Craftie.TabBarHide = Craftie.TabBarHide+1
-    --Craftie.Logger:Show()
-  end
-
-  if (sound) then
-    PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
-    Craftie.TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar after Init()
-  end
-
-  Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab.png")
-  Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
-  Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
-end
-
 Craftie.TabBottom={}
 local bottomTabOffset = 265
 for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(80, 38)
-  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -32)
+  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -34)
   Craftie.TabBottom[k]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.TabBottom[k]:SetBackdropColor(0, 1, 0, 0)
   Craftie.TabBottom[k]:SetBackdropBorderColor(1, 1, 1, 0)
@@ -129,6 +73,55 @@ for k,v in pairs(Craftie.Nav.Tabs) do
     --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
 end
+
+function Craftie.TabBottomSelect(tab, sound)
+  Craftie.Frame.ScrollPlayersParent:Hide()
+  Craftie.Frame.ScrollRecipesParent:Hide()
+  Craftie.Frame.CraftParent:Hide()
+  Craftie.Updates:Hide()
+  Craftie.Credit:Hide()
+  Craftie.Help:Hide()
+  Craftie.Frame.Title.Prof:Hide()
+  Craftie.Frame.Title.Sub:Show()
+
+  for k,v in pairs(Craftie.Nav.Tabs) do
+    Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
+    Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
+  end
+
+  if (tab == 1) then
+    Craftie.TabBarHide = 0
+    Craftie.Frame.Title.Sub:Hide()
+    Craftie.Frame.Title.Prof:Show()
+    Craftie.Frame.CraftParent:Show()
+    Craftie.Frame.ScrollPlayersParent:Show()
+    Craftie.Frame.ScrollRecipesParent:Show()
+  end
+
+  if (tab == 2) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
+    Craftie.Updates:Show()
+    Craftie.Credit:Show()
+  end
+  if (tab == 3) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
+    Craftie.Help:Show()
+  end
+  if (tab == 4) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
+    --Craftie.Logger:Show()
+  end
+
+  if (sound) then
+    PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
+    Craftie.TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar after Init()
+  end
+
+  Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab.png")
+  Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
+  Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
+end
+
 --first tab
 Craftie.TabBottom[1].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
 --UI-FriendsFrameTab-InactiveTab

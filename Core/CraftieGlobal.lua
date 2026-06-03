@@ -19,7 +19,7 @@ Craftie._G = {
   Height = 460,
   Prefix = "Craftie",
   Update = 20260608,
-  Icon   = "UI-Craftie-Icon-Simple",
+  Icon   = "UI-Craftie-Icon",
 }
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
@@ -777,8 +777,8 @@ function Craftie.OpenProfessionList(profArray, search, player)
     Craftie.Frame.Title.Prof:SetText(player .. "'".. plural .. " " .. Craftie.Page .. " Recipes")
   end
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
-  local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
-  Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+  --local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
+  --Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
   --Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
 
   C_Timer.After(0.35, function()
