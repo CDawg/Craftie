@@ -37,7 +37,7 @@ Craftie.Frame:SetScript("OnDragStop", function()
 end)
 
 Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.BotShadow:SetSize(Craftie.Frame:GetWidth()-6, 35)
+Craftie.Frame.BotShadow:SetSize(Craftie.Frame:GetWidth()-6, 24)
 Craftie.Frame.BotShadow:SetPoint("BOTTOMLEFT", 2, -1)
 Craftie.Frame.BotShadow:SetHorizTile(true)
 Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Shadow-Overlay.png", "REPEAT")
@@ -54,11 +54,13 @@ Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, 12, "SLUG")
 Craftie.Frame.Title:SetPoint("TOPLEFT", 150, -6)
 --Craftie.Frame.Title:SetText(Craftie._G.Stamp .. " - " .. Craftie.Game.Name)
 Craftie.Frame.Title:SetText("v" .. Craftie._G.Version .. " - " .. Craftie.Game.Name)
+Craftie.Frame.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Frame.Title.Sub = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Sub:SetFont(Craftie._G.Font.Style, 14, "SLUG")
 Craftie.Frame.Title.Sub:SetPoint("TOPLEFT", 40, -35)
 Craftie.Frame.Title.Sub:SetText("")
+Craftie.Frame.Title.Sub:SetTextColor(0.9, 0.9, 0.8, 1)
 Craftie.Frame.Title.Sub:Hide()
 
 Craftie.Frame.Title.Prof = Craftie.Frame:CreateFontString(nil, "ARTWORK")
@@ -166,7 +168,7 @@ Craftie.Frame.CrafterProgLevel = Craftie.Frame.CrafterLevel:CreateFontString(nil
 Craftie.Frame.CrafterProgLevel:SetFont(Craftie._G.Font.Style, 11, "OUTLINE | SLUG")
 Craftie.Frame.CrafterProgLevel:SetPoint("CENTER", 4, -2)
 Craftie.Frame.CrafterProgLevel:SetJustifyH("LEFT")
-Craftie.Frame.CrafterProgLevel:SetText("0 / 0")
+Craftie.Frame.CrafterProgLevel:SetText("")
 
 Craftie.Frame.Button={}
 Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "OVERLAY")

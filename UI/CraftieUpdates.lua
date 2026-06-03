@@ -67,7 +67,7 @@ Craftie.Credit_h = Craftie.Frame:GetHeight()-88
 Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame, "InsetFrameTemplate")
 Craftie.Credit:SetWidth(Craftie.Credit_w)
 Craftie.Credit:SetHeight(Craftie.Credit_h)
-Craftie.Credit:SetPoint("TOPLEFT", 436, -62)
+Craftie.Credit:SetPoint("TOPLEFT", 437, -62)
 Craftie.Credit:SetFrameStrata("MEDIUM")
 
 Craftie.ScrollFrameCredits = CreateFrame("Frame", Craftie.ScrollFrameCredits, Craftie.Credit, "BackdropTemplate")

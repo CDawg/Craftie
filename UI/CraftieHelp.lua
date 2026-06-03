@@ -29,7 +29,7 @@ Craftie.INTRO = { --localize this?
   },
 }
 
-Craftie.Help_w = Craftie.Frame:GetWidth()-14
+Craftie.Help_w = Craftie.Frame:GetWidth()-12
 Craftie.Help_h = Craftie.Frame:GetHeight()-88
 
 Craftie.Help = CreateFrame("Frame", nil, Craftie.Frame)

@@ -156,17 +156,28 @@ end)
 CRAFT FRAME
 ]==]--
 Craftie.Frame.CraftParent={}
-Craftie.Frame.CraftParent= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.CraftParent= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.CraftParent:SetWidth(300)
 Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
+--Craftie.Frame.CraftParent:SetHeight(180)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -62)
+Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
 
+--[==[
 Craftie.Frame.CraftParent.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.CraftParent.Back:SetSize(Craftie.Frame.CraftParent:GetWidth()-7, Craftie.Frame.CraftParent:GetHeight()-114)
 Craftie.Frame.CraftParent.Back:SetPoint("TOPLEFT", 4, -3)
 Craftie.Frame.CraftParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Craft.png")
 --Craftie.Frame.CraftParent.Back:SetDesaturation(0.6)
 Craftie.Frame.CraftParent.Back:SetAlpha(0.4)
+]==]--
+
+Craftie.Frame.CraftBackTop={}
+Craftie.Frame.CraftBackTop= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackTop:SetWidth(300)
+Craftie.Frame.CraftBackTop:SetHeight(190)
+Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", -8, -62)
+Craftie.Frame.CraftBackTop:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftParent, "BackdropTemplate")
@@ -234,54 +245,36 @@ Craftie.Frame.Craft.ID:SetPoint("CENTER", 10, 0)
 Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
 
-local SourcePosY = -174
-Craftie.Frame.Craft.SkillIcon = Craftie.Frame.Craft:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.CraftBackMid={}
+Craftie.Frame.CraftBackMid= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackMid:SetWidth(300)
+Craftie.Frame.CraftBackMid:SetHeight(50)
+Craftie.Frame.CraftBackMid:SetPoint("TOPRIGHT", -8, -255)
+Craftie.Frame.CraftBackMid:SetFrameStrata("MEDIUM")
+
+Craftie.Frame.Craft.SkillIcon = Craftie.Frame.CraftBackMid:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Craft.SkillIcon:SetSize(13, 13)
-Craftie.Frame.Craft.SkillIcon:SetPoint("BOTTOMLEFT", 0, SourcePosY-2)
+Craftie.Frame.Craft.SkillIcon:SetPoint("TOPLEFT", 10, -10)
 Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/inv_misc_questionmark")
 Craftie.Frame.Craft.SkillIcon:Hide()
-Craftie.Frame.Craft.Skill = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Craft.Skill = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Skill:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.Skill:SetPoint("BOTTOMLEFT", 15, SourcePosY-2)
+Craftie.Frame.Craft.Skill:SetPoint("TOPLEFT", 25, -10)
 Craftie.Frame.Craft.Skill:SetText("")
 Craftie.Frame.Craft.Skill:SetTextColor(1, 1, 1, 0.7)
 Craftie.Frame.Craft.Skill:Hide()
-Craftie.Frame.Craft.SourceTitle = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Craft.SourceTitle = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.SourceTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.SourceTitle:SetPoint("BOTTOMLEFT", 15, SourcePosY-20)
+Craftie.Frame.Craft.SourceTitle:SetPoint("TOPLEFT", 25, -28)
 Craftie.Frame.Craft.SourceTitle:SetText("Sources:")
 Craftie.Frame.Craft.SourceTitle:SetTextColor(1, 1, 1, 1)
 Craftie.Frame.Craft.SourceTitle:Hide()
-Craftie.Frame.Craft.Source = Craftie.Frame.Craft:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Craft.Source = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.Source:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.Source:SetPoint("BOTTOMLEFT", 65, SourcePosY-20)
+Craftie.Frame.Craft.Source:SetPoint("TOPLEFT", 75, -28)
 Craftie.Frame.Craft.Source:SetText("")
 Craftie.Frame.Craft.Source:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.Craft.Source:Hide()
-
-Craftie.Frame.Craft.Divider = Craftie.Frame.CraftParent:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.Craft.Divider:SetSize(394, 24)
-Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 95, 150)
-Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
-
-Craftie.Frame.Craft.Divider = Craftie.Frame.CraftParent:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.Craft.Divider:SetSize(394, 24)
-Craftie.Frame.Craft.Divider:SetPoint("BOTTOMRIGHT", 95, 90)
-Craftie.Frame.Craft.Divider:SetTexture("Interface/DialogFrame/UI-DialogBox-Divider")
-
---[==[
-Craftie.Frame.Craft.Back = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Craft.Back:SetSize(300, 110)
-Craftie.Frame.Craft.Back:SetPoint("BOTTOMRIGHT", 0, 0)
-Craftie.Frame.Craft.Back:SetHorizTile(true)
-Craftie.Frame.Craft.Back:SetTexture("Interface/FrameGeneral/UI-Background-Rock", "REPEAT")
---Craftie.Frame.Craft.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background.png")
-Craftie.Frame.Craft.Back:SetVertexColor(0.72, 0.70, 0.70)
-Craftie.Frame.Craft.Shade = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER")
-Craftie.Frame.Craft.Shade:SetSize(294, 130)
-Craftie.Frame.Craft.Shade:SetPoint("BOTTOMRIGHT", -4, -27)
-Craftie.Frame.Craft.Shade:SetTexture("Interface/COMMON/InsetShadow")
-]==]--
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
@@ -320,13 +313,13 @@ for i=1, Craftie.MAX_REAGENTS do
 
   --Craftie.Frame.Reagent.Back[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.Reagent.Back[i] = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER") --always showing
-  Craftie.Frame.Reagent.Back[i]:SetSize(Craftie.Frame.Reagent_Width+13, Craftie.Frame.Reagent_Height+5)
+  Craftie.Frame.Reagent.Back[i]:SetSize(Craftie.Frame.Reagent_Width+12, Craftie.Frame.Reagent_Height+5)
   --Craftie.Frame.Reagent.Back[i]:SetPoint("CENTER", 0, 1)
   Craftie.Frame.Reagent.Back[i]:SetPoint(Craftie.Frame.Reagent.Main[i]:GetPoint())
-  Craftie.Frame.Reagent.Back[i]:SetTexture(Craftie._G.Path  .. "Images/UI-Craftie-Reagent-Toast2.png")
+  Craftie.Frame.Reagent.Back[i]:SetTexture(Craftie._G.Path  .. "Images/UI-Craftie-Reagent-Toast.png")
   Craftie.Frame.Reagent.Back[i]:Hide()
   Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-10, Craftie.Frame.Reagent_Height-11)
+  Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-10, Craftie.Frame.Reagent_Height-10)
   Craftie.Frame.Reagent.Icon[i]:SetPoint("TOPLEFT", 3, -5)
   Craftie.Frame.Reagent.Icon[i]:SetTexture("Interface/Icons/inv_misc_questionmark")
   --Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
@@ -408,6 +401,7 @@ Craftie.Frame.ScrollRecipesListItem={}
 Craftie.Frame.ScrollRecipesListBack={}
 Craftie.Frame.ScrollRecipesListText={}
 Craftie.Frame.ScrollRecipesListSelect={}
+Craftie.Frame.ScrollRecipesListSelectSpark={}
 for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListItem[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollRecipesListItem[i]:SetWidth(Craftie.Frame.ScrollRecipes_Width-26) --scrollbar size
@@ -428,12 +422,17 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListSelect[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollRecipesListSelect[i]:SetSize(Craftie.Frame.ScrollRecipes_Width-30, Craftie.Frame.ScrollRecipesListItem[i]:GetHeight())
   Craftie.Frame.ScrollRecipesListSelect[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollRecipesListSelect[i]:SetTexture("Interface/WORLDSTATEFRAME/WORLDSTATEFINALSCORE-HIGHLIGHT")
-  --Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.4)
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select-HL.png")
   Craftie.Frame.ScrollRecipesListSelect[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollRecipesListSelect[i]:SetVertexColor(0.70, 0.70, 0.60)
-  Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.8)
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.5)
   Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
+  Craftie.Frame.ScrollRecipesListSelectSpark[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateTexture(nil, "OVERLAY")
+  Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetSize(64, 80)
+  Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetPoint("TOPLEFT", -30, 18)
+  Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetTexture("Interface/COMMON/StreamSpark")
+  Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetVertexColor(0.90, 0.90, 0.80)
+  Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
   --UI-Listbox-Highlight2
 
   Craftie.Frame.ScrollRecipesListText[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateFontString(nil, "ARTWORK")
@@ -463,3 +462,10 @@ for i=1, Craftie.MAX_RECIPES do
     end
   end)
 end
+
+Craftie.Frame.CraftBackBot={}
+Craftie.Frame.CraftBackBot= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackBot:SetWidth(300)
+Craftie.Frame.CraftBackBot:SetHeight(126)
+Craftie.Frame.CraftBackBot:SetPoint("TOPRIGHT", -8, -308)
+--Craftie.Frame.CraftBackBot:SetFrameStrata("MEDIUM")

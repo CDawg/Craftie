@@ -44,12 +44,20 @@ end)
 Craftie.Logger:SetScript("OnShow", function(self)
   Craftie.Logger.Background:Show()
 end)
+
 --Craftie.Logger:Hide()
+
+Craftie.Logger.Icon = Craftie.Logger.Background:CreateTexture(nil, "ARTWORK")
+Craftie.Logger.Icon:SetSize(160, 80)
+Craftie.Logger.Icon:SetPoint("TOPLEFT", -42, 30)
+Craftie.Logger.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png")
+Craftie.Logger.Icon:SetDrawLayer("OVERLAY", 4)
 
 Craftie.Logger.Title = Craftie.Logger:CreateFontString(nil, "ARTWORK")
 Craftie.Logger.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Logger.Title:SetPoint("TOPLEFT", 8, -6)
-Craftie.Logger.Title:SetText(Craftie._G.Title .. " Logger")
+Craftie.Logger.Title:SetPoint("TOPLEFT", 115, -7)
+Craftie.Logger.Title:SetText("Logger v" .. Craftie._G.Version)
+Craftie.Logger.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Logger.ScrollFrame={}
 Craftie.Logger.ScrollFrame = CreateFrame("Frame", Craftie.Logger.ScrollFrame, Craftie.Logger, "BackdropTemplate")

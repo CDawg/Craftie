@@ -154,6 +154,7 @@ Craftie.Frame.ScrollPlayersListItem={}
 Craftie.Frame.ScrollPlayersListBack={}
 Craftie.Frame.ScrollPlayersListName={}
 Craftie.Frame.ScrollPlayersListSelect={}
+Craftie.Frame.ScrollPlayersListSelectSpark={}
 Craftie.Frame.ScrollPlayersListFav={}
 Craftie.Frame.ScrollPlayersListNet={}
 
@@ -186,11 +187,17 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture("Interface/WORLDSTATEFRAME/WORLDSTATEFINALSCORE-HIGHLIGHT")
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select-HL.png")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetBlendMode("ADD")
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.50, 0.75, 1)
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.6)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.60, 0.80, 0.94)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.5)
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
+  Craftie.Frame.ScrollPlayersListSelectSpark[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "OVERLAY")
+  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetSize(64, 80)
+  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetPoint("TOPLEFT", -30, 18)
+  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetTexture("Interface/COMMON/StreamSpark")
+  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetVertexColor(0.80, 0.90, 1)
+  Craftie.Frame.ScrollPlayersListSelectSpark[i]:Hide()
 
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(8, 8)
