@@ -139,7 +139,7 @@ function Craftie.TabSelect(tab, sound)
   Craftie.SelectScrollItem("Recipes")
   Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
 
-  --Craftie.ClearCraftWindow()
+Craftie.Notification("Craftie.TabSelect(" .. tab .. ")", Craftie.TYPE.FUNC)
 
 end
 

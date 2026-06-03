@@ -33,6 +33,7 @@ Library/Jewelcrafting.lua
 Library/Leatherworking.lua
 Library/Reagents.lua
 Library/Tailoring.lua
+Library/Inscription.lua
 
 Changelog.lua
 Core/CraftieGlobal.lua

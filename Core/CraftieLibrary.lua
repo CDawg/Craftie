@@ -102,7 +102,6 @@ Craftie.Class = {
   {"Shaman",      {0.00, 0.44, 0.87}, "|CFF0070DD", "ClassIcon_Shaman"},
   {"Warlock",     {0.53, 0.53, 0.93}, "|CFF8788EE", "ClassIcon_Warlock"},
   {"Warrior",     {0.78, 0.61, 0.43}, "|CFFC69B6D", "ClassIcon_Warrior"},
-  {"Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"},
 }
 
 Craftie.Profession={}
@@ -120,6 +119,7 @@ if (Craftie.Game.Version >= 2) then
   table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
 end
 if (Craftie.Game.Version >= 3) then
+  table.insert(Craftie.Class, {"Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"})
   table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
 end
 
