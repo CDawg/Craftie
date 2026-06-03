@@ -29,28 +29,29 @@ Craftie.INTRO = { --localize this?
   },
 }
 
-Craftie.Help_w = Craftie.Frame:GetWidth()-30
-Craftie.Help_h = Craftie.Frame:GetHeight()-30
+Craftie.Help_w = Craftie.Frame:GetWidth()-14
+Craftie.Help_h = Craftie.Frame:GetHeight()-88
 
 Craftie.Help = CreateFrame("Frame", nil, Craftie.Frame)
 Craftie.Help:SetWidth(Craftie.Help_w)
 Craftie.Help:SetHeight(Craftie.Help_h)
-Craftie.Help:SetPoint("TOPLEFT", 10, -62)
+Craftie.Help:SetPoint("TOPLEFT", 4, -62)
 --Craftie.Help:SetFrameStrata("MEDIUM")
 
 Craftie.HelpScrollFrame={}
-Craftie.HelpScrollFrame = CreateFrame("Frame", Craftie.HelpScrollFrame, Craftie.Help, "BackdropTemplate")
-Craftie.HelpScrollFrame:SetWidth(Craftie.Help_w+10)
-Craftie.HelpScrollFrame:SetHeight(Craftie.Help_h-64)
+Craftie.HelpScrollFrame = CreateFrame("Frame", Craftie.HelpScrollFrame, Craftie.Help, "InsetFrameTemplate")
+Craftie.HelpScrollFrame:SetWidth(Craftie.Help:GetWidth())
+Craftie.HelpScrollFrame:SetHeight(Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame:SetPoint("TOPLEFT", 0, 0)
-Craftie.HelpScrollFrame:SetBackdrop(Craftie.Backdrop.General)
-Craftie.HelpScrollFrame:SetBackdropColor(0, 0, 1, 0.1)
-Craftie.HelpScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
+--Craftie.HelpScrollFrame:SetBackdrop(Craftie.Backdrop.General)
+--Craftie.HelpScrollFrame:SetBackdropColor(0, 0, 1, 0.1)
+--Craftie.HelpScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
+
 Craftie.HelpScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.HelpScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.HelpScrollFrame.Child:SetPoint("TOPLEFT", Craftie.HelpScrollFrame, "TOPLEFT", 5, -10)
-Craftie.HelpScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.HelpScrollFrame, "BOTTOMRIGHT", 10, 5)
+Craftie.HelpScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.HelpScrollFrame, "BOTTOMRIGHT", 10, 10)
 Craftie.HelpScrollFrameChildFrame = CreateFrame("Frame", Craftie.HelpScrollFrameChildFrame, Craftie.HelpScrollFrame.Child)
-Craftie.HelpScrollFrameChildFrame:SetSize(Craftie.Help_w, Craftie.Help_h)
+Craftie.HelpScrollFrameChildFrame:SetSize(Craftie.Help:GetWidth(), Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame.Child:SetScrollChild(Craftie.HelpScrollFrameChildFrame)
 Craftie.HelpScrollFrame.Child.ScrollBar:ClearAllPoints()
 Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.HelpScrollFrame.Child, "TOPRIGHT", 0, -5)
@@ -59,8 +60,8 @@ Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.HelpScro
 Craftie.ScrollBarFrame(Craftie.HelpScrollFrame.Child)
 
 Craftie.Help.Data = CreateFrame("EditBox", nil, Craftie.HelpScrollFrameChildFrame)
-Craftie.Help.Data:SetWidth(Craftie.Help_w-20)
-Craftie.Help.Data:SetHeight(Craftie.Help_h)
+Craftie.Help.Data:SetWidth(Craftie.Help:GetWidth()-20)
+Craftie.Help.Data:SetHeight(Craftie.Help:GetHeight())
 --Craftie.Help.Data:SetFontObject(GameFontWhite)
 Craftie.Help.Data:SetFont(Craftie._G.Font.Style, 10, "OUTLINE")
 Craftie.Help.Data:SetPoint("TOPLEFT", 4, -4)

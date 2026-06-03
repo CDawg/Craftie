@@ -44,7 +44,7 @@ Craftie.Frame.BotShadow:SetTexture(Craftie._G.Path .. "Images/ShadowOverlay-Bott
 
 Craftie.Frame.Icon = Craftie.Frame:CreateTexture(nil, "OVERLAY")
 Craftie.Frame.Icon:SetSize(160, 80)
-Craftie.Frame.Icon:SetPoint("TOPLEFT", -40, 30)
+Craftie.Frame.Icon:SetPoint("TOPLEFT", -42, 30)
 Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png")
 Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 4)
 --Craftie.Frame.Icon:Hide()
@@ -63,14 +63,15 @@ Craftie.Frame.Title:SetText("v" .. Craftie._G.Version .. " - " .. Craftie.Game.N
 
 Craftie.Frame.Title.Sub = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Sub:SetFont(Craftie._G.Font.Style, 14, "SLUG")
-Craftie.Frame.Title.Sub:SetPoint("TOPLEFT", 65, -35)
+Craftie.Frame.Title.Sub:SetPoint("TOPLEFT", 40, -35)
 Craftie.Frame.Title.Sub:SetText("")
 Craftie.Frame.Title.Sub:Hide()
 
 Craftie.Frame.Title.Prof = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Prof:SetFont(Craftie._G.Font.Style, 14, "SLUG")
-Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 65, -35)
+Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 40, -35)
 Craftie.Frame.Title.Prof:SetText("Alchemy")
+Craftie.Frame.Title.Prof:SetTextColor(0.9, 0.9, 0.8, 1)
 
 --determine version and placement
 Craftie.Frame.TabBar = CreateFrame("Button", Craftie.Frame.TabBar, Craftie.Frame, "BackdropTemplate")
