@@ -363,7 +363,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, 14, "OUTLINE")
   Craftie.Frame.Reagent.HLink[i]:SetPoint("CENTER", 12, 0)
   Craftie.Frame.Reagent.HLink[i]:SetMultiLine(true)
-  Craftie.Frame.Reagent.HLink[i]:ClearFocus(self)
+  Craftie.Frame.Reagent.HLink[i]:ClearFocus()
   Craftie.Frame.Reagent.HLink[i]:SetAutoFocus(false)
   Craftie.Frame.Reagent.HLink[i]:SetText("")
   Craftie.Frame.Reagent.HLink[i]:SetTextColor(1, 1, 1, 0) --hide
