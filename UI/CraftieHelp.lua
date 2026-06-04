@@ -57,7 +57,7 @@ Craftie.HelpScrollFrame.Child.ScrollBar:ClearAllPoints()
 Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.HelpScrollFrame.Child, "TOPRIGHT", 0, -5)
 Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.HelpScrollFrame.Child, "BOTTOMRIGHT", -42, 5)
 
-Craftie.ScrollBarFrame(Craftie.HelpScrollFrame.Child)
+Craftie:ScrollBarFrame(Craftie.HelpScrollFrame.Child)
 
 Craftie.Help.Data = CreateFrame("EditBox", nil, Craftie.HelpScrollFrameChildFrame)
 Craftie.Help.Data:SetWidth(Craftie.Help:GetWidth()-20)

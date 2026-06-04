@@ -50,15 +50,15 @@ for k,v in pairs(Craftie.ChannelList) do
 end
 
 Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, data1, data2)
-  Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
+  Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 end)
 
-function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
+function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.Prefix)) then
-	    Craftie.Init()
+	    Craftie:Init()
       --print("Craftie.Event[1] " .. prefix .. " | " .. event)
-      Craftie.Notification("Craftie.EventManager[1] " .. event, Craftie.TYPE.EVENT)
+      Craftie:Notification("Craftie:EventManager[1] " .. event, Craftie.TYPE.EVENT)
 	  end
 
     --print("event|n" .. event)
@@ -81,15 +81,15 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
 
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
-      Craftie.ResetCrafterBuild()
+      Craftie:ResetCrafterBuild()
     end
 
     if (event == "TRADE_SKILL_SHOW") then
       local profName, profLevel = GetTradeSkillLine()
       if (profName) then
-        Craftie.CrafterDataBuild(profName, profLevel)
+        Craftie:CrafterDataBuild(profName, profLevel)
         C_Timer.After(1, function()
-          Craftie.CrafterDataBuild(profName, profLevel)
+          Craftie:CrafterDataBuild(profName, profLevel)
         end)
       end
     end
@@ -97,13 +97,13 @@ function Craftie.EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "CHAT_MSG_ADDON") then
 			if (prefix == Craftie._G.Prefix) then
         if (netpacket) then
-          Craftie.ParsePacket(netpacket)
+          Craftie:ParsePacket(netpacket)
         end
       end
     end
 
     if (prefix == Craftie._G.Prefix) then
-      Craftie.Notification("Craftie.EventManager[2] " .. event, Craftie.TYPE.EVENT)
+      Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.TYPE.EVENT)
     end
 
   end
@@ -128,7 +128,7 @@ function Craftie.BuildChatHooks()
         prof_parent = prof_parent .. " | " .. b
       end
     end
-    Craftie.Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.TYPE.FUNC)
+    Craftie:Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.TYPE.FUNC)
   end
 end
 
@@ -154,40 +154,40 @@ end
 
 hooksecurefunc("SetItemRef", function(link, text, button)
   -- Check if the clicked link is an item
-  local linkType = Craftie.Split(link, ":")
+  local linkType = Craftie:Split(link, ":")
   --print("linkType " .. linkType[1])
 
   if (linkType[1] == "spell") then
     --print("text " .. text)
-    local spellData = Craftie.Split(text, ":")
+    local spellData = Craftie:Split(text, ":")
     --for k,v in pairs(spellData) do
       --print(k .. " | " .. v)
     --end
     if (spellData[4] == "Craftie") then
-      local playerData = Craftie.Split(spellData[5], "-") --remove realm data
+      local playerData = Craftie:Split(spellData[5], "-") --remove realm data
       local player = playerData[1]
       local profLink   = spellData[6]
-      local profSplit = Craftie.Split(profLink, "|") --clean up link
+      local profSplit = Craftie:Split(profLink, "|") --clean up link
       local prof = profSplit[1]
       --print(player .. " | " .. prof)
       ItemRefTooltip:Hide() --make this an option?
       if ((player ~= Craftie.Player.Name) or (Craftie.DEBUG >= 3)) then
-        Craftie.SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
+        Craftie:SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
         Craftie.Packet.ACK[player] = 0
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
-            Craftie.Notification("[" .. player .. "] has outdated data", Craftie.TYPE.ERROR)
+            Craftie:Notification("[" .. player .. "] has outdated data", Craftie.TYPE.ERROR)
           end
-          Craftie.UpdateCrafterList()
+          Craftie:UpdateCrafterList()
           --print("open book to player " .. player)
-          Craftie.GetCrafterIndex(player)
+          Craftie:GetCrafterIndex(player)
         end)
       end
       --we still need to open the book, but cache the incoming data
       C_Timer.After(0.2, function()
-        Craftie.Notification("SetItemRef " .. prof, Craftie.TYPE.FUNC)
-        Craftie.Open(player, prof) --need to cache player data loading
+        Craftie:Notification("SetItemRef " .. prof, Craftie.TYPE.FUNC)
+        Craftie:Open(player, prof) --need to cache player data loading
       end)
     end
   end

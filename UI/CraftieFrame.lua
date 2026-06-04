@@ -33,7 +33,7 @@ Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Frame:StopMovingOrSizing()
   local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame:GetPoint()
   CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
-  Craftie.Notification("[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, Craftie.TYPE.SAVE)
+  Craftie:Notification("[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, Craftie.TYPE.SAVE)
 end)
 
 Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
@@ -135,7 +135,7 @@ for i,v in pairs(Craftie.Professions) do
     GameTooltip:Hide()
   end)
   Craftie.Frame.TabSide[i]:SetScript("OnClick", function(self)
-    Craftie.TabSelect(i, true)
+    Craftie:TabSelect(i, true)
   end)
 end
 
@@ -228,7 +228,7 @@ Craftie.Frame.Button.Minimap:SetScript("OnLeave", function(self)
 end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
-  Craftie.Open()
+  Craftie:Open()
 end)
 
 Craftie.Settings={}

@@ -42,7 +42,7 @@ Craftie.Frame.ScrollPlayersList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT",          0,-10)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, 10)
 
-Craftie.ScrollBarFrame(Craftie.Frame.ScrollPlayersList.Child)
+Craftie:ScrollBarFrame(Craftie.Frame.ScrollPlayersList.Child)
 
 Craftie.Frame.ScrollPlayersResultsFrame = CreateFrame("Frame", Craftie.Frame.ScrollPlayersResultsFrame, Craftie.Frame.ScrollPlayersParent, "BackdropTemplate", 25)
 Craftie.Frame.ScrollPlayersResultsFrame:SetWidth(Craftie.Frame.ScrollPlayers_Width-7)
@@ -104,7 +104,7 @@ Craftie.Frame.Search.Players.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
 Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
-    Craftie.ClearSearchFocus()
+    Craftie:ClearSearchFocus()
     Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
   end
 end)
@@ -129,8 +129,8 @@ Craftie.Frame.Button.SearchPlayersClearIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchPlayersClear:SetScript("OnClick", function(self)
   if (Craftie.EnableScrollFrames) then
     Craftie.Frame.Search.Players.Text:SetText("")
-    local pageNum = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
-    Craftie.TabSelect(pageNum) --just reset the list
+    local pageNum = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
+    Craftie:TabSelect(pageNum) --just reset the list
   end
 end)
 Craftie.Frame.Button.SearchPlayersClear:SetScript("OnEnter", function(self)
@@ -145,7 +145,7 @@ Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
     local search_index = self:GetText()
     if (search_index ~= "") then
       print(search_index)
-      Craftie.UpdateCrafterList(search_index)
+      Craftie:UpdateCrafterList(search_index)
     end
   end
 end)
@@ -256,15 +256,15 @@ for i=1, Craftie.MAX_PLAYERS do
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(0.8, 0.85, 1, 0)
       GameTooltip:Hide()
-      Craftie.SelectScrollItem("Players")
+      Craftie:SelectScrollItem("Players")
     end
   end)
   --show the options
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnClick", function(self)
-    Craftie.CloseAllPlayerMenus()
+    Craftie:CloseAllPlayerMenus()
     if (Craftie.EnableScrollFrames) then
       if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
-        Craftie.SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
+        Craftie:SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
         if (i > 1) then
           Craftie.Frame.ScrollPlayersListOpt[i]:Show()
         end
@@ -276,8 +276,8 @@ for i=1, Craftie.MAX_PLAYERS do
     self:Hide()
     --open the sub menu
     --temporarily disable the scrolling
-    Craftie.CloseAllPlayerMenus()
-    Craftie.ScrollBarDisable()
+    Craftie:CloseAllPlayerMenus()
+    Craftie:DisableAllScrollBars()
 
     local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
     if (crafter ~= nil) then
@@ -285,7 +285,7 @@ for i=1, Craftie.MAX_PLAYERS do
       local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
       --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
       Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
-      Craftie.Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.TYPE.FUNC)
+      Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.TYPE.FUNC)
       --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
     end
   end)
@@ -304,65 +304,39 @@ Craftie.Frame.ScrollPlayersListOpt.Menu:SetToplevel(true)
 Craftie.Frame.ScrollPlayersListOpt.Menu:Hide()
 
 
-function Craftie.ScrollBarDisable()
-  --players
-    Craftie.Frame.ScrollPlayersList.Child:SetAlpha(0.4)
-    Craftie.Frame.ScrollPlayersList.Child:EnableMouse(false)
-    Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(false)
-    --Craftie.Frame.ScrollPlayersList.Child:SetClipsChildren(true)
-  --recipes
-    Craftie.Frame.ScrollRecipesList.Child:SetAlpha(0.4)
-    Craftie.Frame.ScrollRecipesList.Child:EnableMouse(false)
-    Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(false)
-    --Craftie.Frame.ScrollRecipesList.Child:SetClipsChildren(true)
-    Craftie.EnableScrollFrames = false
-end
-
---this also goes to the player scroll item
-function Craftie.GetCrafterIndex(player)
-  C_Timer.After(0.1, function() --give the update time to create cached tables
-    for i=1, Craftie.MAX_PLAYERS do
-      if (player == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
-        --print(player .. " index = " .. i)
-        Craftie.SelectCrafter(i, player)
-      end
-    end
-  end)
-end
-
-function Craftie.SelectCrafter(index, name)
-  Craftie.ClearSearchFocus()
+function Craftie:SelectCrafter(index, name)
+  Craftie:ClearSearchFocus()
   Craftie.Selected_Name = ""
   Craftie.Selected_Players = 1 --always one at first
 
   if (index == 1) then
     if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
-      Craftie.OpenProfessionList(Craftie.ProfessionDefault, Craftie.Frame.Search.Recipes.Text:GetText(), "") --pull all
+      Craftie:OpenProfessionList(Craftie.ProfessionDefault, Craftie.Frame.Search.Recipes.Text:GetText(), "") --pull all
     else
-      Craftie.OpenProfessionList(Craftie.ProfessionDefault, "", "") --pull all
+      Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "") --pull all
     end
   else
     if (name ~= nil) then
       --print(name)
       Craftie.Selected_Players = index
       Craftie.Selected_Name = name
-      Craftie.Notification("Craftie.SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.TYPE.FUNC)
+      Craftie:Notification("Craftie:SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.TYPE.FUNC)
       if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
-        Craftie.OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
+        Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
       else
-        Craftie.OpenProfessionList(Craftie.Profession[Craftie.Page], "", name)
+        Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], "", name)
       end
     end
   end
-  Craftie.SelectScrollItem("Players") --highlight
+  Craftie:SelectScrollItem("Players") --highlight
 
   PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
 end
 
-function Craftie.UpdateCrafterList(search)
+function Craftie:UpdateCrafterList(search)
   local crafter_list = {}
   local search_list = {}
-  Craftie.Notification("Craftie.UpdateCrafterList()", Craftie.TYPE.FUNC)
+  Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.TYPE.FUNC)
   Craftie.Frame.ScrollPlayersResults:SetText("")
   Craftie.Frame.ScrollPlayersLoading:Show()
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
@@ -381,9 +355,9 @@ function Craftie.UpdateCrafterList(search)
     end
     search_list = crafter_list
     if (search ~= nil) then
-      --Craftie.SortTableByMatch(crafter_list, search)
-      --local matches = Craftie.SearchTable(crafter_list, search)
-      search_list = Craftie.SearchTable(crafter_list, search)
+      --Craftie:SortTableByMatch(crafter_list, search)
+      --local matches = Craftie:SearchTable(crafter_list, search)
+      search_list = Craftie:SearchTable(crafter_list, search)
       --print("player search " .. search)
       --print("num matches " .. matches)
     end

@@ -42,7 +42,7 @@ Craftie.Frame.ScrollRecipesList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT",          0,-10)
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -42, 10)
 
-Craftie.ScrollBarFrame(Craftie.Frame.ScrollRecipesList.Child)
+Craftie:ScrollBarFrame(Craftie.Frame.ScrollRecipesList.Child)
 
 Craftie.Frame.ScrollRecipesResultsFrame = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesResultsFrame", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate", 25)
 Craftie.Frame.ScrollRecipesResultsFrame:SetWidth(Craftie.Frame.ScrollRecipes_Width-8)
@@ -114,9 +114,9 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
     local search_array = Craftie.ProfessionDefault --what player is selected?
     local search_index = self:GetText()
     if (Craftie.Selected_Name ~= "") then
-      Craftie.OpenProfessionList(search_array, search_index, Craftie.Selected_Name)
+      Craftie:OpenProfessionList(search_array, search_index, Craftie.Selected_Name)
     else
-      Craftie.OpenProfessionList(search_array, search_index, "")
+      Craftie:OpenProfessionList(search_array, search_index, "")
     end
 
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
@@ -142,8 +142,8 @@ Craftie.Frame.Button.SearchRecipesClearIcon:SetTexture(Craftie._G.Path ..  "Imag
 Craftie.Frame.Button.SearchRecipesClearIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchRecipesClear:SetScript("OnClick", function(self)
   Craftie.Frame.Search.Recipes.Text:SetText("")
-  Craftie.CloseAllPlayerMenus()
-  Craftie.SelectCrafter(1, "")
+  Craftie:CloseAllPlayerMenus()
+  Craftie:SelectCrafter(1, "")
 end)
 Craftie.Frame.Button.SearchRecipesClear:SetScript("OnEnter", function(self)
   Craftie.Frame.Button.SearchRecipesClearIcon:SetAlpha(0.8)
@@ -380,7 +380,7 @@ for i=1, Craftie.MAX_REAGENTS do
   end)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkEnter", function(self)
     if (Craftie.EnableScrollFrames) then
-      SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true)
+      Craftie:SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true)
     end
   end)
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkLeave", function(self)
@@ -450,7 +450,7 @@ for i=1, Craftie.MAX_RECIPES do
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(1, 0.9, 0.8, 0)
       GameTooltip:Hide()
-      Craftie.SelectScrollItem("Recipes")
+      Craftie:SelectScrollItem("Recipes")
     end
   end)
 end

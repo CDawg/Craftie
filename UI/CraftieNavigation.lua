@@ -44,7 +44,7 @@ for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k].Text:SetText(v)
   Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   Craftie.TabBottom[k]:SetScript("OnClick", function(self)
-    Craftie.TabBottomSelect(k, true)
+    Craftie:TabBottomSelect(k, true)
   end)
   Craftie.TabBottom[k]:SetScript("OnEnter", function(self)
     Craftie.TabBottom[k].Highlight:Show()
@@ -56,7 +56,7 @@ for k,v in pairs(Craftie.Nav.Tabs) do
   end)
 end
 
-function Craftie.TabBottomSelect(tab, sound)
+function Craftie:TabBottomSelect(tab, sound)
   Craftie.Frame.ScrollPlayersParent:Hide()
   Craftie.Frame.ScrollRecipesParent:Hide()
   Craftie.Frame.CraftParent:Hide()
@@ -80,7 +80,7 @@ function Craftie.TabBottomSelect(tab, sound)
     Craftie.Frame.CraftParent:Show()
     Craftie.Frame.ScrollPlayersParent:Show()
     Craftie.Frame.ScrollRecipesParent:Show()
-    Craftie.TabSelect(Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1))
+    Craftie:TabSelect(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1))
   end
 
   if (tab == 2) then
@@ -99,7 +99,7 @@ function Craftie.TabBottomSelect(tab, sound)
 
   if (sound) then
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)
-    Craftie.TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar after Init()
+    Craftie:TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar after Init()
   end
 
   Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab.png")

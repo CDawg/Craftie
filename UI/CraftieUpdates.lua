@@ -45,7 +45,7 @@ Craftie.ScrollFrameUpdates.Child.ScrollBar:ClearAllPoints()
 Craftie.ScrollFrameUpdates.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.ScrollFrameUpdates.Child, "TOPRIGHT", 0, -5)
 Craftie.ScrollFrameUpdates.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.ScrollFrameUpdates.Child, "BOTTOMRIGHT", -42, 5)
 
-Craftie.ScrollBarFrame(Craftie.ScrollFrameUpdates.Child)
+Craftie:ScrollBarFrame(Craftie.ScrollFrameUpdates.Child)
 
 Craftie.Updates.Data = CreateFrame("EditBox", nil, Craftie.ScrollFrameUpdatesChildFrame)
 Craftie.Updates.Data:SetWidth(Craftie.Updates:GetWidth()-20) --scrollbar
@@ -87,7 +87,7 @@ Craftie.ScrollFrameCredits.Child.ScrollBar:ClearAllPoints()
 Craftie.ScrollFrameCredits.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.ScrollFrameCredits.Child, "TOPRIGHT", 0, -5)
 Craftie.ScrollFrameCredits.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.ScrollFrameCredits.Child, "BOTTOMRIGHT", -42, 5)
 
-Craftie.ScrollBarFrame(Craftie.ScrollFrameCredits.Child)
+Craftie:ScrollBarFrame(Craftie.ScrollFrameCredits.Child)
 
 Craftie.Credit.Data = CreateFrame("EditBox", nil, Craftie.ScrollFrameCreditsChildFrame)
 Craftie.Credit.Data:SetWidth(Craftie.Credit:GetWidth()-20)

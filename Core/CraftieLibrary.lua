@@ -123,7 +123,7 @@ if (Craftie.Game.Version >= 3) then
   table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
 end
 
-function Craftie.BitDouble(packet, decompress)
+function Craftie:BitDouble(packet, decompress)
   local package = ""
   local pos = {
     {"fffff","L"},{":::::","r"},
@@ -145,7 +145,7 @@ function Craftie.BitDouble(packet, decompress)
   return package
 end
 
-function Craftie.BitCompression(packet, decompress)
+function Craftie:BitCompression(packet, decompress)
   local dblcompression = true
   local package = ""
   --2 to the power of 5 = 32 (appears to be the safest compression)
@@ -163,7 +163,7 @@ function Craftie.BitCompression(packet, decompress)
   local rate = {}
   if (dblcompression) then
     if (decompress) then
-      rate[0] = Craftie.BitDouble(packet, true)
+      rate[0] = Craftie:BitDouble(packet, true)
     else
       rate[0] = packet
     end
@@ -184,7 +184,7 @@ function Craftie.BitCompression(packet, decompress)
     if (decompress) then
       return package
     else
-      return Craftie.BitDouble(package, false)
+      return Craftie:BitDouble(package, false)
     end
   else
     return package
@@ -192,18 +192,18 @@ function Craftie.BitCompression(packet, decompress)
 end
 
 --complex tree tables
-function Craftie.CopyTable(original)
+function Craftie:CopyTable(original)
   local copy = {}
   for k, v in pairs(original) do
     if type(v) == "table" then
-      v = Craftie.CopyTable(v) -- Recursive call for nested tables
+      v = Craftie:CopyTable(v) -- Recursive call for nested tables
     end
     copy[k] = v
   end
   return copy
 end
 
-function Craftie.Split(s, delimiter)
+function Craftie:Split(s, delimiter)
   local result = {}
   if (s) then
     for match in (s..delimiter):gmatch("(.-)"..delimiter) do
@@ -213,15 +213,11 @@ function Craftie.Split(s, delimiter)
   return result
 end
 
-function Craftie.IsEmpty(s)
+function Craftie:IsEmpty(s)
   return s == nil or s == ''
 end
 
-function Craftie.FirstToUpper(str)
-  return (str:gsub("^%l", string.upper))
-end
-
-function Craftie.GetKeyFromValue(_array, value, index)
+function Craftie:GetKeyFromValue(_array, value, index)
   if ((index == nil) or (index == 0)) then
 		for k,v in pairs(_array) do
 			if v==value then return k end
@@ -235,27 +231,17 @@ function Craftie.GetKeyFromValue(_array, value, index)
 	end
 end
 
-function Craftie.ReindexArraySafe(array)
-  local n=0
-  local newArray={}
-  for i,v in pairs(array) do
-    n=n+1
-    newArray[n] = v
-  end
-  return newArray
-end
-
-function Craftie.SortTableByString(tbl) --alpha second key
+function Craftie:SortTableByString(tbl) --alpha second key
   table.sort(tbl, function(a, b)
     return string.lower(a[2]) < string.lower(b[2])
   end)
 end
 
-function _sanitize(str)
+function Craftie:SanitizeString(str)
   return str:gsub("%p", ""):lower()
 end
 
-function Craftie.SearchTable(tbl, search) --basic table
+function Craftie:SearchTable(tbl, search) --basic table
     local results = {}
     search = string.lower(search or "")
 
@@ -268,7 +254,7 @@ function Craftie.SearchTable(tbl, search) --basic table
     return results, #results
 end
 
-function Craftie.SortTableByMatch(tbl, search)
+function Craftie:SortTableByMatch(tbl, search)
     search = string.lower(search or "")
     local matchCount = 0
 
@@ -302,18 +288,4 @@ function Craftie.SortTableByMatch(tbl, search)
     end)
 
     return matchCount
-end
-
-function Craftie.SortReverseByKey(t)
-  local keys = {}
-  for k in pairs(t) do table.insert(keys, k) end
-  table.sort(keys, function(a, b) return a > b end)
-
-  local i = 0
-  return function()
-      i = i + 1
-      if keys[i] then
-          return keys[i], t[keys[i]]
-      end
-  end
 end

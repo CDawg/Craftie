@@ -78,7 +78,7 @@ Craftie.Logger.ScrollFrame.Child.ScrollBar:ClearAllPoints()
 Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame.Child, "TOPRIGHT", -5, -5)
 Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame.Child, "BOTTOMRIGHT", -36, 10)
 
-Craftie.ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
+Craftie:ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
 
 local ColHeight = 28
 --colName, colWidth, colX, colColor, 
@@ -106,7 +106,7 @@ for k,v in ipairs(Craftie.Logger.Cols) do
 end
 
 Craftie.Logger.Row = {}
-function Craftie.Log(type, log)
+function Craftie:Log(type, log)
   Craftie.LogKey = Craftie.LogKey +1
   local id = Craftie.LogKey
   local RowHeight = 24 --default
