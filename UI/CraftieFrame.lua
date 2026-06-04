@@ -50,9 +50,9 @@ Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 4)
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, 12, "SLUG")
-Craftie.Frame.Title:SetPoint("TOPLEFT", 150, -6)
+Craftie.Frame.Title:SetPoint("TOPRIGHT", -70, -5)
 --Craftie.Frame.Title:SetText(Craftie._G.Stamp .. " - " .. Craftie.Game.Name)
-Craftie.Frame.Title:SetText("v" .. Craftie._G.Version .. " - " .. Craftie.Game.Name)
+Craftie.Frame.Title:SetText("v" .. Craftie._G.Version .. " [" .. Craftie.Game.Name .. "]")
 Craftie.Frame.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Frame.Title.Sub = Craftie.Frame:CreateFontString(nil, "ARTWORK")
@@ -231,8 +231,6 @@ end)
 Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
   Craftie.Open()
 end)
-
---Craftie.Frame:Hide()
 
 Craftie.Settings={}
 Craftie.Frame.Settings = CreateFrame("Frame", "CraftieSettingsFrame", UIParent)

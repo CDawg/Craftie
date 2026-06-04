@@ -37,24 +37,6 @@ for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k].Highlight:SetAlpha(0.8)
 
   Craftie.TabBottom[k].Highlight:Hide()
-  --[==[
-  Craftie.TabBottom[k].Select = Craftie.TabBottom[k]:CreateTexture(nil, "BORDER")
-  Craftie.TabBottom[k].Select:SetSize(Craftie.TabBottom[k]:GetWidth()+8, 32)
-  Craftie.TabBottom[k].Select:SetPoint("CENTER", 0, 0)
-  Craftie.TabBottom[k].Select:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-RealHighlight")
-  Craftie.TabBottom[k].Select:Hide()
-  ]==]--
-  --UI-CHARACTER-ACTIVETAB
-
-  --[==[
-  Craftie.TabBottom.Hover = Craftie.TabBottom:CreateTexture(nil, "ARTWORK")
-  Craftie.TabBottom.Hover:SetSize(Craftie.TabBottom:GetWidth(), 64)
-  Craftie.TabBottom.Hover:SetPoint("TOPLEFT", 7, -5)
-  Craftie.TabBottom.Hover:SetTexture("Interface/Buttons/ButtonHilight-Square")
-  Craftie.TabBottom.Hover:SetBlendMode("ADD")
-  Craftie.TabBottom.Hover:SetDrawLayer("ARTWORK", 7)
-  --Craftie.TabBottom.Hover:Hide()
-  ]==]--
 
   Craftie.TabBottom[k].Text = Craftie.TabBottom[k]:CreateFontString(nil, "ARTWORK")
   Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style, 10, "OUTLINE")
@@ -83,19 +65,22 @@ function Craftie.TabBottomSelect(tab, sound)
   Craftie.Help:Hide()
   Craftie.Frame.Title.Prof:Hide()
   Craftie.Frame.Title.Sub:Show()
+  Craftie.Frame.CrafterLevel:Hide()
+  Craftie.Frame.CrafterProgBarS:Hide()
 
   for k,v in pairs(Craftie.Nav.Tabs) do
     Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   end
 
-  if (tab == 1) then
+  if (tab == 1) then --professions
     Craftie.TabBarHide = 0
     Craftie.Frame.Title.Sub:Hide()
     Craftie.Frame.Title.Prof:Show()
     Craftie.Frame.CraftParent:Show()
     Craftie.Frame.ScrollPlayersParent:Show()
     Craftie.Frame.ScrollRecipesParent:Show()
+    Craftie.TabSelect(Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1))
   end
 
   if (tab == 2) then
