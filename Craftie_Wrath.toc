@@ -1,5 +1,4 @@
-## Interface: 20505
-## X-Min-Interface: 20504
+## Interface: 38000, 38001
 ## Title: Craftie
 ## Notes: Craftie
 ## Version: 1.02
@@ -7,6 +6,7 @@
 ## SavedVariables: CraftieDB
 ## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
 ## IconTexture: Interface\AddOns\Craftie\Images\UI-Crafie-Icon.png
+## X-Curse-Project-ID: 1509546
 
 Core/CraftieLibrary.lua
 # Localization
@@ -37,6 +37,7 @@ Library/Inscription.lua
 
 Changelog.lua
 Core/CraftieGlobal.lua
+Core/CraftieCore.lua
 Core/CraftieLogger.lua
 
 UI/CraftieFrame.lua
