@@ -161,7 +161,7 @@ Craftie.Frame.ScrollPlayersListNet={}
 Craftie.Frame.ScrollPlayersListOpt={}
 Craftie.Frame.ScrollPlayersListOpt.Back={}
 Craftie.Frame.ScrollPlayersListOpt.HL={}
-Craftie.Frame.ScrollPlayersListOpt.Menu={}
+Craftie.Frame.ScrollPlayersListSubMenu={}
 
 for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
@@ -171,6 +171,8 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollPlayersListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
+  --Craftie.Frame.ScrollPlayersListItem[i]:RegisterForMouse("LeftButtonUp", "LeftButtonDown", "RightButtonUp", "RightButtonDown")
+  Craftie.Frame.ScrollPlayersListItem[i]:RegisterForClicks("AnyUp")
 
   Craftie.Frame.ScrollPlayersListBack[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth(), 20)
@@ -213,6 +215,7 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(1, 0.5, 0, 0.5)
   Craftie.Frame.ScrollPlayersListFav[i]:Hide()
 
+  --[==[
   Craftie.Frame.ScrollPlayersListOpt[i] = CreateFrame("Button", nil, Craftie.Frame.ScrollPlayersListItem[i], "BackdropTemplate", 1)
   Craftie.Frame.ScrollPlayersListOpt[i]:SetSize(22, 22)
   Craftie.Frame.ScrollPlayersListOpt[i]:SetPoint("TOPLEFT", 154, 0)
@@ -240,6 +243,7 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnLeave", function(self)
     Craftie.Frame.ScrollPlayersListOpt.HL[i]:Hide()
   end)
+  ]==]--
 
   if (i % 2 == 0) then
     Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
@@ -260,18 +264,32 @@ for i=1, Craftie.MAX_PLAYERS do
     end
   end)
   --show the options
-  Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnClick", function(self)
+  Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnClick", function(self, button)
     Craftie:CloseAllPlayerMenus()
     if (Craftie.EnableScrollFrames) then
       if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
         Craftie:SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
         if (i > 1) then
-          Craftie.Frame.ScrollPlayersListOpt[i]:Show()
+          --Craftie.Frame.ScrollPlayersListOpt[i]:Show()
+          if (button == "RightButton") then
+            Craftie:CloseAllPlayerMenus()
+            Craftie:DisableAllScrollBars()
+            local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
+            if (crafter ~= nil) then
+              Craftie.Frame.ScrollPlayersListSubMenu:Show()
+              local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
+              --Craftie.Frame.ScrollPlayersListSubMenu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
+              Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
+              Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.TYPE.FUNC)
+              --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
+            end
+          end
         end
       end
     end
   end)
 
+  --[==[
   Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnClick", function(self)
     self:Hide()
     --open the sub menu
@@ -281,24 +299,25 @@ for i=1, Craftie.MAX_PLAYERS do
 
     local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
     if (crafter ~= nil) then
-      Craftie.Frame.ScrollPlayersListOpt.Menu:Show()
+      Craftie.Frame.ScrollPlayersListSubMenu:Show()
       local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
-      --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
-      Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
+      --Craftie.Frame.ScrollPlayersListSubMenu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
+      Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
       Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.TYPE.FUNC)
       --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
     end
   end)
+  ]==]--
 end
 
-Craftie.Frame.ScrollPlayersListOpt.Menu = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListOpt.Menu, Craftie.Frame.ScrollPlayers, "BackdropTemplate")
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetWidth(150)
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetHeight(150)
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdrop(Craftie.Backdrop.General)
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdropColor(0, 0, 0, 1) --shade
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetBackdropBorderColor(1, 1, 1, 0.5)
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetFrameLevel(300)
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetFrameStrata("HIGH")
-Craftie.Frame.ScrollPlayersListOpt.Menu:SetToplevel(true)
-Craftie.Frame.ScrollPlayersListOpt.Menu:Hide()
+Craftie.Frame.ScrollPlayersListSubMenu = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListSubMenu, Craftie.Frame.ScrollPlayers, "BackdropTemplate")
+Craftie.Frame.ScrollPlayersListSubMenu:SetWidth(150)
+Craftie.Frame.ScrollPlayersListSubMenu:SetHeight(150)
+Craftie.Frame.ScrollPlayersListSubMenu:SetPoint("TOPLEFT", 0, 0)
+Craftie.Frame.ScrollPlayersListSubMenu:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.ScrollPlayersListSubMenu:SetBackdropColor(0, 0, 0, 1) --shade
+Craftie.Frame.ScrollPlayersListSubMenu:SetBackdropBorderColor(1, 1, 1, 0.5)
+Craftie.Frame.ScrollPlayersListSubMenu:SetFrameLevel(300)
+Craftie.Frame.ScrollPlayersListSubMenu:SetFrameStrata("HIGH")
+Craftie.Frame.ScrollPlayersListSubMenu:SetToplevel(true)
+Craftie.Frame.ScrollPlayersListSubMenu:Hide()

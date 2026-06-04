@@ -14,11 +14,10 @@ the copyright holders.
 ]==]--
 
 function Craftie:CloseAllPlayerMenus()
-  for i=1, Craftie.MAX_PLAYERS do
-    --Craftie.Frame.ScrollPlayersListOpt.Menu[i]:Hide()
-    Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
-  end
-  Craftie.Frame.ScrollPlayersListOpt.Menu:Hide()
+  --for i=1, Craftie.MAX_PLAYERS do
+    --Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
+  --end
+  Craftie.Frame.ScrollPlayersListSubMenu:Hide()
 
   Craftie.Frame.ScrollPlayersList.Child:SetAlpha(1)
   Craftie.Frame.ScrollPlayersList.Child:EnableMouse(true)
@@ -927,5 +926,6 @@ function Craftie:UpdateMapButton()
   thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
   Craftie.Frame.Button.Minimap:ClearAllPoints()
   Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
-  Craftie:Notification("Craftie:UpdateMapButton()", Craftie.TYPE.FUNC)
+
+  --Craftie:Notification("Craftie:UpdateMapButton()", Craftie.TYPE.FUNC)
 end

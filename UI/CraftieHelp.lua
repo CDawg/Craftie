@@ -13,20 +13,10 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---help/contact
-Craftie.CONTACT = {
+--Help / Contact
+Craftie.Contact = {
   "|n|cffffdf96Curseforge|r|nhttps://www.curseforge.com/wow/addons/craftie/",
   "|n|cffffdf96Discord (.porthios)|r|nhttps://discordapp.com/users/238146303324979200",
-}
-
-Craftie.INTRO = { --localize this?
-  {
-    "|cfffa7634 Totem Caddy Devs are looking for language translators! Please click the contact tab to get more details if you would like to contribute to Totem Caddy!|r",
-    "",
-    "|cfffab734First time using Totem Caddy?|r",
-    "Select the Help tab for more info|n|n",
-    "UPDATES",
-  },
 }
 
 Craftie.Help_w = Craftie.Frame:GetWidth()-12
@@ -39,13 +29,10 @@ Craftie.Help:SetPoint("TOPLEFT", 4, -62)
 --Craftie.Help:SetFrameStrata("MEDIUM")
 
 Craftie.HelpScrollFrame={}
-Craftie.HelpScrollFrame = CreateFrame("Frame", Craftie.HelpScrollFrame, Craftie.Help, "InsetFrameTemplate")
+Craftie.HelpScrollFrame = CreateFrame("Frame", Craftie.HelpScrollFrame, Craftie.Help, "InsetFrameTemplate3")
 Craftie.HelpScrollFrame:SetWidth(Craftie.Help:GetWidth())
 Craftie.HelpScrollFrame:SetHeight(Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame:SetPoint("TOPLEFT", 0, 0)
---Craftie.HelpScrollFrame:SetBackdrop(Craftie.Backdrop.General)
---Craftie.HelpScrollFrame:SetBackdropColor(0, 0, 1, 0.1)
---Craftie.HelpScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.HelpScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.HelpScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.HelpScrollFrame.Child:SetPoint("TOPLEFT", Craftie.HelpScrollFrame, "TOPLEFT", 5, -10)
