@@ -190,7 +190,7 @@ Craftie.Frame.Craft:Hide()
 
 
 --[==[
-CRAFT ITEM
+CRAFT MAIN ITEM
 ]==]--
 Craftie.Frame.Craft.Back = Craftie.Frame.Craft:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Craft.Back:SetSize(310, 50)
@@ -249,24 +249,24 @@ Craftie.Frame.Craft.SkillIcon:SetSize(13, 13)
 Craftie.Frame.Craft.SkillIcon:SetPoint("TOPLEFT", 10, -10)
 Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/inv_misc_questionmark")
 Craftie.Frame.Craft.SkillIcon:Hide()
-Craftie.Frame.Craft.Skill = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Craft.Skill:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.Skill:SetPoint("TOPLEFT", 25, -10)
-Craftie.Frame.Craft.Skill:SetText("")
-Craftie.Frame.Craft.Skill:SetTextColor(1, 1, 1, 0.7)
-Craftie.Frame.Craft.Skill:Hide()
+Craftie.Frame.Craft.SkillText = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Craft.SkillText:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.Craft.SkillText:SetPoint("TOPLEFT", 25, -10)
+Craftie.Frame.Craft.SkillText:SetText("")
+Craftie.Frame.Craft.SkillText:SetTextColor(1, 1, 1, 0.7)
+Craftie.Frame.Craft.SkillText:Hide()
 Craftie.Frame.Craft.SourceTitle = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Craft.SourceTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Frame.Craft.SourceTitle:SetPoint("TOPLEFT", 25, -28)
 Craftie.Frame.Craft.SourceTitle:SetText("Sources:")
 Craftie.Frame.Craft.SourceTitle:SetTextColor(1, 1, 1, 1)
 Craftie.Frame.Craft.SourceTitle:Hide()
-Craftie.Frame.Craft.Source = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Craft.Source:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Craft.Source:SetPoint("TOPLEFT", 75, -28)
-Craftie.Frame.Craft.Source:SetText("")
-Craftie.Frame.Craft.Source:SetTextColor(1, 1, 1, 0.8)
-Craftie.Frame.Craft.Source:Hide()
+Craftie.Frame.Craft.SourceText = Craftie.Frame.CraftBackMid:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Craft.SourceText:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.Craft.SourceText:SetPoint("TOPLEFT", 75, -28)
+Craftie.Frame.Craft.SourceText:SetText("")
+Craftie.Frame.Craft.SourceText:SetTextColor(1, 1, 1, 0.8)
+Craftie.Frame.Craft.SourceText:Hide()
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}

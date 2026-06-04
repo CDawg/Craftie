@@ -103,12 +103,31 @@ function Craftie.ClearCraftWindow()
     Craftie.Frame.Reagent.Main[i]:Hide()
     Craftie.Frame.Reagent.Back[i]:Hide()
   end
+  Craftie.Frame.Craft.SourceTitle:Hide()
+  Craftie.Frame.Craft.SkillText:Hide()
+  Craftie.Frame.Craft.SkillIcon:Hide()
+  Craftie.Frame.Craft.SourceText:Hide()
+  Craftie.Notification("Craftie.ClearCraftWindow()", Craftie.TYPE.FUNC)
+end
+
+function Craftie.ClearSearchFocus()
+  Craftie.Frame.Search.Recipes.Text:ClearFocus()
+  if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
+    Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
+    Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
+  end
+  Craftie.Frame.Search.Players.Text:ClearFocus()
+  if (Craftie.Frame.Search.Players.Text:GetText() == "") then
+    Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
+    Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
+  end
+  Craftie.Notification("Craftie.ClearSearchFocus()", Craftie.TYPE.FUNC)
 end
 
 function Craftie.TabSelect(tab, sound)
   local prof_name = Craftie.Professions[tab][1]
   Craftie.CloseAllPlayerMenus()
-  Craftie.ClearFocusAll()
+  Craftie.ClearSearchFocus()
   for i=1, #Craftie.Professions do
     Craftie.Frame.TabSide[i].Glow:Hide()
     Craftie.Frame.TabSide[i].Shadow:Show()
@@ -142,20 +161,6 @@ function Craftie.TabSelect(tab, sound)
 
 Craftie.Notification("Craftie.TabSelect(" .. tab .. ")", Craftie.TYPE.FUNC)
 
-end
-
-function Craftie.ClearFocusAll()
-  Craftie.Frame.Search.Recipes.Text:ClearFocus()
-  if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
-    Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
-    Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
-  end
-  Craftie.Frame.Search.Players.Text:ClearFocus()
-  if (Craftie.Frame.Search.Players.Text:GetText() == "") then
-    Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
-    Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
-  end
-  Craftie.Notification("Craftie.ClearFocusAll()", Craftie.TYPE.FUNC)
 end
 
 function SetItemTooltip(frame, itemID, enchant, anchor)
@@ -197,13 +202,6 @@ function Craftie.SendPacket(prefix, data, channel, target)
 
   Craftie.Notification(repack .. " [" .. #repack .. "] -> " .. target, Craftie.TYPE.SEND)
 end
-
---Seed examples
---sendpacket examples
---Craftie.Seed = "Portheus,3,1,32,10001010010000010101000101110101100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000"
---Craftie.Seed = "Portheus,3,1,62,100000000000010000000000000000111100000000000000000001000000000000000000010101010101101110111111111100000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000100000000000000000011000000000000000000000000000000000000000000000010000000000011100000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000000000000010111111111111010111111111110000000"
---Craftie.Seed = "Portheus,3,3,131,11111111111111111111111111111111110111111111010010001110111011111100010010101010010110110011001000000111010100010010110101010111111111010001001010101010110111110110101001011101001010101010101010010100101001001111001110010100100100101010100100001000100100011100001001010101000101101010010010010101010111011101010101010101010111111111010001001010101010110111110110101001011111101001011111011101111011011011111111101100101111100101001001111111111111101111111110101111111111111111111111110"
---Craftie.Seed = "Portheus,3,3,375,111111111111111111011111111111111101111111111111111111111111111110001111111111111111111110111111111111111111111101111111111111011111111101101110111111111111111111101111111011111111111111111111110111111111011111111111111111111111111111111111111111111111111111111110111111111111111111111110111111111111111111111111111111111111111111111111111111111111111111111101100011111111111111111111111111111111111111111111111111111111"
 
 Craftie.Notified = 0
 function Craftie.ParsePacket(netpacket)
@@ -316,23 +314,25 @@ function Craftie.ItemDetails(item)
   local b_next = 0
   local loadcache = 0
   Craftie.Frame.Craft:Show()
-  Craftie.ClearFocusAll()
+  Craftie.ClearSearchFocus()
   Craftie.TimerAnim(Craftie.Frame.Craft, 0.65) --animate the craft icon
   --PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
   PlaySound(SOUNDKIT.IG_QUEST_LOG_CLOSE)
 
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0
-    Craftie.Frame.Reagent.Main[i]:Hide()
-    --Craftie.Frame.Reagent.Back[i]:Show() --selection was already made, draw backgrounds
-    Craftie.Frame.Reagent.Back[i]:Hide()
+    --Craftie.Frame.Reagent.Main[i]:Hide()
+    --Craftie.Frame.Reagent.Back[i]:Hide()
+    Craftie.Frame.Reagent.Back[i]:Show() --selection was already made, draw backgrounds
 
+    --[==[
     local back_time = i*0.026
     C_Timer.After(back_time, function()
       b_next = b_next +1
       Craftie.Frame.Reagent.Back[i]:Show()
       --print("b_next " .. b_next)
     end)
+    ]==]--
 
     if (not Craftie.IsEmpty(item[5][i])) then
       local r = 0
@@ -371,7 +371,6 @@ function Craftie.ItemDetails(item)
       end)
 
       --Craftie.Frame.Reagent.Back[i]:Show()
-
       --Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
 
@@ -453,7 +452,7 @@ function Craftie.ItemDetails(item)
     if (tonumber(item[3]) > 375) then
       SkillLevel = 375 --wowhead bug
     end
-    Craftie.Frame.Craft.Skill:SetText(Craftie.Page .. " (" .. SkillLevel .. ")")
+    Craftie.Frame.Craft.SkillText:SetText(Craftie.Page .. " (" .. SkillLevel .. ")")
     Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
     local source = item[6]
     local sources = source[1]
@@ -462,24 +461,22 @@ function Craftie.ItemDetails(item)
       for k,v in pairs(source) do
         sources = sources .. v .. ", "
       end
-      Craftie.Frame.Craft.Source:SetText(string.sub(sources, 1, -3))
+      Craftie.Frame.Craft.SourceText:SetText(string.sub(sources, 1, -3))
     else
-      Craftie.Frame.Craft.Source:SetText(sources)
+      Craftie.Frame.Craft.SourceText:SetText(sources)
     end
   end)
 
   local prof_list = Craftie.GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie.Split(Craftie.Professions[prof_list][3], ",")
   Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
-  Craftie.Frame.Craft.Skill:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
-  --Craftie.Frame.Craft.Skill:Hide()
-  --Craftie.Frame.Craft.SkillIcon:Hide()
-  --Craftie.Frame.Craft.Icon:Hide()
+  Craftie.Frame.Craft.SkillText:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+
   Craftie.Frame.Craft.Icon:Show()
-  Craftie.Frame.Craft.Skill:Show()
+  Craftie.Frame.Craft.SkillText:Show()
   Craftie.Frame.Craft.SkillIcon:Show()
   Craftie.Frame.Craft.SourceTitle:Show()
-  Craftie.Frame.Craft.Source:Show()
+  Craftie.Frame.Craft.SourceText:Show()
 end
 
 
@@ -510,22 +507,7 @@ function Craftie.SelectScrollItem(scrollFrame)
   end
 end
 
---[==[ --doesnt work in Classic
-function Craftie.GetRecipeIDByName(recipeName)
-  for i = 1, GetNumTradeSkills() do
-    local name, skillType = GetTradeSkillInfo(i)
-    if skillType ~= "header" and name == recipeName then
-      local recipeLink = GetTradeSkillRecipeLink(i)
-      if recipeLink then
-        local spellID = string.match(recipeLink, "Hspell:(%d+)")
-        return tonumber(spellID)
-      end
-    end
-  end
-  return nil
-end
-]==]--
-
+--version control when the app initializes
 function Craftie.AlphaSortProfessionLib()
   --very important so the order is always sorted alphabetically
   for k,v in pairs(Craftie.Professions) do
@@ -755,7 +737,7 @@ function Craftie.OpenProfessionList(profArray, search, player)
 
   if (total_recipes == 0) then
     for i=1, Craftie.MAX_RECIPES do
-      Craftie.Frame.ScrollRecipesListItem[i]:Hide() --just clear the board
+      Craftie.Frame.ScrollRecipesListItem[i]:Hide() --nothing to show, just clear the board
     end
   else
     for i=1, total_recipes do

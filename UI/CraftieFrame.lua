@@ -47,7 +47,6 @@ Craftie.Frame.Icon:SetSize(160, 80)
 Craftie.Frame.Icon:SetPoint("TOPLEFT", -42, 30)
 Craftie.Frame.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png")
 Craftie.Frame.Icon:SetDrawLayer("OVERLAY", 4)
-Craftie.Frame.Icon:Hide()
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, 12, "SLUG")

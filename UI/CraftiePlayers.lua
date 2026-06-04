@@ -104,7 +104,7 @@ Craftie.Frame.Search.Players.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
 Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
-    Craftie.ClearFocusAll()
+    Craftie.ClearSearchFocus()
     Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
   end
 end)
@@ -331,7 +331,7 @@ function Craftie.GetCrafterIndex(player)
 end
 
 function Craftie.SelectCrafter(index, name)
-  Craftie.ClearFocusAll()
+  Craftie.ClearSearchFocus()
   Craftie.Selected_Name = ""
   Craftie.Selected_Players = 1 --always one at first
 
