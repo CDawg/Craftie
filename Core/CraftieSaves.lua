@@ -56,11 +56,12 @@ function Craftie:SaveData()
 
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"]) then
       local minimapIconPos = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"], ",")
-      if ((minimapIconPos[1]) and (minimapIconPos[2])) then
-        Craftie:UpdateMapButton()
-        Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1]+126, minimapIconPos[2]+22)
-      end
+      --print("Getpoint " .. Craftie.Frame.Button.Minimap:GetPoint())
+      --print("Setpoint " .. "TOPLEFT, Minimap, TOPLEFT" .. "," .. minimapIconPos[1] .. "," .. minimapIconPos[2])
+      Craftie:UpdateMapButton()
+      Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1], minimapIconPos[2])
     end
+
     --if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["SHARE"]) then
       --disable sharing across characters of same server and faction?
     --end

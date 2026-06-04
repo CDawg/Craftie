@@ -212,7 +212,7 @@ end)
 Craftie.Frame.Button.Minimap:SetScript("OnDragStop", function()
     Craftie.Frame.Button.Minimap:StopMovingOrSizing()
     Craftie.Frame.Button.Minimap:SetScript("OnUpdate", nil)
-		Craftie.SaveMapButtonPos()
+		Craftie:SaveMapButtonPos()
 end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnEnter", function(self)

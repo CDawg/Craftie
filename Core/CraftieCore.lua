@@ -883,28 +883,6 @@ function Craftie:BuildReagentGaps()
   Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.TYPE.FUNC)
 end
 
-function Craftie.SaveMapButtonPos()
-  local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.Button.Minimap:GetPoint()
-	CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
-  --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
-  C_Timer.After(0.1, function()
-    Craftie:UpdateMapButton()
-  end)
-  Craftie:Notification("Craftie:SaveMapButtonPos()", Craftie.TYPE.SAVE)
-end
-
-function Craftie:UpdateMapButton()
-  local thisIconPos = 0
-  local Xpoa, Ypoa = GetCursorPosition()
-  local Xmin, Ymin = Minimap:GetLeft(), Minimap:GetBottom()
-  Xpoa = Xmin - Xpoa / Minimap:GetEffectiveScale() + 70
-  Ypoa = Ypoa / Minimap:GetEffectiveScale() - Ymin - 70
-  thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
-  Craftie.Frame.Button.Minimap:ClearAllPoints()
-  Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
-  Craftie:Notification("Craftie:UpdateMapButton()", Craftie.TYPE.FUNC)
-end
-
 --use the classic frame, but updated images. The updated frame has major bugs
 function Craftie:ScrollBarFrame(frame)
   local _scrollUp = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Arr.png"
@@ -927,4 +905,27 @@ function Craftie:ScrollBarFrame(frame)
   ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, -18)
   ScrollBack:SetVertTile(true)
   ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")
+end
+
+
+function Craftie:SaveMapButtonPos()
+  Craftie:UpdateMapButton()
+  C_Timer.After(0.1, function()
+    local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.Button.Minimap:GetPoint()
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
+    --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
+    Craftie:Notification("Craftie:SaveMapButtonPos() = " .. math.ceil(xOfs) .. "," .. math.ceil(yOfs), Craftie.TYPE.SAVE)
+  end)
+end
+
+function Craftie:UpdateMapButton()
+  local thisIconPos = 0
+  local Xpoa, Ypoa = GetCursorPosition()
+  local Xmin, Ymin = Minimap:GetLeft(), Minimap:GetBottom()
+  Xpoa = Xmin - Xpoa / Minimap:GetEffectiveScale() + 70
+  Ypoa = Ypoa / Minimap:GetEffectiveScale() - Ymin - 70
+  thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
+  Craftie.Frame.Button.Minimap:ClearAllPoints()
+  Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
+  Craftie:Notification("Craftie:UpdateMapButton()", Craftie.TYPE.FUNC)
 end
