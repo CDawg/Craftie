@@ -150,6 +150,99 @@ function Craftie:GetCrafterIndex(player)
   end)
 end
 
+
+function Craftie:SelectCrafter(index, name)
+  Craftie:ClearSearchFocus()
+  Craftie.Selected_Name = ""
+  Craftie.Selected_Players = 1 --always one at first
+
+  if (index == 1) then
+    if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
+      Craftie:OpenProfessionList(Craftie.ProfessionDefault, Craftie.Frame.Search.Recipes.Text:GetText(), "") --pull all
+    else
+      Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "") --pull all
+    end
+  else
+    if (name ~= nil) then
+      --print(name)
+      Craftie.Selected_Players = index
+      Craftie.Selected_Name = name
+      Craftie:Notification("Craftie:SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.TYPE.FUNC)
+      if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
+        Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
+      else
+        Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], "", name)
+      end
+    end
+  end
+  Craftie:SelectScrollItem("Players") --highlight
+
+  PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
+end
+
+function Craftie:UpdateCrafterList(search)
+  local crafter_list = {}
+  local search_list = {}
+  Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.TYPE.FUNC)
+  Craftie.Frame.ScrollPlayersResults:SetText("")
+  Craftie.Frame.ScrollPlayersLoading:Show()
+  Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
+
+  for i=1, Craftie.MAX_PLAYERS do
+    --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
+    Craftie.Frame.ScrollPlayersListFav[i]:Hide()
+    Craftie.Frame.ScrollPlayersListName[i]:SetText("")
+  end
+
+  C_Timer.After(0.10, function()
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+      for crafter_name in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
+        table.insert(crafter_list, crafter_name)
+      end
+    end
+    search_list = crafter_list
+    if (search ~= nil) then
+      --Craftie:SortTableByMatch(crafter_list, search)
+      --local matches = Craftie:SearchTable(crafter_list, search)
+      search_list = Craftie:SearchTable(crafter_list, search)
+      --print("player search " .. search)
+      --print("num matches " .. matches)
+    end
+    for k,v in ipairs(search_list) do
+      Craftie.Frame.ScrollPlayersListName[k+1]:SetText(v)
+      Craftie.Frame.ScrollPlayersListFav[k+1]:Show()
+    end
+
+    local results = "|cfffffb63Crafter(s)"
+    Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
+    --[==[
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+      for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
+        --i = i+1
+        Craftie.Frame.ScrollPlayersListName[i]:SetText(k)
+        --Craftie.Frame.ScrollPlayersListNet[i]:Show() --online status only works for guildies
+        Craftie.Frame.ScrollPlayersListFav[i]:Show()
+      end
+    end
+    ]==]--
+  end)
+  C_Timer.After(0.3, function()
+    Craftie.Frame.ScrollPlayersLoading:Hide()
+    Craftie.Frame.ScrollPlayersList:SetAlpha(1)
+    --Craftie.Frame.ScrollPlayersList.Child:SetSelected(1)
+    --Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(20)
+  end)
+
+  Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
+  --[==[
+  Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/LFGFRAME/UI-LFG-ICON-LOCK")
+  Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
+  Craftie.Frame.ScrollPlayersListFav[1]:Show()
+  Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(1, 0, 0, 1)
+  ]==]--
+  Craftie.Frame.ScrollPlayersListFav[1]:Hide()
+end
+
 function Craftie:TabSelect(tab, sound)
   local prof_name = Craftie.Professions[tab][1]
   Craftie:CloseAllPlayerMenus()

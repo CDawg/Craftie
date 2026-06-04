@@ -163,7 +163,6 @@ Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -62)
 Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
 
-
 Craftie.Frame.CraftBackTop={}
 Craftie.Frame.CraftBackTop= CreateFrame("Frame", Craftie.Frame.CraftBackTop, Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackTop:SetWidth(300)
@@ -187,7 +186,6 @@ Craftie.Frame.Craft:SetScript("OnHyperlinkClick", function(self, link, text, but
   end
 end)
 Craftie.Frame.Craft:Hide()
-
 
 --[==[
 CRAFT MAIN ITEM
