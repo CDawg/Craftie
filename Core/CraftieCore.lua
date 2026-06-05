@@ -13,6 +13,24 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+Craftie.LogKey = 0
+Craftie.SortOrder = 0
+function Craftie:Notification(msg, type)
+  local logstring= ""
+  local DEBUGLEVEL= type[1]
+  local MODECOLOR = type[2]
+  if (Craftie.DEBUG <= 0) then
+    Craftie.DEBUG = 1 --prevent errors, but always show chat
+  end
+  if (DEBUGLEVEL <= Craftie.DEBUG) then
+    print(Craftie._G.Title .. " " .. MODECOLOR .. ": " .. msg)
+  end
+  --log everything, regardless of debug mode
+  if (Craftie.Frame ~= nil) then
+    Craftie:Log(MODECOLOR, msg)
+  end
+end
+
 function Craftie:CloseAllPlayerMenus()
   --for i=1, Craftie.MAX_PLAYERS do
     --Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
@@ -83,7 +101,6 @@ function Craftie:GetCrafterIndex(player)
     end
   end)
 end
-
 
 function Craftie:SelectCrafter(index, name)
   Craftie:ClearSearchFocus()

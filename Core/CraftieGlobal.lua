@@ -33,23 +33,6 @@ Craftie._G.Path = "Interface/Addons/Craftie/"
 Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
-Craftie.LogKey = 0
-Craftie.SortOrder = 0
-function Craftie:Notification(msg, type)
-  local logstring= ""
-  if (Craftie.DEBUG <= 0) then
-    Craftie.DEBUG = 1 --prevent errors, but always show chat
-  end
-  if (type[1] <= Craftie.DEBUG) then
-    print(Craftie._G.Title .. " " .. type[2] .. ": " .. msg)
-  end
-  --print("type: " .. type[1] .. " | " .. type[2])
-  --log everything, regardless of debug mode
-  if (Craftie.Frame ~= nil) then
-    Craftie:Log(type[2], msg)
-  end
-end
-
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
 Craftie.MAX_PLAYERS = 300 --per profession

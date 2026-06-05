@@ -66,7 +66,7 @@ Craftie.Backdrop = {
   }
 }
 
-Craftie.DEBUG = 8 --default [chat|error]
+Craftie.DEBUG = 8
 
 Craftie.TYPE = {
   CHAT = {1, "|CFFFFFFF0CHAT|r"},
