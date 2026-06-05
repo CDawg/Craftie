@@ -47,6 +47,30 @@ end)
 
 --Craftie.Logger:Hide()
 
+Craftie.Logger.Button={}
+Craftie.Logger.Button.Frame = Craftie.Logger.Background:CreateTexture(nil, "OVERLAY")
+Craftie.Logger.Button.Frame:SetSize(64, 64)
+Craftie.Logger.Button.Frame:SetPoint("TOPRIGHT", -25, 1)
+Craftie.Logger.Button.Frame:SetTexture(Craftie._G.Path .. "Images/UIFrameMetal-RightDouble.png")
+Craftie.Logger.Button.Frame:SetDrawLayer("OVERLAY", 1)
+
+Craftie.Logger.Button.Coll = CreateFrame("Button", nil, Craftie.Logger.Background)
+Craftie.Logger.Button.Coll:SetSize(32, 32)
+Craftie.Logger.Button.Coll:SetPoint("TOPRIGHT", -19, 6)
+Craftie.Logger.Button.Coll:SetNormalTexture("Interface/Buttons/UI-Panel-CollapseButton-Up")
+Craftie.Logger.Button.Coll:SetPushedTexture("Interface/Buttons/UI-Panel-CollapseButton-Down")
+Craftie.Logger.Button.Coll:SetScript("OnClick", function(self)
+  Craftie.Logger:SetFrameStrata("HIGH")
+end)
+Craftie.Logger.Button.Exp = CreateFrame("Button", nil, Craftie.Logger.Background)
+Craftie.Logger.Button.Exp:SetSize(32, 32)
+Craftie.Logger.Button.Exp:SetPoint("TOPRIGHT", -43, 6)
+Craftie.Logger.Button.Exp:SetNormalTexture("Interface/Buttons/UI-Panel-ExpandButton-Up")
+Craftie.Logger.Button.Exp:SetPushedTexture("Interface/Buttons/UI-Panel-ExpandButton-Down")
+Craftie.Logger.Button.Exp:SetScript("OnClick", function(self)
+  Craftie.Logger:SetFrameStrata("BACKGROUND")
+end)
+
 Craftie.Logger.Icon = Craftie.Logger.Background:CreateTexture(nil, "ARTWORK")
 Craftie.Logger.Icon:SetSize(160, 80)
 Craftie.Logger.Icon:SetPoint("TOPLEFT", -42, 30)
@@ -55,8 +79,8 @@ Craftie.Logger.Icon:SetDrawLayer("OVERLAY", 4)
 
 Craftie.Logger.Title = Craftie.Logger:CreateFontString(nil, "ARTWORK")
 Craftie.Logger.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Logger.Title:SetPoint("TOPLEFT", 115, -7)
-Craftie.Logger.Title:SetText("Logger v" .. Craftie._G.Version)
+Craftie.Logger.Title:SetPoint("TOPRIGHT", -90, -5)
+Craftie.Logger.Title:SetText("v" .. Craftie._G.Version .. " [" .. Craftie.Game.Name .. "]")
 Craftie.Logger.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Logger.ScrollFrame={}
@@ -95,7 +119,7 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k]:SetWidth(v[2])
   Craftie.Logger.Col[k]:SetHeight(ColHeight)
   --Craftie.Logger.Col[k]:SetPoint("TOPLEFT", 0, -ColHeight)
-  Craftie.Logger.Col[k]:SetPoint("TOPLEFT", v[3], -ColHeight)
+  Craftie.Logger.Col[k]:SetPoint("TOPLEFT", v[3], -ColHeight-5)
   Craftie.Logger.Col[k]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Logger.Col[k]:SetBackdropColor(0.6, 0.6, 0.5, 0.7)
   Craftie.Logger.Col[k]:SetBackdropBorderColor(0.2, 0.2, 0.2, 0)
@@ -103,6 +127,8 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", 15, -10)
   Craftie.Logger.Col[k].Text:SetText(v[1])
+  Craftie.Logger.Col[k].Text:SetJustifyV("BOTTOM")
+  Craftie.Logger.Col[k].Text:SetJustifyH("LEFT")
 end
 
 Craftie.Logger.Row = {}

@@ -155,7 +155,7 @@ function Craftie:UpdateCrafterList(search)
       local i = 1
       for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
         i = i+1
-        print("index " .. i)
+        --print("index " .. i)
         local crafter = Craftie:Split(v, ",")
         --print(v)
         --print(crafter[2])

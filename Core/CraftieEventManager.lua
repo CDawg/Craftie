@@ -25,6 +25,7 @@ Craftie.Event:RegisterEvent("CRAFT_SHOW")
 Craftie.Event:RegisterEvent("CRAFT_CLOSE")
 Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 Craftie.Event:RegisterEvent("GROUP_ROSTER_UPDATE")
+--Craftie.Event:RegisterEvent("MODIFIER_STATE_CHANGED")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
 Craftie.Event:RegisterEvent("SKILL_LINES_CHANGED")
 Craftie.Event:RegisterEvent("TRADE_SKILL_CLOSE")
@@ -60,24 +61,6 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       --print("Craftie.Event[1] " .. prefix .. " | " .. event)
       Craftie:Notification("Craftie:EventManager[1] " .. event, Craftie.TYPE.EVENT)
 	  end
-
-    --print("event|n" .. event)
-
-    --if (prefix) then
-      --C_ChatInfo.RegisterAddonMessagePrefix(prefix)
-      --print("Craftie.Event[2] " .. prefix .. " | " .. event)
-    --end
-
-    --local result = C_ChatInfo.RegisterAddonMessagePrefix(prefix)
-    --print("result... " .. result)
-
-    --[==[
-    if (event == "GET_ITEM_INFO_RECEIVED") then
-      if (prefix) then
-        print("Craftie.Event[2] " .. prefix .. " | " .. event)
-      end
-    end
-    ]==]--
 
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase

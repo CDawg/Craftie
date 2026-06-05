@@ -20,8 +20,7 @@ Craftie.Frame:SetPoint("CENTER", 0, 0)
 Craftie.Frame:SetFrameStrata("LOW")
 
 --Craftie.Frame.TopLeftCorner:Hide()
-Craftie.Frame.TopRightCorner:Hide()
---ButtonFrameTemplate_HidePortrait(Craftie.Frame)
+--Craftie.Frame.TopRightCorner:Hide()
 
 Craftie.Frame:SetMovable(true)
 Craftie.Frame:EnableMouse(true)
@@ -175,7 +174,7 @@ Craftie.Frame.Button.Frame:SetPoint("TOPRIGHT", -1, 1)
 Craftie.Frame.Button.Frame:SetTexture(Craftie._G.Path .. "Images/UIFrameMetal-RightDouble.png")
 Craftie.Frame.Button.Frame:SetDrawLayer("OVERLAY", 1)
 
-Craftie.Frame.Button.Options= CreateFrame("Button", nil, Craftie.Frame, "UIPanelButtonTemplate")
+Craftie.Frame.Button.Options = CreateFrame("Button", nil, Craftie.Frame, "UIPanelButtonTemplate")
 Craftie.Frame.Button.Options:SetSize(24, 24)
 Craftie.Frame.Button.Options:SetPoint("TOPRIGHT", -24, 2)
 Craftie.Frame.Button.Options.icon = Craftie.Frame.Button.Options:CreateTexture(nil, "ARTWORK")
