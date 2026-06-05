@@ -69,7 +69,6 @@ Craftie.Page = "Alchemy" --default
 
 -- Global Frames
 Craftie.Frame={}
---Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "ButtonFrameTemplate")
 Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "BasicFrameTemplate")
 Craftie.Frame.Search={}
 

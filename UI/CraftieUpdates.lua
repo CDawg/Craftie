@@ -23,21 +23,21 @@ Written by |cff006aa6Porthias|r (a.k.a. Port)
 Craftie.Updates_w = Craftie.Frame:GetWidth()/2+20
 Craftie.Updates_h = Craftie.Frame:GetHeight()-88
 
-Craftie.Updates = CreateFrame("Frame", nil, Craftie.Frame)
+Craftie.Updates = CreateFrame("Frame", "Craftie.Updates", Craftie.Frame)
 Craftie.Updates:SetWidth(Craftie.Updates_w)
 Craftie.Updates:SetHeight(Craftie.Updates_h)
 Craftie.Updates:SetPoint("TOPLEFT", 4, -62)
 Craftie.Updates:SetFrameStrata("MEDIUM")
 
-Craftie.UpdatesScrollFrame = CreateFrame("Frame", Craftie.UpdatesScrollFrame, Craftie.Updates, "InsetFrameTemplate3")
+Craftie.UpdatesScrollFrame = CreateFrame("Frame", "Craftie.UpdatesScrollFrame", Craftie.Updates, "InsetFrameTemplate3")
 Craftie.UpdatesScrollFrame:SetWidth(Craftie.Updates:GetWidth())
 Craftie.UpdatesScrollFrame:SetHeight(Craftie.Updates:GetHeight()-25) --room for title
 Craftie.UpdatesScrollFrame:SetPoint("TOPLEFT", 0, -22)
 
-Craftie.UpdatesScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.UpdatesScrollFrame, "UIPanelScrollFrameTemplate")
+Craftie.UpdatesScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.UpdatesScrollFrame.Child", Craftie.UpdatesScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.UpdatesScrollFrame.Child:SetPoint("TOPLEFT", Craftie.UpdatesScrollFrame, "TOPLEFT", 5, -10) --room for title
 Craftie.UpdatesScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.UpdatesScrollFrame, "BOTTOMRIGHT", 10, 5)
-Craftie.UpdatesScrollFrameChildFrame = CreateFrame("Frame", Craftie.UpdatesScrollFrameChildFrame, Craftie.UpdatesScrollFrame.Child)
+Craftie.UpdatesScrollFrameChildFrame = CreateFrame("Frame", "Craftie.UpdatesScrollFrameChildFrame", Craftie.UpdatesScrollFrame.Child)
 Craftie.UpdatesScrollFrameChildFrame:SetSize(Craftie.Updates:GetWidth(), Craftie.Updates:GetHeight())
 Craftie.UpdatesScrollFrame.Child:SetScrollChild(Craftie.UpdatesScrollFrameChildFrame)
 Craftie.UpdatesScrollFrame.Child.ScrollBar:ClearAllPoints()
@@ -46,7 +46,7 @@ Craftie.UpdatesScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Updat
 
 Craftie:ScrollBarFrame(Craftie.UpdatesScrollFrame.Child)
 
-Craftie.Updates.Data = CreateFrame("EditBox", nil, Craftie.UpdatesScrollFrameChildFrame)
+Craftie.Updates.Data = CreateFrame("EditBox", "Craftie.Updates.Data", Craftie.UpdatesScrollFrameChildFrame)
 Craftie.Updates.Data:SetWidth(Craftie.Updates:GetWidth()-20) --scrollbar
 Craftie.Updates.Data:SetHeight(Craftie.Updates:GetHeight())
 --Craftie.Updates.Data:SetFontObject(GameFontWhite)
@@ -69,15 +69,15 @@ Craftie.Credit:SetHeight(Craftie.Credit_h)
 Craftie.Credit:SetPoint("TOPLEFT", 437, -62)
 Craftie.Credit:SetFrameStrata("MEDIUM")
 
-Craftie.CreditsScrollFrame = CreateFrame("Frame", Craftie.CreditsScrollFrame, Craftie.Credit, "InsetFrameTemplate3")
+Craftie.CreditsScrollFrame = CreateFrame("Frame", "Craftie.CreditsScrollFrame", Craftie.Credit, "InsetFrameTemplate3")
 Craftie.CreditsScrollFrame:SetWidth(Craftie.Credit:GetWidth())
 Craftie.CreditsScrollFrame:SetHeight(Craftie.Credit:GetHeight()-25) --room for title
 Craftie.CreditsScrollFrame:SetPoint("TOPLEFT", 0, -22)
 
-Craftie.CreditsScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.CreditsScrollFrame, "UIPanelScrollFrameTemplate")
+Craftie.CreditsScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.CreditsScrollFrame.Child", Craftie.CreditsScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.CreditsScrollFrame.Child:SetPoint("TOPLEFT", Craftie.CreditsScrollFrame, "TOPLEFT", 5, -10)
 Craftie.CreditsScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.CreditsScrollFrame, "BOTTOMRIGHT", 10, 5)
-Craftie.CreditsScrollFrameChildFrame = CreateFrame("Frame", Craftie.CreditsScrollFrameChildFrame, Craftie.CreditsScrollFrame.Child)
+Craftie.CreditsScrollFrameChildFrame = CreateFrame("Frame", "Craftie.CreditsScrollFrameChildFrame", Craftie.CreditsScrollFrame.Child)
 Craftie.CreditsScrollFrameChildFrame:SetSize(Craftie.Credit:GetWidth(), Craftie.Credit:GetHeight())
 Craftie.CreditsScrollFrame.Child:SetScrollChild(Craftie.CreditsScrollFrameChildFrame)
 Craftie.CreditsScrollFrame.Child.ScrollBar:ClearAllPoints()

@@ -16,7 +16,7 @@ the copyright holders.
 Craftie.Logger_w = 800
 Craftie.Logger_h = 550
 
-Craftie.Logger = CreateFrame("Frame", Craftie.Logger, UIParent, "BackdropTemplate")
+Craftie.Logger = CreateFrame("Frame", "Craftie.Logger", UIParent, "BackdropTemplate")
 Craftie.Logger:SetWidth(Craftie.Logger_w)
 Craftie.Logger:SetHeight(Craftie.Logger_h)
 Craftie.Logger:SetPoint("CENTER", 0, 20)
@@ -34,7 +34,7 @@ Craftie.Logger:SetScript("OnDragStop", function()
   Craftie.Logger:StopMovingOrSizing()
   --local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Logger:GetPoint()
 end)
-Craftie.Logger.Background = CreateFrame("Frame", nil, Craftie.Logger, "BaseBasicFrameTemplate")
+Craftie.Logger.Background = CreateFrame("Frame", "Craftie.Logger.Background", Craftie.Logger, "BaseBasicFrameTemplate")
 Craftie.Logger.Background:SetWidth(Craftie.Logger:GetWidth())
 Craftie.Logger.Background:SetHeight(Craftie.Logger:GetHeight())
 Craftie.Logger.Background:SetPoint("CENTER", 0, 0)
@@ -60,7 +60,7 @@ Craftie.Logger.Title:SetText("Logger v" .. Craftie._G.Version)
 Craftie.Logger.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Logger.ScrollFrame={}
-Craftie.Logger.ScrollFrame = CreateFrame("Frame", Craftie.Logger.ScrollFrame, Craftie.Logger, "BackdropTemplate")
+Craftie.Logger.ScrollFrame = CreateFrame("Frame", "Craftie.Logger.ScrollFrame", Craftie.Logger, "BackdropTemplate")
 Craftie.Logger.ScrollFrame:SetWidth(Craftie.Logger:GetWidth()-20)
 Craftie.Logger.ScrollFrame:SetHeight(Craftie.Logger:GetHeight()-200)
 Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 15, -50)
@@ -71,7 +71,7 @@ Craftie.Logger.ScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Logger.ScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.Logger.ScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.Logger.ScrollFrame.Child:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame, "TOPLEFT", -5, -10)
 Craftie.Logger.ScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame, "BOTTOMRIGHT", 8, 5)
-Craftie.Logger.ScrollFrameChildFrame = CreateFrame("Frame", Craftie.Logger.ScrollFrameChildFrame, Craftie.Logger.ScrollFrame.Child)
+Craftie.Logger.ScrollFrameChildFrame = CreateFrame("Frame", "Craftie.Logger.ScrollFrameChildFrame", Craftie.Logger.ScrollFrame.Child)
 Craftie.Logger.ScrollFrameChildFrame:SetSize(Craftie.Logger:GetWidth(), Craftie.Logger:GetHeight())
 Craftie.Logger.ScrollFrame.Child:SetScrollChild(Craftie.Logger.ScrollFrameChildFrame)
 Craftie.Logger.ScrollFrame.Child.ScrollBar:ClearAllPoints()
@@ -173,7 +173,7 @@ function Craftie:Log(type, log)
   end
 end
 
-Craftie.Logger.DetailsFrame = CreateFrame("Frame", Craftie.Logger.DetailsFrame, Craftie.Logger, "InsetFrameTemplate4")
+Craftie.Logger.DetailsFrame = CreateFrame("Frame", "Craftie.Logger.DetailsFrame", Craftie.Logger, "InsetFrameTemplate4")
 Craftie.Logger.DetailsFrame:SetWidth(Craftie.Logger.DetailsFrame:GetParent():GetWidth()-6)
 Craftie.Logger.DetailsFrame:SetHeight(152)
 Craftie.Logger.DetailsFrame:SetPoint("TOPLEFT", 2, -396)

@@ -99,7 +99,7 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.Frame.TabSide[i].Icon:SetTexture("Interface/Icons/" .. v[2])
   Craftie.Frame.TabSide[i].Icon:SetDesaturation(0.40)
   Craftie.Frame.TabSide[i].Icon:SetDrawLayer("ARTWORK", -2)
-  Craftie.Frame.TabSide[i].Shadow = CreateFrame("Frame", Craftie.Frame.TabSide[i].Shadow, Craftie.Frame.TabSide[i], "BackdropTemplate")
+  Craftie.Frame.TabSide[i].Shadow = CreateFrame("Frame", nil, Craftie.Frame.TabSide[i], "BackdropTemplate")
   Craftie.Frame.TabSide[i].Shadow:SetWidth(32)
   Craftie.Frame.TabSide[i].Shadow:SetHeight(32)
   Craftie.Frame.TabSide[i].Shadow:SetPoint("TOPLEFT", 7, -4)
@@ -139,7 +139,7 @@ for i,v in pairs(Craftie.Professions) do
   end)
 end
 
-Craftie.Frame.CrafterLevel = CreateFrame("Frame", Craftie.Frame, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.CrafterLevel = CreateFrame("Frame", "Craftie.Frame.CrafterLevel", Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.CrafterLevel:SetWidth(250)
 Craftie.Frame.CrafterLevel:SetHeight(20)
 Craftie.Frame.CrafterLevel:SetPoint("TOPLEFT", 400, -30)

@@ -16,7 +16,7 @@ the copyright holders.
 Craftie.Frame.ScrollRecipes_Width = 294
 Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-134
 
-Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", Craftie.Frame.ScrollRecipesParent, Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollRecipesParent:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesParent:SetHeight(Craftie._G.Height-88)
 Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 216, -62)
@@ -27,7 +27,7 @@ Craftie.Frame.ScrollRecipesParent.Back:SetSize(Craftie.Frame.ScrollRecipesParent
 Craftie.Frame.ScrollRecipesParent.Back:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Recipes.png")
 
-Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", Craftie.Frame.ScrollRecipesList, Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
+Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesList", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.ScrollRecipesList:SetWidth(Craftie.Frame.ScrollRecipes_Width-10)
 Craftie.Frame.ScrollRecipesList:SetHeight(Craftie.Frame.ScrollRecipes_Height+20)
 Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 2, 6)
@@ -35,7 +35,7 @@ Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 2, 6)
 Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollRecipesList.Child, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT",         -2,-20)
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList, "BOTTOMRIGHT", 14, 10)
-Craftie.Frame.ScrollRecipesListChildFrame = CreateFrame("Frame", Craftie.Frame.ScrollRecipesListChildFrame, Craftie.Frame.ScrollRecipesList.Child)
+Craftie.Frame.ScrollRecipesListChildFrame = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesListChildFrame", Craftie.Frame.ScrollRecipesList.Child)
 Craftie.Frame.ScrollRecipesListChildFrame:SetSize(Craftie.Frame.ScrollRecipes_Width, Craftie.Frame.ScrollRecipes_Height)
 Craftie.Frame.ScrollRecipesList.Child:SetScrollChild(Craftie.Frame.ScrollRecipesListChildFrame)
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:ClearAllPoints()
@@ -78,7 +78,7 @@ Craftie.Frame.ScrollRecipesEmpty:Hide()
 SEARCH RECIPES
 ]==]--
 Craftie.Frame.Search.Recipes={}
-Craftie.Frame.Search.Recipes = CreateFrame("Frame", nil, Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
+Craftie.Frame.Search.Recipes = CreateFrame("Frame", "Craftie.Frame.Search.Recipes", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.Search.Recipes:SetWidth(Craftie.Frame.ScrollRecipes_Width-5)
 Craftie.Frame.Search.Recipes:SetHeight(24)
 Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -1)
@@ -156,7 +156,7 @@ end)
 CRAFT FRAME
 ]==]--
 Craftie.Frame.CraftParent={}
-Craftie.Frame.CraftParent= CreateFrame("Frame", Craftie.Frame.CraftParent, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.CraftParent= CreateFrame("Frame", "Craftie.Frame.CraftParent", Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.CraftParent:SetWidth(300)
 Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
 --Craftie.Frame.CraftParent:SetHeight(180)
@@ -164,14 +164,14 @@ Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -62)
 Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.CraftBackTop={}
-Craftie.Frame.CraftBackTop= CreateFrame("Frame", Craftie.Frame.CraftBackTop, Craftie.Frame.CraftParent, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackTop= CreateFrame("Frame", "Craftie.Frame.CraftBackTop", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackTop:SetWidth(300)
 Craftie.Frame.CraftBackTop:SetHeight(190)
 Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", 0, 0)
 --Craftie.Frame.CraftBackTop:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.Craft = {}
-Craftie.Frame.Craft = CreateFrame("Frame", Craftie.Frame.Craft, Craftie.Frame.CraftParent, "BackdropTemplate")
+Craftie.Frame.Craft = CreateFrame("Frame", "Craftie.Frame.Craft", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.Craft:SetWidth(220)
 Craftie.Frame.Craft:SetHeight(35)
 Craftie.Frame.Craft:SetPoint("TOPLEFT", 14, -20)
@@ -236,7 +236,7 @@ Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
 
 Craftie.Frame.CraftBackMid={}
-Craftie.Frame.CraftBackMid= CreateFrame("Frame", Craftie.Frame.CraftBackMid, Craftie.Frame.CraftParent, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackMid= CreateFrame("Frame", "Craftie.Frame.CraftBackMid", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackMid:SetWidth(300)
 Craftie.Frame.CraftBackMid:SetHeight(50)
 Craftie.Frame.CraftBackMid:SetPoint("TOPRIGHT", 0, -194)
@@ -454,7 +454,7 @@ for i=1, Craftie.MAX_RECIPES do
 end
 
 Craftie.Frame.CraftBackBot={}
-Craftie.Frame.CraftBackBot= CreateFrame("Frame", Craftie.Frame.CraftBackBot, Craftie.Frame.CraftParent, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackBot= CreateFrame("Frame", "Craftie.Frame.CraftBackBot", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackBot:SetWidth(300)
 Craftie.Frame.CraftBackBot:SetHeight(125)
 Craftie.Frame.CraftBackBot:SetPoint("TOPRIGHT", 0, -248)

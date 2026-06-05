@@ -22,14 +22,14 @@ Craftie.Contact = {
 Craftie.Help_w = Craftie.Frame:GetWidth()-12
 Craftie.Help_h = Craftie.Frame:GetHeight()-88
 
-Craftie.Help = CreateFrame("Frame", nil, Craftie.Frame)
+Craftie.Help = CreateFrame("Frame", "Craftie.Help", Craftie.Frame)
 Craftie.Help:SetWidth(Craftie.Help_w)
 Craftie.Help:SetHeight(Craftie.Help_h)
 Craftie.Help:SetPoint("TOPLEFT", 4, -62)
 --Craftie.Help:SetFrameStrata("MEDIUM")
 
 Craftie.HelpScrollFrame={}
-Craftie.HelpScrollFrame = CreateFrame("Frame", Craftie.HelpScrollFrame, Craftie.Help, "InsetFrameTemplate3")
+Craftie.HelpScrollFrame = CreateFrame("Frame", "Craftie.HelpScrollFrame", Craftie.Help, "InsetFrameTemplate3")
 Craftie.HelpScrollFrame:SetWidth(Craftie.Help:GetWidth())
 Craftie.HelpScrollFrame:SetHeight(Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame:SetPoint("TOPLEFT", 0, 0)
@@ -37,7 +37,7 @@ Craftie.HelpScrollFrame:SetPoint("TOPLEFT", 0, 0)
 Craftie.HelpScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.HelpScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.HelpScrollFrame.Child:SetPoint("TOPLEFT", Craftie.HelpScrollFrame, "TOPLEFT", 5, -10)
 Craftie.HelpScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.HelpScrollFrame, "BOTTOMRIGHT", 10, 10)
-Craftie.HelpScrollFrameChildFrame = CreateFrame("Frame", Craftie.HelpScrollFrameChildFrame, Craftie.HelpScrollFrame.Child)
+Craftie.HelpScrollFrameChildFrame = CreateFrame("Frame", "Craftie.HelpScrollFrameChildFrame", Craftie.HelpScrollFrame.Child)
 Craftie.HelpScrollFrameChildFrame:SetSize(Craftie.Help:GetWidth(), Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame.Child:SetScrollChild(Craftie.HelpScrollFrameChildFrame)
 Craftie.HelpScrollFrame.Child.ScrollBar:ClearAllPoints()
