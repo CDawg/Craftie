@@ -91,7 +91,7 @@ Craftie.Logger.Cols = {
 Craftie.Logger.Col={}
 
 for k,v in ipairs(Craftie.Logger.Cols) do
-  Craftie.Logger.Col[k] = CreateFrame("Button", Craftie.Logger.ScrollFrame, Craftie.Logger, "BackdropTemplate")
+  Craftie.Logger.Col[k] = CreateFrame("Button", nil, Craftie.Logger, "BackdropTemplate")
   Craftie.Logger.Col[k]:SetWidth(v[2])
   Craftie.Logger.Col[k]:SetHeight(ColHeight)
   --Craftie.Logger.Col[k]:SetPoint("TOPLEFT", 0, -ColHeight)
@@ -178,10 +178,10 @@ Craftie.Logger.DetailsFrame:SetWidth(Craftie.Logger.DetailsFrame:GetParent():Get
 Craftie.Logger.DetailsFrame:SetHeight(152)
 Craftie.Logger.DetailsFrame:SetPoint("TOPLEFT", 2, -396)
 
-Craftie.Logger.Text = CreateFrame("EditBox", nil, Craftie.Logger.DetailsFrame)
+Craftie.Logger.Text = CreateFrame("EditBox", "Craftie.Logger.Text", Craftie.Logger.DetailsFrame)
 Craftie.Logger.Text:SetWidth(Craftie.Logger.DetailsFrame:GetWidth()-30)
 Craftie.Logger.Text:SetHeight(Craftie.Logger.DetailsFrame:GetHeight()-10)
-Craftie.Logger.Text:SetFont(Craftie._G.Font.Style, 12, "OUTLINE | SLUG")
+Craftie.Logger.Text:SetFont(Craftie._G.Font.Style, 12, "OUTLINE")
 Craftie.Logger.Text:SetPoint("TOPLEFT", 15, -15)
 Craftie.Logger.Text:SetMultiLine(true)
 Craftie.Logger.Text:ClearFocus()
