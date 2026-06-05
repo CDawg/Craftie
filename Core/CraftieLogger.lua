@@ -105,16 +105,25 @@ Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logge
 Craftie:ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
 
 local ColHeight = 28
---colName, colWidth, colX, colColor, 
+--colName, colWidth, colX, colColor, colSortable
 Craftie.Logger.Cols = {
-  {"ID",   60,  0,   {1, 1, 0.8, 0.4}},
-  {"Date", 100, 60,  {1, 1, 0.7, 0.8}},
-  {"Type", 110, 160, {}},
-  {"Log",  500, 270, {}},
+  {"ID",   60,  0,   {1, 1, 0.8, 0.4}, 1},
+  {"Date", 100, 60,  {1, 1, 0.7, 0.8}, 1},
+  {"Type", 110, 160, {}, 1},
+  {"Log",  500, 270, {}, 0},
 }
 Craftie.Logger.Col={}
 
 Craftie.LoggerSort = 1
+
+function Craftie.Logger:ResetAllSorting()
+  for k,v in ipairs(Craftie.Logger.Cols) do
+    if (v[5] == 1) then
+      Craftie.Logger.Col[k].Up:Hide()
+      Craftie.Logger.Col[k].Dn:Hide()
+    end
+  end
+end
 
 for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k] = CreateFrame("Button", nil, Craftie.Logger, "BackdropTemplate")
@@ -128,20 +137,69 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", 15, -10)
   Craftie.Logger.Col[k].Text:SetText(v[1])
-  Craftie.Logger.Col[k].Text:SetJustifyV("BOTTOM")
   Craftie.Logger.Col[k].Text:SetJustifyH("LEFT")
+  if (v[5] == 1) then --colSortable
+    Craftie.Logger.Col[k].Arr = Craftie.Logger.Col[k]:CreateTexture(nil, "ARTWORK")
+    Craftie.Logger.Col[k].Arr:SetSize(14, 26)
+    Craftie.Logger.Col[k].Arr:SetPoint("TOPRIGHT", -5, -2)
+    Craftie.Logger.Col[k].Arr:SetTexture("Interface/Minimap/MiniMap-PositionArrows")
+    Craftie.Logger.Col[k].Arr:SetDrawLayer("OVERLAY", 1)
+    Craftie.Logger.Col[k].Arr:SetAlpha(0.4)
+    Craftie.Logger.Col[k].Up = Craftie.Logger.Col[k]:CreateTexture(nil, "ARTWORK")
+    Craftie.Logger.Col[k].Up:SetSize(13, 13)
+    Craftie.Logger.Col[k].Up:SetPoint("TOPRIGHT", -6, 1)
+    Craftie.Logger.Col[k].Up:SetTexture("Interface/Buttons/Arrow-Up-Down")
+    Craftie.Logger.Col[k].Up:SetDrawLayer("OVERLAY", 4)
+    Craftie.Logger.Col[k].Up:Hide()
+    Craftie.Logger.Col[k].Dn = Craftie.Logger.Col[k]:CreateTexture(nil, "ARTWORK")
+    Craftie.Logger.Col[k].Dn:SetSize(13, 13)
+    Craftie.Logger.Col[k].Dn:SetPoint("TOPRIGHT", -6, -17)
+    Craftie.Logger.Col[k].Dn:SetTexture("Interface/Buttons/Arrow-Down-Down")
+    Craftie.Logger.Col[k].Dn:SetDrawLayer("OVERLAY", 4)
+    Craftie.Logger.Col[k].Dn:Hide()
+  end
   Craftie.Logger.Col[k]:SetScript("OnClick", function(self)
-    if (Craftie.LoggerSort == 1) then
-      Craftie.Logger:SortAsc()
-      Craftie.LoggerSort = 0
-    else
-      Craftie.Logger:SortDesc()
-      Craftie.LoggerSort = 1
+    Craftie.Logger:ResetAllSorting()
+    if (k == 1) then
+      if (Craftie.LoggerSort == 1) then
+        Craftie.Logger:SortNumAsc()
+        Craftie.LoggerSort = 0
+        Craftie.Logger.Col[k].Dn:Show()
+      else
+        Craftie.Logger:SortNumDesc()
+        Craftie.LoggerSort = 1
+        Craftie.Logger.Col[k].Up:Show()
+      end
+    end
+    if (k == 2) then
+      if (Craftie.LoggerSort == 1) then
+        Craftie.Logger:SortNumAsc()
+        Craftie.LoggerSort = 0
+        Craftie.Logger.Col[k].Dn:Show()
+      else
+        Craftie.Logger:SortNumDesc()
+        Craftie.LoggerSort = 1
+        Craftie.Logger.Col[k].Up:Show()
+      end
+    end
+    if (k == 3) then
+      if (Craftie.LoggerSort == 3) then
+        Craftie.Logger.SortTypeAsc()
+        Craftie.LoggerSort = 4
+        Craftie.Logger.Col[k].Dn:Show()
+      else
+        Craftie.Logger.SortTypeDesc()
+        Craftie.LoggerSort = 3
+        Craftie.Logger.Col[k].Up:Show()
+      end
     end
   end)
 end
 
+Craftie.Logger.Col[1].Up:Show()
+
 Craftie.Logger.Row = {}
+
 function Craftie:Log(type, log)
   Craftie.LogKey = Craftie.LogKey +1
   local id = Craftie.LogKey
@@ -208,21 +266,27 @@ function Craftie:Log(type, log)
     end
   end
 
+  if (Craftie.LoggerSort == 0) then
+    Craftie.Logger:SortNumAsc()
+  end
   if (Craftie.LoggerSort == 1) then
-    Craftie.Logger:SortDesc() --keep them descending
-  else
-    Craftie.Logger:SortAsc() --keep them descending
+    Craftie.Logger:SortNumDesc()
+  end
+  if (Craftie.LoggerSort == 3) then
+    Craftie.Logger:SortTypeAsc()
+  end
+  if (Craftie.LoggerSort == 4) then
+    Craftie.Logger:SortTypeDesc()
   end
 end
 
-
-function Craftie.Logger:SortAsc()
+function Craftie.Logger:SortNumAsc()
   for i=1, Craftie.LogKey do
     Craftie.Logger.Row[i]:SetPoint("TOPLEFT", 0, -i*24)
   end
 end
 
-function Craftie.Logger:SortDesc()
+function Craftie.Logger:SortNumDesc()
   local id = 0
   for i = Craftie.LogKey, 1, -1 do
     id = id +1
@@ -231,10 +295,39 @@ function Craftie.Logger:SortDesc()
   end
 end
 
---init sort newest at top
-C_Timer.After(2, function()
-  Craftie.Logger:SortDesc()
-end)
+function Craftie.Logger.SortTypeAsc()
+  local type_arr = {}
+  for i=1, Craftie.LogKey do
+    local type = Craftie.Logger.Row[i][3]:GetText():sub(11)
+    table.insert(type_arr, {i, type}) --remove color codes
+  end
+  --table.sort(type_arr)
+  Craftie:SortTableByString(type_arr)
+
+  local i = 0
+  for k,v in ipairs(type_arr) do
+    i = i+1
+    print(i .. " | " .. v[1] .. " | " .. v[2])
+    Craftie.Logger.Row[v[1]]:SetPoint("TOPLEFT", 0, -i*24)
+  end
+end
+
+function Craftie.Logger.SortTypeDesc()
+  local type_arr = {}
+  for i=1, Craftie.LogKey do
+    local type = Craftie.Logger.Row[i][3]:GetText():sub(11)
+    table.insert(type_arr, {i, type}) --remove color codes
+  end
+  --table.sort(type_arr)
+  Craftie:SortTableByString(type_arr)
+
+  local i = #type_arr+1
+  for k,v in ipairs(type_arr) do
+    i = i-1
+    print(i .. " | " .. v[1] .. " | " .. v[2])
+    Craftie.Logger.Row[v[1]]:SetPoint("TOPLEFT", 0, -i*24)
+  end
+end
 
 Craftie.Logger.DetailsFrame = CreateFrame("Frame", "Craftie.Logger.DetailsFrame", Craftie.Logger, "InsetFrameTemplate4")
 Craftie.Logger.DetailsFrame:SetWidth(Craftie.Logger.DetailsFrame:GetParent():GetWidth()-6)

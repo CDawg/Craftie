@@ -23,13 +23,13 @@ function Craftie:Init()
   Craftie:SaveData()
 
   Craftie.Frame:SetScript("OnHide", function(self)
-    Craftie.WindowOpen = 0
+    Craftie.OpenState = 0
     Craftie:CloseAllPlayerMenus() --clear out the player sub menus
     Craftie:Notification("Craftie Closed", Craftie.TYPE.FUNC)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE)
   end)
   Craftie.Frame:SetScript("OnShow", function(self)
-    Craftie.WindowOpen = 1
+    Craftie.OpenState = 1
     Craftie:CloseAllPlayerMenus()
     Craftie:Notification("Craftie Opened", Craftie.TYPE.FUNC)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
