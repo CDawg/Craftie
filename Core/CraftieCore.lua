@@ -19,10 +19,10 @@ function Craftie:Notification(msg, type)
   local logstring= ""
   local DEBUGLEVEL= type[1]
   local MODECOLOR = type[2]
-  if (Craftie.DEBUG <= 0) then
-    Craftie.DEBUG = 1 --prevent errors, but always show chat
+  if (Craftie.DEBUGLEVEL <= 0) then
+    Craftie.DEBUGLEVEL = 1 --prevent errors, but always show chat
   end
-  if (DEBUGLEVEL <= Craftie.DEBUG) then
+  if (DEBUGLEVEL <= Craftie.DEBUGLEVEL) then
     print(Craftie._G.Title .. " " .. MODECOLOR .. ": " .. msg)
   end
   --log everything, regardless of debug mode
@@ -317,7 +317,7 @@ function Craftie:ParsePacket(netpacket)
         local profParse = Craftie:Split(profPack, "|")
         local profName = profParse[1]
 
-        if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUG >= 3)) then
+        if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
           Craftie:Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.TYPE.ACK)
           --get my saved prof data and send it
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
@@ -743,7 +743,7 @@ function Craftie:CrafterDataParse(profName, player)
 
     Craftie:SetProfLevel(tonumber(profLevel))
     --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.TYPE.FUNC)
-    Craftie:Notification("CrafterDataParse(): [crafterClass]"  .. class .. " [profLevel]" .. profLevel .. " [profString]" .. profString, Craftie.TYPE.FUNC)
+    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profLevel .. "," .. profString, Craftie.TYPE.FUNC)
   end
   return crafterProf
 end
@@ -852,12 +852,12 @@ end
 --add a timer for parsed data
 function Craftie:Open(player, profession)
   if (player) then
-    Craftie:Notification("Craftie.Open player: " .. player, Craftie.TYPE.FUNC)
-    Craftie:Notification("Craftie.Open profession: " .. profession, Craftie.TYPE.FUNC)
+    Craftie:Notification("Craftie:Open player: " .. player, Craftie.TYPE.FUNC)
+    Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.TYPE.FUNC)
     --local prof = profession
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 1)
-      Craftie:Notification("Craftie.Open: Go to " .. profession .. " => " .. player, Craftie.TYPE.FUNC)
+      Craftie:Notification("Craftie:Open: Go to " .. profession .. " => " .. player, Craftie.TYPE.FUNC)
       Craftie:TabSelect(page, true)
       Craftie.Frame:Show()
     end)
@@ -866,7 +866,11 @@ function Craftie:Open(player, profession)
   end
 end
 
-SLASH_Craftie1 = "/" .. Craftie._G.Prefix
+Craftie.Commands = {
+  --log = Craftie.Logger:Show()
+}
+
+SLASH_Craftie1 = "/" .. Craftie._G.Prefix:lower()
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
     Craftie:Open()
@@ -879,11 +883,8 @@ function SlashCmdList.Craftie(cmd)
     Settings.OpenToCategory(Craftie.Settings.Category:GetID())
     Craftie.Frame:Hide()
   end
-  if (cmd == "show") then
-    Craftie:Open()
-  end
 
-  if (cmd == "debug") then
+  if (cmd == "log") then
     Craftie.Logger:Show()
   end
 
@@ -908,6 +909,7 @@ function Craftie:BuildReagentGaps()
   Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.TYPE.FUNC)
 end
 
+
 --use the classic frame, but updated images. The updated frame has major bugs
 function Craftie:ScrollBarFrame(frame)
   local _scrollUp = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Arr.png"
@@ -931,7 +933,6 @@ function Craftie:ScrollBarFrame(frame)
   ScrollBack:SetVertTile(true)
   ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")
 end
-
 
 function Craftie:SaveMapButtonPos()
   Craftie:UpdateMapButton()

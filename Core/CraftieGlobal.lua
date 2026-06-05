@@ -14,12 +14,12 @@ the copyright holders.
 ]==]--
 
 Craftie._G = {
-  Author = "Porthias",
+  Prefix = "Craftie",
   Width  = 820,
   Height = 460,
-  Prefix = "Craftie",
-  Update = 20260608,
+  Update = 20260808,
   Icon   = "UI-Craftie-Icon",
+  Author = "Porthias",
 }
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata(Craftie._G.Prefix, "version")

@@ -68,7 +68,6 @@ function Craftie:SaveData()
 
     Craftie:Notification("Loading Profile: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction .. "-" .. Craftie.Player.Name, Craftie.TYPE.CHAT)
 
-    --print(Craftie._G.Stamp .. " Loaded. Type " .. SLASH_Craftie1 .. " to open.")
-    Craftie:Notification("Loaded. Type " .. SLASH_Craftie1 .. " to open.", Craftie.TYPE.CHAT)
+    Craftie:Notification("Loaded. Type " .. SLASH_Craftie1 .. " for commands.", Craftie.TYPE.CHAT)
   end
 end

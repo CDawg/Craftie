@@ -227,7 +227,11 @@ Craftie.Frame.Button.Minimap:SetScript("OnLeave", function(self)
 end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
-  Craftie:Open()
+  if (Craftie.OpenState == 1) then
+    Craftie.Frame:Hide()
+  else
+    Craftie:Open()
+  end
 end)
 
 Craftie.Settings={}

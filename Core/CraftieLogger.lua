@@ -138,7 +138,7 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", 15, -10)
   Craftie.Logger.Col[k].Text:SetText(v[1])
   Craftie.Logger.Col[k].Text:SetJustifyH("LEFT")
-  if (v[5] == 1) then --colSortable
+  if (v[5] == 1) then --draw only sortable columns
     Craftie.Logger.Col[k].Arr = Craftie.Logger.Col[k]:CreateTexture(nil, "ARTWORK")
     Craftie.Logger.Col[k].Arr:SetSize(14, 26)
     Craftie.Logger.Col[k].Arr:SetPoint("TOPRIGHT", -5, -2)
@@ -164,39 +164,39 @@ for k,v in ipairs(Craftie.Logger.Cols) do
       if (Craftie.LoggerSort == 1) then
         Craftie.Logger:SortNumAsc()
         Craftie.LoggerSort = 0
-        Craftie.Logger.Col[k].Dn:Show()
+        Craftie.Logger.Col[k].Up:Show()
       else
         Craftie.Logger:SortNumDesc()
         Craftie.LoggerSort = 1
-        Craftie.Logger.Col[k].Up:Show()
+        Craftie.Logger.Col[k].Dn:Show()
       end
     end
     if (k == 2) then
       if (Craftie.LoggerSort == 1) then
         Craftie.Logger:SortNumAsc()
         Craftie.LoggerSort = 0
-        Craftie.Logger.Col[k].Dn:Show()
+        Craftie.Logger.Col[k].Up:Show()
       else
         Craftie.Logger:SortNumDesc()
         Craftie.LoggerSort = 1
-        Craftie.Logger.Col[k].Up:Show()
+        Craftie.Logger.Col[k].Dn:Show()
       end
     end
     if (k == 3) then
       if (Craftie.LoggerSort == 3) then
         Craftie.Logger.SortTypeAsc()
         Craftie.LoggerSort = 4
-        Craftie.Logger.Col[k].Dn:Show()
+        Craftie.Logger.Col[k].Up:Show()
       else
         Craftie.Logger.SortTypeDesc()
         Craftie.LoggerSort = 3
-        Craftie.Logger.Col[k].Up:Show()
+        Craftie.Logger.Col[k].Dn:Show()
       end
     end
   end)
 end
 
-Craftie.Logger.Col[1].Up:Show()
+Craftie.Logger.Col[1].Dn:Show()
 
 Craftie.Logger.Row = {}
 
@@ -244,13 +244,15 @@ function Craftie:Log(type, log)
     Craftie.Logger.Row[id][k]:SetWidth(v[2])
     Craftie.Logger.Row[id][k]:SetHeight(RowHeight)
     Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-    Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]+5, 0)
-    if (k > 1) then
-      Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]-5, 0)
-    end
+    Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]-5, 0)
     Craftie.Logger.Row[id][k]:SetText(id)
+    if (k == 1) then
+      Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]+5, 0)
+    end
     if (k == 2) then
-      Craftie.Logger.Row[id][k]:SetText(date("%y%m%d%H%M%S"))
+      --Craftie.Logger.Row[id][k]:SetText(date("%y%m%d%H%M%S"))
+      Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.Style, 9, "SLUG")
+      Craftie.Logger.Row[id][k]:SetText(date("%y-%m-%d %H:%M:%S"))
     end
     if (k == 3) then
       Craftie.Logger.Row[id][k]:SetText(tostring(type))
@@ -261,7 +263,6 @@ function Craftie:Log(type, log)
     Craftie.Logger.Row[id][k]:SetWordWrap(true)
     Craftie.Logger.Row[id][k]:SetJustifyH("LEFT")
     if (v[4][1]) then
-      --Craftie.Logger.Row[id][k]:SetTextColor({v[4]})
       Craftie.Logger.Row[id][k]:SetTextColor(v[4][1], v[4][2], v[4][3], v[4][4])
     end
   end
@@ -272,12 +273,14 @@ function Craftie:Log(type, log)
   if (Craftie.LoggerSort == 1) then
     Craftie.Logger:SortNumDesc()
   end
+  --[==[
   if (Craftie.LoggerSort == 3) then
     Craftie.Logger:SortTypeAsc()
   end
   if (Craftie.LoggerSort == 4) then
     Craftie.Logger:SortTypeDesc()
   end
+  ]==]--
 end
 
 function Craftie.Logger:SortNumAsc()
@@ -291,7 +294,6 @@ function Craftie.Logger:SortNumDesc()
   for i = Craftie.LogKey, 1, -1 do
     id = id +1
     Craftie.Logger.Row[id]:SetPoint("TOPLEFT", 0, -i*24)
-    --print(id .. " | " .. i)
   end
 end
 
@@ -307,7 +309,6 @@ function Craftie.Logger.SortTypeAsc()
   local i = 0
   for k,v in ipairs(type_arr) do
     i = i+1
-    print(i .. " | " .. v[1] .. " | " .. v[2])
     Craftie.Logger.Row[v[1]]:SetPoint("TOPLEFT", 0, -i*24)
   end
 end
@@ -324,7 +325,6 @@ function Craftie.Logger.SortTypeDesc()
   local i = #type_arr+1
   for k,v in ipairs(type_arr) do
     i = i-1
-    print(i .. " | " .. v[1] .. " | " .. v[2])
     Craftie.Logger.Row[v[1]]:SetPoint("TOPLEFT", 0, -i*24)
   end
 end

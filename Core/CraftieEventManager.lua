@@ -154,7 +154,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       local prof = profSplit[1]
       --print(player .. " | " .. prof)
       ItemRefTooltip:Hide() --make this an option?
-      if ((player ~= Craftie.Player.Name) or (Craftie.DEBUG >= 3)) then
+      if ((player ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
         Craftie:SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
         Craftie.Packet.ACK[player] = 0
         C_Timer.After(Craftie.Packet.Timeout, function()
