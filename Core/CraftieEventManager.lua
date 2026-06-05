@@ -163,7 +163,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
     --for k,v in pairs(spellData) do
       --print(k .. " | " .. v)
     --end
-    if (spellData[4] == "Craftie") then
+    if (spellData[4] == Craftie._G.Prefix) then
       local playerData = Craftie:Split(spellData[5], "-") --remove realm data
       local player = playerData[1]
       local profLink   = spellData[6]

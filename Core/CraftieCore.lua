@@ -126,6 +126,7 @@ function Craftie:UpdateCrafterList(search)
     --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
     Craftie.Frame.ScrollPlayersListFav[i]:Hide()
     Craftie.Frame.ScrollPlayersListName[i]:SetText("")
+    Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
   end
 
   C_Timer.After(0.10, function()
@@ -143,22 +144,30 @@ function Craftie:UpdateCrafterList(search)
       --print("num matches " .. matches)
     end
     for k,v in ipairs(search_list) do
-      Craftie.Frame.ScrollPlayersListName[k+1]:SetText(v)
+      Craftie.Frame.ScrollPlayersListName[k+1]:SetText(v) --avoid the 1st row
       Craftie.Frame.ScrollPlayersListFav[k+1]:Show()
     end
 
     local results = "|cfffffb63Crafter(s)"
     Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
-    --[==[
+
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+      local i = 1
       for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
-        --i = i+1
-        Craftie.Frame.ScrollPlayersListName[i]:SetText(k)
+        i = i+1
+        print("index " .. i)
+        local crafter = Craftie:Split(v, ",")
+        --print(v)
+        --print(crafter[2])
+        --print(Craftie.Class[tonumber(crafter[1])][2])
+        --Craftie.Frame.ScrollPlayersListName[i]:SetText(k)
         --Craftie.Frame.ScrollPlayersListNet[i]:Show() --online status only works for guildies
-        Craftie.Frame.ScrollPlayersListFav[i]:Show()
+        --Craftie.Frame.ScrollPlayersListFav[i]:Show()
+        --Craftie.Frame.ScrollPlayersListClass[i]:SetText(Craftie.Class[tonumber(crafter[1])][2])
+        Craftie.Frame.ScrollPlayersListClass[i]:SetText(tonumber(crafter[1]))
       end
     end
-    ]==]--
+
   end)
   C_Timer.After(0.3, function()
     Craftie.Frame.ScrollPlayersLoading:Hide()

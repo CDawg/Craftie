@@ -93,15 +93,16 @@ Craftie.Packet.Prefix = {
 }
 
 Craftie.Class = {
-  {"Druid",       {1.00, 0.49, 0.04}, "|CFFFF7C0A", "ClassIcon_Druid"},
-  {"Hunter",      {0.67, 0.83, 0.45}, "|CFFAAD372", "ClassIcon_Hunter"},
-  {"Mage",        {0.25, 0.78, 0.92}, "|CFF3FC7EB", "ClassIcon_Mage"},
-  {"Paladin",     {0.96, 0.55, 0.73}, "|CFFF48CBA", "ClassIcon_Paladin"},
-  {"Priest",      {1.00, 1.00, 1.00}, "|CFFFFFFFF", "ClassIcon_Priest"},
-  {"Rogue",       {1.00, 0.96, 0.41}, "|CFFFFF468", "ClassIcon_Rogue"},
-  {"Shaman",      {0.00, 0.44, 0.87}, "|CFF0070DD", "ClassIcon_Shaman"},
-  {"Warlock",     {0.53, 0.53, 0.93}, "|CFF8788EE", "ClassIcon_Warlock"},
-  {"Warrior",     {0.78, 0.61, 0.43}, "|CFFC69B6D", "ClassIcon_Warrior"},
+  {1, "Warrior",     {0.78, 0.61, 0.43}, "|CFFC69B6D", "ClassIcon_Warrior"},
+  {2, "Paladin",     {0.96, 0.55, 0.73}, "|CFFF48CBA", "ClassIcon_Paladin"},
+  {3, "Hunter",      {0.67, 0.83, 0.45}, "|CFFAAD372", "ClassIcon_Hunter"},
+  {4, "Rogue",       {1.00, 0.96, 0.41}, "|CFFFFF468", "ClassIcon_Rogue"},
+  {5, "Priest",      {1.00, 1.00, 1.00}, "|CFFFFFFFF", "ClassIcon_Priest"},
+  {6, "Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"},
+  {7, "Shaman",      {0.00, 0.44, 0.87}, "|CFF0070DD", "ClassIcon_Shaman"},
+  {8, "Mage",        {0.25, 0.78, 0.92}, "|CFF3FC7EB", "ClassIcon_Mage"},
+  {9, "Warlock",     {0.53, 0.53, 0.93}, "|CFF8788EE", "ClassIcon_Warlock"},
+  {11,"Druid",       {1.00, 0.49, 0.04}, "|CFFFF7C0A", "ClassIcon_Druid"},
 }
 
 Craftie.Profession={}
@@ -119,7 +120,7 @@ if (Craftie.Game.Version >= 2) then
   table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
 end
 if (Craftie.Game.Version >= 3) then
-  table.insert(Craftie.Class, {"Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"})
+  --table.insert(Craftie.Class, {"Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"})
   table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
 end
 

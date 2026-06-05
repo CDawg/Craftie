@@ -153,14 +153,17 @@ end)
 Craftie.Frame.ScrollPlayersListItem={}
 Craftie.Frame.ScrollPlayersListBack={}
 Craftie.Frame.ScrollPlayersListName={}
+Craftie.Frame.ScrollPlayersListClass={}
 Craftie.Frame.ScrollPlayersListSelect={}
 Craftie.Frame.ScrollPlayersListSelectSpark={}
 Craftie.Frame.ScrollPlayersListFav={}
 Craftie.Frame.ScrollPlayersListNet={}
 
+--[==[
 Craftie.Frame.ScrollPlayersListOpt={}
 Craftie.Frame.ScrollPlayersListOpt.Back={}
 Craftie.Frame.ScrollPlayersListOpt.HL={}
+]==]--
 Craftie.Frame.ScrollPlayersListSubMenu={}
 
 for i=1, Craftie.MAX_PLAYERS do
@@ -186,6 +189,12 @@ for i=1, Craftie.MAX_PLAYERS do
   --Craftie.Frame.ScrollPlayersListName[i]:SetText("Player_" .. i)
   Craftie.Frame.ScrollPlayersListName[i]:SetText("")
   Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollPlayersListClass[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListClass[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollPlayersListClass[i]:SetPoint("TOPLEFT", 100, -5)
+  Craftie.Frame.ScrollPlayersListClass[i]:SetText("Player_" .. i)
+  Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
+  Craftie.Frame.ScrollPlayersListClass[i]:Hide()
   Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
@@ -255,6 +264,10 @@ for i=1, Craftie.MAX_PLAYERS do
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(0.8, 0.85, 1, 0.2)
     end
+    --GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+    --GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    --GameTooltip:AddLine(Craftie.Frame.ScrollPlayersListClass[i]:GetText())
+    --GameTooltip:Show()
   end)
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnLeave", function(self)
     if (Craftie.EnableScrollFrames) then
@@ -279,8 +292,17 @@ for i=1, Craftie.MAX_PLAYERS do
               Craftie.Frame.ScrollPlayersListSubMenu:Show()
               local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
               --Craftie.Frame.ScrollPlayersListSubMenu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
-              Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
+              Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+10, yOfs-10)
               Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.TYPE.FUNC)
+
+              Craftie.Frame.ScrollPlayersListSubMenuName:SetText(Craftie.Frame.ScrollPlayersListName[i]:GetText())
+              local class = tonumber(Craftie.Frame.ScrollPlayersListClass[i]:GetText())
+              local r = Craftie.Class[class][3][1]
+              local g = Craftie.Class[class][3][2]
+              local b = Craftie.Class[class][3][3]
+              Craftie.Frame.ScrollPlayersListSubMenuName:SetTextColor(r, g, b, 1)
+
+              --delete
               --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
             end
           end
@@ -321,3 +343,7 @@ Craftie.Frame.ScrollPlayersListSubMenu:SetFrameLevel(300)
 Craftie.Frame.ScrollPlayersListSubMenu:SetFrameStrata("HIGH")
 Craftie.Frame.ScrollPlayersListSubMenu:SetToplevel(true)
 Craftie.Frame.ScrollPlayersListSubMenu:Hide()
+Craftie.Frame.ScrollPlayersListSubMenuName = Craftie.Frame.ScrollPlayersListSubMenu:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollPlayersListSubMenuName:SetFont(Craftie._G.Font.Style, 12, "SLUG")
+Craftie.Frame.ScrollPlayersListSubMenuName:SetPoint("TOPLEFT", 6, -6)
+Craftie.Frame.ScrollPlayersListSubMenuName:SetText("")

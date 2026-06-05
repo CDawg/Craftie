@@ -22,7 +22,7 @@ Craftie._G = {
   Icon   = "UI-Craftie-Icon",
 }
 
-Craftie._G.Version = C_AddOns.GetAddOnMetadata("Craftie", "version")
+Craftie._G.Version = C_AddOns.GetAddOnMetadata(Craftie._G.Prefix, "version")
 
 Craftie._G.Font={}
 Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/FRIZQT__.ttf"
