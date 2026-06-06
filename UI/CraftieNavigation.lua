@@ -39,7 +39,7 @@ for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k].Highlight:Hide()
 
   Craftie.TabBottom[k].Text = Craftie.TabBottom[k]:CreateFontString(nil, "ARTWORK")
-  Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style, 10, "OUTLINE")
+  Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "OUTLINE")
   Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
   Craftie.TabBottom[k].Text:SetText(v)
   Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)

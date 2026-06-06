@@ -135,7 +135,7 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k]:SetBackdropBorderColor(0.2, 0.2, 0.2, 0)
   Craftie.Logger.Col[k].Text = Craftie.Logger.Col[k]:CreateFontString(nil, "ARTWORK")
   Craftie.Logger.Col[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", 15, -10)
+  Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", Craftie._G.Font.Size+4, -10)
   Craftie.Logger.Col[k].Text:SetText(v[1])
   Craftie.Logger.Col[k].Text:SetJustifyH("LEFT")
   if (v[5] == 1) then --draw only sortable columns
