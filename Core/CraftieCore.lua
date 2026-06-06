@@ -39,6 +39,7 @@ function Craftie:CloseAllPlayerMenus()
   --for i=1, Craftie.MAX_PLAYERS do
     --Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
   --end
+  GameTooltip:Hide()
   Craftie.Frame.ScrollPlayersListSubMenu:Hide()
 
   Craftie.Frame.ScrollPlayersList.Child:SetAlpha(1)
@@ -54,7 +55,7 @@ end
 
 function Craftie:ClearCraftWindow()
   Craftie.Frame.Craft:Hide()
-
+  --GameTooltip:Hide()
   for i=1, Craftie.MAX_REAGENTS do
     Craftie.Frame.Reagent.Main[i]:Hide()
     Craftie.Frame.Reagent.Back[i]:Hide()
@@ -135,6 +136,7 @@ function Craftie:SelectCrafter(index, name)
   PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
 end
 
+--on tab load
 function Craftie:UpdateCrafterList(search)
   local crafter_list = {}
   local search_list = {}
@@ -149,6 +151,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListName[i]:SetText("")
     Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
     Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
+    Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("-")
   end
 
   C_Timer.After(0.10, function()
@@ -188,6 +191,9 @@ function Craftie:UpdateCrafterList(search)
         --Craftie.Frame.ScrollPlayersListClass[i]:SetText(Craftie.Class[tonumber(crafter[1])][2])
         Craftie.Frame.ScrollPlayersListClass[i]:SetText(tonumber(crafter[1]))
         Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText(crafter[3])
+        if (crafter[5]) then
+          Craftie.Frame.ScrollPlayersListUpdate[i]:SetText(crafter[5])
+        end
       end
     end
 
@@ -336,6 +342,7 @@ function Craftie:ParsePacket(netpacket)
       end
 
       --handshake, get crafters data and store it
+      --similar to Craftie:CrafterDataBuild
       if (prefix == Craftie.Packet.Prefix.Data) then
         local crafterName = packet[3]
         --local crafterClass = Craftie.Class[tonumber(packet[4])][1]
@@ -347,7 +354,7 @@ function Craftie:ParsePacket(netpacket)
         Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, Craftie.CHAT.ACK)
         --store it
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
-        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData
+        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. date("%y-%m-%d_%H:%M:%S")
         Craftie:Notification(profString, Craftie.CHAT.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
       end
@@ -656,6 +663,8 @@ function Craftie:CrafterDataBuild(profName, profLevel)
             profString = profString .. profData[b]
           end
 
+          profString = profString .. "," .. date("%y-%m-%d_%H:%M:%S")
+
           Craftie:Notification(profString, Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
         end)
@@ -697,6 +706,7 @@ function Craftie:SetProfLevel(level)
   end
 end
 
+--on selection entry
 function Craftie:CrafterDataParse(profName, player)
   --print(profName)
   local crafterData = {}
@@ -707,6 +717,7 @@ function Craftie:CrafterDataParse(profName, player)
   local profNum = ""
   local profLevel = ""
   local profString = ""
+  local update = ""
   local filtered = {}
 
   --alpha sort table (sanity check)
@@ -721,6 +732,9 @@ function Craftie:CrafterDataParse(profName, player)
     profNum = crafterData[2]
     profLevel = crafterData[3]
     profString = crafterData[4]
+    if (crafterData[5]) then
+      update = crafterData[5]
+    end
 
     for key, value in ipairs(compareProf) do
       if (profString:sub(key, key) == "1") then
@@ -744,7 +758,7 @@ function Craftie:CrafterDataParse(profName, player)
 
     Craftie:SetProfLevel(tonumber(profLevel))
     --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.CHAT.FUNC)
-    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString, Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. update, Craftie.CHAT.FUNC)
   end
   return crafterProf
 end
@@ -927,7 +941,6 @@ function Craftie:UpdateMapButton()
 
   --Craftie:Notification("Craftie:UpdateMapButton()", Craftie.CHAT.FUNC)
 end
-
 
 Craftie.Commands = {
   --log = Craftie.Logger:Show()

@@ -155,6 +155,7 @@ Craftie.Frame.ScrollPlayersListBack={}
 Craftie.Frame.ScrollPlayersListName={}
 Craftie.Frame.ScrollPlayersListClass={}
 Craftie.Frame.ScrollPlayersListProfLevel={}
+Craftie.Frame.ScrollPlayersListUpdate={}
 Craftie.Frame.ScrollPlayersListSelect={}
 Craftie.Frame.ScrollPlayersListSelectSpark={}
 Craftie.Frame.ScrollPlayersListFav={}
@@ -175,7 +176,6 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollPlayersListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
-  --Craftie.Frame.ScrollPlayersListItem[i]:RegisterForMouse("LeftButtonUp", "LeftButtonDown", "RightButtonUp", "RightButtonDown")
   Craftie.Frame.ScrollPlayersListItem[i]:RegisterForClicks("AnyUp")
 
   Craftie.Frame.ScrollPlayersListBack[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
@@ -198,6 +198,10 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListProfLevel[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
   Craftie.Frame.ScrollPlayersListProfLevel[i]:Hide()
+  Craftie.Frame.ScrollPlayersListUpdate[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListUpdate[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("")
+  Craftie.Frame.ScrollPlayersListUpdate[i]:Hide()
   Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
@@ -267,15 +271,17 @@ for i=1, Craftie.MAX_PLAYERS do
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(0.8, 0.85, 1, 0.2)
     end
-    if (i > 1) then
+    if ((i > 1) and (Craftie.EnableScrollFrames)) then
       local class = 1
       local color = ""
       local name = nil
       local profLevel = 1
+      local update = ""
       name = Craftie.Frame.ScrollPlayersListName[i]:GetText()
       if (name) then
         class = tonumber(Craftie.Frame.ScrollPlayersListClass[i]:GetText())
         profLevel = tonumber(Craftie.Frame.ScrollPlayersListProfLevel[i]:GetText())
+        update = Craftie.Frame.ScrollPlayersListUpdate[i]:GetText()
         if (class) then
           color = Craftie.Class[class][4]
         end
@@ -283,7 +289,8 @@ for i=1, Craftie.MAX_PLAYERS do
         --GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
         GameTooltip:AddLine(color .. name .. "|r|n|n")
         GameTooltip:AddLine(Craftie.Page)
-        GameTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL)
+        GameTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL .. "|n|n")
+        GameTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " ") .."|r")
         GameTooltip:Show()
       end
     end
