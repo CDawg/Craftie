@@ -1004,3 +1004,23 @@ function SlashCmdList.Craftie(cmd)
     end
   end
 end
+
+local function AddPlayerTooltip(tooltip)
+    local _, unit = tooltip:GetUnit()
+
+    if unit and UnitIsPlayer(unit) then
+        local playerName = UnitName(unit)
+        local playerLevel = UnitLevel(unit)
+        local playerClass = UnitClass(unit)
+
+        tooltip:AddLine(" ")
+        tooltip:AddLine("|cff00ff00Craftie Data|r")
+        tooltip:AddDoubleLine("Player:", playerName)
+        tooltip:AddDoubleLine("Level:", playerLevel)
+        tooltip:AddDoubleLine("Class:", playerClass)
+
+        tooltip:Show()
+    end
+end
+
+GameTooltip:HookScript("OnTooltipSetUnit", AddPlayerTooltip)

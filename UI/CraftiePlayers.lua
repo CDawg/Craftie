@@ -288,8 +288,9 @@ for i=1, Craftie.MAX_PLAYERS do
         GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
         --GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
         GameTooltip:AddLine(color .. name .. "|r|n|n")
-        GameTooltip:AddLine(Craftie.Page)
-        GameTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL .. "|n|n")
+        GameTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
+        --GameTooltip:AddLine(Craftie.Page)
+        --GameTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL .. "|n|n")
         GameTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " ") .."|r")
         GameTooltip:Show()
       end

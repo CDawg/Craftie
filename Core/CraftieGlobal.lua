@@ -26,6 +26,7 @@ Craftie._G.Version = C_AddOns.GetAddOnMetadata(Craftie._G.Prefix, "version")
 
 Craftie._G.Font={}
 Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/FRIZQT__.ttf"
+--Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf"
 Craftie._G.Font.Size = 11
 Craftie._G.Font.Color = "|cffFF9524"
 
