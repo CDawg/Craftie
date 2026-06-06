@@ -894,8 +894,6 @@ function SlashCmdList.Craftie(cmd)
 
   if (cmd == "debug") then
     if (args == "") then
-      Craftie:Notification("Debug Level: " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
-      --Craftie:Notification("Print anything that is <= the current debug level", Craftie.CHAT.INFO)
       local sorted = {}
       for key, value in pairs(Craftie.CHAT) do
         table.insert(sorted, {key=key,num=value[1],text=value[2]})
@@ -904,10 +902,10 @@ function SlashCmdList.Craftie(cmd)
         return a.num < b.num
       end)
       for _, v in ipairs(sorted) do
-        if (v.num <= 2) then
-          Craftie:Notification(v.num .. " = " .. v.text .. " [Default]", Craftie.CHAT.INFO)
+        if (v.num <= Craftie.DEBUGLEVEL) then
+          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. "|CFF9CFFA1[ON]|r", Craftie.CHAT.INFO)
         else
-          Craftie:Notification(v.num .. " = " .. v.text, Craftie.CHAT.INFO)
+          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. "|CFFFFD19C[OFF]|r", Craftie.CHAT.INFO)
         end
       end
     else
@@ -923,6 +921,7 @@ function SlashCmdList.Craftie(cmd)
       end
       Craftie:Notification("Debug Level set to " .. Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
     end
+    Craftie:Notification("Debug Level = " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
   end
 
   for k,v in pairs(Craftie.Professions) do

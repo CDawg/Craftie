@@ -290,3 +290,14 @@ function Craftie:SortTableByMatch(tbl, search)
 
     return matchCount
 end
+
+function Craftie:TextSpacing(text, spacing)
+  local space = ""
+  local tabs = " "
+  for i=1, spacing do
+    tabs = tabs .. " "
+  end
+  tabs = text .. tabs
+  space = string.gsub(tabs, " ", "", #text)
+  return space
+end
