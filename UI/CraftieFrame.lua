@@ -216,7 +216,7 @@ end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnEnter", function(self)
   GameTooltip:SetOwner(self, "ANCHOR_LEFT")
-  GameTooltip:AddLine(Craftie._G.Stamp .. "|n" .. Craftie.Game.Name)
+  GameTooltip:AddLine(Craftie._G.Stamp .. "|n|CFFFFFFFF" .. Craftie.Game.Name .. "|r")
   GameTooltip:Show()
 	Craftie.Frame.Button.Minimap.IconGlow:Show()
 end)

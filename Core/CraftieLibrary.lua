@@ -105,6 +105,7 @@ Craftie.Class = {
   {11,"Druid",       {1.00, 0.49, 0.04}, "|CFFFF7C0A", "ClassIcon_Druid"},
 }
 
+Craftie.PROFMAXLEVEL = 300
 Craftie.Profession={}
 Craftie.Professions = {
   {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmute Master"}},
@@ -117,9 +118,11 @@ Craftie.Professions = {
 }
 
 if (Craftie.Game.Version >= 2) then
+  Craftie.PROFMAXLEVEL = 375
   table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
 end
 if (Craftie.Game.Version >= 3) then
+  Craftie.PROFMAXLEVEL = 450
   --table.insert(Craftie.Class, {"Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"})
   table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
 end

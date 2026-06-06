@@ -148,6 +148,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListFav[i]:Hide()
     Craftie.Frame.ScrollPlayersListName[i]:SetText("")
     Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
+    Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
   end
 
   C_Timer.After(0.10, function()
@@ -186,6 +187,7 @@ function Craftie:UpdateCrafterList(search)
         --Craftie.Frame.ScrollPlayersListFav[i]:Show()
         --Craftie.Frame.ScrollPlayersListClass[i]:SetText(Craftie.Class[tonumber(crafter[1])][2])
         Craftie.Frame.ScrollPlayersListClass[i]:SetText(tonumber(crafter[1]))
+        Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText(crafter[3])
       end
     end
 
@@ -528,10 +530,10 @@ function Craftie:ItemDetails(item)
       end)
     end
 
-    --TBC
+    --wowhead bug
     local SkillLevel = item[3]
-    if (tonumber(item[3]) > 375) then
-      SkillLevel = 375 --wowhead bug
+    if (tonumber(item[3]) > Craftie.PROFMAXLEVEL) then
+      SkillLevel = Craftie.PROFMAXLEVEL
     end
     Craftie.Frame.Craft.SkillText:SetText(Craftie.Page .. " (" .. SkillLevel .. ")")
     Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
@@ -664,7 +666,6 @@ function Craftie:CrafterDataBuild(profName, profLevel)
 end
 
 function Craftie:SetProfLevel(level)
-  local profMax = 300
   local diff  = 161
   local uimax = 246 --UI Max width
   local calc = 0
@@ -673,19 +674,13 @@ function Craftie:SetProfLevel(level)
   Craftie.Frame.CrafterProgBarS:Hide()
 
   if (level) then
-    if (Craftie.Game.Version == 2) then
-      profMax = 375
-    end
-    if (Craftie.Game.Version == 3) then
-      profMax = 450
-    end
     calc = math.ceil((level * diff) / uimax)
     if (calc >= 1) then
       Craftie.Frame.CrafterLevel:Show()
       --print("level: " .. level .. " | " .. calc .. " [max: " .. uimax .. "]")
 
       Craftie.Frame.CrafterProgBar:SetSize(calc, 15)
-      Craftie.Frame.CrafterProgLevel:SetText(level .. " / " .. profMax)
+      Craftie.Frame.CrafterProgLevel:SetText(level .. " / " .. Craftie.PROFMAXLEVEL)
       local left = 0
       if (calc < 200) then
         left = 4
@@ -694,7 +689,7 @@ function Craftie:SetProfLevel(level)
         left = 5
       end
       Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0+left, -5)
-      if (level < profMax) then
+      if (level < Craftie.PROFMAXLEVEL) then
         Craftie.Frame.CrafterProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
         Craftie.Frame.CrafterProgBarS:Show()
       end
@@ -709,6 +704,7 @@ function Craftie:CrafterDataParse(profName, player)
   local crafterProf = {}
   local crafterFiltered= {}
   local class = ""
+  local profNum = ""
   local profLevel = ""
   local profString = ""
   local filtered = {}
@@ -722,6 +718,7 @@ function Craftie:CrafterDataParse(profName, player)
     crafterData = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player], ",")
 
     class = crafterData[1] --Craftie.Class[tonumber(packet[4])][1]
+    profNum = crafterData[2]
     profLevel = crafterData[3]
     profString = crafterData[4]
 
@@ -747,7 +744,7 @@ function Craftie:CrafterDataParse(profName, player)
 
     Craftie:SetProfLevel(tonumber(profLevel))
     --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.CHAT.FUNC)
-    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profLevel .. "," .. profString, Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString, Craftie.CHAT.FUNC)
   end
   return crafterProf
 end
@@ -870,6 +867,68 @@ function Craftie:Open(player, profession)
   end
 end
 
+
+--caching tooltip data. preload unknown data
+Craftie.Reagent = {}
+function Craftie:BuildReagentGaps()
+  for i=1, Craftie.MAX_ITEMIDS do
+    table.insert(Craftie.Reagent, {i, Craftie.Preload})
+  end
+  for k,v in pairs(Craftie.Reagents) do
+    Craftie.Reagent[v[1]] = {v[1], v[2]}
+  end
+  Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.CHAT.FUNC)
+end
+
+
+--use the classic frame, but updated images. The updated frame has major bugs
+function Craftie:ScrollBarFrame(frame)
+  local _scrollUp = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Arr.png"
+  local _scrollDn = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Dn.png"
+  local _scrollSlider = frame.ScrollBar:GetThumbTexture()
+  _scrollSlider:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Slider.png")
+  _scrollSlider:SetSize(10, 40)
+  frame.ScrollBar.ScrollUpButton:SetNormalTexture(_scrollUp)
+  frame.ScrollBar.ScrollUpButton:SetPushedTexture(_scrollUp)
+  frame.ScrollBar.ScrollUpButton:SetHighlightTexture(_scrollUp, "ADD")
+  frame.ScrollBar.ScrollUpButton:SetDisabledTexture(_scrollUp, "ADD")
+  frame.ScrollBar.ScrollUpButton:SetSize(15, 12)
+  frame.ScrollBar.ScrollDownButton:SetNormalTexture(_scrollDn)
+  frame.ScrollBar.ScrollDownButton:SetPushedTexture(_scrollDn)
+  frame.ScrollBar.ScrollDownButton:SetHighlightTexture(_scrollDn, "ADD")
+  frame.ScrollBar.ScrollDownButton:SetDisabledTexture(_scrollDn, "ADD")
+  frame.ScrollBar.ScrollDownButton:SetSize(15, 12)
+  ScrollBack = frame:CreateTexture(nil, "BORDER")
+  ScrollBack:SetSize(40, frame:GetHeight()-42)
+  ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, -18)
+  ScrollBack:SetVertTile(true)
+  ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")
+end
+
+function Craftie:SaveMapButtonPos()
+  Craftie:UpdateMapButton()
+  C_Timer.After(0.1, function()
+    local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.Button.Minimap:GetPoint()
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
+    --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
+    Craftie:Notification("Craftie:SaveMapButtonPos() = " .. math.ceil(xOfs) .. "," .. math.ceil(yOfs), Craftie.CHAT.SAVE)
+  end)
+end
+
+function Craftie:UpdateMapButton()
+  local thisIconPos = 0
+  local Xpoa, Ypoa = GetCursorPosition()
+  local Xmin, Ymin = Minimap:GetLeft(), Minimap:GetBottom()
+  Xpoa = Xmin - Xpoa / Minimap:GetEffectiveScale() + 70
+  Ypoa = Ypoa / Minimap:GetEffectiveScale() - Ymin - 70
+  thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
+  Craftie.Frame.Button.Minimap:ClearAllPoints()
+  Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
+
+  --Craftie:Notification("Craftie:UpdateMapButton()", Craftie.CHAT.FUNC)
+end
+
+
 Craftie.Commands = {
   --log = Craftie.Logger:Show()
 }
@@ -931,64 +990,4 @@ function SlashCmdList.Craftie(cmd)
       Craftie:OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "", "")
     end
   end
-end
-
---caching tooltip data. preload unknown data
-Craftie.Reagent = {}
-function Craftie:BuildReagentGaps()
-  for i=1, Craftie.MAX_ITEMIDS do
-    table.insert(Craftie.Reagent, {i, Craftie.Preload})
-  end
-  for k,v in pairs(Craftie.Reagents) do
-    Craftie.Reagent[v[1]] = {v[1], v[2]}
-  end
-  Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.CHAT.FUNC)
-end
-
-
---use the classic frame, but updated images. The updated frame has major bugs
-function Craftie:ScrollBarFrame(frame)
-  local _scrollUp = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Arr.png"
-  local _scrollDn = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Dn.png"
-  local _scrollSlider = frame.ScrollBar:GetThumbTexture()
-  _scrollSlider:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Slider.png")
-  _scrollSlider:SetSize(10, 40)
-  frame.ScrollBar.ScrollUpButton:SetNormalTexture(_scrollUp)
-  frame.ScrollBar.ScrollUpButton:SetPushedTexture(_scrollUp)
-  frame.ScrollBar.ScrollUpButton:SetHighlightTexture(_scrollUp, "ADD")
-  frame.ScrollBar.ScrollUpButton:SetDisabledTexture(_scrollUp, "ADD")
-  frame.ScrollBar.ScrollUpButton:SetSize(15, 12)
-  frame.ScrollBar.ScrollDownButton:SetNormalTexture(_scrollDn)
-  frame.ScrollBar.ScrollDownButton:SetPushedTexture(_scrollDn)
-  frame.ScrollBar.ScrollDownButton:SetHighlightTexture(_scrollDn, "ADD")
-  frame.ScrollBar.ScrollDownButton:SetDisabledTexture(_scrollDn, "ADD")
-  frame.ScrollBar.ScrollDownButton:SetSize(15, 12)
-  ScrollBack = frame:CreateTexture(nil, "BORDER")
-  ScrollBack:SetSize(40, frame:GetHeight()-42)
-  ScrollBack:SetPoint("TOPLEFT", frame:GetWidth()-27, -18)
-  ScrollBack:SetVertTile(true)
-  ScrollBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png", "REPEAT")
-end
-
-function Craftie:SaveMapButtonPos()
-  Craftie:UpdateMapButton()
-  C_Timer.After(0.1, function()
-    local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.Button.Minimap:GetPoint()
-    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
-    --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
-    Craftie:Notification("Craftie:SaveMapButtonPos() = " .. math.ceil(xOfs) .. "," .. math.ceil(yOfs), Craftie.CHAT.SAVE)
-  end)
-end
-
-function Craftie:UpdateMapButton()
-  local thisIconPos = 0
-  local Xpoa, Ypoa = GetCursorPosition()
-  local Xmin, Ymin = Minimap:GetLeft(), Minimap:GetBottom()
-  Xpoa = Xmin - Xpoa / Minimap:GetEffectiveScale() + 70
-  Ypoa = Ypoa / Minimap:GetEffectiveScale() - Ymin - 70
-  thisIconPos = math.deg(math.atan2(Ypoa, Xpoa))
-  Craftie.Frame.Button.Minimap:ClearAllPoints()
-  Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
-
-  --Craftie:Notification("Craftie:UpdateMapButton()", Craftie.CHAT.FUNC)
 end
