@@ -34,10 +34,10 @@ Craftie = {
 	},
 }
 
-Craftie.DEBUGLEVEL = 8 --default [CHAT | ERROR]
+Craftie.DEBUGLEVEL = 2 --default [INFO | ERROR]
 
-Craftie.TYPE = {
-  CHAT = {1, "|CFFFFFFF0CHAT|r"},
+Craftie.CHAT = {
+  INFO = {1, "|CFFDEDEDEINFO|r"},
   ERROR= {2, "|CFFFF0000ERROR|r"},
   WARN = {3, "|CFFF54927WARNING|r"},
   EVENT= {4, "|CFF92CEFCEVENT|r"},
@@ -46,7 +46,6 @@ Craftie.TYPE = {
   SAVE = {7, "|CFF66D1A2SAVE|r"},
   FUNC = {8, "|CFF385EC2FUNC|r"},
 }
-
 
 Craftie.Framelevel = {
   Background= 0,

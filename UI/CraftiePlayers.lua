@@ -293,7 +293,7 @@ for i=1, Craftie.MAX_PLAYERS do
               local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
               --Craftie.Frame.ScrollPlayersListSubMenu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
               Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+10, yOfs-10)
-              Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.TYPE.FUNC)
+              Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.CHAT.FUNC)
 
               Craftie.Frame.ScrollPlayersListSubMenuName:SetText(Craftie.Frame.ScrollPlayersListName[i]:GetText())
               local class = tonumber(Craftie.Frame.ScrollPlayersListClass[i]:GetText())
@@ -325,7 +325,7 @@ for i=1, Craftie.MAX_PLAYERS do
       local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
       --Craftie.Frame.ScrollPlayersListSubMenu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
       Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
-      Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.TYPE.FUNC)
+      Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.CHAT.FUNC)
       --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
     end
   end)

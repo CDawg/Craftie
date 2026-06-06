@@ -23,7 +23,11 @@ function Craftie:Notification(msg, type)
     Craftie.DEBUGLEVEL = 1 --prevent errors, but always show chat
   end
   if (DEBUGLEVEL <= Craftie.DEBUGLEVEL) then
-    print(Craftie._G.Title .. " " .. MODECOLOR .. ": " .. msg)
+    if (MODECOLOR == Craftie.CHAT.INFO[2]) then
+      print(Craftie._G.Title .. " " .. msg)
+    else
+      print(Craftie._G.Title .. " " .. MODECOLOR .. " " .. msg)
+    end
   end
   --log everything, regardless of debug mode
   if (Craftie.Frame ~= nil) then
@@ -59,7 +63,7 @@ function Craftie:ClearCraftWindow()
   Craftie.Frame.Craft.SkillText:Hide()
   Craftie.Frame.Craft.SkillIcon:Hide()
   Craftie.Frame.Craft.SourceText:Hide()
-  Craftie:Notification("Craftie:ClearCraftWindow()", Craftie.TYPE.FUNC)
+  Craftie:Notification("Craftie:ClearCraftWindow()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:ClearSearchFocus()
@@ -73,7 +77,7 @@ function Craftie:ClearSearchFocus()
     Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
     Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
   end
-  Craftie:Notification("Craftie:ClearSearchFocus()", Craftie.TYPE.FUNC)
+  Craftie:Notification("Craftie:ClearSearchFocus()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:DisableAllScrollBars()
@@ -118,7 +122,7 @@ function Craftie:SelectCrafter(index, name)
       --print(name)
       Craftie.Selected_Players = index
       Craftie.Selected_Name = name
-      Craftie:Notification("Craftie:SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.TYPE.FUNC)
+      Craftie:Notification("Craftie:SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.CHAT.FUNC)
       if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
         Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
       else
@@ -134,7 +138,7 @@ end
 function Craftie:UpdateCrafterList(search)
   local crafter_list = {}
   local search_list = {}
-  Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.TYPE.FUNC)
+  Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.CHAT.FUNC)
   Craftie.Frame.ScrollPlayersResults:SetText("")
   Craftie.Frame.ScrollPlayersLoading:Show()
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
@@ -238,7 +242,7 @@ function Craftie:TabSelect(tab, sound)
   Craftie:SelectScrollItem("Recipes")
   Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
 
-Craftie:Notification("Craftie:TabSelect(" .. tab .. ")", Craftie.TYPE.FUNC)
+Craftie:Notification("Craftie:TabSelect(" .. tab .. ")", Craftie.CHAT.FUNC)
 
 end
 
@@ -277,7 +281,7 @@ function Craftie:SendPacket(prefix, data, channel, target)
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
   end
 
-  Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. target, Craftie.TYPE.SEND)
+  Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. target, Craftie.CHAT.SEND)
 end
 
 Craftie.Notified = 0
@@ -292,23 +296,23 @@ function Craftie:ParsePacket(netpacket)
     version = tonumber(packet[2])
     if (version > tonumber(Craftie._G.Version)) then
       if (Craftie.Notified ~= 1) then --dont spam the requester
-        Craftie:Notification("You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]", Craftie.TYPE.ERROR)
+        Craftie:Notification("You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]", Craftie.CHAT.ERROR)
       end
       stable_version = false
       Craftie.Notified = 1
     end
     if (version < tonumber(Craftie._G.Version)) then
       if (version < tonumber(Craftie._G.Version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
-        Craftie:Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.ERROR)
+        Craftie:Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.CHAT.ERROR)
         stable_version = false
       else
-        Craftie:Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.TYPE.WARN)
+        Craftie:Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.CHAT.WARN)
         stable_version = true
       end
     end
 
     if (stable_version) then
-      Craftie:Notification(netpacket, Craftie.TYPE.ACK)
+      Craftie:Notification(netpacket, Craftie.CHAT.ACK)
 
       --ping another crafter for their data
       if (prefix == Craftie.Packet.Prefix.Ping) then
@@ -318,14 +322,14 @@ function Craftie:ParsePacket(netpacket)
         local profName = profParse[1]
 
         if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
-          Craftie:Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.TYPE.ACK)
+          Craftie:Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.CHAT.ACK)
           --get my saved prof data and send it
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
           --print("requester " .. requester)
           Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
         else
           --rather than a break, just ignore
-          Craftie:Notification("Requester == Self. Ignoring", Craftie.TYPE.ACK)
+          Craftie:Notification("Requester == Self. Ignoring", Craftie.CHAT.ACK)
         end
       end
 
@@ -337,19 +341,19 @@ function Craftie:ParsePacket(netpacket)
         local profName  = Craftie.Professions[tonumber(packet[5])][1]
         local profNum   = packet[5]
         local profLevel = packet[6]
-        local crafterData = Craftie:BitCompression(packet[7], Craftie.TYPE.ACK) --decompress
-        Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, Craftie.TYPE.ACK)
+        local crafterData = Craftie:BitCompression(packet[7], Craftie.CHAT.ACK) --decompress
+        Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, Craftie.CHAT.ACK)
         --store it
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData
-        Craftie:Notification(profString, Craftie.TYPE.SAVE)
+        Craftie:Notification(profString, Craftie.CHAT.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
       end
 
     else
-      Craftie:Notification("Malformed Packet [Version Mismatch]: " .. netpacket, Craftie.TYPE.ERROR)
+      Craftie:Notification("Malformed Packet [Version Mismatch]: " .. netpacket, Craftie.CHAT.ERROR)
     end
-    --Craftie:Notification("Malformed Packet [Bad Prefix]: " .. netpacket, Craftie.TYPE.ERROR)
+    --Craftie:Notification("Malformed Packet [Bad Prefix]: " .. netpacket, Craftie.CHAT.ERROR)
   end
 end
 
@@ -437,7 +441,7 @@ function Craftie:ItemDetails(item)
         if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
           if (name[i] ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
             Craftie.Reagent[r][2] = name[i]
-            Craftie:Notification("Missing Reagent Precache: " .. "[" .. item[5][i][1] .. "] " .. name[i], Craftie.TYPE.WARN)
+            Craftie:Notification("Missing Reagent Precache: " .. "[" .. item[5][i][1] .. "] " .. name[i], Craftie.CHAT.WARN)
           end
           loadcache = 1
         end
@@ -464,7 +468,7 @@ function Craftie:ItemDetails(item)
         loadcache = 0
         C_Timer.After(0.2, function()
           Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
-          Craftie:Notification("[" .. item[2] .. "] reloading from tooltip data", Craftie.TYPE.FUNC)
+          Craftie:Notification("[" .. item[2] .. "] reloading from tooltip data", Craftie.CHAT.FUNC)
           --Craftie.Frame.Reagent.HLink[i]:SetText(link)
         end)
       end
@@ -599,7 +603,7 @@ function Craftie:ResetCrafterBuild()
   for k,v in pairs(Craftie.Professions) do
     Craftie.ProfileBuilt[v[1]] = 0
   end
-  Craftie:Notification("Craftie:ResetCrafterBuild()", Craftie.TYPE.FUNC)
+  Craftie:Notification("Craftie:ResetCrafterBuild()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:CrafterDataBuild(profName, profLevel)
@@ -650,7 +654,7 @@ function Craftie:CrafterDataBuild(profName, profLevel)
             profString = profString .. profData[b]
           end
 
-          Craftie:Notification(profString, Craftie.TYPE.SAVE)
+          Craftie:Notification(profString, Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
         end)
       end
@@ -742,8 +746,8 @@ function Craftie:CrafterDataParse(profName, player)
     --end
 
     Craftie:SetProfLevel(tonumber(profLevel))
-    --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.TYPE.FUNC)
-    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profLevel .. "," .. profString, Craftie.TYPE.FUNC)
+    --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profLevel .. "," .. profString, Craftie.CHAT.FUNC)
   end
   return crafterProf
 end
@@ -754,11 +758,11 @@ function Craftie:OpenProfessionList(profArray, search, player)
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie:SetProfLevel(0)
   if (player ~= "") then
-    Craftie:Notification("Using [" .. player .. "] Crafting book", Craftie.TYPE.FUNC)
+    Craftie:Notification("Using [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CrafterDataParse(Craftie.Page, player)
     --Craftie.Frame.Title.Sub:SetText(player)
   else
-    --Craftie:Notification("Using a default Crafting book", Craftie.TYPE.FUNC)
+    --Craftie:Notification("Using a default Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CopyTable(profArray)
   end
 
@@ -846,18 +850,18 @@ function Craftie:OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesList:SetAlpha(1)
   end)
 
-  Craftie:Notification("Craftie:OpenProfessionList(" .. player .. ")", Craftie.TYPE.FUNC)
+  Craftie:Notification("Craftie:OpenProfessionList(" .. player .. ")", Craftie.CHAT.FUNC)
 end
 
 --add a timer for parsed data
 function Craftie:Open(player, profession)
   if (player) then
-    Craftie:Notification("Craftie:Open player: " .. player, Craftie.TYPE.FUNC)
-    Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.TYPE.FUNC)
+    Craftie:Notification("Craftie:Open player: " .. player, Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.CHAT.FUNC)
     --local prof = profession
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 1)
-      Craftie:Notification("Craftie:Open: Go to " .. profession .. " => " .. player, Craftie.TYPE.FUNC)
+      Craftie:Notification("Craftie:Open: Go to " .. profession .. " => " .. player, Craftie.CHAT.FUNC)
       Craftie:TabSelect(page, true)
       Craftie.Frame:Show()
     end)
@@ -888,10 +892,43 @@ function SlashCmdList.Craftie(cmd)
     Craftie.Logger:Show()
   end
 
+  if (cmd == "debug") then
+    if (args == "") then
+      Craftie:Notification("Debug Level: " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
+      --Craftie:Notification("Print anything that is <= the current debug level", Craftie.CHAT.INFO)
+      local sorted = {}
+      for key, value in pairs(Craftie.CHAT) do
+        table.insert(sorted, {key=key,num=value[1],text=value[2]})
+      end
+      table.sort(sorted, function(a, b)
+        return a.num < b.num
+      end)
+      for _, v in ipairs(sorted) do
+        if (v.num <= 2) then
+          Craftie:Notification(v.num .. " = " .. v.text .. " [Default]", Craftie.CHAT.INFO)
+        else
+          Craftie:Notification(v.num .. " = " .. v.text, Craftie.CHAT.INFO)
+        end
+      end
+    else
+      if tonumber(args) then
+        Craftie.DEBUGLEVEL = tonumber(args)
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"] = tonumber(args)
+      else
+        local count = 0
+        for i in pairs(Craftie.CHAT) do
+          count = count+1
+        end
+        Craftie:Notification("Debug Level must be an integer [1-".. count .."]", Craftie.CHAT.ERROR)
+      end
+      Craftie:Notification("Debug Level set to " .. Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
+    end
+  end
+
   for k,v in pairs(Craftie.Professions) do
     local profcmd = "p" .. k
     if (cmd == profcmd) then
-      Craftie:Notification("View ALL recipes [" .. Craftie.Professions[k][1] .. "]", Craftie.TYPE.FUNC) --Craftie.Profession[Craftie.Professions[k][1]])
+      Craftie:Notification("View ALL recipes [" .. Craftie.Professions[k][1] .. "]", Craftie.CHAT.FUNC) --Craftie.Profession[Craftie.Professions[k][1]])
       Craftie:OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "", "")
     end
   end
@@ -906,7 +943,7 @@ function Craftie:BuildReagentGaps()
   for k,v in pairs(Craftie.Reagents) do
     Craftie.Reagent[v[1]] = {v[1], v[2]}
   end
-  Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.TYPE.FUNC)
+  Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.CHAT.FUNC)
 end
 
 
@@ -940,7 +977,7 @@ function Craftie:SaveMapButtonPos()
     local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.Button.Minimap:GetPoint()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
     --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
-    Craftie:Notification("Craftie:SaveMapButtonPos() = " .. math.ceil(xOfs) .. "," .. math.ceil(yOfs), Craftie.TYPE.SAVE)
+    Craftie:Notification("Craftie:SaveMapButtonPos() = " .. math.ceil(xOfs) .. "," .. math.ceil(yOfs), Craftie.CHAT.SAVE)
   end)
 end
 
@@ -954,5 +991,5 @@ function Craftie:UpdateMapButton()
   Craftie.Frame.Button.Minimap:ClearAllPoints()
   Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
 
-  --Craftie:Notification("Craftie:UpdateMapButton()", Craftie.TYPE.FUNC)
+  --Craftie:Notification("Craftie:UpdateMapButton()", Craftie.CHAT.FUNC)
 end

@@ -59,7 +59,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.Prefix)) then
 	    Craftie:Init()
       --print("Craftie.Event[1] " .. prefix .. " | " .. event)
-      Craftie:Notification("Craftie:EventManager[1] " .. event, Craftie.TYPE.EVENT)
+      Craftie:Notification("Craftie:EventManager[1] " .. event, Craftie.CHAT.EVENT)
 	  end
 
     if (event == "SKILL_LINES_CHANGED") then
@@ -86,7 +86,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     end
 
     if (prefix == Craftie._G.Prefix) then
-      Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.TYPE.EVENT)
+      Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
     end
 
   end
@@ -111,7 +111,7 @@ function Craftie.BuildChatHooks()
         prof_parent = prof_parent .. " | " .. b
       end
     end
-    Craftie:Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.TYPE.FUNC)
+    Craftie:Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.CHAT.FUNC)
   end
 end
 
@@ -160,7 +160,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
-            Craftie:Notification("[" .. player .. "] has outdated data", Craftie.TYPE.ERROR)
+            Craftie:Notification("[" .. player .. "] has outdated data", Craftie.CHAT.ERROR)
           end
           Craftie:UpdateCrafterList()
           --print("open book to player " .. player)
@@ -169,7 +169,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       end
       --we still need to open the book, but cache the incoming data
       C_Timer.After(0.2, function()
-        Craftie:Notification("SetItemRef " .. prof, Craftie.TYPE.FUNC)
+        Craftie:Notification("SetItemRef " .. prof, Craftie.CHAT.FUNC)
         Craftie:Open(player, prof) --need to cache player data loading
       end)
     end

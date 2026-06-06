@@ -18,7 +18,7 @@ function Craftie:SaveData()
   --new account
   if (CraftieDB == nil) then
     CraftieDB = {}
-    Craftie:Notification("Building New Profile: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction .. "-" .. Craftie.Player.Name, Craftie.TYPE.CHAT)
+    Craftie:Notification("Building New Profile: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
   end
 
   --new realm, build everything
@@ -34,9 +34,9 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction] = {}
   end
 
-  --crafter directory may be shared with factions. dont overwrite
+  --crafter directory shared with same faction and server. dont overwrite
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] == nil) then
-    Craftie:Notification("Building New Crafter Directory: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction, Craftie.TYPE.CHAT)
+    Craftie:Notification("Building New Crafter Directory: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction, Craftie.CHAT.INFO)
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] = {} --shared across characters for server & faction
     for k,v in pairs(Craftie.Professions) do
       CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][v[1]:upper()] = {} --organize by prof
@@ -54,6 +54,10 @@ function Craftie:SaveData()
       Craftie.Frame:SetPoint(FramePos[1], tonumber(FramePos[2]), tonumber(FramePos[3]))
     end
 
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"]) then
+      Craftie.DEBUGLEVEL = tonumber(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"])
+    end
+
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"]) then
       local minimapIconPos = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"], ",")
       --print("Getpoint " .. Craftie.Frame.Button.Minimap:GetPoint())
@@ -66,8 +70,8 @@ function Craftie:SaveData()
       --disable sharing across characters of same server and faction?
     --end
 
-    Craftie:Notification("Loading Profile: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction .. "-" .. Craftie.Player.Name, Craftie.TYPE.CHAT)
+    Craftie:Notification("Loading Profile: [" ..  Craftie.Player.Faction .. "]".. Craftie.Player.Realm .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
 
-    Craftie:Notification("Loaded. Type " .. SLASH_Craftie1 .. " for commands.", Craftie.TYPE.CHAT)
+    Craftie:Notification("Loaded. Type " .. SLASH_Craftie1 .. " for commands.", Craftie.CHAT.INFO)
   end
 end

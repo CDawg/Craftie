@@ -8,6 +8,7 @@
 ## IconTexture: Interface\AddOns\Craftie\Images\UI-Craftie-Icon.png
 
 Core/CraftieLibrary.lua
+
 # Localization
 # Core/locales/localization.en.lua
 # Core/locales/localization.br.lua
