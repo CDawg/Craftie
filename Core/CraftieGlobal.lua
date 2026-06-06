@@ -25,10 +25,11 @@ Craftie._G = {
 Craftie._G.Version = C_AddOns.GetAddOnMetadata(Craftie._G.Prefix, "version")
 
 Craftie._G.Font={}
-Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/FRIZQT__.ttf"
---Craftie._G.Font.Style= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf"
-Craftie._G.Font.Size = 11
-Craftie._G.Font.Color = "|cffFF9524"
+Craftie._G.Font.Style = "Fonts/FRIZQT__.ttf"
+--Craftie._G.Font.Style = "Interface/Addons/Craftie/Fonts/AvantGarde.ttf"
+Craftie._G.Font.StyleN= "Fonts/ARIALN.ttf" --numbers
+Craftie._G.Font.Size  = 11
+Craftie._G.Font.Color = "|CFFFF9524"
 
 Craftie._G.Path = "Interface/Addons/Craftie/"
 Craftie._G.Title = Craftie._G.Font.Color .. Craftie._G.Prefix .. "|r"

@@ -55,7 +55,7 @@ Craftie.Frame.ScrollPlayersResultsBack:SetPoint("TOPLEFT", 1, 10)
 Craftie.Frame.ScrollPlayersResultsBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
 Craftie.Frame.ScrollPlayersResultsBack:SetAlpha(0.8)
 Craftie.Frame.ScrollPlayersResults = Craftie.Frame.ScrollPlayersResultsFrame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.ScrollPlayersResults:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.ScrollPlayersResults:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "SLUG")
 Craftie.Frame.ScrollPlayersResults:SetPoint("TOPLEFT", 8, -4)
 Craftie.Frame.ScrollPlayersResults:SetText("")
 
@@ -287,7 +287,8 @@ for i=1, Craftie.MAX_PLAYERS do
         end
         GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
         --GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:AddLine(color .. name .. "|r|n|n")
+        GameTooltip:AddLine(color .. name .. "|r")
+        GameTooltip:AddLine(" ")
         GameTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
         --GameTooltip:AddLine(Craftie.Page)
         --GameTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL .. "|n|n")
