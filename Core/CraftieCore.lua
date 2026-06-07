@@ -1041,45 +1041,37 @@ C_Timer.After(2, function()
   end
 end)
 
---[==[
---TODO rework all this!
-local function AddPlayerTooltip(tooltip)
-   local _, unit = tooltip:GetUnit()
-
-  if unit and UnitIsPlayer(unit) then
-    local playerName = UnitName(unit)
-    local playerLevel = UnitLevel(unit)
-    local playerClass = UnitClass(unit)
-
-    local data = {
-      [UnitGUID("player")] = {
-        recipes = 245,
-        profession = "Alchemy"
-      }
-    }
-
-    tooltip:AddLine(" ")
-    tooltip:AddLine(Craftie._G.Title)
-    --tooltip:AddDoubleLine("Player:", playerName)
-    --tooltip:AddDoubleLine("Level:", playerLevel)
-    --tooltip:AddDoubleLine("Class:", playerClass)
-
-    local guid = UnitGUID(unit)
-    if data[guid] then
-      tooltip:AddDoubleLine("Recipes", data[guid].recipes)
+--option to send data to players
+function Craftie:BuildPlayerTooltip()
+  local tooltip = ""
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+    for k,v in pairs(Craftie.Professions) do
+      local prof = v[1]
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()] ~= nil) then
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name] ~= nil) then
+          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
+          local profLevel = crafter[3]
+          --print(Craftie.Player.Name .. " | " .. prof .. " | " .. crafter[3] .. "/" .. Craftie.PROFMAXLEVEL)
+          tooltip = tooltip .. Craftie.Player.Name .. ":" .. prof .. ":" .. profLevel .. ","
+        end
+      end
     end
-
-    tooltip:Show()
   end
+  return tooltip
 end
-]==]--
 
---GameTooltip:HookScript("OnTooltipSetUnit", AddPlayerTooltip)
+--Craftie.PlayerGUIDProf["Portsbank"] = {profession="Cooking", profLevel=350}
 
-Craftie.PlayerData["Addondev"] = {
+Craftie.PlayerGUIDProf["Addondev"] = {
   --recipes = tonumber(recipes),
-  profession = "TEST",
+  profession = "Alchemy",
   profLevel  = 375,
+  --lastSeen = time()
+}
+Craftie.PlayerGUIDProf["Portsbank"] = {
+  --recipes = tonumber(recipes),
+  profession = "Tailoring",
+  profLevel  = 245,
   --lastSeen = time()
 }
 
@@ -1090,13 +1082,12 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
     end
 
     local name = UnitName(unit)
-    local data = Craftie.PlayerData[name]
+    local data = Craftie.PlayerGUIDProf[name]
 
     if data then
       tooltip:AddLine(" ")
       tooltip:AddLine(Craftie._G.Title)
-      --tooltip:AddDoubleLine("|CFFFFD100Craftie|r", data.profession)
-      tooltip:AddDoubleLine("|CFF42DBFF" .. "Alchemy", "|CFFFFFFFF" .. data.profLevel)
+      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profession, "|CFFFFFFFF" .. data.profLevel)
       tooltip:Show()
     end
 end)

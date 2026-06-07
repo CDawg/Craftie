@@ -57,29 +57,11 @@ Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, data
   Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 end)
 
-Craftie.PlayerData = {}
+Craftie.PlayerGUIDProf = {}
 Craftie.ChatThrottle = {
   Timer = 10,
   Flag = 1
 }
-
-function Craftie:BuildPlayerTooltip()
-  local tooltip = ""
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
-    for k,v in pairs(Craftie.Professions) do
-      local prof = v[1]
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()] ~= nil) then
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name] ~= nil) then
-          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
-          local profLevel = crafter[3]
-          --print(Craftie.Player.Name .. " | " .. prof .. " | " .. crafter[3] .. "/" .. Craftie.PROFMAXLEVEL)
-          tooltip = tooltip .. Craftie.Player.Name .. "|" .. prof .. "|" .. crafter[3] .. ","
-        end
-      end
-    end
-  end
-  return tooltip
-end
 
 function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
@@ -100,8 +82,9 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         --Craftie:Notification("sendpacket(tooltip)", Craftie.CHAT.EVENT)
         if (Craftie:BuildPlayerTooltip() ~= "") then
           print(Craftie:BuildPlayerTooltip())
+          --announce to players around
+          --Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie:BuildPlayerTooltip(), "SAY")
         end
-        --Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. prof, "YELL")
         C_Timer.After(Craftie.ChatThrottle.Timer, function()
           Craftie.ChatThrottle.Flag = 1
         end)
