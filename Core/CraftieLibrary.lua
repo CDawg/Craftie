@@ -34,7 +34,7 @@ Craftie = {
 	},
 }
 
-Craftie.DEBUGLEVEL = 2 --default [INFO | ERROR]
+Craftie.DEBUGLEVEL = 8 --default [INFO | ERROR]
 
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
@@ -90,6 +90,7 @@ Craftie.Packet.Prefix = {
   Ping = "!P", --ping request
   Data = "!D", --data chunk
   Net  = "!N", --online
+  Info = "!T", --tooltip announce
 }
 
 Craftie.Class = {

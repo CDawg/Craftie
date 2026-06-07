@@ -20,6 +20,7 @@ Craftie.Event:RegisterEvent("CHAT_MSG_ADDON_LOGGED")
 Craftie.Event:RegisterEvent("CHAT_MSG_CHANNEL")
 Craftie.Event:RegisterEvent("CHAT_MSG_CHANNEL_LIST")
 Craftie.Event:RegisterEvent("CHAT_MSG_FILTERED")
+Craftie.Event:RegisterEvent("CHAT_MSG_GUILD")
 --Craftie.Event:RegisterEvent("CHAT_MSG_PING")
 Craftie.Event:RegisterEvent("CRAFT_SHOW")
 Craftie.Event:RegisterEvent("CRAFT_CLOSE")
@@ -27,6 +28,8 @@ Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 Craftie.Event:RegisterEvent("GROUP_ROSTER_UPDATE")
 --Craftie.Event:RegisterEvent("MODIFIER_STATE_CHANGED")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
+Craftie.Event:RegisterEvent("PLAYER_STARTED_MOVING")
+Craftie.Event:RegisterEvent("PLAYER_STOPPED_MOVING")
 Craftie.Event:RegisterEvent("SKILL_LINES_CHANGED")
 Craftie.Event:RegisterEvent("TRADE_SKILL_CLOSE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
@@ -54,6 +57,30 @@ Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, data
   Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 end)
 
+Craftie.PlayerData = {}
+Craftie.ChatThrottle = {
+  Timer = 10,
+  Flag = 1
+}
+
+function Craftie:BuildPlayerTooltip()
+  local tooltip = ""
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+    for k,v in pairs(Craftie.Professions) do
+      local prof = v[1]
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()] ~= nil) then
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name] ~= nil) then
+          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
+          local profLevel = crafter[3]
+          --print(Craftie.Player.Name .. " | " .. prof .. " | " .. crafter[3] .. "/" .. Craftie.PROFMAXLEVEL)
+          tooltip = tooltip .. Craftie.Player.Name .. "|" .. prof .. "|" .. crafter[3] .. ","
+        end
+      end
+    end
+  end
+  return tooltip
+end
+
 function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.Prefix)) then
@@ -65,6 +92,20 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie:ResetCrafterBuild()
+    end
+
+    if ((event == "PLAYER_STOPPED_MOVING") or (event == "PLAYER_STOPPED_MOVING")) then
+      if (Craftie.ChatThrottle.Flag == 1) then
+        Craftie.ChatThrottle.Flag = 0
+        --Craftie:Notification("sendpacket(tooltip)", Craftie.CHAT.EVENT)
+        if (Craftie:BuildPlayerTooltip() ~= "") then
+          print(Craftie:BuildPlayerTooltip())
+        end
+        --Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. prof, "YELL")
+        C_Timer.After(Craftie.ChatThrottle.Timer, function()
+          Craftie.ChatThrottle.Flag = 1
+        end)
+      end
     end
 
     if (event == "TRADE_SKILL_SHOW") then

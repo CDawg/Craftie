@@ -154,7 +154,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("-")
   end
 
-  C_Timer.After(0.10, function()
+  C_Timer.After(0.1, function()
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
       for crafter_name in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
         table.insert(crafter_list, crafter_name)
@@ -275,15 +275,17 @@ function Craftie:SendPacket(prefix, data, channel, target)
   --end
   local repack = prefix .. "," .. Craftie._G.Version .. "," .. data
   local packet = Craftie:Split(data, ",")
+  C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
   if (prefix == Craftie.Packet.Prefix.Data) then
     -- code | senderVer | senderName | senderClass | profNum | profLevel | profData
     repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false)
   end
 
-  C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
+  if (prefix == Craftie.Packet.Prefix.Info) then
+    print("test")
+  end
+
   if (channel == "WHISPER") then
-    --C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, compressPacket, channel, target)
-    --C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
   	C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
   else
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
@@ -357,6 +359,10 @@ function Craftie:ParsePacket(netpacket)
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. date("%y-%m-%d_%H:%M:%S")
         Craftie:Notification(profString, Craftie.CHAT.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
+      end
+
+      if (prefix == Craftie.Packet.Prefix.Info) then
+        print("test")
       end
 
     else
@@ -615,6 +621,7 @@ function Craftie:ResetCrafterBuild()
   Craftie:Notification("Craftie:ResetCrafterBuild()", Craftie.CHAT.FUNC)
 end
 
+--build personal build, store it, and use for notifications, pings
 function Craftie:CrafterDataBuild(profName, profLevel)
   local profBuild = Craftie:CopyTable(Craftie.Profession[profName])
   --Craftie:SortTableByString(profBuild) --alpha sort just in case
@@ -1005,23 +1012,91 @@ function SlashCmdList.Craftie(cmd)
   end
 end
 
+--for performance build a cached table with all the saved data
+function Craftie:PlayerTooltipCache()
+  local crafter = {}
+  for k,v in pairs(Craftie.Professions) do
+    local prof = v[1]:upper()
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof] ~= nil) then
+        print("PROF: " .. prof)
+        for ck,cv in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof]) do
+          print(cv)
+          --i = i+1
+          --print("index " .. i)
+          --local crafter = Craftie:Split(v, ",")
+          --crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof], ",")
+          --print(crafter[1])
+        end
+        --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof])
+      end
+    end
+  end
+end
+
+C_Timer.After(2, function() 
+  function SendCraftieData()
+      local msg = "245:Alchemy"
+      --C_ChatInfo.SendAddonMessage("CRAFTIE", msg, "SAY")
+  end
+end)
+
+--[==[
 --TODO rework all this!
 local function AddPlayerTooltip(tooltip)
-  local _, unit = tooltip:GetUnit()
+   local _, unit = tooltip:GetUnit()
 
   if unit and UnitIsPlayer(unit) then
     local playerName = UnitName(unit)
     local playerLevel = UnitLevel(unit)
     local playerClass = UnitClass(unit)
 
+    local data = {
+      [UnitGUID("player")] = {
+        recipes = 245,
+        profession = "Alchemy"
+      }
+    }
+
     tooltip:AddLine(" ")
-    tooltip:AddLine("|cff00ff00Craftie Data|r")
-    tooltip:AddDoubleLine("Player:", playerName)
-    tooltip:AddDoubleLine("Level:", playerLevel)
-    tooltip:AddDoubleLine("Class:", playerClass)
+    tooltip:AddLine(Craftie._G.Title)
+    --tooltip:AddDoubleLine("Player:", playerName)
+    --tooltip:AddDoubleLine("Level:", playerLevel)
+    --tooltip:AddDoubleLine("Class:", playerClass)
+
+    local guid = UnitGUID(unit)
+    if data[guid] then
+      tooltip:AddDoubleLine("Recipes", data[guid].recipes)
+    end
 
     tooltip:Show()
   end
 end
+]==]--
 
 --GameTooltip:HookScript("OnTooltipSetUnit", AddPlayerTooltip)
+
+Craftie.PlayerData["Addondev"] = {
+  --recipes = tonumber(recipes),
+  profession = "TEST",
+  profLevel  = 375,
+  --lastSeen = time()
+}
+
+GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
+    local _, unit = tooltip:GetUnit()
+    if not unit or not UnitIsPlayer(unit) then
+        return
+    end
+
+    local name = UnitName(unit)
+    local data = Craftie.PlayerData[name]
+
+    if data then
+      tooltip:AddLine(" ")
+      tooltip:AddLine(Craftie._G.Title)
+      --tooltip:AddDoubleLine("|CFFFFD100Craftie|r", data.profession)
+      tooltip:AddDoubleLine("|CFF42DBFF" .. "Alchemy", "|CFFFFFFFF" .. data.profLevel)
+      tooltip:Show()
+    end
+end)
