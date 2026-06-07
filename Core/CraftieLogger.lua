@@ -78,7 +78,7 @@ Craftie.Logger.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header
 Craftie.Logger.Icon:SetDrawLayer("OVERLAY", 4)
 
 Craftie.Logger.Title = Craftie.Logger:CreateFontString(nil, "ARTWORK")
-Craftie.Logger.Title:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "SLUG")
+Craftie.Logger.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Logger.Title:SetPoint("TOPRIGHT", -90, -5)
 Craftie.Logger.Title:SetText("v" .. Craftie._G.Version .. " [" .. Craftie.Game.Name .. "]")
 Craftie.Logger.Title:SetTextColor(0.9, 0.9, 0.8, 1)
@@ -134,7 +134,7 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k]:SetBackdropColor(0.6, 0.6, 0.5, 0.7)
   Craftie.Logger.Col[k]:SetBackdropBorderColor(0.2, 0.2, 0.2, 0)
   Craftie.Logger.Col[k].Text = Craftie.Logger.Col[k]:CreateFontString(nil, "ARTWORK")
-  Craftie.Logger.Col[k].Text:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "SLUG")
+  Craftie.Logger.Col[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", Craftie._G.Font.Size+4, -10)
   Craftie.Logger.Col[k].Text:SetText(v[1])
   Craftie.Logger.Col[k].Text:SetJustifyH("LEFT")
@@ -243,10 +243,11 @@ function Craftie:Log(type, log)
     Craftie.Logger.Row[id][k] = Craftie.Logger.Row[id]:CreateFontString(nil, "ARTWORK")
     Craftie.Logger.Row[id][k]:SetWidth(v[2])
     Craftie.Logger.Row[id][k]:SetHeight(RowHeight)
-    Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "SLUG")
+    Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
     Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]-5, 0)
     Craftie.Logger.Row[id][k]:SetText(id)
     if (k == 1) then
+      Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.StyleN, 11, "SLUG")
       Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]+5, 0)
     end
     if (k == 2) then
