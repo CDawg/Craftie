@@ -125,7 +125,6 @@ if (Craftie.Game.Version >= 2) then
 end
 if (Craftie.Game.Version >= 3) then
   Craftie.PROFMAXLEVEL = 450
-  --table.insert(Craftie.Class, {"Death Knight",{0.77, 0.12, 0.23}, "|CFFC41E3A", "ClassIcon_DeathKnight"})
   table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
 end
 
