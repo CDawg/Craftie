@@ -63,26 +63,6 @@ Craftie.ChatThrottle = {
   Flag = 1
 }
 
---option to send data to players
-function Craftie:BuildPersonalTooltip()
-  local tooltip = ""
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
-    for k,v in pairs(Craftie.Professions) do
-      local prof = v[1]
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()] ~= nil) then
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name] ~= nil) then
-          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
-          local profLevel = crafter[3]
-          --print(Craftie.Player.Name .. " | " .. prof .. " | " .. crafter[3] .. "/" .. Craftie.PROFMAXLEVEL)
-          tooltip = tooltip .. prof .. ":" .. profLevel .. ";"
-        end
-      end
-    end
-  end
-  --tooltip = "Cooking:3;Alchemy:244;Tailoring:375;"
-  return tooltip
-end
-
 function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.Prefix)) then
@@ -100,13 +80,12 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       if (Craftie.ChatThrottle.Flag == 1) then
         Craftie.ChatThrottle.Flag = 0
         --Craftie:Notification("sendpacket(tooltip)", Craftie.CHAT.EVENT)
-        if (Craftie:BuildPersonalTooltip() ~= "") then
-          --print(Craftie:BuildPersonalTooltip())
+        if (Craftie.Tooltip ~= "") then
           --announce to players around
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie:BuildPersonalTooltip(), "SAY")
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "SAY")
         end
         C_Timer.After(Craftie.ChatThrottle.Timer, function()
-          Craftie.ChatThrottle.Flag = 1
+          Craftie.ChatThrottle.Flag = 1 --reset after
         end)
       end
     end
@@ -116,7 +95,8 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       if (profName) then
         Craftie:CrafterDataBuild(profName, profLevel)
         C_Timer.After(1, function()
-          Craftie:CrafterDataBuild(profName, profLevel)
+          --Craftie:CrafterDataBuild(profName, profLevel)
+          Craftie:BuildPersonalTooltip()
         end)
       end
     end

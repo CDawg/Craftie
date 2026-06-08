@@ -21,7 +21,7 @@ function Craftie:Init()
   Craftie:TabBottomSelect(1)
   Craftie.BuildChatHooks()
   Craftie:SaveData()
-  --Craftie:PlayerTooltipCache()
+  Craftie:BuildPersonalTooltip()
 
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.OpenState = 0
