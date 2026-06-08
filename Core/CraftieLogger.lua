@@ -83,11 +83,18 @@ Craftie.Logger.Title:SetPoint("TOPRIGHT", -90, -5)
 Craftie.Logger.Title:SetText("v" .. Craftie._G.Version .. " [" .. Craftie.Game.Name .. "]")
 Craftie.Logger.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
+Craftie.Logger.Debug = Craftie.Logger:CreateFontString(nil, "ARTWORK")
+Craftie.Logger.Debug:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Logger.Debug:SetPoint("TOPLEFT", 30, -40)
+Craftie.Logger.Debug:SetText("DEBUGLEVEL: " .. Craftie.DEBUGLEVEL)
+Craftie.Logger.Debug:SetTextColor(0.9, 0.9, 0.8, 1)
+--Craftie.Logger.Debug:SetJustifyH("LEFT")
+
 Craftie.Logger.ScrollFrame={}
 Craftie.Logger.ScrollFrame = CreateFrame("Frame", "Craftie.Logger.ScrollFrame", Craftie.Logger, "BackdropTemplate")
 Craftie.Logger.ScrollFrame:SetWidth(Craftie.Logger:GetWidth()-20)
-Craftie.Logger.ScrollFrame:SetHeight(Craftie.Logger:GetHeight()-200)
-Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 15, -50)
+Craftie.Logger.ScrollFrame:SetHeight(Craftie.Logger:GetHeight()-240)
+Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 15, -90)
 Craftie.Logger.ScrollFrame:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Logger.ScrollFrame:SetBackdropColor(1, 0, 0, 0)
 Craftie.Logger.ScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
@@ -129,13 +136,13 @@ for k,v in ipairs(Craftie.Logger.Cols) do
   Craftie.Logger.Col[k] = CreateFrame("Button", nil, Craftie.Logger, "BackdropTemplate")
   Craftie.Logger.Col[k]:SetWidth(v[2])
   Craftie.Logger.Col[k]:SetHeight(ColHeight)
-  Craftie.Logger.Col[k]:SetPoint("TOPLEFT", v[3], -ColHeight-5)
+  Craftie.Logger.Col[k]:SetPoint("TOPLEFT", v[3], -70)
   Craftie.Logger.Col[k]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Logger.Col[k]:SetBackdropColor(0.6, 0.6, 0.5, 0.7)
   Craftie.Logger.Col[k]:SetBackdropBorderColor(0.2, 0.2, 0.2, 0)
   Craftie.Logger.Col[k].Text = Craftie.Logger.Col[k]:CreateFontString(nil, "ARTWORK")
   Craftie.Logger.Col[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", Craftie._G.Font.Size+4, -10)
+  Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", 10, -10)
   Craftie.Logger.Col[k].Text:SetText(v[1])
   Craftie.Logger.Col[k].Text:SetJustifyH("LEFT")
   if (v[5] == 1) then --draw only sortable columns
@@ -251,8 +258,7 @@ function Craftie:Log(type, log)
       Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]+5, 0)
     end
     if (k == 2) then
-      --Craftie.Logger.Row[id][k]:SetText(date("%y%m%d%H%M%S"))
-      Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.StyleN, 9, "SLUG")
+      Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size-1, "SLUG")
       Craftie.Logger.Row[id][k]:SetText(date("%y-%m-%d %H:%M:%S"))
     end
     if (k == 3) then
