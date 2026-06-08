@@ -34,7 +34,7 @@ Craftie = {
 	},
 }
 
-Craftie.DEBUGLEVEL = 8 --default [INFO | ERROR]
+Craftie.DEBUGLEVEL = 9 --default [INFO | ERROR]
 
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
@@ -44,7 +44,8 @@ Craftie.CHAT = {
   SEND = {5, "|CFF89DE49SEND|r"},
   ACK  = {6, "|CFFD177F7ACK|r"},
   SAVE = {7, "|CFF66D1A2SAVE|r"},
-  FUNC = {8, "|CFF385EC2FUNC|r"},
+  CACHE= {8, "|CFF66D1A2CACHE|r"},
+  FUNC = {9, "|CFF385EC2FUNC|r"},
 }
 
 Craftie.Framelevel = {

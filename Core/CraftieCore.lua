@@ -281,17 +281,17 @@ function Craftie:SendPacket(prefix, data, channel, target)
     repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false)
   end
 
-  if (prefix == Craftie.Packet.Prefix.Info) then
-    print("test")
-  end
+  --if (prefix == Craftie.Packet.Prefix.Info) then
+    --print("test")
+  --end
 
   if (channel == "WHISPER") then
   	C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
+    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. target, Craftie.CHAT.SEND)
   else
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
+    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. channel, Craftie.CHAT.SEND)
   end
-
-  Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. target, Craftie.CHAT.SEND)
 end
 
 Craftie.Notified = 0
@@ -304,6 +304,7 @@ function Craftie:ParsePacket(netpacket)
 
     prefix  = packet[1]
     version = tonumber(packet[2])
+    --[==[
     if (version > tonumber(Craftie._G.Version)) then
       if (Craftie.Notified ~= 1) then --dont spam the requester
         Craftie:Notification("You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]", Craftie.CHAT.ERROR)
@@ -320,8 +321,9 @@ function Craftie:ParsePacket(netpacket)
         stable_version = true
       end
     end
+    ]==]--
 
-    if (stable_version) then
+    --if (stable_version) then
       Craftie:Notification(netpacket, Craftie.CHAT.ACK)
 
       --ping another crafter for their data
@@ -361,8 +363,41 @@ function Craftie:ParsePacket(netpacket)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
       end
 
+      --recieving tooltip info from players locally
       if (prefix == Craftie.Packet.Prefix.Info) then
-        print("test")
+        --print(netpacket)
+        if (packet[4] ~= nil) then
+          local crafter = packet[3]
+          local craftData = Craftie:Split(packet[4], ";")
+          --local tooltip={}
+          local a={}
+          local b={}
+          local c={}
+          Craftie.PlayerGUIDProf[crafter]={}
+          if (craftData[1] ~= "") then
+            a = Craftie:Split(craftData[1], ":")
+            --table.insert(tooltip, {prof1=p[1], prof1L=p[2]})
+            Craftie.PlayerGUIDProf[crafter]={prof1=a[1], prof1L=a[2]}
+          end
+          if (craftData[2] ~= "") then
+            b = Craftie:Split(craftData[2], ":")
+            --table.insert(tooltip, {prof2=p[1], prof2L=p[2]})
+            Craftie.PlayerGUIDProf[crafter]={prof1=a[1], prof1L=a[2], prof2=b[1], prof2L=b[2]}
+          end
+          if (craftData[3] ~= "") then
+            c = Craftie:Split(craftData[3], ":")
+            --table.insert(tooltip, {prof3=p[1], prof3L=p[2]})
+            Craftie.PlayerGUIDProf[crafter]={prof1=a[1], prof1L=a[2], prof2=b[1], prof2L=b[2], prof3=c[1], prof3L=c[2]}
+          end
+          --Craftie.PlayerGUIDProf[crafter] = tooltip
+        end
+        --example
+        --Craftie.PlayerGUIDProf[crafter] = {
+          --prof1="Cooking", prof1L=350,
+          --prof2="Cooking", prof2L=350,
+          --prof3="Cooking", prof3L=350,
+        --}
+
       end
 
     else
@@ -370,7 +405,7 @@ function Craftie:ParsePacket(netpacket)
     end
     --Craftie:Notification("Malformed Packet [Bad Prefix]: " .. netpacket, Craftie.CHAT.ERROR)
   end
-end
+--end
 
 Craftie.Animation = 0
 Craftie.TabBarHide = 0
@@ -1012,6 +1047,7 @@ function SlashCmdList.Craftie(cmd)
   end
 end
 
+--[==[
 --for performance build a cached table with all the saved data
 function Craftie:PlayerTooltipCache()
   local crafter = {}
@@ -1033,61 +1069,45 @@ function Craftie:PlayerTooltipCache()
     end
   end
 end
+]==]--
 
-C_Timer.After(2, function() 
-  function SendCraftieData()
-      local msg = "245:Alchemy"
-      --C_ChatInfo.SendAddonMessage("CRAFTIE", msg, "SAY")
-  end
-end)
-
---option to send data to players
-function Craftie:BuildPlayerTooltip()
-  local tooltip = ""
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
-    for k,v in pairs(Craftie.Professions) do
-      local prof = v[1]
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()] ~= nil) then
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name] ~= nil) then
-          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
-          local profLevel = crafter[3]
-          --print(Craftie.Player.Name .. " | " .. prof .. " | " .. crafter[3] .. "/" .. Craftie.PROFMAXLEVEL)
-          tooltip = tooltip .. Craftie.Player.Name .. ":" .. prof .. ":" .. profLevel .. ","
-        end
-      end
-    end
-  end
-  return tooltip
-end
 
 --Craftie.PlayerGUIDProf["Portsbank"] = {profession="Cooking", profLevel=350}
 
+--[==[
 Craftie.PlayerGUIDProf["Addondev"] = {
   --recipes = tonumber(recipes),
-  profession = "Alchemy",
-  profLevel  = 375,
+  prof1 = "Alchemy1",
+  prof1L= 1,
+  prof2 = "Alchemy2",
+  prof2L= 2,
+  prof3 = "Alchemy3",
+  prof3L= 3,
   --lastSeen = time()
 }
-Craftie.PlayerGUIDProf["Portsbank"] = {
-  --recipes = tonumber(recipes),
-  profession = "Tailoring",
-  profLevel  = 245,
-  --lastSeen = time()
-}
+]==]--
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
-    local _, unit = tooltip:GetUnit()
-    if not unit or not UnitIsPlayer(unit) then
-        return
-    end
+  local _, unit = tooltip:GetUnit()
+  if not unit or not UnitIsPlayer(unit) then
+    return
+  end
 
-    local name = UnitName(unit)
-    local data = Craftie.PlayerGUIDProf[name]
+  local name = UnitName(unit)
+  local data = Craftie.PlayerGUIDProf[name]
 
-    if data then
-      tooltip:AddLine(" ")
-      tooltip:AddLine(Craftie._G.Title)
-      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profession, "|CFFFFFFFF" .. data.profLevel)
-      tooltip:Show()
+  if data then
+    tooltip:AddLine(" ")
+    tooltip:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title)
+    if (data.prof1) then
+      tooltip:AddDoubleLine("|CFF42DBFF" .. data.prof1, "|CFFFFFFFF" .. data.prof1L .. "/" .. Craftie.PROFMAXLEVEL)
     end
+    if (data.prof2) then
+      tooltip:AddDoubleLine("|CFF42DBFF" .. data.prof2, "|CFFFFFFFF" .. data.prof2L .. "/" .. Craftie.PROFMAXLEVEL)
+    end
+    if (data.prof3) then
+      tooltip:AddDoubleLine("|CFF42DBFF" .. data.prof3, "|CFFFFFFFF" .. data.prof3L .. "/" .. Craftie.PROFMAXLEVEL)
+    end
+    tooltip:Show()
+  end
 end)
