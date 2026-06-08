@@ -50,7 +50,7 @@ Craftie.Updates.Data = CreateFrame("EditBox", "Craftie.Updates.Data", Craftie.Up
 Craftie.Updates.Data:SetWidth(Craftie.Updates:GetWidth()-20) --scrollbar
 Craftie.Updates.Data:SetHeight(Craftie.Updates:GetHeight())
 --Craftie.Updates.Data:SetFontObject(GameFontWhite)
-Craftie.Updates.Data:SetFont(Craftie._G.Font.Style, 11, "OUTLINE")
+Craftie.Updates.Data:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE")
 Craftie.Updates.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Updates.Data:SetMultiLine(true)
 Craftie.Updates.Data:ClearFocus()
@@ -90,7 +90,7 @@ Craftie.Credit.Data = CreateFrame("EditBox", nil, Craftie.CreditsScrollFrameChil
 Craftie.Credit.Data:SetWidth(Craftie.Credit:GetWidth()-20)
 Craftie.Credit.Data:SetHeight(Craftie.Credit:GetHeight())
 --Craftie.Credit.Data:SetFontObject(GameFontWhite)
-Craftie.Credit.Data:SetFont(Craftie._G.Font.Style, 12, "OUTLINE")
+Craftie.Credit.Data:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, "OUTLINE")
 Craftie.Credit.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Credit.Data:SetMultiLine(true)
 Craftie.Credit.Data:ClearFocus()

@@ -247,7 +247,7 @@ function Craftie:Log(type, log)
     Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]-5, 0)
     Craftie.Logger.Row[id][k]:SetText(id)
     if (k == 1) then
-      Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.StyleN, 11, "SLUG")
+      Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "SLUG")
       Craftie.Logger.Row[id][k]:SetPoint("TOPLEFT", v[3]+5, 0)
     end
     if (k == 2) then
@@ -338,7 +338,7 @@ Craftie.Logger.DetailsFrame:SetPoint("TOPLEFT", 2, -396)
 Craftie.Logger.Text = CreateFrame("EditBox", "Craftie.Logger.Text", Craftie.Logger.DetailsFrame)
 Craftie.Logger.Text:SetWidth(Craftie.Logger.DetailsFrame:GetWidth()-30)
 Craftie.Logger.Text:SetHeight(Craftie.Logger.DetailsFrame:GetHeight()-10)
-Craftie.Logger.Text:SetFont(Craftie._G.Font.StyleN, 12, "OUTLINE")
+Craftie.Logger.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, "OUTLINE")
 Craftie.Logger.Text:SetPoint("TOPLEFT", 15, -15)
 Craftie.Logger.Text:SetMultiLine(true)
 Craftie.Logger.Text:ClearFocus()

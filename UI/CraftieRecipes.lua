@@ -103,7 +103,7 @@ Craftie.Frame.Search.Recipes.Text = CreateFrame("EditBox", nil, Craftie.Frame.Se
 Craftie.Frame.Search.Recipes.Text:SetWidth(Craftie.Frame.Search.Recipes:GetWidth()-52)
 Craftie.Frame.Search.Recipes.Text:SetHeight(Craftie.Frame.Search.Recipes:GetHeight())
 Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
-Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.Font.Style, 11, "OUTLINE")
+Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE")
 Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 22, -1)
 Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
@@ -358,7 +358,7 @@ for i=1, Craftie.MAX_REAGENTS do
 
   Craftie.Frame.Reagent.HLink[i] = CreateFrame("EditBox", nil, Craftie.Frame.Reagent.Main[i])
   Craftie.Frame.Reagent.HLink[i]:SetWidth(Craftie.Frame.Reagent.Main[i]:GetWidth())
-  Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, 14, "OUTLINE")
+  Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+3, "OUTLINE")
   Craftie.Frame.Reagent.HLink[i]:SetPoint("CENTER", 12, 0)
   Craftie.Frame.Reagent.HLink[i]:SetMultiLine(true)
   Craftie.Frame.Reagent.HLink[i]:ClearFocus()

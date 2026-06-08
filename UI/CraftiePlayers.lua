@@ -98,7 +98,7 @@ Craftie.Frame.Search.Players.Text = CreateFrame("EditBox", nil, Craftie.Frame.Se
 Craftie.Frame.Search.Players.Text:SetWidth(Craftie.Frame.Search.Players:GetWidth()-52)
 Craftie.Frame.Search.Players.Text:SetHeight(Craftie.Frame.Search.Players:GetHeight())
 Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
-Craftie.Frame.Search.Players.Text:SetFont(Craftie._G.Font.Style, 11, "OUTLINE | SLUG")
+Craftie.Frame.Search.Players.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
 Craftie.Frame.Search.Players.Text:SetPoint("TOPLEFT", 22, -1)
 Craftie.Frame.Search.Players.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
