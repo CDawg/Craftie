@@ -285,22 +285,33 @@ for i=1, Craftie.MAX_PLAYERS do
         if (class) then
           color = Craftie.Class[class][4]
         end
-        GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-        --GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:AddLine(color .. name .. "|r")
-        GameTooltip:AddLine(" ")
-        GameTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
-        --GameTooltip:AddLine(Craftie.Page)
-        --GameTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL .. "|n|n")
-        GameTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " ") .."|r")
-        GameTooltip:Show()
+        --CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+        CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        CraftieTooltip:ClearLines()
+        CraftieTooltip:AddLine(color .. name .. "|r")
+        CraftieTooltip:AddLine(" ")
+        CraftieTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
+        CraftieTooltip:AddLine(" ")
+        --CraftieTooltip:AddLine(Craftie.Page)
+        --CraftieTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL .. "|n|n")
+        CraftieTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " "))
+        CraftieTooltip:AddLine(" ")
+        CraftieTooltip:AddLine("|CFF8F8F8FRight Click for more options")
+        CraftieTooltip:Show()
       end
+    end
+
+    if (i == 1) then
+      CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
+      CraftieTooltip:AddLine("All ".. Craftie.Page .." Recipes")
+      CraftieTooltip:AddLine("|CFFB5B5B5Showing all phases for " .. Craftie.Game.Name)
+      CraftieTooltip:Show()
     end
   end)
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnLeave", function(self)
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(0.8, 0.85, 1, 0)
-      GameTooltip:Hide()
+      CraftieTooltip:Hide()
       Craftie:SelectScrollItem("Players")
     end
   end)

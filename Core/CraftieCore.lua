@@ -878,6 +878,18 @@ function Craftie:OpenProfessionList(profArray, search, player)
           --clear selections
           Craftie.Selected_Recipes = i
           Craftie:SelectScrollItem("Recipes")
+          --[==[
+          local name, link = C_Item.GetItemInfo(profCache[i][4])
+          C_Timer.After(0.1, function()
+            Craftie.Frame.ScrollRecipesListHLink[i]:SetText(link)
+            Craftie.Frame.ScrollRecipesListHLink[i]:Show()
+            for x=1, total_recipes do
+              if (x~=i) then
+                Craftie.Frame.ScrollRecipesListHLink[x]:Hide()
+              end
+            end
+          end)
+          ]==]--
         end
       end)
       Craftie.Frame.ScrollRecipesListItem[i]:Show()
@@ -1094,3 +1106,17 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
     tooltip:Show()
   end
 end)
+
+CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
+for i = 1, 30 do
+  local left = _G["CraftieTooltipTextLeft"..i]
+  local right = _G["CraftieTooltipTextRight"..i]
+
+  if left then
+    left:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
+  end
+
+  if right then
+    right:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
+  end
+end
