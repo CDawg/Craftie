@@ -95,7 +95,6 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       if (profName) then
         Craftie:CrafterDataBuild(profName, profLevel)
         C_Timer.After(1, function()
-          --Craftie:CrafterDataBuild(profName, profLevel)
           Craftie:BuildPersonalTooltip()
         end)
       end

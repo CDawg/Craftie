@@ -277,7 +277,7 @@ function Craftie:SendPacket(prefix, data, channel, target)
   local packet = Craftie:Split(data, ",")
   C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
   if (prefix == Craftie.Packet.Prefix.Data) then
-    -- code | senderVer | senderName | senderClass | profNum | profLevel | profData
+    -- senderPrefix, senderVer, senderName, senderClass, profNum, profLevel, profData
     repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false)
   end
 
@@ -345,7 +345,7 @@ function Craftie:ParsePacket(netpacket)
         end
       end
 
-      --handshake, get crafters data and store it
+      --handshake, get the other crafters data and store it
       --similar to Craftie:CrafterDataBuild
       if (prefix == Craftie.Packet.Prefix.Data) then
         local crafterName = packet[3]
@@ -610,7 +610,6 @@ function Craftie:ItemDetails(item)
   Craftie.Frame.Craft.SourceText:Show()
 end
 
-
 function Craftie:SelectScrollItem(scrollFrame)
   if (Craftie.EnableScrollFrames) then
     if (scrollFrame == "Players") then
@@ -662,8 +661,9 @@ function Craftie:CrafterDataBuild(profName, profLevel)
   --Craftie:SortTableByString(profBuild) --alpha sort just in case
   local profData={}
   local profString = ""
+  local profMastery = 0
 
-  for k,v in pairs(Craftie.Professions) do --I only care about the prio list
+  for k,v in pairs(Craftie.Professions) do --use only the prio list, no fishing, first-aid, etc...
     if (v[1] == profName) then
       if (Craftie.ProfileBuilt[profName] <= 1) then
         C_Timer.After(0.5, function() --give it time to register the profession recipes
@@ -671,9 +671,18 @@ function Craftie:CrafterDataBuild(profName, profLevel)
           for k,v in pairs(profBuild) do
             if (v[2] ~= nil) then
               profData[Craftie:SanitizeString(v[2])] = "0" --build the empty binary string
-              --print(Craftie:SanitizeString(v[2]) .. " = 0")
             end
           end
+
+          --print(Craftie.ProfessionMasteries[profName])
+          --profMastery = Craftie:GetProfessionMastery(profName)
+          local mastery = Craftie:GetProfessionMastery(profName)
+          if (mastery) then
+            profMastery = table.concat(mastery, ", ")
+          else
+            profMastery = 0
+          end
+          print("profMastery: " .. profMastery)
 
           local numRecipes = GetNumTradeSkills()
           for i = 1, numRecipes do
@@ -939,7 +948,6 @@ function Craftie:Open(player, profession)
   end
 end
 
-
 --caching tooltip data. preload unknown data
 Craftie.Reagent = {}
 function Craftie:BuildReagentGaps()
@@ -951,7 +959,6 @@ function Craftie:BuildReagentGaps()
   end
   Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.CHAT.FUNC)
 end
-
 
 --use the classic frame, but updated images. The updated frame has major bugs
 function Craftie:ScrollBarFrame(frame)

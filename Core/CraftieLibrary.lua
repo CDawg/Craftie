@@ -119,6 +119,56 @@ Craftie.Professions = {
   {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"}},
 }
 
+--TODO include masteries later into professions table
+Craftie.ProfessionMasteries = {
+  Alchemy = {
+    [28677] = 1, --elixir master
+    [28675] = 2, --potion master
+    [28672] = 3, --transmute
+  },
+
+  Blacksmithing = {
+    [9788]  = 1, --armorsmith
+    [9787]  = 2, --weaponsmith
+    [17041] = 3, --swordsmith
+    [17039] = 4, --hammersmith
+    [17040] = 5, --Axesmith,
+  },
+
+  Engineering = {
+    [20219] = 1, --gnomish
+    [20222] = 2, --goblin
+  },
+
+  Leatherworking = {
+    [10656] = 1, --dragonscale
+    [10658] = 2, --elemental
+    [10660] = 3, --tribal
+  },
+
+  Tailoring = {
+    [26798] = 1, --mooncloth
+    [26801] = 2, --Shadoweave
+    [26797] = 3, --Spellfire
+  },
+}
+
+function Craftie:GetProfessionMastery(profession)
+  local specs = Craftie.ProfessionMasteries[profession]
+  if not specs then
+    return nil
+  end
+
+  local found = {}
+  for spellID, masteryName in pairs(specs) do
+    if (IsSpellKnown(spellID)) then
+      table.insert(found, masteryName)
+    end
+  end
+  return (#found > 0) and found or nil
+end
+
+
 if (Craftie.Game.Version >= 2) then
   Craftie.PROFMAXLEVEL = 375
   table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
