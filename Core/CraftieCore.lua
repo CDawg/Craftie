@@ -151,6 +151,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListName[i]:SetText("")
     Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
     Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
+    Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText("")
     Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("-")
   end
 
@@ -191,8 +192,9 @@ function Craftie:UpdateCrafterList(search)
         --Craftie.Frame.ScrollPlayersListClass[i]:SetText(Craftie.Class[tonumber(crafter[1])][2])
         Craftie.Frame.ScrollPlayersListClass[i]:SetText(tonumber(crafter[1]))
         Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText(crafter[3])
-        if (crafter[5]) then
-          Craftie.Frame.ScrollPlayersListUpdate[i]:SetText(crafter[5])
+        Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText(crafter[5])
+        if (crafter[6]) then
+          Craftie.Frame.ScrollPlayersListUpdate[i]:SetText(crafter[6])
         end
       end
     end

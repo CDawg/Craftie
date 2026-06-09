@@ -155,6 +155,7 @@ Craftie.Frame.ScrollPlayersListBack={}
 Craftie.Frame.ScrollPlayersListName={}
 Craftie.Frame.ScrollPlayersListClass={}
 Craftie.Frame.ScrollPlayersListProfLevel={}
+Craftie.Frame.ScrollPlayersListProfMastery={}
 Craftie.Frame.ScrollPlayersListUpdate={}
 Craftie.Frame.ScrollPlayersListSelect={}
 Craftie.Frame.ScrollPlayersListSelectSpark={}
@@ -198,6 +199,10 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListProfLevel[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
   Craftie.Frame.ScrollPlayersListProfLevel[i]:Hide()
+  Craftie.Frame.ScrollPlayersListProfMastery[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListProfMastery[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText("")
+  Craftie.Frame.ScrollPlayersListProfMastery[i]:Hide()
   Craftie.Frame.ScrollPlayersListUpdate[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListUpdate[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("")
@@ -276,11 +281,13 @@ for i=1, Craftie.MAX_PLAYERS do
       local color = ""
       local name = nil
       local profLevel = 1
+      local profMastery = 0
       local update = ""
       name = Craftie.Frame.ScrollPlayersListName[i]:GetText()
       if (name) then
         class = tonumber(Craftie.Frame.ScrollPlayersListClass[i]:GetText())
         profLevel = tonumber(Craftie.Frame.ScrollPlayersListProfLevel[i]:GetText())
+        profMastery = tonumber(Craftie.Frame.ScrollPlayersListProfMastery[i]:GetText())
         update = Craftie.Frame.ScrollPlayersListUpdate[i]:GetText()
         if (class) then
           color = Craftie.Class[class][4]
@@ -291,9 +298,11 @@ for i=1, Craftie.MAX_PLAYERS do
         CraftieTooltip:AddLine(color .. name .. "|r")
         CraftieTooltip:AddLine(" ")
         CraftieTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
+        if (profMastery > 0) then
+          local mastery = Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)][4][profMastery]
+          CraftieTooltip:AddLine("|CFFDEDEDE" .. mastery)
+        end
         CraftieTooltip:AddLine(" ")
-        --CraftieTooltip:AddLine(Craftie.Page)
-        --CraftieTooltip:AddLine(profLevel .. "/" .. Craftie.PROFMAXLEVEL .. "|n|n")
         CraftieTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " "))
         CraftieTooltip:AddLine(" ")
         CraftieTooltip:AddLine("|CFF8F8F8FRight Click for more options")
