@@ -277,8 +277,8 @@ function Craftie:SendPacket(prefix, data, channel, target)
   local packet = Craftie:Split(data, ",")
   C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
   if (prefix == Craftie.Packet.Prefix.Data) then
-    -- senderPrefix, senderVer, senderName, senderClass, profNum, profLevel, profData
-    repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false)
+    -- senderPrefix, senderVer, senderName, senderClass, profNum, profLevel, profData, profMastery
+    repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false) .. "," .. packet[6]
   end
 
   --if (prefix == Craftie.Packet.Prefix.Info) then
@@ -339,6 +339,7 @@ function Craftie:ParsePacket(netpacket)
           local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
           --print("requester " .. requester)
           Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
+          --print("sending :" .. profData)
         else
           --rather than a break, just ignore
           Craftie:Notification("Requester == Self. Ignoring", Craftie.CHAT.ACK)
@@ -355,15 +356,16 @@ function Craftie:ParsePacket(netpacket)
         local profNum   = packet[5]
         local profLevel = packet[6]
         local crafterData = Craftie:BitCompression(packet[7], Craftie.CHAT.ACK) --decompress
-        Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData, Craftie.CHAT.ACK)
+        local profMastery = packet[8]
+        Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData .. "," .. profMastery, Craftie.CHAT.ACK)
         --store it
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
-        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. date("%y-%m-%d_%H:%M:%S")
+        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
         Craftie:Notification(profString, Craftie.CHAT.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
       end
 
-      --recieving tooltip info from players locally
+      --receiving tooltip info from players locally
       if (prefix == Craftie.Packet.Prefix.Info) then
         --print(netpacket)
         if (packet[4] ~= nil) then
@@ -655,7 +657,7 @@ function Craftie:ResetCrafterBuild()
   Craftie:Notification("Craftie:ResetCrafterBuild()", Craftie.CHAT.FUNC)
 end
 
---build personal build, store it, and use for notifications, pings
+--build personal string, store it, and use for packets and notifications
 function Craftie:CrafterDataBuild(profName, profLevel)
   local profBuild = Craftie:CopyTable(Craftie.Profession[profName])
   --Craftie:SortTableByString(profBuild) --alpha sort just in case
@@ -680,7 +682,7 @@ function Craftie:CrafterDataBuild(profName, profLevel)
           else
             profMastery = 0
           end
-          print("profMastery: " .. profMastery)
+          --print("profMastery: " .. profMastery)
 
           local numRecipes = GetNumTradeSkills()
           for i = 1, numRecipes do
@@ -712,7 +714,7 @@ function Craftie:CrafterDataBuild(profName, profLevel)
             profString = profString .. profData[b]
           end
 
-          profString = profString .. "," .. date("%y-%m-%d_%H:%M:%S")
+          profString = profString .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
 
           Craftie:Notification(profString, Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
@@ -766,6 +768,7 @@ function Craftie:CrafterDataParse(profName, player)
   local profNum = ""
   local profLevel = ""
   local profString = ""
+  local profMastery = 0
   local update = ""
   local filtered = {}
 
@@ -781,9 +784,8 @@ function Craftie:CrafterDataParse(profName, player)
     profNum = crafterData[2]
     profLevel = crafterData[3]
     profString = crafterData[4]
-    if (crafterData[5]) then
-      update = crafterData[5]
-    end
+    profMastery = crafterData[5]
+    update = crafterData[6]
 
     for key, value in ipairs(compareProf) do
       if (profString:sub(key, key) == "1") then
@@ -807,7 +809,7 @@ function Craftie:CrafterDataParse(profName, player)
 
     Craftie:SetProfLevel(tonumber(profLevel))
     --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.CHAT.FUNC)
-    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. update, Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. profMastery .. "," .. update, Craftie.CHAT.FUNC)
   end
   return crafterProf
 end

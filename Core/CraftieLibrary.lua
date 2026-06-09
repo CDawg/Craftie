@@ -118,8 +118,6 @@ Craftie.Professions = {
   {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale Leatherworking", "Elemental Leatherworking", "Tribal Leatherworking"}},
   {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"}},
 }
-
---TODO include masteries later into professions table
 Craftie.ProfessionMasteries = {
   Alchemy = {
     [28677] = 1, --elixir master
