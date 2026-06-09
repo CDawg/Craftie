@@ -875,22 +875,25 @@ function Craftie:OpenProfessionList(profArray, search, player)
       --if (CraftieDB["ITEMCACHE"]={}
       --profCache[i][4]
 
-      local fall=i/60
+      --[==[
+      local fall=i/250
       C_Timer.After(fall, function()
          local name, link = C_Item.GetItemInfo(profCache[i][4])
-         --Craftie.Frame.ScrollRecipesListHLink[i]:SetText(link)
-         Craftie.Frame.ScrollRecipesListHLink[i]:SetScript("OnEnter", function()
-           Craftie:SetItemTooltip(Craftie.Frame.ScrollRecipesListHLink[i], profCache[i][4])
-         end)
-        --print(fall)
-        --print(link)
+         Craftie.Frame.ScrollRecipesListHLink[i]:SetText(link)
+         print(fall .. " | " .. link)
       end)
+      --Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnEnter", function()
+        --Craftie:SetItemTooltip(Craftie.Frame.ScrollRecipesListItem[i], profCache[i][4])
+      --end)
+      Craftie.Frame.ScrollRecipesListHLink[i]:Hide()
+      ]==]--
       Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
         if (Craftie.EnableScrollFrames) then
           Craftie:ItemDetails(profCache[i])
           --clear selections
           Craftie.Selected_Recipes = i
           Craftie:SelectScrollItem("Recipes")
+          --Craftie.Frame.ScrollRecipesListHLink[i]:Show()
         end
       end)
       Craftie.Frame.ScrollRecipesListItem[i]:Show()

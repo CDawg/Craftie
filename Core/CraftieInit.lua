@@ -16,8 +16,7 @@ the copyright holders.
 function Craftie:Init()
   Craftie:AlphaSortProfessionLib() --sanity alpha sorting & version control
   Craftie:BuildReagentGaps()
-  Craftie:TabSelect(1) --default 1st profession
-  --Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
+  --Craftie:TabSelect(1) --default 1st profession
   Craftie:TabBottomSelect(1)
   Craftie.BuildChatHooks()
   Craftie:SaveData()

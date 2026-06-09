@@ -400,16 +400,17 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollRecipesListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
+  --Craftie.Frame.ScrollRecipesListItem[i]:RegisterForClicks("AnyUp")
   --[==[
-  Craftie.Frame.ScrollRecipesListItem[i]:RegisterForClicks("AnyUp")
   Craftie.Frame.ScrollRecipesListItem[i]:SetHyperlinksEnabled(true)
   Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
     if (Craftie.EnableScrollFrames) then
-      SetItemRef(link, text, button, self)
+      SetItemRef(Craftie.Frame.ScrollRecipesListHLink[i]:GetText(), text, button, self)
       ItemRefTooltip:Hide()
     end
   end)
   ]==]--
+
   Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(1, 0.9, 0.8, 0.2)
@@ -453,19 +454,14 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListText[i]:SetText("")
   Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 1, 0.8)
 
-  --Craftie.Frame.ScrollRecipesListHLink[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollRecipesListHLink[i] = CreateFrame("Frame", nil, Craftie.Frame.ScrollRecipesListItem[i], "BackdropTemplate")
-  --Craftie.Frame.ScrollRecipesListHLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, "OUTLINE")
+  --maybe i'll get this working in the future
+  --[==[
+  Craftie.Frame.ScrollRecipesListHLink[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollRecipesListHLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE")
   Craftie.Frame.ScrollRecipesListHLink[i]:SetPoint("TOPLEFT", 8, -5)
-  --Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
+  Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
   --Craftie.Frame.ScrollRecipesListHLink[i]:SetTextColor(1, 0, 0, 1) --hide
-  Craftie.Frame.ScrollRecipesListHLink[i]:SetHyperlinksEnabled(true)
-  Craftie.Frame.ScrollRecipesListHLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
-    if (Craftie.EnableScrollFrames) then
-      SetItemRef(link, text, button, self)
-      ItemRefTooltip:Hide()
-    end
-  end)
+  ]==]--
 
   if (i % 2 == 0) then
     Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
