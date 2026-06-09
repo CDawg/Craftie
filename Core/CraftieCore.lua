@@ -674,8 +674,6 @@ function Craftie:CrafterDataBuild(profName, profLevel)
             end
           end
 
-          --print(Craftie.ProfessionMasteries[profName])
-          --profMastery = Craftie:GetProfessionMastery(profName)
           local mastery = Craftie:GetProfessionMastery(profName)
           if (mastery) then
             profMastery = table.concat(mastery, ", ")
