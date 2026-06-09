@@ -39,6 +39,7 @@ function Craftie:CloseAllPlayerMenus()
   --for i=1, Craftie.MAX_PLAYERS do
     --Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
   --end
+  CraftieTooltip:Hide()
   GameTooltip:Hide()
   Craftie.Frame.ScrollPlayersListSubMenu:Hide()
 

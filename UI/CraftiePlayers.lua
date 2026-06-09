@@ -292,31 +292,35 @@ for i=1, Craftie.MAX_PLAYERS do
         if (class) then
           color = Craftie.Class[class][4]
         end
-        --CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-        CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
-        CraftieTooltip:ClearLines()
-        CraftieTooltip:AddLine(color .. name .. "|r")
-        CraftieTooltip:AddLine(" ")
-        CraftieTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
-        if (tonumber(profMastery)) then
-          if (profMastery > 0) then
-            local mastery = Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)][4][profMastery]
-            CraftieTooltip:AddLine("|CFFDEDEDE" .. mastery)
+
+        if (Craftie.EnableScrollFrames) then
+          CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+          CraftieTooltip:ClearLines()
+          CraftieTooltip:AddLine(color .. name .. "|r")
+          CraftieTooltip:AddLine(" ")
+          CraftieTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
+          if (tonumber(profMastery)) then
+            if (profMastery > 0) then
+              local mastery = Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)][4][profMastery]
+              CraftieTooltip:AddLine("|CFFDEDEDE" .. mastery)
+            end
           end
+          CraftieTooltip:AddLine(" ")
+          CraftieTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " "))
+          CraftieTooltip:AddLine(" ")
+          CraftieTooltip:AddLine("|CFF8F8F8FRight Click for more options")
+          CraftieTooltip:Show()
         end
-        CraftieTooltip:AddLine(" ")
-        CraftieTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " "))
-        CraftieTooltip:AddLine(" ")
-        CraftieTooltip:AddLine("|CFF8F8F8FRight Click for more options")
-        CraftieTooltip:Show()
       end
     end
 
-    if (i == 1) then
-      CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
-      CraftieTooltip:AddLine("All ".. Craftie.Page .." Recipes")
-      CraftieTooltip:AddLine("|CFFB5B5B5Showing all phases for " .. Craftie.Game.Name)
-      CraftieTooltip:Show()
+    if (Craftie.EnableScrollFrames) then
+      if (i == 1) then
+        CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+        CraftieTooltip:AddLine("All ".. Craftie.Page .." Recipes")
+        CraftieTooltip:AddLine("|CFFB5B5B5Showing all phases for " .. Craftie.Game.Name)
+        CraftieTooltip:Show()
+      end
     end
   end)
   Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnLeave", function(self)
@@ -336,6 +340,7 @@ for i=1, Craftie.MAX_PLAYERS do
           --Craftie.Frame.ScrollPlayersListOpt[i]:Show()
           if (button == "RightButton") then
             Craftie:CloseAllPlayerMenus()
+            --CraftieTooltip:Hide()
             Craftie:DisableAllScrollBars()
             local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
             if (crafter ~= nil) then
