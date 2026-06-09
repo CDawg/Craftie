@@ -381,17 +381,17 @@ function Craftie:ParsePacket(netpacket)
           if (craftData[1] ~= "") then
             a = Craftie:Split(craftData[1], ":")
             --table.insert(tooltip, {prof1=p[1], prof1L=p[2]})
-            Craftie.PlayerGUIDProf[crafter]={prof1=a[1], prof1L=a[2]}
+            Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3])}
           end
           if (craftData[2] ~= "") then
             b = Craftie:Split(craftData[2], ":")
             --table.insert(tooltip, {prof2=p[1], prof2L=p[2]})
-            Craftie.PlayerGUIDProf[crafter]={prof1=a[1], prof1L=a[2], prof2=b[1], prof2L=b[2]}
+            Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=b[1], profL2=b[2], profM2=tonumber(b[3])}
           end
           if (craftData[3] ~= "") then
             c = Craftie:Split(craftData[3], ":")
             --table.insert(tooltip, {prof3=p[1], prof3L=p[2]})
-            Craftie.PlayerGUIDProf[crafter]={prof1=a[1], prof1L=a[2], prof2=b[1], prof2L=b[2], prof3=c[1], prof3L=c[2]}
+            Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=b[1], profL2=b[2], profM2=tonumber(b[3]), profN3=c[1], profL3=c[2], profM3=tonumber(b[3])}
           end
           --Craftie.PlayerGUIDProf[crafter] = tooltip
         end
@@ -1078,14 +1078,14 @@ function Craftie:UpdatePlayerTooltip()
     Craftie.ChatThrottle.Flag = 0
 
     if (Craftie.Tooltip ~= "") then
-      --announce to players around
+      --announce to new players around
       Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
     end
     C_Timer.After(Craftie.ChatThrottle.Timer, function()
       Craftie.ChatThrottle.Flag = 1 --reset after
     end)
+    Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
   end
-  --Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
 end
 
 --option to send data to players
@@ -1099,8 +1099,8 @@ function Craftie:BuildPersonalTooltip()
           local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
           local profLevel = crafter[3]
           local profMastery = crafter[5]
-          print(prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
-          tooltip = tooltip .. prof .. ":" .. profLevel .. ";"
+          --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
+          tooltip = tooltip .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";"
         end
       end
     end
@@ -1123,14 +1123,26 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
   if data then
     tooltip:AddLine(" ")
     tooltip:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title)
-    if (data.prof1) then
-      tooltip:AddDoubleLine("|CFF42DBFF" .. data.prof1, "|CFFFFFFFF" .. data.prof1L .. "/" .. Craftie.PROFMAXLEVEL)
+    if (data.profN1) then
+      local mastery = ""
+      if (data.profM1 > 0) then
+        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN1, 1)][4][data.profM1] .. "]"
+      end
+      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profN1 .. mastery, "|CFFFFFFFF" .. data.profL1 .. "/" .. Craftie.PROFMAXLEVEL)
     end
-    if (data.prof2) then
-      tooltip:AddDoubleLine("|CFF42DBFF" .. data.prof2, "|CFFFFFFFF" .. data.prof2L .. "/" .. Craftie.PROFMAXLEVEL)
+    if (data.profN2) then
+      local mastery = ""
+      if (data.profM2 > 0) then
+        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN2, 1)][4][data.profM2] .. "]"
+      end
+      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profN2 .. mastery, "|CFFFFFFFF" .. data.profL2 .. "/" .. Craftie.PROFMAXLEVEL)
     end
-    if (data.prof3) then
-      tooltip:AddDoubleLine("|CFF42DBFF" .. data.prof3, "|CFFFFFFFF" .. data.prof3L .. "/" .. Craftie.PROFMAXLEVEL)
+    if (data.profN3) then
+      local mastery = ""
+      if (data.profM3 > 0) then
+        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN3, 1)][4][data.profM3] .. "]"
+      end
+      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profN3 .. mastery, "|CFFFFFFFF" .. data.profL3 .. "/" .. Craftie.PROFMAXLEVEL)
     end
     tooltip:Show()
   end
@@ -1140,6 +1152,7 @@ CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameToo
 for i = 1, 30 do
   local left = _G["CraftieTooltipTextLeft"..i]
   local right = _G["CraftieTooltipTextRight"..i]
+  local flags = nil
 
   if left then
     left:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
