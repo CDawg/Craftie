@@ -293,7 +293,7 @@ for i=1, Craftie.MAX_PLAYERS do
           color = Craftie.Class[class][4]
         end
         --CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-        CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
+        CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
         CraftieTooltip:ClearLines()
         CraftieTooltip:AddLine(color .. name .. "|r")
         CraftieTooltip:AddLine(" ")

@@ -192,6 +192,7 @@ Craftie.Frame.Button.Minimap:SetFrameStrata("TOOLTIP")
 Craftie.Frame.Button.Minimap:SetSize(26, 26)
 Craftie.Frame.Button.Minimap:SetMovable(true)
 Craftie.Frame.Button.Minimap:SetPoint("TOPRIGHT", -5, 0)
+Craftie.Frame.Button.Minimap:RegisterForClicks("AnyUp")
 Craftie.Frame.Button.Minimap.Icon = Craftie.Frame.Button.Minimap:CreateTexture(nil, "BORDER")
 Craftie.Frame.Button.Minimap.Icon:SetSize(Craftie.Frame.Button.Minimap:GetWidth(), Craftie.Frame.Button.Minimap:GetHeight())
 Craftie.Frame.Button.Minimap.Icon:SetPoint("CENTER", 0, 0)
@@ -215,10 +216,13 @@ Craftie.Frame.Button.Minimap:SetScript("OnDragStop", function()
 end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnEnter", function(self)
-  GameTooltip:SetOwner(self, "ANCHOR_LEFT")
+  GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT")
   --GameTooltip:AddLine(Craftie._G.Stamp .. "|n|CFFFFFFFF" .. Craftie.Game.Name .. "|r")
   GameTooltip:AddDoubleLine(Craftie._G.Title, "|CFFABABABv" .. Craftie._G.Version)
-  GameTooltip:AddDoubleLine(" ", "|CFFFFFFFF" .. Craftie.Game.Name)
+  GameTooltip:AddDoubleLine(" ", "|CFFABABAB" .. Craftie.Game.Name)
+  GameTooltip:AddLine(" ")
+  GameTooltip:AddDoubleLine("|CFF4BABFALeft Click","|CFFFFFFFFOpen Craftie")
+  GameTooltip:AddDoubleLine("|CFF4BABFARight Click", "|CFFFFFFFFCraftie Options")
   GameTooltip:Show()
 	Craftie.Frame.Button.Minimap.IconGlow:Show()
 end)
@@ -228,11 +232,17 @@ Craftie.Frame.Button.Minimap:SetScript("OnLeave", function(self)
   Craftie.Frame.Button.Minimap.IconGlow:Hide()
 end)
 
-Craftie.Frame.Button.Minimap:SetScript("OnClick", function()
-  if (Craftie.OpenState == 1) then
+Craftie.Frame.Button.Minimap:SetScript("OnClick", function(self, button)
+  if (button == "LeftButton") then
+    if (Craftie.OpenState == 1) then
+      Craftie.Frame:Hide()
+    else
+      Craftie:Open()
+    end
+  end
+  if (button == "RightButton") then
+    Settings.OpenToCategory(Craftie.Settings.Category:GetID())
     Craftie.Frame:Hide()
-  else
-    Craftie:Open()
   end
 end)
 

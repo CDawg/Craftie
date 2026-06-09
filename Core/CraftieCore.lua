@@ -1075,6 +1075,7 @@ end
 Craftie.Tooltip = ""
 function Craftie:UpdatePlayerTooltip()
   if (Craftie.ChatThrottle.Flag == 1) then
+    Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
     Craftie.ChatThrottle.Flag = 0
 
     if (Craftie.Tooltip ~= "") then
@@ -1084,7 +1085,6 @@ function Craftie:UpdatePlayerTooltip()
     C_Timer.After(Craftie.ChatThrottle.Timer, function()
       Craftie.ChatThrottle.Flag = 1 --reset after
     end)
-    Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
   end
 end
 
@@ -1148,6 +1148,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
   end
 end)
 
+--custom tooltip for Craftie only
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
 for i = 1, 30 do
   local left = _G["CraftieTooltipTextLeft"..i]
