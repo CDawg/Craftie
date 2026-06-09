@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---Used for item precaching
+--Used for item precaching & performance
 Craftie.Reagents = {
 {118, "Minor Healing Potion"},
 {159, "Refreshing Spring Water"},

@@ -872,24 +872,25 @@ function Craftie:OpenProfessionList(profArray, search, player)
   else
     for i=1, total_recipes do
       Craftie.Frame.ScrollRecipesListText[i]:SetText(profCache[i][2])
+      --if (CraftieDB["ITEMCACHE"]={}
+      --profCache[i][4]
+
+      local fall=i/60
+      C_Timer.After(fall, function()
+         local name, link = C_Item.GetItemInfo(profCache[i][4])
+         --Craftie.Frame.ScrollRecipesListHLink[i]:SetText(link)
+         Craftie.Frame.ScrollRecipesListHLink[i]:SetScript("OnEnter", function()
+           Craftie:SetItemTooltip(Craftie.Frame.ScrollRecipesListHLink[i], profCache[i][4])
+         end)
+        --print(fall)
+        --print(link)
+      end)
       Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
         if (Craftie.EnableScrollFrames) then
           Craftie:ItemDetails(profCache[i])
           --clear selections
           Craftie.Selected_Recipes = i
           Craftie:SelectScrollItem("Recipes")
-          --[==[
-          local name, link = C_Item.GetItemInfo(profCache[i][4])
-          C_Timer.After(0.1, function()
-            Craftie.Frame.ScrollRecipesListHLink[i]:SetText(link)
-            Craftie.Frame.ScrollRecipesListHLink[i]:Show()
-            for x=1, total_recipes do
-              if (x~=i) then
-                Craftie.Frame.ScrollRecipesListHLink[x]:Hide()
-              end
-            end
-          end)
-          ]==]--
         end
       end)
       Craftie.Frame.ScrollRecipesListItem[i]:Show()
