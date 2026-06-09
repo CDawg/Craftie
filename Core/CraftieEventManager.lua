@@ -28,6 +28,8 @@ Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 Craftie.Event:RegisterEvent("GROUP_ROSTER_UPDATE")
 --Craftie.Event:RegisterEvent("MODIFIER_STATE_CHANGED")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
+Craftie.Event:RegisterEvent("PLAYER_REGEN_ENABLED")
+Craftie.Event:RegisterEvent("PLAYER_REGEN_DISABLED")
 Craftie.Event:RegisterEvent("PLAYER_STARTED_MOVING")
 Craftie.Event:RegisterEvent("PLAYER_STOPPED_MOVING")
 Craftie.Event:RegisterEvent("SKILL_LINES_CHANGED")
@@ -58,6 +60,7 @@ Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, data
 end)
 
 Craftie.PlayerGUIDProf = {}
+Craftie.IsInCombat = false
 Craftie.ChatThrottle = {
   Timer = 10,
   Flag = 1
@@ -71,22 +74,24 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       Craftie:Notification("Craftie:EventManager[1] " .. event, Craftie.CHAT.EVENT)
 	  end
 
+    if (event == "PLAYER_REGEN_ENABLED") then
+      Craftie.IsInCombat = false
+    end
+    if (event == "PLAYER_REGEN_DISABLED") then
+      Craftie.IsInCombat = true
+    end
+
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie:ResetCrafterBuild()
     end
 
-    if ((event == "PLAYER_STARTED_MOVING") or (event == "PLAYER_STOPPED_MOVING")) then
-      if (Craftie.ChatThrottle.Flag == 1) then
-        Craftie.ChatThrottle.Flag = 0
-        --Craftie:Notification("sendpacket(tooltip)", Craftie.CHAT.EVENT)
-        if (Craftie.Tooltip ~= "") then
-          --announce to players around
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "SAY")
-        end
-        C_Timer.After(Craftie.ChatThrottle.Timer, function()
-          Craftie.ChatThrottle.Flag = 1 --reset after
-        end)
+    if (Craftie.IsInCombat) then
+      --debug
+      Craftie:Notification("Craftie.IsInCombat", Craftie.CHAT.FUNC)
+    else
+      if ((event == "PLAYER_STARTED_MOVING") or (event == "PLAYER_STOPPED_MOVING")) then
+        Craftie:UpdatePlayerTooltip()
       end
     end
 
@@ -107,6 +112,8 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         end
       end
     end
+
+    --PlayerIsInCombat
 
     --if (prefix == Craftie._G.Prefix) then
       --Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)

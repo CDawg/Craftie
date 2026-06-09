@@ -1073,6 +1073,21 @@ function SlashCmdList.Craftie(cmd)
 end
 
 Craftie.Tooltip = ""
+function Craftie:UpdatePlayerTooltip()
+  if (Craftie.ChatThrottle.Flag == 1) then
+    Craftie.ChatThrottle.Flag = 0
+
+    if (Craftie.Tooltip ~= "") then
+      --announce to players around
+      Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+    end
+    C_Timer.After(Craftie.ChatThrottle.Timer, function()
+      Craftie.ChatThrottle.Flag = 1 --reset after
+    end)
+  end
+  --Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
+end
+
 --option to send data to players
 function Craftie:BuildPersonalTooltip()
   local tooltip = ""
@@ -1083,7 +1098,8 @@ function Craftie:BuildPersonalTooltip()
         if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name] ~= nil) then
           local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
           local profLevel = crafter[3]
-          --print(prof .. ":" .. profLevel .. ";")
+          local profMastery = crafter[5]
+          print(prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
           tooltip = tooltip .. prof .. ":" .. profLevel .. ";"
         end
       end
