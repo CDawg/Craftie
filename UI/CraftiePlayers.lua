@@ -481,12 +481,25 @@ Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnLeave", function(self)
   self.Icon:SetDesaturation(1)
 end)
 Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnClick", function(self)
-  Craftie:CloseAllPlayerMenus()
+  --Craftie:CloseAllPlayerMenus()
   --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
-  --C_Timer.After(0.1, function()
-    --print(Craftie.Selected_Name)
-   --end)
+
+  Craftie.Frame.ScrollPlayersListSubMenu:Hide()
   Craftie:Dialog("Delete " .. Craftie.Selected_Name .. " from " .. Craftie.Page .. "?")
+  CraftieDialog.Yes:Show()
+  CraftieDialog.Yes:SetScript("OnClick", function(self)
+    self:GetParent():Hide()
+    Craftie:CloseAllPlayerMenus()
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][Craftie.Selected_Name]) then
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][Craftie.Selected_Name] = nil
+      print("Delete " .. Craftie.Selected_Name .. " from " .. Craftie.Page)
+    end
+    C_Timer.After(0.1, function()
+      Craftie:UpdateCrafterList()
+    end)
+  end)
+
+  --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
   --Craftie:UpdateCrafterList()
 end)
 

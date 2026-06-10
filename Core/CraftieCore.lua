@@ -162,14 +162,19 @@ function Craftie:UpdateCrafterList(search)
         table.insert(crafter_list, crafter_name)
       end
     end
+
     search_list = crafter_list
+    --Craftie:SortTableByString(search_list)
+
     if (search ~= nil) then
       --Craftie:SortTableByMatch(crafter_list, search)
       --local matches = Craftie:SearchTable(crafter_list, search)
       search_list = Craftie:SearchTable(crafter_list, search)
+      --Craftie:SortTableByString(search_list)
       --print("player search " .. search)
       --print("num matches " .. matches)
     end
+
     for k,v in ipairs(search_list) do
       Craftie.Frame.ScrollPlayersListName[k+1]:SetText(v) --avoid the 1st row
       Craftie.Frame.ScrollPlayersListFav[k+1]:Show()
@@ -734,12 +739,8 @@ function Craftie:SetProfLevel(level)
       Craftie.Frame.CrafterProgBar:SetSize(calc, 15)
       Craftie.Frame.CrafterProgLevel:SetText(level .. " / " .. Craftie.PROFMAXLEVEL)
       local left = 0
-      if (calc < 200) then
-        left = 4
-      end
-      if (calc <= 20) then
-        left = 5
-      end
+      if (calc < 200) then left = 4 end
+      if (calc <= 20) then left = 5 end
       Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0+left, -5)
       if (level < Craftie.PROFMAXLEVEL) then
         Craftie.Frame.CrafterProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
@@ -1003,6 +1004,13 @@ function Craftie:UpdateMapButton()
   Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", 60-(80 * cos(thisIconPos)), (80 * sin(thisIconPos))-60)
 
   --Craftie:Notification("Craftie:UpdateMapButton()", Craftie.CHAT.FUNC)
+end
+
+function Craftie:Dialog(text, func)
+  Craftie.EnableScrollFrames = false
+  CraftieDialog.Yes:Hide()
+  CraftieDialog:Show()
+  CraftieDialog.Text:SetText(text)
 end
 
 Craftie.Commands = {

@@ -307,16 +307,16 @@ function Craftie:SanitizeString(str)
 end
 
 function Craftie:SearchTable(tbl, search) --basic table
-    local results = {}
-    search = string.lower(search or "")
+  local results = {}
+  search = string.lower(search or "")
 
-    for _, name in ipairs(tbl) do
-        if string.find(string.lower(name), search, 1, true) then
-            table.insert(results, name)
-        end
+  for _, name in ipairs(tbl) do
+    if string.find(string.lower(name), search, 1, true) then
+      table.insert(results, name)
     end
+  end
 
-    return results, #results
+  return results, #results
 end
 
 function Craftie:SortTableByMatch(tbl, search)
