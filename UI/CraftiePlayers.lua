@@ -336,12 +336,15 @@ for i=1, Craftie.MAX_PLAYERS do
     Craftie:CloseAllPlayerMenus()
     if (Craftie.EnableScrollFrames) then
       if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
-        Craftie:SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
-        if (i > 1) then
+        if (button == "LeftButton") then
+          Craftie:SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
+        end
+
+        if (button == "RightButton") then
+          if (i > 1) then
           --Craftie.Frame.ScrollPlayersListOpt[i]:Show()
-          if (button == "RightButton") then
+            Craftie:SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
             Craftie:CloseAllPlayerMenus()
-            --CraftieTooltip:Hide()
             Craftie:DisableAllScrollBars()
             local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
             if (crafter ~= nil) then
@@ -349,17 +352,14 @@ for i=1, Craftie.MAX_PLAYERS do
               local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
               --Craftie.Frame.ScrollPlayersListSubMenu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
               Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs, yOfs-8)
-              Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.CHAT.FUNC)
-
+              --Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.CHAT.FUNC)
+              Craftie.Selected_Name = crafter
               Craftie.Frame.ScrollPlayersListSubMenuName:SetText(Craftie.Frame.ScrollPlayersListName[i]:GetText())
               local class = tonumber(Craftie.Frame.ScrollPlayersListClass[i]:GetText())
               local r = Craftie.Class[class][3][1]
               local g = Craftie.Class[class][3][2]
               local b = Craftie.Class[class][3][3]
               Craftie.Frame.ScrollPlayersListSubMenuName:SetTextColor(r, g, b, 1)
-
-              --delete
-              --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
             end
           end
         end
@@ -367,28 +367,10 @@ for i=1, Craftie.MAX_PLAYERS do
     end
   end)
 
-  --[==[
-  Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnClick", function(self)
-    self:Hide()
-    --open the sub menu
-    --temporarily disable the scrolling
-    Craftie:CloseAllPlayerMenus()
-    Craftie:DisableAllScrollBars()
-
-    local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
-    if (crafter ~= nil) then
-      Craftie.Frame.ScrollPlayersListSubMenu:Show()
-      local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
-      --Craftie.Frame.ScrollPlayersListSubMenu[i]:SetPoint("TOPLEFT", xOfs, yOfs)
-      Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+150, yOfs)
-      Craftie:Notification("Sub Menu: [" .. crafter .. "][" .. Craftie.Page .. "]", Craftie.CHAT.FUNC)
-      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
-    end
-  end)
-  ]==]--
 end
 
 local SubMenuHighLight = {1, 1, 0, 0.7}
+local SubMenuHeight = 18
 Craftie.Frame.ScrollPlayersListSubMenu = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersListSubMenu", Craftie.Frame.ScrollPlayers, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersListSubMenu:SetWidth(170)
 Craftie.Frame.ScrollPlayersListSubMenu:SetHeight(150)
@@ -408,8 +390,8 @@ Craftie.Frame.ScrollPlayersListSubMenuName:SetText("")
 Craftie.Frame.ScrollPlayersListSubMenuFav={}
 Craftie.Frame.ScrollPlayersListSubMenuFav = CreateFrame("Button", nil, Craftie.Frame.ScrollPlayersListSubMenu, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersListSubMenuFav:SetWidth(Craftie.Frame.ScrollPlayersListSubMenu:GetWidth()-2)
-Craftie.Frame.ScrollPlayersListSubMenuFav:SetHeight(20)
-Craftie.Frame.ScrollPlayersListSubMenuFav:SetPoint("TOPLEFT", 1, -40)
+Craftie.Frame.ScrollPlayersListSubMenuFav:SetHeight(SubMenuHeight)
+Craftie.Frame.ScrollPlayersListSubMenuFav:SetPoint("TOPLEFT", 1, -SubMenuHeight*2)
 Craftie.Frame.ScrollPlayersListSubMenuFav:SetBackdrop(Craftie.Backdrop.Borderless)
 Craftie.Frame.ScrollPlayersListSubMenuFav:SetBackdropColor(0, 0, 0, 0)
 --Craftie.Frame.ScrollPlayersListSubMenuFav:SetBackdropBorderColor(0.6, 0.6, 0.4, 0.5)
@@ -434,13 +416,14 @@ Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnLeave", function(self)
 end)
 Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnClick", function(self)
   Craftie:CloseAllPlayerMenus()
+  Craftie:UpdateCrafterList()
 end)
 
 Craftie.Frame.ScrollPlayersListSubMenuParty={}
 Craftie.Frame.ScrollPlayersListSubMenuParty = CreateFrame("Button", nil, Craftie.Frame.ScrollPlayersListSubMenu, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersListSubMenuParty:SetWidth(Craftie.Frame.ScrollPlayersListSubMenu:GetWidth()-2)
-Craftie.Frame.ScrollPlayersListSubMenuParty:SetHeight(20)
-Craftie.Frame.ScrollPlayersListSubMenuParty:SetPoint("TOPLEFT", 1, -60)
+Craftie.Frame.ScrollPlayersListSubMenuParty:SetHeight(SubMenuHeight)
+Craftie.Frame.ScrollPlayersListSubMenuParty:SetPoint("TOPLEFT", 1, -SubMenuHeight*3)
 Craftie.Frame.ScrollPlayersListSubMenuParty:SetBackdrop(Craftie.Backdrop.Borderless)
 Craftie.Frame.ScrollPlayersListSubMenuParty:SetBackdropColor(0, 0, 0, 0)
 --Craftie.Frame.ScrollPlayersListSubMenuParty:SetBackdropBorderColor(0.6, 0.6, 0.4, 0.5)
@@ -466,11 +449,16 @@ Craftie.Frame.ScrollPlayersListSubMenuParty:SetScript("OnClick", function(self)
   Craftie:CloseAllPlayerMenus()
 end)
 
+Craftie.Frame.ScrollPlayersListSubMenuDivider = Craftie.Frame.ScrollPlayersListSubMenu:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.ScrollPlayersListSubMenuDivider:SetSize(Craftie.Frame.ScrollPlayersListSubMenu:GetWidth()-8, SubMenuHeight)
+Craftie.Frame.ScrollPlayersListSubMenuDivider:SetPoint("TOPRIGHT", -4, -SubMenuHeight*4)
+Craftie.Frame.ScrollPlayersListSubMenuDivider:SetTexture("Interface/COMMON/UI-TooltipDivider")
+
 Craftie.Frame.ScrollPlayersListSubMenuDelete={}
 Craftie.Frame.ScrollPlayersListSubMenuDelete = CreateFrame("Button", nil, Craftie.Frame.ScrollPlayersListSubMenu, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersListSubMenuDelete:SetWidth(Craftie.Frame.ScrollPlayersListSubMenu:GetWidth()-2)
-Craftie.Frame.ScrollPlayersListSubMenuDelete:SetHeight(20)
-Craftie.Frame.ScrollPlayersListSubMenuDelete:SetPoint("TOPLEFT", 1, -100)
+Craftie.Frame.ScrollPlayersListSubMenuDelete:SetHeight(SubMenuHeight)
+Craftie.Frame.ScrollPlayersListSubMenuDelete:SetPoint("TOPLEFT", 1, -SubMenuHeight*5)
 Craftie.Frame.ScrollPlayersListSubMenuDelete:SetBackdrop(Craftie.Backdrop.Borderless)
 Craftie.Frame.ScrollPlayersListSubMenuDelete:SetBackdropColor(0, 0, 0, 0)
 --Craftie.Frame.ScrollPlayersListSubMenuDelete:SetBackdropBorderColor(0.6, 0.6, 0.4, 0.5)
@@ -493,5 +481,47 @@ Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnLeave", function(self)
   self.Icon:SetDesaturation(1)
 end)
 Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnClick", function(self)
+  Craftie:CloseAllPlayerMenus()
+  --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][crafter] = nil
+  --C_Timer.After(0.1, function()
+    --print(Craftie.Selected_Name)
+   --end)
+  Craftie:UpdateCrafterList()
+end)
+
+Craftie.Frame.ScrollPlayersListSubMenuDivider = Craftie.Frame.ScrollPlayersListSubMenu:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.ScrollPlayersListSubMenuDivider:SetSize(Craftie.Frame.ScrollPlayersListSubMenu:GetWidth()-8, SubMenuHeight)
+Craftie.Frame.ScrollPlayersListSubMenuDivider:SetPoint("TOPRIGHT", -4, -SubMenuHeight*6)
+Craftie.Frame.ScrollPlayersListSubMenuDivider:SetTexture("Interface/COMMON/UI-TooltipDivider")
+
+Craftie.Frame.ScrollPlayersListSubMenuCancel={}
+Craftie.Frame.ScrollPlayersListSubMenuCancel = CreateFrame("Button", nil, Craftie.Frame.ScrollPlayersListSubMenu, "BackdropTemplate")
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetWidth(Craftie.Frame.ScrollPlayersListSubMenu:GetWidth()-2)
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetHeight(SubMenuHeight)
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetPoint("TOPLEFT", 1, -SubMenuHeight*7)
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetBackdrop(Craftie.Backdrop.Borderless)
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetBackdropColor(0, 0, 0, 0)
+--Craftie.Frame.ScrollPlayersListSubMenuCancel:SetBackdropBorderColor(0.6, 0.6, 0.4, 0.5)
+--Craftie.Frame.ScrollPlayersListSubMenu:SetFrameLevel(Craftie.Framelevel.Background)
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Text = Craftie.Frame.ScrollPlayersListSubMenuCancel:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Text:SetPoint("TOPLEFT", 8, -4)
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Text:SetText("Cancel")
+--[==[
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Icon = Craftie.Frame.ScrollPlayersListSubMenuCancel:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Icon:SetSize(16, 16)
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Icon:SetPoint("TOPRIGHT", -11, -2)
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Icon:SetTexture("Interface/RAIDFRAME/ReadyCheck-NotReady")
+Craftie.Frame.ScrollPlayersListSubMenuCancel.Icon:SetDesaturation(1)
+]==]--
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetScript("OnEnter", function(self)
+  self:SetBackdropColor(SubMenuHighLight[1], SubMenuHighLight[2], SubMenuHighLight[3], SubMenuHighLight[4])
+  --self.Icon:SetDesaturation(0)
+end)
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetScript("OnLeave", function(self)
+  self:SetBackdropColor(0, 0, 0, 0)
+  --self.Icon:SetDesaturation(1)
+end)
+Craftie.Frame.ScrollPlayersListSubMenuCancel:SetScript("OnClick", function(self)
   Craftie:CloseAllPlayerMenus()
 end)

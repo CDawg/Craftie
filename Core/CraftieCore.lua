@@ -815,6 +815,9 @@ function Craftie:CrafterDataParse(profName, player)
     if (update == nil) then
       update=""
     end
+    if (profMastery == nil) then
+      profMastery=0
+    end
     Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. profMastery .. "," .. update, Craftie.CHAT.FUNC)
   end
   return crafterProf
@@ -836,7 +839,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
 
   local total_recipes = #profCache
   --local total_search = 0
-  local results = "|cfffffb63Recipe(s)"
+  local results = " / " .. #Craftie.Profession[Craftie.Page] .. " |cfffffb63Recipe(s)"
 
   Craftie:ClearCraftWindow()
 
