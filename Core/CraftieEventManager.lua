@@ -59,13 +59,6 @@ Craftie.Event:SetScript("OnEvent", function(self, event, prefix, netpacket, data
   Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 end)
 
-Craftie.PlayerGUIDProf = {}
-Craftie.IsInCombat = false
-Craftie.ChatThrottle = {
-  Timer = 10,
-  Flag = 1
-}
-
 function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
   if (event) then
 		if ((event == "ADDON_LOADED") and (prefix == Craftie._G.Prefix)) then
@@ -98,10 +91,17 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "TRADE_SKILL_SHOW") then
       local profName, profLevel = GetTradeSkillLine()
       if (profName) then
-        Craftie:CrafterDataBuild(profName, profLevel)
-        C_Timer.After(1, function()
-          Craftie:BuildPersonalTooltip()
-        end)
+        Craftie:CrafterDataBuild(profName, profLevel) --throttle by recipebook
+         if (Craftie.Throttle.Prof.Flag == 1) then
+          Craftie.Throttle.Prof.Flag = 0
+          C_Timer.After(1, function()
+            Craftie:BuildPersonalTooltip()
+          end)
+          C_Timer.After(Craftie.Throttle.Prof.Timer, function()
+            Craftie.Throttle.Prof.Flag = 1
+            Craftie:ResetCrafterBuild()
+          end)
+        end
       end
     end
 
@@ -116,7 +116,9 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     --PlayerIsInCombat
 
     --if (prefix == Craftie._G.Prefix) then
-      --Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
+      if (event ~= "CHAT_MSG_CHANNEL") then
+        Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
+      end
     --end
 
   end

@@ -396,13 +396,6 @@ function Craftie:ParsePacket(netpacket)
           end
           --Craftie.PlayerGUIDProf[crafter] = tooltip
         end
-        --example
-        --Craftie.PlayerGUIDProf[crafter] = {
-          --prof1="Cooking", prof1L=350,
-          --prof2="Cooking", prof2L=350,
-          --prof3="Cooking", prof3L=350,
-        --}
-
       end
 
     else
@@ -542,13 +535,6 @@ function Craftie:ItemDetails(item)
   Craftie.Frame.Craft.ID:SetText(item[4])
   Craftie.Frame.Craft.Text:SetText(item[2])
 
-  --[==[
-  Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 45, -12)
-  if (#Craftie.Frame.Craft.Text:GetText() >= 30) then
-    Craftie.Frame.Craft.Text:SetPoint("TOPLEFT", 45, -6)
-  end
-  ]==]--
-
   local item_detail = item[4]
   local is_enchant = false
 
@@ -660,6 +646,7 @@ function Craftie:ResetCrafterBuild()
   Craftie:Notification("Craftie:ResetCrafterBuild()", Craftie.CHAT.FUNC)
 end
 
+--Craftie.Throttle.Prof.Flag
 --build personal string, store it, and use for packets and notifications
 function Craftie:CrafterDataBuild(profName, profLevel)
   local profBuild = Craftie:CopyTable(Craftie.Profession[profName])
@@ -670,7 +657,8 @@ function Craftie:CrafterDataBuild(profName, profLevel)
 
   for k,v in pairs(Craftie.Professions) do --use only the prio list, no fishing, first-aid, etc...
     if (v[1] == profName) then
-      if (Craftie.ProfileBuilt[profName] <= 1) then
+      if (Craftie.ProfileBuilt[profName] == 0) then
+        --Craftie:Notification("Craftie:CrafterDataBuild", Craftie.CHAT.FUNC)
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profBuild) do
@@ -719,13 +707,14 @@ function Craftie:CrafterDataBuild(profName, profLevel)
 
           profString = profString .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
 
-          Craftie:Notification(profString, Craftie.CHAT.SAVE)
+          Craftie:Notification("Craftie:CrafterDataBuild(" .. profString .. ")", Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
         end)
       end
-      Craftie.ProfileBuilt[profName] = Craftie.ProfileBuilt[profName] + 1 --we already pulled data, reset on learning new recipe
+      Craftie.ProfileBuilt[profName] = 1 --we already pulled and stored data, reset only on learning a new recipe
     end
   end
+  --Craftie:Notification("Craftie:CrafterDataBuild", Craftie.CHAT.FUNC)
 end
 
 function Craftie:SetProfLevel(level)
@@ -1081,16 +1070,16 @@ end
 
 Craftie.Tooltip = nil
 function Craftie:UpdatePlayerTooltip()
-  if (Craftie.ChatThrottle.Flag == 1) then
+  if (Craftie.Throttle.Chat.Flag == 1) then
     Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
-    Craftie.ChatThrottle.Flag = 0
+    Craftie.Throttle.Chat.Flag = 0
 
     if (Craftie.Tooltip ~= nil) then
       --announce to new players around
       Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
     end
-    C_Timer.After(Craftie.ChatThrottle.Timer, function()
-      Craftie.ChatThrottle.Flag = 1 --reset after
+    C_Timer.After(Craftie.Throttle.Chat.Timer, function()
+      Craftie.Throttle.Chat.Flag = 1 --reset after
     end)
   end
 end

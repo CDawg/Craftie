@@ -48,6 +48,18 @@ Craftie.CHAT = {
   FUNC = {9, "|CFF385EC2FUNC|r"},
 }
 
+Craftie.PlayerGUIDProf = {}
+Craftie.IsInCombat = false
+Craftie.Throttle = {}
+Craftie.Throttle.Chat = {
+  Timer = 10,
+  Flag = 1
+}
+Craftie.Throttle.Prof = {
+  Timer = 20,
+  Flag = 1
+}
+
 Craftie.Framelevel = {
   Background= 0,
   Foreground= 1,
