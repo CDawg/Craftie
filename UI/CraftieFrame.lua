@@ -278,8 +278,4 @@ CraftieDialog.Yes = CreateFrame("Button", nil, CraftieDialog, "UIPanelButtonTemp
 CraftieDialog.Yes:SetSize(100, 24)
 CraftieDialog.Yes:SetPoint("CENTER", 64, -20)
 CraftieDialog.Yes:SetText("Yes")
-CraftieDialog.Yes:SetScript("OnClick", function(self)
-  self:GetParent():Hide()
-  Craftie:CloseAllPlayerMenus()
-end)
 CraftieDialog.Yes:Hide()

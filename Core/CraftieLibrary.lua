@@ -320,39 +320,39 @@ function Craftie:SearchTable(tbl, search) --basic table
 end
 
 function Craftie:SortTableByMatch(tbl, search)
-    search = string.lower(search or "")
-    local matchCount = 0
+  search = string.lower(search or "")
+  local matchCount = 0
 
-    -- First pass: count matches
-    if (search ~= "") then
-      for _, item in ipairs(tbl) do
-        local name = string.lower(item[2] or "")
-        if string.find(name, search, 1, true) then
-          matchCount = matchCount + 1
-        end
+  -- First pass: count matches
+  if (search ~= "") then
+    for _, item in ipairs(tbl) do
+      local name = string.lower(item[2] or "")
+      if string.find(name, search, 1, true) then
+        matchCount = matchCount + 1
       end
-    else
-      matchCount = #tbl -- Empty search = everything matches
+    end
+  else
+    matchCount = #tbl -- Empty search = everything matches
+  end
+
+  -- Sort table
+  table.sort(tbl, function(a, b)
+    local nameA = string.lower(a[2] or "")
+    local nameB = string.lower(b[2] or "")
+
+    local posA = string.find(nameA, search, 1, true) or math.huge
+    local posB = string.find(nameB, search, 1, true) or math.huge
+
+    -- Earlier match wins
+    if posA ~= posB then
+        return posA < posB
     end
 
-    -- Sort table
-    table.sort(tbl, function(a, b)
-      local nameA = string.lower(a[2] or "")
-      local nameB = string.lower(b[2] or "")
+    -- Alphabetical fallback
+    return nameA < nameB
+  end)
 
-      local posA = string.find(nameA, search, 1, true) or math.huge
-      local posB = string.find(nameB, search, 1, true) or math.huge
-
-      -- Earlier match wins
-      if posA ~= posB then
-          return posA < posB
-      end
-
-      -- Alphabetical fallback
-      return nameA < nameB
-    end)
-
-    return matchCount
+  return matchCount
 end
 
 function Craftie:TextSpacing(text, spacing)
