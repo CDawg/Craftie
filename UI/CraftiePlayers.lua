@@ -158,7 +158,7 @@ Craftie.Frame.ScrollPlayersListProfLevel={}
 Craftie.Frame.ScrollPlayersListProfMastery={}
 Craftie.Frame.ScrollPlayersListUpdate={}
 Craftie.Frame.ScrollPlayersListSelect={}
-Craftie.Frame.ScrollPlayersListSelectSpark={}
+--Craftie.Frame.ScrollPlayersListSelectSpark={}
 Craftie.Frame.ScrollPlayersListFav={}
 Craftie.Frame.ScrollPlayersListNet={}
 
@@ -215,13 +215,14 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.60, 0.80, 0.94)
   Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.5)
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
+  --[==[
   Craftie.Frame.ScrollPlayersListSelectSpark[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetSize(64, 80)
   Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetPoint("TOPLEFT", -30, 18)
   Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetTexture("Interface/COMMON/StreamSpark")
   Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetVertexColor(0.80, 0.90, 1)
   Craftie.Frame.ScrollPlayersListSelectSpark[i]:Hide()
-
+  ]==]--
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(8, 8)
   Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 18, -6)

@@ -337,21 +337,21 @@ for i=1, Craftie.MAX_REAGENTS do
 
   local ReagentQPosX = 7
   Craftie.Frame.Reagent.QuanI[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.QuanI[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size-1, "OUTLINE | SLUG")
+  Craftie.Frame.Reagent.QuanI[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", -27, -20)
-  Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", ReagentQPosX, -20)
+  Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", ReagentQPosX, -22)
   Craftie.Frame.Reagent.QuanI[i]:SetText("3")
   Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Dash[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.Dash[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+1, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", -19, -20)
-  Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", ReagentQPosX+8, -20)
+  Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", ReagentQPosX+8, -22)
   Craftie.Frame.Reagent.Dash[i]:SetText("/")
   Craftie.Frame.Reagent.Dash[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.QuanR[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.QuanR[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size-1, "OUTLINE | SLUG")
+  Craftie.Frame.Reagent.QuanR[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", -14, -20)
-  Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", ReagentQPosX+13, -20)
+  Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", ReagentQPosX+13, -22)
   Craftie.Frame.Reagent.QuanR[i]:SetText("3")
   Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Main[i]:Hide()
@@ -389,7 +389,7 @@ Craftie.Frame.ScrollRecipesListItem={}
 Craftie.Frame.ScrollRecipesListBack={}
 Craftie.Frame.ScrollRecipesListText={}
 Craftie.Frame.ScrollRecipesListSelect={}
-Craftie.Frame.ScrollRecipesListSelectSpark={}
+--Craftie.Frame.ScrollRecipesListSelectSpark={}
 Craftie.Frame.ScrollRecipesListHLink={}
 for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListItem[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
@@ -440,12 +440,14 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListSelect[i]:SetVertexColor(0.70, 0.70, 0.60)
   Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.5)
   Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
+  --[==[
   Craftie.Frame.ScrollRecipesListSelectSpark[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetSize(64, 80)
   Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetPoint("TOPLEFT", -30, 18)
   Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetTexture("Interface/COMMON/StreamSpark")
   Craftie.Frame.ScrollRecipesListSelectSpark[i]:SetVertexColor(0.90, 0.90, 0.80)
   Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
+  ]==]--
   --UI-Listbox-Highlight2
 
   Craftie.Frame.ScrollRecipesListText[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateFontString(nil, "ARTWORK")
