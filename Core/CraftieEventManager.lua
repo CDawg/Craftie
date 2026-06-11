@@ -115,11 +115,11 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 
     --PlayerIsInCombat
 
-    --if (prefix == Craftie._G.Prefix) then
+    if (prefix == Craftie._G.Prefix) then
       if (event ~= "CHAT_MSG_CHANNEL") then
         Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
       end
-    --end
+    end
 
   end
 end
