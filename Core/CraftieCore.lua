@@ -170,25 +170,43 @@ function Craftie:UpdateCrafterList(search)
       search_list = Craftie:SearchTable(crafter_list, search)
     end
 
-    for k,v in ipairs(search_list) do
-      Craftie.Frame.ScrollPlayersListName[k+1]:SetText(v) --avoid the 1st row
-      Craftie.Frame.ScrollPlayersListFav[k+1]:Show()
+    --table.sort(search_list)
+
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] ~= nil) then
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
+        --if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][search_list[n]] == 1) then
+          --Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(0, 0.5, 0, 0.5)
+        --end
+      end
     end
+
 
     local results = "|cfffffb63Crafter(s)"
     Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
 
     for n=1, #search_list do
       local i=n+1 --skip the 1st index
-      --print("tiny table " .. search_list[n])
       local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][search_list[n]], ",")
-      print(i .. " | " .. search_list[n] .. " | " .. "profLevel " .. crafter[3])
+      --print(i .. " | " .. search_list[n] .. " | " .. "profLevel " .. crafter[3])
       --[==[
       Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n])
       Craftie.Frame.ScrollPlayersListNet[i]:Show() --online status only works for guildies
       Craftie.Frame.ScrollPlayersListFav[i]:Show()
       Craftie.Frame.ScrollPlayersListClass[i]:SetText(Craftie.Class[tonumber(crafter[1])][2])
       ]==]--
+
+      Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n]) --avoid the 1st row
+      Craftie.Frame.ScrollPlayersListFav[i]:Show()
+
+      Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(1, 0.5, 0, 0.5)
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] ~= nil) then
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
+          if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][search_list[n]] == 1) then
+            Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(0, 0.5, 0, 0.5)
+          end
+        end
+      end
+
       Craftie.Frame.ScrollPlayersListClass[i]:SetText(tonumber(crafter[1]))
       Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText(crafter[3])
       if (crafter[5]) then

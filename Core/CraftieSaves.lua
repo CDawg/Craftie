@@ -27,6 +27,7 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
   end
 
   --diff faction

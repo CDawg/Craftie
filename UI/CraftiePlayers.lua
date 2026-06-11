@@ -331,6 +331,15 @@ for i=1, Craftie.MAX_PLAYERS do
               local g = Craftie.Class[class][3][2]
               local b = Craftie.Class[class][3][3]
               Craftie.Frame.ScrollPlayersListSubMenuName:SetTextColor(r, g, b, 1)
+
+              Craftie.Frame.ScrollPlayersListSubMenuFav.Text:SetText("Add To Favorites")
+              if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
+                if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] ~= nil) then
+                  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] == 1) then
+                    Craftie.Frame.ScrollPlayersListSubMenuFav.Text:SetText("Remove From Favorites")
+                  end
+                end
+              end
             end
           end
         end
@@ -386,8 +395,27 @@ Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnLeave", function(self)
   self.Icon:SetDesaturation(1)
 end)
 Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnClick", function(self)
-  Craftie:CloseAllPlayerMenus()
-  Craftie:UpdateCrafterList()
+  --just build a new favs list if it doesn't exist
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] == nil) then
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
+  end
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] == nil) then
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] = {}
+  end
+
+  C_Timer.After(0.1, function()
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] ~= nil) then
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] == 1) then
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] = 0
+        print("removed " .. Craftie.Selected_Name)
+      else
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] = 1
+      end
+    end
+    Craftie:CloseAllPlayerMenus()
+    Craftie:UpdateCrafterList()
+  end)
+
 end)
 
 Craftie.Frame.ScrollPlayersListSubMenuParty={}
@@ -510,3 +538,16 @@ end)
 Craftie.Frame.ScrollPlayersListSubMenuCancel:SetScript("OnClick", function(self)
   Craftie:CloseAllPlayerMenus()
 end)
+
+--[==[
+local btn = CreateFrame("Button", "MySecurePartyButton", UIParent, "SecureUnitButtonTemplate")
+btn:SetAttribute("unit", "party1") -- Set target (e.g., "party1")
+RegisterUnitWatch(btn) -- Monitor unit changes (e.g., vehicles)
+btn:RegisterForClicks("AnyUp")
+
+-- Set secure action attributes
+btn:SetAttribute("*type1", "target")     -- Left Click: Target
+btn:SetAttribute("*type2", "togglemenu") -- Right Click: Menu
+btn:SetSize(120, 40)
+btn:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
+]==]--
