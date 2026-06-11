@@ -237,36 +237,6 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(1, 0.5, 0, 0.5)
   Craftie.Frame.ScrollPlayersListFav[i]:Hide()
 
-  --[==[
-  Craftie.Frame.ScrollPlayersListOpt[i] = CreateFrame("Button", nil, Craftie.Frame.ScrollPlayersListItem[i], "BackdropTemplate", 1)
-  Craftie.Frame.ScrollPlayersListOpt[i]:SetSize(22, 22)
-  Craftie.Frame.ScrollPlayersListOpt[i]:SetPoint("TOPLEFT", 154, 0)
-  Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
-  Craftie.Frame.ScrollPlayersListOpt.Back[i] = Craftie.Frame.ScrollPlayersListOpt[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.ScrollPlayersListOpt.Back[i]:SetSize(20, 20)
-  Craftie.Frame.ScrollPlayersListOpt.Back[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollPlayersListOpt.Back[i]:SetTexture("Interface/FriendsFrame/UI-FriendsList-Small-Up")
-  Craftie.Frame.ScrollPlayersListOpt.Back[i]:SetDesaturation(1)
-  Craftie.Frame.ScrollPlayersListOpt.Back[i]:SetVertexColor(0.80, 0.90, 1)
-  Craftie.Frame.ScrollPlayersListOpt.HL[i] = Craftie.Frame.ScrollPlayersListOpt[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetSize(22, 22)
-  Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Button-HL-Blue.png")
-  Craftie.Frame.ScrollPlayersListOpt.HL[i]:SetBlendMode("ADD")
-  Craftie.Frame.ScrollPlayersListOpt.HL[i]:Hide()
-  Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnEnter", function(self)
-    if (Craftie.EnableScrollFrames) then
-      if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
-        self:Show()
-      end
-      Craftie.Frame.ScrollPlayersListOpt.HL[i]:Show()
-    end
-  end)
-  Craftie.Frame.ScrollPlayersListOpt[i]:SetScript("OnLeave", function(self)
-    Craftie.Frame.ScrollPlayersListOpt.HL[i]:Hide()
-  end)
-  ]==]--
-
   if (i % 2 == 0) then
     Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
   end
@@ -312,6 +282,7 @@ for i=1, Craftie.MAX_PLAYERS do
           CraftieTooltip:AddLine("|CFFEFEFEFRight Click for more options")
           CraftieTooltip:Show()
         end
+
       end
     end
 
