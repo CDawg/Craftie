@@ -1163,6 +1163,7 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
 end)
 
 --custom tooltip for Craftie only
+--CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate,BackdropTemplate")
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
 for i = 1, 30 do
   local left = _G["CraftieTooltipTextLeft"..i]
@@ -1177,3 +1178,4 @@ for i = 1, 30 do
     right:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
   end
 end
+CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
