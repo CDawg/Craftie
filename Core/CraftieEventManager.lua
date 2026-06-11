@@ -154,6 +154,7 @@ for k,v in pairs(Craftie.Professions) do
       local pattern= "%[" .. b .. "%]"
       if (msg:find(pattern)) then --register the author data
         local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+        --local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t[Craftie" .. pattern .. "]|h|r")
         return false, filter, author, ...
       end
     end
@@ -212,4 +213,18 @@ end)
 --Dont use, too many filters and lags
 EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
 end)
+
+local OriginalSendChatMessage = SendChatMessage
+function SendChatMessage(msg, chatType, languageID, target)
+  -- Filter logic
+  if msg and msg:find("badword") then
+    print("Blocked:", msg)
+    return
+  end
+
+  -- Modify message
+  msg = "[Craftie] " .. msg
+
+    return OriginalSendChatMessage(msg, chatType, languageID, target)
+end
 ]==]--
