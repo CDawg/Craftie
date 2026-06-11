@@ -32,7 +32,9 @@ Craftie.Logger:SetScript("OnDragStart", function()
 end)
 Craftie.Logger:SetScript("OnDragStop", function()
   Craftie.Logger:StopMovingOrSizing()
-  --local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Logger:GetPoint()
+  local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Logger:GetPoint()
+  CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_LOGGER"] = point .. "," .. xOfs .. "," .. yOfs
+  Craftie:Notification("Logger:[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, Craftie.CHAT.SAVE)
 end)
 Craftie.Logger.Background = CreateFrame("Frame", "Craftie.Logger.Background", Craftie.Logger, "BaseBasicFrameTemplate")
 Craftie.Logger.Background:SetWidth(Craftie.Logger:GetWidth())
@@ -45,7 +47,7 @@ Craftie.Logger:SetScript("OnShow", function(self)
   Craftie.Logger.Background:Show()
 end)
 
---Craftie.Logger:Hide()
+Craftie.Logger:Hide()
 
 Craftie.Logger.Button={}
 Craftie.Logger.Button.Frame = Craftie.Logger.Background:CreateTexture(nil, "OVERLAY")
