@@ -34,12 +34,12 @@ Craftie = {
 	},
 }
 
-Craftie.DEBUGLEVEL = 9 --default [INFO | ERROR]
+Craftie.DEBUGLEVEL = 9 --default [INFO | ERROR] | WARN
 
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
   ERROR= {2, "|CFFFF0000ERROR|r"},
-  WARN = {3, "|CFFF54927WARNING|r"},
+  WARN = {3, "|CFFFFD94FWARNING|r"},
   EVENT= {4, "|CFF92CEFCEVENT|r"},
   SEND = {5, "|CFF89DE49SEND|r"},
   ACK  = {6, "|CFFD177F7ACK|r"},

@@ -23,7 +23,7 @@ function Craftie:Notification(msg, type)
     Craftie.DEBUGLEVEL = 1 --prevent errors, but always show chat
   end
   if (DEBUGLEVEL <= Craftie.DEBUGLEVEL) then
-    if (MODECOLOR == Craftie.CHAT.INFO[2]) then
+    if (MODECOLOR == Craftie.CHAT.INFO[2]) then --we dont need to view the type everytime
       print(Craftie._G.Title .. " " .. msg)
     else
       print(Craftie._G.Title .. " " .. MODECOLOR .. " " .. msg)
@@ -35,10 +35,8 @@ function Craftie:Notification(msg, type)
   end
 end
 
+--Also reenable the scrollbars
 function Craftie:CloseAllPlayerMenus()
-  --for i=1, Craftie.MAX_PLAYERS do
-    --Craftie.Frame.ScrollPlayersListOpt[i]:Hide()
-  --end
   CraftieTooltip:Hide()
   GameTooltip:Hide()
   Craftie.Frame.ScrollPlayersListSubMenu:Hide()
@@ -46,10 +44,12 @@ function Craftie:CloseAllPlayerMenus()
   Craftie.Frame.ScrollPlayersList.Child:SetAlpha(1)
   Craftie.Frame.ScrollPlayersList.Child:EnableMouse(true)
   Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(true)
+  Craftie.Frame.ScrollPlayersList.Child.ScrollBar:Show()
 
   Craftie.Frame.ScrollRecipesList.Child:SetAlpha(1)
   Craftie.Frame.ScrollRecipesList.Child:EnableMouse(true)
   Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(true)
+  Craftie.Frame.ScrollRecipesList.Child.ScrollBar:Show()
 
   Craftie.EnableScrollFrames = true
 end
@@ -83,17 +83,21 @@ function Craftie:ClearSearchFocus()
 end
 
 function Craftie:DisableAllScrollBars()
+  C_Timer.After(0.01, function()
   --players
     Craftie.Frame.ScrollPlayersList.Child:SetAlpha(0.4)
     Craftie.Frame.ScrollPlayersList.Child:EnableMouse(false)
     Craftie.Frame.ScrollPlayersList.Child:EnableMouseWheel(false)
-    --Craftie.Frame.ScrollPlayersList.Child:SetClipsChildren(true)
+    Craftie.Frame.ScrollPlayersList.Child.ScrollBar:Hide()
+
   --recipes
     Craftie.Frame.ScrollRecipesList.Child:SetAlpha(0.4)
     Craftie.Frame.ScrollRecipesList.Child:EnableMouse(false)
     Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(false)
-    --Craftie.Frame.ScrollRecipesList.Child:SetClipsChildren(true)
-    Craftie.EnableScrollFrames = false
+    Craftie.Frame.ScrollRecipesList.Child.ScrollBar:Hide()
+  end)
+
+  Craftie.EnableScrollFrames = false
 end
 
 --this also goes to the player selected scroll item
