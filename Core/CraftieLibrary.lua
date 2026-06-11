@@ -31,6 +31,7 @@ Craftie = {
     Faction = UnitFactionGroup("player"),
     GUID    = UnitGUID("player"),
     Combine = UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
+    Language= GetLocale(),
 	},
 }
 

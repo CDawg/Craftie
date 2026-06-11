@@ -247,6 +247,7 @@ for i=1, Craftie.MAX_PLAYERS do
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(0.8, 0.85, 1, 0.2)
     end
+
     if ((i > 1) and (Craftie.EnableScrollFrames)) then
       local class = 1
       local color = ""

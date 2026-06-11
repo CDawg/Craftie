@@ -222,7 +222,7 @@ function Craftie:UpdateCrafterList(search)
     end
   end)
 
-  C_Timer.After(0.2, function()
+  C_Timer.After(0.1, function()
     Craftie.Frame.ScrollPlayersLoading:Hide()
     Craftie.Frame.ScrollPlayersList:SetAlpha(1)
     --Craftie.Frame.ScrollPlayersList.Child:SetSelected(1)
@@ -230,7 +230,13 @@ function Craftie:UpdateCrafterList(search)
   end)
 
   Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
-  Craftie.Frame.ScrollPlayersListFav[1]:Hide()
+  --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
+  Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
+  Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/ICONS/" .. Craftie.Professions[Craftie.Tab][2])
+  Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(0, 1, 0, 1)
+  --Craftie.Frame.ScrollPlayersListFav[1]:SetAlpha(0.7)
+  Craftie.Frame.ScrollPlayersListFav[1]:SetDesaturation(0.6)
+  Craftie.Frame.ScrollPlayersListFav[1]:Show()
 end
 
 function Craftie:TabSelect(tab, sound)
@@ -247,6 +253,7 @@ function Craftie:TabSelect(tab, sound)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
     --PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2) --request to craft?
   end
+  Craftie.Tab = tab
   Craftie.Selected_Name = ""
   Craftie.Page = prof_name
   Craftie.ProfessionDefault = Craftie.Profession[prof_name]
