@@ -388,7 +388,7 @@ Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnLeave", function(self)
   self:SetBackdropColor(0, 0, 0, 0)
 end)
 Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnClick", function(self)
-  --just build a new favs list if it doesn't exist
+  --just build a new favs table if it doesn't exist
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] == nil) then
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
   end
@@ -404,6 +404,8 @@ Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnClick", function(self)
       else
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] = 1
       end
+    else
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] = 1
     end
     Craftie:CloseAllPlayerMenus()
     Craftie:UpdateCrafterList()
