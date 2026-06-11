@@ -77,7 +77,7 @@ local PlayersMenuSel = {
   "Guild Only"
 }
 Craftie.Frame.DropdownPlayers={}
-Craftie.Frame.DropdownPlayers = CreateFrame("Frame", nil, Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
+Craftie.Frame.DropdownPlayers = CreateFrame("Frame", "Craftie.Frame.DropdownPlayers", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
 Craftie.Frame.DropdownPlayers:SetPoint("TOPLEFT", -14, -24)
 Craftie.Frame.DropdownPlayers.displayMode = "MENU"
 --Craftie.Frame.DropdownPlayers:SetBackdrop(Craftie.Backdrop.Borderless)
@@ -86,11 +86,11 @@ Craftie.Frame.DropdownPlayers.text = Craftie.Frame.DropdownPlayers:CreateFontStr
 Craftie.Frame.DropdownPlayers.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
 Craftie.Frame.DropdownPlayers.text:SetPoint("TOPLEFT", Craftie.Frame.DropdownPlayers, "TOPLEFT", 25, -8)
 Craftie.Frame.DropdownPlayers.text:SetText(PlayersMenuSel[1])
-Craftie.Frame.DropdownPlayers.onClick = function(self, checked)
+Craftie.Frame.DropdownPlayers.OnClick = function(self, checked)
   Craftie.Frame.DropdownPlayers.text:SetText(PlayersMenuSel[self.value])
   print(self.value)
 end
-UIDropDownMenu_SetWidth(Craftie.Frame.DropdownPlayers, Craftie.Frame.ScrollPlayers_Width-20)
+UIDropDownMenu_SetWidth(Craftie.Frame.DropdownPlayers, Craftie.Frame.ScrollPlayers_Width-22)
 UIDropDownMenu_Initialize(Craftie.Frame.DropdownPlayers, function(self, level)
   local info = UIDropDownMenu_CreateInfo()
   for k,v in pairs(PlayersMenuSel) do
@@ -100,32 +100,28 @@ UIDropDownMenu_Initialize(Craftie.Frame.DropdownPlayers, function(self, level)
     info.value= k
     info.justifyH = "LEFT"
     info.disabled = false
-    info.func = self.onClick
+    info.func = self.OnClick
     UIDropDownMenu_AddButton(info, level)
   end
 end)
-
---[==[
-Craftie.Frame.DropdownPlayers={}
-Craftie.Frame.DropdownPlayers = CreateFrame("Frame", nil, Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
-Craftie.Frame.DropdownPlayers:SetPoint("TOPLEFT", 0, -8)
-Craftie.Frame.DropdownPlayers:SetWidth(Craftie.Frame.ScrollPlayers_Width-6)
-Craftie.Frame.DropdownPlayers.displayMode = "MENU"
-Craftie.Frame.DropdownPlayers.Text = Craftie.Frame.DropdownPlayers:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.DropdownPlayers.Text:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.DropdownPlayers.Text:SetPoint("TOPLEFT", Craftie.Frame.DropdownPlayers, "TOPLEFT", 25, -8)
-Craftie.Frame.DropdownPlayers.Text:SetText("All Crafters")
---Craftie.Frame.DropdownPlayers.Text:SetText(TOCA.Dropdown.Menu[1])
-]==]--
+_G[Craftie.Frame.DropdownPlayers:GetName() .. "Left"]:Hide()
+_G[Craftie.Frame.DropdownPlayers:GetName() .. "Middle"]:Hide()
+_G[Craftie.Frame.DropdownPlayers:GetName() .. "Right"]:Hide()
+Craftie.Frame.DropdownPlayers.Back = Craftie.Frame.DropdownPlayers:CreateTexture(nil, "BORDER")
+Craftie.Frame.DropdownPlayers.Back:SetSize(Craftie.Frame.ScrollPlayers_Width-5, 28)
+Craftie.Frame.DropdownPlayers.Back:SetPoint("TOPLEFT", 16, -2)
+Craftie.Frame.DropdownPlayers.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
+Craftie.Frame.DropdownPlayers.Back:SetRotation(-math.pi)
+--Craftie.Frame.Search.Players.Back:SetAlpha(0.8)
 
 --[==[
 SEARCH PLAYERS
 ]==]--
 Craftie.Frame.Search.Players={}
 Craftie.Frame.Search.Players = CreateFrame("Frame", "Craftie.Frame.Search.Players", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate", 2)
-Craftie.Frame.Search.Players:SetWidth(Craftie.Frame.ScrollPlayers_Width-6)
+Craftie.Frame.Search.Players:SetWidth(Craftie.Frame.ScrollPlayers_Width-5)
 Craftie.Frame.Search.Players:SetHeight(24)
-Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 5, -1)
+Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 2, -1)
 Craftie.Frame.ScrollPlayersResultsFrame:SetFrameLevel(50)
 
 Craftie.Frame.Search.Players.Back = Craftie.Frame.Search.Players:CreateTexture(nil, "BORDER")
