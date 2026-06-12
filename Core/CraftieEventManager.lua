@@ -66,6 +66,10 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 	    Craftie:Init()
       --print("Craftie.Event[1] " .. prefix .. " | " .. event)
       Craftie:Notification("Craftie:EventManager[1] " .. event, Craftie.CHAT.EVENT)
+      if (IsInGuild()) then
+        local _, numMembers = GetNumGuildMembers()
+        Craftie.NumGuildMembers = numMembers
+      end
 	  end
 
     if (event == "PLAYER_REGEN_ENABLED") then
@@ -79,14 +83,31 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       if (not Craftie.IsInCombat) then
         local inInstance, instanceType = IsInInstance()
         if (not inInstance) then
-          Craftie:UpdatePlayerTooltip(false)
+          Craftie:UpdatePlayerTooltip("WORLD")
         end
       end
     end
 
-    if ((event == "GROUP_ROSTER_UPDATE") or ((event == "GUILD_ROSTER_UPDATE"))) then
-      Craftie:UpdatePlayerTooltip(true)
+    if (event == "GROUP_ROSTER_UPDATE") then
+      Craftie:UpdatePlayerTooltip("GROUP")
       Craftie:Notification(event, Craftie.CHAT.EVENT)
+    end
+
+    if (event == "GUILD_ROSTER_UPDATE") then
+      if (IsInGuild()) then
+        local _, numMembers = GetNumGuildMembers()
+        if (Craftie.NumGuildMembers < numMembers) then
+          --detect only logging in
+          Craftie:UpdatePlayerTooltip("GUILD")
+          Craftie:Notification(event, Craftie.CHAT.EVENT)
+        end
+        --consistent updating
+        Craftie.NumGuildMembers = numMembers
+      end
+    end
+
+    if (event == "PLAYER_LOGIN") then
+      print("player logged in")
     end
 
     if (event == "SKILL_LINES_CHANGED") then

@@ -1131,23 +1131,30 @@ function SlashCmdList.Craftie(cmd)
 end
 
 Craftie.Tooltip = nil
-function Craftie:UpdatePlayerTooltip(rosterUpdate)
+function Craftie:UpdatePlayerTooltip(channel)
   if (Craftie.Throttle.Chat.Flag == 1) then
-    Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:UpdatePlayerTooltip(" .. channel .. ")", Craftie.CHAT.FUNC)
     Craftie.Throttle.Chat.Flag = 0
 
     if (Craftie.Tooltip ~= nil) then
-      if (rosterUpdate) then
+      if (channel == "GUILD") then
         if (IsInGuild()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "GUILD")
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, channel)
         end
+      end
+
+      if (channel == "GROUP") then
         if (IsInRaid()) then
           Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "RAID")
         elseif (IsInGroup()) then
           Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "PARTY")
         end
-      else
-        Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+      end
+
+      if (channel == "WORLD") then
+        if (not IsInInstance()) then
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+        end
       end
     end
     C_Timer.After(Craftie.Throttle.Chat.Timer, function()
