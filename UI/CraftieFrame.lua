@@ -34,8 +34,11 @@ Craftie.Frame:SetScript("OnDragStop", function()
   CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
   Craftie:Notification("Main:[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, Craftie.CHAT.SAVE)
 end)
+Craftie.Frame.Back = Craftie.Frame:CreateTexture(nil, "BACKGROUND", nil, 0)
+Craftie.Frame.Back:SetAllPoints()
+Craftie.Frame.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background.png")
 
-Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND", nil, 1)
 Craftie.Frame.BotShadow:SetSize(Craftie.Frame:GetWidth()-6, 24)
 Craftie.Frame.BotShadow:SetPoint("BOTTOMLEFT", 2, -1)
 Craftie.Frame.BotShadow:SetHorizTile(true)

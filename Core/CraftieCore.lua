@@ -145,6 +145,8 @@ end
 function Craftie:UpdateCrafterList(search)
   local crafter_list = {}
   local search_list = {}
+  local fav_list = {}
+
   Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.CHAT.FUNC)
   Craftie.Frame.ScrollPlayersResults:SetText("")
   Craftie.Frame.ScrollPlayersLoading:Show()
@@ -172,18 +174,29 @@ function Craftie:UpdateCrafterList(search)
     if (search ~= nil) then
       -- search is going on, redefine the table
       search_list = Craftie:SearchTable(crafter_list, search)
-    end
-
-    --table.sort(search_list)
-
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] ~= nil) then
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
-        --if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][search_list[n]] == 1) then
-          --Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(0, 0.5, 0, 0.5)
-        --end
+    else
+      --not searching
+      --local fav_exist = 0
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] ~= nil) then
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
+          --search_list={}
+          for k,v in pairs(search_list) do
+            if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][v] == 1) then
+              --table.insert(search_list, v)
+              print("fav - " .. v)
+            else
+              print(v)
+            end
+          end
+        end
       end
     end
 
+    --for _, value in ipairs(search_list) do
+      --table.insert(reindexedTable, value)
+    --end
+
+    --table.sort(search_list)
 
     local results = "|cfffffb63Crafter(s)"
     Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
@@ -357,14 +370,21 @@ function Craftie:ParsePacket(netpacket)
         local profPack = packet[4]
         local profParse = Craftie:Split(profPack, "|")
         local profName = profParse[1]
+        local profData = ""
 
         if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
           Craftie:Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.CHAT.ACK)
           --get my saved prof data and send it
-          local profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
-          --print("requester " .. requester)
-          Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
-          --print("sending :" .. profData)
+          if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()] ~= nil) then
+            if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] ~= nil) then
+              profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
+              if (profData ~= "") then
+                Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
+              end
+            end
+          else
+            Craftie:Notification("You were pinged by " .. requester .. " for " .. profName .. " and you have outdated data!", Craftie.CHAT.WARN)
+          end
         else
           --rather than a break, just ignore
           Craftie:Notification("Requester == Self. Ignoring", Craftie.CHAT.ACK)
@@ -372,7 +392,7 @@ function Craftie:ParsePacket(netpacket)
       end
 
       --handshake, get the other crafters data and store it
-      --similar to Craftie:CrafterDataBuild
+      --similar to Craftie:CrafterBuildData
       if (prefix == Craftie.Packet.Prefix.Data) then
         local crafterName = packet[3]
         --local crafterClass = Craftie.Class[tonumber(packet[4])][1]
@@ -670,7 +690,7 @@ end
 
 --Craftie.Throttle.Prof.Flag
 --build personal string, store it, and use for packets and notifications
-function Craftie:CrafterDataBuild(profName, profLevel)
+function Craftie:CrafterBuildData(profName, profLevel)
   local profBuild = Craftie:CopyTable(Craftie.Profession[profName])
   --Craftie:SortTableByString(profBuild) --alpha sort just in case
   local profData={}
@@ -678,9 +698,9 @@ function Craftie:CrafterDataBuild(profName, profLevel)
   local profMastery = 0
 
   for k,v in pairs(Craftie.Professions) do --use only the prio list, no fishing, first-aid, etc...
-    if (v[1] == profName) then
+    if (profName == v[1]) then
       if (Craftie.ProfileBuilt[profName] == 0) then
-        --Craftie:Notification("Craftie:CrafterDataBuild", Craftie.CHAT.FUNC)
+        --Craftie:Notification("Craftie:CrafterBuildData", Craftie.CHAT.FUNC)
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profBuild) do
@@ -729,14 +749,14 @@ function Craftie:CrafterDataBuild(profName, profLevel)
 
           profString = profString .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
 
-          Craftie:Notification("Craftie:CrafterDataBuild(" .. profString .. ")", Craftie.CHAT.SAVE)
+          Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled and stored data, reset only on learning a new recipe
     end
   end
-  --Craftie:Notification("Craftie:CrafterDataBuild", Craftie.CHAT.FUNC)
+  --Craftie:Notification("Craftie:CrafterBuildData", Craftie.CHAT.FUNC)
 end
 
 function Craftie:SetProfLevel(level)
@@ -1070,7 +1090,11 @@ function SlashCmdList.Craftie(cmd)
       end
     else
       if tonumber(args) then
-        Craftie.DEBUGLEVEL = tonumber(args)
+        if (tonumber(args) > #Craftie.CHAT) then
+          Craftie.Notification("Max debug level = " .. #Craftie.CHAT, Craftie.CHAT.INFO)
+        else
+          Craftie.DEBUGLEVEL = tonumber(args)
+        end
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"] = tonumber(args)
       else
         local count = 0
@@ -1094,14 +1118,24 @@ function SlashCmdList.Craftie(cmd)
 end
 
 Craftie.Tooltip = nil
-function Craftie:UpdatePlayerTooltip()
+function Craftie:UpdatePlayerTooltip(rosterUpdate)
   if (Craftie.Throttle.Chat.Flag == 1) then
     Craftie:Notification("Craftie:UpdatePlayerTooltip()", Craftie.CHAT.FUNC)
     Craftie.Throttle.Chat.Flag = 0
 
     if (Craftie.Tooltip ~= nil) then
-      --announce to new players around
-      Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+      if (rosterUpdate) then
+        if (IsInGuild()) then
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "GUILD")
+        end
+        if (IsInRaid()) then
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "RAID")
+        elseif (IsInGroup()) then
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "PARTY")
+        end
+      else
+        Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+      end
     end
     C_Timer.After(Craftie.Throttle.Chat.Timer, function()
       Craftie.Throttle.Chat.Flag = 1 --reset after

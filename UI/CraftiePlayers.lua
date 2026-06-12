@@ -78,7 +78,7 @@ local PlayersMenuSel = {
 }
 Craftie.Frame.DropdownPlayers={}
 Craftie.Frame.DropdownPlayers = CreateFrame("Frame", "Craftie.Frame.DropdownPlayers", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
-Craftie.Frame.DropdownPlayers:SetPoint("TOPLEFT", -14, -24)
+Craftie.Frame.DropdownPlayers:SetPoint("TOPLEFT", -14, -22)
 Craftie.Frame.DropdownPlayers.displayMode = "MENU"
 --Craftie.Frame.DropdownPlayers:SetBackdrop(Craftie.Backdrop.Borderless)
 --Craftie.Frame.DropdownPlayers:SetBackdropBorderColor(1, 1, 1, 0)
@@ -109,7 +109,7 @@ _G[Craftie.Frame.DropdownPlayers:GetName() .. "Middle"]:Hide()
 _G[Craftie.Frame.DropdownPlayers:GetName() .. "Right"]:Hide()
 Craftie.Frame.DropdownPlayers.Back = Craftie.Frame.DropdownPlayers:CreateTexture(nil, "BORDER")
 Craftie.Frame.DropdownPlayers.Back:SetSize(Craftie.Frame.ScrollPlayers_Width-5, 28)
-Craftie.Frame.DropdownPlayers.Back:SetPoint("TOPLEFT", 16, -2)
+Craftie.Frame.DropdownPlayers.Back:SetPoint("TOPLEFT", 16, -4)
 Craftie.Frame.DropdownPlayers.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
 Craftie.Frame.DropdownPlayers.Back:SetRotation(-math.pi)
 --Craftie.Frame.Search.Players.Back:SetAlpha(0.8)
@@ -375,10 +375,12 @@ for i=1, Craftie.MAX_PLAYERS do
               Craftie.Frame.ScrollPlayersListSubMenuName:SetTextColor(r, g, b, 1)
 
               Craftie.Frame.ScrollPlayersListSubMenuFav.Text:SetText("Add To Favorites")
-              if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
-                if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] ~= nil) then
-                  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] == 1) then
-                    Craftie.Frame.ScrollPlayersListSubMenuFav.Text:SetText("Remove From Favorites")
+              if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] ~= nil) then
+                if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
+                  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] ~= nil) then
+                    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] == 1) then
+                      Craftie.Frame.ScrollPlayersListSubMenuFav.Text:SetText("Remove From Favorites")
+                    end
                   end
                 end
               end

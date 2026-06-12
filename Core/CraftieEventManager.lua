@@ -26,6 +26,7 @@ Craftie.Event:RegisterEvent("CRAFT_SHOW")
 Craftie.Event:RegisterEvent("CRAFT_CLOSE")
 Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 Craftie.Event:RegisterEvent("GROUP_ROSTER_UPDATE")
+Craftie.Event:RegisterEvent("GUILD_ROSTER_UPDATE")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_ENABLED")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -74,33 +75,44 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       Craftie.IsInCombat = true
     end
 
+    if ((event == "PLAYER_STARTED_MOVING") or (event == "PLAYER_STOPPED_MOVING")) then
+      if (not Craftie.IsInCombat) then
+        local inInstance, instanceType = IsInInstance()
+        if (not inInstance) then
+          Craftie:UpdatePlayerTooltip(false)
+        end
+      end
+    end
+
+    if ((event == "GROUP_ROSTER_UPDATE") or ((event == "GUILD_ROSTER_UPDATE"))) then
+      Craftie:UpdatePlayerTooltip(true)
+      Craftie:Notification(event, Craftie.CHAT.EVENT)
+    end
+
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie:ResetCrafterBuild()
     end
 
-    if (Craftie.IsInCombat) then
-      --debug
-      Craftie:Notification("Craftie.IsInCombat", Craftie.CHAT.FUNC)
-    else
-      if ((event == "PLAYER_STARTED_MOVING") or (event == "PLAYER_STOPPED_MOVING")) then
-        Craftie:UpdatePlayerTooltip()
-      end
-    end
-
     if (event == "TRADE_SKILL_SHOW") then
-      local profName, profLevel = GetTradeSkillLine()
-      if (profName) then
-        Craftie:CrafterDataBuild(profName, profLevel) --throttle by recipebook
-         if (Craftie.Throttle.Prof.Flag == 1) then
-          Craftie.Throttle.Prof.Flag = 0
-          C_Timer.After(1, function()
-            Craftie:BuildPersonalTooltip()
-          end)
-          C_Timer.After(Craftie.Throttle.Prof.Timer, function()
-            Craftie.Throttle.Prof.Flag = 1
-            Craftie:ResetCrafterBuild()
-          end)
+      if (not Craftie.IsInCombat) then
+        local profName, profLevel = GetTradeSkillLine()
+        if (profName) then
+          for k,v in pairs(Craftie.Professions) do
+            if (profName == v[1]) then --ignore secondary profs
+              Craftie:CrafterBuildData(profName, profLevel) --throttle by recipebook
+              if (Craftie.Throttle.Prof.Flag == 1) then
+                Craftie.Throttle.Prof.Flag = 0
+                C_Timer.After(1, function()
+                  Craftie:BuildPersonalTooltip()
+                end)
+                C_Timer.After(Craftie.Throttle.Prof.Timer, function()
+                  Craftie.Throttle.Prof.Flag = 1
+                  Craftie:ResetCrafterBuild()
+                end)
+              end
+            end
+          end
         end
       end
     end
@@ -113,13 +125,13 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
 
-    --PlayerIsInCombat
-
+    --[==[
     if (prefix == Craftie._G.Prefix) then
       if (event ~= "CHAT_MSG_CHANNEL") then
         Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
       end
     end
+    ]==]--
 
   end
 end
@@ -213,6 +225,7 @@ end)
 --Dont use, too many filters and lags
 EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
 end)
+]==]--
 
 local OriginalSendChatMessage = SendChatMessage
 function SendChatMessage(msg, chatType, language, channel)
@@ -227,4 +240,3 @@ function SendChatMessage(msg, chatType, language, channel)
 
     return OriginalSendChatMessage(msg, chatType, language, channel)
 end
-]==]--

@@ -57,12 +57,6 @@ Craftie.Tab = 1
 Craftie.Frame={}
 Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "BasicFrameTemplate")
 
-local bg = Craftie.Frame:CreateTexture(nil, "BACKGROUND", nil, 0)
-bg:SetAllPoints()
-bg:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background.png")
-bg:SetAlpha(0.7)
---bg:SetVertexColor(1, 1, 1, 0.8)
-
 Craftie.Frame.Search={}
 
 Craftie.EnableScrollFrames = true
