@@ -188,7 +188,7 @@ function Craftie:UpdateCrafterList(search)
               table.insert(fav_list, v)
               --print("fav - " .. v)
             else
-              --print(v)
+              --print("rem - " .. v)
               table.insert(rem_list, v)
             end
           end
@@ -206,13 +206,9 @@ function Craftie:UpdateCrafterList(search)
       for _, value in ipairs(rem_list) do
         table.insert(search_list, value)
       end
+    else
+      table.sort(search_list)
     end
-
-    --for _, value in ipairs(search_list) do
-      --table.insert(reindexedTable, value)
-    --end
-
-    --table.sort(search_list)
 
     local results = "|cfffffb63Crafter(s)"
     Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
