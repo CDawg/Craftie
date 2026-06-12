@@ -40,7 +40,7 @@ Craftie.Frame.Back:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.Back:SetWidth(Craftie.Frame:GetWidth()-4)
 Craftie.Frame.Back:SetHeight(Craftie.Frame:GetHeight()-4)
 Craftie.Frame.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background.png")
---Craftie.Frame.Back:SetVertexColor(1, 0.94, 0.86)
+Craftie.Frame.Back:SetVertexColor(1, 0.94, 0.86)
 
 Craftie.Frame.BotShadow = Craftie.Frame:CreateTexture(nil, "BACKGROUND", nil, 1)
 Craftie.Frame.BotShadow:SetSize(Craftie.Frame:GetWidth()-6, 24)

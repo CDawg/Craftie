@@ -226,17 +226,3 @@ end)
 EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
 end)
 ]==]--
-
-local OriginalSendChatMessage = SendChatMessage
-function SendChatMessage(msg, chatType, language, channel)
-  -- Filter logic
-  if msg and msg:find("badword") then
-    print("Blocked:", msg)
-    return
-  end
-
-  -- Modify message
-  msg = "[Craftie] " .. msg
-
-    return OriginalSendChatMessage(msg, chatType, language, channel)
-end

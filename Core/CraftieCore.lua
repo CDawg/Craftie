@@ -146,6 +146,8 @@ function Craftie:UpdateCrafterList(search)
   local crafter_list = {}
   local search_list = {}
   local fav_list = {}
+  local rem_list = {}
+  local fav_exist = 0
 
   Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.CHAT.FUNC)
   Craftie.Frame.ScrollPlayersResults:SetText("")
@@ -174,21 +176,35 @@ function Craftie:UpdateCrafterList(search)
     if (search ~= nil) then
       -- search is going on, redefine the table
       search_list = Craftie:SearchTable(crafter_list, search)
+      fav_exist = 0
     else
       --not searching
-      --local fav_exist = 0
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] ~= nil) then
         if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()] ~= nil) then
           --search_list={}
           for k,v in pairs(search_list) do
             if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][v] == 1) then
-              --table.insert(search_list, v)
-              print("fav - " .. v)
+              fav_exist = 1
+              table.insert(fav_list, v)
+              --print("fav - " .. v)
             else
-              print(v)
+              --print(v)
+              table.insert(rem_list, v)
             end
           end
         end
+      end
+    end
+
+    if (fav_exist == 1) then
+      search_list = {}
+      table.sort(fav_list)
+      for _, value in ipairs(fav_list) do --favorite list on top
+        table.insert(search_list, value)
+      end
+      table.sort(rem_list)
+      for _, value in ipairs(rem_list) do
+        table.insert(search_list, value)
       end
     end
 
