@@ -162,11 +162,17 @@ Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -62)
 Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.CraftBackTop={}
-Craftie.Frame.CraftBackTop= CreateFrame("Frame", "Craftie.Frame.CraftBackTop", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackTop= CreateFrame("Frame", "Craftie.Frame.CraftBackTop", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
 Craftie.Frame.CraftBackTop:SetWidth(300)
 Craftie.Frame.CraftBackTop:SetHeight(190)
 Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", 0, 0)
---Craftie.Frame.CraftBackTop:SetFrameStrata("MEDIUM")
+Craftie.Frame.CraftBackTopArt = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.CraftBackTopArt:SetWidth(Craftie.Frame.CraftBackTop:GetWidth()+150)
+Craftie.Frame.CraftBackTopArt:SetHeight(Craftie.Frame.CraftBackTop:GetHeight()*2-32)
+Craftie.Frame.CraftBackTopArt:SetPoint("TOPLEFT", 2, -4)
+Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundartalchemy.png")
+Craftie.Frame.CraftBackTopArt:SetVertexColor(.86, .86, .86) --darker
+Craftie.Frame.CraftBackTopArt:SetDesaturation(0.6)
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", "Craftie.Frame.Craft", Craftie.Frame.CraftParent, "BackdropTemplate")

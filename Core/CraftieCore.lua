@@ -270,6 +270,7 @@ function Craftie:TabSelect(tab, sound)
   Craftie.Selected_Name = ""
   Craftie.Page = prof_name
   Craftie.ProfessionDefault = Craftie.Profession[prof_name]
+  Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
   C_Timer.After(0.1, function() --give it time to register
     local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
@@ -1204,7 +1205,6 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
 end)
 
 --custom tooltip for Craftie only
---CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate,BackdropTemplate")
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
 for i = 1, 30 do
   local left = _G["CraftieTooltipTextLeft"..i]
