@@ -397,6 +397,7 @@ Craftie.Frame.ScrollRecipesListText={}
 Craftie.Frame.ScrollRecipesListSelect={}
 --Craftie.Frame.ScrollRecipesListSelectSpark={}
 Craftie.Frame.ScrollRecipesListHLink={}
+
 for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListItem[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollRecipesListItem[i]:SetWidth(Craftie.Frame.ScrollRecipes_Width-26) --scrollbar size
