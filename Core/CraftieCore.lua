@@ -321,20 +321,14 @@ function Craftie:SetItemTooltip(frame, itemID, enchant, anchor)
 end
 
 function Craftie:SendPacket(prefix, data, channel, target)
-  --if (channel == "GUILD") then
-    --if (not IsInGuild()) then return end
-  --end
   local repack = prefix .. "," .. Craftie._G.Version .. "," .. data
   local packet = Craftie:Split(data, ",")
+
   C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
   if (prefix == Craftie.Packet.Prefix.Data) then
     -- senderPrefix, senderVer, senderName, senderClass, profNum, profLevel, profData, profMastery
     repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false) .. "," .. packet[6]
   end
-
-  --if (prefix == Craftie.Packet.Prefix.Info) then
-    --print("test")
-  --end
 
   if (channel == "WHISPER") then
   	C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
