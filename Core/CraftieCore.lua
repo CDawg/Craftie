@@ -765,6 +765,8 @@ function Craftie:CrafterBuildData(profName, profLevel)
 
           Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
+          --used for search indexing
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]["CACHE"] = {}
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled and stored data, reset only on learning a new recipe
@@ -846,10 +848,18 @@ function Craftie:CrafterDataParse(profName, player)
 
     crafterProf = Craftie:CopyTable(filtered)
     Craftie:SortTableByString(crafterProf)
+
     --DEBUG
-    --for k,v in pairs(crafterProf) do
+    local indexer = ""
+    for k,v in pairs(crafterProf) do
       --print(v[2])
-    --end
+      if (v[2]) then
+        indexer = indexer .. v[2] .. ";"
+      end
+    end
+    if (indexer ~= "") then
+      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player]["CACHE"] = indexer
+    end
 
     Craftie:SetProfLevel(tonumber(profLevel))
     --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.CHAT.FUNC)
@@ -872,7 +882,6 @@ function Craftie:OpenProfessionList(profArray, search, player)
   if (player ~= "") then
     Craftie:Notification("Using [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CrafterDataParse(Craftie.Page, player)
-    --Craftie.Frame.Title.Sub:SetText(player)
   else
     --Craftie:Notification("Using a default Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CopyTable(profArray)
@@ -1122,13 +1131,6 @@ function SlashCmdList.Craftie(cmd)
     Craftie:Notification("Debug Level = " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
   end
 
-  for k,v in pairs(Craftie.Professions) do
-    local profcmd = "p" .. k
-    if (cmd == profcmd) then
-      Craftie:Notification("View ALL recipes [" .. Craftie.Professions[k][1] .. "]", Craftie.CHAT.FUNC) --Craftie.Profession[Craftie.Professions[k][1]])
-      Craftie:OpenProfessionList(Craftie.Profession[Craftie.Professions[k][1]], "", "")
-    end
-  end
 end
 
 Craftie.Tooltip = nil
