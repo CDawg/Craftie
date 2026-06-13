@@ -172,7 +172,7 @@ Craftie.Frame.CraftBackTopArt:SetHeight(Craftie.Frame.CraftBackTop:GetHeight()*2
 Craftie.Frame.CraftBackTopArt:SetPoint("TOPLEFT", 2, -4)
 Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundartalchemy.png")
 Craftie.Frame.CraftBackTopArt:SetVertexColor(.9, .9, .9) --darker
-Craftie.Frame.CraftBackTopArt:SetDesaturation(0.5)
+Craftie.Frame.CraftBackTopArt:SetDesaturation(0.4)
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", "Craftie.Frame.Craft", Craftie.Frame.CraftParent, "BackdropTemplate")
