@@ -1086,6 +1086,10 @@ function SlashCmdList.Craftie(cmd)
   end
 
   if (cmd == "debug") then
+    local count = 0
+    for i in pairs(Craftie.CHAT) do
+      count = count+1
+    end
     if (args == "") then
       local sorted = {}
       for key, value in pairs(Craftie.CHAT) do
@@ -1102,18 +1106,14 @@ function SlashCmdList.Craftie(cmd)
         end
       end
     else
-      if tonumber(args) then
-        if (tonumber(args) > #Craftie.CHAT) then
-          Craftie.Notification("Max debug level = " .. #Craftie.CHAT, Craftie.CHAT.INFO)
+      if (args) then
+        if (tonumber(args) > count) then
+          Craftie.Notification("Max debug level = " .. count, Craftie.CHAT.INFO)
         else
           Craftie.DEBUGLEVEL = tonumber(args)
         end
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"] = tonumber(args)
       else
-        local count = 0
-        for i in pairs(Craftie.CHAT) do
-          count = count+1
-        end
         Craftie:Notification("Debug Level must be an integer [1-".. count .."]", Craftie.CHAT.ERROR)
       end
       Craftie:Notification("Debug Level set to " .. Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)

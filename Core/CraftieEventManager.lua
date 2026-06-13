@@ -106,10 +106,6 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
 
-    if (event == "PLAYER_LOGIN") then
-      print("player logged in")
-    end
-
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie:ResetCrafterBuild()
