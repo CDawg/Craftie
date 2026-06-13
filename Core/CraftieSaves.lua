@@ -39,8 +39,10 @@ function Craftie:SaveData()
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] == nil) then
     Craftie:Notification("Building New Crafter Directory: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction, Craftie.CHAT.INFO)
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] = {} --shared across characters for server & faction
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"] = {} --shared across characters for server & faction
     for k,v in pairs(Craftie.Professions) do
       CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()] = {} --organize by prof
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][v[1]:upper()] = {} --build an indexer used only for global searches
     end
   end
 

@@ -765,8 +765,6 @@ function Craftie:CrafterBuildData(profName, profLevel)
 
           Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] = profString
-          --used for search indexing
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name]["CACHE"] = {}
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled and stored data, reset only on learning a new recipe
@@ -849,7 +847,6 @@ function Craftie:CrafterDataParse(profName, player)
     crafterProf = Craftie:CopyTable(filtered)
     Craftie:SortTableByString(crafterProf)
 
-    --DEBUG
     local indexer = ""
     for k,v in pairs(crafterProf) do
       --print(v[2])
@@ -857,9 +854,9 @@ function Craftie:CrafterDataParse(profName, player)
         indexer = indexer .. v[2] .. ";"
       end
     end
-    if (indexer ~= "") then
-      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player]["CACHE"] = indexer
-    end
+    --if (indexer ~= "") then
+      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][profName:upper()][player] = indexer
+    --end
 
     Craftie:SetProfLevel(tonumber(profLevel))
     --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.CHAT.FUNC)
