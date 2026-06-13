@@ -165,8 +165,8 @@ function Craftie:UpdateCrafterList(search)
   end
 
   C_Timer.After(0.1, function()
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
-      for crafter_name in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()]) do
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
+      for crafter_name in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()]) do
         table.insert(crafter_list, crafter_name)
       end
     end
@@ -215,7 +215,7 @@ function Craftie:UpdateCrafterList(search)
 
     for n=1, #search_list do
       local i=n+1 --skip the 1st index
-      local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][Craftie.Page:upper()][search_list[n]], ",")
+      local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][search_list[n]], ",")
       --print(i .. " | " .. search_list[n] .. " | " .. "profLevel " .. crafter[3])
       --[==[
       Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n])
@@ -389,9 +389,9 @@ function Craftie:ParsePacket(netpacket)
       if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
         Craftie:Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.CHAT.ACK)
         --get my saved prof data and send it
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()] ~= nil) then
-          if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] ~= nil) then
-            profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()] ~= nil) then
+          if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] ~= nil) then
+            profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name]
             if (profData ~= "") then
               Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
             end
@@ -421,7 +421,7 @@ function Craftie:ParsePacket(netpacket)
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
         Craftie:Notification(profString, Craftie.CHAT.SAVE)
-        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][crafterName] = profString
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][crafterName] = profString
       end
     end
 
@@ -764,9 +764,9 @@ function Craftie:CrafterBuildData(profName, profLevel)
           profString = profString .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
 
           Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name] = profString
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] = profString
           --used for search indexing
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][Craftie.Player.Name]["CACHE"] = {}
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name]["CACHE"] = {}
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled and stored data, reset only on learning a new recipe
@@ -821,10 +821,10 @@ function Craftie:CrafterDataParse(profName, player)
   --alpha sort table (sanity check)
   Craftie:SortTableByString(compareProf)
 
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player] ~= nil) then
-    --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player])
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player] ~= nil) then
+    --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player])
 
-    crafterData = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player], ",")
+    crafterData = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player], ",")
 
     class = crafterData[1] --Craftie.Class[tonumber(packet[4])][1]
     profNum = crafterData[2]
@@ -858,7 +858,7 @@ function Craftie:CrafterDataParse(profName, player)
       end
     end
     if (indexer ~= "") then
-      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][profName:upper()][player]["CACHE"] = indexer
+      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player]["CACHE"] = indexer
     end
 
     Craftie:SetProfLevel(tonumber(profLevel))
@@ -1169,12 +1169,12 @@ end
 --option to send data to players
 function Craftie:BuildPersonalTooltip()
   local tooltip = ""
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"] ~= nil) then
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for k,v in pairs(Craftie.Professions) do
       local prof = v[1]
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()] ~= nil) then
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name] ~= nil) then
-          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CRAFTERS"][prof:upper()][Craftie.Player.Name], ",")
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] ~= nil) then
+          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name], ",")
           local profLevel = crafter[3]
           local profMastery = crafter[5]
           --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
