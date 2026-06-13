@@ -54,7 +54,7 @@ Craftie.NumGuildMembers = 0
 Craftie.IsInCombat = false
 Craftie.Throttle = {}
 Craftie.Throttle.Chat = {
-  Timer = 10,
+  Timer = 20,
   Flag = 1
 }
 Craftie.Throttle.Prof = {

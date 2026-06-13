@@ -14,7 +14,7 @@ the copyright holders.
 ]==]--
 
 Craftie.Frame.ScrollRecipes_Width = 294
-Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-154
+Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-158
 
 Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollRecipesParent:SetWidth(Craftie.Frame.ScrollRecipes_Width)
@@ -72,28 +72,28 @@ Craftie.Frame.ScrollRecipesEmpty:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.ScrollRecipesEmpty:SetText("")
 Craftie.Frame.ScrollRecipesEmpty:Hide()
 
-local RecipesMenuSel = {
-  "All Crafters",
-  "Guild Only"
+Craftie.MenuSelRecipes = {
+  "{name}",
+  "All Crafters"
 }
 Craftie.Frame.DropdownRecipes={}
 Craftie.Frame.DropdownRecipes = CreateFrame("Frame", "Craftie.Frame.DropdownRecipes", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
-Craftie.Frame.DropdownRecipes:SetPoint("TOPLEFT", 198, -22)
+Craftie.Frame.DropdownRecipes:SetPoint("TOPLEFT", 198, 0)
 Craftie.Frame.DropdownRecipes.displayMode = "MENU"
 --Craftie.Frame.DropdownRecipes:SetBackdrop(Craftie.Backdrop.Borderless)
 --Craftie.Frame.DropdownRecipes:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.DropdownRecipes.text = Craftie.Frame.DropdownRecipes:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.DropdownRecipes.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
 Craftie.Frame.DropdownRecipes.text:SetPoint("TOPLEFT", Craftie.Frame.DropdownRecipes, "TOPLEFT", 25, -8)
-Craftie.Frame.DropdownRecipes.text:SetText(RecipesMenuSel[1])
+Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
 Craftie.Frame.DropdownRecipes.OnClick = function(self, checked)
-  Craftie.Frame.DropdownRecipes.text:SetText(RecipesMenuSel[self.value])
+  Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[self.value])
   print(self.value)
 end
 UIDropDownMenu_SetWidth(Craftie.Frame.DropdownRecipes, Craftie.Frame.ScrollRecipes_Width-22)
 UIDropDownMenu_Initialize(Craftie.Frame.DropdownRecipes, function(self, level)
   local info = UIDropDownMenu_CreateInfo()
-  for k,v in pairs(RecipesMenuSel) do
+  for k,v in pairs(Craftie.MenuSelRecipes) do
     --info.notCheckable = 1
     info.padding = 2
     info.text = v
@@ -120,7 +120,7 @@ Craftie.Frame.Search.Recipes={}
 Craftie.Frame.Search.Recipes = CreateFrame("Frame", "Craftie.Frame.Search.Recipes", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.Search.Recipes:SetWidth(Craftie.Frame.ScrollRecipes_Width-5)
 Craftie.Frame.Search.Recipes:SetHeight(24)
-Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -1)
+Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -24)
 --Craftie.Frame.Search.Recipes:SetBackdrop(Craftie.Backdrop.Opaque)
 --Craftie.Frame.Search.Recipes:SetBackdropColor(0, 0, 0, 1)
 --Craftie.Frame.Search.Recipes:SetBackdropBorderColor(1, 1, 1, 0.5)

@@ -884,9 +884,14 @@ function Craftie:OpenProfessionList(profArray, search, player)
   if (player ~= "") then
     Craftie:Notification("Using [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CrafterDataParse(Craftie.Page, player)
+    Craftie.MenuSelRecipes[1] = player
+    Craftie.Frame.DropdownRecipes.text:SetText(player)
   else
     --Craftie:Notification("Using a default Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CopyTable(profArray)
+    local menuSel = "All " .. Craftie.Page .. " Recipes"
+    Craftie.MenuSelRecipes[1] = menuSel
+    Craftie.Frame.DropdownRecipes.text:SetText(menuSel)
   end
 
   local total_recipes = #profCache
