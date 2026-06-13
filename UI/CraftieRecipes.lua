@@ -14,7 +14,7 @@ the copyright holders.
 ]==]--
 
 Craftie.Frame.ScrollRecipes_Width = 294
-Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-134
+Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-154
 
 Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollRecipesParent:SetWidth(Craftie.Frame.ScrollRecipes_Width)
@@ -30,7 +30,7 @@ Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-
 Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesList", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.ScrollRecipesList:SetWidth(Craftie.Frame.ScrollRecipes_Width-10)
 Craftie.Frame.ScrollRecipesList:SetHeight(Craftie.Frame.ScrollRecipes_Height+20)
-Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 2, 6)
+Craftie.Frame.ScrollRecipesList:SetPoint("CENTER", 2, -6)
 
 Craftie.Frame.ScrollRecipesList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollRecipesList.Child, Craftie.Frame.ScrollRecipesList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollRecipesList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList, "TOPLEFT",         -2,-20)
@@ -71,6 +71,47 @@ Craftie.Frame.ScrollRecipesEmpty:SetPoint("CENTER", -10, 0)
 Craftie.Frame.ScrollRecipesEmpty:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.ScrollRecipesEmpty:SetText("")
 Craftie.Frame.ScrollRecipesEmpty:Hide()
+
+local RecipesMenuSel = {
+  "All Crafters",
+  "Guild Only"
+}
+Craftie.Frame.DropdownRecipes={}
+Craftie.Frame.DropdownRecipes = CreateFrame("Frame", "Craftie.Frame.DropdownRecipes", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
+Craftie.Frame.DropdownRecipes:SetPoint("TOPLEFT", 198, -22)
+Craftie.Frame.DropdownRecipes.displayMode = "MENU"
+--Craftie.Frame.DropdownRecipes:SetBackdrop(Craftie.Backdrop.Borderless)
+--Craftie.Frame.DropdownRecipes:SetBackdropBorderColor(1, 1, 1, 0)
+Craftie.Frame.DropdownRecipes.text = Craftie.Frame.DropdownRecipes:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.DropdownRecipes.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
+Craftie.Frame.DropdownRecipes.text:SetPoint("TOPLEFT", Craftie.Frame.DropdownRecipes, "TOPLEFT", 25, -8)
+Craftie.Frame.DropdownRecipes.text:SetText(RecipesMenuSel[1])
+Craftie.Frame.DropdownRecipes.OnClick = function(self, checked)
+  Craftie.Frame.DropdownRecipes.text:SetText(RecipesMenuSel[self.value])
+  print(self.value)
+end
+UIDropDownMenu_SetWidth(Craftie.Frame.DropdownRecipes, Craftie.Frame.ScrollRecipes_Width-22)
+UIDropDownMenu_Initialize(Craftie.Frame.DropdownRecipes, function(self, level)
+  local info = UIDropDownMenu_CreateInfo()
+  for k,v in pairs(RecipesMenuSel) do
+    --info.notCheckable = 1
+    info.padding = 2
+    info.text = v
+    info.value= k
+    info.justifyH = "LEFT"
+    info.disabled = false
+    info.func = self.OnClick
+    UIDropDownMenu_AddButton(info, level)
+  end
+end)
+_G[Craftie.Frame.DropdownRecipes:GetName() .. "Left"]:Hide()
+_G[Craftie.Frame.DropdownRecipes:GetName() .. "Middle"]:Hide()
+_G[Craftie.Frame.DropdownRecipes:GetName() .. "Right"]:Hide()
+Craftie.Frame.DropdownRecipes.Back = Craftie.Frame.DropdownRecipes:CreateTexture(nil, "BORDER")
+Craftie.Frame.DropdownRecipes.Back:SetSize(Craftie.Frame.ScrollRecipes_Width-5, 28)
+Craftie.Frame.DropdownRecipes.Back:SetPoint("TOPLEFT", 16, -4)
+Craftie.Frame.DropdownRecipes.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dialog-32.png")
+Craftie.Frame.DropdownRecipes.Back:SetRotation(-math.pi)
 
 --[==[
 SEARCH RECIPES
@@ -402,7 +443,7 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListItem[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollRecipesListItem[i]:SetWidth(Craftie.Frame.ScrollRecipes_Width-26) --scrollbar size
   Craftie.Frame.ScrollRecipesListItem[i]:SetHeight(20)
-  Craftie.Frame.ScrollRecipesListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollRecipesListItem[i]:GetHeight())
+  Craftie.Frame.ScrollRecipesListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollRecipesListItem[i]:GetHeight()+16)
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollRecipesListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)

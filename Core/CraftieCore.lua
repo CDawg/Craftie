@@ -254,14 +254,18 @@ function Craftie:UpdateCrafterList(search)
     --Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(20)
   end)
 
-  Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
-  --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
-  Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
-  Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/ICONS/" .. Craftie.Professions[Craftie.Tab][2])
-  Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(0, 1, 0, 1)
-  --Craftie.Frame.ScrollPlayersListFav[1]:SetAlpha(0.7)
-  Craftie.Frame.ScrollPlayersListFav[1]:SetDesaturation(0.6)
-  Craftie.Frame.ScrollPlayersListFav[1]:Show()
+  --if (Craftie.DEBUGLEVEL > 3) then
+    Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
+    --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
+    Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
+    Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/ICONS/" .. Craftie.Professions[Craftie.Tab][2])
+    Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(0, 1, 0, 1)
+    --Craftie.Frame.ScrollPlayersListFav[1]:SetAlpha(0.7)
+    Craftie.Frame.ScrollPlayersListFav[1]:SetDesaturation(0.6)
+    Craftie.Frame.ScrollPlayersListFav[1]:Show()
+  --else
+    --Craftie.Frame.ScrollPlayersListItem[1]:Hide()
+  --end
 end
 
 function Craftie:TabSelect(tab, sound)
@@ -682,6 +686,7 @@ function Craftie:SelectScrollItem(scrollFrame)
       Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
     end
   end
+  --Craftie:Notification("Craftie:SelectScrollItem(" .. scrollFrame .. ")", Craftie.CHAT.FUNC)
 end
 
 --version control when the app initializes
