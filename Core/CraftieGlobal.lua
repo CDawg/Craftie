@@ -51,7 +51,7 @@ Craftie.Selected_ViewAll = "All Alchemy Recipes" --default
 Craftie.Selected_Name = ""
 Craftie.Preload = "|cFF27CCF5Loading Data...|r"
 Craftie.Page = Craftie.Professions[1][1] --default
-Craftie.Tab = 1
+Craftie.Tab = 0
 
 -- Global Frames
 Craftie.Frame={}

@@ -74,7 +74,7 @@ Craftie.Frame.ScrollPlayersEmpty:Hide()
 
 Craftie.MenuSelPlayers = {
   "All Crafters",
-  "Guild Only"
+  "Guild Crafters"
 }
 Craftie.Frame.DropdownPlayers={}
 Craftie.Frame.DropdownPlayers = CreateFrame("Frame", "Craftie.Frame.DropdownPlayers", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
@@ -171,6 +171,7 @@ Craftie.Frame.Button.SearchPlayersClear:SetScript("OnClick", function(self)
   if (Craftie.EnableScrollFrames) then
     Craftie.Frame.Search.Players.Text:SetText("")
     local pageNum = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
+    Craftie.Tab = 0
     Craftie:TabSelect(pageNum) --just reset the list
   end
 end)

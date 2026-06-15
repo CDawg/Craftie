@@ -73,8 +73,8 @@ Craftie.Frame.ScrollRecipesEmpty:SetText("")
 Craftie.Frame.ScrollRecipesEmpty:Hide()
 
 Craftie.MenuSelRecipes = {
-  "{name}",
-  "All Crafters"
+  "Search Alchemy Recipes",
+  "Search All Crafters"
 }
 Craftie.Frame.DropdownRecipes={}
 Craftie.Frame.DropdownRecipes = CreateFrame("Frame", "Craftie.Frame.DropdownRecipes", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")

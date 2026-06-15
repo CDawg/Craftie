@@ -304,8 +304,12 @@ function Craftie:SortTableByString(tbl) --alpha second key
   end)
 end
 
-function Craftie:SanitizeString(str)
-  return str:gsub("%p", ""):lower()
+function Craftie:SanitizeString(str, lowercase)
+  if (lowercase) then
+    return str:gsub("%p", ""):lower()
+  else
+    return str:gsub("%p", "")
+  end
 end
 
 function Craftie:SearchTable(tbl, search) --basic table

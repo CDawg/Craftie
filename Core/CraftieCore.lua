@@ -123,11 +123,14 @@ function Craftie:SelectCrafter(index, name)
     else
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "") --pull all
     end
+    Craftie.MenuSelRecipes[1] = Craftie.Frame.ScrollPlayersListName[1]:GetText()
+    Craftie.Frame.DropdownRecipes.text:SetText(Craftie.Frame.ScrollPlayersListName[1]:GetText())
   else
     if (name ~= nil) then
       --print(name)
       Craftie.Selected_Players = index
       Craftie.Selected_Name = name
+      Craftie.Frame.DropdownRecipes.text:SetText(name)
       Craftie:Notification("Craftie:SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.CHAT.FUNC)
       if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
         Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
@@ -269,44 +272,45 @@ function Craftie:UpdateCrafterList(search)
 end
 
 function Craftie:TabSelect(tab, sound)
-  local prof_name = Craftie.Professions[tab][1]
-  Craftie:CloseAllPlayerMenus()
-  Craftie:ClearSearchFocus()
-  for i=1, #Craftie.Professions do
-    Craftie.Frame.TabSide[i].Glow:Hide()
-    Craftie.Frame.TabSide[i].Shadow:Show()
-  end
-  Craftie.Frame.TabSide[tab].Glow:Show()
-  Craftie.Frame.TabSide[tab].Shadow:Hide()
-  if (sound) then
-    PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
-    --PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2) --request to craft?
-  end
-  Craftie.Tab = tab
-  Craftie.Selected_Name = ""
-  Craftie.Page = prof_name
-  Craftie.ProfessionDefault = Craftie.Profession[prof_name]
-  Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
-
-  C_Timer.After(0.1, function() --give it time to register
-    local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
-    if (search_index == Craftie.Placeholder_Recipes) then
-      search_index = ""
+  if (Craftie.Tab ~= tab) then
+    local prof_name = Craftie.Professions[tab][1]
+    Craftie:CloseAllPlayerMenus()
+    Craftie:ClearSearchFocus()
+    for i=1, #Craftie.Professions do
+      Craftie.Frame.TabSide[i].Glow:Hide()
+      Craftie.Frame.TabSide[i].Shadow:Show()
     end
-    Craftie:OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
-    Craftie:UpdateCrafterList()
-  end)
+    Craftie.Frame.TabSide[tab].Glow:Show()
+    Craftie.Frame.TabSide[tab].Shadow:Hide()
+    if (sound) then
+      PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
+      --PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2) --request to craft?
+    end
+    Craftie.Tab = tab
+    Craftie.Selected_Name = ""
+    Craftie.Page = prof_name
+    Craftie.ProfessionDefault = Craftie.Profession[prof_name]
+    Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
-  Craftie.Selected_Players = 1
-  Craftie:SelectScrollItem("Players")
-  Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
+    C_Timer.After(0.1, function() --give it time to register
+      local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
+      if (search_index == Craftie.Placeholder_Recipes) then
+        search_index = ""
+      end
+      Craftie:OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
+      Craftie:UpdateCrafterList()
+    end)
 
-  Craftie.Selected_Recipes = 1
-  Craftie:SelectScrollItem("Recipes")
-  Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
+    Craftie.Selected_Players = 1
+    Craftie:SelectScrollItem("Players")
+    Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
 
-Craftie:Notification("Craftie:TabSelect(" .. tab .. ")", Craftie.CHAT.FUNC)
+    Craftie.Selected_Recipes = 1
+    Craftie:SelectScrollItem("Recipes")
+    Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
 
+  Craftie:Notification("Craftie:TabSelect(" .. tab .. ")", Craftie.CHAT.FUNC)
+  end
 end
 
 function Craftie:SetItemTooltip(frame, itemID, enchant, anchor)
@@ -724,7 +728,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
           --print(profName)
           for k,v in pairs(profBuild) do
             if (v[2] ~= nil) then
-              profData[Craftie:SanitizeString(v[2])] = "0" --build the empty binary string
+              profData[Craftie:SanitizeString(v[2], true)] = "0" --build the empty binary string
             end
           end
 
@@ -740,9 +744,9 @@ function Craftie:CrafterBuildData(profName, profLevel)
           for i = 1, numRecipes do
             local recipeName, recipeType = GetTradeSkillInfo(i)
             if recipeType ~= "header" then
-              if (Craftie:SanitizeString(recipeName) ~= nil) then
-                profData[Craftie:SanitizeString(recipeName)] = "1"
-                --print(Craftie:SanitizeString(recipeName) .. " = 1")
+              if (Craftie:SanitizeString(recipeName, true) ~= nil) then
+                profData[Craftie:SanitizeString(recipeName, true)] = "1"
+                --print(Craftie:SanitizeString(recipeName, true) .. " = 1")
               end
             end
           end
@@ -856,12 +860,13 @@ function Craftie:CrafterDataParse(profName, player)
     for k,v in pairs(crafterProf) do
       --print(v[2])
       if (v[2]) then
-        indexer = indexer .. v[2] .. ";"
+        indexer = indexer .. Craftie:SanitizeString(v[2], false) .. ";"
       end
     end
-    --if (indexer ~= "") then
-      --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][profName:upper()][player] = indexer
-    --end
+    if (indexer ~= "") then
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][profName:upper()][player] = indexer
+      Craftie:Notification("Craftie:CrafterDataParse() cache indexer string build", Craftie.CHAT.FUNC)
+    end
 
     Craftie:SetProfLevel(tonumber(profLevel))
     --Craftie:Notification("libraryProf " .. #Craftie.Profession[profName], Craftie.CHAT.FUNC)
@@ -885,13 +890,13 @@ function Craftie:OpenProfessionList(profArray, search, player)
     Craftie:Notification("Using [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CrafterDataParse(Craftie.Page, player)
     Craftie.MenuSelRecipes[1] = player
-    Craftie.Frame.DropdownRecipes.text:SetText(player)
+    --Craftie.Frame.DropdownRecipes.text:SetText(player)
   else
     --Craftie:Notification("Using a default Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CopyTable(profArray)
-    local menuSel = "All " .. Craftie.Page .. " Recipes"
-    Craftie.MenuSelRecipes[1] = menuSel
-    Craftie.Frame.DropdownRecipes.text:SetText(menuSel)
+    --local menuSel = "All " .. Craftie.Page .. " Recipes"
+    --Craftie.MenuSelRecipes[1] = menuSel
+    --Craftie.Frame.DropdownRecipes.text:SetText(menuSel)
   end
 
   local total_recipes = #profCache
@@ -994,7 +999,9 @@ function Craftie:OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesList:SetAlpha(1)
   end)
 
-  Craftie:Notification("Craftie:OpenProfessionList(" .. player .. ")", Craftie.CHAT.FUNC)
+  print("val :" .. Craftie.Frame.DropdownRecipes.text:GetText())
+
+  Craftie:Notification("Craftie:OpenProfessionList(" .. player .. " " .. search .. ")", Craftie.CHAT.FUNC)
 end
 
 --add a timer for parsed data
