@@ -19,6 +19,8 @@ Craftie.LDetect = "zhCN"
 if GetLocale() ~= Craftie.LDetect then return end
 
 Craftie._L = {
-	Title =  "Craftie",
-  Loaded = Craftie.LDetect --detect what loaded
+  Loaded= Craftie.LDetect, --detect what loaded
+
+	Title = "Craftie",
 }
+
