@@ -316,7 +316,9 @@ for i=1, Craftie.MAX_PLAYERS do
           if (tonumber(profMastery)) then
             if (profMastery > 0) then
               local mastery = Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)][4][profMastery]
-              CraftieTooltip:AddLine("|CFFDEDEDE" .. mastery)
+              if (mastery) then
+                CraftieTooltip:AddLine("|CFFDEDEDE" .. mastery)
+              end
             end
           end
           CraftieTooltip:AddLine(" ")

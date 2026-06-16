@@ -72,10 +72,7 @@ Craftie.Frame.ScrollRecipesEmpty:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.ScrollRecipesEmpty:SetText("")
 Craftie.Frame.ScrollRecipesEmpty:Hide()
 
-Craftie.MenuSelRecipes = {
-  "Search Alchemy Recipes",
-  "Search All Crafters"
-}
+Craftie.MenuSelRecipes = {"Search All Crafters"}
 Craftie.Frame.DropdownRecipes={}
 Craftie.Frame.DropdownRecipes = CreateFrame("Frame", "Craftie.Frame.DropdownRecipes", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
 Craftie.Frame.DropdownRecipes:SetPoint("TOPLEFT", 198, 0)
@@ -156,6 +153,10 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
       Craftie:OpenProfessionList(search_array, search_index, Craftie.Selected_Name)
     else
       Craftie:OpenProfessionList(search_array, search_index, "")
+    end
+
+    if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
+      print("search everyone within " .. Craftie.Page)
     end
 
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)

@@ -123,8 +123,8 @@ function Craftie:SelectCrafter(index, name)
     else
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "") --pull all
     end
-    Craftie.MenuSelRecipes[1] = Craftie.Frame.ScrollPlayersListName[1]:GetText()
-    Craftie.Frame.DropdownRecipes.text:SetText(Craftie.Frame.ScrollPlayersListName[1]:GetText())
+    Craftie.MenuSelRecipes[2] = nil
+    Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
   else
     if (name ~= nil) then
       --print(name)
@@ -299,6 +299,8 @@ function Craftie:TabSelect(tab, sound)
       end
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
       Craftie:UpdateCrafterList()
+      Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
+      Craftie.MenuSelRecipes[2] = nil
     end)
 
     Craftie.Selected_Players = 1
@@ -889,14 +891,9 @@ function Craftie:OpenProfessionList(profArray, search, player)
   if (player ~= "") then
     Craftie:Notification("Using [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CrafterDataParse(Craftie.Page, player)
-    Craftie.MenuSelRecipes[1] = player
-    --Craftie.Frame.DropdownRecipes.text:SetText(player)
+    Craftie.MenuSelRecipes[2] = player
   else
-    --Craftie:Notification("Using a default Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CopyTable(profArray)
-    --local menuSel = "All " .. Craftie.Page .. " Recipes"
-    --Craftie.MenuSelRecipes[1] = menuSel
-    --Craftie.Frame.DropdownRecipes.text:SetText(menuSel)
   end
 
   local total_recipes = #profCache
@@ -998,8 +995,6 @@ function Craftie:OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesLoading:Hide()
     Craftie.Frame.ScrollRecipesList:SetAlpha(1)
   end)
-
-  --print("val :" .. Craftie.Frame.DropdownRecipes.text:GetText())
 
   Craftie:Notification("Craftie:OpenProfessionList(" .. player .. " " .. search .. ")", Craftie.CHAT.FUNC)
 end
