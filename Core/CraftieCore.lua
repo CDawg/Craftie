@@ -999,7 +999,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     Craftie.Frame.ScrollRecipesList:SetAlpha(1)
   end)
 
-  print("val :" .. Craftie.Frame.DropdownRecipes.text:GetText())
+  --print("val :" .. Craftie.Frame.DropdownRecipes.text:GetText())
 
   Craftie:Notification("Craftie:OpenProfessionList(" .. player .. " " .. search .. ")", Craftie.CHAT.FUNC)
 end

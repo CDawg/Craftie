@@ -21,6 +21,5 @@ if GetLocale() ~= Craftie.LDetect then return end
 Craftie._L = {
   Loaded= Craftie.LDetect, --detect what loaded
 
-	Title = "Craftie",
+	Title = "Astuto",
 }
-
