@@ -13,16 +13,6 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---[==[
-Alchemy
-1 Potions
-2 Elixirs
-3 Flasks
-4 Transmutation
-5 Oils
-6 Miscellaneous
-]==]--
-
 --itemID, name, requiredSkill, craftedID, Reagents, source, version
 Craftie.Profession.Alchemy = {
 {33740, "Adept's Elixir", 300, 28103, {{13463, 1}, {22785, 1}, {18256, 1}}, {'Trainer'}, 1},
