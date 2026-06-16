@@ -152,11 +152,8 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
     if (Craftie.Selected_Name ~= "") then
       Craftie:OpenProfessionList(search_array, search_index, Craftie.Selected_Name)
     else
+      print("search library within " .. Craftie.Page)
       Craftie:OpenProfessionList(search_array, search_index, "")
-    end
-
-    if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
-      print("search everyone within " .. Craftie.Page)
     end
 
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)

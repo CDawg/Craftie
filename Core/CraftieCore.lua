@@ -896,6 +896,22 @@ function Craftie:OpenProfessionList(profArray, search, player)
     profCache = Craftie:CopyTable(profArray)
   end
 
+  if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
+    print("search everyone within " .. Craftie.Page)
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()] ~= nil) then
+      --print("found " .. Craftie.Page)
+      local count = 0
+      for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()]) do
+        count = count +1
+        --local result = string:match("." .. CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()][k] .. ".")
+        local recipe = string.find(string.lower(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()][k]), search, 1, true)
+        if recipe then
+          print(k .. " - " .. recipe)
+        end
+      end
+    end
+  end
+
   local total_recipes = #profCache
   --local total_search = 0
   local results = " / " .. #Craftie.Profession[Craftie.Page] .. " |cfffffb63Recipe(s)"
