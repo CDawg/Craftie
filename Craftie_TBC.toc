@@ -9,17 +9,17 @@
 
 Core/CraftieLibrary.lua
 
-# Localization
-# Core/locales/localization.en.lua
-# Core/locales/localization.br.lua
-# Core/locales/localization.cn.lua
-# Core/locales/localization.de.lua
-# Core/locales/localization.es.lua
-# Core/locales/localization.fr.lua
-# Core/locales/localization.it.lua
-# Core/locales/localization.kr.lua
-# Core/locales/localization.ru.lua
-# Core/locales/localization.tw.lua
+Localization/deDE.lua
+Localization/enUS.lua
+Localization/esES.lua
+Localization/esMX.lua
+Localization/frFR.lua
+Localization/itIT.lua
+Localization/koKR.lua
+Localization/ptBR.lua
+Localization/ruRU.lua
+Localization/zhCN.lua
+Localization/zhTW.lua
 
 Core/CraftieEventManager.lua
 Core/CraftieSaves.lua

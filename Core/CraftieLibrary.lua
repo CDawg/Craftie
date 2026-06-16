@@ -16,12 +16,10 @@ the copyright holders.
 __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 
 Craftie = {
-	_L={},
-
   Game = {
-    "Classic",
-    "Burning Crusade",
-    "Wrath",
+    "Classic Anniversary",
+    "TBC Anniversary",
+    "WoTLK Anniversary",
   },
 
 	Player = {
@@ -31,9 +29,9 @@ Craftie = {
     Faction = UnitFactionGroup("player"),
     GUID    = UnitGUID("player"),
     Combine = UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
-    Language= GetLocale(),
 	},
 }
+Craftie._L={}
 
 Craftie.DEBUGLEVEL = 9 --default [INFO | ERROR] | WARN
 

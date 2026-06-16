@@ -14,6 +14,7 @@ the copyright holders.
 ]==]--
 
 function Craftie:Init()
+  Craftie:Notification("v" .. Craftie._G.Version .. " " .. Craftie.Game.Name .. " [" .. Craftie._L.Loaded .. "] Initializing. Type " .. SLASH_Craftie1 .. " for commands.", Craftie.CHAT.INFO)
   Craftie:AlphaSortProfessionLib() --sanity alpha sorting & version control
   Craftie:BuildReagentGaps()
   --Craftie:TabSelect(1) --default 1st profession
@@ -41,22 +42,4 @@ function Craftie:Init()
   --whisper self to prep incoming comms
   Craftie:SendPacket(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
 
-  --print(Craftie.Player.Language)
 end
-
---[==[
-TODO
-"frFR": French (France)
-"deDE": German (Germany)
-"enGB": English (Great Britain) if returned, can substitute 'enUS' for consistancy
-"enUS": English (America)
-"itIT": Italian (Italy)
-"koKR": Korean (Korea) RTL - right-to-left
-"zhCN": Chinese (China) (simplified) implemented LTR left-to-right in WoW
-"zhTW": Chinese (Taiwan) (traditional) implemented LTR left-to-right in WoW
-"ruRU": Russian (Russia)
-"esES": Spanish (Spain)
-"esMX": Spanish (Mexico)
-"ptBR": Portuguese (Brazil)
-
-]==]--
