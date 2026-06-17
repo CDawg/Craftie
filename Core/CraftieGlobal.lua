@@ -37,7 +37,7 @@ Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
 Craftie.MAX_REAGENTS = 6
 Craftie.MAX_RECIPES = 600
-Craftie.MAX_PLAYERS = 300 --per profession
+Craftie.MAX_CRAFTERS = 300 --per profession (TODO - make tis dynamic)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)

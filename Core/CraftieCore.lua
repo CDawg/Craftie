@@ -103,7 +103,7 @@ end
 --this also goes to the player selected scroll item
 function Craftie:GetCrafterIndex(player)
   C_Timer.After(0.1, function() --give the update time to create cached tables
-    for i=1, Craftie.MAX_PLAYERS do
+    for i=1, Craftie.MAX_CRAFTERS do
       if (player == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
         --print(player .. " index = " .. i)
         Craftie:SelectCrafter(i, player)
@@ -157,7 +157,7 @@ function Craftie:UpdateCrafterList(search)
   Craftie.Frame.ScrollPlayersLoading:Show()
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
 
-  for i=1, Craftie.MAX_PLAYERS do
+  for i=1, Craftie.MAX_CRAFTERS do
     --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
     Craftie.Frame.ScrollPlayersListFav[i]:Hide()
     Craftie.Frame.ScrollPlayersListName[i]:SetText("")
@@ -165,6 +165,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
     Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText("")
     Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("-")
+    Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
   end
 
   C_Timer.After(0.1, function()
@@ -670,14 +671,13 @@ end
 function Craftie:SelectScrollItem(scrollFrame)
   if (Craftie.EnableScrollFrames) then
     if (scrollFrame == "Players") then
-      for i=1, Craftie.MAX_PLAYERS do
+      for i=1, Craftie.MAX_CRAFTERS do
         Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
-        --Craftie.Frame.ScrollPlayersListSelectSpark[i]:Hide()
         Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
+        Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
       end
       Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Players]:Show()
-      --Craftie.Frame.ScrollPlayersListSelectSpark[Craftie.Selected_Players]:Show()
       Craftie.Frame.ScrollPlayersListName[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
     end
     if (scrollFrame == "Recipes") then
@@ -885,6 +885,7 @@ end
 
 function Craftie:OpenProfessionList(profArray, search, player)
   local profCache = {}
+  local search_all_count = 0
   Craftie.Frame.ScrollRecipesLoading:Show()
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie:SetProfLevel(0)
@@ -896,21 +897,33 @@ function Craftie:OpenProfessionList(profArray, search, player)
     profCache = Craftie:CopyTable(profArray)
   end
 
-  if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
-    print("search everyone within " .. Craftie.Page)
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()] ~= nil) then
-      --print("found " .. Craftie.Page)
-      local count = 0
-      for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()]) do
-        count = count +1
-        --local result = string:match("." .. CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()][k] .. ".")
-        local recipe = string.find(string.lower(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()][k]), search, 1, true)
-        if recipe then
-          print(k .. " - " .. recipe)
+  for i=1, Craftie.MAX_CRAFTERS do
+    Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
+    Craftie.Frame.ScrollRecipesListItem[i]:Hide()
+  end
+
+  if (search ~= "") then
+    if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
+      print("search everyone within " .. Craftie.Page)
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()] ~= nil) then
+        --print("found " .. Craftie.Page)
+        for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()]) do
+          local pattern = string.find(string.lower(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()][k]), search, 1, true)
+          if (pattern) then
+            search_all_count = search_all_count +1
+            --print(k .. " - " .. pattern)
+            for i=1, Craftie.MAX_CRAFTERS do
+              if (k == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
+                Craftie.Frame.ScrollPlayersListHighlight[i]:Show()
+              end
+            end
+          end
         end
       end
     end
   end
+
+  --print("search_all_count " .. search_all_count)
 
   local total_recipes = #profCache
   --local total_search = 0

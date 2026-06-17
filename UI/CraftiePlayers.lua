@@ -200,7 +200,7 @@ Craftie.Frame.ScrollPlayersListProfLevel={}
 Craftie.Frame.ScrollPlayersListProfMastery={}
 Craftie.Frame.ScrollPlayersListUpdate={}
 Craftie.Frame.ScrollPlayersListSelect={}
---Craftie.Frame.ScrollPlayersListSelectSpark={}
+Craftie.Frame.ScrollPlayersListHighlight={}
 Craftie.Frame.ScrollPlayersListFav={}
 Craftie.Frame.ScrollPlayersListNet={}
 
@@ -211,7 +211,7 @@ Craftie.Frame.ScrollPlayersListOpt.HL={}
 ]==]--
 Craftie.Frame.ScrollPlayersListSubMenu={}
 
-for i=1, Craftie.MAX_PLAYERS do
+for i=1, Craftie.MAX_CRAFTERS do
   Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollPlayersListItem[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
   Craftie.Frame.ScrollPlayersListItem[i]:SetHeight(20)
@@ -225,6 +225,7 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth(), 20)
   Craftie.Frame.ScrollPlayersListBack[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  --Craftie.Frame.ScrollPlayersListBack[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollPlayersListBack[i]:SetAlpha(0.5)
 
   Craftie.Frame.ScrollPlayersListName[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
@@ -249,22 +250,25 @@ for i=1, Craftie.MAX_PLAYERS do
   Craftie.Frame.ScrollPlayersListUpdate[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("")
   Craftie.Frame.ScrollPlayersListUpdate[i]:Hide()
-  Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
+
+  Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select-HL.png")
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select.png")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetBlendMode("ADD")
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.60, 0.80, 0.94)
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.5)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetVertexColor(0.48, 0.74, 1.0)
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.6)
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
-  --[==[
-  Craftie.Frame.ScrollPlayersListSelectSpark[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "OVERLAY")
-  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetSize(64, 80)
-  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetPoint("TOPLEFT", -30, 18)
-  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetTexture("Interface/COMMON/StreamSpark")
-  Craftie.Frame.ScrollPlayersListSelectSpark[i]:SetVertexColor(0.80, 0.90, 1)
-  Craftie.Frame.ScrollPlayersListSelectSpark[i]:Hide()
-  ]==]--
+
+  Craftie.Frame.ScrollPlayersListHighlight[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.ScrollPlayersListHighlight[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
+  Craftie.Frame.ScrollPlayersListHighlight[i]:SetPoint("CENTER", 0, 0)
+  Craftie.Frame.ScrollPlayersListHighlight[i]:SetTexture(Craftie._G.Path ..  "Images/UI-Craftie-Row-Highlight.png")
+  Craftie.Frame.ScrollPlayersListHighlight[i]:SetBlendMode("ADD")
+  --Craftie.Frame.ScrollPlayersListHighlight[i]:SetVertexColor(0.60, 0.80, 0.94)
+  Craftie.Frame.ScrollPlayersListHighlight[i]:SetAlpha(0.6)
+  Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
+
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(8, 8)
   Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 18, -6)
