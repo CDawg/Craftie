@@ -206,12 +206,12 @@ Craftie.Frame.CraftBackTop:SetWidth(300)
 Craftie.Frame.CraftBackTop:SetHeight(190)
 Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", 0, 0)
 Craftie.Frame.CraftBackTopArt = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.CraftBackTopArt:SetWidth(Craftie.Frame.CraftBackTop:GetWidth()+150)
-Craftie.Frame.CraftBackTopArt:SetHeight(Craftie.Frame.CraftBackTop:GetHeight()*2-32)
+Craftie.Frame.CraftBackTopArt:SetWidth(Craftie.Frame.CraftBackTop:GetWidth()-6)
+Craftie.Frame.CraftBackTopArt:SetHeight(Craftie.Frame.CraftBackTop:GetHeight()-6)
 Craftie.Frame.CraftBackTopArt:SetPoint("TOPLEFT", 2, -4)
 Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundartalchemy.png")
-Craftie.Frame.CraftBackTopArt:SetVertexColor(.9, .9, .9) --darker
-Craftie.Frame.CraftBackTopArt:SetDesaturation(0.4)
+Craftie.Frame.CraftBackTopArt:SetVertexColor(.8, .8, .8) --darker
+Craftie.Frame.CraftBackTopArt:SetDesaturation(0.3)
 
 Craftie.Frame.Craft = {}
 Craftie.Frame.Craft = CreateFrame("Frame", "Craftie.Frame.Craft", Craftie.Frame.CraftParent, "BackdropTemplate")
@@ -512,3 +512,11 @@ Craftie.Frame.CraftBackBot= CreateFrame("Frame", "Craftie.Frame.CraftBackBot", C
 Craftie.Frame.CraftBackBot:SetWidth(300)
 Craftie.Frame.CraftBackBot:SetHeight(125)
 Craftie.Frame.CraftBackBot:SetPoint("TOPRIGHT", 0, -248)
+
+Craftie.Frame.CraftBackBot.Request = CreateFrame("Button", nil, Craftie.Frame.CraftBackBot, "UIPanelButtonTemplate")
+Craftie.Frame.CraftBackBot.Request:SetSize(100, 24)
+Craftie.Frame.CraftBackBot.Request:SetPoint("TOPLEFT", 0, 0)
+Craftie.Frame.CraftBackBot.Request:SetText("Request")
+Craftie.Frame.CraftBackBot.Request:SetScript("OnClick", function(self)
+
+end)

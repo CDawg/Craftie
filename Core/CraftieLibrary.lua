@@ -136,6 +136,16 @@ Craftie.Professions = {
   {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale Leatherworking", "Elemental Leatherworking", "Tribal Leatherworking"}},
   {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"}},
 }
+
+if (Craftie.Game.Version >= 2) then
+  Craftie.PROFMAXLEVEL = 375
+  table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
+end
+if (Craftie.Game.Version >= 3) then
+  Craftie.PROFMAXLEVEL = 450
+  table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
+end
+
 Craftie.ProfessionMasteries = {
   Alchemy = {
     [28677] = 1, --elixir master
@@ -182,16 +192,6 @@ function Craftie:GetProfessionMastery(profession)
     end
   end
   return (#found > 0) and found or nil
-end
-
-
-if (Craftie.Game.Version >= 2) then
-  Craftie.PROFMAXLEVEL = 375
-  table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
-end
-if (Craftie.Game.Version >= 3) then
-  Craftie.PROFMAXLEVEL = 450
-  table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
 end
 
 function Craftie:BitDouble(packet, decompress)

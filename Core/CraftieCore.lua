@@ -899,7 +899,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
 
   for i=1, Craftie.MAX_CRAFTERS do
     Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
-    Craftie.Frame.ScrollRecipesListItem[i]:Hide()
+    --Craftie.Frame.ScrollRecipesListItem[i]:Hide()
   end
 
   if (search ~= "") then

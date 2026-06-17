@@ -31,7 +31,7 @@ Craftie._G.Font.StyleN= "Fonts/ARIALN.ttf" --numbers
 Craftie._G.Font.Size  = 11
 Craftie._G.Font.Color = "|CFFFF9524"
 
-Craftie._G.Path = "Interface/Addons/Craftie/"
+Craftie._G.Path = "Interface/Addons/".. Craftie._G.Prefix .."/"
 Craftie._G.Title = Craftie._G.Font.Color .. Craftie._L.Title .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
