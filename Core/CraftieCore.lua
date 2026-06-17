@@ -984,6 +984,9 @@ function Craftie:OpenProfessionList(profArray, search, player)
         if (Craftie.EnableScrollFrames) then
           if (IsShiftKeyDown()) then
             local name, link = C_Item.GetItemInfo(profCache[i][4])
+            if (link == nil) then
+              link = GetSpellLink(profCache[i][1]) --enchant
+            end
             if ((link ~= nil) and (link ~= "")) then
               ChatEdit_InsertLink(link)
             end
