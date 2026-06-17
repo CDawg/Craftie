@@ -510,7 +510,7 @@ function Craftie:ItemDetails(item)
   local b_next = 0
   local loadcache = 0
   Craftie.Frame.Craft:Show()
-  Craftie:ClearSearchFocus()
+  --Craftie:ClearSearchFocus()
   Craftie:TimerAnim(Craftie.Frame.Craft, 0.65) --animate the craft icon
   --PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
   PlaySound(SOUNDKIT.IG_QUEST_LOG_CLOSE)
@@ -960,6 +960,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
       Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
       --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
       Craftie.Frame.ScrollRecipesListText[i]:SetText("")
+      Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
       Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
         --do nothing
       end)
@@ -978,28 +979,19 @@ function Craftie:OpenProfessionList(profArray, search, player)
   else
     for i=1, total_recipes do
       Craftie.Frame.ScrollRecipesListText[i]:SetText(profCache[i][2])
-      --if (CraftieDB["ITEMCACHE"]={}
-      --profCache[i][4]
-
-      --[==[
-      local fall=i/250
-      C_Timer.After(fall, function()
-         local name, link = C_Item.GetItemInfo(profCache[i][4])
-         Craftie.Frame.ScrollRecipesListHLink[i]:SetText(link)
-         print(fall .. " | " .. link)
-      end)
-      --Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnEnter", function()
-        --Craftie:SetItemTooltip(Craftie.Frame.ScrollRecipesListItem[i], profCache[i][4])
-      --end)
-      Craftie.Frame.ScrollRecipesListHLink[i]:Hide()
-      ]==]--
+      Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
       Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
         if (Craftie.EnableScrollFrames) then
+          if (IsShiftKeyDown()) then
+            local name, link = C_Item.GetItemInfo(profCache[i][4])
+            if ((link ~= nil) and (link ~= "")) then
+              ChatEdit_InsertLink(link)
+            end
+          end
           Craftie:ItemDetails(profCache[i])
           --clear selections
           Craftie.Selected_Recipes = i
           Craftie:SelectScrollItem("Recipes")
-          --Craftie.Frame.ScrollRecipesListHLink[i]:Show()
         end
       end)
       Craftie.Frame.ScrollRecipesListItem[i]:Show()
