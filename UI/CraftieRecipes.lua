@@ -115,7 +115,7 @@ Craftie.Frame.Search.Recipes={}
 Craftie.Frame.Search.Recipes = CreateFrame("Frame", "Craftie.Frame.Search.Recipes", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.Search.Recipes:SetWidth(Craftie.Frame.ScrollRecipes_Width-5)
 Craftie.Frame.Search.Recipes:SetHeight(24)
-Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -26)
+Craftie.Frame.Search.Recipes:SetPoint("TOPLEFT", 2, -25)
 --Craftie.Frame.Search.Recipes:SetBackdrop(Craftie.Backdrop.Opaque)
 --Craftie.Frame.Search.Recipes:SetBackdropColor(0, 0, 0, 1)
 --Craftie.Frame.Search.Recipes:SetBackdropBorderColor(1, 1, 1, 0.5)

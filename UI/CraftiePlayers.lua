@@ -121,7 +121,7 @@ Craftie.Frame.Search.Players={}
 Craftie.Frame.Search.Players = CreateFrame("Frame", "Craftie.Frame.Search.Players", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate", 2)
 Craftie.Frame.Search.Players:SetWidth(Craftie.Frame.ScrollPlayers_Width-5)
 Craftie.Frame.Search.Players:SetHeight(24)
-Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 2, -26)
+Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 2, -25)
 Craftie.Frame.ScrollPlayersResultsFrame:SetFrameLevel(50)
 
 Craftie.Frame.Search.Players.Back = Craftie.Frame.Search.Players:CreateTexture(nil, "BORDER")
