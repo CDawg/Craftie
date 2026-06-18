@@ -70,15 +70,15 @@ end
 
 function Craftie:ClearSearchFocus()
   Craftie.Frame.Search.Recipes.Text:ClearFocus()
-  if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
+  --if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
     Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
     Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
-  end
+  --end
   Craftie.Frame.Search.Players.Text:ClearFocus()
-  if (Craftie.Frame.Search.Players.Text:GetText() == "") then
+  --if (Craftie.Frame.Search.Players.Text:GetText() == "") then
     Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
     Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
-  end
+  --end
   Craftie:Notification("Craftie:ClearSearchFocus()", Craftie.CHAT.FUNC)
 end
 
@@ -165,7 +165,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
     Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText("")
     Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("-")
-    Craftie.Frame.ScrollPlayersListItem[i]:Show()
+    Craftie.Frame.ScrollPlayersListCont[i]:Show()
   end
 
   --for i=1, Craftie.MAX_RECIPES do
@@ -273,7 +273,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListFav[1]:SetDesaturation(0.6)
     Craftie.Frame.ScrollPlayersListFav[1]:Show()
   --else
-    --Craftie.Frame.ScrollPlayersListItem[1]:Hide()
+    --Craftie.Frame.ScrollPlayersListCont[1]:Hide()
   --end
 end
 
@@ -299,11 +299,13 @@ function Craftie:TabSelect(tab, sound)
     Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
     C_Timer.After(0.1, function() --give it time to register
-      local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
-      if (search_index == Craftie.Placeholder_Recipes) then
-        search_index = ""
-      end
-      Craftie:OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
+      --local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
+      --if (search_index == Craftie.Placeholder_Recipes) then
+        --search_index = ""
+      --end
+      --Craftie:OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
+
+      Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
       Craftie:UpdateCrafterList()
       Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
       Craftie.MenuSelRecipes[2] = nil
@@ -677,7 +679,7 @@ function Craftie:SelectScrollItem(scrollFrame)
   if (Craftie.EnableScrollFrames) then
     if (scrollFrame == "Players") then
       for i=1, Craftie.MAX_CRAFTERS do
-        Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
+        Craftie.Frame.ScrollPlayersListCont[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
         Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
       end
@@ -900,14 +902,18 @@ function Craftie:OpenProfessionList(profArray, search, player)
   else
     profCache = Craftie:CopyTable(profArray)
     for i=1, Craftie.MAX_CRAFTERS do
-      Craftie.Frame.ScrollPlayersListItem[i]:Show()
+      if (i > 1) then
+        Craftie.Frame.ScrollPlayersListCont[i]:Show()
+      end
     end
   end
 
   if (search ~= "") then
     if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
       for i=1, Craftie.MAX_CRAFTERS do
-        Craftie.Frame.ScrollPlayersListItem[i]:Hide()
+        if (i > 1) then
+          Craftie.Frame.ScrollPlayersListCont[i]:Hide()
+        end
       end
 
       print("search everyone within " .. Craftie.Page)
@@ -920,7 +926,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
             --print(k .. " - " .. pattern)
             for i=1, Craftie.MAX_CRAFTERS do
               if (k == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
-                Craftie.Frame.ScrollPlayersListItem[i]:Show()
+                Craftie.Frame.ScrollPlayersListCont[i]:Show()
               end
             end
           end
@@ -936,6 +942,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
   local results = " / " .. #Craftie.Profession[Craftie.Page] .. " |cfffffb63Recipe(s)"
 
   Craftie:ClearCraftWindow()
+  print("Clear the request window here?")
 
   Craftie.Frame.ScrollRecipesResults:SetText("")
   Craftie.Frame.ScrollRecipesEmpty:Hide()

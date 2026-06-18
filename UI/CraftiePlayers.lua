@@ -193,6 +193,7 @@ Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
 end)
 
 Craftie.Frame.ScrollPlayersListItem={}
+Craftie.Frame.ScrollPlayersListCont={} --container used for dynamic searches
 Craftie.Frame.ScrollPlayersListBack={}
 Craftie.Frame.ScrollPlayersListName={}
 Craftie.Frame.ScrollPlayersListClass={}
@@ -212,47 +213,54 @@ Craftie.Frame.ScrollPlayersListOpt.HL={}
 Craftie.Frame.ScrollPlayersListSubMenu={}
 
 for i=1, Craftie.MAX_CRAFTERS do
-  Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
+  Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollPlayersListItem[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
   Craftie.Frame.ScrollPlayersListItem[i]:SetHeight(20)
   Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollPlayersListItem[i]:GetHeight()+16)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetBackdrop(Craftie.Backdrop.Borderless)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollPlayersListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
-  Craftie.Frame.ScrollPlayersListItem[i]:RegisterForClicks("AnyUp")
+  --Craftie.Frame.ScrollPlayersListItem[i]:RegisterForClicks("AnyUp")
+
+  Craftie.Frame.ScrollPlayersListCont[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListCont[i], Craftie.Frame.ScrollPlayersListItem[i], "BackdropTemplate", -1)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
+  Craftie.Frame.ScrollPlayersListCont[i]:SetHeight(20)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetPoint("TOPLEFT", 0, 0)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetBackdrop(Craftie.Backdrop.Borderless)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetBackdropBorderColor(1, 1, 1, 0)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetFrameLevel(Craftie.Framelevel.Background)
+  Craftie.Frame.ScrollPlayersListCont[i]:RegisterForClicks("AnyUp")
 
   Craftie.Frame.ScrollPlayersListBack[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth(), 20)
+  Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListCont[i]:GetWidth(), 20)
   Craftie.Frame.ScrollPlayersListBack[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
   --Craftie.Frame.ScrollPlayersListBack[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollPlayersListBack[i]:SetAlpha(0.5)
 
-  Craftie.Frame.ScrollPlayersListName[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListName[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListName[i]:SetPoint("TOPLEFT", 20, -5)
   --Craftie.Frame.ScrollPlayersListName[i]:SetText("Player_" .. i)
   Craftie.Frame.ScrollPlayersListName[i]:SetText("")
   Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
-  Craftie.Frame.ScrollPlayersListClass[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListClass[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListClass[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
   Craftie.Frame.ScrollPlayersListClass[i]:Hide()
-  Craftie.Frame.ScrollPlayersListProfLevel[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListProfLevel[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListProfLevel[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
   Craftie.Frame.ScrollPlayersListProfLevel[i]:Hide()
-  Craftie.Frame.ScrollPlayersListProfMastery[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListProfMastery[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListProfMastery[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText("")
   Craftie.Frame.ScrollPlayersListProfMastery[i]:Hide()
-  Craftie.Frame.ScrollPlayersListUpdate[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListUpdate[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListUpdate[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("")
   Craftie.Frame.ScrollPlayersListUpdate[i]:Hide()
 
-  Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "OVERLAY")
-  Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
+  Craftie.Frame.ScrollPlayersListSelect[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "OVERLAY")
+  Craftie.Frame.ScrollPlayersListSelect[i]:SetSize(Craftie.Frame.ScrollPlayersListCont[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListCont[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListSelect[i]:SetPoint("CENTER", 0, 0)
   Craftie.Frame.ScrollPlayersListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select.png")
   Craftie.Frame.ScrollPlayersListSelect[i]:SetBlendMode("ADD")
@@ -261,8 +269,8 @@ for i=1, Craftie.MAX_CRAFTERS do
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
 
   --[==[
-  Craftie.Frame.ScrollPlayersListHighlight[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.ScrollPlayersListHighlight[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
+  Craftie.Frame.ScrollPlayersListHighlight[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.ScrollPlayersListHighlight[i]:SetSize(Craftie.Frame.ScrollPlayersListCont[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListCont[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListHighlight[i]:SetPoint("CENTER", 0, 0)
   Craftie.Frame.ScrollPlayersListHighlight[i]:SetTexture(Craftie._G.Path ..  "Images/UI-Craftie-Row-Highlight.png")
   Craftie.Frame.ScrollPlayersListHighlight[i]:SetBlendMode("ADD")
@@ -271,13 +279,13 @@ for i=1, Craftie.MAX_CRAFTERS do
   Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
   ]==]--
 
-  Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(8, 8)
   Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 18, -6)
   Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
   Craftie.Frame.ScrollPlayersListNet[i]:Hide()
 
-  Craftie.Frame.ScrollPlayersListFav[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
+  Craftie.Frame.ScrollPlayersListFav[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListFav[i]:SetSize(14, 14)
   Craftie.Frame.ScrollPlayersListFav[i]:SetPoint("TOPLEFT", 5, -2)
   Craftie.Frame.ScrollPlayersListFav[i]:SetTexture("Interface/COMMON/ReputationStar")
@@ -291,7 +299,7 @@ for i=1, Craftie.MAX_CRAFTERS do
   if (i % 4 == 0) then
     Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row4.png")
   end
-  Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnEnter", function(self)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(0.8, 0.85, 1, 0.2)
     end
@@ -346,7 +354,7 @@ for i=1, Craftie.MAX_CRAFTERS do
       end
     end
   end)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnLeave", function(self)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetScript("OnLeave", function(self)
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(0.8, 0.85, 1, 0)
       CraftieTooltip:Hide()
@@ -354,7 +362,7 @@ for i=1, Craftie.MAX_CRAFTERS do
     end
   end)
   --show the options
-  Craftie.Frame.ScrollPlayersListItem[i]:SetScript("OnClick", function(self, button)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetScript("OnClick", function(self, button)
     Craftie:CloseAllPlayerMenus()
     if (Craftie.EnableScrollFrames) then
       if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
@@ -371,7 +379,7 @@ for i=1, Craftie.MAX_CRAFTERS do
             local crafter = Craftie.Frame.ScrollPlayersListName[i]:GetText()
             if (crafter ~= nil) then
               Craftie.Frame.ScrollPlayersListSubMenu:Show()
-              local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListItem[i]:GetPoint()
+              local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.ScrollPlayersListCont[i]:GetPoint()
               --Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, xOfs+10, yOfs-40)
               Craftie.Frame.ScrollPlayersListSubMenu:SetPoint(point, relativeTo, relativePoint, xOfs+15, yOfs-8)
               Craftie.Selected_Name = crafter
