@@ -13,14 +13,21 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+--need to localize the commands
 Craftie.Commands = {
-  --log = Craftie.Logger:Show()
+  {"options","settings"},
+  {"debug",  "info here"},
+  {"log",    "log here"},
 }
 
 SLASH_Craftie1 = "/" .. Craftie._G.Prefix:lower()
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
     Craftie:Open()
+    Craftie:Notification("Commands:", Craftie.CHAT.INFO)
+    for k,v in pairs(Craftie.Commands) do
+      print(" " .. v[1] .. " | " .. v[2])
+    end
 	end
 	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
 	--if (cmd == Craftie._L.COMMANDS[1][1]) then
