@@ -113,7 +113,7 @@ function Craftie:GetCrafterIndex(player)
 end
 
 function Craftie:SelectCrafter(index, name)
-  Craftie:ClearSearchFocus()
+  --Craftie:ClearSearchFocus()
   Craftie.Selected_Name = ""
   Craftie.Selected_Players = 1 --always one at first
 
