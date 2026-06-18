@@ -1,0 +1,74 @@
+--[==[
+Copyright ©2026 Porthias of Dreamscythe
+
+The contents of this addon, excluding third-party resources, are
+copyrighted to Porthias with all rights reserved.
+This addon is free to use and the authors hereby grants you the following rights:
+1. You may make modifications to this addon for private use only, you
+   may not publicize any portion of this addon.
+2. Do not modify the name of this addon, including the addon folders.
+3. This copyright notice shall be included in all copies or substantial
+  portions of the Software.
+All rights not explicitly addressed in this license are reserved by
+the copyright holders.
+]==]--
+
+Craftie.Commands = {
+  --log = Craftie.Logger:Show()
+}
+
+SLASH_Craftie1 = "/" .. Craftie._G.Prefix:lower()
+function SlashCmdList.Craftie(cmd)
+  if ((cmd == nil) or (cmd == "")) then
+    Craftie:Open()
+	end
+	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
+	--if (cmd == Craftie._L.COMMANDS[1][1]) then
+	  --Craftie.FrameOptions:Show()
+  --end
+  if (cmd == "options") then
+    Settings.OpenToCategory(Craftie.Settings.Category:GetID())
+    Craftie.Frame:Hide()
+  end
+
+  if (cmd == "log") then
+    Craftie.Logger:Show()
+  end
+
+  if (cmd == "debug") then
+    local count = 0
+    for i in pairs(Craftie.CHAT) do
+      count = count+1
+    end
+    if (args == "") then
+      local sorted = {}
+      for key, value in pairs(Craftie.CHAT) do
+        table.insert(sorted, {key=key,num=value[1],text=value[2]})
+      end
+      table.sort(sorted, function(a, b)
+        return a.num < b.num
+      end)
+      for _, v in ipairs(sorted) do
+        if (v.num <= Craftie.DEBUGLEVEL) then
+          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. "|CFF9CFFA1[ON]|r", Craftie.CHAT.INFO)
+        else
+          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. "|CFFFFD19C[OFF]|r", Craftie.CHAT.INFO)
+        end
+      end
+    else
+      if (args) then
+        if (tonumber(args) > count) then
+          Craftie.Notification("Max debug level = " .. count, Craftie.CHAT.INFO)
+        else
+          Craftie.DEBUGLEVEL = tonumber(args)
+        end
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"] = tonumber(args)
+      else
+        Craftie:Notification("Debug Level must be an integer [1-".. count .."]", Craftie.CHAT.ERROR)
+      end
+      Craftie:Notification("Debug Level set to " .. Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
+    end
+    Craftie:Notification("Debug Level = " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
+  end
+
+end
