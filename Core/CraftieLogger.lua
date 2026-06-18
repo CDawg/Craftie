@@ -16,7 +16,7 @@ the copyright holders.
 Craftie.Logger_w = 800
 Craftie.Logger_h = 550
 
-Craftie.Logger = CreateFrame("Frame", "Craftie.Logger", UIParent, "BackdropTemplate")
+Craftie.Logger = CreateFrame("Frame", 'Craftie.Logger', UIParent, "BackdropTemplate")
 Craftie.Logger:SetWidth(Craftie.Logger_w)
 Craftie.Logger:SetHeight(Craftie.Logger_h)
 Craftie.Logger:SetPoint("CENTER", 0, 20)
@@ -244,7 +244,7 @@ function Craftie:Log(type, log)
       Craftie.Logger.Row[id][2]:GetText() ..
       "|nTYPE: " .. Craftie.Logger.Row[id][3]:GetText() ..
       "|n|nLOG:|n" .. Craftie.Logger.Row[id][4]:GetText()
-      Craftie.Logger.Text:SetText(detail)
+      Craftie.Logger.Output:SetText(detail)
     end
   end)
 
@@ -343,12 +343,20 @@ Craftie.Logger.DetailsFrame:SetWidth(Craftie.Logger.DetailsFrame:GetParent():Get
 Craftie.Logger.DetailsFrame:SetHeight(152)
 Craftie.Logger.DetailsFrame:SetPoint("TOPLEFT", 2, -396)
 
-Craftie.Logger.Text = CreateFrame("EditBox", "Craftie.Logger.Text", Craftie.Logger.DetailsFrame)
-Craftie.Logger.Text:SetWidth(Craftie.Logger.DetailsFrame:GetWidth()-30)
-Craftie.Logger.Text:SetHeight(Craftie.Logger.DetailsFrame:GetHeight()-10)
-Craftie.Logger.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, "OUTLINE")
-Craftie.Logger.Text:SetPoint("TOPLEFT", 15, -15)
-Craftie.Logger.Text:SetMultiLine(true)
-Craftie.Logger.Text:ClearFocus()
-Craftie.Logger.Text:SetAutoFocus(false)
-Craftie.Logger.Text:SetText("")
+Craftie.Logger.Output = CreateFrame("EditBox", "Craftie.Logger.Output", Craftie.Logger.DetailsFrame)
+Craftie.Logger.Output:SetWidth(Craftie.Logger.DetailsFrame:GetWidth()-30)
+Craftie.Logger.Output:SetHeight(Craftie.Logger.DetailsFrame:GetHeight()-10)
+Craftie.Logger.Output:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, "OUTLINE")
+Craftie.Logger.Output:SetPoint("TOPLEFT", 15, -15)
+Craftie.Logger.Output:SetMultiLine(true)
+Craftie.Logger.Output:ClearFocus()
+Craftie.Logger.Output:SetAutoFocus(false)
+Craftie.Logger.Output:SetText("")
+--Craftie.Logger.Output:SetEnabled(false)
+--Craftie.Logger.Output:RegisterForClicks("AnyUp")
+--Craftie.Logger.Output:EnableKeyboard(false)
+Craftie.Logger.Output:SetScript("OnKeyUp", nil)
+Craftie.Logger.Output:SetScript("OnKeyDown", nil)
+Craftie.Logger.Output:SetScript("OnTextChanged", nil)
+
+table.insert(UISpecialFrames, Craftie.Logger:GetName())
