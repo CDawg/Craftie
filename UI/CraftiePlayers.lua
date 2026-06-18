@@ -200,7 +200,7 @@ Craftie.Frame.ScrollPlayersListProfLevel={}
 Craftie.Frame.ScrollPlayersListProfMastery={}
 Craftie.Frame.ScrollPlayersListUpdate={}
 Craftie.Frame.ScrollPlayersListSelect={}
-Craftie.Frame.ScrollPlayersListHighlight={}
+--Craftie.Frame.ScrollPlayersListHighlight={}
 Craftie.Frame.ScrollPlayersListFav={}
 Craftie.Frame.ScrollPlayersListNet={}
 
@@ -260,6 +260,7 @@ for i=1, Craftie.MAX_CRAFTERS do
   Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.6)
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
 
+  --[==[
   Craftie.Frame.ScrollPlayersListHighlight[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollPlayersListHighlight[i]:SetSize(Craftie.Frame.ScrollPlayersListItem[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListHighlight[i]:SetPoint("CENTER", 0, 0)
@@ -268,6 +269,7 @@ for i=1, Craftie.MAX_CRAFTERS do
   --Craftie.Frame.ScrollPlayersListHighlight[i]:SetVertexColor(0.60, 0.80, 0.94)
   Craftie.Frame.ScrollPlayersListHighlight[i]:SetAlpha(0.6)
   Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
+  ]==]--
 
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(8, 8)

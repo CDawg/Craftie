@@ -165,8 +165,12 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText("")
     Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText("")
     Craftie.Frame.ScrollPlayersListUpdate[i]:SetText("-")
-    Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
+    Craftie.Frame.ScrollPlayersListItem[i]:Show()
   end
+
+  --for i=1, Craftie.MAX_RECIPES do
+    --Craftie.Frame.ScrollRecipesListItem[i]:Hide()
+  --end
 
   C_Timer.After(0.1, function()
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
@@ -259,7 +263,8 @@ function Craftie:UpdateCrafterList(search)
   end)
 
   --if (Craftie.DEBUGLEVEL > 3) then
-    Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
+    --Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
+    Craftie.Frame.ScrollPlayersListName[1]:SetText(Craftie.Page .. " Library")
     --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
     Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
     Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/ICONS/" .. Craftie.Professions[Craftie.Tab][2])
@@ -675,7 +680,6 @@ function Craftie:SelectScrollItem(scrollFrame)
         Craftie.Frame.ScrollPlayersListItem[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
         Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
-        Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
       end
       Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Players]:Show()
       Craftie.Frame.ScrollPlayersListName[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
@@ -895,15 +899,17 @@ function Craftie:OpenProfessionList(profArray, search, player)
     Craftie.MenuSelRecipes[2] = player
   else
     profCache = Craftie:CopyTable(profArray)
-  end
-
-  for i=1, Craftie.MAX_CRAFTERS do
-    Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
-    --Craftie.Frame.ScrollRecipesListItem[i]:Hide()
+    for i=1, Craftie.MAX_CRAFTERS do
+      Craftie.Frame.ScrollPlayersListItem[i]:Show()
+    end
   end
 
   if (search ~= "") then
     if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
+      for i=1, Craftie.MAX_CRAFTERS do
+        Craftie.Frame.ScrollPlayersListItem[i]:Hide()
+      end
+
       print("search everyone within " .. Craftie.Page)
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()] ~= nil) then
         --print("found " .. Craftie.Page)
@@ -914,7 +920,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
             --print(k .. " - " .. pattern)
             for i=1, Craftie.MAX_CRAFTERS do
               if (k == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
-                Craftie.Frame.ScrollPlayersListHighlight[i]:Show()
+                Craftie.Frame.ScrollPlayersListItem[i]:Show()
               end
             end
           end
