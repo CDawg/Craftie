@@ -54,7 +54,7 @@ function Craftie:CloseAllPlayerMenus()
   Craftie.EnableScrollFrames = true
 end
 
-function Craftie:ClearCraftWindow()
+function Craftie:ClearCraftFrame()
   Craftie.Frame.Craft:Hide()
   --GameTooltip:Hide()
   for i=1, Craftie.MAX_REAGENTS do
@@ -65,7 +65,14 @@ function Craftie:ClearCraftWindow()
   Craftie.Frame.Craft.SkillText:Hide()
   Craftie.Frame.Craft.SkillIcon:Hide()
   Craftie.Frame.Craft.SourceText:Hide()
-  Craftie:Notification("Craftie:ClearCraftWindow()", Craftie.CHAT.FUNC)
+
+  Craftie.Frame.CraftRequestParent:Hide()
+  Craftie:Notification("Craftie:ClearCraftFrame()", Craftie.CHAT.FUNC)
+end
+
+function Craftie:CraftRequestFrame(player)
+  Craftie.Frame.CraftRequestParent:Show()
+  print(player)
 end
 
 function Craftie:ClearSearchFocus()
@@ -941,8 +948,10 @@ function Craftie:OpenProfessionList(profArray, search, player)
   --local total_search = 0
   local results = " / " .. #Craftie.Profession[Craftie.Page] .. " |cfffffb63Recipe(s)"
 
-  Craftie:ClearCraftWindow()
-  print("Clear the request window here?")
+  Craftie:ClearCraftFrame() --also hide request frame
+  if (player ~= "") then
+    Craftie:CraftRequestFrame(player)
+  end
 
   Craftie.Frame.ScrollRecipesResults:SetText("")
   Craftie.Frame.ScrollRecipesEmpty:Hide()

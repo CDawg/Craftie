@@ -444,22 +444,23 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollRecipesListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
-  --Craftie.Frame.ScrollRecipesListItem[i]:RegisterForClicks("AnyUp")
-  --[==[
-  Craftie.Frame.ScrollRecipesListItem[i]:SetHyperlinksEnabled(true)
-  Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
-    if (Craftie.EnableScrollFrames) then
-      SetItemRef(Craftie.Frame.ScrollRecipesListHLink[i]:GetText(), text, button, self)
-      ItemRefTooltip:Hide()
-    end
-  end)
-  ]==]--
 
   Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(1, 0.9, 0.8, 0.2)
       Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 0.8, 1)
     end
+
+    --[==[
+    CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+    CraftieTooltip:ClearLines()
+    CraftieTooltip:AddLine(" ")
+    CraftieTooltip:AddLine("|CFF4D4D4DShift + Left Click")
+    CraftieTooltip:AddLine("|CFF4D4D4DPaste Link In Chat")
+    --CraftieTooltip:AddLine(" ")
+    --CraftieTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
+    CraftieTooltip:Show()
+    ]==]--
   end)
   Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnLeave", function(self)
     if (Craftie.EnableScrollFrames) then
@@ -467,6 +468,7 @@ for i=1, Craftie.MAX_RECIPES do
       GameTooltip:Hide()
       Craftie:SelectScrollItem("Recipes")
     end
+    CraftieTooltip:Hide()
   end)
 
   Craftie.Frame.ScrollRecipesListBack[i] = Craftie.Frame.ScrollRecipesListItem[i]:CreateTexture(nil, "BACKGROUND")
