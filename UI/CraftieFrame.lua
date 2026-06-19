@@ -89,8 +89,8 @@ Craftie.Frame.TabBarBack:SetHeight(400)
 Craftie.Frame.TabBarBack:SetPoint("TOPLEFT", 0, 10)
 Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-ProfBar" .. Craftie.Game.Version .. ".png")
 
-local TabSidePosY = 23
-local TabSideSpacing = 37.4 --distance spacing
+local TabSidePosY = 27
+local TabSideSpacing = 40 --distance spacing
 Craftie.Frame.TabSide={}
 for i,v in pairs(Craftie.Professions) do
   Craftie.Frame.TabSide[i] = CreateFrame("Button", Craftie.Frame.TabSide[i], Craftie.Frame.TabBar, "BackdropTemplate")
