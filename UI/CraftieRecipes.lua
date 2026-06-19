@@ -73,8 +73,8 @@ Craftie.Frame.ScrollRecipesEmpty:Hide()
 
 Craftie.MenuSelRecipes = {"Search All Crafter Recipes"}
 Craftie.Frame.DropdownRecipes={}
-Craftie.Frame.DropdownRecipes = CreateFrame("Frame", "Craftie.Frame.DropdownRecipes", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate")
-Craftie.Frame.DropdownRecipes:SetPoint("TOPLEFT", 198, -1)
+Craftie.Frame.DropdownRecipes = CreateFrame("Frame", "Craftie.Frame.DropdownRecipes", Craftie.Frame.ScrollRecipesParent, "UIDropDownMenuTemplate")
+Craftie.Frame.DropdownRecipes:SetPoint("TOPLEFT", -14, -1)
 Craftie.Frame.DropdownRecipes.displayMode = "MENU"
 --Craftie.Frame.DropdownRecipes:SetBackdrop(Craftie.Backdrop.Borderless)
 --Craftie.Frame.DropdownRecipes:SetBackdropBorderColor(1, 1, 1, 0)
