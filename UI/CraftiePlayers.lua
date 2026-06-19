@@ -14,11 +14,11 @@ the copyright holders.
 ]==]--
 
 Craftie.Frame.ScrollPlayers_Width = 208
-Craftie.Frame.ScrollPlayers_Height= Craftie._G.Height-158
+Craftie.Frame.ScrollPlayers_Height= 302
 
 Craftie.Frame.ScrollPlayersParent = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersParent", Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollPlayersParent:SetWidth(Craftie.Frame.ScrollPlayers_Width)
-Craftie.Frame.ScrollPlayersParent:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.ScrollPlayersParent:SetHeight(Craftie.Frame.ScrollPlayers_Height+70)
 Craftie.Frame.ScrollPlayersParent:SetPoint("TOPLEFT", 4, -62)
 Craftie.Frame.ScrollPlayersParent:SetFrameStrata("MEDIUM")
 

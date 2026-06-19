@@ -14,11 +14,11 @@ the copyright holders.
 ]==]--
 
 Craftie.Frame.ScrollRecipes_Width = 294
-Craftie.Frame.ScrollRecipes_Height= Craftie._G.Height-158
+Craftie.Frame.ScrollRecipes_Height= 302
 
 Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollRecipesParent:SetWidth(Craftie.Frame.ScrollRecipes_Width)
-Craftie.Frame.ScrollRecipesParent:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.ScrollRecipesParent:SetHeight(Craftie.Frame.ScrollRecipes_Height+70)
 Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 216, -62)
 Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
 
@@ -194,7 +194,7 @@ CRAFT FRAME
 Craftie.Frame.CraftParent={}
 Craftie.Frame.CraftParent= CreateFrame("Frame", "Craftie.Frame.CraftParent", Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.CraftParent:SetWidth(300)
-Craftie.Frame.CraftParent:SetHeight(Craftie._G.Height-88)
+Craftie.Frame.CraftParent:SetHeight(Craftie.Frame.ScrollRecipes_Height+70)
 --Craftie.Frame.CraftParent:SetHeight(180)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -8, -62)
 Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
