@@ -45,8 +45,8 @@ Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
 
 Craftie.Placeholder_Players = "Search Crafters..."
 Craftie.Placeholder_Recipes = "Search Recipes..."
-Craftie.Selected_Players = 1
-Craftie.Selected_Recipes = 1
+Craftie.Selected_Player_Index = 1
+Craftie.Selected_Recipe_Index = 1
 Craftie.Selected_ViewAll = "All Alchemy Recipes" --default
 Craftie.Selected_Name = ""
 Craftie.Preload = "|cFF27CCF5Loading Data...|r"

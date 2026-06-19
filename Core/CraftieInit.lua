@@ -23,6 +23,8 @@ function Craftie:Init()
   Craftie:SaveData()
   Craftie:BuildPersonalTooltip()
   --Craftie:UpdatePlayerTooltip(false)
+  --Craftie:GetOnlineCrafters()
+  --ChatFrame_AddMessageEventFilter
 
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.OpenState = 0

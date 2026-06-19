@@ -72,7 +72,7 @@ end
 
 function Craftie:CraftRequestFrame(player)
   Craftie.Frame.CraftRequestParent:Show()
-  print(player)
+  print("CraftRequestFrame: " .. player)
 end
 
 function Craftie:ClearSearchFocus()
@@ -122,7 +122,7 @@ end
 function Craftie:SelectCrafter(index, name)
   --Craftie:ClearSearchFocus()
   Craftie.Selected_Name = ""
-  Craftie.Selected_Players = 1 --always one at first
+  Craftie.Selected_Player_Index = 1 --always one at first
 
   if (index == 1) then
     if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
@@ -135,7 +135,7 @@ function Craftie:SelectCrafter(index, name)
   else
     if (name ~= nil) then
       --print(name)
-      Craftie.Selected_Players = index
+      Craftie.Selected_Player_Index = index
       Craftie.Selected_Name = name
       Craftie.Frame.DropdownRecipes.text:SetText(name)
       Craftie:Notification("Craftie:SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.CHAT.FUNC)
@@ -149,6 +149,28 @@ function Craftie:SelectCrafter(index, name)
   Craftie:SelectScrollItem("Players") --highlight
 
   PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
+end
+
+Craftie.PlayerOnline = {}
+function Craftie:GetOnlineCrafters()
+  local count = 0
+  for k,v in pairs(Craftie.Professions) do
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()] ~= nil) then
+      for p in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()]) do
+        --print(p)
+        Craftie.PlayerOnline[p] = 0
+      end
+    end
+  end
+  --local load_time = i*0.120
+  for k,v in pairs(Craftie.PlayerOnline) do
+    count = count+1
+    C_Timer.After(count*0.060, function()
+      --print("player: " .. k)
+      Craftie:SendPacket(Craftie.Packet.Prefix.Net, Craftie.Player.Name .. "," .. "1", "WHISPER", k)
+    end)
+  end
+  Craftie:Notification("Craftie:GetOnlineCrafters()", Craftie.CHAT.FUNC)
 end
 
 --on tab load
@@ -165,7 +187,8 @@ function Craftie:UpdateCrafterList(search)
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
 
   for i=1, Craftie.MAX_CRAFTERS do
-    --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
+    Craftie.Frame.ScrollPlayersListNet[i]:Hide()
+    Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
     Craftie.Frame.ScrollPlayersListFav[i]:Hide()
     Craftie.Frame.ScrollPlayersListName[i]:SetText("")
     Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
@@ -231,10 +254,16 @@ function Craftie:UpdateCrafterList(search)
     for n=1, #search_list do
       local i=n+1 --skip the 1st index
       local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][search_list[n]], ",")
-      --print(i .. " | " .. search_list[n] .. " | " .. "profLevel " .. crafter[3])
+      Craftie.Frame.ScrollPlayersListNet[i]:Show()
+
+      if (Craftie.PlayerOnline[search_list[n]] == 1) then
+        Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Online")
+      end
+
+      --print("here: " .. i .. " | " .. search_list[n] .. " | " .. "profLevel " .. crafter[3])
       --[==[
       Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n])
-      Craftie.Frame.ScrollPlayersListNet[i]:Show() --online status only works for guildies
+      Craftie.Frame.ScrollPlayersListNet[i]:Show()
       Craftie.Frame.ScrollPlayersListFav[i]:Show()
       Craftie.Frame.ScrollPlayersListClass[i]:SetText(Craftie.Class[tonumber(crafter[1])][2])
       ]==]--
@@ -279,6 +308,7 @@ function Craftie:UpdateCrafterList(search)
     --Craftie.Frame.ScrollPlayersListFav[1]:SetAlpha(0.7)
     Craftie.Frame.ScrollPlayersListFav[1]:SetDesaturation(0.6)
     Craftie.Frame.ScrollPlayersListFav[1]:Show()
+    Craftie.Frame.ScrollPlayersListNet[1]:Hide()
   --else
     --Craftie.Frame.ScrollPlayersListCont[1]:Hide()
   --end
@@ -318,11 +348,11 @@ function Craftie:TabSelect(tab, sound)
       Craftie.MenuSelRecipes[2] = nil
     end)
 
-    Craftie.Selected_Players = 1
+    Craftie.Selected_Player_Index = 1
     Craftie:SelectScrollItem("Players")
     Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
 
-    Craftie.Selected_Recipes = 1
+    Craftie.Selected_Recipe_Index = 1
     Craftie:SelectScrollItem("Recipes")
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
 
@@ -362,6 +392,8 @@ function Craftie:SendPacket(prefix, data, channel, target)
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
     Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. channel, Craftie.CHAT.SEND)
   end
+
+  --Craftie:Notification("Prefix: " .. prefix, Craftie.CHAT.FUNC)
 end
 
 Craftie.Notified = 0
@@ -444,6 +476,7 @@ function Craftie:ParsePacket(netpacket)
         Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData .. "," .. profMastery, Craftie.CHAT.ACK)
         --store it
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
+        Craftie.PlayerOnline[crafterName] = 1
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
         Craftie:Notification(profString, Craftie.CHAT.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][crafterName] = profString
@@ -477,6 +510,15 @@ function Craftie:ParsePacket(netpacket)
           Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=b[1], profL2=b[2], profM2=tonumber(b[3]), profN3=c[1], profL3=c[2], profM3=tonumber(b[3])}
         end
         --Craftie.PlayerGUIDProf[crafter] = tooltip
+      end
+    end
+
+    --online
+    if (prefix == Craftie.Packet.Prefix.Net) then
+      --print(packet[3] .. " | " .. packet[4])
+      if ((packet[3] ~= nil) and (packet[4] ~= nil)) then
+        Craftie.PlayerOnline[packet[3]] = 1
+        Craftie:Notification("Online Ping Status: " .. packet[3], Craftie.CHAT.ACK)
       end
     end
 
@@ -680,6 +722,10 @@ function Craftie:ItemDetails(item)
   Craftie.Frame.Craft.SkillIcon:Show()
   Craftie.Frame.Craft.SourceTitle:Show()
   Craftie.Frame.Craft.SourceText:Show()
+
+  if (Craftie.Selected_Name ~= "") then
+    Craftie:CraftRequestFrame(Craftie.Selected_Name)
+  end
 end
 
 function Craftie:SelectScrollItem(scrollFrame)
@@ -690,8 +736,8 @@ function Craftie:SelectScrollItem(scrollFrame)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
         Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
       end
-      Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Players]:Show()
-      Craftie.Frame.ScrollPlayersListName[Craftie.Selected_Players]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Player_Index]:Show()
+      Craftie.Frame.ScrollPlayersListName[Craftie.Selected_Player_Index]:SetTextColor(1, 1, 0.8, 1)
     end
     if (scrollFrame == "Recipes") then
       for i=1, Craftie.MAX_RECIPES do
@@ -700,9 +746,9 @@ function Craftie:SelectScrollItem(scrollFrame)
         --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
         Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 1, 0.8)
       end
-      Craftie.Frame.ScrollRecipesListSelect[Craftie.Selected_Recipes]:Show()
-      --Craftie.Frame.ScrollRecipesListSelectSpark[Craftie.Selected_Recipes]:Show()
-      Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipes]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.ScrollRecipesListSelect[Craftie.Selected_Recipe_Index]:Show()
+      --Craftie.Frame.ScrollRecipesListSelectSpark[Craftie.Selected_Recipe_Index]:Show()
+      Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipe_Index]:SetTextColor(1, 1, 0.8, 1)
     end
   end
   --Craftie:Notification("Craftie:SelectScrollItem(" .. scrollFrame .. ")", Craftie.CHAT.FUNC)
@@ -949,9 +995,6 @@ function Craftie:OpenProfessionList(profArray, search, player)
   local results = " / " .. #Craftie.Profession[Craftie.Page] .. " |cfffffb63Recipe(s)"
 
   Craftie:ClearCraftFrame() --also hide request frame
-  if (player ~= "") then
-    Craftie:CraftRequestFrame(player)
-  end
 
   Craftie.Frame.ScrollRecipesResults:SetText("")
   Craftie.Frame.ScrollRecipesEmpty:Hide()
@@ -1015,7 +1058,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
           end
           Craftie:ItemDetails(profCache[i])
           --clear selections
-          Craftie.Selected_Recipes = i
+          Craftie.Selected_Recipe_Index = i
           Craftie:SelectScrollItem("Recipes")
         end
       end)

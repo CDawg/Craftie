@@ -39,6 +39,7 @@ Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
 Craftie.Event:RegisterEvent("TRADE_SKILL_UPDATE")
+--Craftie.Event:RegisterEvent("WHO_LIST_UPDATE")
 
 --channels used for linking and filtering
 Craftie.ChannelList = {
@@ -174,7 +175,6 @@ function Craftie.BuildChatHooks()
     end
     Craftie:Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.CHAT.FUNC)
   end
-end
 
 for k,v in pairs(Craftie.Professions) do
    Craftie.ChatFilter[v[1]] = function(self, event, msg, author, ...)
@@ -195,6 +195,8 @@ for k,v in pairs(Craftie.ChannelList) do
     --segment each primary profession
     ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])
   end
+end
+
 end
 
 hooksecurefunc("SetItemRef", function(link, text, button)

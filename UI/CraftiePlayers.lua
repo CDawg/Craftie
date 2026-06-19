@@ -237,7 +237,7 @@ for i=1, Craftie.MAX_CRAFTERS do
 
   Craftie.Frame.ScrollPlayersListName[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Frame.ScrollPlayersListName[i]:SetPoint("TOPLEFT", 20, -5)
+  Craftie.Frame.ScrollPlayersListName[i]:SetPoint("TOPLEFT", 32, -5)
   --Craftie.Frame.ScrollPlayersListName[i]:SetText("Player_" .. i)
   Craftie.Frame.ScrollPlayersListName[i]:SetText("")
   Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
@@ -279,10 +279,10 @@ for i=1, Craftie.MAX_CRAFTERS do
   ]==]--
 
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.ScrollPlayersListNet[i]:SetSize(8, 8)
-  Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 18, -6)
+  Craftie.Frame.ScrollPlayersListNet[i]:SetSize(10, 10)
+  Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 20, -6)
   Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
-  Craftie.Frame.ScrollPlayersListNet[i]:Hide()
+  --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
 
   Craftie.Frame.ScrollPlayersListFav[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListFav[i]:SetSize(14, 14)
