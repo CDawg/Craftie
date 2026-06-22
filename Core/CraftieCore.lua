@@ -940,6 +940,7 @@ end
 function Craftie:OpenProfessionList(profArray, search, player)
   local profCache = {}
   local search_all_count = 0
+  local index = 1
   Craftie.Frame.ScrollRecipesLoading:Show()
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie:SetProfLevel(0)
@@ -952,6 +953,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     for i=1, Craftie.MAX_CRAFTERS do
       if (i > 1) then
         Craftie.Frame.ScrollPlayersListCont[i]:Show()
+        Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollPlayersListItem[i]:GetHeight()+16)
       end
     end
   end
@@ -974,7 +976,9 @@ function Craftie:OpenProfessionList(profArray, search, player)
             --print(k .. " - " .. pattern)
             for i=1, Craftie.MAX_CRAFTERS do
               if (k == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
-                Craftie.Frame.ScrollPlayersListCont[i]:Show()
+                index = index +1
+                Craftie.Frame.ScrollPlayersListCont[i]:Show() --show only containers
+                Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -index*Craftie.Frame.ScrollPlayersListItem[i]:GetHeight()+16)
               end
             end
           end

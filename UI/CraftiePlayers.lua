@@ -221,7 +221,7 @@ for i=1, Craftie.MAX_CRAFTERS do
 
   Craftie.Frame.ScrollPlayersListCont[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListCont[i], Craftie.Frame.ScrollPlayersListItem[i], "BackdropTemplate", -1)
   Craftie.Frame.ScrollPlayersListCont[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
-  Craftie.Frame.ScrollPlayersListCont[i]:SetHeight(20)
+  Craftie.Frame.ScrollPlayersListCont[i]:SetHeight(Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListCont[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollPlayersListCont[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollPlayersListCont[i]:SetBackdropBorderColor(1, 1, 1, 0)
@@ -229,7 +229,7 @@ for i=1, Craftie.MAX_CRAFTERS do
   Craftie.Frame.ScrollPlayersListCont[i]:RegisterForClicks("AnyUp")
 
   Craftie.Frame.ScrollPlayersListBack[i] = Craftie.Frame.ScrollPlayersListItem[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListCont[i]:GetWidth(), 20)
+  Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListCont[i]:GetWidth(), Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListBack[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
   --Craftie.Frame.ScrollPlayersListBack[i]:SetBlendMode("ADD")
