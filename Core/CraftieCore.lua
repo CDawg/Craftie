@@ -70,22 +70,22 @@ function Craftie:ClearCraftFrame()
   Craftie:Notification("Craftie:ClearCraftFrame()", Craftie.CHAT.FUNC)
 end
 
-function Craftie:CraftRequestFrame(player)
+function Craftie:CraftRequestFrame(crafter)
   Craftie.Frame.CraftRequestParent:Show()
-  print("CraftRequestFrame: " .. player)
+  print("CraftRequestFrame: " .. crafter)
 end
 
-function Craftie:ClearSearchFocus()
+function Craftie:ClearSearchFocus(crafters)
   Craftie.Frame.Search.Recipes.Text:ClearFocus()
-  --if (Craftie.Frame.Search.Recipes.Text:GetText() == "") then
-    Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
-    Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
-  --end
-  Craftie.Frame.Search.Players.Text:ClearFocus()
-  --if (Craftie.Frame.Search.Players.Text:GetText() == "") then
+  Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
+  Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
+
+  if (crafters) then
+    Craftie.Frame.Search.Players.Text:ClearFocus()
     Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
     Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
-  --end
+  end
+
   Craftie:Notification("Craftie:ClearSearchFocus()", Craftie.CHAT.FUNC)
 end
 
@@ -120,7 +120,6 @@ function Craftie:GetCrafterIndex(player)
 end
 
 function Craftie:SelectCrafter(index, name)
-  --Craftie:ClearSearchFocus()
   Craftie.Selected_Name = ""
   Craftie.Selected_Player_Index = 1 --always one at first
 
@@ -318,7 +317,7 @@ function Craftie:TabSelect(tab, sound)
   if (Craftie.Tab ~= tab) then
     local prof_name = Craftie.Professions[tab][1]
     Craftie:CloseAllPlayerMenus()
-    Craftie:ClearSearchFocus()
+    Craftie:ClearSearchFocus(true)
     for i=1, #Craftie.Professions do
       Craftie.Frame.TabSide[i].Glow:Hide()
       Craftie.Frame.TabSide[i].Shadow:Show()
@@ -565,8 +564,9 @@ function Craftie:ItemDetails(item)
   local r_next = 0 --reagent integer population
   local b_next = 0
   local loadcache = 0
+
   Craftie.Frame.Craft:Show()
-  --Craftie:ClearSearchFocus()
+
   Craftie:TimerAnim(Craftie.Frame.Craft, 0.65) --animate the craft icon
   --PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
   PlaySound(SOUNDKIT.IG_QUEST_LOG_CLOSE)
@@ -1008,7 +1008,11 @@ function Craftie:OpenProfessionList(profArray, search, player)
       total_recipes = 0
       local search_text = 'No ' .. Craftie.Page:lower() .. ' recipes|n"' .. search .. '"|n '
       if (Craftie.Selected_Name ~= "") then
-        Craftie.Frame.ScrollRecipesEmpty:SetText(search_text .. "from " .. Craftie.Selected_Name)
+        if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
+          Craftie.Frame.ScrollRecipesEmpty:SetText(search_text)
+        else
+          Craftie.Frame.ScrollRecipesEmpty:SetText(search_text .. "from " .. Craftie.Selected_Name)
+        end
       else
         Craftie.Frame.ScrollRecipesEmpty:SetText(search_text)
       end
@@ -1195,7 +1199,9 @@ function Craftie:UpdatePlayerTooltip(channel)
 
       if (channel == "WORLD") then
         if (not IsInInstance()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+          if (not PlayerIsInCombat()) then
+            Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+          end
         end
       end
     end

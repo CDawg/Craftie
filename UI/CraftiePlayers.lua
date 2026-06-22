@@ -144,7 +144,7 @@ Craftie.Frame.Search.Players.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
 Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
-    Craftie:ClearSearchFocus()
+    Craftie:ClearSearchFocus(true)
     Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
   end
 end)

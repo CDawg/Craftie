@@ -176,28 +176,48 @@ function Craftie.BuildChatHooks()
     Craftie:Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.CHAT.FUNC)
   end
 
-for k,v in pairs(Craftie.Professions) do
-   Craftie.ChatFilter[v[1]] = function(self, event, msg, author, ...)
-    --local parent = Craftie.Chat.Alchemy[1]
-    for a,b in pairs(Craftie.Chat[v[1]]) do
-      local pattern= "%[" .. b .. "%]"
-      if (msg:find(pattern)) then --register the author data
-        local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-        --local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t[Craftie" .. pattern .. "]|h|r")
-        return false, filter, author, ...
+  for k,v in pairs(Craftie.Professions) do
+    Craftie.ChatFilter[v[1]] = function(self, event, msg, author, ...)
+      --local parent = Craftie.Chat.Alchemy[1]
+      for a,b in pairs(Craftie.Chat[v[1]]) do
+        local pattern= "%[" .. b .. "%]"
+        if (msg:find(pattern)) then --register the author data
+          local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+          --local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t[Craftie" .. pattern .. "]|h|r")
+          return false, filter, author, ...
+        end
       end
     end
   end
-end
 
-for k,v in pairs(Craftie.ChannelList) do
-  for _,prof in pairs(Craftie.Professions) do
-    --segment each primary profession
-    ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])
+  for k,v in pairs(Craftie.ChannelList) do
+    for _,prof in pairs(Craftie.Professions) do
+      --segment each primary profession
+      ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])
+    end
   end
-end
+
+  --ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])"CHAT_MSG_SYSTEM",
 
 end
+
+local function FilterOnline(self, event, msg, sender)
+    -- Check if the message is exactly "!stats"
+    if msg == "No player named '%a' is currently playing" then
+        -- Send a private reply back to the sender
+        --SendChatMessage("My stats are awesome!", "WHISPER", nil, sender)
+
+        -- Return true to prevent the original "!stats" message 
+        -- from printing in the user's chat window
+        print("found it")
+        return true
+    end
+    -- Return false/nil to let other messages display normally
+    return false
+end
+
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", FilterOnline)
+--ChatFrame_RemoveMessageEventFilter
 
 hooksecurefunc("SetItemRef", function(link, text, button)
   -- Check if the clicked link is an item
