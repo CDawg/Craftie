@@ -166,6 +166,7 @@ function Craftie:GetOnlineCrafters()
     count = count+1
     C_Timer.After(count*0.060, function()
       --print("player: " .. k)
+      --update the listnet
       Craftie:SendPacket(Craftie.Packet.Prefix.Net, Craftie.Player.Name .. "," .. "1", "WHISPER", k)
     end)
   end
@@ -186,8 +187,8 @@ function Craftie:UpdateCrafterList(search)
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
 
   for i=1, Craftie.MAX_CRAFTERS do
-    Craftie.Frame.ScrollPlayersListNet[i]:Hide()
-    Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
+    --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
+    --Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
     Craftie.Frame.ScrollPlayersListFav[i]:Hide()
     Craftie.Frame.ScrollPlayersListName[i]:SetText("")
     Craftie.Frame.ScrollPlayersListClass[i]:SetText("")
@@ -253,18 +254,12 @@ function Craftie:UpdateCrafterList(search)
     for n=1, #search_list do
       local i=n+1 --skip the 1st index
       local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][search_list[n]], ",")
-      Craftie.Frame.ScrollPlayersListNet[i]:Show()
 
+      --[==[
+      --Craftie.Frame.ScrollPlayersListNet[i]:Show()
       if (Craftie.PlayerOnline[search_list[n]] == 1) then
         Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Online")
       end
-
-      --print("here: " .. i .. " | " .. search_list[n] .. " | " .. "profLevel " .. crafter[3])
-      --[==[
-      Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n])
-      Craftie.Frame.ScrollPlayersListNet[i]:Show()
-      Craftie.Frame.ScrollPlayersListFav[i]:Show()
-      Craftie.Frame.ScrollPlayersListClass[i]:SetText(Craftie.Class[tonumber(crafter[1])][2])
       ]==]--
 
       Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n]) --avoid the 1st row

@@ -282,7 +282,7 @@ for i=1, Craftie.MAX_CRAFTERS do
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(10, 10)
   Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 20, -6)
   Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
-  --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
+  Craftie.Frame.ScrollPlayersListNet[i]:Hide()
 
   Craftie.Frame.ScrollPlayersListFav[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListFav[i]:SetSize(14, 14)

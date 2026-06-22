@@ -23,7 +23,7 @@ function Craftie:Init()
   Craftie:SaveData()
   Craftie:BuildPersonalTooltip()
   --Craftie:UpdatePlayerTooltip(false)
-  --Craftie:GetOnlineCrafters()
+  --Craftie:GetOnlineCrafters() --release for guild and friends list ONLY
 
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.OpenState = 0
