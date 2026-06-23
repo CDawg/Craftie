@@ -612,7 +612,6 @@ function Craftie:ItemDetails(item)
           loadcache = 1
         end
 
-        --Craftie.Frame.Reagent.HLink[i]:SetText(link[i])
         Craftie.Frame.Reagent.Main[r_next]:Show()
         Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       end)
@@ -635,7 +634,6 @@ function Craftie:ItemDetails(item)
         C_Timer.After(0.2, function()
           Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
           Craftie:Notification("[" .. item[2] .. "] reloading from tooltip data", Craftie.CHAT.FUNC)
-          --Craftie.Frame.Reagent.HLink[i]:SetText(link)
         end)
       end
       if (inv_count >= inv_req) then

@@ -24,7 +24,7 @@ Craftie.Frame.CraftBackTop={}
 Craftie.Frame.CraftBackTop= CreateFrame("Frame", "Craftie.Frame.CraftBackTop", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
 Craftie.Frame.CraftBackTop:SetWidth(Craftie.Frame.CraftParent:GetWidth())
 --Craftie.Frame.CraftBackTop:SetHeight(190)
-Craftie.Frame.CraftBackTop:SetHeight(250)
+Craftie.Frame.CraftBackTop:SetHeight(260)
 Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", 0, 0)
 Craftie.Frame.CraftBackTop:SetFrameStrata("LOW") --Blizzard's UI is so broken and hacky
 Craftie.Frame.CraftBackTopArt = Craftie.Frame.CraftBackTop:CreateTexture(nil, "BACKGROUND")
@@ -100,38 +100,9 @@ Craftie.Frame.Item.ID:SetPoint("CENTER", 10, 0)
 Craftie.Frame.Item.ID:SetText("")
 Craftie.Frame.Item.ID:SetTextColor(1, 1, 1, 0)
 
-Craftie.Frame.ItemBackMid={}
---Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
-Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftParent, "BackdropTemplate")
-Craftie.Frame.ItemBackMid:SetWidth(300)
-Craftie.Frame.ItemBackMid:SetHeight(50)
-Craftie.Frame.ItemBackMid:SetPoint("TOPRIGHT", -20, -194)
---Craftie.Frame.ItemBackMid:SetFrameStrata("MEDIUM")
-
-Craftie.Frame.Item.SkillIcon = Craftie.Frame.ItemBackMid:CreateTexture(nil, "ARTWORK")
-Craftie.Frame.Item.SkillIcon:SetSize(13, 13)
-Craftie.Frame.Item.SkillIcon:SetPoint("TOPLEFT", 10, -10)
-Craftie.Frame.Item.SkillIcon:SetTexture("Interface/Icons/inv_misc_questionmark")
-Craftie.Frame.Item.SkillIcon:Hide()
-Craftie.Frame.Item.SkillText = Craftie.Frame.ItemBackMid:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Item.SkillText:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Item.SkillText:SetPoint("TOPLEFT", 25, -10)
-Craftie.Frame.Item.SkillText:SetText("")
-Craftie.Frame.Item.SkillText:SetTextColor(1, 1, 1, 0.7)
-Craftie.Frame.Item.SkillText:Hide()
-Craftie.Frame.Item.SourceTitle = Craftie.Frame.ItemBackMid:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Item.SourceTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Item.SourceTitle:SetPoint("TOPLEFT", 25, -28)
-Craftie.Frame.Item.SourceTitle:SetText("Sources:")
-Craftie.Frame.Item.SourceTitle:SetTextColor(1, 1, 1, 1)
-Craftie.Frame.Item.SourceTitle:Hide()
-Craftie.Frame.Item.SourceText = Craftie.Frame.ItemBackMid:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Item.SourceText:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-Craftie.Frame.Item.SourceText:SetPoint("TOPLEFT", 75, -28)
-Craftie.Frame.Item.SourceText:SetText("")
-Craftie.Frame.Item.SourceText:SetTextColor(1, 1, 1, 0.8)
-Craftie.Frame.Item.SourceText:Hide()
-
+--[==[
+CRAFT REAGENTS
+]==]--
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
 Craftie.Frame.Reagent.Border = {}
@@ -140,7 +111,6 @@ Craftie.Frame.Reagent.Icon = {}
 Craftie.Frame.Reagent.IconBorder={}
 Craftie.Frame.Reagent.IconGlow={}
 Craftie.Frame.Reagent.Text = {}
-Craftie.Frame.Reagent.HLink = {}
 Craftie.Frame.Reagent.QuanR = {} --required
 Craftie.Frame.Reagent.QuanI = {} --inventory
 Craftie.Frame.Reagent.Dash = {}
@@ -150,6 +120,8 @@ Craftie.Frame.Reagent_Width = 146
 Craftie.Frame.Reagent_Height= 38
 Craftie.Frame.Reagent_PosX  = 50
 Craftie.Frame.Reagent_PosY  = 130
+Craftie.Frame.Reagent_YSpacing=20
+
 for i=1, Craftie.MAX_REAGENTS do
   --Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent, "BackdropTemplate", 5)
   Craftie.Frame.Reagent.Main[i] = CreateFrame("Button", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent)
@@ -158,10 +130,10 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
   Craftie.Frame.Reagent.Main[i]:SetHeight(Craftie.Frame.Reagent_Height)
   if (i % 2 == 0) then --right col
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-64, (-i*18)+Craftie.Frame.Reagent_PosY)
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-64, (-i*Craftie.Frame.Reagent_YSpacing)+Craftie.Frame.Reagent_PosY)
   else
     local p = i+1 --left col
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -74, (-p*18)+Craftie.Frame.Reagent_PosY)
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -74, (-p*Craftie.Frame.Reagent_YSpacing)+Craftie.Frame.Reagent_PosY)
   end
   --Craftie.Frame.Reagent.Main[i]:EnableMouse(true)
   Craftie.Frame.Reagent.Main[i]:SetScript("OnEnter", function(self)
@@ -236,38 +208,46 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.QuanR[i]:SetText("3")
   Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Main[i]:Hide()
-
-  --[==[
-  Craftie.Frame.Reagent.HLink[i] = CreateFrame("EditBox", nil, Craftie.Frame.Reagent.Main[i])
-  Craftie.Frame.Reagent.HLink[i]:SetWidth(Craftie.Frame.Reagent.Main[i]:GetWidth()+20)
-  Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+5, "OUTLINE")
-  Craftie.Frame.Reagent.HLink[i]:SetPoint("CENTER", 6, 0)
-  Craftie.Frame.Reagent.HLink[i]:SetMultiLine(true)
-  Craftie.Frame.Reagent.HLink[i]:ClearFocus()
-  Craftie.Frame.Reagent.HLink[i]:SetAutoFocus(false)
-  Craftie.Frame.Reagent.HLink[i]:SetText("")
-  Craftie.Frame.Reagent.HLink[i]:SetTextColor(1, 1, 1, 1) --hide
-  Craftie.Frame.Reagent.HLink[i]:SetEnabled(false) --dont interact with text
-  --Craftie.Frame.Reagent.HLink[i]:EnableMouse(false)
-  Craftie.Frame.Reagent.HLink[i]:SetHyperlinksEnabled(true)
-  Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkClick", function(self, link, text, button)
-    if (Craftie.EnableScrollFrames) then
-      SetItemRef(link, text, button, self)
-      ItemRefTooltip:Hide()
-    end
-  end)
-  Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkEnter", function(self)
-    if (Craftie.EnableScrollFrames) then
-      Craftie:SetItemTooltip(self, Craftie.Frame.Reagent.HLink[i]:GetText(), true)
-    end
-  end)
-  Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkLeave", function(self)
-    GameTooltip:Hide()
-  end)
-  ]==]--
-
 end
 
+--[==[
+CRAFT SOURCE
+]==]--
+Craftie.Frame.ItemBackMid={}
+--Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
+Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftParent, "BackdropTemplate")
+Craftie.Frame.ItemBackMid:SetWidth(300)
+Craftie.Frame.ItemBackMid:SetHeight(50)
+Craftie.Frame.ItemBackMid:SetPoint("TOPRIGHT", -20, -200)
+--Craftie.Frame.ItemBackMid:SetFrameStrata("MEDIUM")
+
+Craftie.Frame.Item.SkillIcon = Craftie.Frame.ItemBackMid:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.Item.SkillIcon:SetSize(13, 13)
+Craftie.Frame.Item.SkillIcon:SetPoint("TOPLEFT", 10, -10)
+Craftie.Frame.Item.SkillIcon:SetTexture("Interface/Icons/inv_misc_questionmark")
+Craftie.Frame.Item.SkillIcon:Hide()
+Craftie.Frame.Item.SkillText = Craftie.Frame.ItemBackMid:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Item.SkillText:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.Item.SkillText:SetPoint("TOPLEFT", 25, -10)
+Craftie.Frame.Item.SkillText:SetText("")
+Craftie.Frame.Item.SkillText:SetTextColor(1, 1, 1, 0.7)
+Craftie.Frame.Item.SkillText:Hide()
+Craftie.Frame.Item.SourceTitle = Craftie.Frame.ItemBackMid:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Item.SourceTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.Item.SourceTitle:SetPoint("TOPLEFT", 25, -28)
+Craftie.Frame.Item.SourceTitle:SetText("Sources:")
+Craftie.Frame.Item.SourceTitle:SetTextColor(1, 1, 1, 1)
+Craftie.Frame.Item.SourceTitle:Hide()
+Craftie.Frame.Item.SourceText = Craftie.Frame.ItemBackMid:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Item.SourceText:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.Item.SourceText:SetPoint("TOPLEFT", 75, -28)
+Craftie.Frame.Item.SourceText:SetText("")
+Craftie.Frame.Item.SourceText:SetTextColor(1, 1, 1, 0.8)
+Craftie.Frame.Item.SourceText:Hide()
+
+--[==[
+CRAFT REQUEST
+]==]--
 Craftie.Frame.ItemBackBot={}
 --Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
 Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "BackdropTemplate")
