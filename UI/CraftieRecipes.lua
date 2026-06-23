@@ -19,7 +19,7 @@ Craftie.Frame.ScrollRecipes_Height= 302
 Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollRecipesParent:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesParent:SetHeight(Craftie.Frame.ScrollRecipes_Height+70)
-Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 216, -62)
+Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 225, -62)
 Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:CreateTexture(nil, "BACKGROUND")
@@ -208,7 +208,8 @@ Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
 Craftie.Frame.CraftBackTop={}
 Craftie.Frame.CraftBackTop= CreateFrame("Frame", "Craftie.Frame.CraftBackTop", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
 Craftie.Frame.CraftBackTop:SetWidth(300)
-Craftie.Frame.CraftBackTop:SetHeight(190)
+--Craftie.Frame.CraftBackTop:SetHeight(190)
+Craftie.Frame.CraftBackTop:SetHeight(250)
 Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", 0, 0)
 Craftie.Frame.CraftBackTopArt = Craftie.Frame.CraftParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.CraftBackTopArt:SetWidth(Craftie.Frame.CraftBackTop:GetWidth()-6)
@@ -284,7 +285,8 @@ Craftie.Frame.Craft.ID:SetText("")
 Craftie.Frame.Craft.ID:SetTextColor(1, 1, 1, 0)
 
 Craftie.Frame.CraftBackMid={}
-Craftie.Frame.CraftBackMid= CreateFrame("Frame", "Craftie.Frame.CraftBackMid", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
+--Craftie.Frame.CraftBackMid= CreateFrame("Frame", "Craftie.Frame.CraftBackMid", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
+Craftie.Frame.CraftBackMid= CreateFrame("Frame", "Craftie.Frame.CraftBackMid", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.CraftBackMid:SetWidth(300)
 Craftie.Frame.CraftBackMid:SetHeight(50)
 Craftie.Frame.CraftBackMid:SetPoint("TOPRIGHT", 0, -194)
@@ -517,8 +519,8 @@ end
 Craftie.Frame.CraftBackBot={}
 Craftie.Frame.CraftBackBot= CreateFrame("Frame", "Craftie.Frame.CraftBackBot", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
 Craftie.Frame.CraftBackBot:SetWidth(300)
-Craftie.Frame.CraftBackBot:SetHeight(125)
-Craftie.Frame.CraftBackBot:SetPoint("TOPRIGHT", 0, -248)
+Craftie.Frame.CraftBackBot:SetHeight(100)
+Craftie.Frame.CraftBackBot:SetPoint("TOPRIGHT", 0, -268)
 
 Craftie.Frame.CraftRequestParent = CreateFrame("Frame", "Craftie.Frame.CraftRequestParent", Craftie.Frame.CraftParent, "BackdropTemplate", 5)
 Craftie.Frame.CraftRequestParent:SetWidth(300)
