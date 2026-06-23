@@ -55,23 +55,23 @@ function Craftie:CloseAllPlayerMenus()
 end
 
 function Craftie:ClearCraftFrame()
-  Craftie.Frame.Craft:Hide()
+  Craftie.Frame.Item:Hide()
   --GameTooltip:Hide()
   for i=1, Craftie.MAX_REAGENTS do
     Craftie.Frame.Reagent.Main[i]:Hide()
     Craftie.Frame.Reagent.Back[i]:Hide()
   end
-  Craftie.Frame.Craft.SourceTitle:Hide()
-  Craftie.Frame.Craft.SkillText:Hide()
-  Craftie.Frame.Craft.SkillIcon:Hide()
-  Craftie.Frame.Craft.SourceText:Hide()
+  Craftie.Frame.Item.SourceTitle:Hide()
+  Craftie.Frame.Item.SkillText:Hide()
+  Craftie.Frame.Item.SkillIcon:Hide()
+  Craftie.Frame.Item.SourceText:Hide()
 
-  Craftie.Frame.CraftRequestParent:Hide()
+  Craftie.Frame.ItemRequestParent:Hide()
   Craftie:Notification("Craftie:ClearCraftFrame()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:CraftRequestFrame(crafter)
-  Craftie.Frame.CraftRequestParent:Show()
+  Craftie.Frame.ItemRequestParent:Show()
   print("CraftRequestFrame: " .. crafter)
 end
 
@@ -327,7 +327,7 @@ function Craftie:TabSelect(tab, sound)
     Craftie.Selected_Name = ""
     Craftie.Page = prof_name
     Craftie.ProfessionDefault = Craftie.Profession[prof_name]
-    Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
+    --Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
     C_Timer.After(0.1, function() --give it time to register
       --local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
@@ -534,8 +534,8 @@ do
 				AnimTime = Craftie.Animation / 60
         --print("Craftie.Animation " .. Craftie.Animation)
         if (Craftie.Animation >= 0.01) then
-          if (frame == Craftie.Frame.Craft) then
-            Craftie.Frame.Craft.Glow:SetAlpha(Craftie.Animation)
+          if (frame == Craftie.Frame.Item) then
+            Craftie.Frame.Item.Glow:SetAlpha(Craftie.Animation)
           end
           if (frame == Craftie.Frame.TabBar) then
             if (Craftie.TabBarHide == 0) then
@@ -560,9 +560,9 @@ function Craftie:ItemDetails(item)
   local b_next = 0
   local loadcache = 0
 
-  Craftie.Frame.Craft:Show()
+  Craftie.Frame.Item:Show()
 
-  Craftie:TimerAnim(Craftie.Frame.Craft, 0.65) --animate the craft icon
+  Craftie:TimerAnim(Craftie.Frame.Item, 0.65) --animate the craft icon
   --PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
   PlaySound(SOUNDKIT.IG_QUEST_LOG_CLOSE)
 
@@ -650,8 +650,8 @@ function Craftie:ItemDetails(item)
     end
   end
 
-  Craftie.Frame.Craft.ID:SetText(item[4])
-  Craftie.Frame.Craft.Text:SetText(item[2])
+  Craftie.Frame.Item.ID:SetText(item[4])
+  Craftie.Frame.Item.Text:SetText(item[2])
 
   local item_detail = item[4]
   local is_enchant = false
@@ -659,31 +659,31 @@ function Craftie:ItemDetails(item)
   if (item_detail == "") then --blank or possibly enchant
     local name, subtext, icon, castTime, minRange, maxRange, spellID, originalIcon = GetSpellInfo(item[1])
     --print("spell? " .. name .. " | " .. icon)
-    Craftie.Frame.Craft.ID:SetText(item[1])
-    Craftie.Frame.Craft.Icon:SetTexture(icon)
+    Craftie.Frame.Item.ID:SetText(item[1])
+    Craftie.Frame.Item.Icon:SetTexture(icon)
     --print(icon)
     is_enchant = true
   else
-    Craftie.Frame.Craft.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
+    Craftie.Frame.Item.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
   end
 
   C_Timer.After(0.12, function() --give it time to register
-    Craftie.Frame.Craft.Text:SetTextColor(1, 1, 1, 1)
+    Craftie.Frame.Item.Text:SetTextColor(1, 1, 1, 1)
     if (is_enchant) then
       local link = GetSpellLink(item[1])
-      Craftie.Frame.Craft.HLink:SetText(link)
-      Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
-        Craftie:SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), true)
+      Craftie.Frame.Item.HLink:SetText(link)
+      Craftie.Frame.Item.HLink:SetScript("OnEnter", function(self)
+        Craftie:SetItemTooltip(Craftie.Frame.Item.HLink, Craftie.Frame.Item.ID:GetText(), true)
       end)
     else
       local name, link, quality, level, minlevel, type, subtype = C_Item.GetItemInfo(item_detail)
-      Craftie.Frame.Craft.HLink:SetText(link)
+      Craftie.Frame.Item.HLink:SetText(link)
       if (quality ~= nil) then
         local r, g, b, qs = C_Item.GetItemQualityColor(quality)
-        Craftie.Frame.Craft.Text:SetTextColor(r, g, b, 1)
+        Craftie.Frame.Item.Text:SetTextColor(r, g, b, 1)
       end
-      Craftie.Frame.Craft.HLink:SetScript("OnEnter", function(self)
-        Craftie:SetItemTooltip(Craftie.Frame.Craft.HLink, Craftie.Frame.Craft.ID:GetText(), false)
+      Craftie.Frame.Item.HLink:SetScript("OnEnter", function(self)
+        Craftie:SetItemTooltip(Craftie.Frame.Item.HLink, Craftie.Frame.Item.ID:GetText(), false)
       end)
     end
 
@@ -692,8 +692,8 @@ function Craftie:ItemDetails(item)
     if (tonumber(item[3]) > Craftie.PROFMAXLEVEL) then
       SkillLevel = Craftie.PROFMAXLEVEL
     end
-    Craftie.Frame.Craft.SkillText:SetText(Craftie.Page .. " (" .. SkillLevel .. ")")
-    Craftie.Frame.Craft.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
+    Craftie.Frame.Item.SkillText:SetText(Craftie.Page .. " (" .. SkillLevel .. ")")
+    Craftie.Frame.Item.HLink:SetTextColor(1, 1, 1, 0) --hide/alpha
     local source = item[6]
     local sources = source[1]
     if (#source > 1) then
@@ -701,22 +701,22 @@ function Craftie:ItemDetails(item)
       for k,v in pairs(source) do
         sources = sources .. v .. ", "
       end
-      Craftie.Frame.Craft.SourceText:SetText(string.sub(sources, 1, -3))
+      Craftie.Frame.Item.SourceText:SetText(string.sub(sources, 1, -3))
     else
-      Craftie.Frame.Craft.SourceText:SetText(sources)
+      Craftie.Frame.Item.SourceText:SetText(sources)
     end
   end)
 
   local prof_list = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   local prof_color = Craftie:Split(Craftie.Professions[prof_list][3], ",")
-  Craftie.Frame.Craft.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
-  Craftie.Frame.Craft.SkillText:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+  Craftie.Frame.Item.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
+  Craftie.Frame.Item.SkillText:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
 
-  Craftie.Frame.Craft.Icon:Show()
-  Craftie.Frame.Craft.SkillText:Show()
-  Craftie.Frame.Craft.SkillIcon:Show()
-  Craftie.Frame.Craft.SourceTitle:Show()
-  Craftie.Frame.Craft.SourceText:Show()
+  Craftie.Frame.Item.Icon:Show()
+  Craftie.Frame.Item.SkillText:Show()
+  Craftie.Frame.Item.SkillIcon:Show()
+  Craftie.Frame.Item.SourceTitle:Show()
+  Craftie.Frame.Item.SourceText:Show()
 
   if (Craftie.Selected_Name ~= "") then
     Craftie:CraftRequestFrame(Craftie.Selected_Name)
@@ -843,24 +843,24 @@ function Craftie:SetProfLevel(level)
   local uimax = 246 --UI Max width
   local calc = 0
 
-  Craftie.Frame.CrafterLevel:Hide()
-  Craftie.Frame.CrafterProgBarS:Hide()
+  Craftie.Frame.ItemerLevel:Hide()
+  Craftie.Frame.ItemerProgBarS:Hide()
 
   if (level) then
     calc = math.ceil((level * diff) / uimax)
     if (calc >= 1) then
-      Craftie.Frame.CrafterLevel:Show()
+      Craftie.Frame.ItemerLevel:Show()
       --print("level: " .. level .. " | " .. calc .. " [max: " .. uimax .. "]")
 
-      Craftie.Frame.CrafterProgBar:SetSize(calc, 15)
-      Craftie.Frame.CrafterProgLevel:SetText(level .. " / " .. Craftie.PROFMAXLEVEL)
+      Craftie.Frame.ItemerProgBar:SetSize(calc, 15)
+      Craftie.Frame.ItemerProgLevel:SetText(level .. " / " .. Craftie.PROFMAXLEVEL)
       local left = 0
       if (calc < 200) then left = 4 end
       if (calc <= 20) then left = 5 end
-      Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0+left, -5)
+      Craftie.Frame.ItemerProgBar:SetPoint("TOPLEFT", 0+left, -5)
       if (level < Craftie.PROFMAXLEVEL) then
-        Craftie.Frame.CrafterProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
-        Craftie.Frame.CrafterProgBarS:Show()
+        Craftie.Frame.ItemerProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
+        Craftie.Frame.ItemerProgBarS:Show()
       end
     end
   end

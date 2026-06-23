@@ -15,7 +15,7 @@ the copyright holders.
 
 Craftie._G = {
   Prefix = "Craftie",
-  Width  = 840,
+  Width  = 860,
   Height = 500,
   Update = 20260808,
   Icon   = "UI-Craftie-Icon",
