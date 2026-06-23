@@ -151,7 +151,8 @@ Craftie.Frame.Reagent_Height= 38
 Craftie.Frame.Reagent_PosX  = 50
 Craftie.Frame.Reagent_PosY  = 130
 for i=1, Craftie.MAX_REAGENTS do
-  Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent, "BackdropTemplate", 5)
+  --Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent, "BackdropTemplate", 5)
+  Craftie.Frame.Reagent.Main[i] = CreateFrame("Button", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent)
   local currentLevel = Craftie.Frame.Reagent.Main[i]:GetFrameLevel()
   Craftie.Frame.Reagent.Main[i]:SetFrameStrata("MEDIUM")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
@@ -162,11 +163,27 @@ for i=1, Craftie.MAX_REAGENTS do
     local p = i+1 --left col
     Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -74, (-p*18)+Craftie.Frame.Reagent_PosY)
   end
-
-  Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.General)
-  --Craftie.Frame.Reagent.Main[i]:SetBackdrop(Craftie.Backdrop.Borderless)
-  Craftie.Frame.Reagent.Main[i]:SetBackdropColor(0, 0, 0, 0)
-  Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(0, 0, 0, 0)
+  --Craftie.Frame.Reagent.Main[i]:EnableMouse(true)
+  Craftie.Frame.Reagent.Main[i]:SetScript("OnEnter", function(self)
+    if (Craftie.EnableScrollFrames) then
+      local itemID = Craftie.Frame.Reagent.Data[i]:GetText()
+      if (not Craftie:IsEmpty(itemID)) then
+        Craftie:SetItemTooltip(self, itemID, false, "ANCHOR_RIGHT")
+      end
+    end
+  end)
+  Craftie.Frame.Reagent.Main[i]:SetScript("OnLeave", function(self)
+    GameTooltip:Hide()
+  end)
+  Craftie.Frame.Reagent.Main[i]:SetScript("OnClick", function(self)
+    if (IsShiftKeyDown()) then
+      local itemID = Craftie.Frame.Reagent.Data[i]:GetText()
+      local name, link = C_Item.GetItemInfo(itemID)
+      if ((link ~= nil) and (link ~= "")) then
+        ChatEdit_InsertLink(link)
+      end
+    end
+  end)
   --Craftie.Frame.Reagent.Main[i]:SetFrameStrata("HIGH")
 
   Craftie.Frame.Reagent.Border[i] = CreateFrame("Frame", nil, Craftie.Frame.Reagent.Main[i], "InsetFrameTemplate3", -5)
@@ -220,6 +237,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Main[i]:Hide()
 
+  --[==[
   Craftie.Frame.Reagent.HLink[i] = CreateFrame("EditBox", nil, Craftie.Frame.Reagent.Main[i])
   Craftie.Frame.Reagent.HLink[i]:SetWidth(Craftie.Frame.Reagent.Main[i]:GetWidth()+20)
   Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+5, "OUTLINE")
@@ -246,6 +264,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.HLink[i]:SetScript("OnHyperlinkLeave", function(self)
     GameTooltip:Hide()
   end)
+  ]==]--
 
 end
 

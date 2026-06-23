@@ -589,7 +589,7 @@ function Craftie:ItemDetails(item)
       --reset
       Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.6)
-      Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0)
+      --Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0)
       Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.IconGlow[i]:Hide()
@@ -612,7 +612,7 @@ function Craftie:ItemDetails(item)
           loadcache = 1
         end
 
-        Craftie.Frame.Reagent.HLink[i]:SetText(link[i])
+        --Craftie.Frame.Reagent.HLink[i]:SetText(link[i])
         Craftie.Frame.Reagent.Main[r_next]:Show()
         Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       end)
