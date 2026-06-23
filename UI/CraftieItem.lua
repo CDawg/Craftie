@@ -15,7 +15,7 @@ the copyright holders.
 
 Craftie.Frame.CraftParent={}
 Craftie.Frame.CraftParent= CreateFrame("Frame", "Craftie.Frame.CraftParent", Craftie.Frame, "BackdropTemplate")
-Craftie.Frame.CraftParent:SetWidth(312)
+Craftie.Frame.CraftParent:SetWidth(324)
 Craftie.Frame.CraftParent:SetHeight(372)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -14, -100)
 Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
@@ -32,7 +32,7 @@ Craftie.Frame.CraftBackTopArt:SetWidth(Craftie.Frame.CraftBackTop:GetWidth())
 Craftie.Frame.CraftBackTopArt:SetHeight(Craftie.Frame.CraftBackTop:GetHeight())
 Craftie.Frame.CraftBackTopArt:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundartalchemy.png")
-Craftie.Frame.CraftBackTopArt:SetVertexColor(.8, .8, .8) --darker
+--Craftie.Frame.CraftBackTopArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.CraftBackTopArt:SetDesaturation(0.3)
 
 Craftie.Frame.Item = {}
@@ -56,7 +56,7 @@ Craftie.Frame.Item:Hide()
 CRAFT MAIN ITEM
 ]==]--
 Craftie.Frame.Item.Back = Craftie.Frame.Item:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.Item.Back:SetSize(310, 50)
+Craftie.Frame.Item.Back:SetSize(332, 50)
 Craftie.Frame.Item.Back:SetPoint("TOPLEFT", -4, 6)
 Craftie.Frame.Item.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Craft-Toast.png")
 
@@ -105,7 +105,7 @@ Craftie.Frame.ItemBackMid={}
 Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.ItemBackMid:SetWidth(300)
 Craftie.Frame.ItemBackMid:SetHeight(50)
-Craftie.Frame.ItemBackMid:SetPoint("TOPRIGHT", 0, -194)
+Craftie.Frame.ItemBackMid:SetPoint("TOPRIGHT", -20, -194)
 --Craftie.Frame.ItemBackMid:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.Item.SkillIcon = Craftie.Frame.ItemBackMid:CreateTexture(nil, "ARTWORK")
@@ -134,7 +134,7 @@ Craftie.Frame.Item.SourceText:Hide()
 
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
-Craftie.Frame.Reagent.Back = {}
+Craftie.Frame.Reagent.Border = {}
 Craftie.Frame.Reagent.Tooltip = {}
 Craftie.Frame.Reagent.Icon = {}
 Craftie.Frame.Reagent.IconBorder={}
@@ -156,10 +156,10 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i]:SetFrameStrata("MEDIUM")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
   Craftie.Frame.Reagent.Main[i]:SetHeight(Craftie.Frame.Reagent_Height)
-  if (i % 2 == 0) then --right row
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-74, (-i*18)+Craftie.Frame.Reagent_PosY)
+  if (i % 2 == 0) then --right col
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", Craftie.Frame.Reagent_Width-64, (-i*18)+Craftie.Frame.Reagent_PosY)
   else
-    local p = i+1
+    local p = i+1 --left col
     Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -74, (-p*18)+Craftie.Frame.Reagent_PosY)
   end
 
@@ -169,31 +169,25 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(0, 0, 0, 0)
   --Craftie.Frame.Reagent.Main[i]:SetFrameStrata("HIGH")
 
-  --Craftie.Frame.Reagent.Back[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.Reagent.Back[i] = Craftie.Frame.CraftParent:CreateTexture(nil, "BORDER") --always showing
-  Craftie.Frame.Reagent.Back[i]:SetSize(Craftie.Frame.Reagent_Width+12, Craftie.Frame.Reagent_Height+5)
-  --Craftie.Frame.Reagent.Back[i]:SetPoint("CENTER", 0, 1)
-  Craftie.Frame.Reagent.Back[i]:SetPoint(Craftie.Frame.Reagent.Main[i]:GetPoint())
-  Craftie.Frame.Reagent.Back[i]:SetTexture(Craftie._G.Path  .. "Images/UI-Craftie-Reagent-Toast.png")
-  Craftie.Frame.Reagent.Back[i]:Hide()
+  Craftie.Frame.Reagent.Border[i] = CreateFrame("Frame", nil, Craftie.Frame.Reagent.Main[i], "InsetFrameTemplate3", -5)
+  Craftie.Frame.Reagent.Border[i]:SetWidth(Craftie.Frame.Reagent_Width-28)
+  Craftie.Frame.Reagent.Border[i]:SetHeight(Craftie.Frame.Reagent_Height)
+  --Craftie.Frame.Reagent.Border[i]:SetPoint(Craftie.Frame.Reagent.Main[i]:GetPoint())
+  Craftie.Frame.Reagent.Border[i]:SetPoint("TOPLEFT", 28, 0)
+  Craftie.Frame.Reagent.Border[i]:SetFrameStrata("LOW")
+  Craftie.Frame.Reagent.Border[i]:Hide()
   Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.Reagent.Icon[i]:SetSize(Craftie.Frame.Reagent_Height-10, Craftie.Frame.Reagent_Height-10)
-  Craftie.Frame.Reagent.Icon[i]:SetPoint("TOPLEFT", 3, -5)
+  Craftie.Frame.Reagent.Icon[i]:SetSize(36, 36)
+  Craftie.Frame.Reagent.Icon[i]:SetPoint("TOPLEFT", -7, -2)
   Craftie.Frame.Reagent.Icon[i]:SetTexture("Interface/Icons/inv_misc_questionmark")
-  --Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.5)
-  Craftie.Frame.Reagent.IconBorder[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "OVERLAY")
-  Craftie.Frame.Reagent.IconBorder[i]:SetSize(Craftie.Frame.Reagent_Height, Craftie.Frame.Reagent_Height)
-  Craftie.Frame.Reagent.IconBorder[i]:SetPoint("TOPLEFT", -2, 0)
-  Craftie.Frame.Reagent.IconBorder[i]:SetTexture("Interface/SPELLBOOK/RotationIconFrame")
-  --Craftie.Frame.Reagent.IconBorder[i]:SetVertexColor(0.70, 0.70, 0.70)
-  Craftie.Frame.Reagent.IconBorder[i]:SetDesaturated(true)
   Craftie.Frame.Reagent.IconGlow[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "OVERLAY")
-  Craftie.Frame.Reagent.IconGlow[i]:SetSize(Craftie.Frame.Reagent_Height+13, Craftie.Frame.Reagent_Height+13)
-  Craftie.Frame.Reagent.IconGlow[i]:SetPoint("TOPLEFT", -8, 6)
+  Craftie.Frame.Reagent.IconGlow[i]:SetSize(64, 64)
+  Craftie.Frame.Reagent.IconGlow[i]:SetPoint("TOPLEFT", -22, 13)
   Craftie.Frame.Reagent.IconGlow[i]:SetTexture("Interface/BUTTONS/CheckButtonGlow")
+
   Craftie.Frame.Reagent.Text[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.Reagent.Text[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
-  Craftie.Frame.Reagent.Text[i]:SetPoint("CENTER", 8, 3)
+  Craftie.Frame.Reagent.Text[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.Reagent.Text[i]:SetPoint("CENTER", 8, 0)
   Craftie.Frame.Reagent.Text[i]:SetText(i)
   Craftie.Frame.Reagent.Text[i]:SetWidth(Craftie.Frame.Reagent_Width-50)
   Craftie.Frame.Reagent.Text[i]:SetHeight(Craftie.Frame.Reagent_Height-10)
@@ -207,19 +201,19 @@ for i=1, Craftie.MAX_REAGENTS do
 
   local ReagentQPosX = 7
   Craftie.Frame.Reagent.QuanI[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.QuanI[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "OUTLINE | SLUG")
+  Craftie.Frame.Reagent.QuanI[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", -27, -20)
   Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", ReagentQPosX, -22)
   Craftie.Frame.Reagent.QuanI[i]:SetText("3")
   Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.Dash[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.Dash[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+1, "OUTLINE | SLUG")
+  Craftie.Frame.Reagent.Dash[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", -19, -20)
-  Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", ReagentQPosX+8, -22)
+  Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", ReagentQPosX+9, -22)
   Craftie.Frame.Reagent.Dash[i]:SetText("/")
   Craftie.Frame.Reagent.Dash[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.Reagent.QuanR[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.QuanR[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "OUTLINE | SLUG")
+  Craftie.Frame.Reagent.QuanR[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", -14, -20)
   Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", ReagentQPosX+13, -22)
   Craftie.Frame.Reagent.QuanR[i]:SetText("3")
@@ -227,14 +221,14 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Main[i]:Hide()
 
   Craftie.Frame.Reagent.HLink[i] = CreateFrame("EditBox", nil, Craftie.Frame.Reagent.Main[i])
-  Craftie.Frame.Reagent.HLink[i]:SetWidth(Craftie.Frame.Reagent.Main[i]:GetWidth())
-  Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+3, "OUTLINE")
-  Craftie.Frame.Reagent.HLink[i]:SetPoint("CENTER", 12, 0)
+  Craftie.Frame.Reagent.HLink[i]:SetWidth(Craftie.Frame.Reagent.Main[i]:GetWidth()+20)
+  Craftie.Frame.Reagent.HLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+5, "OUTLINE")
+  Craftie.Frame.Reagent.HLink[i]:SetPoint("CENTER", 6, 0)
   Craftie.Frame.Reagent.HLink[i]:SetMultiLine(true)
   Craftie.Frame.Reagent.HLink[i]:ClearFocus()
   Craftie.Frame.Reagent.HLink[i]:SetAutoFocus(false)
   Craftie.Frame.Reagent.HLink[i]:SetText("")
-  Craftie.Frame.Reagent.HLink[i]:SetTextColor(1, 1, 1, 0) --hide
+  Craftie.Frame.Reagent.HLink[i]:SetTextColor(1, 1, 1, 1) --hide
   Craftie.Frame.Reagent.HLink[i]:SetEnabled(false) --dont interact with text
   --Craftie.Frame.Reagent.HLink[i]:EnableMouse(false)
   Craftie.Frame.Reagent.HLink[i]:SetHyperlinksEnabled(true)

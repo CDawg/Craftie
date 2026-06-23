@@ -59,7 +59,7 @@ function Craftie:ClearCraftFrame()
   --GameTooltip:Hide()
   for i=1, Craftie.MAX_REAGENTS do
     Craftie.Frame.Reagent.Main[i]:Hide()
-    Craftie.Frame.Reagent.Back[i]:Hide()
+    Craftie.Frame.Reagent.Border[i]:Hide()
   end
   Craftie.Frame.Item.SourceTitle:Hide()
   Craftie.Frame.Item.SkillText:Hide()
@@ -327,7 +327,7 @@ function Craftie:TabSelect(tab, sound)
     Craftie.Selected_Name = ""
     Craftie.Page = prof_name
     Craftie.ProfessionDefault = Craftie.Profession[prof_name]
-    --Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
+    Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
     C_Timer.After(0.1, function() --give it time to register
       --local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
@@ -569,14 +569,14 @@ function Craftie:ItemDetails(item)
   for i=1, Craftie.MAX_REAGENTS do
     reagent[i] = 0
     --Craftie.Frame.Reagent.Main[i]:Hide()
-    --Craftie.Frame.Reagent.Back[i]:Hide()
-    Craftie.Frame.Reagent.Back[i]:Show() --selection was already made, draw backgrounds
+    --Craftie.Frame.Reagent.Border[i]:Hide()
+    Craftie.Frame.Reagent.Border[i]:Show() --selection was already made, draw backgrounds
 
     --[==[
     local back_time = i*0.026
     C_Timer.After(back_time, function()
       b_next = b_next +1
-      Craftie.Frame.Reagent.Back[i]:Show()
+      Craftie.Frame.Reagent.Border[i]:Show()
       --print("b_next " .. b_next)
     end)
     ]==]--
@@ -617,7 +617,7 @@ function Craftie:ItemDetails(item)
         Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       end)
 
-      --Craftie.Frame.Reagent.Back[i]:Show()
+      --Craftie.Frame.Reagent.Border[i]:Show()
       --Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
 

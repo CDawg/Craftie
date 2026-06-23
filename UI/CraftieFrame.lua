@@ -89,7 +89,7 @@ Craftie.Frame.TabBarBack:SetHeight(400)
 Craftie.Frame.TabBarBack:SetPoint("TOPLEFT", 0, 10)
 Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-ProfBar" .. Craftie.Game.Version .. ".png")
 
-local TabSidePosY = 27
+local TabSidePosY = Craftie.TabBar_Y-43
 local TabSideSpacing = 40 --distance spacing
 Craftie.Frame.TabSide={}
 for i,v in pairs(Craftie.Professions) do

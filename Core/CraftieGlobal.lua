@@ -63,4 +63,4 @@ Craftie.Frame.Search={}
 Craftie.EnableScrollFrames = true
 
 Craftie.TabBar_X = 42
-Craftie.TabBar_Y = 50
+Craftie.TabBar_Y = 70

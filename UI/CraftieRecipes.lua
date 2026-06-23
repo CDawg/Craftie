@@ -19,7 +19,7 @@ Craftie.Frame.ScrollRecipes_Height= 302
 Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate")
 Craftie.Frame.ScrollRecipesParent:SetWidth(Craftie.Frame.ScrollRecipes_Width)
 Craftie.Frame.ScrollRecipesParent:SetHeight(Craftie.Frame.ScrollRecipes_Height+70)
-Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 230, -100)
+Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 224, -100)
 Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:CreateTexture(nil, "BACKGROUND")
