@@ -19,17 +19,17 @@ Craftie.Contact = {
   "|n|cffffdf96Discord (.porthios)|r|nhttps://discordapp.com/users/238146303324979200",
 }
 
-Craftie.Help_w = Craftie.Frame:GetWidth()-12
-Craftie.Help_h = Craftie.Frame:GetHeight()-88
+Craftie.Help_w = Craftie.Frame:GetWidth()-30
+Craftie.Help_h = Craftie.Frame:GetHeight()-100
 
 Craftie.Help = CreateFrame("Frame", "Craftie.Help", Craftie.Frame)
 Craftie.Help:SetWidth(Craftie.Help_w)
 Craftie.Help:SetHeight(Craftie.Help_h)
-Craftie.Help:SetPoint("TOPLEFT", 4, -62)
+Craftie.Help:SetPoint("TOPLEFT", 12, -62)
 --Craftie.Help:SetFrameStrata("MEDIUM")
 
 Craftie.HelpScrollFrame={}
-Craftie.HelpScrollFrame = CreateFrame("Frame", "Craftie.HelpScrollFrame", Craftie.Help, "InsetFrameTemplate3")
+Craftie.HelpScrollFrame = CreateFrame("Frame", "Craftie.HelpScrollFrame", Craftie.Help, "InsetFrameTemplate4")
 Craftie.HelpScrollFrame:SetWidth(Craftie.Help:GetWidth())
 Craftie.HelpScrollFrame:SetHeight(Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame:SetPoint("TOPLEFT", 0, 0)

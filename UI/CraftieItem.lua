@@ -17,7 +17,7 @@ Craftie.Frame.CraftParent={}
 Craftie.Frame.CraftParent= CreateFrame("Frame", "Craftie.Frame.CraftParent", Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.CraftParent:SetWidth(312)
 Craftie.Frame.CraftParent:SetHeight(372)
-Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -16, -100)
+Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -14, -100)
 Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.CraftBackTop={}
@@ -256,10 +256,12 @@ for i=1, Craftie.MAX_REAGENTS do
 end
 
 Craftie.Frame.ItemBackBot={}
-Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
+--Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
+Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.ItemBackBot:SetWidth(Craftie.Frame.CraftParent:GetWidth())
 Craftie.Frame.ItemBackBot:SetHeight(102)
 Craftie.Frame.ItemBackBot:SetPoint("TOPRIGHT", 0, -270)
+--[==[
 Craftie.Frame.ItemBackBotArt = Craftie.Frame.ItemBackBot:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ItemBackBotArt:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
 Craftie.Frame.ItemBackBotArt:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())
@@ -267,7 +269,7 @@ Craftie.Frame.ItemBackBotArt:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.ItemBackBotArt:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
 Craftie.Frame.ItemBackBotArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.ItemBackBotArt:SetDesaturation(0.3)
-
+]==]--
 Craftie.Frame.ItemRequestParent = CreateFrame("Frame", "Craftie.Frame.ItemRequestParent", Craftie.Frame.CraftParent, "BackdropTemplate", 5)
 Craftie.Frame.ItemRequestParent:SetWidth(300)
 Craftie.Frame.ItemRequestParent:SetHeight(125)
