@@ -56,6 +56,7 @@ end
 
 function Craftie:ClearCraftFrame()
   Craftie.Frame.Item:Hide()
+  Craftie.Frame.ItemCountEditBox:SetNumber(1)
   --GameTooltip:Hide()
   for i=1, Craftie.MAX_REAGENTS do
     Craftie.Frame.Reagent.Main[i]:Hide()
@@ -561,6 +562,7 @@ function Craftie:ItemDetails(item)
   local loadcache = 0
 
   Craftie.Frame.Item:Show()
+  --Craftie.Frame.ItemCountEditBox:SetNumber(1)
 
   Craftie:TimerAnim(Craftie.Frame.Item, 0.65) --animate the craft icon
   --PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)

@@ -140,7 +140,7 @@ for i=1, Craftie.MAX_REAGENTS do
     if (Craftie.EnableScrollFrames) then
       local itemID = Craftie.Frame.Reagent.Data[i]:GetText()
       if (not Craftie:IsEmpty(itemID)) then
-        Craftie:SetItemTooltip(self, itemID, false, "ANCHOR_RIGHT")
+        Craftie:SetItemTooltip(self, itemID, false, "ANCHOR_TOPLEFT")
       end
     end
   end)
@@ -249,11 +249,13 @@ Craftie.Frame.Item.SourceText:Hide()
 CRAFT REQUEST
 ]==]--
 Craftie.Frame.ItemBackBot={}
---Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
 Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.ItemBackBot:SetWidth(Craftie.Frame.CraftParent:GetWidth())
-Craftie.Frame.ItemBackBot:SetHeight(102)
-Craftie.Frame.ItemBackBot:SetPoint("TOPRIGHT", 0, -270)
+Craftie.Frame.ItemBackBot:SetHeight(106)
+Craftie.Frame.ItemBackBot:SetPoint("TOPRIGHT", 0, -268)
+Craftie.Frame.ItemBackBot:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Frame.ItemBackBot:SetBackdropColor(0, 1, 0, 0)
+Craftie.Frame.ItemBackBot:SetBackdropBorderColor(0.5, 0.5, 0.48, 1)
 --[==[
 Craftie.Frame.ItemBackBotArt = Craftie.Frame.ItemBackBot:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ItemBackBotArt:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
@@ -264,20 +266,69 @@ Craftie.Frame.ItemBackBotArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.ItemBackBotArt:SetDesaturation(0.3)
 ]==]--
 Craftie.Frame.ItemRequestParent = CreateFrame("Frame", "Craftie.Frame.ItemRequestParent", Craftie.Frame.CraftParent, "BackdropTemplate", 5)
-Craftie.Frame.ItemRequestParent:SetWidth(300)
-Craftie.Frame.ItemRequestParent:SetHeight(125)
---Craftie.Frame.ItemRequestParent:SetBackdrop(Craftie.Backdrop.General)
---Craftie.Frame.ItemRequestParent:SetBackdropColor(0, 1, 0, 1)
+Craftie.Frame.ItemRequestParent:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
+Craftie.Frame.ItemRequestParent:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())
 Craftie.Frame.ItemRequestParent:SetPoint("TOPRIGHT", 0, -268)
 --Craftie.Frame.ItemRequestParent:SetFrameLevel(50)
 
+local MIN_VALUE = 1
+local MAX_VALUE = 999
+local STEP = 1
+
+Craftie.Frame.ItemCountParent = CreateFrame("Frame", "MyNumberBoxFrame", Craftie.Frame.ItemRequestParent, "BackdropTemplate")
+Craftie.Frame.ItemCountParent:SetSize(80, 20)
+Craftie.Frame.ItemCountParent:SetPoint("TOPLEFT", 10, -20)
+
+Craftie.Frame.ItemCountEditBox = CreateFrame("EditBox", nil, Craftie.Frame.ItemCountParent, "InputBoxTemplate")
+Craftie.Frame.ItemCountEditBox:SetSize(30, 20)
+Craftie.Frame.ItemCountEditBox:SetPoint("CENTER", 0, 0)
+Craftie.Frame.ItemCountEditBox:SetAutoFocus(false)
+Craftie.Frame.ItemCountEditBox:SetNumber(MIN_VALUE)
+
+-- Restrict to numeric input and enforce limits
+Craftie.Frame.ItemCountEditBox:SetScript("OnTextChanged", function(self)
+  local num = self:GetNumber() -- Automatically extracts number
+  if num > MAX_VALUE then
+    self:SetNumber(MAX_VALUE)
+  elseif num < MIN_VALUE and self:GetText() ~= "" then
+    self:SetNumber(MIN_VALUE)
+  end
+end)
+
+local ButtonDecrease = CreateFrame("Button", nil, Craftie.Frame.ItemCountParent, "BackdropTemplate")
+ButtonDecrease:SetSize(25, 25)
+ButtonDecrease:SetPoint("TOPLEFT", -2, 2)
+ButtonDecrease:SetText("-")
+ButtonDecrease:SetScript("OnClick", function()
+  local current = Craftie.Frame.ItemCountEditBox:GetNumber()
+  if current - STEP >= MIN_VALUE then
+    Craftie.Frame.ItemCountEditBox:SetNumber(current - STEP)
+  end
+end)
+ButtonDecrease:SetNormalTexture("Interface/Buttons/UI-SpellbookIcon-PrevPage-Up")
+ButtonDecrease:SetPushedTexture("Interface/Buttons/UI-SpellbookIcon-PrevPage-Down")
+ButtonDecrease:SetHighlightTexture("Interface/Buttons/UI-Common-MouseHilight", "ADD")
+
+local ButtonIncrease = CreateFrame("Button", nil, Craftie.Frame.ItemCountParent, "BackdropTemplate")
+ButtonIncrease:SetSize(25, 25)
+ButtonIncrease:SetPoint("TOPRIGHT", -2, 2)
+ButtonIncrease:SetScript("OnClick", function()
+  local current = Craftie.Frame.ItemCountEditBox:GetNumber()
+  if current + STEP <= MAX_VALUE then
+    Craftie.Frame.ItemCountEditBox:SetNumber(current + STEP)
+  end
+end)
+ButtonIncrease:SetNormalTexture("Interface/Buttons/UI-SpellbookIcon-NextPage-Up")
+ButtonIncrease:SetPushedTexture("Interface/Buttons/UI-SpellbookIcon-NextPage-Down")
+ButtonIncrease:SetHighlightTexture("Interface/Buttons/UI-Common-MouseHilight", "ADD")
+
 Craftie.Frame.ItemBackBot.Request = CreateFrame("Button", nil, Craftie.Frame.ItemRequestParent, "UIPanelButtonTemplate")
-Craftie.Frame.ItemBackBot.Request:SetSize(100, 24)
-Craftie.Frame.ItemBackBot.Request:SetPoint("TOPLEFT", 20, -20)
+Craftie.Frame.ItemBackBot.Request:SetSize(90, 24)
+Craftie.Frame.ItemBackBot.Request:SetPoint("TOPLEFT", 10, -50)
 Craftie.Frame.ItemBackBot.Request:SetText("Request")
 Craftie.Frame.ItemBackBot.Request:SetScript("OnClick", function(self)
   --print(Craftie.Selected_Name .. " | " .. Craftie.Frame.Item.Text:GetText())
   local name, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
-  C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x1 to be crafted.", "WHISPER", nil, Craftie.Selected_Name)
+  C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " to be crafted.", "WHISPER", nil, Craftie.Selected_Name)
   --Craftie:SendPacket(Craftie.Packet.Prefix.Net, Craftie.Player.Name .. "," .. "1", "WHISPER", Craftie.Selected_Name)
 end)
