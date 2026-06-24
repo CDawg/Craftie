@@ -63,7 +63,7 @@ local OrderTooltip = {
 Craftie.TabOrders={}
 local TabOffset = 265
 for k,v in pairs(OrderTabs) do
-  print("tab " .. k)
+  --print("tab " .. k)
   Craftie.TabOrders[k] = CreateFrame("Button", nil, Craftie.Frame.CraftParent, "BackdropTemplate")
   Craftie.TabOrders[k]:SetSize(80, 38)
   Craftie.TabOrders[k]:SetPoint("TOPLEFT", (Craftie.TabOrders[k]:GetWidth()*k)-(Craftie.TabOrders[k]:GetWidth()-12), 41)
@@ -241,25 +241,28 @@ for i=1, Craftie.MAX_REAGENTS do
   --Craftie.Frame.Reagent.Data[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.Reagent.Data[i]:SetText(i)
 
-  local ReagentQPosX = 7
+  local ReagentQPosX = -66
   Craftie.Frame.Reagent.QuanI[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.QuanI[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", -27, -20)
-  Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", ReagentQPosX, -22)
-  Craftie.Frame.Reagent.QuanI[i]:SetText("3")
+  Craftie.Frame.Reagent.QuanI[i]:SetPoint("CENTER", ReagentQPosX, -12)
+  Craftie.Frame.Reagent.QuanI[i]:SetText("0")
   Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.8)
+
   Craftie.Frame.Reagent.Dash[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.Dash[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", -19, -20)
-  Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", ReagentQPosX+9, -22)
+  Craftie.Frame.Reagent.Dash[i]:SetPoint("CENTER", ReagentQPosX+8, -12)
   Craftie.Frame.Reagent.Dash[i]:SetText("/")
   Craftie.Frame.Reagent.Dash[i]:SetTextColor(1, 1, 1, 0.8)
+
   Craftie.Frame.Reagent.QuanR[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.QuanR[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
   --Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", -14, -20)
-  Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", ReagentQPosX+13, -22)
-  Craftie.Frame.Reagent.QuanR[i]:SetText("3")
+  Craftie.Frame.Reagent.QuanR[i]:SetPoint("CENTER", ReagentQPosX+13, -12)
+  Craftie.Frame.Reagent.QuanR[i]:SetText("0")
   Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
+
   Craftie.Frame.Reagent.Main[i]:Hide()
 end
 

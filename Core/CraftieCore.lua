@@ -636,7 +636,7 @@ function Craftie:ItemDetails(item)
       --Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
 
-      if (inv_count >= 10) then
+      if (inv_count >= 99) then
         Craftie.Frame.Reagent.QuanI[i]:SetText("..")
       else
         Craftie.Frame.Reagent.QuanI[i]:SetText(inv_count)
