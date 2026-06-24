@@ -372,3 +372,47 @@ Craftie.Frame.ItemBackBot.Request:SetScript("OnClick", function(self)
   C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " to be crafted.", "WHISPER", nil, Craftie.Selected_Name)
   Craftie:SendPacket(Craftie.Packet.Prefix.Order, Craftie.Player.Name .. "," .. link .. "," .. Craftie.Frame.ItemCountEditBox:GetNumber(), "WHISPER", Craftie.Selected_Name)
 end)
+
+local OrderScrollWidth = 208
+local OrderScrollHeight = 300
+
+Craftie.Frame.ScrollOrderListItem={}
+Craftie.Frame.ScrollOrderListBack={}
+Craftie.Frame.ScrollOrderListName={}
+
+Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftParent, "BackdropTemplate")
+Craftie.Frame.ScrollOrderList:SetWidth(OrderScrollWidth-10)
+Craftie.Frame.ScrollOrderList:SetHeight(OrderScrollHeight+20)
+Craftie.Frame.ScrollOrderList:SetPoint("CENTER", 2, -6)
+
+Craftie.Frame.ScrollOrderList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollOrderList.Child", Craftie.Frame.ScrollOrderList, "UIPanelScrollFrameTemplate")
+Craftie.Frame.ScrollOrderList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList, "TOPLEFT",         -2,-20)
+Craftie.Frame.ScrollOrderList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList, "BOTTOMRIGHT", 14, 10)
+Craftie.Frame.ScrollOrderListChildFrame = CreateFrame("Frame", "Craftie.Frame.ScrollOrderListChildFrame", Craftie.Frame.ScrollOrderList.Child)
+Craftie.Frame.ScrollOrderListChildFrame:SetSize(OrderScrollWidth, OrderScrollHeight)
+Craftie.Frame.ScrollOrderList.Child:SetScrollChild(Craftie.Frame.ScrollOrderListChildFrame)
+Craftie.Frame.ScrollOrderList.Child.ScrollBar:ClearAllPoints()
+Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList.Child, "TOPRIGHT",          0,-10)
+Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList.Child, "BOTTOMRIGHT", -42, 10)
+
+for i=1, 100 do
+  Craftie.Frame.ScrollOrderListItem[i] = CreateFrame("Frame", Craftie.Frame.ScrollOrderListItem[i], Craftie.Frame.ScrollOrderListChildFrame, "BackdropTemplate", -1)
+  Craftie.Frame.ScrollOrderListItem[i]:SetWidth(OrderScrollWidth-26) --scrollbar size
+  Craftie.Frame.ScrollOrderListItem[i]:SetHeight(20)
+  Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollOrderListItem[i]:GetHeight()+16)
+  Craftie.Frame.ScrollOrderListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
+
+  Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListItem[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListItem[i]:GetWidth(), Craftie.Frame.ScrollOrderListItem[i]:GetHeight())
+  Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
+  Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollOrderListBack[i]:SetAlpha(0.5)
+
+  Craftie.Frame.ScrollOrderListName[i] = Craftie.Frame.ScrollOrderListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 32, -5)
+  Craftie.Frame.ScrollOrderListName[i]:SetText("Player 1")
+  Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
+end
+
+Craftie.Frame.ScrollOrderList:Hide()

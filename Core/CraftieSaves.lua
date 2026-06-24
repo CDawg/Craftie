@@ -28,6 +28,7 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
   end
 
   --diff faction
@@ -49,6 +50,7 @@ function Craftie:SaveData()
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] == nil) then
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
   else
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MAIN"]) then
       local FramePos = {}
