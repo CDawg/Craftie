@@ -164,9 +164,7 @@ Craftie.Frame.Reagent.Icon = {}
 Craftie.Frame.Reagent.IconBorder={}
 Craftie.Frame.Reagent.IconGlow={}
 Craftie.Frame.Reagent.Text = {}
-Craftie.Frame.Reagent.QuanR = {} --required
-Craftie.Frame.Reagent.QuanI = {} --inventory
-Craftie.Frame.Reagent.Dash = {}
+Craftie.Frame.Reagent.Quan = {}
 Craftie.Frame.Reagent.Data = {} --ID
 
 Craftie.Frame.Reagent_Width = 146
@@ -241,27 +239,13 @@ for i=1, Craftie.MAX_REAGENTS do
   --Craftie.Frame.Reagent.Data[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.Reagent.Data[i]:SetText(i)
 
-  local ReagentQPosX = -66
-  Craftie.Frame.Reagent.QuanI[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.QuanI[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
-  --Craftie.Frame.Reagent.QuanI[i]:SetPoint("TOPLEFT", -27, -20)
-  Craftie.Frame.Reagent.QuanI[i]:SetPoint("CENTER", ReagentQPosX, -12)
-  Craftie.Frame.Reagent.QuanI[i]:SetText("0")
-  Craftie.Frame.Reagent.QuanI[i]:SetTextColor(1, 1, 1, 0.8)
-
-  Craftie.Frame.Reagent.Dash[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.Dash[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
-  --Craftie.Frame.Reagent.Dash[i]:SetPoint("TOPLEFT", -19, -20)
-  Craftie.Frame.Reagent.Dash[i]:SetPoint("CENTER", ReagentQPosX+8, -12)
-  Craftie.Frame.Reagent.Dash[i]:SetText("/")
-  Craftie.Frame.Reagent.Dash[i]:SetTextColor(1, 1, 1, 0.8)
-
-  Craftie.Frame.Reagent.QuanR[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
-  Craftie.Frame.Reagent.QuanR[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
-  --Craftie.Frame.Reagent.QuanR[i]:SetPoint("TOPLEFT", -14, -20)
-  Craftie.Frame.Reagent.QuanR[i]:SetPoint("CENTER", ReagentQPosX+13, -12)
-  Craftie.Frame.Reagent.QuanR[i]:SetText("0")
-  Craftie.Frame.Reagent.QuanR[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.Reagent.Quan[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
+  Craftie.Frame.Reagent.Quan[i]:SetWidth(Craftie.Frame.Reagent.Icon[i]:GetWidth())
+  Craftie.Frame.Reagent.Quan[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
+  Craftie.Frame.Reagent.Quan[i]:SetPoint("CENTER", -64, -12)
+  Craftie.Frame.Reagent.Quan[i]:SetText("")
+  Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.Reagent.Quan[i]:SetJustifyH("RIGHT")
 
   Craftie.Frame.Reagent.Main[i]:Hide()
 end
