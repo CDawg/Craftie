@@ -102,7 +102,7 @@ function Craftie:TabBottomSelect(tab, sound)
     Craftie:TimerAnim(Craftie.Frame.TabBar, 1) --animate the tab bar after Init()
   end
 
-  Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab.png")
+  Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Active.png")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
   Craftie.Frame.Title.Sub:SetText(CraftieNavTabs[tab])
 end

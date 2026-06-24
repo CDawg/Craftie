@@ -103,7 +103,7 @@ for k,v in pairs(OrderTabs) do
     --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
 end
-Craftie.TabOrders[1].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab.png")
+Craftie.TabOrders[1].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Active.png")
 
 --[==[
 CRAFT MAIN ITEM
