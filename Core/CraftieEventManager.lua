@@ -157,7 +157,7 @@ end
 Craftie.Chat = {}
 Craftie.ChatFilter = {}
 
-function Craftie.BuildChatHooks()
+function Craftie:BuildChatHooks()
   local prof_parent = ""
   for k,v in pairs(Craftie.Professions) do
     Craftie.Chat[v[1]] = {}
@@ -173,7 +173,7 @@ function Craftie.BuildChatHooks()
         prof_parent = prof_parent .. " | " .. b
       end
     end
-    Craftie:Notification("Craftie.BuildChatHook: " .. prof_parent .. "]", Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:BuildChatHooks: " .. prof_parent .. "]", Craftie.CHAT.FUNC)
   end
 
   for k,v in pairs(Craftie.Professions) do

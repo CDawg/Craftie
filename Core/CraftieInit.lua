@@ -19,7 +19,7 @@ function Craftie:Init()
   Craftie:BuildReagentGaps()
   --Craftie:TabSelect(1) --default 1st profession
   Craftie:TabBottomSelect(1)
-  Craftie.BuildChatHooks()
+  Craftie:BuildChatHooks()
   Craftie:SaveData()
   Craftie:BuildPersonalTooltip()
   --Craftie:UpdatePlayerTooltip(false)
@@ -29,14 +29,14 @@ function Craftie:Init()
     Craftie.OpenState = 0
     CraftieDialog:Hide()
     Craftie:CloseAllPlayerMenus() --clear out the player sub menus
-    Craftie:Notification("Craftie Closed", Craftie.CHAT.FUNC)
+    --Craftie:Notification("Craftie Closed", Craftie.CHAT.FUNC)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_CLOSE)
   end)
   Craftie.Frame:SetScript("OnShow", function(self)
     Craftie.OpenState = 1
     CraftieDialog:Hide()
     Craftie:CloseAllPlayerMenus()
-    Craftie:Notification("Craftie Opened", Craftie.CHAT.FUNC)
+    --Craftie:Notification("Craftie Opened", Craftie.CHAT.FUNC)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
   end)
 
