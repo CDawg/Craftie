@@ -52,6 +52,48 @@ Craftie.Frame.Item:SetScript("OnHyperlinkClick", function(self, link, text, butt
 end)
 Craftie.Frame.Item:Hide()
 
+local OrderTabs = {"Request", "Orders"}
+
+Craftie.TabOrders={}
+local TabOffset = 265
+for k,v in pairs(OrderTabs) do
+  print("tab " .. k)
+  Craftie.TabOrders[k] = CreateFrame("Button", nil, Craftie.Frame.CraftParent, "BackdropTemplate")
+  Craftie.TabOrders[k]:SetSize(80, 38)
+  Craftie.TabOrders[k]:SetPoint("TOPLEFT", (Craftie.TabOrders[k]:GetWidth()*k)-(Craftie.TabOrders[k]:GetWidth()-12), 41)
+  Craftie.TabOrders[k]:SetBackdrop(Craftie.Backdrop.General)
+  Craftie.TabOrders[k]:SetBackdropColor(0, 1, 0, 0)
+  Craftie.TabOrders[k]:SetBackdropBorderColor(1, 1, 1, 0)
+  Craftie.TabOrders[k].BG = Craftie.TabOrders[k]:CreateTexture(nil, "BACKGROUND")
+  Craftie.TabOrders[k].BG:SetSize(Craftie.TabOrders[k]:GetWidth(), 44)
+  Craftie.TabOrders[k].BG:SetPoint("CENTER", 0, -4)
+  Craftie.TabOrders[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Inactive.png")
+  Craftie.TabOrders[k].Highlight = Craftie.TabOrders[k]:CreateTexture(nil, "BORDER")
+  Craftie.TabOrders[k].Highlight:SetSize(Craftie.TabOrders[k]:GetWidth()-4, 18)
+  Craftie.TabOrders[k].Highlight:SetPoint("CENTER", 0, -6)
+  Craftie.TabOrders[k].Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-Highlight")
+  Craftie.TabOrders[k].Highlight:SetBlendMode("ADD")
+  Craftie.TabOrders[k].Highlight:SetAlpha(0.4)
+  Craftie.TabOrders[k].Highlight:Hide()
+  Craftie.TabOrders[k].Text = Craftie.TabOrders[k]:CreateFontString(nil, "ARTWORK")
+  Craftie.TabOrders[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "OUTLINE")
+  Craftie.TabOrders[k].Text:SetPoint("CENTER", 0, -5)
+  Craftie.TabOrders[k].Text:SetText(v)
+  Craftie.TabOrders[k].Text:SetTextColor(1, 1, 1, 0.7)
+  Craftie.TabOrders[k]:SetScript("OnClick", function(self)
+    --Craftie:TabBottomSelect(k, true)
+  end)
+  Craftie.TabOrders[k]:SetScript("OnEnter", function(self)
+    Craftie.TabOrders[k].Highlight:Show()
+    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
+  end)
+  Craftie.TabOrders[k]:SetScript("OnLeave", function(self)
+    Craftie.TabOrders[k].Highlight:Hide()
+    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
+  end)
+end
+Craftie.TabOrders[1].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab.png")
+
 --[==[
 CRAFT MAIN ITEM
 ]==]--

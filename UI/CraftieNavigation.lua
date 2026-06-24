@@ -14,11 +14,11 @@ the copyright holders.
 ]==]--
 
 Craftie.Nav={}
-Craftie.Nav.Tabs = {"Professions", "Updates", "Help"}
+local CraftieNavTabs = {"Professions", "Updates", "Help"}
 
 Craftie.TabBottom={}
 local bottomTabOffset = 265
-for k,v in pairs(Craftie.Nav.Tabs) do
+for k,v in pairs(CraftieNavTabs) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(80, 38)
   Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -34)
@@ -30,7 +30,7 @@ for k,v in pairs(Craftie.Nav.Tabs) do
   Craftie.TabBottom[k].BG:SetPoint("CENTER", 0, -4)
   Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
   Craftie.TabBottom[k].Highlight = Craftie.TabBottom[k]:CreateTexture(nil, "BORDER")
-  Craftie.TabBottom[k].Highlight:SetSize(Craftie.TabBottom[k]:GetWidth()-4, 14)
+  Craftie.TabBottom[k].Highlight:SetSize(Craftie.TabBottom[k]:GetWidth()-4, 18)
   Craftie.TabBottom[k].Highlight:SetPoint("CENTER", 0, -2)
   Craftie.TabBottom[k].Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-Highlight")
   Craftie.TabBottom[k].Highlight:SetBlendMode("ADD")
@@ -68,7 +68,7 @@ function Craftie:TabBottomSelect(tab, sound)
   Craftie.Frame.ItemerLevel:Hide()
   Craftie.Frame.ItemerProgBarS:Hide()
 
-  for k,v in pairs(Craftie.Nav.Tabs) do
+  for k,v in pairs(CraftieNavTabs) do
     Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   end
@@ -104,7 +104,7 @@ function Craftie:TabBottomSelect(tab, sound)
 
   Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab.png")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
-  Craftie.Frame.Title.Sub:SetText(Craftie.Nav.Tabs[tab])
+  Craftie.Frame.Title.Sub:SetText(CraftieNavTabs[tab])
 end
 
 --first tab
