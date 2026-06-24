@@ -18,11 +18,17 @@ Craftie.Frame.CraftParent= CreateFrame("Frame", "Craftie.Frame.CraftParent", Cra
 Craftie.Frame.CraftParent:SetWidth(324)
 Craftie.Frame.CraftParent:SetHeight(372)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -14, -100)
-Craftie.Frame.CraftParent:SetFrameStrata("MEDIUM")
+
+Craftie.Frame.CraftRequest={}
+Craftie.Frame.CraftRequest= CreateFrame("Frame", "Craftie.Frame.CraftRequest", Craftie.Frame.CraftParent, "BackdropTemplate")
+Craftie.Frame.CraftRequest:SetWidth(324)
+Craftie.Frame.CraftRequest:SetHeight(372)
+Craftie.Frame.CraftRequest:SetPoint("TOPLEFT", 0, 0)
+--Craftie.Frame.CraftRequest:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.CraftBackTop={}
-Craftie.Frame.CraftBackTop= CreateFrame("Frame", "Craftie.Frame.CraftBackTop", Craftie.Frame.CraftParent, "InsetFrameTemplate4")
-Craftie.Frame.CraftBackTop:SetWidth(Craftie.Frame.CraftParent:GetWidth())
+Craftie.Frame.CraftBackTop= CreateFrame("Frame", "Craftie.Frame.CraftBackTop", Craftie.Frame.CraftRequest, "InsetFrameTemplate4")
+Craftie.Frame.CraftBackTop:SetWidth(Craftie.Frame.CraftRequest:GetWidth())
 --Craftie.Frame.CraftBackTop:SetHeight(190)
 Craftie.Frame.CraftBackTop:SetHeight(260)
 Craftie.Frame.CraftBackTop:SetPoint("TOPRIGHT", 0, 0)
@@ -51,59 +57,6 @@ Craftie.Frame.Item:SetScript("OnHyperlinkClick", function(self, link, text, butt
   end
 end)
 Craftie.Frame.Item:Hide()
-
-local OrderTabs = {
-  "Request",
-  "Orders [0]"
-}
-local OrderTooltip = {
-  "Request a player to craft this item for you",
-  "Queue from other players for you to craft an item"
-}
-Craftie.TabOrders={}
-local TabOffset = 265
-for k,v in pairs(OrderTabs) do
-  --print("tab " .. k)
-  Craftie.TabOrders[k] = CreateFrame("Button", nil, Craftie.Frame.CraftParent, "BackdropTemplate")
-  Craftie.TabOrders[k]:SetSize(80, 38)
-  Craftie.TabOrders[k]:SetPoint("TOPLEFT", (Craftie.TabOrders[k]:GetWidth()*k)-(Craftie.TabOrders[k]:GetWidth()-12), 41)
-  Craftie.TabOrders[k]:SetBackdrop(Craftie.Backdrop.General)
-  Craftie.TabOrders[k]:SetBackdropColor(0, 1, 0, 0)
-  Craftie.TabOrders[k]:SetBackdropBorderColor(1, 1, 1, 0)
-  Craftie.TabOrders[k].BG = Craftie.TabOrders[k]:CreateTexture(nil, "BACKGROUND")
-  Craftie.TabOrders[k].BG:SetSize(Craftie.TabOrders[k]:GetWidth(), 44)
-  Craftie.TabOrders[k].BG:SetPoint("CENTER", 0, -4)
-  Craftie.TabOrders[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Inactive.png")
-  Craftie.TabOrders[k].Highlight = Craftie.TabOrders[k]:CreateTexture(nil, "BORDER")
-  Craftie.TabOrders[k].Highlight:SetSize(Craftie.TabOrders[k]:GetWidth()-4, 18)
-  Craftie.TabOrders[k].Highlight:SetPoint("CENTER", 0, -6)
-  Craftie.TabOrders[k].Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-Highlight")
-  Craftie.TabOrders[k].Highlight:SetBlendMode("ADD")
-  Craftie.TabOrders[k].Highlight:SetAlpha(0.3)
-  Craftie.TabOrders[k].Highlight:Hide()
-  Craftie.TabOrders[k].Text = Craftie.TabOrders[k]:CreateFontString(nil, "ARTWORK")
-  Craftie.TabOrders[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "OUTLINE")
-  Craftie.TabOrders[k].Text:SetPoint("CENTER", 0, -5)
-  Craftie.TabOrders[k].Text:SetText(v)
-  Craftie.TabOrders[k].Text:SetTextColor(1, 1, 1, 0.7)
-  Craftie.TabOrders[k]:SetScript("OnClick", function(self)
-    --Craftie:TabBottomSelect(k, true)
-  end)
-  Craftie.TabOrders[k]:SetScript("OnEnter", function(self)
-    Craftie.TabOrders[k].Highlight:Show()
-    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
-    CraftieTooltip:ClearLines()
-    CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
-    CraftieTooltip:AddLine("|CFFDEDEDE" .. OrderTooltip[k])
-    CraftieTooltip:Show()
-  end)
-  Craftie.TabOrders[k]:SetScript("OnLeave", function(self)
-    Craftie.TabOrders[k].Highlight:Hide()
-    CraftieTooltip:Hide()
-    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
-  end)
-end
-Craftie.TabOrders[1].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Active.png")
 
 --[==[
 CRAFT MAIN ITEM
@@ -174,8 +127,8 @@ Craftie.Frame.Reagent_PosY  = 130
 Craftie.Frame.Reagent_YSpacing=20
 
 for i=1, Craftie.MAX_REAGENTS do
-  --Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent, "BackdropTemplate", 5)
-  Craftie.Frame.Reagent.Main[i] = CreateFrame("Button", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftParent)
+  --Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftRequest, "BackdropTemplate", 5)
+  Craftie.Frame.Reagent.Main[i] = CreateFrame("Button", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftRequest)
   local currentLevel = Craftie.Frame.Reagent.Main[i]:GetFrameLevel()
   Craftie.Frame.Reagent.Main[i]:SetFrameStrata("MEDIUM")
   Craftie.Frame.Reagent.Main[i]:SetWidth(Craftie.Frame.Reagent_Width)
@@ -254,12 +207,11 @@ end
 CRAFT SOURCE
 ]==]--
 Craftie.Frame.ItemBackMid={}
---Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftParent, "InsetFrameTemplate3")
-Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftParent, "BackdropTemplate")
+--Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftRequest, "InsetFrameTemplate3")
+Craftie.Frame.ItemBackMid= CreateFrame("Frame", "Craftie.Frame.ItemBackMid", Craftie.Frame.CraftRequest, "BackdropTemplate")
 Craftie.Frame.ItemBackMid:SetWidth(300)
 Craftie.Frame.ItemBackMid:SetHeight(50)
 Craftie.Frame.ItemBackMid:SetPoint("TOPRIGHT", -20, -200)
---Craftie.Frame.ItemBackMid:SetFrameStrata("MEDIUM")
 
 Craftie.Frame.Item.SkillIcon = Craftie.Frame.ItemBackMid:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Item.SkillIcon:SetSize(13, 13)
@@ -289,8 +241,8 @@ Craftie.Frame.Item.SourceText:Hide()
 CRAFT REQUEST
 ]==]--
 Craftie.Frame.ItemBackBot={}
-Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "BackdropTemplate")
-Craftie.Frame.ItemBackBot:SetWidth(Craftie.Frame.CraftParent:GetWidth())
+Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftRequest, "BackdropTemplate")
+Craftie.Frame.ItemBackBot:SetWidth(Craftie.Frame.CraftRequest:GetWidth())
 Craftie.Frame.ItemBackBot:SetHeight(106)
 Craftie.Frame.ItemBackBot:SetPoint("TOPRIGHT", 0, -268)
 Craftie.Frame.ItemBackBot:SetBackdrop(Craftie.Backdrop.General)
@@ -305,7 +257,7 @@ Craftie.Frame.ItemBackBotArt:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Ba
 Craftie.Frame.ItemBackBotArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.ItemBackBotArt:SetDesaturation(0.3)
 ]==]--
-Craftie.Frame.ItemRequestParent = CreateFrame("Frame", "Craftie.Frame.ItemRequestParent", Craftie.Frame.CraftParent, "BackdropTemplate", 5)
+Craftie.Frame.ItemRequestParent = CreateFrame("Frame", "Craftie.Frame.ItemRequestParent", Craftie.Frame.CraftRequest, "BackdropTemplate", 5)
 Craftie.Frame.ItemRequestParent:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
 Craftie.Frame.ItemRequestParent:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())
 Craftie.Frame.ItemRequestParent:SetPoint("TOPRIGHT", 0, -268)
@@ -373,46 +325,176 @@ Craftie.Frame.ItemBackBot.Request:SetScript("OnClick", function(self)
   Craftie:SendPacket(Craftie.Packet.Prefix.Order, Craftie.Player.Name .. "," .. link .. "," .. Craftie.Frame.ItemCountEditBox:GetNumber(), "WHISPER", Craftie.Selected_Name)
 end)
 
-local OrderScrollWidth = 208
-local OrderScrollHeight = 300
+--[==[
+CRAFT ORDERS
+]==]--
 
-Craftie.Frame.ScrollOrderListItem={}
-Craftie.Frame.ScrollOrderListBack={}
-Craftie.Frame.ScrollOrderListName={}
+local MAX_ORDERS = 100
+local OrderTabs = {
+  "Request",
+  "Orders [0]"
+}
+local OrderTooltip = {
+  "Request a player to craft this item for you",
+  "Queue from other players for you to craft an item"
+}
+Craftie.TabOrders={}
+local TabOffset = 265
 
-Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftParent, "BackdropTemplate")
-Craftie.Frame.ScrollOrderList:SetWidth(OrderScrollWidth-10)
-Craftie.Frame.ScrollOrderList:SetHeight(OrderScrollHeight+20)
-Craftie.Frame.ScrollOrderList:SetPoint("CENTER", 2, -6)
+local function ClearOrderTabs()
+  for k,v in pairs(OrderTabs) do
+    Craftie.TabOrders[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Inactive.png")
+  end
+end
+
+Craftie.Frame.CraftOrder={}
+Craftie.Frame.CraftOrder= CreateFrame("Frame", "Craftie.Frame.CraftOrder", Craftie.Frame.CraftParent, "BackdropTemplate")
+Craftie.Frame.CraftOrder:SetWidth(324)
+Craftie.Frame.CraftOrder:SetHeight(372)
+Craftie.Frame.CraftOrder:SetPoint("TOPLEFT", 0, 0)
+--Craftie.Frame.CraftOrder:SetFrameStrata("MEDIUM")
+Craftie.Frame.CraftOrder:Hide()
+
+Craftie.Frame.CraftOrderBackTop={}
+Craftie.Frame.CraftOrderBackTop= CreateFrame("Frame", "Craftie.Frame.CraftOrderBackTop", Craftie.Frame.CraftOrder, "InsetFrameTemplate4")
+Craftie.Frame.CraftOrderBackTop:SetWidth(Craftie.Frame.CraftOrder:GetWidth())
+Craftie.Frame.CraftOrderBackTop:SetHeight(Craftie.Frame.CraftOrder:GetHeight())
+Craftie.Frame.CraftOrderBackTop:SetPoint("TOPRIGHT", 0, 0)
+Craftie.Frame.CraftOrderBackTop:SetFrameStrata("LOW") --Blizzard's UI is so broken and hacky
+Craftie.Frame.CraftOrderBackTopArt = Craftie.Frame.CraftOrderBackTop:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.CraftOrderBackTopArt:SetWidth(Craftie.Frame.CraftOrderBackTop:GetWidth())
+Craftie.Frame.CraftOrderBackTopArt:SetHeight(Craftie.Frame.CraftOrderBackTop:GetHeight())
+Craftie.Frame.CraftOrderBackTopArt:SetPoint("TOPLEFT", 0, 0)
+Craftie.Frame.CraftOrderBackTopArt:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+--Craftie.Frame.CraftOrderBackTopArt:SetVertexColor(.8, .8, .8) --darker
+Craftie.Frame.CraftOrderBackTopArt:SetDesaturation(0.3)
+
+for k,v in pairs(OrderTabs) do
+  --print("tab " .. k)
+  Craftie.TabOrders[k] = CreateFrame("Button", nil, Craftie.Frame.CraftParent, "BackdropTemplate")
+  Craftie.TabOrders[k]:SetSize(80, 38)
+  Craftie.TabOrders[k]:SetPoint("TOPLEFT", (Craftie.TabOrders[k]:GetWidth()*k)-(Craftie.TabOrders[k]:GetWidth()-12), 41)
+  Craftie.TabOrders[k]:SetBackdrop(Craftie.Backdrop.General)
+  Craftie.TabOrders[k]:SetBackdropColor(0, 1, 0, 0)
+  Craftie.TabOrders[k]:SetBackdropBorderColor(1, 1, 1, 0)
+  Craftie.TabOrders[k]:SetFrameStrata("MEDIUM")
+  Craftie.TabOrders[k].BG = Craftie.TabOrders[k]:CreateTexture(nil, "BACKGROUND")
+  Craftie.TabOrders[k].BG:SetSize(Craftie.TabOrders[k]:GetWidth(), 44)
+  Craftie.TabOrders[k].BG:SetPoint("CENTER", 0, -4)
+  Craftie.TabOrders[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Inactive.png")
+  Craftie.TabOrders[k].Highlight = Craftie.TabOrders[k]:CreateTexture(nil, "BORDER")
+  Craftie.TabOrders[k].Highlight:SetSize(Craftie.TabOrders[k]:GetWidth()-4, 18)
+  Craftie.TabOrders[k].Highlight:SetPoint("CENTER", 0, -6)
+  Craftie.TabOrders[k].Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-Highlight")
+  Craftie.TabOrders[k].Highlight:SetBlendMode("ADD")
+  Craftie.TabOrders[k].Highlight:SetAlpha(0.3)
+  Craftie.TabOrders[k].Highlight:Hide()
+  Craftie.TabOrders[k].Text = Craftie.TabOrders[k]:CreateFontString(nil, "ARTWORK")
+  Craftie.TabOrders[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "OUTLINE")
+  Craftie.TabOrders[k].Text:SetPoint("CENTER", 0, -5)
+  Craftie.TabOrders[k].Text:SetText(v)
+  Craftie.TabOrders[k].Text:SetTextColor(1, 1, 1, 0.7)
+  Craftie.TabOrders[k]:SetScript("OnClick", function(self)
+    ClearOrderTabs()
+    Craftie.Frame.CraftRequest:Hide()
+    Craftie.Frame.CraftOrder:Hide()
+    if (k == 1) then
+      Craftie.Frame.CraftRequest:Show()
+    end
+    if (k == 2) then
+      Craftie.Frame.CraftOrder:Show()
+    end
+    Craftie.TabOrders[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Active.png")
+    PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
+  end)
+  Craftie.TabOrders[k]:SetScript("OnEnter", function(self)
+    Craftie.TabOrders[k].Highlight:Show()
+    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
+    CraftieTooltip:ClearLines()
+    CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+    CraftieTooltip:AddLine("|CFFDEDEDE" .. OrderTooltip[k])
+    CraftieTooltip:Show()
+  end)
+  Craftie.TabOrders[k]:SetScript("OnLeave", function(self)
+    Craftie.TabOrders[k].Highlight:Hide()
+    CraftieTooltip:Hide()
+    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
+  end)
+end
+Craftie.TabOrders[1].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Active.png")
+
+Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftOrder, "BackdropTemplate")
+Craftie.Frame.ScrollOrderList:SetWidth(Craftie.Frame.CraftOrder:GetWidth()-10)
+Craftie.Frame.ScrollOrderList:SetHeight(Craftie.Frame.CraftOrder:GetHeight()-4)
+Craftie.Frame.ScrollOrderList:SetPoint("TOPLEFT", 4, -8)
 
 Craftie.Frame.ScrollOrderList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollOrderList.Child", Craftie.Frame.ScrollOrderList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollOrderList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList, "TOPLEFT",         -2,-20)
 Craftie.Frame.ScrollOrderList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList, "BOTTOMRIGHT", 14, 10)
 Craftie.Frame.ScrollOrderListChildFrame = CreateFrame("Frame", "Craftie.Frame.ScrollOrderListChildFrame", Craftie.Frame.ScrollOrderList.Child)
-Craftie.Frame.ScrollOrderListChildFrame:SetSize(OrderScrollWidth, OrderScrollHeight)
+Craftie.Frame.ScrollOrderListChildFrame:SetSize(Craftie.Frame.CraftOrder:GetWidth(), Craftie.Frame.CraftOrder:GetHeight())
 Craftie.Frame.ScrollOrderList.Child:SetScrollChild(Craftie.Frame.ScrollOrderListChildFrame)
 Craftie.Frame.ScrollOrderList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList.Child, "TOPRIGHT",          0,-10)
 Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList.Child, "BOTTOMRIGHT", -42, 10)
 
-for i=1, 100 do
+Craftie:ScrollBarFrame(Craftie.Frame.ScrollOrderList.Child)
+
+Craftie.Frame.ScrollOrderListItem={}
+Craftie.Frame.ScrollOrderListBack={}
+Craftie.Frame.ScrollOrderListName={}
+Craftie.Frame.ScrollOrderListCraft={}
+Craftie.Frame.ScrollOrderListSelect={}
+
+for i=1, MAX_ORDERS do
   Craftie.Frame.ScrollOrderListItem[i] = CreateFrame("Frame", Craftie.Frame.ScrollOrderListItem[i], Craftie.Frame.ScrollOrderListChildFrame, "BackdropTemplate", -1)
-  Craftie.Frame.ScrollOrderListItem[i]:SetWidth(OrderScrollWidth-26) --scrollbar size
+  Craftie.Frame.ScrollOrderListItem[i]:SetWidth(Craftie.Frame.CraftOrder:GetWidth()-26) --scrollbar size
   Craftie.Frame.ScrollOrderListItem[i]:SetHeight(20)
   Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollOrderListItem[i]:GetHeight()+16)
+  Craftie.Frame.ScrollOrderListItem[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollOrderListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
+  Craftie.Frame.ScrollOrderListItem[i]:SetBackdropColor(1, 1, 1, 0)
+  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnEnter", function(self)
+    self:SetBackdropColor(1, 0.9, 0.8, 0.2)
+    Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 0.8, 1)
+  end)
+  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnLeave", function(self)
+    self:SetBackdropColor(1, 1, 1, 0)
+    Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
+  end)
 
   Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListItem[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListItem[i]:GetWidth(), Craftie.Frame.ScrollOrderListItem[i]:GetHeight())
   Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollOrderListBack[i]:SetVertexColor(1, 0.8, 0.5)
   Craftie.Frame.ScrollOrderListBack[i]:SetAlpha(0.5)
 
   Craftie.Frame.ScrollOrderListName[i] = Craftie.Frame.ScrollOrderListItem[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 32, -5)
-  Craftie.Frame.ScrollOrderListName[i]:SetText("Player 1")
+  Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 12, -5)
+  Craftie.Frame.ScrollOrderListName[i]:SetText("Player " .. i)
   Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
-end
 
-Craftie.Frame.ScrollOrderList:Hide()
+  Craftie.Frame.ScrollOrderListCraft[i] = Craftie.Frame.ScrollOrderListItem[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListCraft[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollOrderListCraft[i]:SetPoint("TOPLEFT", 120, -5)
+  Craftie.Frame.ScrollOrderListCraft[i]:SetText("Item " .. i)
+  Craftie.Frame.ScrollOrderListCraft[i]:SetTextColor(1, 1, 1, 0.8)
+
+  Craftie.Frame.ScrollOrderListSelect[i] = Craftie.Frame.ScrollOrderListItem[i]:CreateTexture(nil, "OVERLAY")
+  Craftie.Frame.ScrollOrderListSelect[i]:SetSize(Craftie.Frame.ScrollRecipes_Width-30, Craftie.Frame.ScrollOrderListItem[i]:GetHeight())
+  Craftie.Frame.ScrollOrderListSelect[i]:SetPoint("CENTER", 0, 0)
+  Craftie.Frame.ScrollOrderListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select.png")
+  Craftie.Frame.ScrollOrderListSelect[i]:SetBlendMode("ADD")
+  Craftie.Frame.ScrollOrderListSelect[i]:SetVertexColor(0.70, 0.70, 0.60)
+  Craftie.Frame.ScrollOrderListSelect[i]:SetAlpha(0.6)
+  Craftie.Frame.ScrollOrderListSelect[i]:Hide()
+
+  if (i % 2 == 0) then
+    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
+  end
+  if (i % 4 == 0) then
+    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row4.png")
+  end
+end

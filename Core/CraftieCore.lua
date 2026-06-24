@@ -1106,11 +1106,27 @@ function Craftie:OpenProfessionList(profArray, search, player)
   Craftie:Notification("Craftie:OpenProfessionList(" .. player .. " " .. search .. ")", Craftie.CHAT.FUNC)
 end
 
+function Craftie:GetCraftOrders()
+  local order_count = 0
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] ~= nil) then
+    for name,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]) do
+      order_count = order_count +1
+      local order = Craftie:Split(v, ",")
+      print("order_count " .. order_count)
+      --print(name .. " | " .. order[1] .. " | " .. order[2])
+    end
+  end
+  if (order_count >= 1) then
+    Craftie.TabOrders[2].Text:SetText("Orders |CFFFFDA45[" .. order_count .. "]")
+  end
+end
+
 --add a timer for parsed data
 function Craftie:Open(player, profession)
+  Craftie:GetCraftOrders()
   if (player) then
-    Craftie:Notification("Craftie:Open player: " .. player, Craftie.CHAT.FUNC)
-    Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.CHAT.FUNC)
+    --Craftie:Notification("Craftie:Open player: " .. player, Craftie.CHAT.FUNC)
+    --Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.CHAT.FUNC)
     --local prof = profession
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 1)
@@ -1120,6 +1136,7 @@ function Craftie:Open(player, profession)
     end)
   else
     Craftie.Frame:Show()
+    Craftie:Notification("Craftie:Opened", Craftie.CHAT.FUNC)
   end
 end
 
