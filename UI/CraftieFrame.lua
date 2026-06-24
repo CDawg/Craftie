@@ -132,7 +132,7 @@ for i,v in pairs(Craftie.Professions) do
     Craftie.Frame.TabSide[i].Hover:Show()
     CraftieTooltip:ClearLines()
     CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
-    CraftieTooltip:AddLine("|cffffffff" .. v[1] .. "|r")
+    CraftieTooltip:AddLine("|CFFDEDEDE" .. v[1] .. "|r")
     CraftieTooltip:Show()
   end)
   Craftie.Frame.TabSide[i]:SetScript("OnLeave", function()

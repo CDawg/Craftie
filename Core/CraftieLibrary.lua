@@ -33,7 +33,7 @@ Craftie = {
 }
 Craftie._L={}
 
-Craftie.DEBUGLEVEL = 9 --default [INFO | ERROR] | WARN
+Craftie.DEBUGLEVEL = 10 --default [INFO | ERROR] | WARN]
 
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
@@ -43,8 +43,9 @@ Craftie.CHAT = {
   SEND = {5, "|CFF89DE49SEND|r"},
   ACK  = {6, "|CFFD177F7ACK|r"},
   SAVE = {7, "|CFF66D1A2SAVE|r"},
-  CACHE= {8, "|CFF66D1A2CACHE|r"},
-  FUNC = {9, "|CFF385EC2FUNC|r"},
+  PARSE= {8, "|CFFC238B7PARSE|r"},
+  CACHE= {9, "|CFF66D1A2CACHE|r"},
+  FUNC = {10,"|CFF385EC2FUNC|r"},
 }
 
 Craftie.PlayerGUIDProf = {}
@@ -110,6 +111,7 @@ Craftie.Packet.Prefix = {
   Data = "!D", --data chunk
   Net  = "!N", --online
   Info = "!T", --tooltip announce
+  Order= "!O",
 }
 
 Craftie.Class = {
@@ -374,4 +376,13 @@ function Craftie:TextSpacing(text, spacing)
   tabs = text .. tabs
   space = string.gsub(tabs, " ", "", #text)
   return space
+end
+
+--designed for nested tables
+function Craftie:KeyCount(t)
+  local count = 0
+  for k, v in pairs(t) do
+    count = count + 1
+  end
+  return count
 end

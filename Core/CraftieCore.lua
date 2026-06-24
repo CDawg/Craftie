@@ -17,10 +17,14 @@ Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie:Notification(msg, type)
   local logstring= ""
-  local DEBUGLEVEL= type[1]
+  local DEBUGLEVEL= 1
   local MODECOLOR = type[2]
+
+  if (Craftie.DEBUGLEVEL > Craftie:KeyCount(Craftie.CHAT)) then
+    Craftie.DEBUGLEVEL = Craftie:KeyCount(Craftie.CHAT) --just set to max range
+  end
   if (Craftie.DEBUGLEVEL <= 0) then
-    Craftie.DEBUGLEVEL = 1 --prevent errors, but always show chat
+    Craftie.DEBUGLEVEL = 1 --prevent errors, but always show chat [info]
   end
   if (DEBUGLEVEL <= Craftie.DEBUGLEVEL) then
     if (MODECOLOR == Craftie.CHAT.INFO[2]) then --we dont need to view the type everytime
@@ -73,7 +77,7 @@ end
 
 function Craftie:CraftRequestFrame(crafter)
   Craftie.Frame.ItemRequestParent:Show()
-  print("CraftRequestFrame: " .. crafter)
+  --print("CraftRequestFrame: " .. crafter)
 end
 
 function Craftie:ClearSearchFocus(crafters)
@@ -517,6 +521,16 @@ function Craftie:ParsePacket(netpacket)
       end
     end
 
+    if (prefix == Craftie.Packet.Prefix.Order) then
+      --print(packet[3] .. " | " .. packet[4])
+      if ((packet[3] ~= nil) and (packet[4] ~= nil)) then
+        --Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[4], Craftie.CHAT.ACK)
+        print(packet[3])
+        print(packet[4])
+        print(packet[5])
+      end
+    end
+
   else
     Craftie:Notification("Malformed Packet [Version Mismatch]: " .. netpacket, Craftie.CHAT.ERROR)
   end
@@ -921,7 +935,7 @@ function Craftie:CrafterDataParse(profName, player)
     end
     if (indexer ~= "") then
       CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][profName:upper()][player] = indexer
-      Craftie:Notification("Craftie:CrafterDataParse() cache indexer string build", Craftie.CHAT.FUNC)
+      Craftie:Notification("Craftie:CrafterDataParse() cache indexer string built", Craftie.CHAT.FUNC)
     end
 
     Craftie:SetProfLevel(tonumber(profLevel))
@@ -932,7 +946,7 @@ function Craftie:CrafterDataParse(profName, player)
     if (profMastery == nil) then
       profMastery=0
     end
-    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. profMastery .. "," .. update, Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. profMastery .. "," .. update, Craftie.CHAT.PARSE)
   end
   return crafterProf
 end

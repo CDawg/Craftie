@@ -34,7 +34,7 @@ for k,v in pairs(CraftieNavTabs) do
   Craftie.TabBottom[k].Highlight:SetPoint("CENTER", 0, -2)
   Craftie.TabBottom[k].Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-Highlight")
   Craftie.TabBottom[k].Highlight:SetBlendMode("ADD")
-  Craftie.TabBottom[k].Highlight:SetAlpha(0.4)
+  Craftie.TabBottom[k].Highlight:SetAlpha(0.3)
 
   Craftie.TabBottom[k].Highlight:Hide()
 

@@ -52,8 +52,14 @@ Craftie.Frame.Item:SetScript("OnHyperlinkClick", function(self, link, text, butt
 end)
 Craftie.Frame.Item:Hide()
 
-local OrderTabs = {"Request", "Orders"}
-
+local OrderTabs = {
+  "Request",
+  "Orders [0]"
+}
+local OrderTooltip = {
+  "Request a player to craft this item for you",
+  "Queue from other players for you to craft an item"
+}
 Craftie.TabOrders={}
 local TabOffset = 265
 for k,v in pairs(OrderTabs) do
@@ -73,7 +79,7 @@ for k,v in pairs(OrderTabs) do
   Craftie.TabOrders[k].Highlight:SetPoint("CENTER", 0, -6)
   Craftie.TabOrders[k].Highlight:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Tab-Highlight")
   Craftie.TabOrders[k].Highlight:SetBlendMode("ADD")
-  Craftie.TabOrders[k].Highlight:SetAlpha(0.4)
+  Craftie.TabOrders[k].Highlight:SetAlpha(0.3)
   Craftie.TabOrders[k].Highlight:Hide()
   Craftie.TabOrders[k].Text = Craftie.TabOrders[k]:CreateFontString(nil, "ARTWORK")
   Craftie.TabOrders[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "OUTLINE")
@@ -86,9 +92,14 @@ for k,v in pairs(OrderTabs) do
   Craftie.TabOrders[k]:SetScript("OnEnter", function(self)
     Craftie.TabOrders[k].Highlight:Show()
     --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
+    CraftieTooltip:ClearLines()
+    CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+    CraftieTooltip:AddLine("|CFFDEDEDE" .. OrderTooltip[k])
+    CraftieTooltip:Show()
   end)
   Craftie.TabOrders[k]:SetScript("OnLeave", function(self)
     Craftie.TabOrders[k].Highlight:Hide()
+    CraftieTooltip:Hide()
     --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
 end
@@ -182,7 +193,7 @@ for i=1, Craftie.MAX_REAGENTS do
     if (Craftie.EnableScrollFrames) then
       local itemID = Craftie.Frame.Reagent.Data[i]:GetText()
       if (not Craftie:IsEmpty(itemID)) then
-        Craftie:SetItemTooltip(self, itemID, false, "ANCHOR_TOPLEFT")
+        Craftie:SetItemTooltip(self, itemID, false, "ANCHOR_CURSOR_RIGHT")
       end
     end
   end)
@@ -372,5 +383,5 @@ Craftie.Frame.ItemBackBot.Request:SetScript("OnClick", function(self)
   --print(Craftie.Selected_Name .. " | " .. Craftie.Frame.Item.Text:GetText())
   local name, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
   C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " to be crafted.", "WHISPER", nil, Craftie.Selected_Name)
-  --Craftie:SendPacket(Craftie.Packet.Prefix.Net, Craftie.Player.Name .. "," .. "1", "WHISPER", Craftie.Selected_Name)
+  Craftie:SendPacket(Craftie.Packet.Prefix.Order, Craftie.Player.Name .. "," .. link .. "," .. Craftie.Frame.ItemCountEditBox:GetNumber(), "WHISPER", Craftie.Selected_Name)
 end)
