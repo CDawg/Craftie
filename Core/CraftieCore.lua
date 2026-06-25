@@ -26,7 +26,7 @@ function Craftie:Notification(msg, type)
   if (Craftie.DEBUGLEVEL <= 0) then
     Craftie.DEBUGLEVEL = 1 --prevent errors, but always show chat [info]
   end
-  if (DEBUGLEVEL <= Craftie.DEBUGLEVEL) then
+  if (type[1] <= Craftie.DEBUGLEVEL) then
     if (MODECOLOR == Craftie.CHAT.INFO[2]) then --we dont need to view the type everytime
       print(Craftie._G.Title .. " " .. msg)
     else
@@ -660,7 +660,7 @@ function Craftie:ItemDetails(item)
         end)
       end
       if (inv_count >= inv_req) then
-        Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
+        --Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
         Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, .85, 1)
         Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, .6, 1)

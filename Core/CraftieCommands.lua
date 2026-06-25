@@ -68,8 +68,8 @@ function SlashCmdList.Craftie(cmd)
           Craftie.Notification("Max debug level = " .. count, Craftie.CHAT.INFO)
         else
           Craftie.DEBUGLEVEL = tonumber(args)
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"] = tonumber(args)
         end
-        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"] = tonumber(args)
       else
         Craftie:Notification("Debug Level must be an integer [1-".. count .."]", Craftie.CHAT.ERROR)
       end

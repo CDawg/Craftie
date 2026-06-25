@@ -328,6 +328,7 @@ Craftie.Frame.ItemBackBot.Request:SetSize(90, 24)
 Craftie.Frame.ItemBackBot.Request:SetPoint("TOPLEFT", 10, -50)
 Craftie.Frame.ItemBackBot.Request:SetText("Request")
 Craftie.Frame.ItemBackBot.Request:SetScript("OnClick", function(self)
+  --TODO TIMEOUT
   --print(Craftie.Selected_Name .. " | " .. Craftie.Frame.Item.Text:GetText())
   local name, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
   C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " to be crafted.", "WHISPER", nil, Craftie.Selected_Name)

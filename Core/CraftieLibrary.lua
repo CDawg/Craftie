@@ -33,7 +33,7 @@ Craftie = {
 }
 Craftie._L={}
 
-Craftie.DEBUGLEVEL = 10 --default [INFO | ERROR] | WARN]
+Craftie.DEBUGLEVEL = 3 --default [INFO | ERROR] | WARN]
 
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
