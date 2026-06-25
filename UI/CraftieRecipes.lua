@@ -200,7 +200,7 @@ Craftie.Frame.ScrollRecipesListRow={}
 Craftie.Frame.ScrollRecipesListBack={}
 Craftie.Frame.ScrollRecipesListName={}
 Craftie.Frame.ScrollRecipesListSelect={}
-Craftie.Frame.ScrollRecipesListHLink={}
+--Craftie.Frame.ScrollRecipesListHLink={}
 
 for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListRow[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListRow[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
@@ -209,8 +209,8 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListRow[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollRecipesListRow[i]:GetHeight()+16)
   Craftie.Frame.ScrollRecipesListRow[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollRecipesListRow[i]:SetBackdropBorderColor(1, 1, 1, 0)
-  Craftie.Frame.ScrollRecipesListRow[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollRecipesListRow[i]:SetBackdropColor(1, 1, 1, 0)
+  Craftie.Frame.ScrollRecipesListRow[i]:SetFrameLevel(Craftie.Framelevel.Background)
 
   Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
@@ -260,12 +260,14 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListName[i]:SetText("")
   Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 1, 0.8)
 
+  --[==[
   Craftie.Frame.ScrollRecipesListHLink[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollRecipesListHLink[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE")
   Craftie.Frame.ScrollRecipesListHLink[i]:SetPoint("TOPLEFT", 8, -5)
   Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
   Craftie.Frame.ScrollRecipesListHLink[i]:SetTextColor(0, 1, 1, 1)
   --Craftie.Frame.ScrollRecipesListHLink[i]:Hide()
+  ]==]--
 
   if (i % 2 == 0) then
     Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")

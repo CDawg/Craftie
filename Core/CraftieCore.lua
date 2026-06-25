@@ -248,7 +248,7 @@ function Craftie:UpdateCrafterList(search)
         table.insert(search_list, value)
       end
       table.sort(rem_list)
-      for _, value in ipairs(rem_list) do
+      for _, value in ipairs(rem_list) do --remaining
         table.insert(search_list, value)
       end
     else
@@ -1000,9 +1000,8 @@ function Craftie:OpenProfessionList(profArray, search, player)
         end
       end
     end
+    print("search_all_count " .. search_all_count)
   end
-
-  --print("search_all_count " .. search_all_count)
 
   local total_recipes = #profCache
   --local total_search = 0
@@ -1043,7 +1042,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
       Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
       --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
       Craftie.Frame.ScrollRecipesListName[i]:SetText("")
-      Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
+      --Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
       Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnClick", function()
         --do nothing
       end)
@@ -1062,7 +1061,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
   else
     for i=1, total_recipes do
       Craftie.Frame.ScrollRecipesListName[i]:SetText(profCache[i][2])
-      Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
+      --Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
       Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnClick", function()
         if (Craftie.EnableScrollFrames) then
           if (IsShiftKeyDown()) then
@@ -1107,17 +1106,25 @@ function Craftie:OpenProfessionList(profArray, search, player)
 end
 
 function Craftie:GetCraftOrders()
-  local order_count = 0
+  local order_index = 0
+  for i=1, Craftie.MAX_ORDERS do
+    Craftie.Frame.ScrollOrderListName[i]:SetText("")
+    Craftie.Frame.ScrollOrderListItem[i]:SetText("")
+    Craftie.Frame.ScrollOrderListCount[i]:SetText("")
+  end
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] ~= nil) then
     for name,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]) do
-      order_count = order_count +1
+      order_index = order_index +1
       local order = Craftie:Split(v, ",")
-      print("order_count " .. order_count)
+      --print("order_index " .. order_index)
       --print(name .. " | " .. order[1] .. " | " .. order[2])
+      Craftie.Frame.ScrollOrderListName[order_index]:SetText(name)
+      Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[1])
+      Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[2])
     end
   end
-  if (order_count >= 1) then
-    Craftie.TabOrders[2].Text:SetText("Orders |CFFFFDA45[" .. order_count .. "]")
+  if (order_index >= 1) then
+    Craftie.TabOrders[2].Text:SetText("Orders |CFFFFDA45[" .. order_index .. "]")
   end
 end
 

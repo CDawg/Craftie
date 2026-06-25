@@ -63,10 +63,10 @@ Craftie.Throttle.Prof = {
 
 Craftie.Framelevel = {
   Background= 0,
-  Foreground= 1,
-  Menu      = 2,
-  Buttons   = 3,
-  Cover     = 4,
+  Foreground= 10,
+  Menu      = 20,
+  Buttons   = 30,
+  Cover     = 40,
 }
 
 Craftie.Backdrop = {

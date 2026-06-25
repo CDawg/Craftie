@@ -337,7 +337,6 @@ end)
 --[==[
 CRAFT ORDERS
 ]==]--
-local MAX_ORDERS = 100
 local OrderTabs = {
   "Request",
   "Orders [0]"
@@ -433,8 +432,8 @@ Craftie.TabOrders[1].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Acti
 
 Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftOrder, "BackdropTemplate")
 Craftie.Frame.ScrollOrderList:SetWidth(Craftie.Frame.CraftOrder:GetWidth()-10)
-Craftie.Frame.ScrollOrderList:SetHeight(Craftie.Frame.CraftOrder:GetHeight()-4)
-Craftie.Frame.ScrollOrderList:SetPoint("TOPLEFT", 4, -8)
+Craftie.Frame.ScrollOrderList:SetHeight(Craftie.Frame.CraftOrder:GetHeight()-5)
+Craftie.Frame.ScrollOrderList:SetPoint("TOPLEFT", 4, -10)
 
 Craftie.Frame.ScrollOrderList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollOrderList.Child", Craftie.Frame.ScrollOrderList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollOrderList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList, "TOPLEFT",         -2,-20)
@@ -451,26 +450,71 @@ Craftie:ScrollBarFrame(Craftie.Frame.ScrollOrderList.Child)
 Craftie.Frame.ScrollOrderListRow={}
 Craftie.Frame.ScrollOrderListBack={}
 Craftie.Frame.ScrollOrderListName={}
-Craftie.Frame.ScrollOrderListCraft={}
+Craftie.Frame.ScrollOrderListItem={}
+Craftie.Frame.ScrollOrderListCount={}
 Craftie.Frame.ScrollOrderListSelect={}
 
-for i=1, MAX_ORDERS do
+dimensions.column = {
+  H = 24,
+}
+
+Craftie.Frame.ScrollOrderListColPlayer = CreateFrame("Button", nil, Craftie.Frame.ScrollOrderList.Child, "BackdropTemplate")
+Craftie.Frame.ScrollOrderListColPlayer:SetWidth(108)
+Craftie.Frame.ScrollOrderListColPlayer:SetHeight(dimensions.column.H)
+Craftie.Frame.ScrollOrderListColPlayer:SetPoint("TOPLEFT", 1, dimensions.column.H+1)
+Craftie.Frame.ScrollOrderListColPlayer:SetBackdrop(Craftie.Backdrop.Borderless)
+Craftie.Frame.ScrollOrderListColPlayer:SetBackdropColor(0.7, 0.6, 0.5, 0.5)
+Craftie.Frame.ScrollOrderListColPlayer.Text = Craftie.Frame.ScrollOrderListColPlayer:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollOrderListColPlayer.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.ScrollOrderListColPlayer.Text:SetPoint("TOPLEFT", 8, -6)
+Craftie.Frame.ScrollOrderListColPlayer.Text:SetText("Player")
+
+Craftie.Frame.ScrollOrderListColItem = CreateFrame("Button", nil, Craftie.Frame.ScrollOrderList.Child, "BackdropTemplate")
+Craftie.Frame.ScrollOrderListColItem:SetWidth(138)
+Craftie.Frame.ScrollOrderListColItem:SetHeight(dimensions.column.H)
+Craftie.Frame.ScrollOrderListColItem:SetPoint("TOPLEFT", 107, dimensions.column.H+1)
+Craftie.Frame.ScrollOrderListColItem:SetBackdrop(Craftie.Backdrop.Borderless)
+Craftie.Frame.ScrollOrderListColItem:SetBackdropColor(1, 0.9, 0.8, 0.4)
+Craftie.Frame.ScrollOrderListColItem.Text = Craftie.Frame.ScrollOrderListColItem:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollOrderListColItem.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.ScrollOrderListColItem.Text:SetPoint("TOPLEFT", 8, -6)
+Craftie.Frame.ScrollOrderListColItem.Text:SetText("Item")
+
+Craftie.Frame.ScrollOrderListColCount = CreateFrame("Button", nil, Craftie.Frame.ScrollOrderList.Child, "BackdropTemplate")
+Craftie.Frame.ScrollOrderListColCount:SetWidth(30)
+Craftie.Frame.ScrollOrderListColCount:SetHeight(dimensions.column.H)
+Craftie.Frame.ScrollOrderListColCount:SetPoint("TOPLEFT", 243, dimensions.column.H+1)
+Craftie.Frame.ScrollOrderListColCount:SetBackdrop(Craftie.Backdrop.Borderless)
+Craftie.Frame.ScrollOrderListColCount:SetBackdropColor(1, 0.9, 0.8, 0.4)
+Craftie.Frame.ScrollOrderListColCount.Text = Craftie.Frame.ScrollOrderListColCount:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.ScrollOrderListColCount.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.ScrollOrderListColCount.Text:SetPoint("TOPLEFT", 8, -6)
+Craftie.Frame.ScrollOrderListColCount.Text:SetText("#")
+
+Craftie.Frame.ScrollOrderListColAction = CreateFrame("Button", nil, Craftie.Frame.ScrollOrderList.Child, "BackdropTemplate")
+Craftie.Frame.ScrollOrderListColAction:SetWidth(48)
+Craftie.Frame.ScrollOrderListColAction:SetHeight(dimensions.column.H)
+Craftie.Frame.ScrollOrderListColAction:SetPoint("TOPLEFT", 271, dimensions.column.H+1)
+Craftie.Frame.ScrollOrderListColAction:SetBackdrop(Craftie.Backdrop.Borderless)
+Craftie.Frame.ScrollOrderListColAction:SetBackdropColor(1, 0.9, 0.8, 0.4)
+
+for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListRow[i] = CreateFrame("Frame", Craftie.Frame.ScrollOrderListRow[i], Craftie.Frame.ScrollOrderListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollOrderListRow[i]:SetWidth(Craftie.Frame.CraftOrder:GetWidth()-26) --scrollbar size
-  Craftie.Frame.ScrollOrderListRow[i]:SetHeight(20)
+  Craftie.Frame.ScrollOrderListRow[i]:SetHeight(30)
   Craftie.Frame.ScrollOrderListRow[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollOrderListRow[i]:GetHeight()+16)
+  Craftie.Frame.ScrollOrderListRow[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollOrderListRow[i]:SetBackdropBorderColor(1, 1, 1, 0)
-  Craftie.Frame.ScrollOrderListRow[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollOrderListRow[i]:SetBackdropColor(1, 1, 1, 0)
+  Craftie.Frame.ScrollOrderListRow[i]:SetFrameLevel(Craftie.Framelevel.Background)
   Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnEnter", function(self)
-    self:SetBackdropColor(1, 0.9, 0.8, 0.6)
+    self:SetBackdropColor(1, 0.9, 0.8, 0.2)
     Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 0.8, 1)
   end)
   Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnLeave", function(self)
     self:SetBackdropColor(1, 1, 1, 0)
     Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
   end)
-
   Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())
   Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
@@ -479,16 +523,28 @@ for i=1, MAX_ORDERS do
   Craftie.Frame.ScrollOrderListBack[i]:SetAlpha(0.5)
 
   Craftie.Frame.ScrollOrderListName[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 12, -5)
-  Craftie.Frame.ScrollOrderListName[i]:SetText("Player " .. i)
+  Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
+  Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 8, -8)
+  Craftie.Frame.ScrollOrderListName[i]:SetText("Player" .. i)
   Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
 
-  Craftie.Frame.ScrollOrderListCraft[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollOrderListCraft[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Frame.ScrollOrderListCraft[i]:SetPoint("TOPLEFT", 120, -5)
-  Craftie.Frame.ScrollOrderListCraft[i]:SetText("Item " .. i)
-  Craftie.Frame.ScrollOrderListCraft[i]:SetTextColor(1, 1, 1, 0.8)
+  --Craftie.Frame.ScrollOrderListItem[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListItem[i] = CreateFrame("Frame", nil, Craftie.Frame.ScrollOrderListRow[i], "BackdropTemplate")
+  Craftie.Frame.ScrollOrderListItem[i]:SetWidth(130)
+  Craftie.Frame.ScrollOrderListItem[i]:SetHeight(26)
+  --Craftie.Frame.ScrollOrderListItem[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
+  Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", 110, -5)
+  Craftie.Frame.ScrollOrderListItem[i]:SetText("This is a very long item name here" .. i)
+  --Craftie.Frame.ScrollOrderListItem[i]:SetJustifyV("TOP")
+  --Craftie.Frame.ScrollOrderListItem[i]:SetJustifyH("LEFT")
+  Craftie.Frame.ScrollOrderListItem[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollOrderListItem[i]:SetHyperlinksEnabled(true)
+
+  Craftie.Frame.ScrollOrderListCount[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListCount[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
+  Craftie.Frame.ScrollOrderListCount[i]:SetPoint("TOPLEFT", 250, -8)
+  Craftie.Frame.ScrollOrderListCount[i]:SetText(i)
+  Craftie.Frame.ScrollOrderListCount[i]:SetTextColor(1, 1, 1, 0.8)
 
   Craftie.Frame.ScrollOrderListSelect[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollOrderListSelect[i]:SetSize(dimensions.parent.W - 30, dimensions.parent.H - 70)
