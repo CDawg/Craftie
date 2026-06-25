@@ -206,7 +206,7 @@ function Craftie:UpdateCrafterList(search)
   end
 
   --for i=1, Craftie.MAX_RECIPES do
-    --Craftie.Frame.ScrollRecipesListItem[i]:Hide()
+    --Craftie.Frame.ScrollRecipesListRow[i]:Hide()
   --end
 
   C_Timer.After(0.1, function()
@@ -751,7 +751,7 @@ function Craftie:SelectScrollItem(scrollFrame)
     end
     if (scrollFrame == "Recipes") then
       for i=1, Craftie.MAX_RECIPES do
-        Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
+        Craftie.Frame.ScrollRecipesListRow[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
         --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
         Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 1, 0.8)
@@ -968,7 +968,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     for i=1, Craftie.MAX_CRAFTERS do
       if (i > 1) then
         Craftie.Frame.ScrollPlayersListCont[i]:Show()
-        Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollPlayersListItem[i]:GetHeight()+16)
+        Craftie.Frame.ScrollPlayersListRow[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollPlayersListRow[i]:GetHeight()+16)
       end
     end
   end
@@ -993,7 +993,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
               if (k == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
                 index = index +1
                 Craftie.Frame.ScrollPlayersListCont[i]:Show() --show only containers
-                Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -index*Craftie.Frame.ScrollPlayersListItem[i]:GetHeight()+16)
+                Craftie.Frame.ScrollPlayersListRow[i]:SetPoint("TOPLEFT", 2, -index*Craftie.Frame.ScrollPlayersListRow[i]:GetHeight()+16)
               end
             end
           end
@@ -1044,26 +1044,26 @@ function Craftie:OpenProfessionList(profArray, search, player)
       --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
       Craftie.Frame.ScrollRecipesListName[i]:SetText("")
       Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
-      Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
+      Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnClick", function()
         --do nothing
       end)
     end
   else
     --hide the remainder for high level crafters
     for i=1, Craftie.MAX_RECIPES do
-      Craftie.Frame.ScrollRecipesListItem[i]:Hide()
+      Craftie.Frame.ScrollRecipesListRow[i]:Hide()
     end
   end
 
   if (total_recipes == 0) then
     for i=1, Craftie.MAX_RECIPES do
-      Craftie.Frame.ScrollRecipesListItem[i]:Hide() --nothing to show, just clear the board
+      Craftie.Frame.ScrollRecipesListRow[i]:Hide() --nothing to show, just clear the board
     end
   else
     for i=1, total_recipes do
       Craftie.Frame.ScrollRecipesListName[i]:SetText(profCache[i][2])
       Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
-      Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
+      Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnClick", function()
         if (Craftie.EnableScrollFrames) then
           if (IsShiftKeyDown()) then
             local name, link = C_Item.GetItemInfo(profCache[i][4])
@@ -1080,7 +1080,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
           Craftie:SelectScrollItem("Recipes")
         end
       end)
-      Craftie.Frame.ScrollRecipesListItem[i]:Show()
+      Craftie.Frame.ScrollRecipesListRow[i]:Show()
     end
   end
 
