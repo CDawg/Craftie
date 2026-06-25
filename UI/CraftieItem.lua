@@ -13,21 +13,31 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-local dimensions = {
-  W = 324,
-  H = 372,
+
+local dimensions={
+  parent = {
+    W = 324,
+    H = 372,
+  },
+  reagent = {
+    X = 50,
+    Y = 130,
+    W = 146,
+    H = 38,
+    D = 20 --distance
+  }
 }
 
-Craftie.Frame.CraftParent={}
+Craftie.Frame.CraftParent={} --parent used for navigation
 Craftie.Frame.CraftParent= CreateFrame("Frame", "Craftie.Frame.CraftParent", Craftie.Frame, "BackdropTemplate")
-Craftie.Frame.CraftParent:SetWidth(dimensions.W)
-Craftie.Frame.CraftParent:SetHeight(dimensions.H)
+Craftie.Frame.CraftParent:SetWidth(dimensions.parent.W)
+Craftie.Frame.CraftParent:SetHeight(dimensions.parent.H)
 Craftie.Frame.CraftParent:SetPoint("TOPRIGHT", -14, -100)
 
 Craftie.Frame.CraftRequest={}
 Craftie.Frame.CraftRequest= CreateFrame("Frame", "Craftie.Frame.CraftRequest", Craftie.Frame.CraftParent, "BackdropTemplate")
-Craftie.Frame.CraftRequest:SetWidth(dimensions.W)
-Craftie.Frame.CraftRequest:SetHeight(dimensions.H)
+Craftie.Frame.CraftRequest:SetWidth(Craftie.Frame.CraftParent:GetWidth())
+Craftie.Frame.CraftRequest:SetHeight(Craftie.Frame.CraftParent:GetHeight())
 Craftie.Frame.CraftRequest:SetPoint("TOPLEFT", 0, 0)
 --Craftie.Frame.CraftRequest:SetFrameStrata("MEDIUM")
 
@@ -125,26 +135,18 @@ Craftie.Frame.Reagent.Text = {}
 Craftie.Frame.Reagent.Quan = {}
 Craftie.Frame.Reagent.Data = {} --ID
 
-local reagent_dimensions = {
-  X = 50,
-  Y = 130,
-  W = 146,
-  H = 38,
-  D = 20
-}
-
 for i=1, Craftie.MAX_REAGENTS do
   --Craftie.Frame.Reagent.Main[i] = CreateFrame("Frame", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftRequest, "BackdropTemplate", 5)
   Craftie.Frame.Reagent.Main[i] = CreateFrame("Button", Craftie.Frame.Reagent.Main[i], Craftie.Frame.CraftRequest)
   local currentLevel = Craftie.Frame.Reagent.Main[i]:GetFrameLevel()
   Craftie.Frame.Reagent.Main[i]:SetFrameStrata("MEDIUM")
-  Craftie.Frame.Reagent.Main[i]:SetWidth(reagent_dimensions.W)
-  Craftie.Frame.Reagent.Main[i]:SetHeight(reagent_dimensions.H)
+  Craftie.Frame.Reagent.Main[i]:SetWidth(dimensions.reagent.W)
+  Craftie.Frame.Reagent.Main[i]:SetHeight(dimensions.reagent.H)
   if (i % 2 == 0) then --right col
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", reagent_dimensions.W-64, (-i*reagent_dimensions.D)+reagent_dimensions.Y)
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", dimensions.reagent.W-64, (-i*dimensions.reagent.D)+dimensions.reagent.Y)
   else
     local p = i+1 --left col
-    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -74, (-p*reagent_dimensions.D)+reagent_dimensions.Y)
+    Craftie.Frame.Reagent.Main[i]:SetPoint("CENTER", -74, (-p*dimensions.reagent.D)+dimensions.reagent.Y)
   end
   --Craftie.Frame.Reagent.Main[i]:EnableMouse(true)
   Craftie.Frame.Reagent.Main[i]:SetScript("OnEnter", function(self)
@@ -170,8 +172,8 @@ for i=1, Craftie.MAX_REAGENTS do
   --Craftie.Frame.Reagent.Main[i]:SetFrameStrata("HIGH")
 
   Craftie.Frame.Reagent.Border[i] = CreateFrame("Frame", nil, Craftie.Frame.Reagent.Main[i], "InsetFrameTemplate3", -5)
-  Craftie.Frame.Reagent.Border[i]:SetWidth(reagent_dimensions.W-28)
-  Craftie.Frame.Reagent.Border[i]:SetHeight(reagent_dimensions.H)
+  Craftie.Frame.Reagent.Border[i]:SetWidth(dimensions.reagent.W-28)
+  Craftie.Frame.Reagent.Border[i]:SetHeight(dimensions.reagent.H)
   --Craftie.Frame.Reagent.Border[i]:SetPoint(Craftie.Frame.Reagent.Main[i]:GetPoint())
   Craftie.Frame.Reagent.Border[i]:SetPoint("TOPLEFT", 28, 0)
   Craftie.Frame.Reagent.Border[i]:SetFrameStrata("LOW")
@@ -189,8 +191,8 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.Text[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.Reagent.Text[i]:SetPoint("CENTER", 8, 0)
   Craftie.Frame.Reagent.Text[i]:SetText(i)
-  Craftie.Frame.Reagent.Text[i]:SetWidth(reagent_dimensions.W-50)
-  Craftie.Frame.Reagent.Text[i]:SetHeight(reagent_dimensions.H-10)
+  Craftie.Frame.Reagent.Text[i]:SetWidth(dimensions.reagent.W-50)
+  Craftie.Frame.Reagent.Text[i]:SetHeight(dimensions.reagent.H-10)
   Craftie.Frame.Reagent.Text[i]:SetWordWrap(true)
   Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
 
@@ -355,8 +357,8 @@ end
 
 Craftie.Frame.CraftOrder={}
 Craftie.Frame.CraftOrder= CreateFrame("Frame", "Craftie.Frame.CraftOrder", Craftie.Frame.CraftParent, "BackdropTemplate")
-Craftie.Frame.CraftOrder:SetWidth(324)
-Craftie.Frame.CraftOrder:SetHeight(372)
+Craftie.Frame.CraftOrder:SetWidth(dimensions.parent.W)
+Craftie.Frame.CraftOrder:SetHeight(dimensions.parent.H)
 Craftie.Frame.CraftOrder:SetPoint("TOPLEFT", 0, 0)
 --Craftie.Frame.CraftOrder:SetFrameStrata("MEDIUM")
 Craftie.Frame.CraftOrder:Hide()
@@ -489,7 +491,7 @@ for i=1, MAX_ORDERS do
   Craftie.Frame.ScrollOrderListCraft[i]:SetTextColor(1, 1, 1, 0.8)
 
   Craftie.Frame.ScrollOrderListSelect[i] = Craftie.Frame.ScrollOrderListItem[i]:CreateTexture(nil, "OVERLAY")
-  Craftie.Frame.ScrollOrderListSelect[i]:SetSize(dimensions.W - 30, dimensions.H - 70)
+  Craftie.Frame.ScrollOrderListSelect[i]:SetSize(dimensions.parent.W - 30, dimensions.parent.H - 70)
   Craftie.Frame.ScrollOrderListSelect[i]:SetPoint("CENTER", 0, 0)
   Craftie.Frame.ScrollOrderListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select.png")
   Craftie.Frame.ScrollOrderListSelect[i]:SetBlendMode("ADD")
