@@ -1117,7 +1117,7 @@ function Craftie:GetCraftOrders()
       order_index = order_index +1
       local order = Craftie:Split(v, ",")
       --print("order_index " .. order_index)
-      print(name .. " | " .. order[1] .. " | " .. order[2])
+      --print(name .. " | " .. order[1] .. " | " .. order[2])
       Craftie.Frame.ScrollOrderListName[order_index]:SetText(name)
       Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[1])
       Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[2])
@@ -1126,6 +1126,7 @@ function Craftie:GetCraftOrders()
   if (order_index >= 1) then
     Craftie.TabOrders[2].Text:SetText("Orders |CFFFFDA45[" .. order_index .. "]")
   end
+  Craftie:Notification("Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)
 end
 
 --add a timer for parsed data
