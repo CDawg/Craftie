@@ -16,11 +16,9 @@ the copyright holders.
 Craftie.Frame:SetWidth(Craftie._G.Width)
 Craftie.Frame:SetHeight(Craftie._G.Height)
 Craftie.Frame:SetPoint("CENTER", 0, 0)
---Craftie.Frame:SetFrameStrata("MEDIUM")
-Craftie.Frame:SetFrameStrata("LOW")
 
---Craftie.Frame.TopLeftCorner:Hide()
---Craftie.Frame.TopRightCorner:Hide()
+--TODO settings 
+Craftie.Frame:SetFrameStrata("LOW")
 
 Craftie.Frame:SetMovable(true)
 Craftie.Frame:EnableMouse(true)

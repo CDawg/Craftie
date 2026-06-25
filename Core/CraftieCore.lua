@@ -754,11 +754,11 @@ function Craftie:SelectScrollItem(scrollFrame)
         Craftie.Frame.ScrollRecipesListItem[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
         --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
-        Craftie.Frame.ScrollRecipesListText[i]:SetTextColor(1, 1, 1, 0.8)
+        Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 1, 0.8)
       end
       Craftie.Frame.ScrollRecipesListSelect[Craftie.Selected_Recipe_Index]:Show()
       --Craftie.Frame.ScrollRecipesListSelectSpark[Craftie.Selected_Recipe_Index]:Show()
-      Craftie.Frame.ScrollRecipesListText[Craftie.Selected_Recipe_Index]:SetTextColor(1, 1, 0.8, 1)
+      Craftie.Frame.ScrollRecipesListName[Craftie.Selected_Recipe_Index]:SetTextColor(1, 1, 0.8, 1)
     end
   end
   --Craftie:Notification("Craftie:SelectScrollItem(" .. scrollFrame .. ")", Craftie.CHAT.FUNC)
@@ -1042,7 +1042,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
       --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
-      Craftie.Frame.ScrollRecipesListText[i]:SetText("")
+      Craftie.Frame.ScrollRecipesListName[i]:SetText("")
       Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
       Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
         --do nothing
@@ -1061,7 +1061,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     end
   else
     for i=1, total_recipes do
-      Craftie.Frame.ScrollRecipesListText[i]:SetText(profCache[i][2])
+      Craftie.Frame.ScrollRecipesListName[i]:SetText(profCache[i][2])
       Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
       Craftie.Frame.ScrollRecipesListItem[i]:SetScript("OnClick", function()
         if (Craftie.EnableScrollFrames) then

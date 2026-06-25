@@ -20,12 +20,19 @@ And a few nameless heroes on Dreamscythe
 Written by |cff006aa6Porthias|r (a.k.a. Port)
 ]==]
 
-Craftie.Updates_w = Craftie.Frame:GetWidth()/2+20
-Craftie.Updates_h = Craftie.Frame:GetHeight()-88
+local dimensions={}
+dimensions.updates = {
+  W = Craftie.Frame:GetWidth()/2+20,
+  H = Craftie.Frame:GetHeight()-88,
+}
+dimensions.credit = {
+  W = Craftie.Frame:GetWidth()/2-35,
+  H = Craftie.Frame:GetHeight()-88,
+}
 
 Craftie.Updates = CreateFrame("Frame", "Craftie.Updates", Craftie.Frame)
-Craftie.Updates:SetWidth(Craftie.Updates_w)
-Craftie.Updates:SetHeight(Craftie.Updates_h)
+Craftie.Updates:SetWidth(dimensions.updates.W)
+Craftie.Updates:SetHeight(dimensions.updates.H)
 Craftie.Updates:SetPoint("TOPLEFT", 4, -62)
 Craftie.Updates:SetFrameStrata("MEDIUM")
 
@@ -60,12 +67,9 @@ Craftie.Updates:Hide()
 local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", "|cfffab734 >|r") .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
-Craftie.Credit_w = Craftie.Frame:GetWidth()/2-35
-Craftie.Credit_h = Craftie.Frame:GetHeight()-88
-
 Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame)
-Craftie.Credit:SetWidth(Craftie.Credit_w)
-Craftie.Credit:SetHeight(Craftie.Credit_h)
+Craftie.Credit:SetWidth(dimensions.credit.W)
+Craftie.Credit:SetHeight(dimensions.credit.H)
 Craftie.Credit:SetPoint("TOPLEFT", 437, -62)
 Craftie.Credit:SetFrameStrata("MEDIUM")
 

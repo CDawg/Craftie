@@ -19,12 +19,14 @@ Craftie.Contact = {
   "|n|cffffdf96Discord (.porthios)|r|nhttps://discordapp.com/users/238146303324979200",
 }
 
-Craftie.Help_w = Craftie.Frame:GetWidth()-30
-Craftie.Help_h = Craftie.Frame:GetHeight()-100
+local dimensions = {
+  W = Craftie.Frame:GetWidth()-30,
+  H = Craftie.Frame:GetHeight()-100,
+}
 
 Craftie.Help = CreateFrame("Frame", "Craftie.Help", Craftie.Frame)
-Craftie.Help:SetWidth(Craftie.Help_w)
-Craftie.Help:SetHeight(Craftie.Help_h)
+Craftie.Help:SetWidth(dimensions.W)
+Craftie.Help:SetHeight(dimensions.H)
 Craftie.Help:SetPoint("TOPLEFT", 12, -62)
 --Craftie.Help:SetFrameStrata("MEDIUM")
 

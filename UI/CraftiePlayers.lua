@@ -13,12 +13,14 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Frame.ScrollPlayers_Width = 208
-Craftie.Frame.ScrollPlayers_Height= 302
+local dimensions = {
+  W = 208,
+  H = 302,
+}
 
 Craftie.Frame.ScrollPlayersParent = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersParent", Craftie.Frame, "InsetFrameTemplate")
-Craftie.Frame.ScrollPlayersParent:SetWidth(Craftie.Frame.ScrollPlayers_Width)
-Craftie.Frame.ScrollPlayersParent:SetHeight(Craftie.Frame.ScrollPlayers_Height+70)
+Craftie.Frame.ScrollPlayersParent:SetWidth(dimensions.W)
+Craftie.Frame.ScrollPlayersParent:SetHeight(dimensions.H+70)
 Craftie.Frame.ScrollPlayersParent:SetPoint("TOPLEFT", 12, -100)
 Craftie.Frame.ScrollPlayersParent:SetFrameStrata("MEDIUM")
 
@@ -28,15 +30,15 @@ Craftie.Frame.ScrollPlayersParent:SetFrameStrata("MEDIUM")
 --Craftie.Frame.ScrollPlayersParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Players.png")
 
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersList", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate")
-Craftie.Frame.ScrollPlayersList:SetWidth(Craftie.Frame.ScrollPlayers_Width-10)
-Craftie.Frame.ScrollPlayersList:SetHeight(Craftie.Frame.ScrollPlayers_Height+20)
+Craftie.Frame.ScrollPlayersList:SetWidth(dimensions.W-10)
+Craftie.Frame.ScrollPlayersList:SetHeight(dimensions.H+20)
 Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 2, -6)
 
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollPlayersList.Child, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT",         -2,-20)
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList, "BOTTOMRIGHT", 14, 10)
 Craftie.Frame.ScrollPlayersListChildFrame = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersListChildFrame", Craftie.Frame.ScrollPlayersList.Child)
-Craftie.Frame.ScrollPlayersListChildFrame:SetSize(Craftie.Frame.ScrollPlayers_Width, Craftie.Frame.ScrollPlayers_Height)
+Craftie.Frame.ScrollPlayersListChildFrame:SetSize(dimensions.W, dimensions.H)
 Craftie.Frame.ScrollPlayersList.Child:SetScrollChild(Craftie.Frame.ScrollPlayersListChildFrame)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT",          0,-10)
@@ -45,7 +47,7 @@ Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.
 Craftie:ScrollBarFrame(Craftie.Frame.ScrollPlayersList.Child)
 
 Craftie.Frame.ScrollPlayersResultsFrame = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersResultsFrame", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate", 25)
-Craftie.Frame.ScrollPlayersResultsFrame:SetWidth(Craftie.Frame.ScrollPlayers_Width-6)
+Craftie.Frame.ScrollPlayersResultsFrame:SetWidth(dimensions.W-6)
 Craftie.Frame.ScrollPlayersResultsFrame:SetHeight(25)
 Craftie.Frame.ScrollPlayersResultsFrame:SetPoint("BOTTOMLEFT", 3, 0)
 Craftie.Frame.ScrollPlayersResultsFrame:SetFrameLevel(50)
@@ -90,7 +92,7 @@ Craftie.Frame.DropdownPlayers.OnClick = function(self, checked)
   Craftie.Frame.DropdownPlayers.text:SetText(Craftie.MenuSelPlayers[self.value])
   print(self.value)
 end
-UIDropDownMenu_SetWidth(Craftie.Frame.DropdownPlayers, Craftie.Frame.ScrollPlayers_Width-22)
+UIDropDownMenu_SetWidth(Craftie.Frame.DropdownPlayers, dimensions.W-22)
 UIDropDownMenu_Initialize(Craftie.Frame.DropdownPlayers, function(self, level)
   local info = UIDropDownMenu_CreateInfo()
   for k,v in pairs(Craftie.MenuSelPlayers) do
@@ -109,7 +111,7 @@ _G[Craftie.Frame.DropdownPlayers:GetName() .. "Middle"]:Hide()
 _G[Craftie.Frame.DropdownPlayers:GetName() .. "Right"]:Hide()
 
 Craftie.Frame.DropdownPlayers.Back = Craftie.Frame.DropdownPlayers:CreateTexture(nil, "BORDER")
-Craftie.Frame.DropdownPlayers.Back:SetSize(Craftie.Frame.ScrollPlayers_Width-5, 28)
+Craftie.Frame.DropdownPlayers.Back:SetSize(dimensions.W-5, 28)
 Craftie.Frame.DropdownPlayers.Back:SetPoint("TOPLEFT", 16, -4)
 Craftie.Frame.DropdownPlayers.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dropdown-32.png")
 --Craftie.Frame.DropdownPlayers.Back:SetRotation(-math.pi)
@@ -119,7 +121,7 @@ SEARCH PLAYERS
 ]==]--
 Craftie.Frame.Search.Players={}
 Craftie.Frame.Search.Players = CreateFrame("Frame", "Craftie.Frame.Search.Players", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate", 2)
-Craftie.Frame.Search.Players:SetWidth(Craftie.Frame.ScrollPlayers_Width-5)
+Craftie.Frame.Search.Players:SetWidth(dimensions.W -5)
 Craftie.Frame.Search.Players:SetHeight(24)
 Craftie.Frame.Search.Players:SetPoint("TOPLEFT", 2, -25)
 Craftie.Frame.ScrollPlayersResultsFrame:SetFrameLevel(50)
@@ -213,14 +215,14 @@ Craftie.Frame.ScrollPlayersListSubMenu={}
 
 for i=1, Craftie.MAX_CRAFTERS do
   Craftie.Frame.ScrollPlayersListItem[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListItem[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
-  Craftie.Frame.ScrollPlayersListItem[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
+  Craftie.Frame.ScrollPlayersListItem[i]:SetWidth(dimensions.W-26) --scrollbar size
   Craftie.Frame.ScrollPlayersListItem[i]:SetHeight(20)
   Craftie.Frame.ScrollPlayersListItem[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollPlayersListItem[i]:GetHeight()+16)
   Craftie.Frame.ScrollPlayersListItem[i]:SetFrameLevel(Craftie.Framelevel.Background)
   --Craftie.Frame.ScrollPlayersListItem[i]:RegisterForClicks("AnyUp")
 
   Craftie.Frame.ScrollPlayersListCont[i] = CreateFrame("Button", Craftie.Frame.ScrollPlayersListCont[i], Craftie.Frame.ScrollPlayersListItem[i], "BackdropTemplate", -1)
-  Craftie.Frame.ScrollPlayersListCont[i]:SetWidth(Craftie.Frame.ScrollPlayers_Width-26) --scrollbar size
+  Craftie.Frame.ScrollPlayersListCont[i]:SetWidth(dimensions.W-26) --scrollbar size
   Craftie.Frame.ScrollPlayersListCont[i]:SetHeight(Craftie.Frame.ScrollPlayersListItem[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListCont[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollPlayersListCont[i]:SetBackdrop(Craftie.Backdrop.Borderless)
@@ -300,6 +302,7 @@ for i=1, Craftie.MAX_CRAFTERS do
   end
   Craftie.Frame.ScrollPlayersListCont[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
+      Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 0.8, 1)
       self:SetBackdropColor(0.8, 0.85, 1, 0.2)
     end
 
