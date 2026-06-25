@@ -526,11 +526,16 @@ function Craftie:ParsePacket(netpacket)
     if (prefix == Craftie.Packet.Prefix.Order) then
       --print(packet[3] .. " | " .. packet[4])
       if ((packet[3] ~= nil) and (packet[4] ~= nil)) then
-        --Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[4], Craftie.CHAT.ACK)
         if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] == nil) then
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
         end
-        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"][packet[3]] = packet[4] .. "," .. packet[5]
+        C_Timer.After(0.1, function()
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"][packet[3]] = packet[4] .. "," .. packet[5]
+        end)
+        C_Timer.After(0.2, function()
+          Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[4], Craftie.CHAT.FUNC)
+          Craftie:GetCraftOrders()
+        end)
       end
     end
 
