@@ -451,6 +451,7 @@ Craftie.Frame.ScrollOrderListRow={}
 Craftie.Frame.ScrollOrderListBack={}
 Craftie.Frame.ScrollOrderListName={}
 Craftie.Frame.ScrollOrderListItem={}
+Craftie.Frame.ScrollOrderListItem={}
 Craftie.Frame.ScrollOrderListCount={}
 Craftie.Frame.ScrollOrderListSelect={}
 
@@ -525,25 +526,33 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListName[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
   Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 8, -8)
-  Craftie.Frame.ScrollOrderListName[i]:SetText("Player" .. i)
+  Craftie.Frame.ScrollOrderListName[i]:SetText("")
   Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
 
-  --Craftie.Frame.ScrollOrderListItem[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollOrderListItem[i] = CreateFrame("Frame", nil, Craftie.Frame.ScrollOrderListRow[i], "BackdropTemplate")
+  Craftie.Frame.ScrollOrderListItem[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListItem[i]:SetWidth(130)
-  Craftie.Frame.ScrollOrderListItem[i]:SetHeight(26)
-  --Craftie.Frame.ScrollOrderListItem[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
-  Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", 110, -5)
-  Craftie.Frame.ScrollOrderListItem[i]:SetText("This is a very long item name here" .. i)
+  Craftie.Frame.ScrollOrderListItem[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
+  Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", 110, -7)
+  Craftie.Frame.ScrollOrderListItem[i]:SetText("")
   --Craftie.Frame.ScrollOrderListItem[i]:SetJustifyV("TOP")
-  --Craftie.Frame.ScrollOrderListItem[i]:SetJustifyH("LEFT")
-  Craftie.Frame.ScrollOrderListItem[i]:SetTextColor(1, 1, 1, 0.8)
-  Craftie.Frame.ScrollOrderListItem[i]:SetHyperlinksEnabled(true)
+  Craftie.Frame.ScrollOrderListItem[i]:SetJustifyH("LEFT")
+  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnEnter", function(self)
+    if ((Craftie.Frame.ScrollOrderListItem[i]:GetText() ~= "") and (Craftie.Frame.ScrollOrderListItem[i]:GetText() ~= nil)) then
+      GameTooltip:SetOwner(Craftie.Frame.ScrollOrderListItem[i], "ANCHOR_CURSOR_RIGHT")
+      GameTooltip:SetHyperlink(Craftie.Frame.ScrollOrderListItem[i]:GetText())
+    end
+  end)
+  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnLeave", function(self)
+    GameTooltip:Hide()
+  end)
+  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnClick", function(self)
+    GameTooltip:Hide()
+  end)
 
   Craftie.Frame.ScrollOrderListCount[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListCount[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
   Craftie.Frame.ScrollOrderListCount[i]:SetPoint("TOPLEFT", 250, -8)
-  Craftie.Frame.ScrollOrderListCount[i]:SetText(i)
+  Craftie.Frame.ScrollOrderListCount[i]:SetText("")
   Craftie.Frame.ScrollOrderListCount[i]:SetTextColor(1, 1, 1, 0.8)
 
   Craftie.Frame.ScrollOrderListSelect[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "OVERLAY")
