@@ -327,10 +327,12 @@ function Craftie:TabSelectSide(tab, sound)
     end
     Craftie.Frame.TabSide[tab].Glow:Show()
     Craftie.Frame.TabSide[tab].Shadow:Hide()
+
     if (sound) then
       PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
       --PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2) --request to craft?
     end
+
     Craftie.Tab = tab
     Craftie.Selected_Name = ""
     Craftie.Page = prof_name
@@ -338,12 +340,6 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
     C_Timer.After(0.1, function() --give it time to register
-      --local search_index = Craftie.Frame.Search.Recipes.Text:GetText()
-      --if (search_index == Craftie.Placeholder_Recipes) then
-        --search_index = ""
-      --end
-      --Craftie:OpenProfessionList(Craftie.ProfessionDefault, search_index, "")
-
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
       Craftie:UpdateCrafterList()
       Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
@@ -1150,6 +1146,7 @@ function Craftie:Open(player, profession)
     --Craftie:Notification("Craftie:Open player: " .. player, Craftie.CHAT.FUNC)
     --Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.CHAT.FUNC)
     --local prof = profession
+    Craftie:TabSelectBottom(1, true)
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 1)
       Craftie:Notification("Craftie:Open: Go to " .. profession .. " => " .. player, Craftie.CHAT.FUNC)

@@ -119,7 +119,6 @@ for i=1, Craftie.MAX_ORDERS do
 
     local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
     if ((requester ~= "") and (requester ~= nil)) then
-      Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 0.8, 1)
       CraftieTooltip:ClearLines()
       CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
       CraftieTooltip:AddLine("|CFFFFFFFF" .. requester .. " is requesting ")
@@ -132,7 +131,6 @@ for i=1, Craftie.MAX_ORDERS do
   end)
   Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnLeave", function(self)
     self:SetBackdropColor(1, 1, 1, 0)
-    Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
     CraftieTooltip:Hide()
   end)
   Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnClick", function(self)
