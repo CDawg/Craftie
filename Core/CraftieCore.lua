@@ -526,15 +526,15 @@ function Craftie:ParsePacket(netpacket)
 
     if (prefix == Craftie.Packet.Prefix.Order) then
       --print(packet[3] .. " | " .. packet[4])
-      if ((packet[3] ~= nil) and (packet[4] ~= nil)) then
+      if ((packet[3] ~= nil) and (packet[5] ~= nil)) then
         if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] == nil) then
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
         end
         C_Timer.After(0.1, function()
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"][packet[3]] = packet[4] .. "," .. packet[5]
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"][packet[3]] = packet[4] .. "," .. packet[5] .. "," .. packet[6] .. "," .. Craftie.Date
         end)
         C_Timer.After(0.2, function()
-          Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[4], Craftie.CHAT.FUNC)
+          Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[5], Craftie.CHAT.FUNC)
           Craftie:GetCraftOrders()
         end)
       end
@@ -1122,11 +1122,19 @@ function Craftie:GetCraftOrders()
     for name,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]) do
       order_index = order_index +1
       local order = Craftie:Split(v, ",")
+      --local class = order[1]
       --print("order_index " .. order_index)
       --print(name .. " | " .. order[1] .. " | " .. order[2])
       Craftie.Frame.ScrollOrderListName[order_index]:SetText(name)
-      Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[1])
-      Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[2])
+      Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[2])
+      Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[3])
+      Craftie.Frame.ScrollOrderListDate[order_index]:SetText(order[4])
+
+      local class = tonumber(order[1])
+      local r = Craftie.Class[class][3][1]
+      local g = Craftie.Class[class][3][2]
+      local b = Craftie.Class[class][3][3]
+      Craftie.Frame.ScrollOrderListName[order_index]:SetTextColor(r, g, b, 1)
     end
   end
   if (order_index >= 1) then

@@ -77,21 +77,21 @@ Craftie.Frame.ScrollOrderListRow={}
 Craftie.Frame.ScrollOrderListBack={}
 Craftie.Frame.ScrollOrderListName={}
 Craftie.Frame.ScrollOrderListItem={}
-Craftie.Frame.ScrollOrderListItem={}
 Craftie.Frame.ScrollOrderListCount={}
+Craftie.Frame.ScrollOrderListDate={}
 Craftie.Frame.ScrollOrderListSelect={}
 
 local columns = {
-  {"Player", 150, 1},
-  {"Item",   250, 150},
-  {"#",      50,  398},
-  {"",       360, 446}
+  {"Player",150, 4},
+  {"Item",  300, 156},
+  {"#",     50,  458},
+  {"Date",  120, 510},
+  {"",      174, 632}
 }
 local column_color = {0.7, 0.6, 0.5, 0.5}
 
 Craftie.Frame.ScrollOrderListCol={}
 for k,v in pairs(columns) do
-  print(k)
   Craftie.Frame.ScrollOrderListCol[k]= CreateFrame("Button", nil, Craftie.Frame.ScrollOrderList.Child, "BackdropTemplate")
   Craftie.Frame.ScrollOrderListCol[k]:SetWidth(columns[k][2])
   Craftie.Frame.ScrollOrderListCol[k]:SetHeight(dimensions.column.H)
@@ -139,7 +139,8 @@ for i=1, Craftie.MAX_ORDERS do
     local itemLink = Craftie.Frame.ScrollOrderListItem[i]:GetText()
     if (itemLink and itemLink ~= "") then
       ChatEdit_GetActiveWindow()
-      ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. " " .. itemLink .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
+      --ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. " " .. itemLink .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
+      ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. " ")
     end
   end)
   Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")
@@ -171,10 +172,16 @@ for i=1, Craftie.MAX_ORDERS do
   end)
 
   Craftie.Frame.ScrollOrderListCount[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollOrderListCount[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollOrderListCount[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+1, "SLUG")
   Craftie.Frame.ScrollOrderListCount[i]:SetPoint("TOPLEFT", columns[3][3]+4, -8)
   Craftie.Frame.ScrollOrderListCount[i]:SetText("")
   Craftie.Frame.ScrollOrderListCount[i]:SetTextColor(1, 1, 1, 0.8)
+
+  Craftie.Frame.ScrollOrderListDate[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListDate[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size-1, "SLUG")
+  Craftie.Frame.ScrollOrderListDate[i]:SetPoint("TOPLEFT", columns[4][3]+4, -8)
+  Craftie.Frame.ScrollOrderListDate[i]:SetText("")
+  Craftie.Frame.ScrollOrderListDate[i]:SetTextColor(1, 1, 1, 0.8)
 
   Craftie.Frame.ScrollOrderListSelect[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollOrderListSelect[i]:SetSize(dimensions.parent.W - 30, dimensions.parent.H - 70)

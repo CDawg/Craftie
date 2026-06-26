@@ -103,8 +103,8 @@ Craftie.Backdrop = {
   Borderless = {
     bgFile  = "Interface/Tooltips/UI-Tooltip-Background",
     edgeFile= "",
-    edgeSize= 2,
-    insets  = {left=2, right=2, top=0, bottom=0},
+    edgeSize= 12,
+    insets  = {left=0, right=0, top=0, bottom=0},
   },
   Slider = {
     Template = "UISliderTemplateWithLabels",
