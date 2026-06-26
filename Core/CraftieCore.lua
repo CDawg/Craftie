@@ -1130,7 +1130,7 @@ function Craftie:GetCraftOrders()
     end
   end
   if (order_index >= 1) then
-    Craftie.TabOrders[2].Text:SetText("Orders |CFFFFDA45[" .. order_index .. "]")
+    Craftie.TabBottom[2].Text:SetText("Orders |CFFFFDA45[" .. order_index .. "]")
   end
   Craftie:Notification("Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)
 end

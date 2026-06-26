@@ -45,6 +45,7 @@ UI/CraftieFrame.lua
 UI/CraftiePlayers.lua
 UI/CraftieRecipes.lua
 UI/CraftieItem.lua
+UI/CraftieOrders.lua
 UI/CraftieNavigation.lua
 UI/CraftieHelp.lua
 UI/CraftieUpdates.lua

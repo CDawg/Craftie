@@ -13,12 +13,12 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Nav={}
-local CraftieNavTabs = {"Professions", "Orders", "Updates", "Help"}
+Craftie.NavTabs = {"Professions", "Orders", "Updates", "Help"}
+
+local bottomTabOffset = 350
 
 Craftie.TabBottom={}
-local bottomTabOffset = 345
-for k,v in pairs(CraftieNavTabs) do
+for k,v in pairs(Craftie.NavTabs) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(80, 38)
   Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -34)
@@ -58,6 +58,7 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.ScrollPlayersParent:Hide()
   Craftie.Frame.ScrollRecipesParent:Hide()
   Craftie.Frame.CraftParent:Hide()
+  Craftie.Frame.CraftOrders:Hide()
   Craftie.Updates:Hide()
   Craftie.Credit:Hide()
   Craftie.Help:Hide()
@@ -66,7 +67,7 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.ItemerLevel:Hide()
   Craftie.Frame.ItemerProgBarS:Hide()
 
-  for k,v in pairs(CraftieNavTabs) do
+  for k,v in pairs(Craftie.NavTabs) do
     Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   end
@@ -80,17 +81,21 @@ function Craftie:TabSelectBottom(tab, sound)
     Craftie.Frame.ScrollRecipesParent:Show()
     Craftie:TabSelectSide(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1))
   end
-
   if (tab == 2) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
+    Craftie.Frame.Title.Sub:SetText("Craft Orders")
+    Craftie.Frame.CraftOrders:Show()
+  end
+  if (tab == 3) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
     Craftie.Updates:Show()
     Craftie.Credit:Show()
   end
-  if (tab == 3) then
+  if (tab == 4) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
     Craftie.Help:Show()
   end
-  if (tab == 4) then
+  if (tab == 5) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
     --Craftie.Logger:Show()
   end
@@ -102,7 +107,7 @@ function Craftie:TabSelectBottom(tab, sound)
 
   Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Active.png")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
-  Craftie.Frame.Title.Sub:SetText(CraftieNavTabs[tab])
+  Craftie.Frame.Title.Sub:SetText(Craftie.NavTabs[tab])
 end
 
 --first tab
