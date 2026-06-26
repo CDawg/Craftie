@@ -17,8 +17,8 @@ Craftie.LogKey = 0
 Craftie.SortOrder = 0
 function Craftie:Notification(msg, type)
   local logstring= ""
-  local DEBUGLEVEL= 1
-  local MODECOLOR = type[2]
+  local debugLevel = type[1]
+  local debugColor = type[2]
 
   if (Craftie.DEBUGLEVEL > Craftie:KeyCount(Craftie.CHAT)) then
     Craftie.DEBUGLEVEL = Craftie:KeyCount(Craftie.CHAT) --just set to max range
@@ -26,16 +26,17 @@ function Craftie:Notification(msg, type)
   if (Craftie.DEBUGLEVEL <= 0) then
     Craftie.DEBUGLEVEL = 1 --prevent errors, but always show chat [info]
   end
-  if (type[1] <= Craftie.DEBUGLEVEL) then
-    if (MODECOLOR == Craftie.CHAT.INFO[2]) then --we dont need to view the type everytime
+  if (debugLevel <= Craftie.DEBUGLEVEL) then
+    --we dont need to view the type everytime
+    if (debugColor == Craftie.CHAT.INFO[2]) then
       print(Craftie._G.Title .. " " .. msg)
     else
-      print(Craftie._G.Title .. " " .. MODECOLOR .. " " .. msg)
+      print(Craftie._G.Title .. " " .. debugColor .. " " .. msg)
     end
   end
   --log everything, regardless of debug mode
   if (Craftie.Frame ~= nil) then
-    Craftie:Log(MODECOLOR, msg)
+    Craftie:Log(debugColor, msg)
   end
 end
 
