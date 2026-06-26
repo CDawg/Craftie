@@ -479,7 +479,7 @@ function Craftie:ParsePacket(netpacket)
         --store it
         Craftie.Packet.ACK[crafterName] = 1 --got an ack
         Craftie.PlayerOnline[crafterName] = 1
-        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
+        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. Craftie.Date
         Craftie:Notification(profString, Craftie.CHAT.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][crafterName] = profString
       end
@@ -847,7 +847,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
             profString = profString .. profData[b]
           end
 
-          profString = profString .. "," .. profMastery .. "," .. date("%y-%m-%d_%H:%M:%S")
+          profString = profString .. "," .. profMastery .. "," .. Craftie.Date
 
           Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] = profString

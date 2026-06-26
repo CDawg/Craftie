@@ -13,12 +13,14 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.Logger_w = 800
-Craftie.Logger_h = 550
+local dimensions = {
+  W = 800,
+  H = 550,
+}
 
 Craftie.Logger = CreateFrame("Frame", 'Craftie.Logger', UIParent, "BackdropTemplate")
-Craftie.Logger:SetWidth(Craftie.Logger_w)
-Craftie.Logger:SetHeight(Craftie.Logger_h)
+Craftie.Logger:SetWidth(dimensions.W)
+Craftie.Logger:SetHeight(dimensions.H)
 Craftie.Logger:SetPoint("CENTER", 0, 20)
 Craftie.Logger:SetFrameStrata("BACKGROUND")
 Craftie.Logger:SetBackdrop(Craftie.Backdrop.General)
@@ -280,7 +282,7 @@ function Craftie:Log(type, log)
     end
     if (k == 2) then
       Craftie.Logger.Row[id][k]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size-1, "SLUG")
-      Craftie.Logger.Row[id][k]:SetText(date("%y-%m-%d %H:%M:%S"))
+      Craftie.Logger.Row[id][k]:SetText(Craftie.Date)
     end
     if (k == 3) then
       Craftie.Logger.Row[id][k]:SetText(tostring(type))

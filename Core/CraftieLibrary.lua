@@ -48,6 +48,8 @@ Craftie.CHAT = {
   FUNC = {10,"|CFF385EC2FUNC|r"},
 }
 
+Craftie.Date = date("%y-%m-%d_%H:%M:%S")
+
 Craftie.PlayerGUIDProf = {}
 Craftie.NumGuildMembers = 0
 Craftie.IsInCombat = false
