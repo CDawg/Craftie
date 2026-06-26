@@ -323,17 +323,34 @@ ButtonIncrease:SetNormalTexture("Interface/Buttons/UI-SpellbookIcon-NextPage-Up"
 ButtonIncrease:SetPushedTexture("Interface/Buttons/UI-SpellbookIcon-NextPage-Down")
 ButtonIncrease:SetHighlightTexture("Interface/Buttons/UI-Common-MouseHilight", "ADD")
 
-Craftie.Frame.ItemBackBot.Request = CreateFrame("Button", nil, Craftie.Frame.ItemRequestParent, "UIPanelButtonTemplate")
-Craftie.Frame.ItemBackBot.Request:SetSize(90, 24)
-Craftie.Frame.ItemBackBot.Request:SetPoint("TOPLEFT", 10, -50)
-Craftie.Frame.ItemBackBot.Request:SetText("Request")
-Craftie.Frame.ItemBackBot.Request:SetScript("OnClick", function(self)
-  --TODO TIMEOUT
-  --print(Craftie.Selected_Name .. " | " .. Craftie.Frame.Item.Text:GetText())
-  local name, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
-  C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " to be crafted.", "WHISPER", nil, Craftie.Selected_Name)
-  Craftie:SendPacket(Craftie.Packet.Prefix.Order, Craftie.Player.Name .. "," .. link .. "," .. Craftie.Frame.ItemCountEditBox:GetNumber(), "WHISPER", Craftie.Selected_Name)
+Craftie.Req_Lock = 0
+
+Craftie.Frame.ItemReqButton = CreateFrame("Button", nil, Craftie.Frame.ItemRequestParent, "UIPanelButtonTemplate")
+Craftie.Frame.ItemReqButton:SetSize(90, 24)
+Craftie.Frame.ItemReqButton:SetPoint("TOPLEFT", 10, -50)
+Craftie.Frame.ItemReqButton:SetText("Request")
+Craftie.Frame.ItemReqButton:SetScript("OnClick", function(self)
+  if (Craftie.Req_Lock == 1) then
+    Craftie:Notification("Please wait " .. Craftie.REQ_TIMER .. " seconds before sending another request.", Craftie.CHAT.WARN)
+  else
+    Craftie.Req_Lock = 1
+    --Craftie.Frame.ItemReqButton:Hide()
+    Craftie.Frame.ItemReqButton:Disable()
+    C_Timer.After(Craftie.REQ_TIMER, function()
+      Craftie.Req_Lock = 0
+      Craftie.Frame.ItemReqButton:Enable()
+    end)
+    local name, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
+    C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " to be crafted.", "WHISPER", nil, Craftie.Selected_Name)
+    Craftie:SendPacket(Craftie.Packet.Prefix.Order, Craftie.Player.Name .. "," .. link .. "," .. Craftie.Frame.ItemCountEditBox:GetNumber(), "WHISPER", Craftie.Selected_Name)
+    --print(Craftie.Selected_Name .. " | " .. Craftie.Frame.Item.Text:GetText())
+  end
 end)
+Craftie.Frame.Item.ReqMessage = Craftie.Frame.ItemRequestParent:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Item.ReqMessage:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.Item.ReqMessage:SetPoint("TOPLEFT", 10, -65)
+Craftie.Frame.Item.ReqMessage:SetText("This is a message here")
+--Craftie.Frame.Item.ReqMessage:SetTextColor(1, 1, 1, 0.7)
 
 --[==[
 CRAFT ORDERS

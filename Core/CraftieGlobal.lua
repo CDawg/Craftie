@@ -40,6 +40,7 @@ Craftie.MAX_RECIPES = 600
 Craftie.MAX_CRAFTERS = 300 --per profession (TODO - make tis dynamic)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 Craftie.MAX_ORDERS = 100
+Craftie.REQ_TIMER = 5
 
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
 --Craftie.ProfessionSearch = Craftie:CopyTable(Craftie.Profession.Alchemy)
