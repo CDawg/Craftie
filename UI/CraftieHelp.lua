@@ -20,14 +20,16 @@ Craftie.Contact = {
 }
 
 local dimensions = {
-  W = Craftie.Frame:GetWidth()-30,
-  H = Craftie.Frame:GetHeight()-100,
+  W = Craftie.Frame:GetWidth()-26,
+  H = Craftie.Frame:GetHeight()-124,
+  X = 12,
+  Y = -100
 }
 
 Craftie.Help = CreateFrame("Frame", "Craftie.Help", Craftie.Frame)
 Craftie.Help:SetWidth(dimensions.W)
 Craftie.Help:SetHeight(dimensions.H)
-Craftie.Help:SetPoint("TOPLEFT", 12, -62)
+Craftie.Help:SetPoint("TOPLEFT", dimensions.X, dimensions.Y)
 --Craftie.Help:SetFrameStrata("MEDIUM")
 
 Craftie.HelpScrollFrame={}
