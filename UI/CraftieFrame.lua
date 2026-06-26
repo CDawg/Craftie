@@ -138,7 +138,7 @@ for i,v in pairs(Craftie.Professions) do
     CraftieTooltip:Hide()
   end)
   Craftie.Frame.TabSide[i]:SetScript("OnClick", function(self)
-    Craftie:TabSelect(i, true)
+    Craftie:TabSelectSide(i, true)
   end)
 end
 

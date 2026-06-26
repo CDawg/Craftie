@@ -14,10 +14,10 @@ the copyright holders.
 ]==]--
 
 Craftie.Nav={}
-local CraftieNavTabs = {"Professions", "Updates", "Help"}
+local CraftieNavTabs = {"Professions", "Orders", "Updates", "Help"}
 
 Craftie.TabBottom={}
-local bottomTabOffset = 265
+local bottomTabOffset = 345
 for k,v in pairs(CraftieNavTabs) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(80, 38)
@@ -44,7 +44,7 @@ for k,v in pairs(CraftieNavTabs) do
   Craftie.TabBottom[k].Text:SetText(v)
   Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   Craftie.TabBottom[k]:SetScript("OnClick", function(self)
-    Craftie:TabBottomSelect(k, true)
+    Craftie:TabSelectBottom(k, true)
   end)
   Craftie.TabBottom[k]:SetScript("OnEnter", function(self)
     Craftie.TabBottom[k].Highlight:Show()
@@ -56,7 +56,7 @@ for k,v in pairs(CraftieNavTabs) do
   end)
 end
 
-function Craftie:TabBottomSelect(tab, sound)
+function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.ScrollPlayersParent:Hide()
   Craftie.Frame.ScrollRecipesParent:Hide()
   Craftie.Frame.CraftParent:Hide()
@@ -80,7 +80,7 @@ function Craftie:TabBottomSelect(tab, sound)
     Craftie.Frame.CraftParent:Show()
     Craftie.Frame.ScrollPlayersParent:Show()
     Craftie.Frame.ScrollRecipesParent:Show()
-    Craftie:TabSelect(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1))
+    Craftie:TabSelectSide(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1))
   end
 
   if (tab == 2) then

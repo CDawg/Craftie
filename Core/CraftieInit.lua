@@ -17,8 +17,8 @@ function Craftie:Init()
   Craftie:Notification("v" .. Craftie._G.Version .. " " .. Craftie.Game.Name .. " [" .. Craftie._L.Loaded .. "] Initializing. Type " .. SLASH_Craftie1 .. " for commands.", Craftie.CHAT.INFO)
   Craftie:AlphaSortProfessionLib() --sanity alpha sorting & version control
   Craftie:BuildReagentGaps()
-  --Craftie:TabSelect(1) --default 1st profession
-  Craftie:TabBottomSelect(1)
+  --Craftie:TabSelectSide(1) --default 1st profession
+  Craftie:TabSelectBottom(1)
   Craftie:BuildChatHooks()
   Craftie:SaveData()
   Craftie:BuildPersonalTooltip()

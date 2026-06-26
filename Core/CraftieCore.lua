@@ -316,7 +316,7 @@ function Craftie:UpdateCrafterList(search)
   --end
 end
 
-function Craftie:TabSelect(tab, sound)
+function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then
     local prof_name = Craftie.Professions[tab][1]
     Craftie:CloseAllPlayerMenus()
@@ -358,7 +358,7 @@ function Craftie:TabSelect(tab, sound)
     Craftie:SelectScrollItem("Recipes")
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
 
-  Craftie:Notification("Craftie:TabSelect(" .. tab .. ")", Craftie.CHAT.FUNC)
+  Craftie:Notification("Craftie:TabSelectSide(" .. tab .. ")", Craftie.CHAT.FUNC)
   end
 end
 
@@ -1145,7 +1145,7 @@ function Craftie:Open(player, profession)
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 1)
       Craftie:Notification("Craftie:Open: Go to " .. profession .. " => " .. player, Craftie.CHAT.FUNC)
-      Craftie:TabSelect(page, true)
+      Craftie:TabSelectSide(page, true)
       Craftie.Frame:Show()
     end)
   else
