@@ -69,6 +69,16 @@ Craftie.Framelevel = {
   Cover     = 40,
 }
 
+Craftie.Tooltip = {
+  Data = {},
+  Color = {
+    "|CFF4BABFA", --blue
+    "|CFF4AB587", --green
+    "|CFFDEDEDE", --white
+    "|CFFFFD94F", --yellow
+  }
+}
+
 Craftie.Backdrop = {
   General = {
     bgFile  = "Interface/Tooltips/UI-Tooltip-Background",

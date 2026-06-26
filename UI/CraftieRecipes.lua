@@ -211,21 +211,15 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListRow[i]:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.ScrollRecipesListRow[i]:SetBackdropColor(1, 1, 1, 0)
   Craftie.Frame.ScrollRecipesListRow[i]:SetFrameLevel(Craftie.Framelevel.Background)
-
   Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(1, 0.9, 0.8, 0.2)
       Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 0.8, 1)
     end
-
     --[==[
     CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
     CraftieTooltip:ClearLines()
-    CraftieTooltip:AddLine(" ")
-    CraftieTooltip:AddLine("|CFF4D4D4DShift + Left Click")
-    CraftieTooltip:AddLine("|CFF4D4D4DPaste Link In Chat")
-    --CraftieTooltip:AddLine(" ")
-    --CraftieTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
+    CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Shift + Left Click", "|CFFDEDEDEPaste Link In Chat")
     CraftieTooltip:Show()
     ]==]--
   end)

@@ -48,11 +48,9 @@ for k,v in pairs(CraftieNavTabs) do
   end)
   Craftie.TabBottom[k]:SetScript("OnEnter", function(self)
     Craftie.TabBottom[k].Highlight:Show()
-    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
   Craftie.TabBottom[k]:SetScript("OnLeave", function(self)
     Craftie.TabBottom[k].Highlight:Hide()
-    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
 end
 

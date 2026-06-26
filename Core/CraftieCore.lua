@@ -1221,31 +1221,31 @@ function Craftie:Dialog(text, func)
 end
 
 
-Craftie.Tooltip = nil
+Craftie.Tooltip.Data = nil
 function Craftie:UpdatePlayerTooltip(channel)
   if (Craftie.Throttle.Chat.Flag == 1) then
     Craftie:Notification("Craftie:UpdatePlayerTooltip(" .. channel .. ")", Craftie.CHAT.FUNC)
     Craftie.Throttle.Chat.Flag = 0
 
-    if (Craftie.Tooltip ~= nil) then
+    if (Craftie.Tooltip.Data ~= nil) then
       if (channel == "GUILD") then
         if (IsInGuild()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, channel)
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, channel)
         end
       end
 
       if (channel == "GROUP") then
         if (IsInRaid()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "RAID")
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, "RAID")
         elseif (IsInGroup()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "PARTY")
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, "PARTY")
         end
       end
 
       if (channel == "WORLD") then
         if (not IsInInstance()) then
           if (not PlayerIsInCombat()) then
-            Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip, "YELL")
+            Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, "YELL")
           end
         end
       end
@@ -1275,8 +1275,8 @@ function Craftie:BuildPersonalTooltip()
   end
   --debug
   --tooltip = "Cooking:3;Alchemy:244;Tailoring:375;"
-  Craftie.Tooltip = tooltip:sub(1, -2)
-  Craftie:Notification("BuildPersonalTooltip("..Craftie.Tooltip..")", Craftie.CHAT.FUNC)
+  Craftie.Tooltip.Data = tooltip:sub(1, -2)
+  Craftie:Notification("BuildPersonalTooltip("..Craftie.Tooltip.Data..")", Craftie.CHAT.FUNC)
 end
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)

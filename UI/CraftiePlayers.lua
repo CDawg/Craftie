@@ -340,7 +340,8 @@ for i=1, Craftie.MAX_CRAFTERS do
           CraftieTooltip:AddLine(" ")
           CraftieTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " "))
           CraftieTooltip:AddLine(" ")
-          CraftieTooltip:AddLine("|CFFEFEFEFRight Click for more options")
+          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Right Click", "|CFFEFEFEFPlayer Option Menu")
+          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Enter + Left Click", "|CFFEFEFEFMessage Player")
           CraftieTooltip:Show()
         end
 
@@ -370,6 +371,8 @@ for i=1, Craftie.MAX_CRAFTERS do
       if (Craftie.Frame.ScrollPlayersListName[i]:GetText() ~= nil) then
         if (button == "LeftButton") then
           Craftie:SelectCrafter(i, Craftie.Frame.ScrollPlayersListName[i]:GetText())
+          ChatEdit_GetActiveWindow()
+          ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollPlayersListName[i]:GetText() .. " ")
         end
 
         if (button == "RightButton") then

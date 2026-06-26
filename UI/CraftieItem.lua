@@ -434,7 +434,6 @@ for k,v in pairs(OrderTabs) do
   end)
   Craftie.TabOrders[k]:SetScript("OnEnter", function(self)
     Craftie.TabOrders[k].Highlight:Show()
-    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
     CraftieTooltip:ClearLines()
     CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
     CraftieTooltip:AddLine("|CFFDEDEDE" .. OrderTooltip[k])
@@ -443,7 +442,6 @@ for k,v in pairs(OrderTabs) do
   Craftie.TabOrders[k]:SetScript("OnLeave", function(self)
     Craftie.TabOrders[k].Highlight:Hide()
     CraftieTooltip:Hide()
-    --Craftie.TooltipDisplay(self, Craftie._G.Title, Craftie.Addon)
   end)
 end
 Craftie.TabOrders[1].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieTab-Active.png")
@@ -538,8 +536,8 @@ for i=1, Craftie.MAX_ORDERS do
       CraftieTooltip:AddLine("|CFFFFFFFF" .. requester .. " is requesting ")
       CraftieTooltip:AddLine(Craftie.Frame.ScrollOrderListItem[i]:GetText() .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
       CraftieTooltip:AddLine(" ")
-      CraftieTooltip:AddDoubleLine("|CFF4BABFAEnter + Left Click", "|CFFDEDEDEWhisper this player with a response")
-      CraftieTooltip:AddDoubleLine("|CFF4BABFARight Click",        "|CFFDEDEDEFor more options")
+      CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Enter + Left Click", "|CFFDEDEDEWhisper this player with a response")
+      CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Right Click",        "|CFFDEDEDEFor more options")
       CraftieTooltip:Show()
     end
   end)
@@ -552,7 +550,7 @@ for i=1, Craftie.MAX_ORDERS do
     local itemLink = Craftie.Frame.ScrollOrderListItem[i]:GetText()
     if (itemLink and itemLink ~= "") then
       ChatEdit_GetActiveWindow()
-      ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. "  " .. itemLink .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
+      ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. " " .. itemLink .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
     end
   end)
 
@@ -586,12 +584,6 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnLeave", function(self)
     GameTooltip:Hide()
   end)
-  --Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnMouseDown", function(self)
-    --local itemLink = self:GetText()
-    --if itemLink and itemLink ~= "" then
-      --ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. "  " .. self:GetText() .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
-    --end
-  --end)
 
   Craftie.Frame.ScrollOrderListCount[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListCount[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size-1, "SLUG")
