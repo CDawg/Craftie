@@ -610,7 +610,8 @@ function Craftie:ItemDetails(item)
       --reset
       Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.6)
-      --Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 1, 0)
+      Craftie.Frame.Reagent.Border[i]:SetBackdropBorderColor(0.5, 0.5, 0.48, 1)
+      Craftie.Frame.Reagent.Border[i]:SetBackdropColor(0, 0, 0, 0.1)
       Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.IconGlow[i]:Hide()
 
@@ -636,7 +637,6 @@ function Craftie:ItemDetails(item)
         Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       end)
 
-      --Craftie.Frame.Reagent.Border[i]:Show()
       --Craftie.Frame.Reagent.Text[i]:SetText(Craftie.Reagent[r][2])
       Craftie.Frame.Reagent.Data[i]:SetText(Craftie.Reagent[r][1])
 
@@ -657,7 +657,8 @@ function Craftie:ItemDetails(item)
         end)
       end
       if (inv_count >= inv_req) then
-        --Craftie.Frame.Reagent.Main[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
+        Craftie.Frame.Reagent.Border[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
+        Craftie.Frame.Reagent.Border[i]:SetBackdropColor(1, 1, 0, 0.1)
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
         Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, .85, 1)
         Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, .6, 1)
@@ -1114,6 +1115,7 @@ function Craftie:GetCraftOrders()
     Craftie.Frame.ScrollOrderListItem[i]:SetText("")
     Craftie.Frame.ScrollOrderListCount[i]:SetText("")
   end
+
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] ~= nil) then
     for name,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]) do
       order_index = order_index +1
