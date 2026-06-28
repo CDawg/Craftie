@@ -1100,9 +1100,8 @@ end
 function Craftie:GetCraftOrders()
   local order_index = 0
   for i=1, Craftie.MAX_ORDERS do
-    Craftie.Frame.ScrollOrderListName[i]:SetText("")
-    Craftie.Frame.ScrollOrderListItem[i]:SetText("")
-    Craftie.Frame.ScrollOrderListCount[i]:SetText("")
+    Craftie.Frame.ScrollOrderListNameButton[i]:Hide()
+    Craftie.Frame.ScrollOrderListItemButton[i]:Hide()
   end
 
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] ~= nil) then
@@ -1116,6 +1115,10 @@ function Craftie:GetCraftOrders()
       Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[2])
       Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[3])
       Craftie.Frame.ScrollOrderListDate[order_index]:SetText(order[4])
+      Craftie.Frame.ScrollOrderListNameButton[order_index]:Show()
+      Craftie.Frame.ScrollOrderListItemButton[order_index]:Show()
+      --Craftie.myFontString:GetStringWidth()
+      Craftie.Frame.ScrollOrderListItemButton[order_index]:SetWidth(20+Craftie.Frame.ScrollOrderListName[order_index]:GetStringWidth()*2)
 
       local class = tonumber(order[1])
       local r = Craftie.Class[class][3][1]

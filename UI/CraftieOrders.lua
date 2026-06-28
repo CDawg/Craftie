@@ -76,9 +76,11 @@ Craftie:ScrollBarFrame(Craftie.Frame.ScrollOrderList.Child)
 
 Craftie.Frame.ScrollOrderListRow={}
 Craftie.Frame.ScrollOrderListBack={}
+
+Craftie.Frame.ScrollOrderListNameButton={}
 Craftie.Frame.ScrollOrderListName={}
+Craftie.Frame.ScrollOrderListItemButton={}
 Craftie.Frame.ScrollOrderListItem={}
-Craftie.Frame.ScrollOrderListLink={}
 Craftie.Frame.ScrollOrderListCount={}
 Craftie.Frame.ScrollOrderListDate={}
 Craftie.Frame.ScrollOrderListSelect={}
@@ -108,18 +110,39 @@ for k,v in pairs(columns) do
 end
 
 for i=1, Craftie.MAX_ORDERS do
-  Craftie.Frame.ScrollOrderListRow[i] = CreateFrame("Button", Craftie.Frame.ScrollOrderListRow[i], Craftie.Frame.ScrollOrderListChildFrame, "BackdropTemplate", -1)
+  Craftie.Frame.ScrollOrderListRow[i] = CreateFrame("Frame", Craftie.Frame.ScrollOrderListRow[i], Craftie.Frame.ScrollOrderListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollOrderListRow[i]:SetWidth(Craftie.Frame.CraftOrders:GetWidth()-26)
   Craftie.Frame.ScrollOrderListRow[i]:SetHeight(dimensions.row.H)
   Craftie.Frame.ScrollOrderListRow[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollOrderListRow[i]:GetHeight()+16)
   Craftie.Frame.ScrollOrderListRow[i]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollOrderListRow[i]:SetBackdropBorderColor(1, 1, 1, 0)
-  Craftie.Frame.ScrollOrderListRow[i]:SetBackdropColor(1, 1, 1, 0)
+  Craftie.Frame.ScrollOrderListRow[i]:SetBackdropColor(0, 0, 0, 0)
   Craftie.Frame.ScrollOrderListRow[i]:SetFrameLevel(Craftie.Framelevel.Background)
-  Craftie.Frame.ScrollOrderListRow[i]:EnableMouse(true)
   Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnEnter", function(self)
     self:SetBackdropColor(1, 0.9, 0.8, 0.2)
+  end)
+  Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnLeave", function(self)
+    self:SetBackdropColor(0, 0, 0, 0)
+  end)
+  Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")
+  Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())
+  Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
+  Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollOrderListBack[i]:SetVertexColor(1, 0.8, 0.5)
+  Craftie.Frame.ScrollOrderListBack[i]:SetAlpha(0.5)
 
+  Craftie.Frame.ScrollOrderListNameButton[i] = CreateFrame("Button", nil, Craftie.Frame.ScrollOrderListRow[i], "BackdropTemplate", 1)
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetSize(columns[1][2], dimensions.row.H)
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetPoint("TOPLEFT", 4, 0)
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetBackdrop(Craftie.Backdrop.Borderless)
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetBackdropColor(0, 1, 0, 0.1)
+  Craftie.Frame.ScrollOrderListName[i] = Craftie.Frame.ScrollOrderListNameButton[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 4, -6)
+  Craftie.Frame.ScrollOrderListName[i]:SetText("")
+  Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetScript("OnEnter", function(self)
+    self:GetParent():SetBackdropColor(1, 0.9, 0.8, 0.2)
     local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
     if ((requester ~= "") and (requester ~= nil)) then
       CraftieTooltip:ClearLines()
@@ -132,60 +155,48 @@ for i=1, Craftie.MAX_ORDERS do
       CraftieTooltip:Show()
     end
   end)
-  Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnLeave", function(self)
-    self:SetBackdropColor(1, 1, 1, 0)
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetScript("OnLeave", function(self)
+    self:GetParent():SetBackdropColor(0, 0, 0, 0)
     CraftieTooltip:Hide()
   end)
-  Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnClick", function(self)
-    local itemLink = Craftie.Frame.ScrollOrderListItem[i]:GetText()
-    if (itemLink and itemLink ~= "") then
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetScript("OnClick", function(self)
+    local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
+    if ((requester ~= "") and (requester ~= nil)) then
       ChatEdit_GetActiveWindow()
-      --ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. " " .. itemLink .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
-      ChatEdit_InsertLink("/w " .. Craftie.Frame.ScrollOrderListName[i]:GetText() .. " ")
+      ChatEdit_InsertLink("/w " .. requester .. " ")
     end
   end)
-  Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())
-  Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
-  Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
-  Craftie.Frame.ScrollOrderListBack[i]:SetVertexColor(1, 0.8, 0.5)
-  Craftie.Frame.ScrollOrderListBack[i]:SetAlpha(0.5)
 
-  Craftie.Frame.ScrollOrderListName[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", columns[1][3]+8, dimensions.row.Y)
-  Craftie.Frame.ScrollOrderListName[i]:SetText("")
-  Craftie.Frame.ScrollOrderListName[i]:SetTextColor(1, 1, 1, 0.8)
-
-  --Craftie.Frame.ScrollOrderListLink[i]= CreateFrame("Button", nil, Craftie.Frame.ScrollOrderListRow[i], "BackdropTemplate")
-
-  Craftie.Frame.ScrollOrderListItem[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListItemButton[i] = CreateFrame("Button", nil, Craftie.Frame.ScrollOrderListRow[i], "BackdropTemplate", 1)
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetSize(columns[2][2], dimensions.row.H)
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetPoint("TOPLEFT", columns[2][3], 0)
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetBackdrop(Craftie.Backdrop.Borderless)
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetBackdropColor(1, 0, 0, 0.4)
+  Craftie.Frame.ScrollOrderListItem[i] = Craftie.Frame.ScrollOrderListItemButton[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListItem[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  --Craftie.Frame.ScrollOrderListItem[i]:SetWidth(columns[2][2])
-  --Craftie.Frame.ScrollOrderListItem[i]:SetHeight(dimensions.row.H)
-  Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", columns[2][3]+4, dimensions.row.Y)
+  Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", 4, -6)
   Craftie.Frame.ScrollOrderListItem[i]:SetText("")
-  Craftie.Frame.ScrollOrderListItem[i]:EnableMouse(true)
-  Craftie.Frame.ScrollOrderListItem[i]:SetJustifyH("LEFT")
-  Craftie.Frame.ScrollOrderListItem[i]:SetJustifyV("TOP")
-  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnEnter", function(self)
-    if ((self:GetText() ~= "") and (self:GetText() ~= nil)) then
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetScript("OnEnter", function(self)
+    self:GetParent():SetBackdropColor(1, 0.9, 0.8, 0.2)
+    local link = Craftie.Frame.ScrollOrderListItem[i]:GetText()
+    if ((link ~= "") and (link ~= nil)) then
+      GameTooltip:ClearLines()
       GameTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-      GameTooltip:SetHyperlink(self:GetText())
+      GameTooltip:SetHyperlink(link)
     end
   end)
-  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnLeave", function(self)
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetScript("OnLeave", function(self)
+    self:GetParent():SetBackdropColor(0, 0, 0, 0)
     GameTooltip:Hide()
   end)
-  Craftie.Frame.ScrollOrderListItem[i]:SetScript("OnMouseDown", function(self,button)
-    local link = self:GetText()
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetScript("OnClick", function(self, button)
+    local link = Craftie.Frame.ScrollOrderListItem[i]:GetText()
     if (link ~= nil and link ~= "") then
-      ChatEdit_GetActiveWindow()
-      ChatEdit_InsertLink(link)
+      if (IsShiftKeyDown()) then
+        ChatEdit_GetActiveWindow()
+        ChatEdit_InsertLink(link)
+      end
     end
-    --if (button == "LeftButton") then
-      --print("Left clicked! " .. i)
-    --end
   end)
 
   Craftie.Frame.ScrollOrderListCount[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
