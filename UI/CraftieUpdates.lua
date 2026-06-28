@@ -20,30 +20,34 @@ And a few nameless heroes on Dreamscythe
 Written by Porthias|r (a.k.a. Port)
 ]==]
 
-local dimensions={}
-dimensions.updates = {
-  W = Craftie.Frame:GetWidth()/2+20,
-  H = Craftie.Frame:GetHeight()-88,
-}
-dimensions.credit = {
-  W = Craftie.Frame:GetWidth()/2-35,
-  H = Craftie.Frame:GetHeight()-88,
+local dimensions = {
+  W = Craftie.Frame:GetWidth()/2,
+  H = Craftie.Frame:GetHeight()-124,
+  X = 12,
+  Y = -100,
 }
 
 Craftie.Updates = CreateFrame("Frame", "Craftie.Updates", Craftie.Frame)
-Craftie.Updates:SetWidth(dimensions.updates.W)
-Craftie.Updates:SetHeight(dimensions.updates.H)
-Craftie.Updates:SetPoint("TOPLEFT", 4, -62)
+Craftie.Updates:SetWidth(dimensions.W)
+Craftie.Updates:SetHeight(dimensions.H)
+Craftie.Updates:SetPoint("TOPLEFT", dimensions.X, dimensions.Y)
 Craftie.Updates:SetFrameStrata("MEDIUM")
 
-Craftie.UpdatesScrollFrame = CreateFrame("Frame", "Craftie.UpdatesScrollFrame", Craftie.Updates, "InsetFrameTemplate3")
+Craftie.UpdatesScrollFrame = CreateFrame("Frame", "Craftie.UpdatesScrollFrame", Craftie.Updates, "InsetFrameTemplate4")
 Craftie.UpdatesScrollFrame:SetWidth(Craftie.Updates:GetWidth())
-Craftie.UpdatesScrollFrame:SetHeight(Craftie.Updates:GetHeight()-25) --room for title
-Craftie.UpdatesScrollFrame:SetPoint("TOPLEFT", 0, -22)
+Craftie.UpdatesScrollFrame:SetHeight(Craftie.Updates:GetHeight())
+Craftie.UpdatesScrollFrame:SetPoint("TOPLEFT", 0, 0)
+
+Craftie.UpdatesScrollFrameBack = Craftie.UpdatesScrollFrame:CreateTexture(nil, "BACKGROUND")
+Craftie.UpdatesScrollFrameBack:SetWidth(Craftie.UpdatesScrollFrame:GetWidth())
+Craftie.UpdatesScrollFrameBack:SetHeight(Craftie.UpdatesScrollFrame:GetHeight())
+Craftie.UpdatesScrollFrameBack:SetPoint("TOPLEFT", 0, 0)
+Craftie.UpdatesScrollFrameBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.UpdatesScrollFrameBack:SetDesaturation(0.3)
 
 Craftie.UpdatesScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.UpdatesScrollFrame.Child", Craftie.UpdatesScrollFrame, "UIPanelScrollFrameTemplate")
-Craftie.UpdatesScrollFrame.Child:SetPoint("TOPLEFT", Craftie.UpdatesScrollFrame, "TOPLEFT", 5, -10) --room for title
-Craftie.UpdatesScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.UpdatesScrollFrame, "BOTTOMRIGHT", 10, 5)
+Craftie.UpdatesScrollFrame.Child:SetPoint("TOPLEFT", Craftie.UpdatesScrollFrame, "TOPLEFT", 5, -10)
+Craftie.UpdatesScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.UpdatesScrollFrame, "BOTTOMRIGHT", 10, 10)
 Craftie.UpdatesScrollFrameChildFrame = CreateFrame("Frame", "Craftie.UpdatesScrollFrameChildFrame", Craftie.UpdatesScrollFrame.Child)
 Craftie.UpdatesScrollFrameChildFrame:SetSize(Craftie.Updates:GetWidth(), Craftie.Updates:GetHeight())
 Craftie.UpdatesScrollFrame.Child:SetScrollChild(Craftie.UpdatesScrollFrameChildFrame)
@@ -56,7 +60,6 @@ Craftie:ScrollBarFrame(Craftie.UpdatesScrollFrame.Child)
 Craftie.Updates.Data = CreateFrame("EditBox", "Craftie.Updates.Data", Craftie.UpdatesScrollFrameChildFrame)
 Craftie.Updates.Data:SetWidth(Craftie.Updates:GetWidth()-20) --scrollbar
 Craftie.Updates.Data:SetHeight(Craftie.Updates:GetHeight())
---Craftie.Updates.Data:SetFontObject(GameFontWhite)
 Craftie.Updates.Data:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE")
 Craftie.Updates.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Updates.Data:SetMultiLine(true)
@@ -68,19 +71,26 @@ local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", Craftie.Color.Gold
 Craftie.Updates.Data:SetText(updates)
 
 Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame)
-Craftie.Credit:SetWidth(dimensions.credit.W)
-Craftie.Credit:SetHeight(dimensions.credit.H)
-Craftie.Credit:SetPoint("TOPLEFT", 437, -62)
+Craftie.Credit:SetWidth(dimensions.W-30)
+Craftie.Credit:SetHeight(dimensions.H)
+Craftie.Credit:SetPoint("TOPLEFT", dimensions.W+16, dimensions.Y)
 Craftie.Credit:SetFrameStrata("MEDIUM")
 
-Craftie.CreditsScrollFrame = CreateFrame("Frame", "Craftie.CreditsScrollFrame", Craftie.Credit, "InsetFrameTemplate3")
+Craftie.CreditsScrollFrame = CreateFrame("Frame", "Craftie.CreditsScrollFrame", Craftie.Credit, "InsetFrameTemplate4")
 Craftie.CreditsScrollFrame:SetWidth(Craftie.Credit:GetWidth())
-Craftie.CreditsScrollFrame:SetHeight(Craftie.Credit:GetHeight()-25) --room for title
-Craftie.CreditsScrollFrame:SetPoint("TOPLEFT", 0, -22)
+Craftie.CreditsScrollFrame:SetHeight(Craftie.Credit:GetHeight()) --room for title
+Craftie.CreditsScrollFrame:SetPoint("TOPLEFT", 0, 0)
+
+Craftie.CreditsScrollFrameBack = Craftie.CreditsScrollFrame:CreateTexture(nil, "BACKGROUND")
+Craftie.CreditsScrollFrameBack:SetWidth(Craftie.CreditsScrollFrame:GetWidth())
+Craftie.CreditsScrollFrameBack:SetHeight(Craftie.CreditsScrollFrame:GetHeight())
+Craftie.CreditsScrollFrameBack:SetPoint("TOPLEFT", 0, 0)
+Craftie.CreditsScrollFrameBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.CreditsScrollFrameBack:SetDesaturation(0.3)
 
 Craftie.CreditsScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.CreditsScrollFrame.Child", Craftie.CreditsScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.CreditsScrollFrame.Child:SetPoint("TOPLEFT", Craftie.CreditsScrollFrame, "TOPLEFT", 5, -10)
-Craftie.CreditsScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.CreditsScrollFrame, "BOTTOMRIGHT", 10, 5)
+Craftie.CreditsScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.CreditsScrollFrame, "BOTTOMRIGHT", 10, 10)
 Craftie.CreditsScrollFrameChildFrame = CreateFrame("Frame", "Craftie.CreditsScrollFrameChildFrame", Craftie.CreditsScrollFrame.Child)
 Craftie.CreditsScrollFrameChildFrame:SetSize(Craftie.Credit:GetWidth(), Craftie.Credit:GetHeight())
 Craftie.CreditsScrollFrame.Child:SetScrollChild(Craftie.CreditsScrollFrameChildFrame)
