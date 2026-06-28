@@ -15,8 +15,8 @@ the copyright holders.
 
 --Help / Contact
 Craftie.Contact = {
-  "|n|cffffdf96Curseforge|r|nhttps://www.curseforge.com/wow/addons/craftie/",
-  "|n|cffffdf96Discord (.porthios)|r|nhttps://discordapp.com/users/238146303324979200",
+  "|n" .. Craftie.Color.Yellow .. "Curseforge|r|nhttps://www.curseforge.com/wow/addons/craftie/",
+  "|n" .. Craftie.Color.Yellow .. "Discord (.porthios)|r|nhttps://discordapp.com/users/238146303324979200",
 }
 
 local dimensions = {

@@ -56,6 +56,13 @@ Craftie.Frame.CraftOrdersBackTopArt:SetTexture(Craftie._G.Path .. "Images/UI-Cra
 --Craftie.Frame.CraftOrdersBackTopArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.CraftOrdersBackTopArt:SetDesaturation(0.3)
 
+Craftie.Frame.CraftRefresh = CreateFrame("Button", nil, Craftie.Frame.CraftOrders, "UIPanelButtonTemplate")
+Craftie.Frame.CraftRefresh:SetWidth(32)
+Craftie.Frame.CraftRefresh:SetHeight(80)
+Craftie.Frame.CraftRefresh:SetPoint("TOPRIGHT", 0, -60)
+--Craftie.Frame.CraftRefresh:SetBackdrop(Craftie.Backdrop.Borderless)
+--Craftie.Frame.CraftRefresh:SetBackdropColor(column_color[1], column_color[2], column_color[3], column_color[4])
+
 Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftOrders, "BackdropTemplate")
 Craftie.Frame.ScrollOrderList:SetWidth(Craftie.Frame.CraftOrders:GetWidth()-10)
 Craftie.Frame.ScrollOrderList:SetHeight(Craftie.Frame.CraftOrders:GetHeight()-5)
@@ -146,10 +153,10 @@ for i=1, Craftie.MAX_ORDERS do
     if ((requester ~= "") and (requester ~= nil)) then
       CraftieTooltip:ClearLines()
       CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-      CraftieTooltip:AddLine("|CFFFFFFFF" .. requester .. " is requesting ")
+      CraftieTooltip:AddLine(Craftie.Color.White .. requester .. " is requesting ")
       CraftieTooltip:AddLine(Craftie.Frame.ScrollOrderListItem[i]:GetText() .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
       CraftieTooltip:AddLine(" ")
-      CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Blue .. "Enter + Left Click", "|CFFDEDEDEWhisper this player with a response")
+      CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. "Enter + Left Click", Craftie.Color.Silver .. "Whisper this player with a response")
       CraftieTooltip:Show()
     end
   end)

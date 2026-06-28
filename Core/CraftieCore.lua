@@ -255,7 +255,7 @@ function Craftie:UpdateCrafterList(search)
       table.sort(search_list)
     end
 
-    local results = "|cfffffb63Crafter(s)"
+    local results = Craftie.Color.Yellow .. "Crafter(s)"
     Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
 
     for n=1, #search_list do
@@ -997,7 +997,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
 
   local total_recipes = #profCache
   --local total_search = 0
-  local results = " / " .. #Craftie.Profession[Craftie.Page] .. " |cfffffb63Recipe(s)"
+  local results = " / " .. #Craftie.Profession[Craftie.Page] .. Craftie.Color.Yellow .. " Recipe(s)"
 
   Craftie:ClearCraftFrame() --also hide request frame
 
@@ -1128,7 +1128,7 @@ function Craftie:GetCraftOrders()
     end
   end
   if (order_index >= 1) then
-    Craftie.TabBottom[2].Text:SetText("Orders |CFFFFDA45[" .. order_index .. "]")
+    Craftie.TabBottom[2].Text:SetText("Orders " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
   end
   Craftie:Notification("Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)
 end
@@ -1295,21 +1295,21 @@ GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
       if (data.profM1 > 0) then
         mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN1, 1)][4][data.profM1] .. "]"
       end
-      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profN1 .. mastery, "|CFFFFFFFF" .. data.profL1 .. "/" .. Craftie.PROFMAXLEVEL)
+      tooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN1 .. mastery, Craftie.Color.White .. data.profL1 .. "/" .. Craftie.PROFMAXLEVEL)
     end
     if (data.profN2) then
       local mastery = ""
       if (data.profM2 > 0) then
         mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN2, 1)][4][data.profM2] .. "]"
       end
-      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profN2 .. mastery, "|CFFFFFFFF" .. data.profL2 .. "/" .. Craftie.PROFMAXLEVEL)
+      tooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN2 .. mastery, Craftie.Color.White .. data.profL2 .. "/" .. Craftie.PROFMAXLEVEL)
     end
     if (data.profN3) then
       local mastery = ""
       if (data.profM3 > 0) then
         mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN3, 1)][4][data.profM3] .. "]"
       end
-      tooltip:AddDoubleLine("|CFF42DBFF" .. data.profN3 .. mastery, "|CFFFFFFFF" .. data.profL3 .. "/" .. Craftie.PROFMAXLEVEL)
+      tooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN3 .. mastery, Craftie.Color.White .. data.profL3 .. "/" .. Craftie.PROFMAXLEVEL)
     end
     tooltip:Show()
   end

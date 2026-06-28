@@ -57,9 +57,9 @@ function SlashCmdList.Craftie(cmd)
       end)
       for _, v in ipairs(sorted) do
         if (v.num <= Craftie.DEBUGLEVEL) then
-          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. "|CFF9CFFA1[ON]|r", Craftie.CHAT.INFO)
+          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. Craftie.Color.Lime .. "[ON]", Craftie.CHAT.INFO)
         else
-          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. "|CFFFFD19C[OFF]|r", Craftie.CHAT.INFO)
+          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text, 19) .. Craftie.Color.Gray .. "[OFF]", Craftie.CHAT.INFO)
         end
       end
     else

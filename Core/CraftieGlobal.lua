@@ -17,7 +17,7 @@ Craftie._G = {
   Prefix = "Craftie",
   Width  = 860,
   Height = 500,
-  Update = 20260808,
+  Update = 20260908,
   Icon   = "UI-Craftie-Icon",
   Author = "Porthias",
 }
@@ -29,10 +29,9 @@ Craftie._G.Font.Style = "Fonts/FRIZQT__.ttf"
 Craftie._G.Font.StyleA= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf"
 Craftie._G.Font.StyleN= "Fonts/ARIALN.ttf" --numbers
 Craftie._G.Font.Size  = 11
-Craftie._G.Font.Color = "|CFFFF9524"
 
 Craftie._G.Path = "Interface/Addons/".. Craftie._G.Prefix .."/"
-Craftie._G.Title = Craftie._G.Font.Color .. Craftie._L.Title .. "|r"
+Craftie._G.Title = Craftie.Color.Theme .. Craftie._L.Title .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
 Craftie.MAX_REAGENTS = 6
@@ -51,7 +50,7 @@ Craftie.Selected_Player_Index = 1
 Craftie.Selected_Recipe_Index = 1
 Craftie.Selected_ViewAll = "All Alchemy Recipes" --default
 Craftie.Selected_Name = ""
-Craftie.Preload = "|cFF27CCF5Loading Data...|r"
+Craftie.Preload = Craftie.Color.Gold .. "Loading Data...|r"
 Craftie.Page = Craftie.Professions[1][1] --default
 Craftie.Tab = 0
 

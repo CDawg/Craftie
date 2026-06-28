@@ -35,6 +35,18 @@ Craftie._L={}
 
 Craftie.DEBUGLEVEL = 3 --default [INFO | ERROR] | WARN]
 
+Craftie.Color = {
+  Theme = "|CFFFF9524",
+  Blue  = "|CFF4BB4FA",
+  Skyblue="|CFF42DBFF",
+  Yellow= "|CFFFFFB63",
+  Gold  = "|CFFFFDA45",
+  White = "|CFFFFFFFF",
+  Silver= "|CFFDEDEDE",
+  Gray  = "|CFFABABAB",
+  Lime  =  "|CFF9CFFA1",
+}
+
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
   ERROR= {2, "|CFFFF0000ERROR|r"},
@@ -73,9 +85,6 @@ Craftie.Framelevel = {
 
 Craftie.Tooltip = {
   Data   = {},
-  Blue   = "|CFF4BB4FA",
-  Yellow = "|CFFFFD94F",
-  White  = "|CFFDEDEDE",
 }
 
 Craftie.Backdrop = {

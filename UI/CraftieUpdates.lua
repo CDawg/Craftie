@@ -17,7 +17,7 @@ the copyright holders.
 Craftie.Credits = [==[
 Zzaps
 And a few nameless heroes on Dreamscythe
-Written by |cff006aa6Porthias|r (a.k.a. Port)
+Written by Porthias|r (a.k.a. Port)
 ]==]
 
 local dimensions={}
@@ -64,7 +64,7 @@ Craftie.Updates.Data:ClearFocus()
 Craftie.Updates.Data:SetAutoFocus(false)
 Craftie.Updates:Hide()
 
-local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", "|cfffab734 >|r") .. "|n|n|n"
+local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", Craftie.Color.Gold .. " >|r") .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
 Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame)

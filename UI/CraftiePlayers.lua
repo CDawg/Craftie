@@ -333,15 +333,15 @@ for i=1, Craftie.MAX_CRAFTERS do
             if (profMastery > 0) then
               local mastery = Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)][4][profMastery]
               if (mastery) then
-                CraftieTooltip:AddLine("|CFFDEDEDE" .. mastery)
+                CraftieTooltip:AddLine(Craftie.Color.Silver .. mastery)
               end
             end
           end
           CraftieTooltip:AddLine(" ")
-          CraftieTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " "))
+          CraftieTooltip:AddLine(Craftie.Color.Gray .. "Last Update:|n" .. update:gsub("_", " "))
           CraftieTooltip:AddLine(" ")
-          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Blue .. "Right Click", "|CFFEFEFEFPlayer Option Menu")
-          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Blue .. "Enter + Left Click", "|CFFEFEFEFMessage Player")
+          CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. "Right Click", Craftie.Color.Silver .. "Player Option Menu")
+          CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. "Enter + Left Click", Craftie.Color.Silver .. "Message Player")
           CraftieTooltip:Show()
         end
 
@@ -352,7 +352,7 @@ for i=1, Craftie.MAX_CRAFTERS do
       if (i == 1) then
         CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
         CraftieTooltip:AddLine("All ".. Craftie.Page .." Recipes")
-        CraftieTooltip:AddLine("|CFFB5B5B5Showing all phases for " .. Craftie.Game.Name)
+        CraftieTooltip:AddLine(Craftie.Color.Gray .. "Showing all phases for " .. Craftie.Game.Name)
         CraftieTooltip:Show()
       end
     end
