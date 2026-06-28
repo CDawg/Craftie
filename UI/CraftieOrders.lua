@@ -90,7 +90,8 @@ local columns = {
   {"Date",  120, 510},
   {"",      174, 632}
 }
-local column_color = {0.7, 0.6, 0.5, 0.5}
+--local column_color = {0.7, 0.6, 0.5, 0.5}
+local column_color = {1, 0.9, 0.8, 0.4}
 
 Craftie.Frame.ScrollOrderListCol={}
 for k,v in pairs(columns) do
@@ -160,8 +161,8 @@ for i=1, Craftie.MAX_ORDERS do
 
   Craftie.Frame.ScrollOrderListItem[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListItem[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
-  Craftie.Frame.ScrollOrderListItem[i]:SetWidth(columns[2][2])
-  Craftie.Frame.ScrollOrderListItem[i]:SetHeight(dimensions.row.H)
+  --Craftie.Frame.ScrollOrderListItem[i]:SetWidth(columns[2][2])
+  --Craftie.Frame.ScrollOrderListItem[i]:SetHeight(dimensions.row.H)
   Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", columns[2][3]+4, dimensions.row.Y)
   Craftie.Frame.ScrollOrderListItem[i]:SetText("")
   Craftie.Frame.ScrollOrderListItem[i]:EnableMouse(true)

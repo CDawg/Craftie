@@ -120,6 +120,7 @@ CRAFT REAGENTS
 Craftie.Frame.Reagent = {}
 Craftie.Frame.Reagent.Main = {}
 Craftie.Frame.Reagent.Border = {}
+Craftie.Frame.Reagent.BorderGlow = {}
 Craftie.Frame.Reagent.Tooltip = {}
 Craftie.Frame.Reagent.Icon = {}
 Craftie.Frame.Reagent.IconBorder={}
@@ -164,24 +165,27 @@ for i=1, Craftie.MAX_REAGENTS do
   end)
   --Craftie.Frame.Reagent.Main[i]:SetFrameStrata("HIGH")
 
-  --Craftie.Frame.Reagent.Border[i] = CreateFrame("Frame", nil, Craftie.Frame.Reagent.Main[i], "InsetFrameTemplate3", -5)
-  Craftie.Frame.Reagent.Border[i] = CreateFrame("Frame", nil, Craftie.Frame.Reagent.Main[i], "BackdropTemplate", -5)
+  Craftie.Frame.Reagent.Border[i] = CreateFrame("Frame", nil, Craftie.Frame.Reagent.Main[i], "BackdropTemplate", 1)
   Craftie.Frame.Reagent.Border[i]:SetWidth(dimensions.reagent.W-28)
-  Craftie.Frame.Reagent.Border[i]:SetHeight(dimensions.reagent.H)
+  Craftie.Frame.Reagent.Border[i]:SetHeight(dimensions.reagent.H+1)
   Craftie.Frame.Reagent.Border[i]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.Frame.Reagent.Border[i]:SetBackdropColor(0, 0, 0, 0.1)
   Craftie.Frame.Reagent.Border[i]:SetBackdropBorderColor(0.5, 0.5, 0.48, 1)
   Craftie.Frame.Reagent.Border[i]:SetPoint("TOPLEFT", 28, 0)
-  Craftie.Frame.Reagent.Border[i]:SetFrameStrata("LOW")
-  Craftie.Frame.Reagent.Border[i]:Hide()
+  --Craftie.Frame.Reagent.Border[i]:SetFrameStrata("LOW")
+  Craftie.Frame.Reagent.BorderGlow[i] = Craftie.Frame.Reagent.Border[i]:CreateTexture(nil, "OVERLAY")
+  Craftie.Frame.Reagent.BorderGlow[i]:SetSize(Craftie.Frame.Reagent.Border[i]:GetWidth()-4, Craftie.Frame.Reagent.Border[i]:GetHeight()-4)
+  Craftie.Frame.Reagent.BorderGlow[i]:SetPoint("TOPLEFT", 2, -2)
+  Craftie.Frame.Reagent.BorderGlow[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Reagent-Border-Glow.png")
+  Craftie.Frame.Reagent.BorderGlow[i]:SetAlpha(0.6)
+  Craftie.Frame.Reagent.BorderGlow[i]:Hide()
   Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
-  Craftie.Frame.Reagent.Icon[i]:SetSize(36, 36)
+  Craftie.Frame.Reagent.Icon[i]:SetSize(dimensions.reagent.H-2, dimensions.reagent.H-2)
   Craftie.Frame.Reagent.Icon[i]:SetPoint("TOPLEFT", -7, -2)
   Craftie.Frame.Reagent.Icon[i]:SetTexture("Interface/Icons/inv_misc_questionmark")
   Craftie.Frame.Reagent.IconGlow[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "OVERLAY")
-  Craftie.Frame.Reagent.IconGlow[i]:SetSize(36, 36)
+  Craftie.Frame.Reagent.IconGlow[i]:SetSize(Craftie.Frame.Reagent.Icon[i]:GetWidth(), Craftie.Frame.Reagent.Icon[i]:GetHeight())
   Craftie.Frame.Reagent.IconGlow[i]:SetPoint("TOPLEFT", -7, -2)
-  --Craftie.Frame.Reagent.IconGlow[i]:SetTexture("Interface/BUTTONS/CheckButtonGlow")
   Craftie.Frame.Reagent.IconGlow[i]:SetTexture("Interface/ContainerFrame/UI-Icon-QuestBorder")
   Craftie.Frame.Reagent.IconGlow[i]:SetAlpha(0.6)
 

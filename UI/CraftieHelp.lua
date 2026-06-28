@@ -33,7 +33,7 @@ Craftie.Help:SetPoint("TOPLEFT", dimensions.X, dimensions.Y)
 --Craftie.Help:SetFrameStrata("MEDIUM")
 
 Craftie.HelpScrollFrame={}
-Craftie.HelpScrollFrame = CreateFrame("Frame", "Craftie.HelpScrollFrame", Craftie.Help, "InsetFrameTemplate4")
+Craftie.HelpScrollFrame = CreateFrame("Frame", "Craftie.HelpScrollFrame", Craftie.Help, "InsetFrameTemplate3")
 Craftie.HelpScrollFrame:SetWidth(Craftie.Help:GetWidth())
 Craftie.HelpScrollFrame:SetHeight(Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame:SetPoint("TOPLEFT", 0, 0)

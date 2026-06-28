@@ -65,7 +65,6 @@ function Craftie:ClearCraftFrame()
   --GameTooltip:Hide()
   for i=1, Craftie.MAX_REAGENTS do
     Craftie.Frame.Reagent.Main[i]:Hide()
-    Craftie.Frame.Reagent.Border[i]:Hide()
   end
   Craftie.Frame.Item.SourceTitle:Hide()
   Craftie.Frame.Item.SkillText:Hide()
@@ -588,19 +587,7 @@ function Craftie:ItemDetails(item)
   PlaySound(SOUNDKIT.IG_QUEST_LOG_CLOSE)
 
   for i=1, Craftie.MAX_REAGENTS do
-    reagent[i] = 0
-    --Craftie.Frame.Reagent.Main[i]:Hide()
-    --Craftie.Frame.Reagent.Border[i]:Hide()
-    Craftie.Frame.Reagent.Border[i]:Show() --selection was already made, draw backgrounds
-
-    --[==[
-    local back_time = i*0.026
-    C_Timer.After(back_time, function()
-      b_next = b_next +1
-      Craftie.Frame.Reagent.Border[i]:Show()
-      --print("b_next " .. b_next)
-    end)
-    ]==]--
+    Craftie.Frame.Reagent.Main[i]:Hide()
 
     if (not Craftie:IsEmpty(item[5][i])) then
       local r = 0
@@ -612,6 +599,7 @@ function Craftie:ItemDetails(item)
       Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.6)
       Craftie.Frame.Reagent.Border[i]:SetBackdropBorderColor(0.5, 0.5, 0.48, 1)
       Craftie.Frame.Reagent.Border[i]:SetBackdropColor(0, 0, 0, 0.1)
+      Craftie.Frame.Reagent.BorderGlow[i]:Hide()
       Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, 1, 0.8)
       Craftie.Frame.Reagent.IconGlow[i]:Hide()
 
@@ -659,6 +647,7 @@ function Craftie:ItemDetails(item)
       if (inv_count >= inv_req) then
         Craftie.Frame.Reagent.Border[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
         Craftie.Frame.Reagent.Border[i]:SetBackdropColor(1, 1, 0, 0.1)
+        Craftie.Frame.Reagent.BorderGlow[i]:Show()
         Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
         Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, .85, 1)
         Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, .6, 1)
