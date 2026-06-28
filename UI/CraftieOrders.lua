@@ -56,7 +56,6 @@ Craftie.Frame.CraftOrdersBackTopArt:SetTexture(Craftie._G.Path .. "Images/UI-Cra
 --Craftie.Frame.CraftOrdersBackTopArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.CraftOrdersBackTopArt:SetDesaturation(0.3)
 
-
 Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftOrders, "BackdropTemplate")
 Craftie.Frame.ScrollOrderList:SetWidth(Craftie.Frame.CraftOrders:GetWidth()-10)
 Craftie.Frame.ScrollOrderList:SetHeight(Craftie.Frame.CraftOrders:GetHeight()-5)
@@ -150,8 +149,7 @@ for i=1, Craftie.MAX_ORDERS do
       CraftieTooltip:AddLine("|CFFFFFFFF" .. requester .. " is requesting ")
       CraftieTooltip:AddLine(Craftie.Frame.ScrollOrderListItem[i]:GetText() .. "x" .. Craftie.Frame.ScrollOrderListCount[i]:GetText())
       CraftieTooltip:AddLine(" ")
-      CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Enter + Left Click", "|CFFDEDEDEWhisper this player with a response")
-      --CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Right Click",        "|CFFDEDEDEFor more options")
+      CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Blue .. "Enter + Left Click", "|CFFDEDEDEWhisper this player with a response")
       CraftieTooltip:Show()
     end
   end)

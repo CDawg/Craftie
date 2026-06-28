@@ -219,7 +219,7 @@ for i=1, Craftie.MAX_RECIPES do
     --[==[
     CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
     CraftieTooltip:ClearLines()
-    CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Shift + Left Click", "|CFFDEDEDEPaste Link In Chat")
+    CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Blue .. "Shift + Left Click", "|CFFDEDEDEPaste Link In Chat")
     CraftieTooltip:Show()
     ]==]--
   end)

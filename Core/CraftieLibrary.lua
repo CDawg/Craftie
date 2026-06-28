@@ -72,13 +72,10 @@ Craftie.Framelevel = {
 }
 
 Craftie.Tooltip = {
-  Data = {},
-  Color = {
-    "|CFF4BABFA", --blue
-    "|CFF4AB587", --green
-    "|CFFDEDEDE", --white
-    "|CFFFFD94F", --yellow
-  }
+  Data   = {},
+  Blue   = "|CFF4BB4FA",
+  Yellow = "|CFFFFD94F",
+  White  = "|CFFDEDEDE",
 }
 
 Craftie.Backdrop = {

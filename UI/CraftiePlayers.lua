@@ -340,8 +340,8 @@ for i=1, Craftie.MAX_CRAFTERS do
           CraftieTooltip:AddLine(" ")
           CraftieTooltip:AddLine("|CFF8F8F8FLast Update:|n" .. update:gsub("_", " "))
           CraftieTooltip:AddLine(" ")
-          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Right Click", "|CFFEFEFEFPlayer Option Menu")
-          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Color[1] .. "Enter + Left Click", "|CFFEFEFEFMessage Player")
+          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Blue .. "Right Click", "|CFFEFEFEFPlayer Option Menu")
+          CraftieTooltip:AddDoubleLine(Craftie.Tooltip.Blue .. "Enter + Left Click", "|CFFEFEFEFMessage Player")
           CraftieTooltip:Show()
         end
 
