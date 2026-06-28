@@ -1099,37 +1099,54 @@ end
 
 function Craftie:GetCraftOrders()
   local order_index = 0
+
   for i=1, Craftie.MAX_ORDERS do
-    Craftie.Frame.ScrollOrderListNameButton[i]:Hide()
-    Craftie.Frame.ScrollOrderListItemButton[i]:Hide()
+    Craftie.Frame.ScrollOrderListName[i]:SetText("")
+    Craftie.Frame.ScrollOrderListItem[i]:SetText("")
+    Craftie.Frame.ScrollOrderListCount[i]:SetText("")
+    Craftie.Frame.ScrollOrderListDate[i]:SetText("")
+    Craftie.Frame.ScrollOrderListDelete[i]:Hide()
   end
+  Craftie.Frame.ScrollOrderListItemButton[6]:Show()
+  Craftie.Frame.ScrollOrderListItem[6]:SetText("Loading...")
 
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] ~= nil) then
-    for name,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]) do
-      order_index = order_index +1
-      local order = Craftie:Split(v, ",")
-      --local class = order[1]
-      --print("order_index " .. order_index)
-      --print(name .. " | " .. order[1] .. " | " .. order[2])
-      Craftie.Frame.ScrollOrderListName[order_index]:SetText(name)
-      Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[2])
-      Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[3])
-      Craftie.Frame.ScrollOrderListDate[order_index]:SetText(order[4])
-      Craftie.Frame.ScrollOrderListNameButton[order_index]:Show()
-      Craftie.Frame.ScrollOrderListItemButton[order_index]:Show()
-      --Craftie.myFontString:GetStringWidth()
-      Craftie.Frame.ScrollOrderListItemButton[order_index]:SetWidth(20+Craftie.Frame.ScrollOrderListName[order_index]:GetStringWidth()*2)
-
-      local class = tonumber(order[1])
-      local r = Craftie.Class[class][3][1]
-      local g = Craftie.Class[class][3][2]
-      local b = Craftie.Class[class][3][3]
-      Craftie.Frame.ScrollOrderListName[order_index]:SetTextColor(r, g, b, 1)
+  Craftie.Frame.CraftOrders:SetAlpha(0.8)
+  C_Timer.After(0.3, function()
+    for i=1, Craftie.MAX_ORDERS do
+      Craftie.Frame.ScrollOrderListNameButton[i]:Hide()
+      Craftie.Frame.ScrollOrderListItemButton[i]:Hide()
     end
-  end
-  if (order_index >= 1) then
-    Craftie.TabBottom[2].Text:SetText("Orders " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
-  end
+
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] ~= nil) then
+      for name,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]) do
+        order_index = order_index +1
+        local order = Craftie:Split(v, ",")
+        --local class = order[1]
+        --print("order_index " .. order_index)
+        --print(name .. " | " .. order[1] .. " | " .. order[2])
+        Craftie.Frame.ScrollOrderListName[order_index]:SetText(name)
+        Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[2])
+        Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[3])
+        Craftie.Frame.ScrollOrderListDate[order_index]:SetText(order[4])
+        Craftie.Frame.ScrollOrderListNameButton[order_index]:Show()
+        Craftie.Frame.ScrollOrderListItemButton[order_index]:Show()
+            Craftie.Frame.ScrollOrderListDelete[order_index]:Show()
+        --Craftie.myFontString:GetStringWidth()
+        Craftie.Frame.ScrollOrderListItemButton[order_index]:SetWidth(20+Craftie.Frame.ScrollOrderListName[order_index]:GetStringWidth()*2)
+
+        local class = tonumber(order[1])
+        local r = Craftie.Class[class][3][1]
+        local g = Craftie.Class[class][3][2]
+        local b = Craftie.Class[class][3][3]
+        Craftie.Frame.ScrollOrderListName[order_index]:SetTextColor(r, g, b, 1)
+      end
+    end
+
+    if (order_index >= 1) then
+      Craftie.TabBottom[2].Text:SetText("Orders " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
+    end
+    Craftie.Frame.CraftOrders:SetAlpha(1)
+  end)
   Craftie:Notification("Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)
 end
 

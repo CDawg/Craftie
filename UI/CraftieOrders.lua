@@ -39,7 +39,6 @@ Craftie.Frame.CraftOrders= CreateFrame("Frame", "Craftie.Frame.CraftOrders", Cra
 Craftie.Frame.CraftOrders:SetWidth(dimensions.parent.W)
 Craftie.Frame.CraftOrders:SetHeight(dimensions.parent.H)
 Craftie.Frame.CraftOrders:SetPoint("TOPLEFT", dimensions.parent.X, dimensions.parent.Y)
---Craftie.Frame.CraftOrders:SetFrameStrata("MEDIUM")
 Craftie.Frame.CraftOrders:Hide()
 
 Craftie.Frame.CraftOrdersBackTop={}
@@ -47,7 +46,7 @@ Craftie.Frame.CraftOrdersBackTop= CreateFrame("Frame", "Craftie.Frame.CraftOrder
 Craftie.Frame.CraftOrdersBackTop:SetWidth(Craftie.Frame.CraftOrders:GetWidth())
 Craftie.Frame.CraftOrdersBackTop:SetHeight(Craftie.Frame.CraftOrders:GetHeight())
 Craftie.Frame.CraftOrdersBackTop:SetPoint("TOPRIGHT", 0, 0)
-Craftie.Frame.CraftOrdersBackTop:SetFrameStrata("LOW") --Blizzard's UI is so broken and hacky
+Craftie.Frame.CraftOrdersBackTop:SetFrameStrata("LOW") --bugfix: Blizzard's UI is so broken and hacky
 Craftie.Frame.CraftOrdersBackTopArt = Craftie.Frame.CraftOrdersBackTop:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.CraftOrdersBackTopArt:SetWidth(Craftie.Frame.CraftOrdersBackTop:GetWidth())
 Craftie.Frame.CraftOrdersBackTopArt:SetHeight(Craftie.Frame.CraftOrdersBackTop:GetHeight())
@@ -56,12 +55,49 @@ Craftie.Frame.CraftOrdersBackTopArt:SetTexture(Craftie._G.Path .. "Images/UI-Cra
 --Craftie.Frame.CraftOrdersBackTopArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.CraftOrdersBackTopArt:SetDesaturation(0.3)
 
-Craftie.Frame.CraftRefresh = CreateFrame("Button", nil, Craftie.Frame.CraftOrders, "UIPanelButtonTemplate")
-Craftie.Frame.CraftRefresh:SetWidth(32)
-Craftie.Frame.CraftRefresh:SetHeight(80)
-Craftie.Frame.CraftRefresh:SetPoint("TOPRIGHT", 0, -60)
---Craftie.Frame.CraftRefresh:SetBackdrop(Craftie.Backdrop.Borderless)
---Craftie.Frame.CraftRefresh:SetBackdropColor(column_color[1], column_color[2], column_color[3], column_color[4])
+Craftie.Frame.CraftOrdersRefresh = CreateFrame("Button", nil, Craftie.Frame.CraftOrders, "UIPanelButtonTemplate")
+Craftie.Frame.CraftOrdersRefresh:SetWidth(24)
+Craftie.Frame.CraftOrdersRefresh:SetHeight(24)
+Craftie.Frame.CraftOrdersRefresh:SetPoint("TOPRIGHT", -55, 30)
+Craftie.Frame.CraftOrdersRefresh:SetFrameStrata("MEDIUM")
+Craftie.Frame.CraftOrdersRefresh.icon = Craftie.Frame.CraftOrdersRefresh:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.CraftOrdersRefresh.icon:SetSize(12, 12)
+Craftie.Frame.CraftOrdersRefresh.icon:SetPoint("CENTER", 0, -1)
+Craftie.Frame.CraftOrdersRefresh.icon:SetTexture("Interface/Buttons/UI-RefreshButton")
+Craftie.Frame.CraftOrdersRefresh:SetScript("OnEnter", function(self)
+  CraftieTooltip:ClearLines()
+  CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+  CraftieTooltip:AddLine("Refresh")
+  CraftieTooltip:Show()
+end)
+Craftie.Frame.CraftOrdersRefresh:SetScript("OnLeave", function(self)
+  CraftieTooltip:Hide()
+end)
+Craftie.Frame.CraftOrdersRefresh:SetScript("OnClick", function(self)
+  Craftie:GetCraftOrders()
+end)
+
+Craftie.Frame.CraftOrdersDeleteAll = CreateFrame("Button", nil, Craftie.Frame.CraftOrders, "UIPanelButtonTemplate")
+Craftie.Frame.CraftOrdersDeleteAll:SetWidth(24)
+Craftie.Frame.CraftOrdersDeleteAll:SetHeight(24)
+Craftie.Frame.CraftOrdersDeleteAll:SetPoint("TOPRIGHT", -30, 30)
+Craftie.Frame.CraftOrdersDeleteAll:SetFrameStrata("MEDIUM")
+Craftie.Frame.CraftOrdersDeleteAll.icon = Craftie.Frame.CraftOrdersDeleteAll:CreateTexture(nil, "ARTWORK")
+Craftie.Frame.CraftOrdersDeleteAll.icon:SetSize(12, 12)
+Craftie.Frame.CraftOrdersDeleteAll.icon:SetPoint("CENTER", 0, -1)
+Craftie.Frame.CraftOrdersDeleteAll.icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Button-Delete.png")
+Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnEnter", function(self)
+  CraftieTooltip:ClearLines()
+  CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+  CraftieTooltip:AddLine("Delete All")
+  CraftieTooltip:Show()
+end)
+Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnLeave", function(self)
+  CraftieTooltip:Hide()
+end)
+Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnClick", function(self)
+  --Craftie:GetCraftOrders()
+end)
 
 Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftOrders, "BackdropTemplate")
 Craftie.Frame.ScrollOrderList:SetWidth(Craftie.Frame.CraftOrders:GetWidth()-10)
@@ -90,6 +126,7 @@ Craftie.Frame.ScrollOrderListItem={}
 Craftie.Frame.ScrollOrderListCount={}
 Craftie.Frame.ScrollOrderListDate={}
 Craftie.Frame.ScrollOrderListSelect={}
+Craftie.Frame.ScrollOrderListDelete={}
 
 local columns = {
   {"Player",150, 4},
@@ -130,6 +167,36 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListRow[i]:SetScript("OnLeave", function(self)
     self:SetBackdropColor(0, 0, 0, 0)
   end)
+
+  Craftie.Frame.ScrollOrderListDelete[i] = CreateFrame("Button", nil, Craftie.Frame.ScrollOrderListRow[i], "UIPanelButtonTemplate")
+  Craftie.Frame.ScrollOrderListDelete[i]:SetWidth(24)
+  Craftie.Frame.ScrollOrderListDelete[i]:SetHeight(24)
+  Craftie.Frame.ScrollOrderListDelete[i]:SetPoint("TOPRIGHT", -30, 0)
+  --Craftie.Frame.ScrollOrderListDelete[i]:SetFrameStrata("MEDIUM")
+  Craftie.Frame.ScrollOrderListDelete[i].icon = Craftie.Frame.ScrollOrderListDelete[i]:CreateTexture(nil, "ARTWORK")
+  Craftie.Frame.ScrollOrderListDelete[i].icon:SetSize(12, 12)
+  Craftie.Frame.ScrollOrderListDelete[i].icon:SetPoint("CENTER", 0, -1)
+  Craftie.Frame.ScrollOrderListDelete[i].icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Button-Delete.png")
+  Craftie.Frame.ScrollOrderListDelete[i]:Hide()
+  Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnEnter", function(self)
+    --local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
+    --if ((requester ~= "") and (requester ~= nil)) then
+      CraftieTooltip:ClearLines()
+      CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
+      --CraftieTooltip:AddLine("Delete Order For " .. requester)
+      CraftieTooltip:AddLine("Delete Order")
+      CraftieTooltip:Show()
+    --end
+  end)
+  Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnLeave", function(self)
+    CraftieTooltip:Hide()
+  end)
+  Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnClick", function(self)
+    local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
+    if ((requester ~= "") and (requester ~= nil)) then
+    end
+  end)
+
   Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())
   Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
@@ -141,7 +208,7 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListNameButton[i]:SetSize(columns[1][2], dimensions.row.H)
   Craftie.Frame.ScrollOrderListNameButton[i]:SetPoint("TOPLEFT", 4, 0)
   Craftie.Frame.ScrollOrderListNameButton[i]:SetBackdrop(Craftie.Backdrop.Borderless)
-  Craftie.Frame.ScrollOrderListNameButton[i]:SetBackdropColor(0, 1, 0, 0.1)
+  Craftie.Frame.ScrollOrderListNameButton[i]:SetBackdropColor(0, 1, 0, 0)
   Craftie.Frame.ScrollOrderListName[i] = Craftie.Frame.ScrollOrderListNameButton[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollOrderListName[i]:SetPoint("TOPLEFT", 4, -6)
@@ -176,7 +243,7 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListItemButton[i]:SetSize(columns[2][2], dimensions.row.H)
   Craftie.Frame.ScrollOrderListItemButton[i]:SetPoint("TOPLEFT", columns[2][3], 0)
   Craftie.Frame.ScrollOrderListItemButton[i]:SetBackdrop(Craftie.Backdrop.Borderless)
-  Craftie.Frame.ScrollOrderListItemButton[i]:SetBackdropColor(1, 0, 0, 0.4)
+  Craftie.Frame.ScrollOrderListItemButton[i]:SetBackdropColor(1, 0, 0, 0)
   Craftie.Frame.ScrollOrderListItem[i] = Craftie.Frame.ScrollOrderListItemButton[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListItem[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollOrderListItem[i]:SetPoint("TOPLEFT", 4, -6)
