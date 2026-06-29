@@ -14,7 +14,7 @@ the copyright holders.
 ]==]--
 
 --need to localize the commands
-Craftie.Commands = {
+local commands = {
   {"options","settings"},
   {"debug",  "info here"},
   {"log",    "log here"},
@@ -25,24 +25,18 @@ function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then
     Craftie:Open()
     Craftie:Notification("Commands:", Craftie.CHAT.INFO)
-    for k,v in pairs(Craftie.Commands) do
-      print(" " .. v[1] .. " | " .. v[2])
+    for k,v in pairs(commands) do
+      print(v[1] .. " | " .. v[2])
     end
 	end
 	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
-	--if (cmd == Craftie._L.COMMANDS[1][1]) then
-	  --Craftie.FrameOptions:Show()
-  --end
-  if (cmd == "options") then
+
+  if (cmd == commands[1][1]) then
     Settings.OpenToCategory(Craftie.Settings.Category:GetID())
     Craftie.Frame:Hide()
   end
 
-  if (cmd == "log") then
-    Craftie.Logger:Show()
-  end
-
-  if (cmd == "debug") then
+  if (cmd == commands[2][1]) then
     local count = 0
     for i in pairs(Craftie.CHAT) do
       count = count+1
@@ -76,6 +70,10 @@ function SlashCmdList.Craftie(cmd)
       Craftie:Notification("Debug Level set to " .. Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
     end
     Craftie:Notification("Debug Level = " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
+  end
+
+  if (cmd == commands[3][1]) then
+    Craftie.Logger:Show()
   end
 
 end
