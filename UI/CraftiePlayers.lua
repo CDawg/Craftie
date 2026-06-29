@@ -527,7 +527,7 @@ Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnLeave", function(self)
 end)
 Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnClick", function(self)
   --Craftie:CloseAllPlayerMenus()
-  --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][crafter] = nil
+  --Craftie.Save.Account.BLOB[Craftie.Page:upper()][crafter] = nil
 
   Craftie.Frame.ScrollPlayersListSubMenu:Hide()
   Craftie:Dialog("Remove " .. Craftie.Selected_Name .. " from " .. Craftie.Page .. "?")
@@ -535,8 +535,8 @@ Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnClick", function(self)
   CraftieDialog.Yes:SetScript("OnClick", function(self)
     self:GetParent():Hide()
     Craftie:CloseAllPlayerMenus()
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][Craftie.Selected_Name]) then
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][Craftie.Selected_Name] = nil
+    if (Craftie.Save.Account.BLOB[Craftie.Page:upper()][Craftie.Selected_Name]) then
+      Craftie.Save.Account.BLOB[Craftie.Page:upper()][Craftie.Selected_Name] = nil
       Craftie:Notification("Removed: " .. Craftie.Selected_Name .. " from " .. Craftie.Page, Craftie.CHAT.SAVE)
     end
     C_Timer.After(0.1, function()
@@ -544,7 +544,7 @@ Craftie.Frame.ScrollPlayersListSubMenuDelete:SetScript("OnClick", function(self)
     end)
   end)
 
-  --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][crafter] = nil
+  --Craftie.Save.Account.BLOB[Craftie.Page:upper()][crafter] = nil
   --Craftie:UpdateCrafterList()
 end)
 
