@@ -96,7 +96,28 @@ Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnLeave", function(self)
   CraftieTooltip:Hide()
 end)
 Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnClick", function(self)
-  --Craftie:GetCraftOrders()
+  Craftie:Dialog("Delete All Orders?")
+  CraftieDialog.Yes:Show()
+  CraftieDialog.Yes:SetScript("OnClick", function(self)
+    self:GetParent():Hide()
+
+    local orders = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]
+    if (orders ~= nil) then
+      for k,v in pairs(orders) do
+        orders[k] = nil
+      end
+    end
+
+    C_Timer.After(0.2, function()
+      Craftie:GetCraftOrders()
+      Craftie:CloseAllPlayerMenus()
+    end)
+  end)
+
+  Craftie.Frame.ScrollOrderList.Child:SetAlpha(0.6)
+  Craftie.Frame.ScrollOrderList.Child:EnableMouse(false)
+  Craftie.Frame.ScrollOrderList.Child:EnableMouseWheel(false)
+  Craftie.Frame.ScrollOrderList.Child.ScrollBar:Hide()
 end)
 
 Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftOrders, "BackdropTemplate")
@@ -194,7 +215,11 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnClick", function(self)
     local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
     if ((requester ~= "") and (requester ~= nil)) then
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"][requester] = nil
     end
+    C_Timer.After(0.2, function()
+      Craftie:GetCraftOrders()
+    end)
   end)
 
   Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")

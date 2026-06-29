@@ -56,6 +56,11 @@ function Craftie:CloseAllPlayerMenus()
   Craftie.Frame.ScrollRecipesList.Child:EnableMouseWheel(true)
   Craftie.Frame.ScrollRecipesList.Child.ScrollBar:Show()
 
+  Craftie.Frame.ScrollOrderList.Child:SetAlpha(1)
+  Craftie.Frame.ScrollOrderList.Child:EnableMouse(true)
+  Craftie.Frame.ScrollOrderList.Child:EnableMouseWheel(true)
+  Craftie.Frame.ScrollOrderList.Child.ScrollBar:Show()
+
   Craftie.EnableScrollFrames = true
 end
 
@@ -1236,8 +1241,6 @@ function Craftie:Dialog(text, func)
   CraftieDialog.Text:SetText(text)
 end
 
-
-Craftie.Tooltip.Data = nil
 function Craftie:UpdatePlayerTooltip(channel)
   if (Craftie.Throttle.Chat.Flag == 1) then
     Craftie:Notification("Craftie:UpdatePlayerTooltip(" .. channel .. ")", Craftie.CHAT.FUNC)
