@@ -33,8 +33,6 @@ Craftie = {
 }
 Craftie._L={}
 
-Craftie.DEBUGLEVEL = 3 --default [INFO | ERROR] | WARN]
-
 Craftie.Color = {
   Theme = "|CFFFF9524",
   Blue  = "|CFF4BB4FA",
@@ -46,6 +44,8 @@ Craftie.Color = {
   Gray  = "|CFFABABAB",
   Lime  =  "|CFF9CFFA1",
 }
+
+Craftie.DEBUGLEVEL = 3 --default [INFO | ERROR] | WARN]
 
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
@@ -65,14 +65,15 @@ Craftie.Date = date("%y-%m-%d_%H:%M:%S")
 Craftie.PlayerGUIDProf = {}
 Craftie.NumGuildMembers = 0
 Craftie.IsInCombat = false
-Craftie.Throttle = {}
-Craftie.Throttle.Chat = {
-  Timer = 20,
-  Flag = 1
-}
-Craftie.Throttle.Prof = {
-  Timer = 20,
-  Flag = 1
+Craftie.Throttle = {
+  Chat = {
+    Timer= 20,
+    Flag = 1
+  },
+  Prof = {
+    Timer= 20,
+    Flag = 1
+  }
 }
 
 Craftie.Framelevel = {
@@ -84,7 +85,7 @@ Craftie.Framelevel = {
 }
 
 Craftie.Tooltip = {
-  Data   = {},
+  Data = {},
 }
 
 Craftie.Backdrop = {

@@ -13,15 +13,14 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-Craftie.NavTabs = {"Professions", "Orders", "Updates", "Help"}
-
-local bottomTabOffset = 350
+local TabNames = {"Professions", "Orders", "Updates", "Help"}
+local TabOffset = 350
 
 Craftie.TabBottom={}
-for k,v in pairs(Craftie.NavTabs) do
+for k,v in pairs(TabNames) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(80, 38)
-  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -bottomTabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -34)
+  Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -TabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -34)
   Craftie.TabBottom[k]:SetBackdrop(Craftie.Backdrop.General)
   Craftie.TabBottom[k]:SetBackdropColor(0, 1, 0, 0)
   Craftie.TabBottom[k]:SetBackdropBorderColor(1, 1, 1, 0)
@@ -67,7 +66,7 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.ItemerLevel:Hide()
   Craftie.Frame.ItemerProgBarS:Hide()
 
-  for k,v in pairs(Craftie.NavTabs) do
+  for k,v in pairs(TabNames) do
     Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
   end
@@ -107,7 +106,7 @@ function Craftie:TabSelectBottom(tab, sound)
 
   Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Active.png")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
-  Craftie.Frame.Title.Sub:SetText(Craftie.NavTabs[tab])
+  Craftie.Frame.Title.Sub:SetText(TabNames[tab])
 end
 
 --first tab
