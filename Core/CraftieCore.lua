@@ -1105,6 +1105,7 @@ end
 function Craftie:GetCraftOrders()
   local order_index = 0
 
+  Craftie.Frame.CraftOrdersDeleteAll:Disable()
   for i=1, Craftie.MAX_ORDERS do
     Craftie.Frame.ScrollOrderListName[i]:SetText("")
     Craftie.Frame.ScrollOrderListItem[i]:SetText("")
@@ -1148,6 +1149,7 @@ function Craftie:GetCraftOrders()
     end
 
     if (order_index >= 1) then
+      Craftie.Frame.CraftOrdersDeleteAll:Enable()
       Craftie.TabBottom[2].Text:SetText("Orders " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
     end
     Craftie.Frame.CraftOrders:SetAlpha(1)

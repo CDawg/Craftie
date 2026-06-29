@@ -57,7 +57,7 @@ Craftie.Color = {
   Lime  =  "|CFF9CFFA1",
 }
 
-Craftie.DEBUGLEVEL = 3 --default [INFO | ERROR] | WARN]
+Craftie.DEBUGLEVEL = 10 --default [INFO | ERROR] | WARN]
 
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},

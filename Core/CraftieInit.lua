@@ -41,5 +41,4 @@ function Craftie:Init()
 
   --whisper self to prep incoming comms
   Craftie:SendPacket(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
-
 end

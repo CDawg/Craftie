@@ -27,8 +27,8 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
-    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
   end
 
   --same server, diff faction
@@ -36,11 +36,11 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction] = {}
   end
 
-  --crafter directory shared with same faction and server. dont overwrite
+  --crafter directory shared with same faction and server. do not overwrite
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] == nil) then
     Craftie:Notification("Building New Crafter Directory: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction, Craftie.CHAT.INFO)
-    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] = {} --shared across characters for server & faction
-    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"] = {} --shared across characters for server & faction
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] = {} --binary link object
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"]= {} --cache list built for multi search indexing
 
     for k,v in pairs(Craftie.Professions) do
       CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()] = {} --organize by prof
@@ -48,18 +48,15 @@ function Craftie:SaveData()
     end
   end
 
+  --new characters, same realm
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] == nil) then
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
-    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
-
-    Craftie.Save.Player.CONFIG= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
-    Craftie.Save.Player.ORDERS= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]
-    Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
   else
-    Craftie.Save.Player.CONFIG = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
-    Craftie.Save.Player.ORDERS = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]
+    Craftie.Save.Player.CONFIG= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
+    Craftie.Save.Player.ORDERS= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"]
     Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
 
     if (Craftie.Save.Player.CONFIG["POS_MAIN"]) then
@@ -87,13 +84,12 @@ function Craftie:SaveData()
       Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1], minimapIconPos[2])
     end
 
-    --if (Craftie.Save.Player.CONFIG["SHARE"]) then
-      --disable sharing across characters of same server and faction?
-    --end
-
     Craftie:Notification("Loading Profile: [" ..  Craftie.Player.Faction .. "]".. Craftie.Player.Realm .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
   end
 
+  Craftie.Save.Player.CONFIG= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
+  Craftie.Save.Player.ORDERS= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"]
+  Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
   Craftie.Save.Account.BLOB = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"]
   Craftie.Save.Account.CACHE= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"]
 end
