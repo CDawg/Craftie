@@ -101,7 +101,7 @@ Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnClick", function(self)
   CraftieDialog.Yes:SetScript("OnClick", function(self)
     self:GetParent():Hide()
 
-    local orders = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]
+    local orders = Craftie.Save.Player.ORDERS
     if (orders ~= nil) then
       for k,v in pairs(orders) do
         orders[k] = nil
@@ -215,7 +215,7 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnClick", function(self)
     local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
     if ((requester ~= "") and (requester ~= nil)) then
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"][requester] = nil
+      Craftie.Save.Player.ORDERS[requester] = nil
     end
     C_Timer.After(0.2, function()
       Craftie:GetCraftOrders()

@@ -40,7 +40,7 @@ Craftie.Save = {
   },
   Player = { --individually
     CONFIG= {},
-    ORDER = {},
+    ORDERS= {},
     FAVS =  {},
   },
 }

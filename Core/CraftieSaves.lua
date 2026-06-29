@@ -31,7 +31,7 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
   end
 
-  --diff faction
+  --same server, diff faction
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction] == nil) then
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction] = {}
   end
@@ -52,36 +52,48 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
+    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
+
+    Craftie.Save.Player.CONFIG= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
+    Craftie.Save.Player.ORDERS= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]
+    Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
   else
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MAIN"]) then
+    Craftie.Save.Player.CONFIG = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
+    Craftie.Save.Player.ORDERS = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]
+    Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
+
+    if (Craftie.Save.Player.CONFIG["POS_MAIN"]) then
       local FramePos = {}
-      FramePos = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MAIN"], ",")
+      FramePos = Craftie:Split(Craftie.Save.Player.CONFIG["POS_MAIN"], ",")
       Craftie.Frame:ClearAllPoints()
       Craftie.Frame:SetPoint(FramePos[1], tonumber(FramePos[2]), tonumber(FramePos[3]))
     end
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_LOGGER"]) then
+    if (Craftie.Save.Player.CONFIG["POS_LOGGER"]) then
       local FramePos = {}
-      FramePos = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_LOGGER"], ",")
+      FramePos = Craftie:Split(Craftie.Save.Player.CONFIG["POS_LOGGER"], ",")
       Craftie.Logger:ClearAllPoints()
       Craftie.Logger:SetPoint(FramePos[1], tonumber(FramePos[2]), tonumber(FramePos[3]))
     end
 
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"]) then
-      Craftie.DEBUGLEVEL = tonumber(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["DEBUGLEVEL"])
+    if (Craftie.Save.Player.CONFIG["DEBUGLEVEL"]) then
+      Craftie.DEBUGLEVEL = tonumber(Craftie.Save.Player.CONFIG["DEBUGLEVEL"])
     end
 
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"]) then
-      local minimapIconPos = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"], ",")
+    if (Craftie.Save.Player.CONFIG["POS_MINIMAP"]) then
+      local minimapIconPos = Craftie:Split(Craftie.Save.Player.CONFIG["POS_MINIMAP"], ",")
       --print("Getpoint " .. Craftie.Frame.Button.Minimap:GetPoint())
       --print("Setpoint " .. "TOPLEFT, Minimap, TOPLEFT" .. "," .. minimapIconPos[1] .. "," .. minimapIconPos[2])
       Craftie:UpdateMapButton()
       Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1], minimapIconPos[2])
     end
 
-    --if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["SHARE"]) then
+    --if (Craftie.Save.Player.CONFIG["SHARE"]) then
       --disable sharing across characters of same server and faction?
     --end
 
     Craftie:Notification("Loading Profile: [" ..  Craftie.Player.Faction .. "]".. Craftie.Player.Realm .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
   end
+
+  Craftie.Save.Account.BLOB = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"]
+  Craftie.Save.Account.CACHE= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"]
 end

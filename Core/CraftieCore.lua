@@ -527,11 +527,11 @@ function Craftie:ParsePacket(netpacket)
     if (prefix == Craftie.Packet.Prefix.Order) then
       --print(packet[3] .. " | " .. packet[4])
       if ((packet[3] ~= nil) and (packet[5] ~= nil)) then
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] == nil) then
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] = {}
+        if (Craftie.Save.Player.ORDERS == nil) then
+          Craftie.Save.Player.ORDERS = {}
         end
         C_Timer.After(0.1, function()
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"][packet[3]] = packet[4] .. "," .. packet[5] .. "," .. packet[6] .. "," .. Craftie.Date
+          Craftie.Save.Player.ORDERS[packet[3]] = packet[4] .. "," .. packet[5] .. "," .. packet[6] .. "," .. Craftie.Date
         end)
         C_Timer.After(0.2, function()
           Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[5], Craftie.CHAT.FUNC)
@@ -1122,8 +1122,8 @@ function Craftie:GetCraftOrders()
       Craftie.Frame.ScrollOrderListItemButton[i]:Hide()
     end
 
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"] ~= nil) then
-      for name,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDER"]) do
+    if (Craftie.Save.Player.ORDERS ~= nil) then
+      for name,v in pairs(Craftie.Save.Player.ORDERS) do
         order_index = order_index +1
         local order = Craftie:Split(v, ",")
         --local class = order[1]
@@ -1215,7 +1215,7 @@ function Craftie:SaveMapButtonPos()
   Craftie:UpdateMapButton()
   C_Timer.After(0.1, function()
     local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame.Button.Minimap:GetPoint()
-    CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
+    Craftie.Save.Player.CONFIG["POS_MINIMAP"] = math.ceil(xOfs) .. "," .. math.ceil(yOfs)
     --print(point .. "," .. math.ceil(xOfs) .. "," .. math.ceil(yOfs))
     Craftie:Notification("Craftie:SaveMapButtonPos() = " .. math.ceil(xOfs) .. "," .. math.ceil(yOfs), Craftie.CHAT.SAVE)
   end)
