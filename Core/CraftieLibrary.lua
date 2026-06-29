@@ -33,6 +33,18 @@ Craftie = {
 }
 Craftie._L={}
 
+Craftie.Save = {
+  Account = { --account wide
+    BLOB  = {}, --binary link object
+    CACHE = {},
+  },
+  Player = { --individually
+    CONFIG= {},
+    ORDER = {},
+    FAVS =  {},
+  },
+}
+
 Craftie.Color = {
   Theme = "|CFFFF9524",
   Blue  = "|CFF4BB4FA",
