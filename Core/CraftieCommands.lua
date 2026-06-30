@@ -15,9 +15,10 @@ the copyright holders.
 
 --need to localize the commands
 local commands = {
-  {"options","settings"},
-  {"debug",  "info here"},
-  {"log",    "log here"},
+  {"options", "Settings"},
+  {"debug",   "info here"},
+  {"log",     "Open The Debug Logger"},
+  {"delete",  "Delete a table [config | crafters | orders | favs]"},
 }
 
 SLASH_Craftie1 = "/" .. Craftie._G.Prefix:lower()
@@ -26,7 +27,7 @@ function SlashCmdList.Craftie(cmd)
     Craftie:Open()
     Craftie:Notification("Commands:", Craftie.CHAT.INFO)
     for k,v in pairs(commands) do
-      print(v[1] .. " | " .. v[2])
+      print(Craftie.Color.Lime .. v[1] .. "|r    " .. v[2])
     end
 	end
 	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
@@ -74,6 +75,28 @@ function SlashCmdList.Craftie(cmd)
 
   if (cmd == commands[3][1]) then
     Craftie.Logger:Show()
+  end
+
+  if (cmd == commands[4][1]) then
+    if ((args == "") or (args == nil)) then
+      print("|n" .. commands[4][2] .. "|n")
+    end
+    if (args == "config") then
+      if (Craftie.Save.Player.CONFIG ~= nil) then
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
+      end
+      ReloadUI()
+    end
+    if (args == "orders") then
+      if (Craftie.Save.Player.ORDERS ~= nil) then
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
+        Craftie:GetCraftOrders()
+      end
+    end
+  end
+
+  if ((cmd == nil) or (cmd == "")) then
+    print("|n")
   end
 
 end

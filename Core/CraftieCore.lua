@@ -528,7 +528,7 @@ function Craftie:ParsePacket(netpacket)
       --print(packet[3] .. " | " .. packet[4])
       if ((packet[3] ~= nil) and (packet[5] ~= nil)) then
         if (Craftie.Save.Player.ORDERS == nil) then
-          Craftie.Save.Player.ORDERS = {} --doesnt exist, just build it
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {} --doesnt exist, just build it
           Craftie:Notification("Building new Orders table", Craftie.CHAT.FUNC)
         end
         C_Timer.After(0.1, function()
