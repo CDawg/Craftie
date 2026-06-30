@@ -466,7 +466,6 @@ Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnClick", function(self)
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] ~= nil) then
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] == 1) then
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] = 0
-        print("removed " .. Craftie.Selected_Name)
       else
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"][Craftie.Page:upper()][Craftie.Selected_Name] = 1
       end

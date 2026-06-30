@@ -529,7 +529,7 @@ function Craftie:ParsePacket(netpacket)
       if ((packet[3] ~= nil) and (packet[5] ~= nil)) then
         if (Craftie.Save.Player.ORDERS == nil) then
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {} --doesnt exist, just build it
-          Craftie:Notification("Building new Orders table", Craftie.CHAT.FUNC)
+          Craftie:Notification("Building New Orders table", Craftie.CHAT.FUNC)
         end
         C_Timer.After(0.1, function()
           Craftie.Save.Player.ORDERS[packet[3]] = packet[4] .. "," .. packet[5] .. "," .. packet[6] .. "," .. Craftie.Date
@@ -1128,18 +1128,15 @@ function Craftie:GetCraftOrders()
       for name,v in pairs(Craftie.Save.Player.ORDERS) do
         order_index = order_index +1
         local order = Craftie:Split(v, ",")
-        --local class = order[1]
-        --print("order_index " .. order_index)
-        --print(name .. " | " .. order[1] .. " | " .. order[2])
         Craftie.Frame.ScrollOrderListName[order_index]:SetText(name)
         Craftie.Frame.ScrollOrderListItem[order_index]:SetText(order[2])
         Craftie.Frame.ScrollOrderListCount[order_index]:SetText(order[3])
         Craftie.Frame.ScrollOrderListDate[order_index]:SetText(order[4])
         Craftie.Frame.ScrollOrderListNameButton[order_index]:Show()
         Craftie.Frame.ScrollOrderListItemButton[order_index]:Show()
-            Craftie.Frame.ScrollOrderListDelete[order_index]:Show()
-        --Craftie.myFontString:GetStringWidth()
-        Craftie.Frame.ScrollOrderListItemButton[order_index]:SetWidth(20+Craftie.Frame.ScrollOrderListName[order_index]:GetStringWidth()*2)
+        Craftie.Frame.ScrollOrderListDelete[order_index]:Show()
+        Craftie.Frame.ScrollOrderListNameButton[order_index]:SetWidth(Craftie.Frame.ScrollOrderListName[order_index]:GetStringWidth()+10)
+        Craftie.Frame.ScrollOrderListItemButton[order_index]:SetWidth(Craftie.Frame.ScrollOrderListItem[order_index]:GetStringWidth()+10)
 
         local class = tonumber(order[1])
         local r = Craftie.Class[class][3][1]

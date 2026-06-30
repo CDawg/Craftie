@@ -87,7 +87,8 @@ function SlashCmdList.Craftie(cmd)
     end
     if (args == "orders") then
       CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
-      Craftie:GetCraftOrders()
+      --Craftie:GetCraftOrders()
+      ReloadUI()
     end
   end
 
