@@ -298,7 +298,7 @@ for i=1, Craftie.MAX_ORDERS do
   end)
 
   Craftie.Frame.ScrollOrderListCount[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollOrderListCount[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+1, "SLUG")
+  Craftie.Frame.ScrollOrderListCount[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "SLUG")
   Craftie.Frame.ScrollOrderListCount[i]:SetPoint("TOPLEFT", columns[3][3]+4, dimensions.row.Y)
   Craftie.Frame.ScrollOrderListCount[i]:SetText("")
   Craftie.Frame.ScrollOrderListCount[i]:SetTextColor(1, 1, 1, 0.8)
