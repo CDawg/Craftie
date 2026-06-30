@@ -528,7 +528,8 @@ function Craftie:ParsePacket(netpacket)
       --print(packet[3] .. " | " .. packet[4])
       if ((packet[3] ~= nil) and (packet[5] ~= nil)) then
         if (Craftie.Save.Player.ORDERS == nil) then
-          Craftie.Save.Player.ORDERS = {}
+          Craftie.Save.Player.ORDERS = {} --doesnt exist, just build it
+          Craftie:Notification("Building new Orders table", Craftie.CHAT.FUNC)
         end
         C_Timer.After(0.1, function()
           Craftie.Save.Player.ORDERS[packet[3]] = packet[4] .. "," .. packet[5] .. "," .. packet[6] .. "," .. Craftie.Date

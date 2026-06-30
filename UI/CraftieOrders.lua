@@ -67,7 +67,7 @@ Craftie.Frame.CraftOrdersRefresh.icon:SetTexture("Interface/Buttons/UI-RefreshBu
 Craftie.Frame.CraftOrdersRefresh:SetScript("OnEnter", function(self)
   CraftieTooltip:ClearLines()
   CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
-  CraftieTooltip:AddLine("Refresh")
+  CraftieTooltip:AddLine(Craftie.Color.Silver .. "Refresh")
   CraftieTooltip:Show()
 end)
 Craftie.Frame.CraftOrdersRefresh:SetScript("OnLeave", function(self)
@@ -107,6 +107,7 @@ Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnClick", function(self)
         orders[k] = nil
       end
     end
+    Craftie:Notification("Deleted All Orders", Craftie.CHAT.FUNC)
 
     C_Timer.After(0.2, function()
       Craftie:GetCraftOrders()
@@ -200,14 +201,14 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListDelete[i].icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Button-Delete.png")
   Craftie.Frame.ScrollOrderListDelete[i]:Hide()
   Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnEnter", function(self)
-    --local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
-    --if ((requester ~= "") and (requester ~= nil)) then
+    local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
+    if ((requester ~= "") and (requester ~= nil)) then
       CraftieTooltip:ClearLines()
       CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
       --CraftieTooltip:AddLine("Delete Order For " .. requester)
-      CraftieTooltip:AddLine("Delete Order")
+      CraftieTooltip:AddLine(Craftie.Color.Silver .. "Delete Order for " .. requester)
       CraftieTooltip:Show()
-    --end
+    end
   end)
   Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnLeave", function(self)
     CraftieTooltip:Hide()
