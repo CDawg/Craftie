@@ -208,7 +208,7 @@ Craftie.Frame.Button.Minimap:SetFrameLevel(499)
 Craftie.Frame.Button.Minimap:SetFrameStrata("TOOLTIP")
 Craftie.Frame.Button.Minimap:SetSize(26, 26)
 Craftie.Frame.Button.Minimap:SetMovable(true)
-Craftie.Frame.Button.Minimap:SetPoint("TOPRIGHT", -5, 0)
+Craftie.Frame.Button.Minimap:SetPoint("TOPRIGHT", -122, -95) --starting pos
 Craftie.Frame.Button.Minimap:RegisterForClicks("AnyUp")
 Craftie.Frame.Button.Minimap.Icon = Craftie.Frame.Button.Minimap:CreateTexture(nil, "BORDER")
 Craftie.Frame.Button.Minimap.Icon:SetSize(Craftie.Frame.Button.Minimap:GetWidth(), Craftie.Frame.Button.Minimap:GetHeight())
