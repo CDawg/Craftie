@@ -32,7 +32,7 @@ Craftie.Frame.ScrollPlayersParent:SetFrameStrata("MEDIUM")
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersList", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersList:SetWidth(dimensions.W-10)
 Craftie.Frame.ScrollPlayersList:SetHeight(dimensions.H+20)
-Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 2, -6)
+Craftie.Frame.ScrollPlayersList:SetPoint("CENTER", 0, -6)
 
 Craftie.Frame.ScrollPlayersList.Child = CreateFrame("ScrollFrame", Craftie.Frame.ScrollPlayersList.Child, Craftie.Frame.ScrollPlayersList, "UIPanelScrollFrameTemplate")
 Craftie.Frame.ScrollPlayersList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList, "TOPLEFT",         -2,-20)
@@ -41,8 +41,8 @@ Craftie.Frame.ScrollPlayersListChildFrame = CreateFrame("Frame", "Craftie.Frame.
 Craftie.Frame.ScrollPlayersListChildFrame:SetSize(dimensions.W, dimensions.H)
 Craftie.Frame.ScrollPlayersList.Child:SetScrollChild(Craftie.Frame.ScrollPlayersListChildFrame)
 Craftie.Frame.ScrollPlayersList.Child.ScrollBar:ClearAllPoints()
-Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT",          0,-10)
-Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, 10)
+Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollPlayersList.Child, "TOPRIGHT",          0,-12)
+Craftie.Frame.ScrollPlayersList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollPlayersList.Child, "BOTTOMRIGHT", -42, 12)
 
 Craftie:ScrollBarFrame(Craftie.Frame.ScrollPlayersList.Child)
 
