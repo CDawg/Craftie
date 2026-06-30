@@ -101,7 +101,7 @@ Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnClick", function(self)
   CraftieDialog.Yes:SetScript("OnClick", function(self)
     self:GetParent():Hide()
 
-    local orders = Craftie.Save.Player.ORDERS
+    local orders = Craftie.Save.Player["ORDERS"]
     if (orders ~= nil) then
       for k,v in pairs(orders) do
         orders[k] = nil
@@ -216,7 +216,7 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnClick", function(self)
     local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
     if ((requester ~= "") and (requester ~= nil)) then
-      Craftie.Save.Player.ORDERS[requester] = nil
+      Craftie.Save.Player["ORDERS"][requester] = nil
     end
     C_Timer.After(0.2, function()
       Craftie:GetCraftOrders()
@@ -304,10 +304,10 @@ for i=1, Craftie.MAX_ORDERS do
   Craftie.Frame.ScrollOrderListCount[i]:SetTextColor(1, 1, 1, 0.8)
 
   Craftie.Frame.ScrollOrderListDate[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollOrderListDate[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size-1, "SLUG")
+  Craftie.Frame.ScrollOrderListDate[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollOrderListDate[i]:SetPoint("TOPLEFT", columns[4][3]+4, dimensions.row.Y)
   Craftie.Frame.ScrollOrderListDate[i]:SetText("")
-  Craftie.Frame.ScrollOrderListDate[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollOrderListDate[i]:SetTextColor(0.7, 0.7, 0.7, 1)
 
   Craftie.Frame.ScrollOrderListSelect[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollOrderListSelect[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())

@@ -63,7 +63,7 @@ function SlashCmdList.Craftie(cmd)
           Craftie.Notification("Max debug level = " .. count, Craftie.CHAT.INFO)
         else
           Craftie.DEBUGLEVEL = tonumber(args)
-          Craftie.Save.Player.CONFIG["DEBUGLEVEL"] = tonumber(args)
+          Craftie.Save.Player["CONFIG"]["DEBUGLEVEL"] = tonumber(args)
         end
       else
         Craftie:Notification("Debug Level must be an integer [1-".. count .."]", Craftie.CHAT.ERROR)
@@ -82,11 +82,11 @@ function SlashCmdList.Craftie(cmd)
       print("|n" .. commands[4][2] .. "|n")
     end
     if (args == "config") then
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
+      Craftie.Save.Player["CONFIG"] = {}
       ReloadUI()
     end
     if (args == "orders") then
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
+      Craftie.Save.Player["ORDERS"] = {}
       --Craftie:GetCraftOrders()
       ReloadUI()
     end

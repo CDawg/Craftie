@@ -34,15 +34,8 @@ Craftie = {
 Craftie._L={}
 
 Craftie.Save = {
-  Account = { --account wide
-    BLOB  = {}, --binary link object
-    CACHE = {},
-  },
-  Player = { --individually
-    CONFIG= {},
-    ORDERS= {},
-    FAVS =  {},
-  },
+  Account= {}, --account wide
+  Player = {}, --individually
 }
 
 Craftie.Color = {

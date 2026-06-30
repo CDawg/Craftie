@@ -55,9 +55,8 @@ function Craftie:SaveData()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"] = {}
   else
-    Craftie.Save.Player.CONFIG= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
-    Craftie.Save.Player.ORDERS= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"]
-    Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
+    Craftie.Save.Account= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]
+    Craftie.Save.Player = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]
 
     if (Craftie.Save.Player.CONFIG["POS_MAIN"] ~= nil) then
       local FramePos = {}
@@ -88,9 +87,6 @@ function Craftie:SaveData()
     Craftie:Notification("Loading Profile: [" ..  Craftie.Player.Faction .. "]".. Craftie.Player.Realm .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
   end
 
-  Craftie.Save.Player.CONFIG= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
-  Craftie.Save.Player.ORDERS= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"]
-  Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
-  Craftie.Save.Account.BLOB = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"]
-  Craftie.Save.Account.CACHE= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"]
+  Craftie.Save.Account= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]
+  Craftie.Save.Player = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]
 end
