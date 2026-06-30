@@ -812,7 +812,10 @@ function Craftie:CrafterBuildData(profName, profLevel)
           local numRecipes = GetNumTradeSkills()
           for i = 1, numRecipes do
             local recipeName, recipeType = GetTradeSkillInfo(i)
-            if recipeType ~= "header" then
+            --if (recipeType == "header") then
+              --print(recipeName)
+            --end
+            if (recipeType ~= "header") then
               if (Craftie:SanitizeString(recipeName, true) ~= nil) then
                 profData[Craftie:SanitizeString(recipeName, true)] = "1"
                 --print(Craftie:SanitizeString(recipeName, true) .. " = 1")
