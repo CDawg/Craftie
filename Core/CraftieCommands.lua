@@ -82,16 +82,12 @@ function SlashCmdList.Craftie(cmd)
       print("|n" .. commands[4][2] .. "|n")
     end
     if (args == "config") then
-      if (Craftie.Save.Player.CONFIG ~= nil) then
-        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
-      end
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"] = {}
       ReloadUI()
     end
     if (args == "orders") then
-      if (Craftie.Save.Player.ORDERS ~= nil) then
-        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
-        Craftie:GetCraftOrders()
-      end
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"] = {}
+      Craftie:GetCraftOrders()
     end
   end
 

@@ -59,24 +59,25 @@ function Craftie:SaveData()
     Craftie.Save.Player.ORDERS= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["ORDERS"]
     Craftie.Save.Player.FAVS  = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["FAVS"]
 
-    if (Craftie.Save.Player.CONFIG["POS_MAIN"]) then
+    if (Craftie.Save.Player.CONFIG["POS_MAIN"] ~= nil) then
       local FramePos = {}
       FramePos = Craftie:Split(Craftie.Save.Player.CONFIG["POS_MAIN"], ",")
       Craftie.Frame:ClearAllPoints()
       Craftie.Frame:SetPoint(FramePos[1], tonumber(FramePos[2]), tonumber(FramePos[3]))
     end
-    if (Craftie.Save.Player.CONFIG["POS_LOGGER"]) then
+
+    if (Craftie.Save.Player.CONFIG["POS_LOGGER"] ~= nil) then
       local FramePos = {}
       FramePos = Craftie:Split(Craftie.Save.Player.CONFIG["POS_LOGGER"], ",")
       Craftie.Logger:ClearAllPoints()
       Craftie.Logger:SetPoint(FramePos[1], tonumber(FramePos[2]), tonumber(FramePos[3]))
     end
 
-    if (Craftie.Save.Player.CONFIG["DEBUGLEVEL"]) then
+    if (Craftie.Save.Player.CONFIG["DEBUGLEVEL"] ~= nil) then
       Craftie.DEBUGLEVEL = tonumber(Craftie.Save.Player.CONFIG["DEBUGLEVEL"])
     end
 
-    if (Craftie.Save.Player.CONFIG["POS_MINIMAP"]) then
+    if (Craftie.Save.Player.CONFIG["POS_MINIMAP"] ~= nil) then
       local minimapIconPos = Craftie:Split(Craftie.Save.Player.CONFIG["POS_MINIMAP"], ",")
       --print("Getpoint " .. Craftie.Frame.Button.Minimap:GetPoint())
       --print("Setpoint " .. "TOPLEFT, Minimap, TOPLEFT" .. "," .. minimapIconPos[1] .. "," .. minimapIconPos[2])

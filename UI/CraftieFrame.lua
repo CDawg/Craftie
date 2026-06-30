@@ -30,7 +30,7 @@ Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Frame:StopMovingOrSizing()
   local point, relativeTo, relativePoint, xOfs, yOfs = Craftie.Frame:GetPoint()
   Craftie.Save.Player.CONFIG["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
-  Craftie:Notification("Main:[" .. Craftie.Player.Combine .. "]" .. point .. "," .. xOfs .. "," .. yOfs, Craftie.CHAT.SAVE)
+  Craftie:Notification("CONFIG->POS_MAIN: " .. point .. "," .. xOfs .. "," .. yOfs, Craftie.CHAT.SAVE)
 end)
 Craftie.Frame.Back = Craftie.Frame:CreateTexture(nil, "BACKGROUND", nil, 0)
 --Craftie.Frame.Back:SetAllPoints()
