@@ -389,10 +389,10 @@ function Craftie:SendPacket(prefix, data, channel, target)
 
   if (channel == "WHISPER") then
   	C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
-    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. target, Craftie.CHAT.SEND)
+    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Lime .. target, Craftie.CHAT.SEND)
   else
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
-    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. channel, Craftie.CHAT.SEND)
+    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Lime .. channel, Craftie.CHAT.SEND)
   end
 
   --Craftie:Notification("Prefix: " .. prefix, Craftie.CHAT.FUNC)
@@ -846,6 +846,29 @@ function Craftie:CrafterBuildData(profName, profLevel)
 
           Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] = profString
+
+          --share to guild members
+          C_Timer.After(0.1, function()
+            if (IsInGuild()) then
+              C_GuildInfo.GuildRoster()
+              local gcount = 0
+              local totalMembers, onlineMembers = GetNumGuildMembers()
+              for i = 1, totalMembers do
+                local gmember, _, _, level, _, zone, _, _, online = GetGuildRosterInfo(i)
+                if (online) then
+                  local member = Craftie:Split(gmember, "-")
+                  gcount = gcount + 1
+                  C_Timer.After(gcount * 0.1, function()
+                    --print(member[1])
+                    if (member[1] ~= Craftie.Player.Name) then
+                      Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", member[1])
+                    end
+                  end)
+                end
+              end
+            end
+          end)
+
         end)
       end
       Craftie.ProfileBuilt[profName] = 1 --we already pulled and stored data, reset only on learning a new recipe
