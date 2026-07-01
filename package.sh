@@ -8,6 +8,7 @@ cp -r "/c/Program Files (x86)/World of WarCraft/_anniversary_/Interface/AddOns/C
 
 echo "Cleaning up .git .vscode"
 rm /e/Craftie/.gitignore
+rm /e/Craftie/Craftie.code-workspace
 rm /e/Craftie/package.sh
 rm -rf /e/Craftie/.vscode/
 rm -rf /e/Craftie/.git/
