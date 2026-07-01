@@ -21,8 +21,21 @@ function Craftie:Init()
   Craftie:SaveData()
   Craftie:BuildPersonalTooltip()
   Craftie:TabSelectBottom(1, false)
-  --Craftie:UpdatePlayerTooltip(false)
-  --Craftie:GetOnlineCrafters() --release for guild and friends list ONLY
+
+  if (IsInGuild()) then
+    if (GuildFrame) then
+      GuildFrame:SetScript("OnShow", function(self)
+        --print("showing guild frame")
+        Craftie:BuildGuildRosterTooltip("classic")
+      end)
+    end
+    if (CommunitiesFrame) then
+      CommunitiesFrame:SetScript("OnShow", function(self)
+        Craftie:BuildGuildRosterTooltip("retail")
+      end)
+    end
+  end
+  --Craftie:BuildWorldRosterTooltip()
 
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.OpenState = 0

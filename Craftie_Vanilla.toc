@@ -38,6 +38,7 @@ Library/Inscription.lua
 Changelog.lua
 Core/CraftieGlobal.lua
 Core/CraftieCore.lua
+Core/CraftieTooltip.lua
 Core/CraftieCommands.lua
 Core/CraftieLogger.lua
 

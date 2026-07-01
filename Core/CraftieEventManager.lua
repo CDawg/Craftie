@@ -84,7 +84,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       if (not Craftie.IsInCombat) then
         local inInstance, instanceType = IsInInstance()
         if (not inInstance) then
-          Craftie:UpdatePlayerTooltip("WORLD")
+          Craftie:UpdatePlayerTooltip("LOCAL")
         end
       end
     end
