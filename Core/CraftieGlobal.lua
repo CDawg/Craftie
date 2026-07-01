@@ -27,19 +27,19 @@ Craftie._G.Version = C_AddOns.GetAddOnMetadata(Craftie._G.Prefix, "version")
 Craftie._G.Font={}
 Craftie._G.Font.Style = "Fonts/FRIZQT__.ttf"
 Craftie._G.Font.StyleA= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf"
-Craftie._G.Font.StyleN= "Fonts/ARIALN.ttf" --numbers
+Craftie._G.Font.StyleN= "Fonts/ARIALN.ttf" --numerical
 Craftie._G.Font.Size  = 11
 
 Craftie._G.Path = "Interface/Addons/".. Craftie._G.Prefix .."/"
 Craftie._G.Title = Craftie.Color.Theme .. Craftie._L.Title .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
-Craftie.MAX_REAGENTS = 6
+Craftie.MAX_REAGENTS= 6
 Craftie.MAX_RECIPES = 600
-Craftie.MAX_CRAFTERS = 300 --per profession (TODO - make tis dynamic)
+Craftie.MAX_CRAFTERS= 300   --per profession (TODO - make tis dynamic)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
-Craftie.MAX_ORDERS = 100
-Craftie.REQ_TIMER = 5
+Craftie.MAX_ORDERS  = 100
+Craftie.REQ_TIMER   = 5
 
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
 --Craftie.ProfessionSearch = Craftie:CopyTable(Craftie.Profession.Alchemy)
