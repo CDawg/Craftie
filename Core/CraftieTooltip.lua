@@ -13,6 +13,29 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
+--option to send data to players
+function Craftie:BuildPersonalTooltip()
+  local tooltip = ""
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
+    for k,v in pairs(Craftie.Professions) do
+      local prof = v[1]
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] ~= nil) then
+          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name], ",")
+          local profLevel = crafter[3]
+          local profMastery = crafter[5]
+          --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
+          tooltip = tooltip .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";"
+        end
+      end
+    end
+  end
+  --debug
+  --tooltip = "Cooking:3;Alchemy:244;Tailoring:375;"
+  Craftie.Tooltip[Craftie.Player.Name] = tooltip:sub(1, -2)
+  Craftie:Notification("BuildPersonalTooltip("..Craftie.Tooltip[Craftie.Player.Name]..")", Craftie.CHAT.FUNC)
+end
+
 function Craftie:UpdatePlayerTooltip(channel)
   if (Craftie.Throttle.Chat.Flag == 1) then
     Craftie:Notification("Craftie:UpdatePlayerTooltip(" .. channel .. ")", Craftie.CHAT.FUNC)
@@ -48,29 +71,6 @@ function Craftie:UpdatePlayerTooltip(channel)
       Craftie.Throttle.Chat.Flag = 1 --reset after
     end)
   end
-end
-
---option to send data to players
-function Craftie:BuildPersonalTooltip()
-  local tooltip = ""
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
-    for k,v in pairs(Craftie.Professions) do
-      local prof = v[1]
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] ~= nil) then
-          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name], ",")
-          local profLevel = crafter[3]
-          local profMastery = crafter[5]
-          --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
-          tooltip = tooltip .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";"
-        end
-      end
-    end
-  end
-  --debug
-  --tooltip = "Cooking:3;Alchemy:244;Tailoring:375;"
-  Craftie.Tooltip[Craftie.Player.Name] = tooltip:sub(1, -2)
-  Craftie:Notification("BuildPersonalTooltip("..Craftie.Tooltip[Craftie.Player.Name]..")", Craftie.CHAT.FUNC)
 end
 
 function Craftie:TooltipLayout(data, tooltipframe)
@@ -183,12 +183,13 @@ function Craftie:ShowGuildRosterTooltip(player, className, classID, owner)
   CraftieTooltip:ClearLines()
 
   if (owner == "COMMUNITIES_DETAIL") then
-    CraftieTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10, -80)
+    CraftieTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10)
   elseif (type(owner) == "table") then
     --CraftieTooltip:SetOwner(owner, "ANCHOR_RIGHT")
-    CraftieTooltip:SetOwner(owner, "ANCHOR_BOTTOMRIGHT", -1 * owner:GetWidth(), -80)
+    CraftieTooltip:SetOwner(owner, "ANCHOR_BOTTOMRIGHT", -1 * owner:GetWidth())
   elseif (GuildMemberDetailFrame and GuildMemberDetailFrame:IsVisible()) then
-    CraftieTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth(), -80)
+    --CraftieTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth())
+    CraftieTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_TOPRIGHT", -1 * GuildMemberDetailFrame:GetWidth())
   else
     CraftieTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
   end
@@ -198,9 +199,12 @@ function Craftie:ShowGuildRosterTooltip(player, className, classID, owner)
   CraftieTooltip:Show()
 
   if (CraftieTooltip:GetOwner() == GuildFrame) then
-    CraftieTooltip:SetPoint("TOPRIGHT", GuildFrame, CraftieTooltip:GetWidth(), 0, 80)
+    CraftieTooltip:SetPoint("BOTTOMRIGHT", GuildFrame, CraftieTooltip:GetWidth(), 0)
+    --print("using classic detail closed")
   elseif (CraftieTooltip:GetOwner() == GuildMemberDetailFrame) then
-    CraftieTooltip:SetPoint("TOPRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0, -80)
+    --CraftieTooltip:SetPoint("BOTTOMRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0)
+    CraftieTooltip:SetPoint("BOTTOMRIGHT", GuildFrame, CraftieTooltip:GetWidth(), 0)
+    --print("using classic detail open")
   end
 end
 
@@ -233,31 +237,7 @@ function Craftie:BuildGuildRosterTooltip()
     end
     ]==]--
 
-    --[==[
-    hooksecurefunc("GuildRoster_SetSelection", function(index)
-      if not index then return end
-
-      local name = GetGuildRosterInfo(index)
-      if not name then return end
-
-      local player = Ambiguate(name, "none")
-
-      local data = CraftieDB[player]
-
-      if data then
-        CraftieGuildFrame.name:SetText(player)
-        CraftieGuildFrame.info:SetText(
-          ("Alchemy: %d\nBlacksmithing: %d"):format(
-              data.alchemy or 0,
-              data.blacksmith or 0
-          )
-        )
-      else
-        CraftieGuildFrame.name:SetText(player)
-        CraftieGuildFrame.info:SetText("No Craftie data")
-      end
-    end)
-    ]==]--
+    --hooksecurefunc("GuildRoster_SetSelection", function(index)
 
     if (Craftie.GuildFrameUsing == 2) then
       if (Craftie.CommunitiesRosterTooltipHooked) then

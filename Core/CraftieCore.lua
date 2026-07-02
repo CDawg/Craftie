@@ -510,7 +510,6 @@ function Craftie:ParsePacket(netpacket)
           --table.insert(tooltip, {prof3=p[1], prof3L=p[2]})
           Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=b[1], profL2=b[2], profM2=tonumber(b[3]), profN3=c[1], profL3=c[2], profM3=tonumber(b[3])}
         end
-        --Craftie.PlayerGUIDProf[crafter] = tooltip
       end
     end
 
