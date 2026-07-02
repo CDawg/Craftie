@@ -137,10 +137,76 @@ CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
 
 --TODO get offline member tooltip data
 Craftie.GuildFrameUsing = 1
+Craftie.GuildRosterTooltipHooked = false
+Craftie.CommunitiesRosterTooltipHooked = false
+Craftie.CommunitiesGuildMemberInfo = nil
+
+function Craftie:GetRosterTooltipPlayerName(name)
+  if (not name) then
+    return nil
+  end
+
+  return Ambiguate(name, "none")
+end
+
+function Craftie:AddRosterTooltipName(tooltip, player, className, classID)
+  if (not player) then
+    return
+  end
+
+  local color = Craftie.Color.White
+  if (classID) then
+    local _, classFile = GetClassInfo(classID)
+    if (classFile) then
+      local classColor = RAID_CLASS_COLORS[classFile]
+      if (classColor and classColor.colorStr) then
+        color = "|C" .. classColor.colorStr
+      end
+    end
+  elseif (className) then
+    local classKey = Craftie:GetKeyFromValue(Craftie.Class, className, 2)
+    if (classKey) then
+      color = Craftie.Class[classKey][4]
+    end
+  end
+
+  tooltip:AddLine(color .. player)
+end
+
+function Craftie:ShowGuildRosterTooltip(player, className, classID, owner)
+  local data = Craftie.PlayerGUIDProf[player]
+  if (not data) then
+    CraftieTooltip:Hide()
+    return
+  end
+
+  CraftieTooltip:ClearLines()
+
+  if (owner == "COMMUNITIES_DETAIL") then
+    CraftieTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10, -80)
+  elseif (type(owner) == "table") then
+    --CraftieTooltip:SetOwner(owner, "ANCHOR_RIGHT")
+    CraftieTooltip:SetOwner(owner, "ANCHOR_BOTTOMRIGHT", -1 * owner:GetWidth(), -80)
+  elseif (GuildMemberDetailFrame and GuildMemberDetailFrame:IsVisible()) then
+    CraftieTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth(), -80)
+  else
+    CraftieTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
+  end
+
+  Craftie:AddRosterTooltipName(CraftieTooltip, player, className, classID)
+  Craftie:TooltipLayout(data, CraftieTooltip)
+  CraftieTooltip:Show()
+
+  if (CraftieTooltip:GetOwner() == GuildFrame) then
+    CraftieTooltip:SetPoint("TOPRIGHT", GuildFrame, CraftieTooltip:GetWidth(), 0, 80)
+  elseif (CraftieTooltip:GetOwner() == GuildMemberDetailFrame) then
+    CraftieTooltip:SetPoint("TOPRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0, -80)
+  end
+end
+
 function Craftie:BuildGuildRosterTooltip()
   if (IsInGuild()) then
      --Craftie:UpdateGuildMember()
-    local totalMembers, numMembers = GetNumGuildMembers()
 
     --[==[
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
@@ -193,50 +259,100 @@ function Craftie:BuildGuildRosterTooltip()
     end)
     ]==]--
 
+    if (Craftie.GuildFrameUsing == 2) then
+      if (Craftie.CommunitiesRosterTooltipHooked) then
+        return
+      end
+      if ((not CommunitiesFrame) or (not CommunitiesFrame.GuildMemberDetailFrame)) then
+        return
+      end
+
+      local function OnGuildMemberDetailFrameDisplayed(self, clubId, memberInfo)
+        Craftie.CommunitiesGuildMemberInfo = memberInfo
+        if (not memberInfo) then
+          CraftieTooltip:Hide()
+          return
+        end
+
+        local player = Craftie:GetRosterTooltipPlayerName(memberInfo.name)
+        Craftie:ShowGuildRosterTooltip(player, nil, memberInfo.classID, "COMMUNITIES_DETAIL")
+      end
+
+      local function OnGuildMemberDetailFrameEnter(self)
+        local memberInfo = Craftie.CommunitiesGuildMemberInfo
+        if (not memberInfo) then
+          return
+        end
+
+        local player = Craftie:GetRosterTooltipPlayerName(memberInfo.name)
+        Craftie:ShowGuildRosterTooltip(player, nil, memberInfo.classID, "COMMUNITIES_DETAIL")
+      end
+
+      local function OnGuildMemberDetailFrameClosed(self)
+        Craftie.CommunitiesGuildMemberInfo = nil
+        CraftieTooltip:Hide()
+      end
+
+      local function OnCommunitiesMemberListEntryEnter(self)
+        local memberInfo = self:GetMemberInfo()
+        if (not memberInfo) then
+          return
+        end
+
+        local player = Craftie:GetRosterTooltipPlayerName(memberInfo.name)
+        Craftie:ShowGuildRosterTooltip(player, nil, memberInfo.classID, self)
+      end
+
+      local function OnCommunitiesMemberListEntryLeave(self)
+        CraftieTooltip:Hide()
+      end
+
+      if (CommunitiesFrame.GuildMemberDetailFrame.DisplayMember) then
+        hooksecurefunc(CommunitiesFrame.GuildMemberDetailFrame, "DisplayMember", OnGuildMemberDetailFrameDisplayed)
+      end
+      CommunitiesFrame.GuildMemberDetailFrame:HookScript("OnEnter", OnGuildMemberDetailFrameEnter)
+      if (CommunitiesFrame.GuildMemberDetailFrame.CloseButton) then
+        CommunitiesFrame.GuildMemberDetailFrame.CloseButton:HookScript("OnClick", OnGuildMemberDetailFrameClosed)
+      end
+      CommunitiesFrame:HookScript("OnHide", OnGuildMemberDetailFrameClosed)
+
+      if (CommunitiesMemberListEntryMixin) then
+        hooksecurefunc(CommunitiesMemberListEntryMixin, "OnEnter", OnCommunitiesMemberListEntryEnter)
+        hooksecurefunc(CommunitiesMemberListEntryMixin, "OnLeave", OnCommunitiesMemberListEntryLeave)
+      end
+
+      Craftie.CommunitiesRosterTooltipHooked = true
+      Craftie:Notification("Craftie:BuildGuildRosterTooltip() communities", Craftie.CHAT.FUNC)
+      return
+    end
+
+    if (Craftie.GuildRosterTooltipHooked) then
+      return
+    end
+
     for i = 1, GUILDMEMBERS_TO_DISPLAY do
-    --for i = 1, numMembers do
       local button = _G["GuildFrameButton"..i]
-      --if (Craftie.GuildFrameUsing == 2) then
-        --button = _G["CommunitiesFrameGuildListButton"..i]
-      --end
 
       if (button) then
         button:HookScript("OnEnter", function(self)
-          local index = FauxScrollFrame_GetOffset(GuildListScrollFrame) + self.guildIndex
+          local index = self.guildIndex
+          if (GuildListScrollFrame) then
+            index = FauxScrollFrame_GetOffset(GuildListScrollFrame) + self.guildIndex
+          end
           local name, rank, rankIndex, level, class = GetGuildRosterInfo(index)
           if (not name) then
             return
           end
-          local player = Ambiguate(name, "none")
 
-          --GameTooltip:ClearLines() --dont interfer with other addons
-          if (Craftie.GuildFrameUsing == 2) then
-            CraftieTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10)
-            print("Retail tooltip initialized")
-          else --classic
-            CraftieTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
-            --CraftieTooltip:SetPoint("TOPRIGHT", GuildFrame, CraftieTooltip:GetWidth(), 0)
-            CraftieTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth(), 80)
-            --print("Classic tooltip initialized")
-          end
-
-          if (CraftieTooltip:GetOwner() == GuildMemberDetailFrame) then
-            CraftieTooltip:SetPoint("TOPRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0, -10)
-          end
-
-          local data = Craftie.PlayerGUIDProf[player]
-          if (data) then
-            local classKey = Craftie:GetKeyFromValue(Craftie.Class, class, 2)
-            CraftieTooltip:AddLine(Craftie.Class[classKey][4] .. player)
-          end
-          Craftie:TooltipLayout(data, CraftieTooltip)
-          CraftieTooltip:Show()
+          local player = Craftie:GetRosterTooltipPlayerName(name)
+          Craftie:ShowGuildRosterTooltip(player, class, nil, "GUILD")
         end)
         button:HookScript("OnLeave", function(self)
           CraftieTooltip:Hide()
         end)
       end
     end
+    Craftie.GuildRosterTooltipHooked = true
     Craftie:Notification("Craftie:BuildGuildRosterTooltip()", Craftie.CHAT.FUNC)
   end
 end

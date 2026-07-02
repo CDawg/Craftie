@@ -44,16 +44,38 @@ function Craftie:Init()
   C_Timer.After(3, function()
     if (IsInGuild()) then
       Craftie:UpdatePlayerTooltip("GUILD")
-      GuildFrame:SetScript("OnShow", function(self)
-        Craftie:Notification("GuildFrame:Show() == classic", Craftie.CHAT.FUNC)
-        Craftie.GuildFrameUsing = 1
-        Craftie:BuildGuildRosterTooltip()
-      end)
-      CommunitiesFrame:SetScript("OnShow", function(self)
-        Craftie:Notification("CommunitiesFrame:Show() == retail", Craftie.CHAT.FUNC)
-        Craftie.GuildFrameUsing = 2
-        Craftie:BuildGuildRosterTooltip()
-      end)
+
+      if (GuildFrame and (not Craftie.GuildFrameShowHooked)) then
+        GuildFrame:HookScript("OnShow", function(self)
+          Craftie:Notification("GuildFrame:Show() == classic", Craftie.CHAT.FUNC)
+          Craftie.GuildFrameUsing = 1
+          Craftie:BuildGuildRosterTooltip()
+        end)
+        Craftie.GuildFrameShowHooked = true
+      end
+
+      local function HookCommunitiesFrame()
+        if ((not CommunitiesFrame) or Craftie.CommunitiesFrameShowHooked) then
+          return
+        end
+
+        CommunitiesFrame:HookScript("OnShow", function(self)
+          Craftie:Notification("CommunitiesFrame:Show() == retail", Craftie.CHAT.FUNC)
+          Craftie.GuildFrameUsing = 2
+          Craftie:BuildGuildRosterTooltip()
+        end)
+        Craftie.CommunitiesFrameShowHooked = true
+      end
+
+      HookCommunitiesFrame()
+      if ((not Craftie.CommunitiesFrameShowHooked) and EventRegistry) then
+        EventRegistry:RegisterFrameEventAndCallback("ADDON_LOADED", function(owner, loadedAddonName)
+          if (loadedAddonName == "Blizzard_Communities") then
+            EventRegistry:UnregisterFrameEventAndCallback("ADDON_LOADED", owner)
+            HookCommunitiesFrame()
+          end
+        end)
+      end
     end
   end)
   --Craftie:BuildWorldRosterTooltip()
