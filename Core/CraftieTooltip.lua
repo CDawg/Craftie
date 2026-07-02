@@ -211,25 +211,29 @@ function Craftie:BuildGuildRosterTooltip()
 
           --GameTooltip:ClearLines() --dont interfer with other addons
           if (Craftie.GuildFrameUsing == 2) then
-            GameTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10)
+            CraftieTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10)
             print("Retail tooltip initialized")
-          else
-            GameTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
-            --GameTooltip:SetPoint("TOPRIGHT", GuildFrame, GameTooltip:GetWidth(), 0)
-            GameTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth())
+          else --classic
+            CraftieTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
+            --CraftieTooltip:SetPoint("TOPRIGHT", GuildFrame, CraftieTooltip:GetWidth(), 0)
+            CraftieTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth(), 80)
             --print("Classic tooltip initialized")
           end
 
-          if (GameTooltip:GetOwner() == GuildMemberDetailFrame) then
-            GameTooltip:SetPoint("TOPRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0, -10)
+          if (CraftieTooltip:GetOwner() == GuildMemberDetailFrame) then
+            CraftieTooltip:SetPoint("TOPRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0, -10)
           end
 
           local data = Craftie.PlayerGUIDProf[player]
           if (data) then
             local classKey = Craftie:GetKeyFromValue(Craftie.Class, class, 2)
-            GameTooltip:AddLine(Craftie.Class[classKey][4] .. player)
+            CraftieTooltip:AddLine(Craftie.Class[classKey][4] .. player)
           end
-          Craftie:TooltipLayout(data, GameTooltip)
+          Craftie:TooltipLayout(data, CraftieTooltip)
+          CraftieTooltip:Show()
+        end)
+        button:HookScript("OnLeave", function(self)
+          CraftieTooltip:Hide()
         end)
       end
     end
