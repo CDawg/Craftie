@@ -185,6 +185,28 @@ function Craftie:GetOnlineCrafters()
   Craftie:Notification("Craftie:GetOnlineCrafters()", Craftie.CHAT.FUNC)
 end
 
+function Craftie:BuildGuildPlayerList()
+  local guild_players = {}
+
+  if (not IsInGuild()) then
+    return guild_players
+  end
+
+  if (C_GuildInfo and C_GuildInfo.GuildRoster) then
+    C_GuildInfo.GuildRoster()
+  end
+
+  local totalMembers = GetNumGuildMembers()
+  for i = 1, totalMembers do
+    local name = GetGuildRosterInfo(i)
+    if (name) then
+      guild_players[Ambiguate(name, "none")] = true
+    end
+  end
+
+  return guild_players
+end
+
 --on tab load
 function Craftie:UpdateCrafterList(search)
   local crafter_list = {}
@@ -215,9 +237,21 @@ function Craftie:UpdateCrafterList(search)
   --end
 
   C_Timer.After(0.1, function()
+    local guild_players = nil
+    if (Craftie.PlayerListFilter == 2) then
+      guild_players = Craftie:BuildGuildPlayerList()
+    end
+
+    local profession_crafters = nil
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
-      for crafter_name in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()]) do
-        table.insert(crafter_list, crafter_name)
+      profession_crafters = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()]
+    end
+
+    if (profession_crafters ~= nil) then
+      for crafter_name in pairs(profession_crafters) do
+        if ((not guild_players) or guild_players[crafter_name]) then
+          table.insert(crafter_list, crafter_name)
+        end
       end
     end
 
@@ -261,11 +295,14 @@ function Craftie:UpdateCrafterList(search)
     end
 
     local results = Craftie.Color.Yellow .. "Crafter(s)"
+    if (Craftie.PlayerListFilter == 2) then
+      results = Craftie.Color.Yellow .. "Guild Crafter(s)"
+    end
     Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
 
     for n=1, #search_list do
       local i=n+1 --skip the 1st index
-      local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()][search_list[n]], ",")
+      local crafter = Craftie:Split(profession_crafters[search_list[n]], ",")
 
       --[==[
       --Craftie.Frame.ScrollPlayersListNet[i]:Show()

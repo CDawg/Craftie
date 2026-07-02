@@ -78,6 +78,7 @@ Craftie.MenuSelPlayers = {
   "All Crafters",
   "Guild Crafters"
 }
+Craftie.PlayerListFilter = 1
 Craftie.Frame.DropdownPlayers={}
 Craftie.Frame.DropdownPlayers = CreateFrame("Frame", "Craftie.Frame.DropdownPlayers", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate") --DropdownButtonMixin
 Craftie.Frame.DropdownPlayers:SetPoint("TOPLEFT", -14, -1)
@@ -89,8 +90,16 @@ Craftie.Frame.DropdownPlayers.text:SetFont(Craftie._G.Font.Style, Craftie._G.Fon
 Craftie.Frame.DropdownPlayers.text:SetPoint("TOPLEFT", Craftie.Frame.DropdownPlayers, "TOPLEFT", 25, -8)
 Craftie.Frame.DropdownPlayers.text:SetText(Craftie.MenuSelPlayers[1])
 Craftie.Frame.DropdownPlayers.OnClick = function(self, checked)
+  Craftie.PlayerListFilter = self.value
   Craftie.Frame.DropdownPlayers.text:SetText(Craftie.MenuSelPlayers[self.value])
-  print(self.value)
+  Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
+
+  local search = Craftie.Frame.Search.Players.Text:GetText()
+  if ((search == "") or (search == Craftie.Placeholder_Players)) then
+    Craftie:UpdateCrafterList()
+  else
+    Craftie:UpdateCrafterList(search)
+  end
 end
 UIDropDownMenu_SetWidth(Craftie.Frame.DropdownPlayers, dimensions.W-22)
 UIDropDownMenu_Initialize(Craftie.Frame.DropdownPlayers, function(self, level)
@@ -475,7 +484,6 @@ Craftie.Frame.ScrollPlayersListSubMenuFav:SetScript("OnClick", function(self)
     Craftie:CloseAllPlayerMenus()
     Craftie:UpdateCrafterList()
   end)
-
 end)
 
 Craftie.Frame.ScrollPlayersListSubMenuParty={}
