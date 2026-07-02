@@ -21,6 +21,7 @@ function Craftie:Init()
   Craftie:SaveData()
   Craftie:BuildPersonalTooltip()
   Craftie:TabSelectBottom(1, false)
+  Craftie:BuildTooltipHooks()
 
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.OpenState = 0
@@ -55,14 +56,6 @@ function Craftie:Init()
       end)
     end
   end)
-
-  --[==[
-  CommunitiesFrame.MemberList:SetScript("OnEnter", function(self)
-    if (CommunitiesFrame.MemberList.SelectMember) then
-      print(CommunitiesFrame.MemberList.SelectMember)
-    end
-  end)
-  ]==]--
   --Craftie:BuildWorldRosterTooltip()
 
   --CommunitiesFrame.GuildInfoTab:GetScript("OnClick")( CommunitiesFrame.GuildInfoTab )
