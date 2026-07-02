@@ -89,9 +89,7 @@ Craftie.Framelevel = {
   Cover     = 40,
 }
 
-Craftie.Tooltip = {
-  Data = {},
-}
+Craftie.Tooltip = {}
 
 Craftie.Backdrop = {
   General = {

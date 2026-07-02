@@ -18,25 +18,28 @@ function Craftie:UpdatePlayerTooltip(channel)
     Craftie:Notification("Craftie:UpdatePlayerTooltip(" .. channel .. ")", Craftie.CHAT.FUNC)
     Craftie.Throttle.Chat.Flag = 0
 
-    if (Craftie.Tooltip.Data ~= nil) then
+    if (Craftie.Tooltip[Craftie.Player.Name] ~= nil) then
       if (channel == "GUILD") then
         if (IsInGuild()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, channel)
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], channel)
         end
       end
 
       if (channel == "GROUP") then
         if (IsInRaid()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, "RAID")
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "RAID")
         elseif (IsInGroup()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, "PARTY")
+          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "PARTY")
         end
       end
 
       if (channel == "LOCAL") then
-        if (not IsInInstance()) then
-          if (not PlayerIsInCombat()) then
-            Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip.Data, "YELL")
+        if (not PlayerIsInCombat()) then
+          if (not IsInInstance()) then
+            Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "YELL")
+            --if ()
+              --Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "GUILD")
+            --end
           end
         end
       end
@@ -66,8 +69,8 @@ function Craftie:BuildPersonalTooltip()
   end
   --debug
   --tooltip = "Cooking:3;Alchemy:244;Tailoring:375;"
-  Craftie.Tooltip.Data = tooltip:sub(1, -2)
-  Craftie:Notification("BuildPersonalTooltip("..Craftie.Tooltip.Data..")", Craftie.CHAT.FUNC)
+  Craftie.Tooltip[Craftie.Player.Name] = tooltip:sub(1, -2)
+  Craftie:Notification("BuildPersonalTooltip("..Craftie.Tooltip[Craftie.Player.Name]..")", Craftie.CHAT.FUNC)
 end
 
 GameTooltip:HookScript("OnTooltipSetUnit", function(tooltip)
@@ -124,6 +127,7 @@ for i = 1, 30 do
 end
 CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
 
+--[==[
 function Craftie:GetActiveGuildFrameUI()
   if (CommunitiesFrame) and (CommunitiesFrame:IsShown()) then
     return "retail"
@@ -132,10 +136,36 @@ function Craftie:GetActiveGuildFrameUI()
   end
   return nil
 end
+]==]--
 
-function Craftie:BuildGuildRosterTooltip()
+function Craftie:BuildGuildRosterTooltip(version)
   if (IsInGuild()) then
-    local _, numMembers = GetNumGuildMembers()
+    local totalMembers, numMembers = GetNumGuildMembers()
+
+    --[==[
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
+      for k,v in pairs(Craftie.Professions) do
+        local prof = v[1]
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
+
+          for i=1, numMembers do
+            local name, _, _, level, _, zone, _, _, online = GetGuildRosterInfo(i)
+            local player = Ambiguate(name, "none")
+            local tooltip = ""
+            print(player)
+            if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][player] ~= nil) then
+              local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][player], ",")
+              local profLevel = crafter[3]
+              local profMastery = crafter[5]
+              --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
+              tooltip = tooltip .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";"
+            end
+            Craftie.Tooltip[player] = tooltip:sub(1, -2)
+          end
+        end
+      end
+    end
+    ]==]--
 
     --[==[
     hooksecurefunc("GuildRoster_SetSelection", function(index)
@@ -163,64 +193,62 @@ function Craftie:BuildGuildRosterTooltip()
     end)
     ]==]--
 
-    if (numMembers > 1) then
-      for i = 1, numMembers do
-        local button = _G["GuildFrameButton"..i]
-        button:HookScript("OnEnter", function(self)
-          local index = FauxScrollFrame_GetOffset(GuildListScrollFrame) + self.guildIndex
-          local name, rank, rankIndex, level, class = GetGuildRosterInfo(index)
-          if (not name) then
-            return
-          end
+    --for i = 1, GUILDMEMBERS_TO_DISPLAY do
+    for i = 1, numMembers do
+      local button = _G["GuildFrameButton"..i]
+      button:HookScript("OnEnter", function(self)
+        local index = FauxScrollFrame_GetOffset(GuildListScrollFrame) + self.guildIndex
+        local name, rank, rankIndex, level, class = GetGuildRosterInfo(index)
+        if (not name) then
+          return
+        end
+        local player = Ambiguate(name, "none")
 
-          local player = Ambiguate(name, "none")
+        --GameTooltip:ClearLines()
+        GameTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
+        if (version == "classic") then
+          --GameTooltip:SetPoint("TOPRIGHT", GuildFrame, GameTooltip:GetWidth(), 0)
+          GameTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth())
+        else
+          GameTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10)
+        end
 
-          GameTooltip:ClearLines()
-          GameTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
-          if (Craftie:GetActiveGuildFrameUI() == "classic") then
-            --GameTooltip:SetPoint("TOPRIGHT", GuildFrame, GameTooltip:GetWidth(), 0)
-            GameTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth())
-          else
-            GameTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10)
-          end
-          --[==[
-          if (GameTooltip:GetOwner() == GuildMemberDetailFrame) then
-            GameTooltip:SetPoint("TOPRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0, -10)
-          end
-          ]==]--
+        --overwrite?
+        if (GameTooltip:GetOwner() == GuildMemberDetailFrame) then
+          GameTooltip:SetPoint("TOPRIGHT", GuildMemberDetailFrame, "BOTTOMRIGHT", 0, -10)
+        end
 
-          local data = Craftie.PlayerGUIDProf[player]
-          if (data) then
-            local classKey = Craftie:GetKeyFromValue(Craftie.Class, class, 2)
-            GameTooltip:AddLine(Craftie.Class[classKey][4] .. player)
-            GameTooltip:AddLine(" ")
-            GameTooltip:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title)
-            if (data.profN1) then
-              local mastery = ""
-              if (data.profM1 > 0) then
-                mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN1, 1)][4][data.profM1] .. "]"
-              end
-              GameTooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN1 .. mastery, Craftie.Color.White .. data.profL1 .. "/" .. Craftie.PROFMAXLEVEL)
+        local data = Craftie.PlayerGUIDProf[player]
+        if (data) then
+          local classKey = Craftie:GetKeyFromValue(Craftie.Class, class, 2)
+          GameTooltip:AddLine(Craftie.Class[classKey][4] .. player)
+          --GameTooltip:AddLine(" ")
+          GameTooltip:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title)
+          if (data.profN1) then
+            local mastery = ""
+            if (data.profM1 > 0) then
+              mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN1, 1)][4][data.profM1] .. "]"
             end
-            if (data.profN2) then
-              local mastery = ""
-              if (data.profM2 > 0) then
-                mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN2, 1)][4][data.profM2] .. "]"
-              end
-              GameTooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN2 .. mastery, Craftie.Color.White .. data.profL2 .. "/" .. Craftie.PROFMAXLEVEL)
-            end
-            if (data.profN3) then
-              local mastery = ""
-              if (data.profM3 > 0) then
-                mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN3, 1)][4][data.profM3] .. "]"
-              end
-              GameTooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN3 .. mastery, Craftie.Color.White .. data.profL3 .. "/" .. Craftie.PROFMAXLEVEL)
-            end
+            GameTooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN1 .. mastery, Craftie.Color.White .. data.profL1 .. "/" .. Craftie.PROFMAXLEVEL)
           end
-          GameTooltip:Show()
-        end)
-      end
-      Craftie:Notification("Craftie:BuildGuildRosterTooltip()", Craftie.CHAT.FUNC)
+          if (data.profN2) then
+            local mastery = ""
+            if (data.profM2 > 0) then
+              mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN2, 1)][4][data.profM2] .. "]"
+            end
+            GameTooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN2 .. mastery, Craftie.Color.White .. data.profL2 .. "/" .. Craftie.PROFMAXLEVEL)
+          end
+          if (data.profN3) then
+            local mastery = ""
+            if (data.profM3 > 0) then
+              mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN3, 1)][4][data.profM3] .. "]"
+            end
+            GameTooltip:AddDoubleLine(Craftie.Color.Skyblue .. data.profN3 .. mastery, Craftie.Color.White .. data.profL3 .. "/" .. Craftie.PROFMAXLEVEL)
+          end
+        end
+        GameTooltip:Show()
+      end)
     end
+    Craftie:Notification("Craftie:BuildGuildRosterTooltip()", Craftie.CHAT.FUNC)
   end
 end

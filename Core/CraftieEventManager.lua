@@ -104,6 +104,13 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         end
         --consistent updating
         Craftie.NumGuildMembers = numMembers
+        --[==[
+        if (GuildFrame) then
+            Craftie:BuildGuildRosterTooltip("classic")
+        else
+            Craftie:BuildGuildRosterTooltip("retail")
+        end
+        ]==]--
       end
     end
 
@@ -231,6 +238,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       --print(k .. " | " .. v)
     --end
     if (spellData[4] == Craftie._G.Prefix) then
+      --local player = Ambiguate(name, "none")
       local playerData = Craftie:Split(spellData[5], "-") --remove realm data
       local player = playerData[1]
       local profLink   = spellData[6]

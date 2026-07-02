@@ -25,12 +25,13 @@ function Craftie:Init()
   if (IsInGuild()) then
     if (GuildFrame) then
       GuildFrame:SetScript("OnShow", function(self)
-        --print("showing guild frame")
+        Craftie:Notification("GuildFrame:Show() == classic", Craftie.CHAT.FUNC)
         Craftie:BuildGuildRosterTooltip("classic")
       end)
     end
     if (CommunitiesFrame) then
       CommunitiesFrame:SetScript("OnShow", function(self)
+        Craftie:Notification("CommunitiesFrame:Show() == retail", Craftie.CHAT.FUNC)
         Craftie:BuildGuildRosterTooltip("retail")
       end)
     end
