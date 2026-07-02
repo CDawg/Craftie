@@ -89,6 +89,7 @@ Craftie.Framelevel = {
   Cover     = 40,
 }
 
+Craftie.GuildFrameUsing = 1 --classic default
 Craftie.Tooltip = {}
 
 Craftie.Backdrop = {

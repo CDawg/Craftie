@@ -27,6 +27,7 @@ Craftie.Event:RegisterEvent("CRAFT_CLOSE")
 Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 Craftie.Event:RegisterEvent("GROUP_ROSTER_UPDATE")
 Craftie.Event:RegisterEvent("GUILD_ROSTER_UPDATE")
+Craftie.Event:RegisterEvent("GUILD_TRADESKILL_UPDATE")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_ENABLED")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -104,13 +105,6 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         end
         --consistent updating
         Craftie.NumGuildMembers = numMembers
-        --[==[
-        if (GuildFrame) then
-            Craftie:BuildGuildRosterTooltip("classic")
-        else
-            Craftie:BuildGuildRosterTooltip("retail")
-        end
-        ]==]--
       end
     end
 
@@ -130,6 +124,9 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
                 Craftie.Throttle.Prof.Flag = 0
                 C_Timer.After(1, function()
                   Craftie:BuildPersonalTooltip()
+                  C_Timer.After(1, function()
+                    Craftie:UpdatePlayerTooltip("GUILD")
+                  end)
                 end)
                 C_Timer.After(Craftie.Throttle.Prof.Timer, function()
                   Craftie.Throttle.Prof.Flag = 1

@@ -138,8 +138,11 @@ function Craftie:GetActiveGuildFrameUI()
 end
 ]==]--
 
-function Craftie:BuildGuildRosterTooltip(version)
+--TODO get offline member tooltip data
+Craftie.GuildFrameUsing = 1
+function Craftie:BuildGuildRosterTooltip()
   if (IsInGuild()) then
+     --Craftie:UpdateGuildMember()
     local totalMembers, numMembers = GetNumGuildMembers()
 
     --[==[
@@ -193,9 +196,13 @@ function Craftie:BuildGuildRosterTooltip(version)
     end)
     ]==]--
 
-    --for i = 1, GUILDMEMBERS_TO_DISPLAY do
-    for i = 1, numMembers do
+    for i = 1, GUILDMEMBERS_TO_DISPLAY do
+    --for i = 1, numMembers do
       local button = _G["GuildFrameButton"..i]
+      --if (Craftie.GuildFrameUsing == 2) then
+        --button = _G["CommunitiesFrameGuildListButton"..i]
+      --end
+
       button:HookScript("OnEnter", function(self)
         local index = FauxScrollFrame_GetOffset(GuildListScrollFrame) + self.guildIndex
         local name, rank, rankIndex, level, class = GetGuildRosterInfo(index)
@@ -205,12 +212,15 @@ function Craftie:BuildGuildRosterTooltip(version)
         local player = Ambiguate(name, "none")
 
         --GameTooltip:ClearLines()
-        GameTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
-        if (version == "classic") then
-          --GameTooltip:SetPoint("TOPRIGHT", GuildFrame, GameTooltip:GetWidth(), 0)
-          GameTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth())
-        else
+
+        if (Craftie.GuildFrameUsing == 2) then
           GameTooltip:SetOwner(CommunitiesFrame.GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * CommunitiesFrame.GuildMemberDetailFrame:GetWidth() + 10)
+          print("Retail tooltip initialized")
+        else
+          GameTooltip:SetOwner(GuildFrame, "ANCHOR_NONE")
+        --GameTooltip:SetPoint("TOPRIGHT", GuildFrame, GameTooltip:GetWidth(), 0)
+          GameTooltip:SetOwner(GuildMemberDetailFrame, "ANCHOR_BOTTOMRIGHT", -1 * GuildMemberDetailFrame:GetWidth())
+          --print("Classic tooltip initialized")
         end
 
         --overwrite?

@@ -22,22 +22,6 @@ function Craftie:Init()
   Craftie:BuildPersonalTooltip()
   Craftie:TabSelectBottom(1, false)
 
-  if (IsInGuild()) then
-    if (GuildFrame) then
-      GuildFrame:SetScript("OnShow", function(self)
-        Craftie:Notification("GuildFrame:Show() == classic", Craftie.CHAT.FUNC)
-        Craftie:BuildGuildRosterTooltip("classic")
-      end)
-    end
-    if (CommunitiesFrame) then
-      CommunitiesFrame:SetScript("OnShow", function(self)
-        Craftie:Notification("CommunitiesFrame:Show() == retail", Craftie.CHAT.FUNC)
-        Craftie:BuildGuildRosterTooltip("retail")
-      end)
-    end
-  end
-  --Craftie:BuildWorldRosterTooltip()
-
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.OpenState = 0
     CraftieDialog:Hide()
@@ -55,4 +39,32 @@ function Craftie:Init()
 
   --whisper self to prep incoming comms
   Craftie:SendPacket(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
+
+  C_Timer.After(3, function()
+    if (IsInGuild()) then
+      Craftie:UpdatePlayerTooltip("GUILD")
+      GuildFrame:SetScript("OnShow", function(self)
+        Craftie:Notification("GuildFrame:Show() == classic", Craftie.CHAT.FUNC)
+        Craftie.GuildFrameUsing = 1
+        Craftie:BuildGuildRosterTooltip()
+      end)
+      CommunitiesFrame:SetScript("OnShow", function(self)
+        Craftie:Notification("CommunitiesFrame:Show() == retail", Craftie.CHAT.FUNC)
+        Craftie.GuildFrameUsing = 2
+        Craftie:BuildGuildRosterTooltip()
+      end)
+    end
+  end)
+
+  --[==[
+  CommunitiesFrame.MemberList:SetScript("OnEnter", function(self)
+    if (CommunitiesFrame.MemberList.SelectMember) then
+      print(CommunitiesFrame.MemberList.SelectMember)
+    end
+  end)
+  ]==]--
+  --Craftie:BuildWorldRosterTooltip()
+
+  --CommunitiesFrame.GuildInfoTab:GetScript("OnClick")( CommunitiesFrame.GuildInfoTab )
+  Craftie:Notification("Craftie:Init()", Craftie.CHAT.FUNC)
 end
