@@ -57,7 +57,7 @@ Craftie.Tab = 0
 -- Global Frames
 Craftie.Frame={}
 Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "BasicFrameTemplate")
---table.insert(UISpecialFrames, Craftie.Frame:GetName())
+table.insert(UISpecialFrames, Craftie.Frame:GetName())
 
 Craftie.Frame.Search={}
 

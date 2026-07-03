@@ -296,3 +296,5 @@ CraftieDialog.Yes:SetSize(100, 24)
 CraftieDialog.Yes:SetPoint("CENTER", 64, -20)
 CraftieDialog.Yes:SetText("Yes")
 CraftieDialog.Yes:Hide()
+
+Craftie.Frame:Hide()
