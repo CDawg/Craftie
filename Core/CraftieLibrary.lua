@@ -16,12 +16,6 @@ the copyright holders.
 __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 
 Craftie = {
-  Game = {
-    "Classic Anniversary",
-    "TBC Anniversary",
-    "WoTLK Anniversary",
-  },
-
 	Player = {
     Name    = UnitName("player"),
     Realm   = GetRealmName(),
@@ -31,7 +25,11 @@ Craftie = {
     Combine = UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
 	},
 }
-Craftie._L={}
+Craftie._L={} --locales
+
+Craftie.Game = {
+  Version = tonumber(string.sub(__Gversion, 1, 1))
+}
 
 Craftie.Save = {
   Account= {}, --account wide
@@ -121,9 +119,6 @@ Craftie.Backdrop = {
     Template = "UISliderTemplateWithLabels",
   }
 }
-
-Craftie.Game.Version = tonumber(string.sub(__Gversion, 1, 1))
-Craftie.Game.Name = Craftie.Game[tonumber(string.sub(__Gversion, 1, 1))]
 
 Craftie.Packet = {}
 Craftie.Packet.Timeout = 2 --timeout if no data recieved

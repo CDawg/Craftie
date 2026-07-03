@@ -14,6 +14,7 @@ the copyright holders.
 ]==]--
 
 --https://warcraft.wiki.gg/wiki/API_GetLocale
+-- German (Germany), deAT, deCH clients return deDE
 
 Craftie.LDetect = "deDE"
 if GetLocale() ~= Craftie.LDetect then return end
@@ -22,4 +23,23 @@ Craftie._L = {
   Loaded= Craftie.LDetect, --detect what loaded
 
 	Title = "Craftie",
+  Game = {
+    "Klassisches Jubiläum",
+    "TBC-Jubiläum",
+    "WOTLK-Jubiläum",
+  },
+  Placeholder_Players = "Suche nach Handwerkern...",
+  Placeholder_Recipes = "Suche nach Rezepten...",
+  Player_PageNameListing = "Bibliothek",
+
+  MenuSelPlayers = {
+    "Alle Handwerker",
+    "Gilden Handwerker"
+  },
+  MenuSelRecipes = "Alle Bastelrezepte durchsuchen",
+  MMTooltip = {
+    {"Linksklick", "Öffne Craftie"},
+    {"Rechtsklick", "Craftie-Optionen"}
+  }
 }
+

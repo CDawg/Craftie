@@ -14,6 +14,7 @@ the copyright holders.
 ]==]--
 
 --https://warcraft.wiki.gg/wiki/API_GetLocale
+-- Russian (Russia)
 
 Craftie.LDetect = "ruRU"
 if GetLocale() ~= Craftie.LDetect then return end
@@ -22,4 +23,22 @@ Craftie._L = {
   Loaded= Craftie.LDetect, --detect what loaded
 
 	Title = "Крафти",
+  Game = {
+    "Классический юбилей",
+    "Годовщина TBC",
+    "Годовщина WoTLK",
+  },
+  Placeholder_Players = "Поиск мастеров...",
+  Placeholder_Recipes = "Поиск рецептов...",
+  Player_PageNameListing = "Библиотека",
+
+  MenuSelPlayers = {
+    "Все ремесленники",
+    "Ремесленники гильдии"
+  },
+  MenuSelRecipes = "Поиск всех рецептов ремесленников",
+  MMTooltip = {
+    {"Левый клик", "Открыть Craftie"},
+    {"Правый клик", "Опции Craftie"}
+  }
 }

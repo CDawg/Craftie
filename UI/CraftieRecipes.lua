@@ -73,7 +73,7 @@ Craftie.Frame.ScrollRecipesEmpty:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.ScrollRecipesEmpty:SetText("")
 Craftie.Frame.ScrollRecipesEmpty:Hide()
 
-Craftie.MenuSelRecipes = {"Search All Crafter Recipes"}
+Craftie.MenuSelRecipes = {Craftie._L.MenuSelRecipes}
 Craftie.Frame.DropdownRecipes={}
 Craftie.Frame.DropdownRecipes = CreateFrame("Frame", "Craftie.Frame.DropdownRecipes", Craftie.Frame.ScrollRecipesParent, "UIDropDownMenuTemplate")
 Craftie.Frame.DropdownRecipes:SetPoint("TOPLEFT", -14, -1)
@@ -144,7 +144,7 @@ Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
 Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE")
 Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 22, 0)
 Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
-Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
+Craftie.Frame.Search.Recipes.Text:SetText(Craftie._L.Placeholder_Recipes)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
     local search_array = Craftie.ProfessionDefault --what player is selected?
@@ -161,13 +161,13 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
 end)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnMouseDown", function(self)
     local search_index = self:GetText()
-    if (search_index == Craftie.Placeholder_Recipes) then
+    if (search_index == Craftie._L.Placeholder_Recipes) then
       self:SetText("")
       self:SetFontObject(GameFontWhite)
     end
 end)
 Craftie.Frame.Search.Recipes.Text:SetScript("OnEditFocusLost", function(self)
-  --Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
+  --Craftie.Frame.Search.Recipes.Text:SetText(Craftie._L.Placeholder_Recipes)
 end)
 Craftie.Frame.Button.SearchRecipesClear = CreateFrame("Button", nil, Craftie.Frame.Search.Recipes, "BackdropTemplate")
 Craftie.Frame.Button.SearchRecipesClear:SetSize(24, 23)

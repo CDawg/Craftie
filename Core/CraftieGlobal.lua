@@ -34,6 +34,9 @@ Craftie._G.Path = "Interface/Addons/".. Craftie._G.Prefix .."/"
 Craftie._G.Title = Craftie.Color.Theme .. Craftie._L.Title .. "|r"
 Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 
+--locales library must load first
+Craftie.Game.Name = Craftie._L.Game[tonumber(string.sub(__Gversion, 1, 1))]
+
 Craftie.MAX_REAGENTS= 6
 Craftie.MAX_RECIPES = 600
 Craftie.MAX_CRAFTERS= 300   --per profession (TODO - make tis dynamic)
@@ -44,8 +47,6 @@ Craftie.REQ_TIMER   = 5
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
 --Craftie.ProfessionSearch = Craftie:CopyTable(Craftie.Profession.Alchemy)
 
-Craftie.Placeholder_Players = "Search Crafters..."
-Craftie.Placeholder_Recipes = "Search Recipes..."
 Craftie.Selected_Player_Index = 1
 Craftie.Selected_Recipe_Index = 1
 Craftie.Selected_ViewAll = "All Alchemy Recipes" --default

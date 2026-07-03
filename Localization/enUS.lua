@@ -14,6 +14,7 @@ the copyright holders.
 ]==]--
 
 --https://warcraft.wiki.gg/wiki/API_GetLocale
+--English (United States), enGB clients return enUS
 
 Craftie.LDetect = "enUS"
 if GetLocale() ~= Craftie.LDetect then return end
@@ -22,5 +23,22 @@ Craftie._L = {
   Loaded= Craftie.LDetect, --detect what loaded
 
 	Title = "Craftie",
-}
+  Game = {
+    "Classic Anniversary",
+    "TBC Anniversary",
+    "WoTLK Anniversary",
+  },
+  Placeholder_Players = "Search Crafters...",
+  Placeholder_Recipes = "Search Recipes...",
+  Player_PageNameListing = "Library",
 
+  MenuSelPlayers = {
+    "All Crafters",
+    "Guild Crafters"
+  },
+  MenuSelRecipes = "Search All Crafter Recipes",
+  MMTooltip = {
+    {"Left Click", "Open Craftie"},
+    {"Right Click", "Craftie Options"}
+  }
+}

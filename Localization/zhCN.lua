@@ -14,6 +14,7 @@ the copyright holders.
 ]==]--
 
 --https://warcraft.wiki.gg/wiki/API_GetLocale
+-- Chinese (Simplified, PRC)
 
 Craftie.LDetect = "zhCN"
 if GetLocale() ~= Craftie.LDetect then return end
@@ -22,4 +23,22 @@ Craftie._L = {
   Loaded= Craftie.LDetect, --detect what loaded
 
 	Title = "工匠",
+  Game = {
+    "经典周年纪念版",
+    "TBC周年纪念",
+    "巫妖王之怒周年纪念",
+  },
+  Placeholder_Players = "搜索工匠...",
+  Placeholder_Recipes = "搜索配方...",
+  Player_PageNameListing = "图书馆",
+
+  MenuSelPlayers = {
+    "所有工匠",
+    "公会工匠"
+  },
+  MenuSelRecipes = "搜索所有工匠配方",
+  MMTooltip = {
+    {"左键单击", "打开工匠"},
+    {"右键单击", "工匠选项"}
+  }
 }

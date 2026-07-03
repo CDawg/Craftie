@@ -237,8 +237,9 @@ Craftie.Frame.Button.Minimap:SetScript("OnEnter", function(self)
   GameTooltip:AddDoubleLine(Craftie._G.Title, Craftie.Color.Gray .. "v" .. Craftie._G.Version)
   GameTooltip:AddDoubleLine(" ", Craftie.Color.Gray .. Craftie.Game.Name)
   GameTooltip:AddLine(" ")
-  GameTooltip:AddDoubleLine(Craftie.Color.Blue .. "Left Click", Craftie.Color.White .. "Open Craftie")
-  GameTooltip:AddDoubleLine(Craftie.Color.Blue .. "Right Click", Craftie.Color.White .. "Craftie Options")
+  for _, tooltip in ipairs(Craftie._L.MMTooltip) do
+    GameTooltip:AddDoubleLine(Craftie.Color.Blue .. tooltip[1], Craftie.Color.White .. tooltip[2])
+  end
   GameTooltip:Show()
 	Craftie.Frame.Button.Minimap.IconGlow:Show()
 end)

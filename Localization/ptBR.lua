@@ -14,6 +14,7 @@ the copyright holders.
 ]==]--
 
 --https://warcraft.wiki.gg/wiki/API_GetLocale
+-- Portuguese (Brazil)
 
 Craftie.LDetect = "ptBR"
 if GetLocale() ~= Craftie.LDetect then return end
@@ -22,4 +23,22 @@ Craftie._L = {
   Loaded= Craftie.LDetect, --detect what loaded
 
 	Title = "Artesão",
+  Game = {
+    "Aniversário Clássico",
+    "Aniversário TBC",
+    "Aniversário WoTLK",
+  },
+  Placeholder_Players = "Buscar Artesãos...",
+  Placeholder_Recipes = "Buscar Receitas...",
+  Player_PageNameListing = "Biblioteca",
+
+  MenuSelPlayers = {
+    "Todos os Artesãos",
+    "Artesãos da Guilda"
+  },
+  MenuSelRecipes = "Buscar todas as Receitas dos Artesãos",
+  MMTooltip = {
+    {"Clique esquerdo", "Abrir Craftie"},
+    {"Clique direito", "Opções do Craftie"}
+  }
 }

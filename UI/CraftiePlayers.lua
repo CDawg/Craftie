@@ -74,10 +74,6 @@ Craftie.Frame.ScrollPlayersEmpty:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.ScrollPlayersEmpty:SetText("")
 Craftie.Frame.ScrollPlayersEmpty:Hide()
 
-Craftie.MenuSelPlayers = {
-  "All Crafters",
-  "Guild Crafters"
-}
 Craftie.PlayerListFilter = 1
 Craftie.Frame.DropdownPlayers={}
 Craftie.Frame.DropdownPlayers = CreateFrame("Frame", "Craftie.Frame.DropdownPlayers", Craftie.Frame.ScrollPlayersParent, "UIDropDownMenuTemplate") --DropdownButtonMixin
@@ -88,14 +84,14 @@ Craftie.Frame.DropdownPlayers.displayMode = "MENU"
 Craftie.Frame.DropdownPlayers.text = Craftie.Frame.DropdownPlayers:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.DropdownPlayers.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
 Craftie.Frame.DropdownPlayers.text:SetPoint("TOPLEFT", Craftie.Frame.DropdownPlayers, "TOPLEFT", 25, -8)
-Craftie.Frame.DropdownPlayers.text:SetText(Craftie.MenuSelPlayers[1])
+Craftie.Frame.DropdownPlayers.text:SetText(Craftie._L.MenuSelPlayers[1])
 Craftie.Frame.DropdownPlayers.OnClick = function(self, checked)
   Craftie.PlayerListFilter = self.value
-  Craftie.Frame.DropdownPlayers.text:SetText(Craftie.MenuSelPlayers[self.value])
+  Craftie.Frame.DropdownPlayers.text:SetText(Craftie._L.MenuSelPlayers[self.value])
   Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1)
 
   local search = Craftie.Frame.Search.Players.Text:GetText()
-  if ((search == "") or (search == Craftie.Placeholder_Players)) then
+  if ((search == "") or (search == Craftie._L.Placeholder_Players)) then
     Craftie:UpdateCrafterList()
   else
     Craftie:UpdateCrafterList(search)
@@ -104,7 +100,7 @@ end
 UIDropDownMenu_SetWidth(Craftie.Frame.DropdownPlayers, dimensions.W-22)
 UIDropDownMenu_Initialize(Craftie.Frame.DropdownPlayers, function(self, level)
   local info = UIDropDownMenu_CreateInfo()
-  for k,v in pairs(Craftie.MenuSelPlayers) do
+  for k,v in pairs(Craftie._L.MenuSelPlayers) do
     --info.notCheckable = 1
     info.padding = 2
     info.text = v
@@ -152,7 +148,7 @@ Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
 Craftie.Frame.Search.Players.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
 Craftie.Frame.Search.Players.Text:SetPoint("TOPLEFT", 22, 0)
 Craftie.Frame.Search.Players.Text:SetAutoFocus(false)
-Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
+Craftie.Frame.Search.Players.Text:SetText(Craftie._L.Placeholder_Players)
 Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
   if (key == "ENTER") then
     Craftie:ClearSearchFocus(true)
@@ -161,13 +157,13 @@ Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
 end)
 Craftie.Frame.Search.Players.Text:SetScript("OnMouseDown", function(self)
     local search_index = Craftie.Frame.Search.Players.Text:GetText()
-    if (search_index == Craftie.Placeholder_Players) then
+    if (search_index == Craftie._L.Placeholder_Players) then
       Craftie.Frame.Search.Players.Text:SetText("")
       Craftie.Frame.Search.Players.Text:SetFontObject(GameFontWhite)
     end
 end)
 Craftie.Frame.Search.Players.Text:SetScript("OnEditFocusLost", function(self)
-  --Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
+  --Craftie.Frame.Search.Players.Text:SetText(Craftie._L.Placeholder_Players)
 end)
 Craftie.Frame.Button.SearchPlayersClear = CreateFrame("Button", nil, Craftie.Frame.Search.Players, "BackdropTemplate")
 Craftie.Frame.Button.SearchPlayersClear:SetSize(24, 23)

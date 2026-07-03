@@ -87,12 +87,12 @@ end
 
 function Craftie:ClearSearchFocus(crafters)
   Craftie.Frame.Search.Recipes.Text:ClearFocus()
-  Craftie.Frame.Search.Recipes.Text:SetText(Craftie.Placeholder_Recipes)
+  Craftie.Frame.Search.Recipes.Text:SetText(Craftie._L.Placeholder_Recipes)
   Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
 
   if (crafters) then
     Craftie.Frame.Search.Players.Text:ClearFocus()
-    Craftie.Frame.Search.Players.Text:SetText(Craftie.Placeholder_Players)
+    Craftie.Frame.Search.Players.Text:SetText(Craftie._L.Placeholder_Players)
     Craftie.Frame.Search.Players.Text:SetFontObject(GameFontDisable)
   end
 
@@ -136,7 +136,7 @@ function Craftie:SelectCrafter(index, name)
   --Craftie:SelectScrollItem("Recipes")
 
   if (index == 1) then
-    if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
+    if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie._L.Placeholder_Recipes) then
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, Craftie.Frame.Search.Recipes.Text:GetText(), "") --pull all
     else
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "") --pull all
@@ -150,7 +150,7 @@ function Craftie:SelectCrafter(index, name)
       Craftie.Selected_Name = name
       Craftie.Frame.DropdownRecipes.text:SetText(name)
       Craftie:Notification("Craftie:SelectCrafter(" .. index .. ", " .. name .. ")", Craftie.CHAT.FUNC)
-      if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie.Placeholder_Recipes) then
+      if (Craftie.Frame.Search.Recipes.Text:GetText() ~= Craftie._L.Placeholder_Recipes) then
         Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], Craftie.Frame.Search.Recipes.Text:GetText(), name)
       else
         Craftie:OpenProfessionList(Craftie.Profession[Craftie.Page], "", name)
@@ -343,7 +343,7 @@ function Craftie:UpdateCrafterList(search)
 
   --if (Craftie.DEBUGLEVEL > 3) then
     --Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
-    Craftie.Frame.ScrollPlayersListName[1]:SetText(Craftie.Page .. " Library")
+    Craftie.Frame.ScrollPlayersListName[1]:SetText(Craftie.Page .. " " .. Craftie._L.Player_PageNameListing)
     --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
     Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
     Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/ICONS/" .. Craftie.Professions[Craftie.Tab][2])

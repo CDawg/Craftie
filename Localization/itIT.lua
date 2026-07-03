@@ -14,6 +14,7 @@ the copyright holders.
 ]==]--
 
 --https://warcraft.wiki.gg/wiki/API_GetLocale
+-- Italian (Italy)
 
 Craftie.LDetect = "itIT"
 if GetLocale() ~= Craftie.LDetect then return end
@@ -22,4 +23,22 @@ Craftie._L = {
   Loaded= Craftie.LDetect, --detect what loaded
 
 	Title = "Artigiano",
+  Game = {
+    "Aniversario Classico",
+    "Aniversario TBC",
+    "Aniversario WoTLK",
+  },
+  Placeholder_Players = "Cerca Artigiani...",
+  Placeholder_Recipes = "Cerca Ricette...",
+  Player_PageNameListing = "Biblioteca",
+
+  MenuSelPlayers = {
+    "Tutti gli Artigiani",
+    "Artigiani del Gilda"
+  },
+  MenuSelRecipes = "Cerca tutte le Ricette degli Artigiani",
+  MMTooltip = {
+    {"Fare clic con il pulsante sinistro del mouse", "Apri Craftie"},
+    {"Fare clic con il pulsante destro del mouse", "Opzioni di Craftie"}
+  }
 }
