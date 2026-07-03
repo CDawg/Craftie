@@ -158,7 +158,7 @@ function Craftie:SelectCrafter(index, name)
     end
   end
   Craftie:SelectScrollItem("Players") --highlight
-
+  Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
   PlaySound(SOUNDKIT.IG_QUEST_LOG_OPEN)
 end
 
