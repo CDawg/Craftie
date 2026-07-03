@@ -1196,8 +1196,9 @@ function Craftie:GetCraftOrders()
         Craftie.Frame.ScrollOrderListNameButton[order_index]:Show()
         Craftie.Frame.ScrollOrderListItemButton[order_index]:Show()
         Craftie.Frame.ScrollOrderListDelete[order_index]:Show()
-        Craftie.Frame.ScrollOrderListNameButton[order_index]:SetWidth(Craftie.Frame.ScrollOrderListName[order_index]:GetStringWidth()+10)
-        Craftie.Frame.ScrollOrderListItemButton[order_index]:SetWidth(Craftie.Frame.ScrollOrderListItem[order_index]:GetStringWidth()+10)
+        --bugfix: resize the hidden frame for UI interactivity
+        Craftie.Frame.ScrollOrderListNameButton[order_index]:SetWidth(Craftie.Frame.ScrollOrderListName[order_index]:GetStringWidth()+30)
+        Craftie.Frame.ScrollOrderListItemButton[order_index]:SetWidth(Craftie.Frame.ScrollOrderListItem[order_index]:GetStringWidth()+20)
 
         local class = tonumber(order[1])
         local r = Craftie.Class[class][3][1]
@@ -1209,8 +1210,8 @@ function Craftie:GetCraftOrders()
 
     if (order_index >= 1) then
       Craftie.Frame.CraftOrdersDeleteAll:Enable()
-      Craftie.TabBottom[2].Text:SetText("Orders " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
     end
+    Craftie.TabBottom[2].Text:SetText("Orders " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
     Craftie.Frame.CraftOrders:SetAlpha(1)
   end)
   Craftie:Notification("Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)

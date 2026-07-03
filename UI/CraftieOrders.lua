@@ -151,11 +151,12 @@ Craftie.Frame.ScrollOrderListSelect={}
 Craftie.Frame.ScrollOrderListDelete={}
 
 local columns = {
+  --name, width, xpos
   {"Player",150, 4},
   {"Item",  300, 156},
   {"#",     50,  458},
   {"Date",  120, 510},
-  {"",      174, 632}
+  {"",      194, 632}
 }
 --local column_color = {0.7, 0.6, 0.5, 0.5}
 local column_color = {1, 0.9, 0.8, 0.4}
@@ -206,7 +207,7 @@ for i=1, Craftie.MAX_ORDERS do
       CraftieTooltip:ClearLines()
       CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT")
       --CraftieTooltip:AddLine("Delete Order For " .. requester)
-      CraftieTooltip:AddLine(Craftie.Color.Silver .. "Delete Order for " .. requester)
+      CraftieTooltip:AddLine(Craftie.Color.Silver .. "Delete Order from " .. requester)
       CraftieTooltip:Show()
     end
   end)
