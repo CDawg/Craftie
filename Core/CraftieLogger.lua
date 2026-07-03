@@ -69,7 +69,7 @@ end)
 Craftie.Logger.Button.Coll:SetScript("OnEnter", function(self)
   CraftieTooltip:ClearLines()
   CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
-  CraftieTooltip:AddLine(Craftie.Color.Silver .. "Send To Back")
+  CraftieTooltip:AddLine(Craftie.Color.Silver .. "Bring To Front")
   CraftieTooltip:Show()
 end)
 Craftie.Logger.Button.Coll:SetScript("OnLeave", function(self)
@@ -87,7 +87,7 @@ end)
 Craftie.Logger.Button.Exp:SetScript("OnEnter", function(self)
   CraftieTooltip:ClearLines()
   CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
-  CraftieTooltip:AddLine(Craftie.Color.Silver .. "Bring To Front")
+  CraftieTooltip:AddLine(Craftie.Color.Silver .. "Send To Back")
   CraftieTooltip:Show()
 end)
 Craftie.Logger.Button.Exp:SetScript("OnLeave", function(self)
@@ -134,20 +134,20 @@ Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logge
 
 Craftie:ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
 
-local ColHeight = 28
 --colName, colWidth, colX, colColor, colSortable
-Craftie.Logger.Cols = {
+local columns = {
   {"ID",   60,  0,   {1, 1, 0.8, 0.4}, 1},
   {"Date", 100, 60,  {1, 1, 0.7, 0.8}, 1},
   {"Type", 110, 160, {}, 1},
   {"Log",  500, 270, {}, 0},
 }
-Craftie.Logger.Col={}
+local ColHeight = 28
 
+Craftie.Logger.Col={}
 Craftie.LoggerSort = 1
 
 function Craftie.Logger:ResetAllSorting()
-  for k,v in ipairs(Craftie.Logger.Cols) do
+  for k,v in ipairs(columns) do
     if (v[5] == 1) then
       Craftie.Logger.Col[k].Up:Hide()
       Craftie.Logger.Col[k].Dn:Hide()
@@ -155,7 +155,7 @@ function Craftie.Logger:ResetAllSorting()
   end
 end
 
-for k,v in ipairs(Craftie.Logger.Cols) do
+for k,v in ipairs(columns) do
   Craftie.Logger.Col[k] = CreateFrame("Button", nil, Craftie.Logger, "BackdropTemplate")
   Craftie.Logger.Col[k]:SetWidth(v[2])
   Craftie.Logger.Col[k]:SetHeight(ColHeight)
@@ -260,7 +260,7 @@ function Craftie:Log(type, log)
   end)
   Craftie.Logger.Row[id]:SetScript("OnClick", function(self)
     local detail = ""
-    for k,v in ipairs(Craftie.Logger.Cols) do
+    for k,v in ipairs(columns) do
       detail = "[" .. Craftie.Logger.Row[id][1]:GetText() .. "]|n" ..
       Craftie.Logger.Row[id][2]:GetText() ..
       "|nTYPE: " .. Craftie.Logger.Row[id][3]:GetText() ..
@@ -269,7 +269,7 @@ function Craftie:Log(type, log)
     end
   end)
 
-  for k,v in ipairs(Craftie.Logger.Cols) do
+  for k,v in ipairs(columns) do
     Craftie.Logger.Row[id][k] = Craftie.Logger.Row[id]:CreateFontString(nil, "ARTWORK")
     Craftie.Logger.Row[id][k]:SetWidth(v[2])
     Craftie.Logger.Row[id][k]:SetHeight(RowHeight)
