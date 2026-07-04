@@ -88,7 +88,6 @@ function Craftie:TooltipLayout(data, tooltipframe)
       end
     end
     tooltipframe:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title .. " " .. title)
-    --tooltipframe:AddDoubleLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title, "[" .. title .. "]")
     if (data.profN1) then
       local mastery = ""
       if (data.profM1 > 0) then

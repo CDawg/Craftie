@@ -22,6 +22,7 @@ Localization/zhCN.lua
 Localization/zhTW.lua
 
 Core/CraftieEventManager.lua
+Core/CraftieChat.lua
 Core/CraftieSaves.lua
 
 Library/Alchemy.lua
@@ -38,6 +39,7 @@ Library/Inscription.lua
 Changelog.lua
 Core/CraftieGlobal.lua
 Core/CraftieCore.lua
+Core/CraftieNet.lua
 Core/CraftieTooltip.lua
 Core/CraftieCommands.lua
 Core/CraftieLogger.lua

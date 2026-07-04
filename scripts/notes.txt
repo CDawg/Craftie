@@ -47,6 +47,10 @@ print(#utf8_str)          -- Output: 5 (Counts the bytes)
 print(utf8.len(utf8_str)) -- Output: 4 (Counts the actual characters)
 ```
 
+Craftie.Profession.AlchemyCat = {
+  "Elixirs", "Flasks", "Potions", "Transmutes", "Oils", "Misc"
+}
+
 ============= AI String Pattern Matching ==================
 
 In Lua, string.find is the primary tool for locating a substring or a specific pattern within a string. Unlike many other languages that use POSIX or PCRE regular expressions, Lua uses its own lightweight pattern-matching system designed for efficiency and a small memory footprint.The Basics of string.findThe function returns the start and end indices of the first match it finds. If it doesn't find a match, it returns nil.lualocal text = "The magic number is 42"
