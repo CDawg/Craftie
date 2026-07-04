@@ -53,7 +53,7 @@ Craftie.DEBUGLEVEL = 10 --default [INFO | ERROR] | WARN]
 Craftie.CHAT = {
   INFO = {1, "|CFFDEDEDEINFO|r"},
   ERROR= {2, "|CFFFF0000ERROR|r"},
-  WARN = {3, "|CFFFFD94FWARNING|r"},
+  WARN = {3, "|CFFFFA74FWARNING|r"},
   EVENT= {4, "|CFF92CEFCEVENT|r"},
   SEND = {5, "|CFF89DE49SEND|r"},
   ACK  = {6, "|CFFD177F7ACK|r"},
@@ -74,7 +74,7 @@ Craftie.Throttle = {
     Flag = 1
   },
   Prof = {
-    Timer= 20,
+    Timer= 30,
     Flag = 1
   }
 }

@@ -14,7 +14,16 @@ the copyright holders.
 ]==]--
 
 --Updates / Credits
-Craftie.Credits = [==[
+
+Craftie.Contributors = {
+  "Zzaps",
+}
+Craftie.Developers = {
+  "Porthias",
+  "Portheas",
+}
+
+local credits = [==[
 Zzaps
 And a few nameless heroes on Dreamscythe
 Written by Porthias|r (a.k.a. Port)
@@ -109,5 +118,5 @@ Craftie.Credit.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Credit.Data:SetMultiLine(true)
 Craftie.Credit.Data:ClearFocus()
 Craftie.Credit.Data:SetAutoFocus(false)
-Craftie.Credit.Data:SetText(Craftie.Credits)
+Craftie.Credit.Data:SetText(credits)
 Craftie.Credit:Hide()

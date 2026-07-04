@@ -812,7 +812,7 @@ function Craftie:ResetCrafterBuild()
   for k,v in pairs(Craftie.Professions) do
     Craftie.ProfileBuilt[v[1]] = 0
   end
-  Craftie:Notification("Craftie:ResetCrafterBuild()", Craftie.CHAT.FUNC)
+  Craftie:Notification(Craftie.Color.Lime .. "Craftie:ResetCrafterBuild()", Craftie.CHAT.FUNC)
 end
 
 --Craftie.Throttle.Prof.Flag
@@ -1019,7 +1019,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie:SetProfLevel(0)
   if (player ~= "") then
-    Craftie:Notification("Using [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
+    Craftie:Notification(Craftie.Color.Yellow .. "Opening|r [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CrafterDataParse(Craftie.Page, player)
     Craftie.MenuSelRecipes[2] = player
   else

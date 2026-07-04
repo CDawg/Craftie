@@ -75,8 +75,20 @@ end
 
 function Craftie:TooltipLayout(data, tooltipframe)
   local color = Craftie.Color.Blue
+  local title = ""
   if (data) then
-    tooltipframe:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title)
+    for k,v in pairs(Craftie.Developers) do
+      if (data.name == v) then
+        title = "Developer"
+      end
+    end
+    for k,v in pairs(Craftie.Contributors) do
+      if (data.name == v) then
+        title = Craftie.Color.Lime .. "Contributor"
+      end
+    end
+    tooltipframe:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title .. " " .. title)
+    --tooltipframe:AddDoubleLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title, "[" .. title .. "]")
     if (data.profN1) then
       local mastery = ""
       if (data.profM1 > 0) then
@@ -113,6 +125,7 @@ function Craftie:BuildTooltipHooks()
 
     if (data) then
       tooltip:AddLine(" ")
+      data.name = name
     end
     Craftie:TooltipLayout(data, tooltip)
   end)
@@ -179,6 +192,8 @@ function Craftie:ShowGuildRosterTooltip(player, className, classID, owner)
     CraftieTooltip:Hide()
     return
   end
+
+  data.name = player
 
   CraftieTooltip:ClearLines()
 
