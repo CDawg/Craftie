@@ -43,7 +43,7 @@ Craftie._L = {
     {"右键单击", "工匠选项"}
   },
 
-  Navigation = {"Professions", "Orders", "Updates", "Help"},
+  Navigation = {"職業", "訂單", "更新", "幫助"},
 
   --translate
   Professions = {
