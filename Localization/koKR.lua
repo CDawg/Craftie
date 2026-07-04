@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---https://warcraft.wiki.gg/wiki/API_GetLocale
+-- https://warcraft.wiki.gg/wiki/API_GetLocale
 -- Korean (Korea)
 
 Craftie.LDetect = "koKR"
@@ -37,8 +37,24 @@ Craftie._L = {
     "길드 장인"
   },
   MenuSelRecipes = "모든 장인 레시피 검색",
+
   MMTooltip = {
     {"왼쪽 클릭", "오픈 크래프티"},
     {"오른쪽 클릭", "크래프티 옵션"}
+  },
+
+  Navigation = {"Professions", "Orders", "Updates", "Help"},
+
+  --translate
+  Professions = {
+    Alchemy       = {"Alchemy", "Elixir Master", "Potion Master", "Transmute Master"},
+    Blacksmithing = {"Blacksmithing", "Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"},
+    Cooking       = {"Cooking"},
+    Enchanting    = {"Enchanting"},
+    Engineering   = {"Engineering", "Gnomish Engineer", "Goblin Engineer"},
+    Leatherworking= {"Leatherworking"},
+    Tailoring     = {"Tailoring", "Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"},
+    Jewelcrafting = {"Jewelcrafting"},
+    Inscription   = {"Inscription"}
   }
 }

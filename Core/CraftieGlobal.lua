@@ -66,3 +66,11 @@ Craftie.EnableScrollFrames = true
 
 Craftie.TabBar_X = 42
 Craftie.TabBar_Y = 70
+
+function Craftie:TranslateLocaleProfession(name)
+  for k,v in pairs(Craftie._L.Professions) do
+    if (k == name) then
+      return v[1]
+    end
+  end
+end

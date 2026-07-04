@@ -1211,7 +1211,7 @@ function Craftie:GetCraftOrders()
     if (order_index >= 1) then
       Craftie.Frame.CraftOrdersDeleteAll:Enable()
     end
-    Craftie.TabBottom[2].Text:SetText("Orders " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
+    Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[2] .. " " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
     Craftie.Frame.CraftOrders:SetAlpha(1)
   end)
   Craftie:Notification("Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)

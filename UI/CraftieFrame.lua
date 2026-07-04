@@ -69,7 +69,7 @@ Craftie.Frame.Title.Sub:Hide()
 Craftie.Frame.Title.Prof = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Prof:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+3, "SLUG")
 Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 40, -35)
-Craftie.Frame.Title.Prof:SetText(Craftie.Professions[1][1])
+Craftie.Frame.Title.Prof:SetText(Craftie:TranslateLocaleProfession(Craftie.Professions[1][1]))
 Craftie.Frame.Title.Prof:SetTextColor(0.9, 0.9, 0.8, 1)
 
 --determine version and placement
@@ -130,7 +130,7 @@ for i,v in pairs(Craftie.Professions) do
     Craftie.Frame.TabSide[i].Hover:Show()
     CraftieTooltip:ClearLines()
     CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
-    CraftieTooltip:AddLine(Craftie.Color.Silver .. v[1] .. "|r")
+    CraftieTooltip:AddLine(Craftie.Color.Silver .. Craftie:TranslateLocaleProfession(v[1]) .. "|r")
     CraftieTooltip:Show()
   end)
   Craftie.Frame.TabSide[i]:SetScript("OnLeave", function()

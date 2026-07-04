@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---https://warcraft.wiki.gg/wiki/API_GetLocale
+-- https://warcraft.wiki.gg/wiki/API_GetLocale
 -- Chinese (Traditional, Taiwan)
 
 Craftie.LDetect = "zhTW"
@@ -40,5 +40,20 @@ Craftie._L = {
   MMTooltip = {
     {"左键单击", "打开工匠"},
     {"右键单击", "工匠选项"}
+  },
+
+  Navigation = {"Professions", "Orders", "Updates", "Help"},
+
+  --translate
+  Professions = {
+    Alchemy       = {"Alchemy", "Elixir Master", "Potion Master", "Transmute Master"},
+    Blacksmithing = {"Blacksmithing", "Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"},
+    Cooking       = {"Cooking"},
+    Enchanting    = {"Enchanting"},
+    Engineering   = {"Engineering", "Gnomish Engineer", "Goblin Engineer"},
+    Leatherworking= {"Leatherworking"},
+    Tailoring     = {"Tailoring", "Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"},
+    Jewelcrafting = {"Jewelcrafting"},
+    Inscription   = {"Inscription"}
   }
 }

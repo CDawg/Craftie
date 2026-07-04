@@ -13,8 +13,8 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---https://warcraft.wiki.gg/wiki/API_GetLocale
---English (United States), enGB clients return enUS
+-- https://warcraft.wiki.gg/wiki/API_GetLocale
+-- English (United States), enGB clients return enUS
 
 Craftie.LDetect = "enUS"
 if GetLocale() ~= Craftie.LDetect then return end
@@ -37,8 +37,24 @@ Craftie._L = {
     "Guild Crafters"
   },
   MenuSelRecipes = "Search All Crafter Recipes",
+
   MMTooltip = {
     {"Left Click", "Open Craftie"},
     {"Right Click", "Craftie Options"}
+  },
+
+  Navigation = {"Professions", "Orders", "Updates", "Help"},
+
+  --translate
+  Professions = {
+    Alchemy       = {"Alchemy", "Elixir Master", "Potion Master", "Transmute Master"},
+    Blacksmithing = {"Blacksmithing", "Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"},
+    Cooking       = {"Cooking"},
+    Enchanting    = {"Enchanting"},
+    Engineering   = {"Engineering", "Gnomish Engineer", "Goblin Engineer"},
+    Leatherworking= {"Leatherworking"},
+    Tailoring     = {"Tailoring", "Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"},
+    Jewelcrafting = {"Jewelcrafting"},
+    Inscription   = {"Inscription"}
   }
 }

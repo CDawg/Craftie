@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---https://warcraft.wiki.gg/wiki/API_GetLocale
+-- https://warcraft.wiki.gg/wiki/API_GetLocale
 -- French (France)
 
 Craftie.LDetect = "frFR"
@@ -37,8 +37,24 @@ Craftie._L = {
     "Artisans de Guilde"
   },
   MenuSelRecipes = "Rechercher toutes les Recettes d'Artisanat",
+
   MMTooltip = {
     {"Clic gauche", "Ouvrir Craftie"},
     {"Clic droit", "Options de Craftie"}
+  },
+
+  Navigation = {"Métiers", "Ordres", "Mises à jour", "Aide"},
+
+  --translate
+  Professions = {
+    Alchemy       = {"Alchemy", "Elixir Master", "Potion Master", "Transmute Master"},
+    Blacksmithing = {"Blacksmithing", "Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"},
+    Cooking       = {"Cooking"},
+    Enchanting    = {"Enchanting"},
+    Engineering   = {"Engineering", "Gnomish Engineer", "Goblin Engineer"},
+    Leatherworking= {"Leatherworking"},
+    Tailoring     = {"Tailoring", "Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"},
+    Jewelcrafting = {"Jewelcrafting"},
+    Inscription   = {"Inscription"}
   }
 }

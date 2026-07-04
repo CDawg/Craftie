@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---https://warcraft.wiki.gg/wiki/API_GetLocale
+-- https://warcraft.wiki.gg/wiki/API_GetLocale
 -- German (Germany), deAT, deCH clients return deDE
 
 Craftie.LDetect = "deDE"
@@ -37,9 +37,24 @@ Craftie._L = {
     "Gilden Handwerker"
   },
   MenuSelRecipes = "Alle Bastelrezepte durchsuchen",
+
   MMTooltip = {
     {"Linksklick", "Öffne Craftie"},
     {"Rechtsklick", "Craftie-Optionen"}
+  },
+
+  Navigation = {"Berufe", "Bestellungen", "Aktualisierungen", "Helfen"},
+
+  --translate
+  Professions = {
+    Alchemy       = {"Alchemy", "Elixir Master", "Potion Master", "Transmute Master"},
+    Blacksmithing = {"Blacksmithing", "Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"},
+    Cooking       = {"Cooking"},
+    Enchanting    = {"Enchanting"},
+    Engineering   = {"Engineering", "Gnomish Engineer", "Goblin Engineer"},
+    Leatherworking= {"Leatherworking"},
+    Tailoring     = {"Tailoring", "Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"},
+    Jewelcrafting = {"Jewelcrafting"},
+    Inscription   = {"Inscription"}
   }
 }
-
