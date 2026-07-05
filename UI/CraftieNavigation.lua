@@ -15,6 +15,15 @@ the copyright holders.
 
 local TabOffset = 350
 
+--[==[
+Craftie.Frame.TitleNavigation = Craftie.Frame:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.TitleNavigation:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+3, "SLUG")
+Craftie.Frame.TitleNavigation:SetPoint("TOPLEFT", 40, -35)
+Craftie.Frame.TitleNavigation:SetText("")
+Craftie.Frame.TitleNavigation:SetTextColor(0.9, 0.9, 0.8, 1)
+Craftie.Frame.TitleNavigation:Hide()
+]==]--
+
 Craftie.TabBottom={}
 for k,v in pairs(Craftie._L.Navigation) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
@@ -62,7 +71,7 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Credit:Hide()
   Craftie.Help:Hide()
   Craftie.Frame.Title.Prof:Hide()
-  Craftie.Frame.Title.Sub:Show()
+  --Craftie.Frame.TitleNavigation:Show()
   Craftie.Frame.ItemerLevel:Hide()
   Craftie.Frame.ItemerProgBarS:Hide()
 
@@ -73,7 +82,7 @@ function Craftie:TabSelectBottom(tab, sound)
 
   if (tab == 1) then --professions
     Craftie.TabBarHide = 0
-    Craftie.Frame.Title.Sub:Hide()
+    --Craftie.Frame.TitleNavigation:Hide()
     Craftie.Frame.Title.Prof:Show()
     Craftie.Frame.CraftParent:Show()
     Craftie.Frame.ScrollPlayersParent:Show()
@@ -82,7 +91,6 @@ function Craftie:TabSelectBottom(tab, sound)
   end
   if (tab == 2) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Frame.Title.Sub:SetText("Craft Orders")
     Craftie.Frame.CraftOrders:Show()
   end
   if (tab == 3) then
@@ -106,9 +114,8 @@ function Craftie:TabSelectBottom(tab, sound)
 
   Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Active.png")
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
-  Craftie.Frame.Title.Sub:SetText(Craftie._L.Navigation[tab])
+  --Craftie.Frame.TitleNavigation:SetText(Craftie._L.Navigation[tab])
 end
 
 --first tab
 Craftie.TabBottom[1].BG:SetTexture("Interface/FriendsFrame/UI-FriendsFrameTab")
---UI-FriendsFrameTab-InactiveTab

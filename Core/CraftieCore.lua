@@ -342,7 +342,6 @@ function Craftie:UpdateCrafterList(search)
   end)
 
   --if (Craftie.DEBUGLEVEL > 3) then
-    --Craftie.Frame.ScrollPlayersListName[1]:SetText("All " .. Craftie.Page .. " Recipes")
     Craftie.Frame.ScrollPlayersListName[1]:SetText(Craftie.Page .. " " .. Craftie._L.Player_PageNameListing)
     --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
     Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)

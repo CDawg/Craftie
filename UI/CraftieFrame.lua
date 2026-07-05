@@ -59,13 +59,6 @@ Craftie.Frame.Title:SetPoint("TOPRIGHT", -70, -5)
 Craftie.Frame.Title:SetText("v" .. Craftie._G.Version .. " [" .. Craftie.Game.Name .. "]")
 Craftie.Frame.Title:SetTextColor(0.9, 0.9, 0.8, 0.5)
 
-Craftie.Frame.Title.Sub = Craftie.Frame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.Title.Sub:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+3, "SLUG")
-Craftie.Frame.Title.Sub:SetPoint("TOPLEFT", 40, -35)
-Craftie.Frame.Title.Sub:SetText("")
-Craftie.Frame.Title.Sub:SetTextColor(0.9, 0.9, 0.8, 1)
-Craftie.Frame.Title.Sub:Hide()
-
 Craftie.Frame.Title.Prof = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title.Prof:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+3, "SLUG")
 Craftie.Frame.Title.Prof:SetPoint("TOPLEFT", 40, -35)
