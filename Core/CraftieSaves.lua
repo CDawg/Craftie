@@ -84,7 +84,7 @@ function Craftie:SaveData()
       Craftie.Frame.Button.Minimap:SetPoint("TOPLEFT", Minimap, "TOPLEFT", minimapIconPos[1], minimapIconPos[2])
     end
 
-    Craftie:Notification("Loading Profile: [" ..  Craftie.Player.Faction .. "]".. Craftie.Player.Realm .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
+    Craftie:Notification("Loading Profile: [" ..  Craftie.Player.Faction .. "] ".. Craftie.Player.Realm .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
   end
 
   Craftie.Save.Account= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]

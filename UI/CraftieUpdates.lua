@@ -14,9 +14,8 @@ the copyright holders.
 ]==]--
 
 --Updates / Credits
-
 Craftie.Contributors = {
-  "Zzaps",
+  "Sweetembrace",
 }
 Craftie.Developers = {
   "Porthias",
@@ -24,7 +23,6 @@ Craftie.Developers = {
 }
 
 local credits = [==[
-Zzaps
 And a few nameless heroes on Dreamscythe
 Written by Porthias|r (a.k.a. Port)
 ]==]

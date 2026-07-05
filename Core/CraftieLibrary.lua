@@ -385,15 +385,16 @@ function Craftie:SortTableByMatch(tbl, search)
   return matchCount
 end
 
-function Craftie:TextSpacing(text, spacing)
-  local space = ""
-  local tabs = " "
-  for i=1, spacing do
-    tabs = tabs .. " "
+function Craftie:TextSpacing(text)
+  local string = ""
+  local length = #text
+  local dist = 20 -length
+  local space = " "
+  for i=1, dist do
+    space = space .. " "
   end
-  tabs = text .. tabs
-  space = string.gsub(tabs, " ", "", #text)
-  return space
+  string = text .. space
+  return string
 end
 
 --designed for nested tables
