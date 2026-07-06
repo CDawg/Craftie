@@ -61,14 +61,14 @@ Craftie.Frame.Header:SetTextColor(0.9, 0.9, 0.8, 0.5)
 
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+3, "SLUG")
-Craftie.Frame.Title:SetPoint("TOPLEFT", 40, -40)
+Craftie.Frame.Title:SetPoint("TOPLEFT", 40, -35)
 Craftie.Frame.Title:SetText(Craftie:TranslateLocaleProfession(Craftie.Professions[1][1]))
 Craftie.Frame.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Frame.CrafterLevel = CreateFrame("Frame", "Craftie.Frame.CrafterLevel", Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.CrafterLevel:SetWidth(250)
 Craftie.Frame.CrafterLevel:SetHeight(20)
-Craftie.Frame.CrafterLevel:SetPoint("TOPLEFT", 36, -54)
+Craftie.Frame.CrafterLevel:SetPoint("TOPLEFT", 36, -50)
 Craftie.Frame.CrafterLevel:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.CrafterLevel:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.CrafterLevel:SetBackdropBorderColor(1, 1, 1, 0)
@@ -93,6 +93,12 @@ Craftie.Frame.CrafterProgLevel:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Si
 Craftie.Frame.CrafterProgLevel:SetPoint("CENTER", 4, -2)
 Craftie.Frame.CrafterProgLevel:SetJustifyH("LEFT")
 Craftie.Frame.CrafterProgLevel:SetText("")
+
+Craftie.Frame.Mastery = Craftie.Frame:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Mastery:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Frame.Mastery:SetPoint("TOPLEFT", 40, -73)
+Craftie.Frame.Mastery:SetText("")
+Craftie.Frame.Mastery:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Frame.Button={}
 Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "OVERLAY")

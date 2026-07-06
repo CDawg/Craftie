@@ -361,6 +361,7 @@ function Craftie:TabSelectSide(tab, sound)
     local prof_name = Craftie.Professions[tab][1]
     Craftie:CloseAllPlayerMenus()
     Craftie:ClearSearchFocus(true)
+    Craftie.Frame.Mastery:SetText("")
     for i=1, #Craftie.Professions do
       Craftie.Frame.TabSide[i].Glow:Hide()
       Craftie.Frame.TabSide[i].Shadow:Show()
@@ -834,8 +835,13 @@ function Craftie:CrafterDataParse(profName, player)
     if (update == nil) then
       update=""
     end
+
+    Craftie.Frame.Mastery:SetText("")
     if (profMastery == nil) then
       profMastery=0
+    else
+      local k = Craftie:GetKeyFromValue(Craftie.Professions, profName, 1)
+      Craftie.Frame.Mastery:SetText(Craftie.Professions[k][4][tonumber(profMastery)])
     end
     Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. profMastery .. "," .. update, Craftie.CHAT.PARSE)
   end
@@ -982,6 +988,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     end
     Craftie.Frame.Title:SetText(player .. "'".. plural .. " " .. Craftie.Page .. " Recipes")
   end
+
   --local prof_list = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   --local prof_color = Craftie:Split(Craftie.Professions[prof_list][3], ",")
   --Craftie.Frame.Title:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
