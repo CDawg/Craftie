@@ -748,24 +748,24 @@ function Craftie:SetProfLevel(level)
   local uimax = 246 --UI Max width
   local calc = 0
 
-  Craftie.Frame.ItemerLevel:Hide()
-  Craftie.Frame.ItemerProgBarS:Hide()
+  Craftie.Frame.CrafterLevel:Hide()
+  Craftie.Frame.CrafterProgBarS:Hide()
 
   if (level) then
     calc = math.ceil((level * diff) / uimax)
     if (calc >= 1) then
-      Craftie.Frame.ItemerLevel:Show()
+      Craftie.Frame.CrafterLevel:Show()
       --print("level: " .. level .. " | " .. calc .. " [max: " .. uimax .. "]")
 
-      Craftie.Frame.ItemerProgBar:SetSize(calc, 15)
-      Craftie.Frame.ItemerProgLevel:SetText(level .. " / " .. Craftie.PROFMAXLEVEL)
+      Craftie.Frame.CrafterProgBar:SetSize(calc, 15)
+      Craftie.Frame.CrafterProgLevel:SetText(level .. " / " .. Craftie.PROFMAXLEVEL)
       local left = 0
       if (calc < 200) then left = 4 end
       if (calc <= 20) then left = 5 end
-      Craftie.Frame.ItemerProgBar:SetPoint("TOPLEFT", 0+left, -5)
+      Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0+left, -5)
       if (level < Craftie.PROFMAXLEVEL) then
-        Craftie.Frame.ItemerProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
-        Craftie.Frame.ItemerProgBarS:Show()
+        Craftie.Frame.CrafterProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
+        Craftie.Frame.CrafterProgBarS:Show()
       end
     end
   end

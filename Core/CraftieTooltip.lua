@@ -133,15 +133,21 @@ end
 --custom tooltip for Craftie only
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
 for i = 1, 30 do
+  --local header=_G["GameTooltipHeaderText"..1]
+  local header = _G["CraftieTooltipTextLeft"..1] --first line
   local left = _G["CraftieTooltipTextLeft"..i]
   local right= _G["CraftieTooltipTextRight"..i]
   local flags= nil
 
-  if left then
+  if (header) then
+    header:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, flags)
+  end
+
+  if (left) then
     left:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
   end
 
-  if right then
+  if (right) then
     right:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
   end
 end
