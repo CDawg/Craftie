@@ -122,19 +122,19 @@ Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnClick", function(self)
 end)
 
 Craftie.Frame.ScrollOrderList = CreateFrame("Frame", "Craftie.Frame.ScrollOrderList", Craftie.Frame.CraftOrders, "BackdropTemplate")
-Craftie.Frame.ScrollOrderList:SetWidth(Craftie.Frame.CraftOrders:GetWidth()-10)
-Craftie.Frame.ScrollOrderList:SetHeight(Craftie.Frame.CraftOrders:GetHeight()-5)
-Craftie.Frame.ScrollOrderList:SetPoint("TOPLEFT", 4, -10)
+Craftie.Frame.ScrollOrderList:SetWidth(Craftie.Frame.CraftOrders:GetWidth())
+Craftie.Frame.ScrollOrderList:SetHeight(Craftie.Frame.CraftOrders:GetHeight()-dimensions.column.H)
+Craftie.Frame.ScrollOrderList:SetPoint("TOPLEFT", 0, -dimensions.column.H)
 
 Craftie.Frame.ScrollOrderList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollOrderList.Child", Craftie.Frame.ScrollOrderList, "UIPanelScrollFrameTemplate")
-Craftie.Frame.ScrollOrderList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList, "TOPLEFT",         -2,-20)
-Craftie.Frame.ScrollOrderList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList, "BOTTOMRIGHT", 14, 10)
+Craftie.Frame.ScrollOrderList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList, "TOPLEFT", 5, -10)
+Craftie.Frame.ScrollOrderList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList, "BOTTOMRIGHT", 10, 10)
 Craftie.Frame.ScrollOrderListChildFrame = CreateFrame("Frame", "Craftie.Frame.ScrollOrderListChildFrame", Craftie.Frame.ScrollOrderList.Child)
 Craftie.Frame.ScrollOrderListChildFrame:SetSize(Craftie.Frame.CraftOrders:GetWidth(), Craftie.Frame.CraftOrders:GetHeight())
 Craftie.Frame.ScrollOrderList.Child:SetScrollChild(Craftie.Frame.ScrollOrderListChildFrame)
 Craftie.Frame.ScrollOrderList.Child.ScrollBar:ClearAllPoints()
-Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList.Child, "TOPRIGHT",          0,-10)
-Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList.Child, "BOTTOMRIGHT", -42, 10)
+Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList.Child, "TOPRIGHT", 0, -5)
+Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList.Child, "BOTTOMRIGHT", -42, 5)
 
 Craftie:ScrollBarFrame(Craftie.Frame.ScrollOrderList.Child)
 
@@ -158,15 +158,14 @@ local columns = {
   {"Date",  120, 510},
   {"",      194, 632}
 }
---local column_color = {0.7, 0.6, 0.5, 0.5}
 local column_color = {1, 0.9, 0.8, 0.4}
 
 Craftie.Frame.ScrollOrderListCol={}
 for k,v in pairs(columns) do
   Craftie.Frame.ScrollOrderListCol[k]= CreateFrame("Button", nil, Craftie.Frame.ScrollOrderList.Child, "BackdropTemplate")
   Craftie.Frame.ScrollOrderListCol[k]:SetWidth(columns[k][2])
-  Craftie.Frame.ScrollOrderListCol[k]:SetHeight(dimensions.column.H)
-  Craftie.Frame.ScrollOrderListCol[k]:SetPoint("TOPLEFT", columns[k][3], dimensions.column.H+1)
+  Craftie.Frame.ScrollOrderListCol[k]:SetHeight(dimensions.column.H-1)
+  Craftie.Frame.ScrollOrderListCol[k]:SetPoint("TOPLEFT", columns[k][3]-3, dimensions.column.H+6)
   Craftie.Frame.ScrollOrderListCol[k]:SetBackdrop(Craftie.Backdrop.Borderless)
   Craftie.Frame.ScrollOrderListCol[k]:SetBackdropColor(column_color[1], column_color[2], column_color[3], column_color[4])
   Craftie.Frame.ScrollOrderListCol[k].Text = Craftie.Frame.ScrollOrderListCol[k]:CreateFontString(nil, "ARTWORK")
