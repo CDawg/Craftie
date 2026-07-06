@@ -15,8 +15,8 @@ the copyright holders.
 
 --need to localize the commands
 local commands = {
-  {"options", "Settings"},
-  {"debug",   "info here"},
+  {"options", "Options/Settings"},
+  {"debug",   "View debug info. Default = Debug level 3"},
   {"log",     "Open The Debug Logger"},
   {"delete",  "Delete a table [config | crafters | orders | favs]"},
 }

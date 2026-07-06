@@ -56,5 +56,18 @@ Craftie._L = {
     Tailoring     = {"Tailoring", "Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"},
     Jewelcrafting = {"Jewelcrafting"},
     Inscription   = {"Inscription"}
+  },
+
+  Options = {
+    Library = {
+      "Show The Profession Library For Every Recipe",
+      "Show the entire recipe library for each|nprofession within the player list for all phases"
+    },
+    Notifications = {
+      header = "Order Notifications",
+      {"Disable Notifications While In Raid",        "Disable incoming order notifications while in a Raid"},
+      {"Disable Notifications While In An Instance", "Disable incoming order notifications while in an Instance"},
+      {"Disable Notifications While In Combat",      "Disable incoming order notifications while in combat"},
+    },
   }
 }

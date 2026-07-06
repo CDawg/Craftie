@@ -255,15 +255,6 @@ Craftie.Frame.Button.Minimap:SetScript("OnClick", function(self, button)
   end
 end)
 
-Craftie.Settings={}
-Craftie.Frame.Settings = CreateFrame("Frame", "CraftieSettingsFrame", UIParent)
-Craftie.Settings.Category = Settings.RegisterCanvasLayoutCategory(Craftie.Frame.Settings, Craftie._G.Title)
-Settings.RegisterAddOnCategory(Craftie.Settings.Category)
-
-Craftie.Settings.Title = Craftie.Frame.Settings:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-Craftie.Settings.Title:SetPoint("TOPLEFT", 16, -16)
-Craftie.Settings.Title:SetText(Craftie._G.Title)
-
 CraftieDialog={}
 CraftieDialog = CreateFrame("Frame", "CraftieDialog", Craftie.Frame, "TranslucentFrameTemplate")
 CraftieDialog:SetWidth(350)

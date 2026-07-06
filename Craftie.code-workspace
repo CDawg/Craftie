@@ -75,7 +75,13 @@
 			"DUNGEON_SCORE_PER_DUNGEON_NO_RATING",
 			"DUNGEON_SCORE_DUNGEON_RATING",
 			"DUNGEON_SCORE_DUNGEON_RATING_OVERTIME",
-			"English"
+			"English",
+			"UIDropDownMenu_SetWidth",
+			"UIDropDownMenu_AddButton",
+			"UIDropDownMenu_CreateInfo",
+			"Settings",
+			"GameMenuFrame",
+			"DND"
 		]
 	}
 }

@@ -52,5 +52,6 @@ UI/CraftieOrders.lua
 UI/CraftieNavigation.lua
 UI/CraftieHelp.lua
 UI/CraftieUpdates.lua
+UI/CraftieOptions.lua
 
 Core/CraftieInit.lua
