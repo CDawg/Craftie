@@ -973,18 +973,18 @@ function Craftie:OpenProfessionList(profArray, search, player)
     end
   end
 
-  Craftie.Frame.Title.Prof:SetText(Craftie.Page)
+  Craftie.Frame.Title:SetText(Craftie.Page)
   if (player ~= "") then
     local lastChar = player:sub(-1)
     local plural = "s"
     if (lastChar == plural) then
       plural = ""
     end
-    Craftie.Frame.Title.Prof:SetText(player .. "'".. plural .. " " .. Craftie.Page .. " Recipes")
+    Craftie.Frame.Title:SetText(player .. "'".. plural .. " " .. Craftie.Page .. " Recipes")
   end
   --local prof_list = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
   --local prof_color = Craftie:Split(Craftie.Professions[prof_list][3], ",")
-  --Craftie.Frame.Title.Prof:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
+  --Craftie.Frame.Title:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
   --Craftie.Frame.Icon:SetTexture("Interface/ICONS/" .. Craftie.Professions[prof_list][2])
 
   C_Timer.After(0.35, function()
