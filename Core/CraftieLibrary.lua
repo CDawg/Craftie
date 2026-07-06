@@ -148,7 +148,7 @@ Craftie.Class = {
 Craftie.PROFMAXLEVEL = 300
 Craftie.Profession={}
 Craftie.Professions = {
-  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmute Master"}},
+  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmutation Master"}},
   {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48", {"Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"}},
   {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13", {}},
   {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83", {}},
