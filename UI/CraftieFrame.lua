@@ -17,8 +17,7 @@ Craftie.Frame:SetWidth(Craftie._G.Width)
 Craftie.Frame:SetHeight(Craftie._G.Height)
 Craftie.Frame:SetPoint("CENTER", 0, 0)
 
---TODO settings
-Craftie.Frame:SetFrameStrata("LOW")
+Craftie.Frame:SetFrameStrata("LOW") --default
 
 Craftie.Frame:SetMovable(true)
 Craftie.Frame:EnableMouse(true)

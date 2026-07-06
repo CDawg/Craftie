@@ -29,6 +29,8 @@ Craftie.Settings.CheckboxLibrary.Text = Craftie.Settings.CheckboxLibrary:CreateF
 Craftie.Settings.CheckboxLibrary.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
 Craftie.Settings.CheckboxLibrary.Text:SetPoint("TOPLEFT", 26, -6)
 Craftie.Settings.CheckboxLibrary.Text:SetText(Craftie._L.Options.Library[1])
+Craftie.Settings.CheckboxLibrary.Text:SetTextColor(0.6,0.6,0.6,1)
+Craftie.Settings.CheckboxLibrary:Disable()
 Craftie.Settings.CheckboxLibrary:SetScript("OnClick", function(self)
   local isChecked = self:GetChecked()
   if (isChecked) then
@@ -116,3 +118,31 @@ Craftie.Settings.CheckboxLibrary:SetScript("OnLeave", function(self)
   CraftieTooltip:Hide()
 end)
 ]==]--
+
+Craftie.Settings.DropdownFrame={}
+Craftie.Settings.DropdownFrame = CreateFrame("Frame", "Craftie.Settings.DropdownFrame", Craftie.Frame.Settings, "UIDropDownMenuTemplate") --DropdownButtonMixin
+Craftie.Settings.DropdownFrame:SetPoint("TOPLEFT", 0, -250)
+Craftie.Settings.DropdownFrame.displayMode = "MENU"
+--Craftie.Settings.DropdownFrame:SetBackdrop(Craftie.Backdrop.Borderless)
+--Craftie.Settings.DropdownFrame:SetBackdropBorderColor(1, 1, 1, 0)
+Craftie.Settings.DropdownFrame.text = Craftie.Settings.DropdownFrame:CreateFontString(nil, "ARTWORK")
+Craftie.Settings.DropdownFrame.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
+Craftie.Settings.DropdownFrame.text:SetPoint("TOPLEFT", Craftie.Settings.DropdownFrame, "TOPLEFT", 25, -8)
+Craftie.Settings.DropdownFrame.text:SetText(Craftie._L.Options.Frame.set[1])
+Craftie.Settings.DropdownFrame.OnClick = function(self)
+  Craftie.Settings.DropdownFrame.text:SetText(Craftie._L.Options.Frame.set[self.value])
+end
+UIDropDownMenu_SetWidth(Craftie.Settings.DropdownFrame, 160)
+UIDropDownMenu_Initialize(Craftie.Settings.DropdownFrame, function(self, level)
+  local info = UIDropDownMenu_CreateInfo()
+  for k,v in pairs(Craftie._L.Options.Frame.set) do
+    --info.notCheckable = 1
+    info.padding = 2
+    info.text = v
+    info.value= k
+    info.justifyH = "LEFT"
+    info.disabled = false
+    info.func = self.OnClick
+    UIDropDownMenu_AddButton(info, level)
+  end
+end)

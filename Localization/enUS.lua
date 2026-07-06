@@ -69,5 +69,9 @@ Craftie._L = {
       {"Disable Notifications While In An Instance", "Disable incoming order notifications while in an Instance"},
       {"Disable Notifications While In Combat",      "Disable incoming order notifications while in combat"},
     },
+    Frame = {
+      header = "",
+      set = {"LOW", "MEDIUM", "HIGH"}
+    }
   }
 }
