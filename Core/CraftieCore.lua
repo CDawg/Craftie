@@ -67,7 +67,8 @@ end
 function Craftie:ClearCraftFrame()
   Craftie.Frame.Item:Hide()
   Craftie.Frame.ItemCountEditBox:SetNumber(1)
-  --GameTooltip:Hide()
+  Craftie.Frame.Mastery:SetText("")
+
   for i=1, Craftie.MAX_REAGENTS do
     Craftie.Frame.Reagent.Main[i]:Hide()
   end
@@ -77,6 +78,7 @@ function Craftie:ClearCraftFrame()
   Craftie.Frame.Item.SourceText:Hide()
 
   Craftie.Frame.ItemRequestParent:Hide()
+
   Craftie:Notification("Craftie:ClearCraftFrame()", Craftie.CHAT.FUNC)
 end
 
@@ -361,7 +363,6 @@ function Craftie:TabSelectSide(tab, sound)
     local prof_name = Craftie.Professions[tab][1]
     Craftie:CloseAllPlayerMenus()
     Craftie:ClearSearchFocus(true)
-    Craftie.Frame.Mastery:SetText("")
     for i=1, #Craftie.Professions do
       Craftie.Frame.TabSide[i].Glow:Hide()
       Craftie.Frame.TabSide[i].Shadow:Show()
@@ -840,8 +841,10 @@ function Craftie:CrafterDataParse(profName, player)
     if (profMastery == nil) then
       profMastery=0
     else
-      local k = Craftie:GetKeyFromValue(Craftie.Professions, profName, 1)
-      Craftie.Frame.Mastery:SetText(Craftie.Professions[k][4][tonumber(profMastery)])
+      C_Timer.After(0.1, function() --give it time to register the profession recipes
+        local k = Craftie:GetKeyFromValue(Craftie.Professions, profName, 1)
+        Craftie.Frame.Mastery:SetText(Craftie.Professions[k][4][tonumber(profMastery)])
+      end)
     end
     Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. profMastery .. "," .. update, Craftie.CHAT.PARSE)
   end
