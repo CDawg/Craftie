@@ -837,7 +837,6 @@ function Craftie:CrafterDataParse(profName, player)
       update=""
     end
 
-    Craftie.Frame.Mastery:SetText("")
     if (profMastery == nil) then
       profMastery=0
     else
