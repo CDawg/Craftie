@@ -192,7 +192,7 @@ Craftie.Frame.Search.Players.Text:SetScript("OnKeyUp", function(self, key)
     --local search_array = Craftie.ProfessionDefault --what player is selected?
     local search_index = self:GetText()
     if (search_index ~= "") then
-      print(search_index)
+      --print("search_index " .. search_index)
       Craftie:UpdateCrafterList(search_index)
     end
   end

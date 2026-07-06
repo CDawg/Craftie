@@ -57,27 +57,7 @@ function Craftie:BuildChatHooks()
   end
 
   --ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])"CHAT_MSG_SYSTEM",
-
 end
---[==[
-local function FilterOnline(self, event, msg, sender)
-    -- Check if the message is exactly "!stats"
-    if msg == "No player named '%a' is currently playing" then
-        -- Send a private reply back to the sender
-        --SendChatMessage("My stats are awesome!", "WHISPER", nil, sender)
-
-        -- Return true to prevent the original "!stats" message 
-        -- from printing in the user's chat window
-        print("found it")
-        return true
-    end
-    -- Return false/nil to let other messages display normally
-    return false
-end
-
-ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", FilterOnline)
---ChatFrame_RemoveMessageEventFilter
-]==]--
 
 hooksecurefunc("SetItemRef", function(link, text, button)
   -- Check if the clicked link is an item

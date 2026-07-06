@@ -86,7 +86,7 @@ Craftie.Frame.DropdownRecipes.text:SetPoint("TOPLEFT", Craftie.Frame.DropdownRec
 Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
 Craftie.Frame.DropdownRecipes.OnClick = function(self, checked)
   Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[self.value])
-  print(self.value)
+  --print(self.value)
 end
 UIDropDownMenu_SetWidth(Craftie.Frame.DropdownRecipes, dimensions.W-22)
 UIDropDownMenu_Initialize(Craftie.Frame.DropdownRecipes, function(self, level)
@@ -152,7 +152,7 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
     if (Craftie.Selected_Name ~= "") then
       Craftie:OpenProfessionList(search_array, search_index, Craftie.Selected_Name)
     else
-      print("search library within " .. Craftie.Page)
+      --print("search library within " .. Craftie.Page)
       Craftie:OpenProfessionList(search_array, search_index, "")
     end
 

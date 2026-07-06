@@ -879,7 +879,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
         end
       end
 
-      print("search everyone within " .. Craftie.Page)
+      --print("search everyone within " .. Craftie.Page)
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()] ~= nil) then
         --print("found " .. Craftie.Page)
         for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()]) do
