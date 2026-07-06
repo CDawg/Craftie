@@ -200,3 +200,25 @@ player -> gets addonmessage -> splits the data -> adds to Craftie.PlayerGUIDProf
 9	ruRU	Russian (Russia)
 10	ptBR	Portuguese (Brazil)
 11	itIT	Italian (Italy)
+
+
+spinning animation
+local mySpinner = CreateFrame("Frame", "MySpinnerFrame", Craftie.Frame.Settings)
+mySpinner:SetSize(64, 64)
+mySpinner:SetPoint("CENTER")
+
+-- Add a texture to spin
+mySpinner.texture = mySpinner:CreateTexture(nil, "BACKGROUND")
+mySpinner.texture:SetAllPoints()
+mySpinner.texture:SetTexture("interface/icons/inv_mushroom_11") -- Example icon
+
+-- Create the animation group and the rotation animation
+mySpinner.animGroup = mySpinner:CreateAnimationGroup()
+mySpinner.animGroup:SetLooping("REPEAT") -- Keep it spinning forever
+
+mySpinner.spin = mySpinner.animGroup:CreateAnimation("Rotation")
+mySpinner.spin:SetDuration(2) -- Takes 2 seconds to complete one full spin
+mySpinner.spin:SetDegrees(360) -- Spins 360 degrees
+
+-- Play the animation!
+mySpinner.animGroup:Play()

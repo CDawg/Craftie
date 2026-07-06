@@ -41,7 +41,7 @@ function Craftie:Init()
   --whisper self to prep incoming comms
   Craftie:SendPacket(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
 
-  C_Timer.After(3, function()
+  C_Timer.After(2, function()
     if (IsInGuild()) then
       Craftie:UpdatePlayerTooltip("GUILD")
 
@@ -77,6 +77,7 @@ function Craftie:Init()
         end)
       end
     end
+    Craftie:GetEntryProfessions()
   end)
   --Craftie:BuildWorldRosterTooltip()
 

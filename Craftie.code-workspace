@@ -81,7 +81,8 @@
 			"UIDropDownMenu_CreateInfo",
 			"Settings",
 			"GameMenuFrame",
-			"DND"
+			"DND",
+			"UIDropDownMenu_SetSelectedValue"
 		]
 	}
 }

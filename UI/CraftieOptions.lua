@@ -19,7 +19,7 @@ Craftie.Settings.Category = Settings.RegisterCanvasLayoutCategory(Craftie.Frame.
 Settings.RegisterAddOnCategory(Craftie.Settings.Category)
 
 Craftie.Settings.Title = Craftie.Frame.Settings:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-Craftie.Settings.Title:SetPoint("TOPLEFT", 16, -16)
+Craftie.Settings.Title:SetPoint("TOPLEFT", 10, -16)
 Craftie.Settings.Title:SetText(Craftie._G.Title)
 
 Craftie.Settings.CheckboxLibrary = CreateFrame("CheckButton", nil, Craftie.Frame.Settings, "ChatConfigCheckButtonTemplate")
@@ -146,3 +146,8 @@ UIDropDownMenu_Initialize(Craftie.Settings.DropdownFrame, function(self, level)
     UIDropDownMenu_AddButton(info, level)
   end
 end)
+
+--share with guild?
+-- do not save orders
+-- auto delete orders
+-- tooltips?

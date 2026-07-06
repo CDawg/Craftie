@@ -358,6 +358,32 @@ function Craftie:UpdateCrafterList(search)
   --end
 end
 
+Craftie.MyProfessions = {}
+function Craftie:GetEntryProfessions()
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
+    for i = 1, GetNumSpellTabs() do
+      local offset, numSlots = select(3, GetSpellTabInfo(i))
+      for j = offset+1, offset+numSlots do
+        local spellName, spellSubName, spellID = GetSpellBookItemName(j, BOOKTYPE_SPELL)
+        for k,v in pairs(Craftie.Professions) do
+          if (spellName == v[1]) then
+            table.insert(Craftie.MyProfessions, v[1])
+          end
+        end
+      end
+    end
+
+    --we know a profession, but have not opened the book
+    for k,prof in pairs(Craftie.MyProfessions) do
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] == nil) then
+        print("we know " .. prof .. "but havnt opened yet")
+        --return prof
+      end
+    end
+  end
+  Craftie:Notification("Craftie:GetEntryProfessions(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
+end
+
 function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then
     local prof_name = Craftie.Professions[tab][1]
@@ -378,6 +404,10 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie.Tab = tab
     Craftie.Selected_Name = ""
     Craftie.Page = prof_name
+    --if (Craftie:GetEntryProfessions() == prof_name) then
+      --CastSpellByName(prof_name)
+      --print("found " .. prof_name)
+    --end
     Craftie.ProfessionDefault = Craftie.Profession[prof_name]
     Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
@@ -1073,6 +1103,10 @@ function Craftie:Open(player, profession)
     end)
   else
     Craftie.Frame:Show()
+    --for k,prof in pairs(Craftie.MyProfessions) do
+      --print("prof " .. prof)
+      --CastSpellByName(prof)
+    --end
     Craftie:Notification("Craftie:Opened", Craftie.CHAT.FUNC)
   end
 end

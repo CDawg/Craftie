@@ -284,3 +284,38 @@ CraftieDialog.Yes:SetText("Yes")
 CraftieDialog.Yes:Hide()
 
 Craftie.Frame:Hide()
+
+--[==[
+local f = CreateFrame("Frame", "MyGlowingBox", UIParent)
+f:SetSize(40, 40)
+f:SetPoint("CENTER", UIParent, "CENTER")
+
+-- 2. Create the texture (e.g., a simple white square we will colorize)
+local tex = f:CreateTexture(nil, "BACKGROUND")
+tex:SetAllPoints()
+tex:SetTexture("Interface\\Icons\\inv_mushroom_11")
+
+-- 3. Create the glowing overlay
+local overlay = f:CreateTexture(nil, "OVERLAY")
+overlay:SetAllPoints()
+overlay:SetTexture("Interface\\Buttons\\UI-ActionButton-Border")
+overlay:SetBlendMode("ADD")
+overlay:SetAlpha(0)
+
+-- 4. Create the Animation Group for a blinking/pulsing glow
+local ag = overlay:CreateAnimationGroup()
+ag:SetLooping("BOUNCE")
+
+local fadeIn = ag:CreateAnimation("Alpha")
+fadeIn:SetOrder(1)
+fadeIn:SetDuration(0.5)
+fadeIn:SetFromAlpha(0)
+fadeIn:SetToAlpha(1)
+
+local fadeOut = ag:CreateAnimation("Alpha")
+fadeOut:SetOrder(2)
+fadeOut:SetDuration(0.5)
+fadeOut:SetFromAlpha(1)
+fadeOut:SetToAlpha(0)
+ag:Play()
+]==]--
