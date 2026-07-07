@@ -302,36 +302,38 @@ function Craftie:UpdateCrafterList(search)
     end
     Craftie.Frame.ScrollPlayersResults:SetText(#search_list .. " " .. results)
 
-    for n=1, #search_list do
-      local i=n+1 --skip the 1st index
-      local crafter = Craftie:Split(profession_crafters[search_list[n]], ",")
+    if (profession_crafters ~= nil) then
+      for n=1, #search_list do
+        local i=n+1 --skip the 1st index
+        local crafter = Craftie:Split(profession_crafters[search_list[n]], ",")
 
-      --[==[
-      --Craftie.Frame.ScrollPlayersListNet[i]:Show()
-      if (Craftie.PlayerOnline[search_list[n]] == 1) then
-        Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Online")
-      end
-      ]==]--
+        --[==[
+        --Craftie.Frame.ScrollPlayersListNet[i]:Show()
+        if (Craftie.PlayerOnline[search_list[n]] == 1) then
+          Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Online")
+        end
+        ]==]--
 
-      Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n]) --avoid the 1st row
-      Craftie.Frame.ScrollPlayersListFav[i]:Show()
+        Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n]) --avoid the 1st row
+        Craftie.Frame.ScrollPlayersListFav[i]:Show()
 
-      Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(1, 0.5, 0, 0.5)
-      if (Craftie.Save.Player["FAVS"] ~= nil) then
-        if (Craftie.Save.Player["FAVS"][Craftie.Page:upper()] ~= nil) then
-          if (Craftie.Save.Player["FAVS"][Craftie.Page:upper()][search_list[n]] == 1) then
-            Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(0, 0.5, 0, 0.5)
+        Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(1, 0.5, 0, 0.5)
+        if (Craftie.Save.Player["FAVS"] ~= nil) then
+          if (Craftie.Save.Player["FAVS"][Craftie.Page:upper()] ~= nil) then
+            if (Craftie.Save.Player["FAVS"][Craftie.Page:upper()][search_list[n]] == 1) then
+              Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(0, 0.5, 0, 0.5)
+            end
           end
         end
-      end
 
-      Craftie.Frame.ScrollPlayersListClass[i]:SetText(tonumber(crafter[1]))
-      Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText(crafter[3])
-      if (crafter[5]) then
-        Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText(crafter[5])
-      end
-      if (crafter[6]) then
-        Craftie.Frame.ScrollPlayersListUpdate[i]:SetText(crafter[6])
+        Craftie.Frame.ScrollPlayersListClass[i]:SetText(tonumber(crafter[1]))
+        Craftie.Frame.ScrollPlayersListProfLevel[i]:SetText(crafter[3])
+        if (crafter[5]) then
+          Craftie.Frame.ScrollPlayersListProfMastery[i]:SetText(crafter[5])
+        end
+        if (crafter[6]) then
+          Craftie.Frame.ScrollPlayersListUpdate[i]:SetText(crafter[6])
+        end
       end
     end
   end)
