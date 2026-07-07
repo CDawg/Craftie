@@ -1216,3 +1216,17 @@ function Craftie:Dialog(text, func)
   CraftieDialog:Show()
   CraftieDialog.Text:SetText(text)
 end
+
+--TODO figure out a way to locally build the languages and store for the account
+function Craftie:ProfessionLocaleConversion(prof)
+  local count = 0
+  for k,v in pairs(Craftie.Profession[prof]) do
+    count = count+1
+    C_Timer.After(count*0.010, function()
+      --add english version first to cover errors or gaps
+      local name, _ = C_Item.GetItemInfo(v[4])
+      --Craftie.Profession[prof][k][2] = name
+      Craftie:Notification(v[2] .. " => " .. name, Craftie.CHAT.FUNC)
+    end)
+  end
+end

@@ -14,11 +14,20 @@ the copyright holders.
 ]==]--
 
 function Craftie:SaveData()
+  local locale = GetLocale()
+  local version = Craftie._G.Version
 
   --new account
   if (CraftieDB == nil) then
     CraftieDB = {}
     Craftie:Notification("Building New Profile: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
+  end
+
+  if (CraftieDB[locale]==nil) then
+    CraftieDB[locale]={}
+  end
+  if (CraftieDB[locale][version] == nil) then
+    CraftieDB[locale][version] = {}
   end
 
   --new realm, build everything
@@ -45,6 +54,12 @@ function Craftie:SaveData()
     for k,v in pairs(Craftie.Professions) do
       CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()] = {} --organize by prof
       CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][v[1]:upper()] = {} --build an indexer used only for global searches
+    end
+  end
+
+  for k,v in pairs(Craftie.Professions) do
+    if (CraftieDB[locale][version][v[1]:upper()] == nil) then
+      CraftieDB[locale][version][v[1]:upper()]={}
     end
   end
 

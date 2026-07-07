@@ -20,7 +20,7 @@ Craftie.LDetect = "enUS"
 if GetLocale() ~= Craftie.LDetect then return end
 
 Craftie._L = {
-  Loaded= Craftie.LDetect, --detect what loaded
+  Loaded = Craftie.LDetect, --detect what loaded
 
 	Title = "Craftie",
   Game = {

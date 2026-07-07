@@ -78,8 +78,25 @@ function Craftie:Init()
       end
     end
     Craftie:GetEntryProfessions()
+
+    --[==[
+    local order = -1
+    --convert from english to locale
+    for k,v in pairs(Craftie.Professions) do
+      order = order +1
+      C_Timer.After(order*10, function()
+        if (CraftieDB[GetLocale()][Craftie._G.Version][v[1]:upper()] == nil) then
+          Craftie:Notification(Craftie.Color.Blue .. "[" .. k .. "/" .. #Craftie.Professions .. "] Locale ".. GetLocale() .. " Conversion|r " .. v[1] .. "...", Craftie.CHAT.INFO)
+          Craftie:ProfessionLocaleConversion(v[1])
+        end
+      end)
+    end
+    ]==]--
+
   end)
   --Craftie:BuildWorldRosterTooltip()
+
+  --Craftie:ProfessionLocaleConversion("Alchemy", "enUS")
 
   --CommunitiesFrame.GuildInfoTab:GetScript("OnClick")( CommunitiesFrame.GuildInfoTab )
   Craftie:Notification("Craftie:Init()", Craftie.CHAT.FUNC)
