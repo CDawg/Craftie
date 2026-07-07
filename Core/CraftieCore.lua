@@ -384,7 +384,10 @@ function Craftie:GetEntryProfessions()
         Craftie.TipGlow[tab]:Play()
         Craftie.Frame.TabSide[tab].Glow:Show()
         Craftie.Frame.TabSide[tab].Tip:Show()
-        Craftie:Notification("Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r with no profile built", Craftie.CHAT.INFO)
+        Craftie:Notification("Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r With No Profile Built!", Craftie.CHAT.INFO)
+        if (prof == "Alchemy") then
+          Craftie.Tab = -1
+        end
         --print("|cffffd000|Htrade:2550:300:PlayerGUID:RecipeData|h[Cooking]|h|r")
         table.insert(Craftie.MyProfessionEntry, prof)
         Craftie.IconGlow:Play()
@@ -435,12 +438,19 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie.ProfessionDefault = Craftie.Profession[prof_name]
     Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
 
+    --we have no build yet
     for k,v in pairs(Craftie.MyProfessionEntry) do
       if (prof_name == v) then
         CastSpellByName(v)
         C_Timer.After(2, function()
           Craftie:UpdateCrafterList()
           Craftie.MyProfessionEntry[k] = nil
+        end)
+        C_Timer.After(0.01, function()
+          if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
+            HideUIPanel(TradeSkillFrame)
+            Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. v .. "]|r profile built for ." .. Craftie.Player.Name .. "|nNow you can link " .. v .. " in any chat", Craftie.CHAT.INFO)
+          end
         end)
       end
     end
