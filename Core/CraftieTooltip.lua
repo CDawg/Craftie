@@ -44,24 +44,24 @@ function Craftie:UpdatePlayerTooltip(channel)
     if (Craftie.Tooltip[Craftie.Player.Name] ~= nil) then
       if (channel == "GUILD") then
         if (IsInGuild()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], channel)
+          Craftie:PacketSend(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], channel)
         end
       end
 
       if (channel == "GROUP") then
         if (IsInRaid()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "RAID")
+          Craftie:PacketSend(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "RAID")
         elseif (IsInGroup()) then
-          Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "PARTY")
+          Craftie:PacketSend(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "PARTY")
         end
       end
 
       if (channel == "LOCAL") then
         if (not PlayerIsInCombat()) then
           if (not IsInInstance()) then
-            Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "YELL")
+            Craftie:PacketSend(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "YELL")
             --if ()
-              --Craftie:SendPacket(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "GUILD")
+              --Craftie:PacketSend(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "GUILD")
             --end
           end
         end

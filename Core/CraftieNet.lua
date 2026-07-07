@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-function Craftie:SendPacket(prefix, data, channel, target)
+function Craftie:PacketSend(prefix, data, channel, target)
   local repack = prefix .. "," .. Craftie._G.Version .. "," .. data
   local packet = Craftie:Split(data, ",")
 
@@ -60,7 +60,7 @@ function Craftie:VersionControl(version)
   return stable_version
 end
 
-function Craftie:ParsePacket(netpacket)
+function Craftie:PacketParse(netpacket)
   local prefix = ""
   local version = 0
 
@@ -87,7 +87,7 @@ function Craftie:ParsePacket(netpacket)
           if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] ~= nil) then
             profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name]
             if (profData ~= "") then
-              Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
+              Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
             end
           end
         else

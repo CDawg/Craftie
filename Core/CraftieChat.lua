@@ -80,7 +80,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       --print(player .. " | " .. prof)
       ItemRefTooltip:Hide() --make this an option?
       if ((player ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
-        Craftie:SendPacket(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
+        Craftie:PacketSend(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
         Craftie.Packet.ACK[player] = 0
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!

@@ -181,7 +181,7 @@ function Craftie:GetOnlineCrafters() --guild only?
     C_Timer.After(count*0.060, function()
       --print("player: " .. k)
       --update the listnet
-      Craftie:SendPacket(Craftie.Packet.Prefix.Net, Craftie.Player.Name .. "," .. "1", "WHISPER", k)
+      Craftie:PacketSend(Craftie.Packet.Prefix.Net, Craftie.Player.Name .. "," .. "1", "WHISPER", k)
     end)
   end
   Craftie:Notification("Craftie:GetOnlineCrafters()", Craftie.CHAT.FUNC)
@@ -359,6 +359,7 @@ function Craftie:UpdateCrafterList(search)
 end
 
 Craftie.MyProfessions = {}
+Craftie.MyProfessionEntry={}
 function Craftie:GetEntryProfessions()
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for i = 1, GetNumSpellTabs() do
@@ -376,7 +377,16 @@ function Craftie:GetEntryProfessions()
     --we know a profession, but have not opened the book
     for k,prof in pairs(Craftie.MyProfessions) do
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] == nil) then
-        print("we know " .. prof .. "but havnt opened yet")
+        local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 1)
+        Craftie.TabGlow[tab]:Play()
+        Craftie.TipGlow[tab]:Play()
+        Craftie.Frame.TabSide[tab].Glow:Show()
+        Craftie.Frame.TabSide[tab].Tip:Show()
+        Craftie:Notification("Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r with no profile built", Craftie.CHAT.INFO)
+        --print("|cffffd000|Htrade:2550:300:PlayerGUID:RecipeData|h[Cooking]|h|r")
+        table.insert(Craftie.MyProfessionEntry, prof)
+        Craftie.IconGlow:Play()
+        Craftie.Frame.Button.Minimap.Glow:Show()
         --return prof
       end
     end
@@ -384,16 +394,28 @@ function Craftie:GetEntryProfessions()
   Craftie:Notification("Craftie:GetEntryProfessions(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
 end
 
+--[==[
+Cooking	2550
+Alchemy	2259
+Blacksmithing	2018
+Enchanting	7411
+Engineering	4036
+Leatherworking	2108
+Tailoring	3908
+First Aid	3273
+Fishing	7620
+]==]--
+
 function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then
     local prof_name = Craftie.Professions[tab][1]
     Craftie:CloseAllPlayerMenus()
     Craftie:ClearSearchFocus(true)
     for i=1, #Craftie.Professions do
-      Craftie.Frame.TabSide[i].Glow:Hide()
+      Craftie.Frame.TabSide[i].Select:Hide()
       Craftie.Frame.TabSide[i].Shadow:Show()
     end
-    Craftie.Frame.TabSide[tab].Glow:Show()
+    Craftie.Frame.TabSide[tab].Select:Show()
     Craftie.Frame.TabSide[tab].Shadow:Hide()
 
     if (sound) then
@@ -404,12 +426,22 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie.Tab = tab
     Craftie.Selected_Name = ""
     Craftie.Page = prof_name
-    --if (Craftie:GetEntryProfessions() == prof_name) then
-      --CastSpellByName(prof_name)
-      --print("found " .. prof_name)
-    --end
+    Craftie.TabGlow[tab]:Stop()
+    Craftie.Frame.TabSide[tab].Glow:Hide()
+    Craftie.TipGlow[tab]:Stop()
+    Craftie.Frame.TabSide[tab].Tip:Hide()
     Craftie.ProfessionDefault = Craftie.Profession[prof_name]
     Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
+
+    for k,v in pairs(Craftie.MyProfessionEntry) do
+      if (prof_name == v) then
+        CastSpellByName(v)
+        C_Timer.After(2, function()
+          Craftie:UpdateCrafterList()
+          Craftie.MyProfessionEntry[k] = nil
+        end)
+      end
+    end
 
     C_Timer.After(0.1, function() --give it time to register
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
@@ -746,7 +778,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] = profString
 
           --share to guild members
-          C_Timer.After(0.1, function()
+          C_Timer.After(3, function()
             if (IsInGuild()) then
               C_GuildInfo.GuildRoster()
               local gcount = 0
@@ -759,7 +791,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
                   C_Timer.After(gcount * 0.1, function()
                     --print(member[1])
                     if (member[1] ~= Craftie.Player.Name) then
-                      Craftie:SendPacket(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", member[1])
+                      Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", member[1])
                     end
                   end)
                 end
@@ -1103,10 +1135,8 @@ function Craftie:Open(player, profession)
     end)
   else
     Craftie.Frame:Show()
-    --for k,prof in pairs(Craftie.MyProfessions) do
-      --print("prof " .. prof)
-      --CastSpellByName(prof)
-    --end
+    Craftie.IconGlow:Stop()
+    Craftie.Frame.Button.Minimap.Glow:Hide()
     Craftie:Notification("Craftie:Opened", Craftie.CHAT.FUNC)
   end
 end

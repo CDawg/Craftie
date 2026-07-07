@@ -142,7 +142,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "CHAT_MSG_ADDON") then
 			if (prefix == Craftie._G.Prefix) then
         if (netpacket) then
-          Craftie:ParsePacket(netpacket)
+          Craftie:PacketParse(netpacket)
         end
       end
     end
