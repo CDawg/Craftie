@@ -133,8 +133,8 @@ Craftie.Frame.ScrollOrderListChildFrame = CreateFrame("Frame", "Craftie.Frame.Sc
 Craftie.Frame.ScrollOrderListChildFrame:SetSize(Craftie.Frame.CraftOrders:GetWidth(), Craftie.Frame.CraftOrders:GetHeight())
 Craftie.Frame.ScrollOrderList.Child:SetScrollChild(Craftie.Frame.ScrollOrderListChildFrame)
 Craftie.Frame.ScrollOrderList.Child.ScrollBar:ClearAllPoints()
-Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList.Child, "TOPRIGHT", -21, -5)
-Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList.Child, "BOTTOMRIGHT", -42, 5)
+Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollOrderList.Child, "TOPRIGHT", -32, -5)
+Craftie.Frame.ScrollOrderList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollOrderList.Child, "BOTTOMRIGHT", -11, 5)
 
 Craftie:ScrollBarFrame(Craftie.Frame.ScrollOrderList.Child)
 

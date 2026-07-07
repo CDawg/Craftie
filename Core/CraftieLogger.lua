@@ -115,22 +115,22 @@ Craftie.Logger.Debug:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Logger.ScrollFrame={}
 Craftie.Logger.ScrollFrame = CreateFrame("Frame", "Craftie.Logger.ScrollFrame", Craftie.Logger, "BackdropTemplate")
-Craftie.Logger.ScrollFrame:SetWidth(Craftie.Logger:GetWidth()-20)
+Craftie.Logger.ScrollFrame:SetWidth(Craftie.Logger:GetWidth()-10)
 Craftie.Logger.ScrollFrame:SetHeight(Craftie.Logger:GetHeight()-240)
-Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 15, -90)
+Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 0, -90)
 Craftie.Logger.ScrollFrame:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Logger.ScrollFrame:SetBackdropColor(1, 0, 0, 0)
 Craftie.Logger.ScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
 
 Craftie.Logger.ScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.Logger.ScrollFrame, "UIPanelScrollFrameTemplate")
-Craftie.Logger.ScrollFrame.Child:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame, "TOPLEFT", -5, -10)
-Craftie.Logger.ScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame, "BOTTOMRIGHT", 8, 5)
+Craftie.Logger.ScrollFrame.Child:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame, "TOPLEFT", 5, -10)
+Craftie.Logger.ScrollFrame.Child:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame, "BOTTOMRIGHT", 10, 10)
 Craftie.Logger.ScrollFrameChildFrame = CreateFrame("Frame", "Craftie.Logger.ScrollFrameChildFrame", Craftie.Logger.ScrollFrame.Child)
 Craftie.Logger.ScrollFrameChildFrame:SetSize(Craftie.Logger:GetWidth(), Craftie.Logger:GetHeight())
 Craftie.Logger.ScrollFrame.Child:SetScrollChild(Craftie.Logger.ScrollFrameChildFrame)
 Craftie.Logger.ScrollFrame.Child.ScrollBar:ClearAllPoints()
-Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame.Child, "TOPRIGHT", -21, -5)
-Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame.Child, "BOTTOMRIGHT", -36, 10)
+Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame.Child, "TOPRIGHT", -32, -5)
+Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame.Child, "BOTTOMRIGHT", -11, 5)
 
 Craftie:ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
 
