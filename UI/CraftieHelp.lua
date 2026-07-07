@@ -52,7 +52,7 @@ Craftie.HelpScrollFrameChildFrame = CreateFrame("Frame", "Craftie.HelpScrollFram
 Craftie.HelpScrollFrameChildFrame:SetSize(Craftie.Help:GetWidth(), Craftie.Help:GetHeight())
 Craftie.HelpScrollFrame.Child:SetScrollChild(Craftie.HelpScrollFrameChildFrame)
 Craftie.HelpScrollFrame.Child.ScrollBar:ClearAllPoints()
-Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.HelpScrollFrame.Child, "TOPRIGHT", 0, -5)
+Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.HelpScrollFrame.Child, "TOPRIGHT", -21, -5)
 Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.HelpScrollFrame.Child, "BOTTOMRIGHT", -42, 5)
 
 Craftie:ScrollBarFrame(Craftie.HelpScrollFrame.Child)

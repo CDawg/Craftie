@@ -59,7 +59,7 @@ Craftie.UpdatesScrollFrameChildFrame = CreateFrame("Frame", "Craftie.UpdatesScro
 Craftie.UpdatesScrollFrameChildFrame:SetSize(Craftie.Updates:GetWidth(), Craftie.Updates:GetHeight())
 Craftie.UpdatesScrollFrame.Child:SetScrollChild(Craftie.UpdatesScrollFrameChildFrame)
 Craftie.UpdatesScrollFrame.Child.ScrollBar:ClearAllPoints()
-Craftie.UpdatesScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.UpdatesScrollFrame.Child, "TOPRIGHT", 0, -5)
+Craftie.UpdatesScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.UpdatesScrollFrame.Child, "TOPRIGHT", -21, -5)
 Craftie.UpdatesScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.UpdatesScrollFrame.Child, "BOTTOMRIGHT", -42, 5)
 
 Craftie:ScrollBarFrame(Craftie.UpdatesScrollFrame.Child)
@@ -102,7 +102,7 @@ Craftie.CreditsScrollFrameChildFrame = CreateFrame("Frame", "Craftie.CreditsScro
 Craftie.CreditsScrollFrameChildFrame:SetSize(Craftie.Credit:GetWidth(), Craftie.Credit:GetHeight())
 Craftie.CreditsScrollFrame.Child:SetScrollChild(Craftie.CreditsScrollFrameChildFrame)
 Craftie.CreditsScrollFrame.Child.ScrollBar:ClearAllPoints()
-Craftie.CreditsScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.CreditsScrollFrame.Child, "TOPRIGHT", 0, -5)
+Craftie.CreditsScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.CreditsScrollFrame.Child, "TOPRIGHT", -21, -5)
 Craftie.CreditsScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.CreditsScrollFrame.Child, "BOTTOMRIGHT", -42, 5)
 
 Craftie:ScrollBarFrame(Craftie.CreditsScrollFrame.Child)

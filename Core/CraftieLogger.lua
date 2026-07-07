@@ -129,7 +129,7 @@ Craftie.Logger.ScrollFrameChildFrame = CreateFrame("Frame", "Craftie.Logger.Scro
 Craftie.Logger.ScrollFrameChildFrame:SetSize(Craftie.Logger:GetWidth(), Craftie.Logger:GetHeight())
 Craftie.Logger.ScrollFrame.Child:SetScrollChild(Craftie.Logger.ScrollFrameChildFrame)
 Craftie.Logger.ScrollFrame.Child.ScrollBar:ClearAllPoints()
-Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame.Child, "TOPRIGHT", -5, -5)
+Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Logger.ScrollFrame.Child, "TOPRIGHT", -21, -5)
 Craftie.Logger.ScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Logger.ScrollFrame.Child, "BOTTOMRIGHT", -36, 10)
 
 Craftie:ScrollBarFrame(Craftie.Logger.ScrollFrame.Child)
