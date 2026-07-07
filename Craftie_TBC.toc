@@ -1,4 +1,4 @@
-## Interface: 20505
+## Interface: 20506
 ## Title: Craftie
 ## Notes: Share your professions with the world
 ## Version: 1.02
