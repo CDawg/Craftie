@@ -222,3 +222,15 @@ mySpinner.spin:SetDegrees(360) -- Spins 360 degrees
 
 -- Play the animation!
 mySpinner.animGroup:Play()
+
+
+---@class ClassName: Defines a new custom table type or a custom object.
+---@type DataType: Assigns a data type (e.g., string, number, table, or a custom class) to a variable.
+---@param paramName DataType: Defines the data type of an argument passed to a function.
+---@return DataType: Defines the data type returned by a function. You can have multiple return tags for multiple return values.
+---@field fieldName DataType: Documents the specific keys and their data types inside a table definition.
+---@alias AliasName "literal_string": Defines a set of valid literal strings, useful for dropdowns or strict string arguments (e.g., event names).
+---@deprecated: Marks a function, variable, or table as outdated, causing it to strike through in IDE intellisense.
+---@protected
+---@private: Indicates the visibility or intended usage scope of a function.
+---@generic T: Used for creating generic, reusable functions where the return type depends on the input type.

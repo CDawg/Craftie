@@ -15,6 +15,7 @@ the copyright holders.
 
 __Gversion, __Gbuild, __Gdate, __Gtoc = GetBuildInfo()
 
+---@class Craftie
 Craftie = {
 	Player = {
     Name    = UnitName("player"),
