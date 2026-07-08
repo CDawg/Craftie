@@ -17,6 +17,10 @@ print(count)
 count=0
 for list in items["recipes"]:
   count += 1
+  version = 1
+  if (items["profession"] == "Jewelcrafting") or (list["learned_at"] > 300):
+    version = 2
+
   craftedID = list["creates"]["item_id"]
   if not craftedID:
     craftedID = ""
@@ -37,7 +41,7 @@ for list in items["recipes"]:
   thresholds = list["skill_thresholds"]
   threshold_item = f'{thresholds["yellow"], thresholds["green"], thresholds["gray"]}'
 
-  trunc1 = first + ' {' + midd + '}, ' + ritem + ', 1, ' + threshold_item + '},'
+  trunc1 = first + ' {' + midd + '}, ' + ritem + ', ' + str(version) + ', ' + threshold_item + '},'
   last = trunc1.replace('[', '{').replace(']', '},')
   spaces = last.replace('}, },', '}},')
   full_line = spaces.replace('},},', '}},')
