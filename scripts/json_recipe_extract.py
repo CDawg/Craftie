@@ -3,7 +3,7 @@ import json
 with open('tailoring.json', 'r') as file:
   items = json.load(file)
 
-#itemID, name, requiredSkill, craftedID, Reagents, source[1=trainer, 2=quest|drop|vendor]
+#itemID, name, requiredSkill, craftedID, Reagents, source[1=trainer, 2=quest|drop|vendor], version, thresholds
 
 """
 count = 0
@@ -34,7 +34,10 @@ for list in items["recipes"]:
 
   first = beg.replace("(", "{").replace(")", "")
   midd = reag.replace("(", "{").replace('),', "}, ")
-  trunc1 = first + ' {' + midd + '}, ' + ritem + '},'
+  thresholds = list["skill_thresholds"]
+  threshold_item = f'{thresholds["yellow"], thresholds["green"], thresholds["gray"]}'
+
+  trunc1 = first + ' {' + midd + '}, ' + ritem + ', 1, ' + threshold_item + '},'
   last = trunc1.replace('[', '{').replace(']', '},')
   spaces = last.replace('}, },', '}},')
   full_line = spaces.replace('},},', '}},')

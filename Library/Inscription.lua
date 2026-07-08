@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---itemID, name, requiredSkill, craftedID, Reagents, source, version
+--itemID, name, requiredSkill, craftedID, Reagents, source, version, thresholds
 Craftie.Profession.Inscription = {
 
 }
