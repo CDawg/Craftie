@@ -384,7 +384,7 @@ function Craftie:GetEntryProfessions()
         Craftie.TipGlow[tab]:Play()
         Craftie.Frame.TabSide[tab].Glow:Show()
         Craftie.Frame.TabSide[tab].Tip:Show()
-        Craftie:Notification("Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r With No Profile Built!", Craftie.CHAT.INFO)
+        Craftie:Notification("Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r " .. Craftie.Player.Name .. " |nOpen" .. Craftie.Color.Theme .. " Craftie|r to build your profile.", Craftie.CHAT.INFO)
         if (prof == "Alchemy") then
           Craftie.Tab = -1
         end
@@ -446,7 +446,7 @@ function Craftie:TabSelectSide(tab, sound)
           Craftie:UpdateCrafterList()
           Craftie.MyProfessionEntry[k] = nil
         end)
-        C_Timer.After(0.01, function()
+        C_Timer.After(0.03, function()
           if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
             HideUIPanel(TradeSkillFrame)
             Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. v .. "]|r profile built for ." .. Craftie.Player.Name .. "|nNow you can link " .. v .. " in any chat", Craftie.CHAT.INFO)
