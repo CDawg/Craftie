@@ -21,6 +21,7 @@ local commands = {
   {"delete",  "Delete a table [config | crafters | orders | favs]"},
 }
 
+---@type string
 SLASH_Craftie1 = "/" .. Craftie._G.Prefix:lower()
 function SlashCmdList.Craftie(cmd)
   if ((cmd == nil) or (cmd == "")) then

@@ -19,6 +19,7 @@ function Craftie:SaveData()
 
   --new account
   if (CraftieDB == nil) then
+    ---@type table
     CraftieDB = {}
     Craftie:Notification("Building New Profile: " .. Craftie.Player.Realm .. "-" ..  Craftie.Player.Faction .. "-" .. Craftie.Player.Name, Craftie.CHAT.INFO)
   end

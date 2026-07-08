@@ -15,6 +15,8 @@ the copyright holders.
 
 Craftie.LogKey = 0
 Craftie.SortOrder = 0
+
+---@class Notification
 function Craftie:Notification(msg, type)
   local logstring= ""
   local debugLevel = type[1]

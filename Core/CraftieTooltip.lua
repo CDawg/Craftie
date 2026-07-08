@@ -131,6 +131,8 @@ function Craftie:BuildTooltipHooks()
 end
 
 --custom tooltip for Craftie only
+---@type GameTooltip
+CraftieTooltip = {}
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
 for i = 1, 30 do
   --local header=_G["GameTooltipHeaderText"..1]
