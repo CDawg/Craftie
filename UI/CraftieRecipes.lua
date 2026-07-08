@@ -199,6 +199,7 @@ end)
 Craftie.Frame.ScrollRecipesListRow={}
 Craftie.Frame.ScrollRecipesListBack={}
 Craftie.Frame.ScrollRecipesListName={}
+Craftie.Frame.ScrollRecipesListLevel={}
 Craftie.Frame.ScrollRecipesListSelect={}
 --Craftie.Frame.ScrollRecipesListHLink={}
 
@@ -227,7 +228,7 @@ for i=1, Craftie.MAX_RECIPES do
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(1, 0.9, 0.8, 0)
       GameTooltip:Hide()
-      Craftie:SelectScrollItem("Recipes")
+      Craftie:SelectScrollItem("Recipes", true)
     end
     CraftieTooltip:Hide()
   end)
@@ -253,6 +254,13 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListName[i]:SetPoint("TOPLEFT", 8, -5)
   Craftie.Frame.ScrollRecipesListName[i]:SetText("")
   Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 1, 0.8)
+
+  Craftie.Frame.ScrollRecipesListLevel[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollRecipesListLevel[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollRecipesListLevel[i]:SetPoint("TOPRIGHT", -10, -5)
+  Craftie.Frame.ScrollRecipesListLevel[i]:SetText("")
+  Craftie.Frame.ScrollRecipesListLevel[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollRecipesListLevel[i]:Hide()
 
   --[==[
   Craftie.Frame.ScrollRecipesListHLink[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
