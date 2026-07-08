@@ -1234,8 +1234,8 @@ function Craftie:ProfessionLocaleConversion(prof)
     count = count+1
     C_Timer.After(count*0.030, function()
       --add english version first to cover errors or gaps
-      C_Item.RequestLoadItemDataByID(v[4])
-      local name, _ = C_Item.GetItemInfo(v[4])
+      --local name, _ = C_Item.GetItemInfo(v[4])
+      local name = Craftie:GetSafeItemData(v[4])
       --Craftie.Profession[prof][k][2] = name
       Craftie:Notification(v[2] .. " => " .. name, Craftie.CHAT.FUNC)
     end)
@@ -1244,13 +1244,12 @@ end
 
 function Craftie:GetSafeItemData(itemIdentifier)
   local itemName = C_Item.GetItemInfo(itemIdentifier)
-
-  if not itemName then
+  if (not itemName) then
     print("Item not cached yet, waiting for server...")
-    -- This forces the server to send the info to your client
+    --force the server to send info to client
     C_Item.RequestLoadItemDataByID(itemIdentifier)
   else
-    -- Data is ready to use immediately
+    --ready to use
     return C_Item.GetItemInfo(itemIdentifier)
   end
 end
