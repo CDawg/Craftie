@@ -155,11 +155,49 @@ for i = 1, 30 do
 end
 CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
 
---TODO get offline member tooltip data
 Craftie.GuildFrameUsing = 1
 Craftie.GuildRosterTooltipHooked = false
 Craftie.CommunitiesRosterTooltipHooked = false
 Craftie.CommunitiesGuildMemberInfo = nil
+
+function Craftie:GetSavedRosterTooltipData(player)
+  if (not player) then
+    return nil
+  end
+
+  local account = nil
+  if (CraftieDB and CraftieDB[Craftie.Player.Realm]) then
+    account = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]
+  end
+  if ((not account) or (not account["BLOB"])) then
+    return nil
+  end
+
+  local data = {}
+  local tooltipIndex = 0
+  for k,v in ipairs(Craftie.Professions) do
+    local prof = v[1]
+    local professionData = account["BLOB"][prof:upper()]
+    if (professionData and professionData[player]) then
+      local crafter = Craftie:Split(professionData[player], ",")
+      tooltipIndex = tooltipIndex + 1
+      data["profN" .. tooltipIndex] = prof
+      data["profL" .. tooltipIndex] = crafter[3]
+      data["profM" .. tooltipIndex] = tonumber(crafter[5]) or 0
+
+      if (tooltipIndex >= 3) then
+        break
+      end
+    end
+  end
+
+  if (tooltipIndex == 0) then
+    return nil
+  end
+
+  Craftie.PlayerGUIDProf[player] = data
+  return data
+end
 
 function Craftie:GetRosterTooltipPlayerName(name)
   if (not name) then
@@ -195,6 +233,9 @@ end
 
 function Craftie:ShowGuildRosterTooltip(player, className, classID, owner)
   local data = Craftie.PlayerGUIDProf[player]
+  if ((not data) or (not data.profN1)) then
+    data = Craftie:GetSavedRosterTooltipData(player)
+  end
   if (not data) then
     CraftieTooltip:Hide()
     return
