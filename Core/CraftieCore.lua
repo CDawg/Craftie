@@ -376,7 +376,7 @@ function Craftie:GetEntryProfessions()
       end
     end
 
-    --we know a profession, but have not opened the book
+    --we know a profession, but have not opened recipe book
     for k,prof in pairs(Craftie.MyProfessions) do
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] == nil) then
         local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 1)
@@ -1232,11 +1232,25 @@ function Craftie:ProfessionLocaleConversion(prof)
   local count = 0
   for k,v in pairs(Craftie.Profession[prof]) do
     count = count+1
-    C_Timer.After(count*0.010, function()
+    C_Timer.After(count*0.030, function()
       --add english version first to cover errors or gaps
+      C_Item.RequestLoadItemDataByID(v[4])
       local name, _ = C_Item.GetItemInfo(v[4])
       --Craftie.Profession[prof][k][2] = name
       Craftie:Notification(v[2] .. " => " .. name, Craftie.CHAT.FUNC)
     end)
+  end
+end
+
+function Craftie:GetSafeItemData(itemIdentifier)
+  local itemName = C_Item.GetItemInfo(itemIdentifier)
+
+  if not itemName then
+    print("Item not cached yet, waiting for server...")
+    -- This forces the server to send the info to your client
+    C_Item.RequestLoadItemDataByID(itemIdentifier)
+  else
+    -- Data is ready to use immediately
+    return C_Item.GetItemInfo(itemIdentifier)
   end
 end

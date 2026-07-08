@@ -81,6 +81,13 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       Craftie.IsInCombat = true
     end
 
+    --used for caching and building language locales
+    if (event == "GET_ITEM_INFO_RECEIVED") then
+      Craftie:Notification(event, Craftie.CHAT.EVENT)
+      local itemName, itemLink = C_Item.GetItemInfo(prefix)
+      Craftie:Notification("Successfully cached: " .. itemName, Craftie.CHAT.EVENT)
+    end
+
     if ((event == "PLAYER_STARTED_MOVING") or (event == "PLAYER_STOPPED_MOVING")) then
       if (not Craftie.IsInCombat) then
         local inInstance, instanceType = IsInInstance()
