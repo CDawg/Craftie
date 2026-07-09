@@ -1276,11 +1276,11 @@ function Craftie:ProfessionLocaleConversion(prof)
   local count = 0
   for k,v in pairs(Craftie.Profession[prof]) do
     count = count+1
-    C_Timer.After(count*0.030, function()
+    C_Timer.After(count*0.120, function()
       --add english version first to cover errors or gaps
       --local name, _ = C_Item.GetItemInfo(v[4])
       local name = Craftie:GetSafeItemData(v[4])
-      --Craftie.Profession[prof][k][2] = name
+      Craftie.Profession[prof][k][2] = name
       Craftie:Notification(v[2] .. " => " .. name, Craftie.CHAT.FUNC)
     end)
   end

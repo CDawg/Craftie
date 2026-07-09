@@ -92,6 +92,7 @@ function Craftie:Init()
       end)
     end
     ]==]--
+    --Craftie:ProfessionLocaleConversion("Alchemy")
 
   end)
   --Craftie:BuildWorldRosterTooltip()

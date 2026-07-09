@@ -83,7 +83,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 
     --used for caching and building language locales
     if (event == "GET_ITEM_INFO_RECEIVED") then
-      Craftie:Notification(event, Craftie.CHAT.EVENT)
+      --Craftie:Notification(event, Craftie.CHAT.EVENT)
       local itemName, itemLink = C_Item.GetItemInfo(prefix)
       Craftie:Notification("Successfully cached: " .. itemName, Craftie.CHAT.EVENT)
     end
