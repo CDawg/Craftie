@@ -203,7 +203,7 @@ player -> gets addonmessage -> splits the data -> adds to Craftie.PlayerGUIDProf
 
 
 spinning animation
-local mySpinner = CreateFrame("Frame", "MySpinnerFrame", Craftie.Frame.Settings)
+local mySpinner = CreateFrame("Frame", "MySpinnerFrame", Craftie.Options.Frame)
 mySpinner:SetSize(64, 64)
 mySpinner:SetPoint("CENTER")
 

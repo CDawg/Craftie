@@ -34,7 +34,7 @@ function SlashCmdList.Craftie(cmd)
 	local _, _, cmd, args = string.find(cmd, "%s?(%w+)%s?(.*)")
 
   if (cmd == commands[1][1]) then
-    Settings.OpenToCategory(Craftie.Settings.Category:GetID())
+    Settings.OpenToCategory(Craftie.Options.Category:GetID())
     Craftie.Frame:Hide()
   end
 

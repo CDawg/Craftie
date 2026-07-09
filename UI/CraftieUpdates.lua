@@ -16,6 +16,7 @@ the copyright holders.
 --Updates / Credits
 Craftie.Contributors = {
   "Sweetembrace",
+  "Addondev",
 }
 Craftie.Developers = {
   "Porthias",
@@ -77,6 +78,9 @@ Craftie.Updates:Hide()
 local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", Craftie.Color.Gold .. " >|r") .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
+--[==[
+CREDITS
+]==]--
 Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame)
 Craftie.Credit:SetWidth(dimensions.W-30)
 Craftie.Credit:SetHeight(dimensions.H)
