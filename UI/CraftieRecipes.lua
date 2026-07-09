@@ -198,6 +198,7 @@ end)
 
 Craftie.Frame.ScrollRecipesListRow={}
 Craftie.Frame.ScrollRecipesListBack={}
+Craftie.Frame.ScrollRecipesListID={}
 Craftie.Frame.ScrollRecipesListName={}
 Craftie.Frame.ScrollRecipesListLevel={}
 Craftie.Frame.ScrollRecipesListVersion={}
@@ -219,10 +220,14 @@ for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 0.8, 1)
     end
     --[==[
-    CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
-    CraftieTooltip:ClearLines()
-    CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. "Shift + Left Click", Craftie.Color.Silver .. "Paste Link In Chat")
-    CraftieTooltip:Show()
+    C_Timer.After(0.10, function()
+      CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+      CraftieTooltip:ClearLines()
+      CraftieTooltip:AddLine(C_TradeSkillUI.GetRecipeDescription(Craftie.Frame.ScrollRecipesListID[i]:GetText()))
+      --CraftieTooltip:AddLine(Craftie.Frame.ScrollRecipesListID[i]:GetText())
+      --CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. "Shift + Left Click", Craftie.Color.Silver .. "Paste Link In Chat")
+      CraftieTooltip:Show()
+    end)
     ]==]--
   end)
   Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnLeave", function(self)
@@ -250,6 +255,13 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.6)
   Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
 
+  Craftie.Frame.ScrollRecipesListID[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
+  Craftie.Frame.ScrollRecipesListID[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollRecipesListID[i]:SetPoint("TOPRIGHT", -5, -5)
+  Craftie.Frame.ScrollRecipesListID[i]:SetText("")
+  Craftie.Frame.ScrollRecipesListID[i]:SetTextColor(1, 1, 1, 0.8)
+  Craftie.Frame.ScrollRecipesListID[i]:Hide()
+
   Craftie.Frame.ScrollRecipesListName[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
   Craftie.Frame.ScrollRecipesListName[i]:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Frame.ScrollRecipesListName[i]:SetPoint("TOPLEFT", 8, -5)
@@ -268,7 +280,7 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListVersion[i]:SetPoint("TOPRIGHT", -5, -5)
   Craftie.Frame.ScrollRecipesListVersion[i]:SetText("")
   Craftie.Frame.ScrollRecipesListVersion[i]:SetTextColor(1, 1, 1, 0.2)
-  --Craftie.Frame.ScrollRecipesListVersion[i]:Hide()
+  Craftie.Frame.ScrollRecipesListVersion[i]:Hide()
 
   --[==[
   Craftie.Frame.ScrollRecipesListHLink[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")

@@ -412,6 +412,7 @@ First Aid	3273
 Fishing	7620
 ]==]--
 
+---@class TradeSkillFrame
 function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then
     local prof_name = Craftie.Professions[tab][1]
@@ -1044,6 +1045,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
       --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
+      Craftie.Frame.ScrollRecipesListID[i]:SetText("")
       Craftie.Frame.ScrollRecipesListName[i]:SetText("")
       Craftie.Frame.ScrollRecipesListLevel[i]:SetText("")
       Craftie.Frame.ScrollRecipesListRow[i].SkillThresholds = nil
@@ -1065,6 +1067,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     end
   else
     for i=1, total_recipes do
+      Craftie.Frame.ScrollRecipesListID[i]:SetText(profCache[i][4])
       Craftie.Frame.ScrollRecipesListName[i]:SetText(profCache[i][2])
       Craftie.Frame.ScrollRecipesListLevel[i]:SetText(profCache[i][3])
       Craftie.Frame.ScrollRecipesListVersion[i]:SetText(profCache[i][7])

@@ -224,10 +224,17 @@ for i,v in pairs(Craftie.Professions) do
   fadeOut:SetToAlpha(0)
 
   Craftie.Frame.TabSide[i]:SetScript("OnEnter", function(self)
+    local prof = Craftie:TranslateLocaleProfession(v[1])
     Craftie.Frame.TabSide[i].Hover:Show()
     CraftieTooltip:ClearLines()
     CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
-    CraftieTooltip:AddLine(Craftie.Color.Silver .. Craftie:TranslateLocaleProfession(v[1]) .. "|r")
+    CraftieTooltip:AddLine(Craftie.Color.White .. prof .. "|r")
+    for a,build in pairs(Craftie.MyProfessionEntry) do
+      if (build == prof) then
+        CraftieTooltip:AddLine(Craftie.Color.Silver .. "Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r as one of your professions")
+        CraftieTooltip:AddLine(Craftie.Color.Silver .. "Click to build your profile")
+      end
+    end
     CraftieTooltip:Show()
   end)
   Craftie.Frame.TabSide[i]:SetScript("OnLeave", function()
