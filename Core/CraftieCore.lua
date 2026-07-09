@@ -1004,7 +1004,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
         end
       end
     end
-    Craftie:Notification(Craftie:OpenProfessionList() .. " search_all_count " .. search_all_count, Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:OpenProfessionList() search_all_count " .. search_all_count, Craftie.CHAT.FUNC)
   end
 
   local total_recipes = #profCache
