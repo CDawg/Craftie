@@ -1067,6 +1067,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     for i=1, total_recipes do
       Craftie.Frame.ScrollRecipesListName[i]:SetText(profCache[i][2])
       Craftie.Frame.ScrollRecipesListLevel[i]:SetText(profCache[i][3])
+      Craftie.Frame.ScrollRecipesListVersion[i]:SetText(profCache[i][7])
       Craftie.Frame.ScrollRecipesListRow[i].SkillThresholds = profCache[i][8]
       if (player ~= "") then
         local itemLevel = profCache[i][3]
