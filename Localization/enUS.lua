@@ -60,19 +60,25 @@ Craftie._L = {
 
   Options = {
     Defaults = {
-      header = "Player Listing",
+      Title = "Crafter Listing",
       {"Show The Game Library For Every Recipe", "Show the entire recipe library for each|nprofession within the player list for all phases [Recommended]"},
-      {"Default Player Listing",                 "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
+      {"Default Crafter Listing",                 "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
     },
     Notifications = {
-      header = "Order Notifications",
+      Title = "Order Notifications",
       {"Disable Notifications While In Raid",        "Disable incoming order notifications while in a Raid"},
       {"Disable Notifications While In An Instance", "Disable incoming order notifications while in an Instance"},
       {"Disable Notifications While In Combat",      "Disable incoming order notifications while in combat"},
     },
+    Recipes = {
+      Title = "Recipe Listing",
+      {"Show Crafter's Leveling Color Thresholds", "Show the Crafter's leveling threshold colors. [Gray, Green, Yellow, and Orange]"},
+      {"Automatically Open The Crafter's Book", "When clicking the Crafter's profession link in chat automatically open their recipe book"}
+    },
     Frame = {
-      header = {"Frame Level", "Frame level to have Craftie open on other frames such as professions, auction, other addon frames, etc...|nLOW = Behind other frames|nHIGH = On top of other frames"},
-      set = {"LOW", "MEDIUM", "HIGH"}
+      Title = "Frame Options",
+      {"Frame Level", "Frame level to have Craftie open on other frames such as professions, auction, other addon frames, etc...|nLOW = Behind other frames|nHIGH = On top of other frames"},
+      {"LOW", "MEDIUM", "HIGH"}
     }
   }
 }

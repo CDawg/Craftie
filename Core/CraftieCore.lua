@@ -566,7 +566,7 @@ function Craftie:ItemDetails(item)
         if (Craftie.Reagent[r][2] == Craftie.Preload) then --pull from tooltip for missing reagents
           if (name[i] ~= nil) then --prevent LUA errors on odd reagents that have never been viewed/precached to the client
             Craftie.Reagent[r][2] = name[i]
-            Craftie:Notification("Missing Reagent Precache: " .. "[" .. item[5][i][1] .. "] " .. name[i], Craftie.CHAT.WARN)
+            Craftie:Notification("Missing Reagent Precache: " .. "[" .. item[5][i][1] .. "] " .. name[i], Craftie.CHAT.CACHE)
           end
           loadcache = 1
         end
@@ -681,23 +681,27 @@ function Craftie:ItemDetails(item)
 end
 
 function Craftie:RecipeLevelColor(i, itemLevel, thresholds)
+  local gray  = {0.8, 0.8, 0.8, 1}
+  local green = {0, 0.60, 0, 1}
+  local yellow= {0.9, 0.9, 0, 1}
+  local orange= {1, 0.50, 0.25, 1}
   if (Craftie.CrafterProfLevel >= 1) then
     Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(0.8, 0.8, 0.8, 1)
 
     if (thresholds ~= nil) then
       if (Craftie.CrafterProfLevel < thresholds[1]) then
-        Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 0.50, 0.25, 1) --orange
+        Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(orange[1], orange[2], orange[3], orange[4]) --orange
       elseif (Craftie.CrafterProfLevel < thresholds[2]) then
-        Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 0, 1) --yellow
+        Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(yellow[1], yellow[2], yellow[3], yellow[4]) --yellow
       elseif (Craftie.CrafterProfLevel < thresholds[3]) then
-        Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(0, 0.65, 0, 1) --green
+        Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(green[1], green[2], green[3], green[4]) --green
       end
     elseif (Craftie.CrafterProfLevel <= itemLevel) then
-      Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 0.50, 0.25, 1) --orange
+      Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(orange[1], orange[2], orange[3], orange[4]) --orange
     elseif (Craftie.CrafterProfLevel <= itemLevel+10) then
-      Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 0, 1) --yellow
+      Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(yellow[1], yellow[2], yellow[3], yellow[4]) --yellow
     elseif (Craftie.CrafterProfLevel <= itemLevel+25) then
-      Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(0, 0.65, 0, 1) --green
+      Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(green[1], green[2], green[3], green[4]) --green
     end
   end
 end

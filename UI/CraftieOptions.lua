@@ -31,7 +31,7 @@ local dimensions = {
 }
 
 --[==[
-DEFAULTS
+PLAYER LISTING
 ]==]--
 Craftie.Options.DefaultParent = CreateFrame("Frame", nil, Craftie.Options.Frame, "BackdropTemplate")
 Craftie.Options.DefaultParent:SetBackdrop(Craftie.Backdrop.General)
@@ -42,8 +42,8 @@ Craftie.Options.DefaultParent:SetHeight(100)
 Craftie.Options.DefaultParent:SetPoint("TOPLEFT", 0, -120)
 Craftie.Options.DefaultTitle = Craftie.Options.DefaultParent:CreateFontString(nil, "OVERLAY")
 Craftie.Options.DefaultTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, "SLUG")
-Craftie.Options.DefaultTitle:SetPoint("TOPLEFT", 10, 20)
-Craftie.Options.DefaultTitle:SetText(Craftie._L.Options.Defaults.header)
+Craftie.Options.DefaultTitle:SetPoint("TOPLEFT", 10, 15)
+Craftie.Options.DefaultTitle:SetText(Craftie._L.Options.Defaults.Title)
 
 Craftie.Options.CheckboxLibrary = CreateFrame("CheckButton", nil, Craftie.Options.DefaultParent, "ChatConfigCheckButtonTemplate")
 Craftie.Options.CheckboxLibrary:SetPoint("TOPLEFT", 10, -10)
@@ -125,8 +125,8 @@ Craftie.Options.NotificationParent:SetHeight(100)
 Craftie.Options.NotificationParent:SetPoint("TOPLEFT", dimensions.W+10, -120)
 Craftie.Options.NotificationTitle = Craftie.Options.NotificationParent:CreateFontString(nil, "OVERLAY")
 Craftie.Options.NotificationTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, "SLUG")
-Craftie.Options.NotificationTitle:SetPoint("TOPLEFT", 10, 20)
-Craftie.Options.NotificationTitle:SetText(Craftie._L.Options.Notifications.header)
+Craftie.Options.NotificationTitle:SetPoint("TOPLEFT", 10, 15)
+Craftie.Options.NotificationTitle:SetText(Craftie._L.Options.Notifications.Title)
 
 Craftie.Options.CheckboxNotif={}
 
@@ -159,25 +159,107 @@ for i,v in pairs(Craftie._L.Options.Notifications) do
   end
 end
 
+--[==[
+RECIPES LISTING
+]==]--
+Craftie.Options.RecipesParent = CreateFrame("Frame", nil, Craftie.Options.Frame, "BackdropTemplate")
+Craftie.Options.RecipesParent:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Options.RecipesParent:SetBackdropColor(0,0,0,0)
+Craftie.Options.RecipesParent:SetBackdropBorderColor(1,1,1,0.4)
+Craftie.Options.RecipesParent:SetWidth(dimensions.W)
+Craftie.Options.RecipesParent:SetHeight(100)
+Craftie.Options.RecipesParent:SetPoint("TOPLEFT", 0, -260)
+Craftie.Options.DefaultTitle = Craftie.Options.RecipesParent:CreateFontString(nil, "OVERLAY")
+Craftie.Options.DefaultTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, "SLUG")
+Craftie.Options.DefaultTitle:SetPoint("TOPLEFT", 10, 15)
+Craftie.Options.DefaultTitle:SetText(Craftie._L.Options.Recipes.Title)
+
+Craftie.Options.CheckboxCrafterThreshold = CreateFrame("CheckButton", nil, Craftie.Options.RecipesParent, "ChatConfigCheckButtonTemplate")
+Craftie.Options.CheckboxCrafterThreshold:SetPoint("TOPLEFT", 10, -10)
+Craftie.Options.CheckboxCrafterThreshold:SetChecked(true)
+Craftie.Options.CheckboxCrafterThreshold.Text = Craftie.Options.CheckboxCrafterThreshold:CreateFontString(nil, "OVERLAY")
+Craftie.Options.CheckboxCrafterThreshold.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Options.CheckboxCrafterThreshold.Text:SetPoint("TOPLEFT", 26, -6)
+Craftie.Options.CheckboxCrafterThreshold.Text:SetText(Craftie._L.Options.Recipes[1][1])
+Craftie.Options.CheckboxCrafterThreshold:SetScript("OnClick", function(self)
+  local isChecked = self:GetChecked()
+  if (isChecked) then
+    print("Feature enabled!")
+  else
+    print("Feature disabled!")
+  end
+end)
+Craftie.Options.CheckboxCrafterThreshold:SetScript("OnEnter", function(self)
+  CraftieTooltip:ClearLines()
+  CraftieTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+  CraftieTooltip:AddLine(Craftie._L.Options.Recipes[1][1])
+  CraftieTooltip:AddLine(Craftie.Color.White ..  Craftie._L.Options.Recipes[1][2])
+  CraftieTooltip:Show()
+end)
+Craftie.Options.CheckboxCrafterThreshold:SetScript("OnLeave", function(self)
+  CraftieTooltip:Hide()
+end)
+
+Craftie.Options.CheckboxCrafterOpen = CreateFrame("CheckButton", nil, Craftie.Options.RecipesParent, "ChatConfigCheckButtonTemplate")
+Craftie.Options.CheckboxCrafterOpen:SetPoint("TOPLEFT", 10, -30)
+Craftie.Options.CheckboxCrafterOpen:SetChecked(true)
+Craftie.Options.CheckboxCrafterOpen.Text = Craftie.Options.CheckboxCrafterOpen:CreateFontString(nil, "OVERLAY")
+Craftie.Options.CheckboxCrafterOpen.Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
+Craftie.Options.CheckboxCrafterOpen.Text:SetPoint("TOPLEFT", 26, -6)
+Craftie.Options.CheckboxCrafterOpen.Text:SetText(Craftie._L.Options.Recipes[2][1])
+Craftie.Options.CheckboxCrafterOpen:SetScript("OnClick", function(self)
+  local isChecked = self:GetChecked()
+  if (isChecked) then
+    print("Feature enabled!")
+  else
+    print("Feature disabled!")
+  end
+end)
+Craftie.Options.CheckboxCrafterOpen:SetScript("OnEnter", function(self)
+  CraftieTooltip:ClearLines()
+  CraftieTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+  CraftieTooltip:AddLine(Craftie._L.Options.Recipes[2][1])
+  CraftieTooltip:AddLine(Craftie.Color.White ..  Craftie._L.Options.Recipes[2][2])
+  CraftieTooltip:Show()
+end)
+Craftie.Options.CheckboxCrafterOpen:SetScript("OnLeave", function(self)
+  CraftieTooltip:Hide()
+end)
+
+--[==[
+FRAME
+]==]--
+Craftie.Options.FrameParent = CreateFrame("Frame", nil, Craftie.Options.Frame, "BackdropTemplate")
+Craftie.Options.FrameParent:SetBackdrop(Craftie.Backdrop.General)
+Craftie.Options.FrameParent:SetBackdropColor(0,0,0,0)
+Craftie.Options.FrameParent:SetBackdropBorderColor(1,1,1,0.4)
+Craftie.Options.FrameParent:SetWidth(dimensions.W)
+Craftie.Options.FrameParent:SetHeight(100)
+Craftie.Options.FrameParent:SetPoint("TOPLEFT", dimensions.W+10, -260)
+Craftie.Options.DefaultTitle = Craftie.Options.FrameParent:CreateFontString(nil, "OVERLAY")
+Craftie.Options.DefaultTitle:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, "SLUG")
+Craftie.Options.DefaultTitle:SetPoint("TOPLEFT", 10, 15)
+Craftie.Options.DefaultTitle:SetText(Craftie._L.Options.Frame.Title)
+
 Craftie.Options.DropdownFrame={}
-Craftie.Options.DropdownFrame = CreateFrame("Frame", "Craftie.Options.DropdownFrame", Craftie.Options.Frame, "UIDropDownMenuTemplate") --DropdownButtonMixin
-Craftie.Options.DropdownFrame:SetPoint("TOPLEFT", 0, -250)
+Craftie.Options.DropdownFrame = CreateFrame("Frame", nil, Craftie.Options.FrameParent, "UIDropDownMenuTemplate") --DropdownButtonMixin
+Craftie.Options.DropdownFrame:SetPoint("TOPLEFT", -8, -30)
 Craftie.Options.DropdownFrame.displayMode = "MENU"
 Craftie.Options.DropdownFrame.Title = Craftie.Options.DropdownFrame:CreateFontString(nil, "ARTWORK")
 Craftie.Options.DropdownFrame.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
 Craftie.Options.DropdownFrame.Title:SetPoint("TOPLEFT", 20, 15)
-Craftie.Options.DropdownFrame.Title:SetText(Craftie._L.Options.Frame.header[1])
+Craftie.Options.DropdownFrame.Title:SetText(Craftie._L.Options.Frame[1][1])
 Craftie.Options.DropdownFrame.text = Craftie.Options.DropdownFrame:CreateFontString(nil, "ARTWORK")
 Craftie.Options.DropdownFrame.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
 Craftie.Options.DropdownFrame.text:SetPoint("TOPLEFT", Craftie.Options.DropdownFrame, "TOPLEFT", 25, -8)
-Craftie.Options.DropdownFrame.text:SetText(Craftie._L.Options.Frame.set[1])
+Craftie.Options.DropdownFrame.text:SetText(Craftie._L.Options.Frame[2][1])
 Craftie.Options.DropdownFrame.OnClick = function(self)
-  Craftie.Options.DropdownFrame.text:SetText(Craftie._L.Options.Frame.set[self.value])
+  Craftie.Options.DropdownFrame.text:SetText(Craftie._L.Options.Frame[2][self.value])
 end
 UIDropDownMenu_SetWidth(Craftie.Options.DropdownFrame, 160)
 UIDropDownMenu_Initialize(Craftie.Options.DropdownFrame, function(self, level)
   local info = UIDropDownMenu_CreateInfo()
-  for k,v in pairs(Craftie._L.Options.Frame.set) do
+  for k,v in pairs(Craftie._L.Options.Frame[2]) do
     --info.notCheckable = 1
     info.padding = 2
     info.text = v
@@ -191,8 +273,8 @@ end)
 Craftie.Options.DropdownFrame:SetScript("OnEnter", function(self)
   CraftieTooltip:ClearLines()
   CraftieTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
-  CraftieTooltip:AddLine(Craftie._L.Options.Frame.header[1])
-  CraftieTooltip:AddLine(Craftie.Color.White .. Craftie._L.Options.Frame.header[2])
+  CraftieTooltip:AddLine(Craftie._L.Options.Frame[1][1])
+  CraftieTooltip:AddLine(Craftie.Color.White .. Craftie._L.Options.Frame[1][2])
   CraftieTooltip:Show()
 end)
 Craftie.Options.DropdownFrame:SetScript("OnLeave", function(self)
