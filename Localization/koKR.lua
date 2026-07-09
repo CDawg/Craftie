@@ -59,9 +59,10 @@ Craftie._L = {
   },
 
   Options = {
-    Library = {
-      "Show The Profession Library For Every Recipe",
-      "Show the entire recipe library for each|nprofession within the player list for all phases"
+    Defaults = {
+      header = "Player Listing",
+      {"Show The Game Library For Every Recipe", "Show the entire recipe library for each|nprofession within the player list for all phases [Recommended]"},
+      {"Default Player Listing",                 "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
     },
     Notifications = {
       header = "Order Notifications",
@@ -70,7 +71,7 @@ Craftie._L = {
       {"Disable Notifications While In Combat",      "Disable incoming order notifications while in combat"},
     },
     Frame = {
-      header = "",
+      header = {"Frame Level", "Frame level to have Craftie open on other frames such as professions, auction, other addon frames, etc...|nLOW = Behind other frames|nHIGH = On top of other frames"},
       set = {"LOW", "MEDIUM", "HIGH"}
     }
   }
