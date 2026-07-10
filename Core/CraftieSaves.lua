@@ -113,13 +113,23 @@ function Craftie:LoadOptions()
   if (Craftie.Save.Account ~= nil) then
     if (Craftie.Save.Player ~= nil) then
       if (Craftie.Save.Player.CONFIG ~= nil) then
-        --default on
+
         if (Craftie.Save.Player.CONFIG["LEVEL_COLOR"] == 0) then
           Craftie.Options.CheckboxCrafterThreshold:SetChecked(false)
         end
         if (Craftie.Save.Player.CONFIG["AUTO_OPEN"] == 0) then
           Craftie.Options.CheckboxCrafterOpen:SetChecked(false)
         end
+
+        if (Craftie.Save.Player.CONFIG["FRAME_LEVEL"] ~= 0) then
+          for k,v in pairs(Craftie.FrameStrata) do
+            if (k == Craftie.Save.Player.CONFIG["FRAME_LEVEL"]) then
+              Craftie.Frame:SetFrameStrata(v)
+              --print("framestrate set to " .. v)
+            end
+          end
+        end
+
       end
     end
   end
