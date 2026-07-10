@@ -73,7 +73,7 @@ function Craftie:UpdatePlayerTooltip(channel)
   end
 end
 
-TooltipTemplate = "|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title
+TooltipTemplate = "|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. Craftie._G.Title
 function Craftie:TooltipLayout(data, tooltipframe)
   local color = Craftie.Color.Blue
   local title = ""
