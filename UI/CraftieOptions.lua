@@ -210,9 +210,9 @@ Craftie.Options.CheckboxCrafterOpen.Text:SetText(Craftie._L.Options.Recipes[2][1
 Craftie.Options.CheckboxCrafterOpen:SetScript("OnClick", function(self)
   local isChecked = self:GetChecked()
   if (isChecked) then
-    print("Feature enabled!")
+    Craftie.Save.Player.CONFIG["AUTO_OPEN"] = 1
   else
-    print("Feature disabled!")
+    Craftie.Save.Player.CONFIG["AUTO_OPEN"] = 0
   end
 end)
 Craftie.Options.CheckboxCrafterOpen:SetScript("OnEnter", function(self)

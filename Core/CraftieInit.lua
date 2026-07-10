@@ -18,7 +18,7 @@ function Craftie:Init()
   Craftie:AlphaSortProfessionLib() --sanity alpha sorting & version control
   Craftie:BuildReagentGaps()
   Craftie:BuildChatHooks()
-  Craftie:SaveData()
+  Craftie:SaveDataBuild()
   Craftie:BuildPersonalTooltip()
   Craftie:TabSelectBottom(1, false)
   Craftie:BuildTooltipHooks()
@@ -36,6 +36,7 @@ function Craftie:Init()
     Craftie:CloseAllPlayerMenus()
     --Craftie:Notification("Craftie Opened", Craftie.CHAT.FUNC)
     PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
+    Craftie:LoadOptions()
   end)
 
   --whisper self to prep incoming comms
@@ -78,6 +79,7 @@ function Craftie:Init()
       end
     end
     Craftie:GetEntryProfessions()
+    Craftie:LoadOptions()
 
     --[==[
     local order = -1

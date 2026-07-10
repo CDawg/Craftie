@@ -16,6 +16,15 @@ the copyright holders.
 Craftie.LogKey = 0
 Craftie.SortOrder = 0
 
+---@class GetNumSpellTabs
+
+---@class GetSpellBookItemName
+---@enum BOOKTYPE_SPELL
+
+---@class GetSpellTabInfo
+
+---@class TradeSkillFrame
+
 ---@class Notification
 function Craftie:Notification(msg, type)
   local logstring= ""
@@ -123,11 +132,11 @@ end
 
 --this also goes to the player selected scroll item
 function Craftie:GetCrafterIndex(player)
-  C_Timer.After(0.1, function() --give the update time to create cached tables
+  C_Timer.After(0.2, function() --give the update time to create cached tables
     for i=1, Craftie.MAX_CRAFTERS do
       if (player == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
-        --print(player .. " index = " .. i)
         Craftie:SelectCrafter(i, player)
+        Craftie:Notification("Craftie:GetCrafterIndex() [" .. i .. "] " .. player, Craftie.CHAT.FUNC)
       end
     end
   end)

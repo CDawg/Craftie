@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-function Craftie:SaveData()
+function Craftie:SaveDataBuild()
   local locale = GetLocale()
   local version = Craftie._G.Version
 
@@ -105,4 +105,20 @@ function Craftie:SaveData()
 
   Craftie.Save.Account= CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]
   Craftie.Save.Player = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]
+end
+
+--always called when opening Craftie
+function Craftie:LoadOptions()
+  --if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction][Craftie.Player.Name]["CONFIG"]
+  if (Craftie.Save.Account ~= nil) then
+    if (Craftie.Save.Player ~= nil) then
+      if (Craftie.Save.Player.CONFIG ~= nil) then
+        --default on
+        if (Craftie.Save.Player.CONFIG["AUTO_OPEN"] == 0) then
+          Craftie.Options.CheckboxCrafterOpen:SetChecked(false)
+        end
+      end
+    end
+  end
+  Craftie:Notification("Craftie:LoadOptions()", Craftie.CHAT.FUNC)
 end

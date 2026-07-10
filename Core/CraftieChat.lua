@@ -82,21 +82,29 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       if ((player ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
         Craftie:PacketSend(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
         Craftie.Packet.ACK[player] = 0
+        Craftie:Notification("Gathering " .. Craftie.Color.Blue .. "[" .. prof .. "]|r from " .. player .. "...", Craftie.CHAT.INFO)
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
             Craftie:Notification("[" .. player .. "] has outdated data", Craftie.CHAT.WARN)
+          else
+            if (Craftie.Save.Player.CONFIG["AUTO_OPEN"] == 0) then
+              Craftie:Notification("Added " .. player .. " to " .. Craftie.Color.Blue .. "[" .. prof .. "]", Craftie.CHAT.INFO)
+            else
+              --print("open book to player " .. player)
+              Craftie:UpdateCrafterList()
+              Craftie:GetCrafterIndex(player)
+            end
           end
-          Craftie:UpdateCrafterList()
-          --print("open book to player " .. player)
-          Craftie:GetCrafterIndex(player)
         end)
       end
-      --we still need to open the book, but cache the incoming data
-      C_Timer.After(0.2, function()
-        Craftie:Notification("SetItemRef " .. prof, Craftie.CHAT.FUNC)
-        Craftie:Open(player, prof) --need to cache player data loading
-      end)
+      if (Craftie.Save.Player.CONFIG["AUTO_OPEN"] ~= 0) then
+        --we still need to open the book, but cache the incoming data
+        C_Timer.After(0.2, function()
+          Craftie:Notification("SetItemRef " .. prof, Craftie.CHAT.FUNC)
+          Craftie:Open(player, prof) --need to cache player data loading
+        end)
+      end
     end
   end
 end)
