@@ -515,10 +515,10 @@ do
           end
           if (frame == Craftie.Frame.TabBar) then
             if (Craftie.TabBarHide == 0) then
-              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar_X*self.frame, -Craftie.TabBar_Y)
+              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar.X*self.frame, -Craftie.TabBar.Y)
             end
             if (Craftie.TabBarHide == 1) then
-              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar_X*Craftie.Animation, -Craftie.TabBar_Y)
+              Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar.X*Craftie.Animation, -Craftie.TabBar.Y)
             end
           end
         end

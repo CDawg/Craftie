@@ -24,11 +24,13 @@ Craftie._G = {
 
 Craftie._G.Version = C_AddOns.GetAddOnMetadata(Craftie._G.Prefix, "version")
 
-Craftie._G.Font={}
-Craftie._G.Font.Style = "Fonts/FRIZQT__.ttf"
-Craftie._G.Font.StyleA= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf"
-Craftie._G.Font.StyleN= "Fonts/ARIALN.ttf" --numerical
-Craftie._G.Font.Size  = 11
+Craftie._G.Font={
+  Style = "Fonts/FRIZQT__.ttf",
+  Size = 11,
+  StyleA= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf",
+  StyleN= "Fonts/ARIALN.ttf", --numerical
+  Flags = "OUTLINE | SLUG"
+}
 
 Craftie._G.Path = "Interface/Addons/".. Craftie._G.Prefix .."/"
 Craftie._G.Title = Craftie.Color.Theme .. Craftie._L.Title .. "|r"
@@ -64,8 +66,10 @@ Craftie.Frame.Search={}
 
 Craftie.EnableScrollFrames = true
 
-Craftie.TabBar_X = 42
-Craftie.TabBar_Y = 70
+Craftie.TabBar = {
+  X = 42,
+  Y = 70
+}
 
 function Craftie:TranslateLocaleProfession(name)
   for k,v in pairs(Craftie._L.Professions) do

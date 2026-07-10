@@ -88,7 +88,7 @@ Craftie.Frame.CrafterProgBorder:SetPoint("TOPLEFT", 0, 5)
 Craftie.Frame.CrafterProgBorder:SetTexture("Interface/PaperDollInfoFrame/UI-Character-Skills-BarBorder")
 
 Craftie.Frame.CrafterProgLevel = Craftie.Frame.CrafterLevel:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.CrafterProgLevel:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
+Craftie.Frame.CrafterProgLevel:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, Craftie._G.Font.Flags)
 Craftie.Frame.CrafterProgLevel:SetPoint("CENTER", 4, -2)
 Craftie.Frame.CrafterProgLevel:SetJustifyH("LEFT")
 Craftie.Frame.CrafterProgLevel:SetText("")
@@ -128,10 +128,10 @@ Craftie.Frame.Button.Options:SetScript("OnLeave", function(self)
 end)
 
 --determine version and placement
-Craftie.Frame.TabBar = CreateFrame("Button", Craftie.Frame.TabBar, Craftie.Frame, "BackdropTemplate")
+Craftie.Frame.TabBar = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.TabBar:SetWidth(40)
 Craftie.Frame.TabBar:SetHeight(330)
-Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar_X, -Craftie.TabBar_Y)
+Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar.X, -Craftie.TabBar.Y)
 --Craftie.Frame.TabBar:SetBackdrop(Craftie.Backdrop.General)
 --Craftie.Frame.TabBar:SetBackdropColor(0, 1, 0, 0)
 --Craftie.Frame.TabBar:SetBackdropBorderColor(1, 1, 1, 0)
@@ -142,7 +142,7 @@ Craftie.Frame.TabBarBack:SetHeight(400)
 Craftie.Frame.TabBarBack:SetPoint("TOPLEFT", 0, 10)
 Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-ProfBar" .. Craftie.Game.Version .. ".png")
 
-local TabSidePosY = Craftie.TabBar_Y-43
+local TabSidePosY = Craftie.TabBar.Y-43
 local TabSideSpacing = 40 --distance spacing
 Craftie.TabGlow={}
 Craftie.TipGlow={}

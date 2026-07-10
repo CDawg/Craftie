@@ -43,7 +43,6 @@ Craftie.Frame.ScrollRecipesList.Child:SetScrollChild(Craftie.Frame.ScrollRecipes
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:ClearAllPoints()
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRecipesList.Child, "TOPRIGHT",        -32,-8)
 Craftie.Frame.ScrollRecipesList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRecipesList.Child, "BOTTOMRIGHT", -11, 8)
-
 Craftie:ScrollBarFrame(Craftie.Frame.ScrollRecipesList.Child)
 
 Craftie.Frame.ScrollRecipesResultsFrame = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesResultsFrame", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate", 25)
@@ -61,13 +60,13 @@ Craftie.Frame.ScrollRecipesResults:SetPoint("TOPLEFT", 8, -4)
 Craftie.Frame.ScrollRecipesResults:SetText("")
 
 Craftie.Frame.ScrollRecipesLoading = Craftie.Frame.ScrollRecipesParent:CreateFontString(nil, "OVERLAY")
-Craftie.Frame.ScrollRecipesLoading:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, "OUTLINE | SLUG")
+Craftie.Frame.ScrollRecipesLoading:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, Craftie._G.Font.Flags)
 Craftie.Frame.ScrollRecipesLoading:SetPoint("CENTER", -2, 40)
 Craftie.Frame.ScrollRecipesLoading:SetTextColor(1, 1, 0.9, 0.8)
 Craftie.Frame.ScrollRecipesLoading:SetText("Loading...")
 
 Craftie.Frame.ScrollRecipesEmpty = Craftie.Frame.ScrollRecipesParent:CreateFontString(nil, "OVERLAY")
-Craftie.Frame.ScrollRecipesEmpty:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
+Craftie.Frame.ScrollRecipesEmpty:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, Craftie._G.Font.Flags)
 Craftie.Frame.ScrollRecipesEmpty:SetPoint("CENTER", -10, 0)
 Craftie.Frame.ScrollRecipesEmpty:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.ScrollRecipesEmpty:SetText("")
@@ -81,7 +80,7 @@ Craftie.Frame.DropdownRecipes.displayMode = "MENU"
 --Craftie.Frame.DropdownRecipes:SetBackdrop(Craftie.Backdrop.Borderless)
 --Craftie.Frame.DropdownRecipes:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.DropdownRecipes.text = Craftie.Frame.DropdownRecipes:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.DropdownRecipes.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "OUTLINE | SLUG")
+Craftie.Frame.DropdownRecipes.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, Craftie._G.Font.Flags)
 Craftie.Frame.DropdownRecipes.text:SetPoint("TOPLEFT", Craftie.Frame.DropdownRecipes, "TOPLEFT", 25, -8)
 Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
 Craftie.Frame.DropdownRecipes.OnClick = function(self, checked)
