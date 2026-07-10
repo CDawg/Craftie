@@ -21,8 +21,8 @@ Craftie.SortOrder = 0
 ---@enum BOOKTYPE_SPELL
 ---@class GetSpellTabInfo
 ---@class TradeSkillFrame
----@class Notification
 
+---@class Notification
 function Craftie:Notification(msg, type)
   local logstring= ""
   local debugLevel = type[1]
@@ -49,6 +49,7 @@ function Craftie:Notification(msg, type)
 end
 
 --Also reenable the scrollbars
+---@class CloseAllPlayerMenus
 function Craftie:CloseAllPlayerMenus()
   CraftieTooltip:Hide()
   GameTooltip:Hide()
