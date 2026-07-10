@@ -25,16 +25,15 @@ Core/CraftieEventManager.lua
 Core/CraftieChat.lua
 Core/CraftieSaves.lua
 
+Library/Reagents.lua
 Library/Alchemy.lua
 Library/Blacksmithing.lua
 Library/Cooking.lua
 Library/Enchanting.lua
 Library/Engineering.lua
-Library/Jewelcrafting.lua
 Library/Leatherworking.lua
-Library/Reagents.lua
 Library/Tailoring.lua
-Library/Inscription.lua
+Library/Jewelcrafting.lua
 
 Changelog.lua
 Core/CraftieGlobal.lua

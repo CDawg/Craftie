@@ -1212,14 +1212,14 @@ end
 
 --caching tooltip data. preload unknown data
 Craftie.Reagent = {}
-function Craftie:BuildReagentGaps()
+function Craftie:BuildReagentCaching()
   for i=1, Craftie.MAX_ITEMIDS do
     table.insert(Craftie.Reagent, {i, Craftie.Preload})
   end
   for k,v in pairs(Craftie.Reagents) do
     Craftie.Reagent[v[1]] = {v[1], v[2]}
   end
-  Craftie:Notification("Craftie:BuildReagentGaps()", Craftie.CHAT.FUNC)
+  Craftie:Notification("Craftie:BuildReagentCaching()", Craftie.CHAT.FUNC)
 end
 
 --use the classic frame, but updated images. The updated frame has major bugs

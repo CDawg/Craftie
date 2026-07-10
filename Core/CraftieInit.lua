@@ -16,7 +16,7 @@ the copyright holders.
 function Craftie:Init()
   Craftie:Notification("v" .. Craftie._G.Version .. " " .. Craftie.Game.Name .. " [" .. Craftie._L.Loaded .. "] Initializing. Type " .. SLASH_Craftie1 .. " for commands.", Craftie.CHAT.INFO)
   Craftie:AlphaSortProfessionLib() --sanity alpha sorting & version control
-  Craftie:BuildReagentGaps()
+  Craftie:BuildReagentCaching()
   Craftie:BuildChatHooks()
   Craftie:SaveDataBuild()
   Craftie:BuildPersonalTooltip()
