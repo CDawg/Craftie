@@ -80,7 +80,7 @@ Craftie._L = {
     Recipes = {
       Title = "Recipe Listing",
       {"Show Crafter's Leveling Color Thresholds", "Show the Crafter's leveling threshold colors. [Gray, Green, Yellow, and Orange]"},
-      {"Automatically Open The Crafter's Book", "When clicking the Crafter's profession link in chat automatically open their recipe book"}
+      {"Automatically Open The Crafter's Recipe Book", "When clicking the Crafter's profession link in chat automatically open their recipe book"}
     },
     Frame = {
       Title = "Frame Options",
