@@ -184,10 +184,11 @@ Craftie.Options.CheckboxCrafterThreshold.Text:SetText(Craftie._L.Options.Recipes
 Craftie.Options.CheckboxCrafterThreshold:SetScript("OnClick", function(self)
   local isChecked = self:GetChecked()
   if (isChecked) then
-    print("Feature enabled!")
+    Craftie.Save.Player.CONFIG["LEVEL_COLOR"] = 1
   else
-    print("Feature disabled!")
+    Craftie.Save.Player.CONFIG["LEVEL_COLOR"] = 0
   end
+  Craftie:Notification("LEVEL_COLOR " .. Craftie.Save.Player.CONFIG["LEVEL_COLOR"], Craftie.CHAT.SAVE)
 end)
 Craftie.Options.CheckboxCrafterThreshold:SetScript("OnEnter", function(self)
   CraftieTooltip:ClearLines()
@@ -214,6 +215,7 @@ Craftie.Options.CheckboxCrafterOpen:SetScript("OnClick", function(self)
   else
     Craftie.Save.Player.CONFIG["AUTO_OPEN"] = 0
   end
+  Craftie:Notification("AUTO_OPEN " .. Craftie.Save.Player.CONFIG["AUTO_OPEN"], Craftie.CHAT.SAVE)
 end)
 Craftie.Options.CheckboxCrafterOpen:SetScript("OnEnter", function(self)
   CraftieTooltip:ClearLines()
