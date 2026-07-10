@@ -73,6 +73,7 @@ function Craftie:UpdatePlayerTooltip(channel)
   end
 end
 
+TooltipTemplate = "|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title
 function Craftie:TooltipLayout(data, tooltipframe)
   local color = Craftie.Color.Blue
   local title = ""
@@ -87,7 +88,7 @@ function Craftie:TooltipLayout(data, tooltipframe)
         title = Craftie.Color.Lime .. "Contributor"
       end
     end
-    tooltipframe:AddLine("|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t " .. Craftie._G.Title .. " " .. title)
+    tooltipframe:AddLine(TooltipTemplate .. " " .. title)
     if (data.profN1) then
       local mastery = ""
       if (data.profM1 > 0) then
@@ -399,3 +400,20 @@ function Craftie:BuildGuildRosterTooltip()
     Craftie:Notification("Craftie:BuildGuildRosterTooltip()", Craftie.CHAT.FUNC)
   end
 end
+
+
+--inventory/vendor
+local function GameTooltip_OnTooltipSetItem(tooltip)
+	local name, link = tooltip:GetItem()
+	if (not link) then
+    return
+  end
+  for k,v in pairs(Craftie.Reagents) do
+    if (name == v[2]) then
+      tooltip:AddLine(" ")
+		  tooltip:AddLine(TooltipTemplate .. Craftie.Color.White .. " Reagent")
+    end
+  end
+end
+
+GameTooltip:HookScript("OnTooltipSetItem", GameTooltip_OnTooltipSetItem)
