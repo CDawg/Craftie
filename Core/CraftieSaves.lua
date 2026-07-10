@@ -120,12 +120,19 @@ function Craftie:LoadOptions()
         if (Craftie.Save.Player.CONFIG["AUTO_OPEN"] == 0) then
           Craftie.Options.CheckboxCrafterOpen:SetChecked(false)
         end
+        if (Craftie.Save.Player.CONFIG["PLAYER_LIST"] ~= nil) then
+          Craftie.PlayerListFilter = Craftie.Save.Player.CONFIG["PLAYER_LIST"]
+          Craftie.Frame.DropdownPlayers.text:SetText(Craftie._L.MenuSelPlayers[Craftie.PlayerListFilter])
+          Craftie.Options.DropdownPlayerlist.text:SetText(Craftie._L.MenuSelPlayers[Craftie.PlayerListFilter])
+          Craftie:UpdateCrafterList()
+        end
 
-        if (Craftie.Save.Player.CONFIG["FRAME_LEVEL"] ~= 0) then
+        if (Craftie.Save.Player.CONFIG["FRAME_LEVEL"] ~= nil) then
           for k,v in pairs(Craftie.FrameStrata) do
             if (k == Craftie.Save.Player.CONFIG["FRAME_LEVEL"]) then
               Craftie.Frame:SetFrameStrata(v)
-              --print("framestrate set to " .. v)
+              Craftie.Options.DropdownFrame.text:SetText(Craftie._L.Options.Frame[2][k])
+              print("framestrate set to [" .. k .. "] " .. v)
             end
           end
         end

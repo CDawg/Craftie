@@ -27,10 +27,10 @@ local dimensions = {
 Craftie.Options={}
 Craftie.Options.Frame = CreateFrame("Frame", "Craftie.Options.Frame", UIParent)
 Craftie.Options.Category = Settings.RegisterCanvasLayoutCategory(Craftie.Options.Frame, Craftie._G.Title)
-Settings.RegisterAddOnCategory(Craftie.Options.Category)
 Craftie.Options.Frame:SetSize(dimensions.Parent.W, dimensions.Parent.H)
 Craftie.Options.Frame:SetPoint("TOPLEFT", 0, 0)
 Craftie.Options.Frame:Hide()
+Settings.RegisterAddOnCategory(Craftie.Options.Category)
 
 Craftie.Options.Title = Craftie.Options.Frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 Craftie.Options.Title:SetPoint("TOPLEFT", 10, -16)
@@ -117,6 +117,10 @@ Craftie.Options.DropdownPlayerlist.text:SetPoint("TOPLEFT", Craftie.Options.Drop
 Craftie.Options.DropdownPlayerlist.text:SetText(Craftie._L.MenuSelPlayers[1])
 Craftie.Options.DropdownPlayerlist.OnClick = function(self)
   Craftie.Options.DropdownPlayerlist.text:SetText(Craftie._L.MenuSelPlayers[self.value])
+  --print(self.value)
+  Craftie.Save.Player.CONFIG["PLAYER_LIST"] = self.value
+  Craftie.PlayerListFilter = 1
+  Craftie:Notification("PLAYER_LIST " .. Craftie.Save.Player.CONFIG["PLAYER_LIST"], Craftie.CHAT.SAVE)
 end
 UIDropDownMenu_SetWidth(Craftie.Options.DropdownPlayerlist, 160)
 UIDropDownMenu_Initialize(Craftie.Options.DropdownPlayerlist, function(self, level)
@@ -291,7 +295,7 @@ Craftie.Options.DropdownFrame.OnClick = function(self)
     if (self.value == k) then
       Craftie.Frame:SetFrameStrata(v)
       Craftie.Save.Player.CONFIG["FRAME_LEVEL"] = self.value
-      print(v)
+      Craftie:Notification("FRAME_LEVEL " .. Craftie.Save.Player.CONFIG["FRAME_LEVEL"], Craftie.CHAT.SAVE)
     end
   end
 end
