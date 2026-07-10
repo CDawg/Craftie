@@ -32,6 +32,13 @@ Craftie._L = {
   Placeholder_Recipes = "Buscar Recetas...",
   Player_PageNameListing = "Biblioteca",
 
+  Notification = {
+    Collecting = "Collecting",
+    Outdated   = "has outdated data",
+    Adding     = "Adding",
+    Detected   = {"Detected", "Open", "to build your profile."},
+  },
+
   MenuSelPlayers = {
     "Todos los artesanos",
     "Artesanos del gremio"

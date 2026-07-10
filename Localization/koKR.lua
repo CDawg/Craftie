@@ -32,6 +32,13 @@ Craftie._L = {
   Placeholder_Recipes = "레시피 검색...",
   Player_PageNameListing = "라이브러리",
 
+  Notification = {
+    Collecting = "Collecting",
+    Outdated   = "has outdated data",
+    Adding     = "Adding",
+    Detected   = {"Detected", "Open", "to build your profile."},
+  },
+
   MenuSelPlayers = {
     "모든 장인",
     "길드 장인"

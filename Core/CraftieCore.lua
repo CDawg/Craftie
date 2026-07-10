@@ -17,15 +17,12 @@ Craftie.LogKey = 0
 Craftie.SortOrder = 0
 
 ---@class GetNumSpellTabs
-
 ---@class GetSpellBookItemName
 ---@enum BOOKTYPE_SPELL
-
 ---@class GetSpellTabInfo
-
 ---@class TradeSkillFrame
-
 ---@class Notification
+
 function Craftie:Notification(msg, type)
   local logstring= ""
   local debugLevel = type[1]
@@ -394,7 +391,7 @@ function Craftie:GetEntryProfessions()
         Craftie.TipGlow[tab]:Play()
         Craftie.Frame.TabSide[tab].Glow:Show()
         Craftie.Frame.TabSide[tab].Tip:Show()
-        Craftie:Notification("Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r " .. Craftie.Player.Name .. " |nOpen" .. Craftie.Color.Theme .. " Craftie|r to build your profile.", Craftie.CHAT.INFO)
+        Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
         if (prof == "Alchemy") then
           Craftie.Tab = -1
         end

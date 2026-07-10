@@ -82,14 +82,14 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       if ((player ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
         Craftie:PacketSend(Craftie.Packet.Prefix.Ping, Craftie.Player.Name .. "," .. prof, "WHISPER", player)
         Craftie.Packet.ACK[player] = 0
-        Craftie:Notification("Gathering " .. Craftie.Color.Blue .. "[" .. prof .. "]|r from " .. player .. "...", Craftie.CHAT.INFO)
+        Craftie:Notification(Craftie._L.Notification.Collecting .. Craftie.Color.Blue .. " [" .. prof .. "]|r from " .. player .. "...", Craftie.CHAT.INFO)
         C_Timer.After(Craftie.Packet.Timeout, function()
            --if the ack doesnt come back from the backet within this timeframe, timeout!
           if (Craftie.Packet.ACK[player] == 0) then
-            Craftie:Notification("[" .. player .. "] has outdated data", Craftie.CHAT.WARN)
+            Craftie:Notification("[" .. player .. "] " .. Craftie._L.Notification.Outdated, Craftie.CHAT.WARN)
           else
             if (Craftie.Save.Player.CONFIG["AUTO_OPEN"] == 0) then
-              Craftie:Notification("Added " .. player .. " to " .. Craftie.Color.Blue .. "[" .. prof .. "]", Craftie.CHAT.INFO)
+              Craftie:Notification(Craftie._L.Notification.Adding .. " " .. player .. " - " .. Craftie.Color.Blue .. "[" .. prof .. "]", Craftie.CHAT.INFO)
             else
               --print("open book to player " .. player)
               Craftie:UpdateCrafterList()

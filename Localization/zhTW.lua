@@ -32,6 +32,13 @@ Craftie._L = {
   Placeholder_Recipes = "搜尋配方...",
   Player_PageNameListing = "圖書館",
 
+  Notification = {
+    Collecting = "Collecting",
+    Outdated   = "has outdated data",
+    Adding     = "Adding",
+    Detected   = {"Detected", "Open", "to build your profile."},
+  },
+
   MenuSelPlayers = {
     "所有工匠",
     "公會工匠"
