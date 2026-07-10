@@ -29,7 +29,7 @@ Craftie._G.Font={
   Size = 11,
   StyleA= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf",
   StyleN= "Fonts/ARIALN.ttf", --numerical
-  Flags = "OUTLINE | SLUG"
+  Flags = "SLUG"
 }
 
 Craftie._G.Path = "Interface/Addons/".. Craftie._G.Prefix .."/"
