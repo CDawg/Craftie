@@ -24,6 +24,10 @@ local dimensions={
     W = 146,
     H = 38,
     D = 20 --distance
+  },
+  request = {
+    H = 106,
+    Y = 266,
   }
 }
 
@@ -251,11 +255,13 @@ Craftie.Frame.Item.SourceText:Hide()
 --[==[
 CRAFT REQUEST
 ]==]--
+
+
 Craftie.Frame.ItemBackBot={}
 Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.ItemBackBot:SetWidth(Craftie.Frame.CraftParent:GetWidth())
-Craftie.Frame.ItemBackBot:SetHeight(106)
-Craftie.Frame.ItemBackBot:SetPoint("TOPRIGHT", 0, -268)
+Craftie.Frame.ItemBackBot:SetHeight(dimensions.request.H)
+Craftie.Frame.ItemBackBot:SetPoint("TOPRIGHT", 0, -dimensions.request.Y)
 Craftie.Frame.ItemBackBot:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ItemBackBot:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.ItemBackBot:SetBackdropBorderColor(0.5, 0.5, 0.48, 1)
@@ -271,7 +277,7 @@ Craftie.Frame.ItemBackBotArt:SetDesaturation(0.3)
 Craftie.Frame.ItemRequestParent = CreateFrame("Frame", "Craftie.Frame.ItemRequestParent", Craftie.Frame.CraftParent, "BackdropTemplate", 5)
 Craftie.Frame.ItemRequestParent:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
 Craftie.Frame.ItemRequestParent:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())
-Craftie.Frame.ItemRequestParent:SetPoint("TOPRIGHT", 0, -268)
+Craftie.Frame.ItemRequestParent:SetPoint("TOPRIGHT", 0, -dimensions.request.Y)
 --Craftie.Frame.ItemRequestParent:SetFrameLevel(50)
 
 local MIN_VALUE = 1

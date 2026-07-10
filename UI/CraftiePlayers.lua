@@ -18,16 +18,17 @@ local dimensions = {
   H = 302,
 }
 
-Craftie.Frame.ScrollPlayersParent = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersParent", Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.ScrollPlayersParent = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersParent", Craftie.Frame, "InsetFrameTemplate4")
 Craftie.Frame.ScrollPlayersParent:SetWidth(dimensions.W)
 Craftie.Frame.ScrollPlayersParent:SetHeight(dimensions.H+70)
 Craftie.Frame.ScrollPlayersParent:SetPoint("TOPLEFT", 12, -100)
 Craftie.Frame.ScrollPlayersParent:SetFrameStrata("MEDIUM")
 
---Craftie.Frame.ScrollPlayersParent.Back = Craftie.Frame.ScrollPlayersParent:CreateTexture(nil, "BACKGROUND")
---Craftie.Frame.ScrollPlayersParent.Back:SetSize(Craftie.Frame.ScrollPlayersParent:GetWidth()-20, Craftie.Frame.ScrollPlayersParent:GetHeight())
---Craftie.Frame.ScrollPlayersParent.Back:SetPoint("TOPLEFT", 0, 0)
---Craftie.Frame.ScrollPlayersParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Players.png")
+Craftie.Frame.ScrollPlayersParent.Back = Craftie.Frame.ScrollPlayersParent:CreateTexture(nil, "BACKGROUND")
+Craftie.Frame.ScrollPlayersParent.Back:SetSize(Craftie.Frame.ScrollPlayersParent:GetWidth(), Craftie.Frame.ScrollPlayersParent:GetHeight())
+Craftie.Frame.ScrollPlayersParent.Back:SetPoint("TOPLEFT", 0, 0)
+Craftie.Frame.ScrollPlayersParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.Frame.ScrollPlayersParent.Back:SetVertexColor(.5, .5, 1)
 
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersList", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersList:SetWidth(dimensions.W-5)

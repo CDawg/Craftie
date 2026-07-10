@@ -18,14 +18,15 @@ local dimensions = {
   H = 302,
 }
 
-Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate")
+Craftie.Frame.ScrollRecipesParent = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesParent", Craftie.Frame, "InsetFrameTemplate4")
 Craftie.Frame.ScrollRecipesParent:SetWidth(dimensions.W)
 Craftie.Frame.ScrollRecipesParent:SetHeight(dimensions.H+70)
 Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 224, -100)
 Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
+--Craftie.Frame.ScrollRecipesParent:SetFrameLevel(0)
 
 Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.ScrollRecipesParent.Back:SetSize(Craftie.Frame.ScrollRecipesParent:GetWidth()-20, Craftie.Frame.ScrollRecipesParent:GetHeight())
+Craftie.Frame.ScrollRecipesParent.Back:SetSize(Craftie.Frame.ScrollRecipesParent:GetWidth(), Craftie.Frame.ScrollRecipesParent:GetHeight())
 Craftie.Frame.ScrollRecipesParent.Back:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Recipes.png")
 
