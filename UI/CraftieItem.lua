@@ -209,7 +209,7 @@ for i=1, Craftie.MAX_REAGENTS do
 
   Craftie.Frame.Reagent.Quan[i] = Craftie.Frame.Reagent.Main[i]:CreateFontString(nil, "OVERLAY")
   Craftie.Frame.Reagent.Quan[i]:SetWidth(Craftie.Frame.Reagent.Icon[i]:GetWidth())
-  Craftie.Frame.Reagent.Quan[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, Craftie._G.Font.Flags)
+  Craftie.Frame.Reagent.Quan[i]:SetFont(Craftie._G.Font.StyleN, Craftie._G.Font.Size+2, "OUTLINE")
   Craftie.Frame.Reagent.Quan[i]:SetPoint("CENTER", -64, -12)
   Craftie.Frame.Reagent.Quan[i]:SetText("")
   Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, 1, 0.8)

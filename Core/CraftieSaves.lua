@@ -132,7 +132,7 @@ function Craftie:LoadOptions()
             if (k == Craftie.Save.Player.CONFIG["FRAME_LEVEL"]) then
               Craftie.Frame:SetFrameStrata(v)
               Craftie.Options.DropdownFrame.text:SetText(Craftie._L.Options.Frame[2][k])
-              print("framestrate set to [" .. k .. "] " .. v)
+              --print("framestrate set to [" .. k .. "] " .. v)
             end
           end
         end
