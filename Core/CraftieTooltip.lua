@@ -401,7 +401,6 @@ function Craftie:BuildGuildRosterTooltip()
   end
 end
 
-
 --inventory/vendor
 local function GameTooltip_OnTooltipSetItem(tooltip)
 	local name, link = tooltip:GetItem()
@@ -411,9 +410,28 @@ local function GameTooltip_OnTooltipSetItem(tooltip)
   for k,v in pairs(Craftie.Reagents) do
     if (name == v[2]) then
       tooltip:AddLine(" ")
-		  tooltip:AddLine(TooltipTemplate .. Craftie.Color.White .. " Reagent")
+      tooltip:AddLine(TooltipTemplate)
+      tooltip:AddLine(Craftie.Color.White .. "Reagent")
     end
   end
+  if (Craftie.OpenState == 1) then
+    tooltip:AddLine(" ")
+    tooltip:AddLine(Craftie.Color.Gray .. "Shift+Click to link in chat")
+  end
+  --[==[
+  if ((Craftie.OpenState == 1) and (link_to_chat == 0)) then --only when Craftie is open
+    for k,v in pairs(Craftie.Professions) do
+      --print(v[1])
+      for i,r in pairs(Craftie.Profession[v[1]]) do
+        if (name == r[2]) then
+          --every crafted item
+          tooltip:AddLine(" ")
+          tooltip:AddLine(Craftie.Color.Gray .. "Shift+Click to link in chat")
+        end
+      end
+    end
+  end
+  ]==]--
 end
 
 GameTooltip:HookScript("OnTooltipSetItem", GameTooltip_OnTooltipSetItem)

@@ -87,9 +87,9 @@ Craftie.Options.CheckboxLibrary:Disable()
 Craftie.Options.CheckboxLibrary:SetScript("OnClick", function(self)
   local isChecked = self:GetChecked()
   if (isChecked) then
-    print("Feature enabled!")
+    print("TODO: Feature enabled!")
   else
-    print("Feature disabled!")
+    print("TODO: Feature disabled!")
   end
 end)
 Craftie.Options.CheckboxLibrary:SetScript("OnEnter", function(self)

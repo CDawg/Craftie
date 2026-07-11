@@ -665,7 +665,6 @@ Craftie.Reagents = {
 {24243, "Adamantite Powder"},
 {24271, "Spellcloth"},
 {24272, "Shadowcloth"},
-{24288, "Rune Thread"},
 {24476, "Jaggal Clam"},
 {24477, "Jaggal Clam Meat"},
 {24478, "Jaggal Pearl"},
