@@ -28,7 +28,7 @@ Craftie.Frame.ScrollPlayersParent.Back = Craftie.Frame.ScrollPlayersParent:Creat
 Craftie.Frame.ScrollPlayersParent.Back:SetSize(Craftie.Frame.ScrollPlayersParent:GetWidth(), Craftie.Frame.ScrollPlayersParent:GetHeight())
 Craftie.Frame.ScrollPlayersParent.Back:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.ScrollPlayersParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
-Craftie.Frame.ScrollPlayersParent.Back:SetVertexColor(.5, .5, 1)
+Craftie.Frame.ScrollPlayersParent.Back:SetVertexColor(.3, .4, .8)
 
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersList", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate")
 Craftie.Frame.ScrollPlayersList:SetWidth(dimensions.W-5)

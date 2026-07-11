@@ -84,7 +84,7 @@ Craftie._L = {
     },
     Frame = {
       Title = "Frame Options",
-      {"Frame Level", "Frame level to have Craftie open on other frames such as professions, auction, other addon frames, etc...|nLOW = Behind other frames|nHIGH = On top of other frames"},
+      {"Frame Level", "Frame level to have Craftie open on other frames such as professions, auction, other addon frames, etc...|nLOW        = Behind other frames [Recommended]|nMEDIUM= Between layers|nHIGH       = On top of most frames"},
       {"LOW", "MEDIUM", "HIGH"}
     }
   }
