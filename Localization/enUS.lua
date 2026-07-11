@@ -84,8 +84,12 @@ Craftie._L = {
     },
     Frame = {
       Title = "Frame Options",
-      {"Frame Level", "Frame level to have Craftie open on other frames such as professions, auction, other addon frames, etc...|nLOW        = Behind other frames [Recommended]|nMEDIUM= Between layers|nHIGH       = On top of most frames"},
-      {"LOW", "MEDIUM", "HIGH"}
+      {"Frame Level", "Craftie frame level determines the z-order layer on top of other frames/addons|nLOW        = Behind other frames [Default - Recommended]|nMEDIUM= Between layers|nHIGH       = On top of most frames"},
+      {"LOW", "MEDIUM", "HIGH"},
+    },
+    Font = {
+      {"Font Style", "Craftie font style [Recommended = Frizqt (Blizzard default) for frame compatibility]"},
+      {"Frizqt", "Arialn", "AvantGarde"}
     }
   }
 }

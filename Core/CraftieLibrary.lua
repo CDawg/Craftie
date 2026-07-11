@@ -93,6 +93,11 @@ Craftie.FrameStrata = {
   "MEDIUM",
   "HIGH",
 }
+Craftie.FrameFont = {
+  "Fonts/FRIZQT__.ttf",
+  "Fonts/ARIALN.ttf",
+  "Interface/Addons/Craftie/Fonts/AvantGarde.ttf",
+}
 
 Craftie.GuildFrameUsing = 1 --classic default
 Craftie.Tooltip = {}

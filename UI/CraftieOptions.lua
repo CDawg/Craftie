@@ -324,6 +324,54 @@ Craftie.Options.DropdownFrame:SetScript("OnLeave", function(self)
   CraftieTooltip:Hide()
 end)
 
+--[==[
+Craftie.Options.DropdownFont={}
+Craftie.Options.DropdownFont = CreateFrame("Frame", nil, Craftie.Options.FrameCell, "UIDropDownMenuTemplate")
+Craftie.Options.DropdownFont:SetPoint("TOPLEFT", -8, -70)
+Craftie.Options.DropdownFont.displayMode = "MENU"
+Craftie.Options.DropdownFont.Title = Craftie.Options.DropdownFont:CreateFontString(nil, "ARTWORK")
+Craftie.Options.DropdownFont.Title:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, Craftie._G.Font.Flags)
+Craftie.Options.DropdownFont.Title:SetPoint("TOPLEFT", 20, 15)
+Craftie.Options.DropdownFont.Title:SetText(Craftie._L.Options.Font[1][1])
+Craftie.Options.DropdownFont.text = Craftie.Options.DropdownFont:CreateFontString(nil, "ARTWORK")
+Craftie.Options.DropdownFont.text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, Craftie._G.Font.Flags)
+Craftie.Options.DropdownFont.text:SetPoint("TOPLEFT", Craftie.Options.DropdownFont, "TOPLEFT", 25, -8)
+Craftie.Options.DropdownFont.text:SetText(Craftie._L.Options.Font[2][1])
+Craftie.Options.DropdownFont.OnClick = function(self)
+  Craftie.Options.DropdownFont.text:SetText(Craftie._L.Options.Font[2][self.value])
+  for k,v in pairs(Craftie.FrameFont) do
+    if (self.value == k) then
+      --Craftie.Save.Player.CONFIG["FRAME_FONT"] = self.value
+      Craftie:Notification("FRAME_FONT " .. Craftie.Save.Player.CONFIG["FRAME_FONT"], Craftie.CHAT.SAVE)
+    end
+  end
+end
+UIDropDownMenu_SetWidth(Craftie.Options.DropdownFont, 160)
+UIDropDownMenu_Initialize(Craftie.Options.DropdownFont, function(self, level)
+  local info = UIDropDownMenu_CreateInfo()
+  for k,v in pairs(Craftie._L.Options.Font[2]) do
+    --info.notCheckable = 1
+    info.padding = 2
+    info.text = v
+    info.value= k
+    info.justifyH = "LEFT"
+    info.disabled = false
+    info.func = self.OnClick
+    UIDropDownMenu_AddButton(info, level)
+  end
+end)
+Craftie.Options.DropdownFont:SetScript("OnEnter", function(self)
+  CraftieTooltip:ClearLines()
+  CraftieTooltip:SetOwner(self, "ANCHOR_TOPLEFT")
+  CraftieTooltip:AddLine(Craftie._L.Options.Font[1][1])
+  CraftieTooltip:AddLine(Craftie.Color.White .. Craftie._L.Options.Font[1][2])
+  CraftieTooltip:Show()
+end)
+Craftie.Options.DropdownFont:SetScript("OnLeave", function(self)
+  CraftieTooltip:Hide()
+end)
+]==]--
+
 --TODO Options
 --share with guild?
 -- do not save orders

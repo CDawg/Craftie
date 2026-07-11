@@ -23,7 +23,6 @@ Craftie.Frame.ScrollRecipesParent:SetWidth(dimensions.W)
 Craftie.Frame.ScrollRecipesParent:SetHeight(dimensions.H+70)
 Craftie.Frame.ScrollRecipesParent:SetPoint("TOPLEFT", 224, -100)
 Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
---Craftie.Frame.ScrollRecipesParent:SetFrameLevel(0)
 
 Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ScrollRecipesParent.Back:SetSize(Craftie.Frame.ScrollRecipesParent:GetWidth(), Craftie.Frame.ScrollRecipesParent:GetHeight())
@@ -207,7 +206,7 @@ Craftie.Frame.ScrollRecipesListSelect={}
 
 for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListRow[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListRow[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
-  Craftie.Frame.ScrollRecipesListRow[i]:SetWidth(dimensions.W-26) --scrollbar size
+  Craftie.Frame.ScrollRecipesListRow[i]:SetWidth(dimensions.W-26) --minus the scrollbar size
   Craftie.Frame.ScrollRecipesListRow[i]:SetHeight(20)
   Craftie.Frame.ScrollRecipesListRow[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollRecipesListRow[i]:GetHeight()+16)
   Craftie.Frame.ScrollRecipesListRow[i]:SetBackdrop(Craftie.Backdrop.Borderless)
@@ -240,7 +239,7 @@ for i=1, Craftie.MAX_RECIPES do
   end)
 
   Craftie.Frame.ScrollRecipesListBack[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.ScrollRecipesListBack[i]:SetSize(dimensions.W-26, 20)
+  Craftie.Frame.ScrollRecipesListBack[i]:SetSize(Craftie.Frame.ScrollRecipesListRow[i]:GetWidth(), Craftie.Frame.ScrollRecipesListRow[i]:GetHeight())
   Craftie.Frame.ScrollRecipesListBack[i]:SetPoint("TOPLEFT", 0, 0)
   Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
   Craftie.Frame.ScrollRecipesListBack[i]:SetAlpha(0.7)
