@@ -141,8 +141,10 @@ local columns = {
   {"Type", 110, 160, {}, 1},
   {"Log",  500, 270, {}, 0},
 }
-local ColHeight = 28
-
+local column = {
+  H = 28,
+  color = {0.6, 0.6, 0.5, 0.7},
+}
 Craftie.Logger.Col={}
 Craftie.LoggerSort = 1
 
@@ -157,12 +159,12 @@ end
 
 for k,v in ipairs(columns) do
   Craftie.Logger.Col[k] = CreateFrame("Button", nil, Craftie.Logger, "BackdropTemplate")
-  Craftie.Logger.Col[k]:SetWidth(v[2])
-  Craftie.Logger.Col[k]:SetHeight(ColHeight)
+  Craftie.Logger.Col[k]:SetWidth(v[2]+2)
+  Craftie.Logger.Col[k]:SetHeight(column.H)
   Craftie.Logger.Col[k]:SetPoint("TOPLEFT", v[3], -70)
   Craftie.Logger.Col[k]:SetBackdrop(Craftie.Backdrop.General)
-  Craftie.Logger.Col[k]:SetBackdropColor(0.6, 0.6, 0.5, 0.7)
-  Craftie.Logger.Col[k]:SetBackdropBorderColor(0.2, 0.2, 0.2, 0)
+  Craftie.Logger.Col[k]:SetBackdropColor(column.color[1], column.color[2], column.color[3], column.color[4])
+  Craftie.Logger.Col[k]:SetBackdropBorderColor(0.6, 0.6, 0.5, 0)
   Craftie.Logger.Col[k].Text = Craftie.Logger.Col[k]:CreateFontString(nil, "ARTWORK")
   Craftie.Logger.Col[k].Text:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size, "SLUG")
   Craftie.Logger.Col[k].Text:SetPoint("TOPLEFT", 10, -10)
@@ -188,6 +190,14 @@ for k,v in ipairs(columns) do
     Craftie.Logger.Col[k].Dn:SetDrawLayer("OVERLAY", 4)
     Craftie.Logger.Col[k].Dn:Hide()
   end
+  Craftie.Logger.Col[k]:SetScript("OnEnter", function(self)
+    if (v[5] == 1) then
+      Craftie.Logger.Col[k]:SetBackdropColor(1, 1, 0.8, 0.8)
+    end
+  end)
+  Craftie.Logger.Col[k]:SetScript("OnLeave", function(self)
+    Craftie.Logger.Col[k]:SetBackdropColor(column.color[1], column.color[2], column.color[3], column.color[4])
+  end)
   Craftie.Logger.Col[k]:SetScript("OnClick", function(self)
     Craftie.Logger:ResetAllSorting()
     if (k == 1) then
