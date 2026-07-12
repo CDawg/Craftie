@@ -141,7 +141,8 @@ Craftie.Packet.Prefix = {
   Data = "!D", --data chunk
   Net  = "!N", --online
   Info = "!T", --tooltip announce
-  Order= "!O",
+  Order= "!O", --order send
+  Ack  = "!A", --order ack
 }
 
 Craftie.Class = {

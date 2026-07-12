@@ -343,7 +343,10 @@ Craftie.Frame.ItemReqButton:SetScript("OnClick", function(self)
     Craftie.Frame.ItemReqButton:Disable()
     local name, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
     C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " to be crafted.", "WHISPER", nil, Craftie.Selected_Name)
+    --Craftie.Packet.ACK[Craftie.Selected_Name] = 0
     Craftie:PacketSend(Craftie.Packet.Prefix.Order, Craftie.Player.Name .. "," .. Craftie.Player.ClassID .. "," .. link .. "," .. Craftie.Frame.ItemCountEditBox:GetNumber() .. "," .. Craftie.Date, "WHISPER", Craftie.Selected_Name)
+    --C_Timer.After(2, function()
+    --end)
     Craftie.Frame.Item.ReqMessage:SetText("Request sent to " .. Craftie.Selected_Name .. " for|n" .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber())
     C_Timer.After(Craftie.REQ_TIMER, function()
       Craftie.Req_Lock = 0

@@ -163,7 +163,6 @@ Craftie.Options.NotificationTitle:SetPoint("TOPLEFT", 10, 15)
 Craftie.Options.NotificationTitle:SetText(Craftie._L.Options.Notifications.Title)
 
 Craftie.Options.CheckboxNotif={}
-
 for i,v in pairs(Craftie._L.Options.Notifications) do
   if ((type(i) == "number") and (i <= 3)) then
     Craftie.Options.CheckboxNotif[i] = CreateFrame("CheckButton", nil, Craftie.Options.NotificationCell, "ChatConfigCheckButtonTemplate")

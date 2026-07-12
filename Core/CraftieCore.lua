@@ -787,7 +787,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
 
           local mastery = Craftie:GetProfessionMastery(profName)
           if (mastery) then
-            profMastery = table.concat(mastery, ", ")
+            profMastery = tonumber(table.concat(mastery, ", "))
           else
             profMastery = 0
           end
@@ -956,7 +956,7 @@ function Craftie:CrafterDataParse(profName, player)
     end
 
     if (profMastery == nil) then
-      profMastery=0
+      profMastery = 0
     else
       C_Timer.After(0.1, function() --give it time to register the profession recipes
         local k = Craftie:GetKeyFromValue(Craftie.Professions, profName, 1)
