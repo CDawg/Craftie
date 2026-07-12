@@ -41,7 +41,7 @@ Craftie.Game.Name = Craftie._L.Game[tonumber(string.sub(__Gversion, 1, 1))]
 
 --static
 Craftie.MAX_REAGENTS= 6
-Craftie.MAX_RECIPES = 600
+Craftie.MAX_RECIPES = 400 --max for tbc current
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
 --dynamic
