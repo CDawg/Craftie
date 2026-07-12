@@ -85,7 +85,9 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "GET_ITEM_INFO_RECEIVED") then
       --Craftie:Notification(event, Craftie.CHAT.EVENT)
       local itemName, itemLink = C_Item.GetItemInfo(prefix)
-      Craftie:Notification("Successfully cached: " .. itemName, Craftie.CHAT.EVENT)
+      if (itemName ~= nil) then
+        Craftie:Notification("Successfully cached: " .. itemName, Craftie.CHAT.EVENT)
+      end
     end
 
     if ((event == "PLAYER_STARTED_MOVING") or (event == "PLAYER_STOPPED_MOVING")) then
