@@ -102,7 +102,13 @@
 			"__Gtoc",
 			"__Gversion",
 			"HIGH",
-			"CHAT"
+			"CHAT",
+			"MAX_TARGET_BUFFS",
+			"MAX_TARGET_DEBUFFS",
+			"TargetFrame",
+			"FocusFrame",
+			"CooldownFrame_Set",
+			"CooldownFrame_Clear"
 		]
 	}
 }

@@ -174,7 +174,7 @@ for k,v in pairs(columns) do
   Craftie.Frame.ScrollOrderListCol[k].Text:SetText(v[1])
 end
 
-for i=1, Craftie.MAX_ORDERS do
+local function CreateOrderRow(i)
   Craftie.Frame.ScrollOrderListRow[i] = CreateFrame("Frame", Craftie.Frame.ScrollOrderListRow[i], Craftie.Frame.ScrollOrderListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollOrderListRow[i]:SetWidth(Craftie.Frame.CraftOrders:GetWidth()-26)
   Craftie.Frame.ScrollOrderListRow[i]:SetHeight(dimensions.row.H)
@@ -325,3 +325,16 @@ for i=1, Craftie.MAX_ORDERS do
     Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row4.png")
   end
 end
+
+function Craftie:OrderRowAdd(count)
+  for i = #Craftie.TOTAL_ORDERS + 1, count do
+    CreateOrderRow(i)
+    Craftie.TOTAL_ORDERS[i] = Craftie.Frame.ScrollOrderListRow[i]
+  end
+
+  local contentHeight = math.max(Craftie.Frame.CraftOrders:GetHeight(), count * dimensions.row.H + 16)
+  Craftie.Frame.ScrollOrderListChildFrame:SetHeight(contentHeight)
+end
+
+--25 rows off the init
+Craftie:OrderRowAdd(25)

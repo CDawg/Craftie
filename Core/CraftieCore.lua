@@ -1138,8 +1138,16 @@ end
 function Craftie:GetCraftOrders()
   local order_index = 0
 
+  local order_count = 0
+  if (Craftie.Save.Player["ORDERS"] ~= nil) then
+    for _ in pairs(Craftie.Save.Player["ORDERS"]) do
+      order_count = order_count + 1
+    end
+  end
+  Craftie:OrderRowAdd(math.max(order_count, 5))
+
   Craftie.Frame.CraftOrdersDeleteAll:Disable()
-  for i=1, Craftie.MAX_ORDERS do
+  for i=1, #Craftie.TOTAL_ORDERS do
     Craftie.Frame.ScrollOrderListName[i]:SetText("")
     Craftie.Frame.ScrollOrderListItem[i]:SetText("")
     Craftie.Frame.ScrollOrderListCount[i]:SetText("")
@@ -1151,7 +1159,7 @@ function Craftie:GetCraftOrders()
 
   Craftie.Frame.CraftOrders:SetAlpha(0.8)
   C_Timer.After(0.3, function()
-    for i=1, Craftie.MAX_ORDERS do
+    for i=1, #Craftie.TOTAL_ORDERS do
       Craftie.Frame.ScrollOrderListNameButton[i]:Hide()
       Craftie.Frame.ScrollOrderListItemButton[i]:Hide()
     end

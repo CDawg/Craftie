@@ -41,9 +41,10 @@ Craftie.Game.Name = Craftie._L.Game[tonumber(string.sub(__Gversion, 1, 1))]
 
 Craftie.MAX_REAGENTS= 6
 Craftie.MAX_RECIPES = 600
-Craftie.MAX_CRAFTERS= 300   --per profession (TODO - make tis dynamic)
+Craftie.MAX_CRAFTERS= 300   --per profession (TODO - make dynamic)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
-Craftie.MAX_ORDERS  = 100
+
+Craftie.TOTAL_ORDERS  = {}
 Craftie.REQ_TIMER   = 5
 
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
