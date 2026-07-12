@@ -61,7 +61,7 @@ function SlashCmdList.Craftie(cmd)
     else
       if (args) then
         if ((tonumber(args) > range) or (tonumber(args) < 1)) then
-          print(Craftie._G.Title .. Craftie.CHAT.ERROR[2] .. "Debug Level must be an integer [1-".. range .."]")
+          print(Craftie._G.Title .. " " .. Craftie.CHAT.ERROR[2] .. " Debug Level must be an integer [1-".. range .."]")
           Craftie.DEBUGLEVEL = 3
         else
           Craftie.DEBUGLEVEL = tonumber(args)

@@ -137,6 +137,12 @@ function Craftie:LoadOptions()
           end
         end
 
+        for i,v in pairs(Craftie._L.Options.Notifications) do
+          if (Craftie.Save.Player.CONFIG["ORDERNOTIF" .. i] == 0) then
+            Craftie.Options.CheckboxNotif[i]:SetChecked(false)
+          end
+        end
+
       end
     end
   end

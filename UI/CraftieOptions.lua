@@ -176,10 +176,11 @@ for i,v in pairs(Craftie._L.Options.Notifications) do
     Craftie.Options.CheckboxNotif[i]:SetScript("OnClick", function(self)
       local isChecked = self:GetChecked()
       if (isChecked) then
-        print("Feature enabled!")
+        Craftie.Save.Player.CONFIG["ORDERNOTIF" .. i] = 1
       else
-        print("Feature disabled!")
+        Craftie.Save.Player.CONFIG["ORDERNOTIF" .. i] = 0
       end
+      Craftie:Notification("ORDERNOTIF" .. i .. " " .. Craftie.Save.Player.CONFIG["ORDERNOTIF" .. i], Craftie.CHAT.SAVE)
     end)
     Craftie.Options.CheckboxNotif[i]:SetScript("OnEnter", function(self)
       CraftieTooltip:ClearLines()
