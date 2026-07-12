@@ -131,7 +131,7 @@ end
 --this also goes to the player selected scroll item
 function Craftie:GetCrafterIndex(player)
   C_Timer.After(0.2, function() --give the update time to create cached tables
-    for i=1, Craftie.MAX_CRAFTERS do
+    for i=1, #Craftie.TOTAL_CRAFTERS do
       if (player == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
         Craftie:SelectCrafter(i, player)
         Craftie:Notification("Craftie:GetCrafterIndex() [" .. i .. "] " .. player, Craftie.CHAT.FUNC)
@@ -230,7 +230,7 @@ function Craftie:UpdateCrafterList(search)
   Craftie.Frame.ScrollPlayersLoading:Show()
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
 
-  for i=1, Craftie.MAX_CRAFTERS do
+  for i=1, #Craftie.TOTAL_CRAFTERS do
     --Craftie.Frame.ScrollPlayersListNet[i]:Hide()
     --Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Offline")
     Craftie.Frame.ScrollPlayersListFav[i]:Hide()
@@ -303,6 +303,8 @@ function Craftie:UpdateCrafterList(search)
     else
       table.sort(search_list)
     end
+
+    Craftie:CrafterRowAdd(#search_list + 1)
 
     local results = Craftie.Color.Yellow .. "Crafter(s)"
     if (Craftie.PlayerListFilter == 2) then
@@ -718,7 +720,7 @@ end
 function Craftie:SelectScrollItem(scrollFrame, playerCrafterLevel)
   if (Craftie.EnableScrollFrames) then
     if (scrollFrame == "Players") then
-      for i=1, Craftie.MAX_CRAFTERS do
+      for i=1, #Craftie.TOTAL_CRAFTERS do
         Craftie.Frame.ScrollPlayersListCont[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
         Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
@@ -982,7 +984,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
     Craftie.MenuSelRecipes[2] = player
   else
     profCache = Craftie:CopyTable(profArray)
-    for i=1, Craftie.MAX_CRAFTERS do
+    for i=1, #Craftie.TOTAL_CRAFTERS do
       if (i > 1) then
         Craftie.Frame.ScrollPlayersListCont[i]:Show()
         Craftie.Frame.ScrollPlayersListRow[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollPlayersListRow[i]:GetHeight()+16)
@@ -992,7 +994,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
 
   if (search ~= "") then
     if (Craftie.Frame.DropdownRecipes.text:GetText() == Craftie.MenuSelRecipes[1]) then
-      for i=1, Craftie.MAX_CRAFTERS do
+      for i=1, #Craftie.TOTAL_CRAFTERS do
         if (i > 1) then
           Craftie.Frame.ScrollPlayersListCont[i]:Hide()
         end
@@ -1006,7 +1008,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
           if (pattern) then
             search_all_count = search_all_count +1
             --print(k .. " - " .. pattern)
-            for i=1, Craftie.MAX_CRAFTERS do
+            for i=1, #Craftie.TOTAL_CRAFTERS do
               if (k == Craftie.Frame.ScrollPlayersListName[i]:GetText()) then
                 index = index +1
                 Craftie.Frame.ScrollPlayersListCont[i]:Show() --show only containers

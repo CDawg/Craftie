@@ -204,6 +204,7 @@ Craftie.Frame.ScrollRecipesListVersion={}
 Craftie.Frame.ScrollRecipesListSelect={}
 --Craftie.Frame.ScrollRecipesListHLink={}
 
+--made this dyanmic, change per version?
 for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListRow[i] = CreateFrame("Button", Craftie.Frame.ScrollRecipesListRow[i], Craftie.Frame.ScrollRecipesListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollRecipesListRow[i]:SetWidth(dimensions.W-26) --minus the scrollbar size

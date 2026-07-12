@@ -336,7 +336,7 @@ Craftie.Frame.ItemReqButton:SetPoint("TOPLEFT", 10, -30)
 Craftie.Frame.ItemReqButton:SetText("Request")
 Craftie.Frame.ItemReqButton:SetScript("OnClick", function(self)
   if (Craftie.Req_Lock == 1) then
-    Craftie:Notification("Please wait " .. Craftie.REQ_TIMER .. " seconds before sending another request.", Craftie.CHAT.WARN)
+    Craftie:Notification("Please wait " .. Craftie.ORDER_TIMER .. " seconds before sending another request.", Craftie.CHAT.WARN)
   else
     Craftie.Req_Lock = 1
     --Craftie.Frame.ItemReqButton:Hide()
@@ -348,7 +348,7 @@ Craftie.Frame.ItemReqButton:SetScript("OnClick", function(self)
     --C_Timer.After(2, function()
     --end)
     Craftie.Frame.Item.ReqMessage:SetText("Request sent to " .. Craftie.Selected_Name .. " for|n" .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber())
-    C_Timer.After(Craftie.REQ_TIMER, function()
+    C_Timer.After(Craftie.ORDER_TIMER, function()
       Craftie.Req_Lock = 0
       Craftie.Frame.ItemReqButton:Enable()
       Craftie.Frame.Item.ReqMessage:SetText("")

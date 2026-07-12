@@ -39,13 +39,15 @@ Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 --locales library must load first
 Craftie.Game.Name = Craftie._L.Game[tonumber(string.sub(__Gversion, 1, 1))]
 
+--static
 Craftie.MAX_REAGENTS= 6
 Craftie.MAX_RECIPES = 600
-Craftie.MAX_CRAFTERS= 300   --per profession (TODO - make dynamic)
 Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 
+--dynamic
+Craftie.TOTAL_CRAFTERS= {}
 Craftie.TOTAL_ORDERS  = {}
-Craftie.REQ_TIMER   = 5
+Craftie.ORDER_TIMER   = 5
 
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
 --Craftie.ProfessionSearch = Craftie:CopyTable(Craftie.Profession.Alchemy)
