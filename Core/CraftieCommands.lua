@@ -53,9 +53,11 @@ function SlashCmdList.Craftie(cmd)
       end)
       for _, v in ipairs(sorted) do
         if (v.num <= Craftie.DEBUGLEVEL) then
-          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text) .. Craftie.Color.Lime .. "[ON]", Craftie.CHAT.INFO)
+          --Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text) .. Craftie.Color.Lime .. "[ON]", Craftie.CHAT.INFO)
+          print(v.num .. " = " .. Craftie:TextSpacing(v.text) .. Craftie.Color.Lime .. "[ON]")
         else
-          Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text) .. Craftie.Color.Gray .. "[OFF]", Craftie.CHAT.INFO)
+          --Craftie:Notification(v.num .. " = " .. Craftie:TextSpacing(v.text) .. Craftie.Color.Gray .. "[OFF]", Craftie.CHAT.INFO)
+          print(v.num .. " = " .. Craftie:TextSpacing(v.text) .. Craftie.Color.Gray .. "[OFF]")
         end
       end
     else
@@ -72,7 +74,8 @@ function SlashCmdList.Craftie(cmd)
       end
       Craftie:Notification("Debug Level set to " .. Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
     end
-    Craftie:Notification("Debug Level = " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
+    --Craftie:Notification("Debug Level = " ..Craftie.DEBUGLEVEL, Craftie.CHAT.INFO)
+    print("Debug Level = " ..Craftie.DEBUGLEVEL)
   end
 
   if (cmd == commands[3][1]) then
