@@ -79,32 +79,23 @@ function Craftie.LookupItem(self, event, msg, author, ...)
               if (name) then
                 local guild_crafter = Ambiguate(name, "none")
                 if (Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter] ~= nil) then
-                  --print("found " .. prof[1]:upper() .. " | " .. guild_crafter)
-                  local cache = Craftie:Split(Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter], ";")
                   local match = string.gsub(msg, pattern, "")
                   --local item_name = string.gsub(match, "[%[%]]", "")
-                  --local item_name = string.gsub(match, "%b[]", "")
-                  local itemInfo = string.match(match, "item:(%d+)")
-                    if (itemInfo ~= nil) then
-                    for k,v in pairs(cache) do
-                      if ((v ~= nil) and (v ~= "")) then
-                        --print("v: " .. v)
-                        --print("msg: " .. match)
-                        print("msg: " .. itemInfo)
-                        local itemName, itemLink = C_Item.GetItemInfo(itemInfo)
-                        --if (v == itemName) then
-                        --local itemID = string.match(itemLink, "item:(%d+)")
-                        --if (v:lower() == itemInfo:lower()) then
-                        if (v == itemName) then
+                  local item_name = string.gsub(match, "%b[]", "")
+
+                  for _,recipe in pairs(Craftie.Profession[prof[1]]) do
+                    if (Craftie:SanitizeString(match, true) == Craftie:SanitizeString(recipe[2], true)) then
+                      local itemName, itemLink = C_Item.GetItemInfo(recipe[4]) --id
+                      C_Timer.After(0.1, function() --give it time to register/cache
+                        if (itemName) then
+                          print("found: " .. guild_crafter .. " - ".. prof[1] .. " - " .. recipe[1] .. " - " .. itemName)
                           count = count +1
-                          --print("found: " .. guild_crafter .. " | " .. v)
                           table.insert(recipelist, {guild_crafter, itemLink})
-                          --table.insert(recipelist, {guild_crafter, itemInfo})
                         end
-                      end
+                      end)
                     end
-                    
                   end
+
                 end
               end
             end
@@ -112,21 +103,24 @@ function Craftie.LookupItem(self, event, msg, author, ...)
         end
       end
 
-      C_Timer.After(1, function() --give it time to register/cache
-        if (count >= 1) then
-          --C_Timer.After(count*0.120, function()
-            C_ChatInfo.SendChatMessage("Craftie Recipe Search: Found [" .. count .. "]", "GUILD", nil)
-          --end)
-          for k,v in pairs(recipelist) do
-            if (v[2] ~= nil) then
-              print("recipelist: " .. k .. " | " .. v[1] .. " | " .. v[2])
-              C_Timer.After(count*0.120, function()
-                C_ChatInfo.SendChatMessage(v[1] .. " " .. v[2], "GUILD", nil)
-              end)
+      if (Ambiguate(author, "none") == Craftie.Player.Name) then
+        C_Timer.After(2, function() --give it time to register/cache
+          C_ChatInfo.SendChatMessage("Craftie Recipe Search: Found [" .. count .. "]", "GUILD", nil)
+          if (count >= 1) then
+            --C_Timer.After(count*0.120, function()
+              --C_ChatInfo.SendChatMessage("Craftie Recipe Search: Found [" .. count .. "]", "GUILD", nil)
+            --end)
+            for k,v in pairs(recipelist) do
+              if (v[2] ~= nil) then
+                print("recipelist: " .. k .. " | " .. v[1] .. " | " .. v[2])
+                C_Timer.After(count*0.120, function()
+                  C_ChatInfo.SendChatMessage(v[1] .. " " .. v[2], "GUILD", nil)
+                end)
+              end
             end
           end
-        end
-      end)
+        end)
+      end
       local filter = gsub(msg, pattern, pattern)
       --local filter = gsub(msg, pattern, msg .. "|n|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. Craftie._G.Title .. " Guild Roster Recipe Search:|nFound [" .. count .. "]|n")
       return false, filter, author, ...
