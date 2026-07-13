@@ -108,7 +108,8 @@
 			"TargetFrame",
 			"FocusFrame",
 			"CooldownFrame_Set",
-			"CooldownFrame_Clear"
+			"CooldownFrame_Clear",
+			"GUILD"
 		]
 	}
 }

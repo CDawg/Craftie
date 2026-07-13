@@ -19,6 +19,7 @@ local commands = {
   {"debug",   "View debug info. Default = Debug level 3"},
   {"log",     "Open The Debug Logger"},
   {"delete",  "Delete a table [config | crafters | orders | favs]"},
+  --{"recipe",  "recipe <recipe name>|nGuild search a crafter for a recipe"},
 }
 
 ---@type string
