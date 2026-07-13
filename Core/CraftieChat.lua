@@ -69,7 +69,6 @@ function Craftie.LookupItem(self, event, msg, author, ...)
     if (msg:find(pattern)) then
       for _,prof in pairs(Craftie.Professions) do
         --print(prof[1])
-        --CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][profName:upper()][player]
         if (Craftie.Save.Account.CACHE ~= nil) then
           if (Craftie.Save.Account.CACHE[prof[1]:upper()] ~= nil) then
             --print(prof[1]:upper())
@@ -79,20 +78,29 @@ function Craftie.LookupItem(self, event, msg, author, ...)
               if (name) then
                 local guild_crafter = Ambiguate(name, "none")
                 if (Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter] ~= nil) then
-                  local match = string.gsub(msg, pattern, "")
-                  --local item_name = string.gsub(match, "[%[%]]", "")
-                  local item_name = string.gsub(match, "%b[]", "")
+                  local cachestring = Craftie:Split(Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter], ";")
 
-                  for _,recipe in pairs(Craftie.Profession[prof[1]]) do
-                    if (Craftie:SanitizeString(match, true) == Craftie:SanitizeString(recipe[2], true)) then
-                      local itemName, itemLink = C_Item.GetItemInfo(recipe[4]) --id
-                      C_Timer.After(0.1, function() --give it time to register/cache
-                        if (itemName) then
-                          print("found: " .. guild_crafter .. " - ".. prof[1] .. " - " .. recipe[1] .. " - " .. itemName)
-                          count = count +1
-                          table.insert(recipelist, {guild_crafter, itemLink})
+                  for k,cache in pairs(cachestring) do
+                    if ((cache ~= nil) and (cache ~= "")) then --who can make it that's cached
+                      --print(guild_crafter .. " can make " .. Craftie:SanitizeString(cache, true))
+
+                      local match = string.gsub(msg, pattern, "")
+                      --local item_name = string.gsub(match, "[%[%]]", "")
+                      local item_name = string.gsub(match, "%b[]", "")
+
+                      for _,recipe in pairs(Craftie.Profession[prof[1]]) do
+                        if (Craftie:SanitizeString(item_name, true) == Craftie:SanitizeString(recipe[2], true) and Craftie:SanitizeString(item_name, true) == Craftie:SanitizeString(cache, true)) then
+                          local itemName, itemLink = C_Item.GetItemInfo(recipe[4]) --id
+                          C_Timer.After(0.1, function() --give it time to register/cache
+                            if (itemName) then
+                              print("found: " .. guild_crafter .. " - ".. prof[1] .. " - " .. recipe[1] .. " - " .. itemName)
+                              count = count +1
+                              table.insert(recipelist, {guild_crafter, itemLink})
+                            end
+                          end)
                         end
-                      end)
+                      end
+
                     end
                   end
 
