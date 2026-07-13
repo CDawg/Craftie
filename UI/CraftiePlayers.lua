@@ -218,7 +218,7 @@ Craftie.Frame.ScrollPlayersListOpt.HL={}
 ]==]--
 Craftie.Frame.ScrollPlayersListSubMenu={}
 
-function Craftie:CreateCrafterRow(i)
+function Craftie:BuildRowCrafter(i)
   Craftie.Frame.ScrollPlayersListRow[i] = CreateFrame("Frame", Craftie.Frame.ScrollPlayersListRow[i], Craftie.Frame.ScrollPlayersListChildFrame, "BackdropTemplate", -1)
   Craftie.Frame.ScrollPlayersListRow[i]:SetWidth(dimensions.W-26) --scrollbar size
   Craftie.Frame.ScrollPlayersListRow[i]:SetHeight(20)
@@ -421,7 +421,7 @@ end
 
 function Craftie:CrafterRowAdd(count)
   for i = #Craftie.TOTAL_CRAFTERS + 1, count do
-    Craftie:CreateCrafterRow(i)
+    Craftie:BuildRowCrafter(i)
     Craftie.TOTAL_CRAFTERS[i] = Craftie.Frame.ScrollPlayersListRow[i]
   end
 

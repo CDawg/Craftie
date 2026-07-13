@@ -46,7 +46,8 @@ Craftie.Color = {
   White = "|CFFFFFFFF",
   Silver= "|CFFDEDEDE",
   Gray  = "|CFFABABAB",
-  Lime  =  "|CFF9CFFA1",
+  Lime  = "|CFF9CFFA1",
+  Guild = {0.2, 0.92, 0.2}
 }
 
 Craftie.DEBUGLEVEL = 10 --default [INFO | ERROR] | WARN]
@@ -68,6 +69,7 @@ Craftie.Date = date("%y-%m-%d_%H:%M:%S")
 
 Craftie.PlayerGUIDProf = {}
 Craftie.NumGuildMembers = 0
+Craftie.PlayerGuild = {}
 Craftie.IsInCombat = false
 Craftie.Throttle = {
   Chat = {

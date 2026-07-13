@@ -247,6 +247,9 @@ function Craftie:UpdateCrafterList(search)
   --end
 
   C_Timer.After(0.1, function()
+    if (IsInGuild()) then
+      Craftie.PlayerGuild = Craftie:BuildGuildPlayerList()
+    end
     local guild_players = nil
     if (Craftie.PlayerListFilter == 2) then
       guild_players = Craftie:BuildGuildPlayerList()
@@ -324,7 +327,13 @@ function Craftie:UpdateCrafterList(search)
         end
         ]==]--
 
-        Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n]) --avoid the 1st row
+        --reserve the first row for library (n) skip 1 line
+        Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n])
+        if (IsInGuild()) then
+          if ((Craftie.PlayerGuild) and Craftie.PlayerGuild[search_list[n]]) then
+            Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(Craftie.Color.Guild[1], Craftie.Color.Guild[2], Craftie.Color.Guild[3], 1)
+          end
+        end
         Craftie.Frame.ScrollPlayersListFav[i]:Show()
 
         Craftie.Frame.ScrollPlayersListFav[i]:SetTexCoord(1, 0.5, 0, 0.5)
@@ -355,6 +364,9 @@ function Craftie:UpdateCrafterList(search)
     --Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(20)
   end)
 
+  --[==[
+  LIBRARY
+  ]==]--
   --if (Craftie.DEBUGLEVEL > 3) then
     Craftie.Frame.ScrollPlayersListName[1]:SetText(Craftie.Page .. " " .. Craftie._L.Player_PageNameListing)
     --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
@@ -723,8 +735,15 @@ function Craftie:SelectScrollItem(scrollFrame, playerCrafterLevel)
       for i=1, #Craftie.TOTAL_CRAFTERS do
         Craftie.Frame.ScrollPlayersListCont[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
-        Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
+
+        local name = Craftie.Frame.ScrollPlayersListName[i]:GetText()
+        if (Craftie.PlayerGuild[name]) then
+          Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(Craftie.Color.Guild[1], Craftie.Color.Guild[2], Craftie.Color.Guild[3], 1)
+        else
+          Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
+        end
       end
+      --selected
       Craftie.Frame.ScrollPlayersListSelect[Craftie.Selected_Player_Index]:Show()
       Craftie.Frame.ScrollPlayersListName[Craftie.Selected_Player_Index]:SetTextColor(1, 1, 0.8, 1)
     end
