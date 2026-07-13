@@ -109,7 +109,8 @@
 			"FocusFrame",
 			"CooldownFrame_Set",
 			"CooldownFrame_Clear",
-			"GUILD"
+			"GUILD",
+			"ID"
 		]
 	}
 }

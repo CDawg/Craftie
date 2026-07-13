@@ -67,71 +67,80 @@ function Craftie.LookupItem(self, event, msg, author, ...)
     local recipelist = {}
     local count = 0
     if (msg:find(pattern)) then
-      for _,prof in pairs(Craftie.Professions) do
-        --print(prof[1])
-        if (Craftie.Save.Account.CACHE ~= nil) then
-          if (Craftie.Save.Account.CACHE[prof[1]:upper()] ~= nil) then
-            --print(prof[1]:upper())
-            for i = 1, numTotalMembers do
-              local name = GetGuildRosterInfo(i)
-              --print(name)
-              if (name) then
-                local guild_crafter = Ambiguate(name, "none")
-                if (Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter] ~= nil) then
-                  local cachestring = Craftie:Split(Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter], ";")
+      local negate_pattern = string.gsub(msg, pattern, "")
+      if (negate_pattern:len() >= 1) then --did we actually type something
+        for _,prof in pairs(Craftie.Professions) do
+          --print(prof[1])
+          if (Craftie.Save.Account.CACHE ~= nil) then
+            if (Craftie.Save.Account.CACHE[prof[1]:upper()] ~= nil) then
+              --print(prof[1]:upper())
+              for i = 1, numTotalMembers do
+                local name = GetGuildRosterInfo(i)
+                --print(name)
+                if (name) then
+                  local guild_crafter = Ambiguate(name, "none")
+                  if (Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter] ~= nil) then
+                    local cachestring = Craftie:Split(Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter], ";")
 
-                  for k,cache in pairs(cachestring) do
-                    if ((cache ~= nil) and (cache ~= "")) then --who can make it that's cached
-                      --print(guild_crafter .. " can make " .. Craftie:SanitizeString(cache, true))
+                    for k,cache in pairs(cachestring) do
+                      if ((cache ~= nil) and (cache ~= "")) then --who can make it that's cached
+                        --print(guild_crafter .. " can make " .. Craftie:SanitizeString(cache, true))
+                        local match = string.gsub(msg, pattern, "")
+                        local item_name = string.gsub(match, "%b[]", "")
+                        local item_link = Craftie:Split(item_name, ":")
 
-                      local match = string.gsub(msg, pattern, "")
-                      --local item_name = string.gsub(match, "[%[%]]", "")
-                      local item_name = string.gsub(match, "%b[]", "")
-
-                      for _,recipe in pairs(Craftie.Profession[prof[1]]) do
-                        if (Craftie:SanitizeString(item_name, true) == Craftie:SanitizeString(recipe[2], true) and Craftie:SanitizeString(item_name, true) == Craftie:SanitizeString(cache, true)) then
-                          local itemName, itemLink = C_Item.GetItemInfo(recipe[4]) --id
-                          C_Timer.After(0.1, function() --give it time to register/cache
-                            if (itemName) then
-                              print("found: " .. guild_crafter .. " - ".. prof[1] .. " - " .. recipe[1] .. " - " .. itemName)
-                              count = count +1
-                              table.insert(recipelist, {guild_crafter, itemLink})
-                            end
-                          end)
+                        for _,recipe in pairs(Craftie.Profession[prof[1]]) do
+                          --print(recipe[1] .. " " .. recipe[2] .. " item_name " .. item_name)
+                          if (item_link[2] ~= nil) then
+                            item_name = C_Item.GetItemInfo(item_link[2]) --someone posted a link, get ID
+                          end
+                          if (Craftie:SanitizeString(item_name, true) == Craftie:SanitizeString(recipe[2], true) and Craftie:SanitizeString(item_name, true) == Craftie:SanitizeString(cache, true)) then
+                            local itemName, itemLink = C_Item.GetItemInfo(recipe[4]) --id
+                            C_Timer.After(0.1, function() --give it time to register/cache
+                              if (itemName) then
+                                print("found: " .. guild_crafter .. " - ".. prof[1] .. " - " .. recipe[1] .. " - " .. itemName)
+                                count = count +1
+                                table.insert(recipelist, {guild_crafter, itemLink})
+                              end
+                            end)
+                          end
                         end
+
                       end
-
                     end
-                  end
 
+                  end
                 end
               end
             end
           end
         end
-      end
 
-      if (Ambiguate(author, "none") == Craftie.Player.Name) then
-        C_Timer.After(2, function() --give it time to register/cache
-          C_ChatInfo.SendChatMessage("Craftie Recipe Search: Found [" .. count .. "]", "GUILD", nil)
-          if (count >= 1) then
-            --C_Timer.After(count*0.120, function()
-              --C_ChatInfo.SendChatMessage("Craftie Recipe Search: Found [" .. count .. "]", "GUILD", nil)
-            --end)
-            for k,v in pairs(recipelist) do
-              if (v[2] ~= nil) then
-                print("recipelist: " .. k .. " | " .. v[1] .. " | " .. v[2])
-                C_Timer.After(count*0.120, function()
-                  C_ChatInfo.SendChatMessage(v[1] .. " " .. v[2], "GUILD", nil)
-                end)
+        if (Ambiguate(author, "none") == Craftie.Player.Name) then
+          C_ChatInfo.SendChatMessage("Craftie Searching...", "GUILD", nil)
+          --local item_name = string.gsub(negate_pattern, "%b[]", "")
+          --print(item_name)
+          C_Timer.After(2, function() --give it time to register/cache
+            C_ChatInfo.SendChatMessage("Craftie Recipe Search: Found [" .. count .. "]", "GUILD", nil)
+            if (count >= 1) then
+              --C_Timer.After(count*0.120, function()
+                --C_ChatInfo.SendChatMessage("Craftie Recipe Search: Found [" .. count .. "]", "GUILD", nil)
+              --end)
+              for k,v in pairs(recipelist) do
+                if (v[2] ~= nil) then
+                  --print("recipelist: " .. k .. " | " .. v[1] .. " | " .. v[2])
+                  C_Timer.After(count*0.120, function()
+                    C_ChatInfo.SendChatMessage(v[1] .. " " .. v[2], "GUILD", nil)
+                  end)
+                end
               end
             end
-          end
-        end)
+          end)
+        end
+        local filter = gsub(msg, pattern, pattern)
+        --local filter = gsub(msg, pattern, msg .. "|n|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. Craftie._G.Title .. " Guild Roster Recipe Search:|nFound [" .. count .. "]|n")
+        return false, filter, author, ...
       end
-      local filter = gsub(msg, pattern, pattern)
-      --local filter = gsub(msg, pattern, msg .. "|n|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. Craftie._G.Title .. " Guild Roster Recipe Search:|nFound [" .. count .. "]|n")
-      return false, filter, author, ...
     end
   end
 end
