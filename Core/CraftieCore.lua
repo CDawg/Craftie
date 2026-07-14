@@ -651,6 +651,7 @@ function Craftie:ItemDetails(item)
     Craftie.Frame.Item.Icon:SetTexture(icon)
     --print(icon)
     is_enchant = true
+    Craftie:Notification("is_enchant = true", Craftie.CHAT.FUNC)
   else
     Craftie.Frame.Item.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
   end
