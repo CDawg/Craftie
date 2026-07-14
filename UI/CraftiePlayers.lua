@@ -511,8 +511,13 @@ end)
 Craftie.Frame.ScrollPlayersListSubMenuParty:SetScript("OnLeave", function(self)
   self:SetBackdropColor(0, 0, 0, 0)
 end)
+
 Craftie.Frame.ScrollPlayersListSubMenuParty:SetScript("OnClick", function(self)
   Craftie:CloseAllPlayerMenus()
+  --C_PartyInfo.InviteUnit("PlayerName")
+  if (Craftie.Selected_Name ~= nil or Craftie.Selected_Name ~= "") then
+    C_PartyInfo.InviteUnit(Craftie.Selected_Name)
+  end
 end)
 
 Craftie.Frame.ScrollPlayersListSubMenuDivider = Craftie.Frame.ScrollPlayersListSubMenu:CreateTexture(nil, "ARTWORK")
@@ -590,16 +595,3 @@ end)
 Craftie.Frame.ScrollPlayersListSubMenuCancel:SetScript("OnClick", function(self)
   Craftie:CloseAllPlayerMenus()
 end)
-
---[==[
-local btn = CreateFrame("Button", "MySecurePartyButton", UIParent, "SecureUnitButtonTemplate")
-btn:SetAttribute("unit", "party1") -- Set target (e.g., "party1")
-RegisterUnitWatch(btn) -- Monitor unit changes (e.g., vehicles)
-btn:RegisterForClicks("AnyUp")
-
--- Set secure action attributes
-btn:SetAttribute("*type1", "target")     -- Left Click: Target
-btn:SetAttribute("*type2", "togglemenu") -- Right Click: Menu
-btn:SetSize(120, 40)
-btn:SetPoint("CENTER", UIParent, "CENTER", 0, 0)
-]==]--

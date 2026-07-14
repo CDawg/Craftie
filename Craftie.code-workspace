@@ -111,7 +111,8 @@
 			"CooldownFrame_Clear",
 			"GUILD",
 			"ID",
-			"UNKNOWN"
+			"UNKNOWN",
+			"RegisterUnitWatch"
 		]
 	}
 }
