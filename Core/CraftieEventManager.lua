@@ -128,13 +128,23 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       Craftie:GetEntryProfessions()
     end
 
-    if (event == "TRADE_SKILL_SHOW") then
+    if ((event == "TRADE_SKILL_SHOW") or (event == "CRAFT_SHOW")) then
       if (not Craftie.IsInCombat) then
+        local useCraftAPI = false
         local profName, profLevel = GetTradeSkillLine()
-        if (profName) then
+        if ((not profName) or (profName == "UNKNOWN")) and GetCraftDisplaySkillLine then
+          profName, profLevel = GetCraftDisplaySkillLine()
+          useCraftAPI = true
+        elseif ((not profName) or (profName == "UNKNOWN")) and GetCraftSkillLine then
+          profName = GetCraftSkillLine(1)
+          useCraftAPI = true
+        end
+
+        if (profName and profName ~= "UNKNOWN") then
+          profLevel = profLevel or 0
           for k,v in pairs(Craftie.Professions) do
             if (profName == v[1]) then --ignore secondary profs
-              Craftie:CrafterBuildData(profName, profLevel) --throttle by recipebook
+              Craftie:CrafterBuildData(profName, profLevel, useCraftAPI) --throttle by recipebook
               if (Craftie.Throttle.Prof.Flag == 1) then
                 Craftie.Throttle.Prof.Flag = 0
                 C_Timer.After(1, function()
@@ -148,9 +158,11 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
                   Craftie:ResetCrafterBuild()
                 end)
               end
+              break
             end
           end
         end
+        Craftie:Notification("Craftie:EventManager[3] " .. event, Craftie.CHAT.EVENT)
       end
     end
 
@@ -162,11 +174,11 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
 
-    --[==[ debugging
+  
     if (event ~= "CHAT_MSG_CHANNEL") then
-      Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
+      Craftie:Notification("Craftie:EventManager[4] " .. event, Craftie.CHAT.EVENT)
     end
-    ]==]--
+ 
 
   end
 end

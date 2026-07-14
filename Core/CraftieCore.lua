@@ -797,7 +797,7 @@ end
 
 --Craftie.Throttle.Prof.Flag
 --build personal string, store it, and use for packets and notifications
-function Craftie:CrafterBuildData(profName, profLevel)
+function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
   local profBuild = Craftie:CopyTable(Craftie.Profession[profName])
   --Craftie:SortTableByString(profBuild) --alpha sort just in case
   local profData={}
@@ -808,6 +808,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
     if (profName == v[1]) then
       if (Craftie.ProfileBuilt[profName] == 0) then
         --Craftie:Notification("Craftie:CrafterBuildData", Craftie.CHAT.FUNC)
+        Craftie.ProfileBuilt[profName] = -1 --build scheduled/in progress
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
           for k,v in pairs(profBuild) do
@@ -824,15 +825,24 @@ function Craftie:CrafterBuildData(profName, profLevel)
           end
           --print("profMastery: " .. profMastery)
 
-          local numRecipes = GetNumTradeSkills()
+          local numRecipes = useCraftAPI and GetNumCrafts() or GetNumTradeSkills()
           for i = 1, numRecipes do
-            local recipeName, recipeType = GetTradeSkillInfo(i)
+            local recipeName, recipeType
+            if (useCraftAPI) then
+              recipeName, _, recipeType = GetCraftInfo(i)
+            else
+              recipeName, recipeType = GetTradeSkillInfo(i)
+            end
             --if (recipeType == "header") then
               --print(recipeName)
             --end
             if (recipeType ~= "header") then
-              if (Craftie:SanitizeString(recipeName, true) ~= nil) then
-                profData[Craftie:SanitizeString(recipeName, true)] = "1"
+              local recipeKey = Craftie:SanitizeString(recipeName, true)
+              -- Only set keys from the canonical profession library. Adding
+              -- an unknown trade-skill row changes the packet's bit count and
+              -- shifts recipe ownership for every receiver.
+              if (recipeKey ~= nil and profData[recipeKey] ~= nil) then
+                profData[recipeKey] = "1"
                 --print(Craftie:SanitizeString(recipeName, true) .. " = 1")
               end
             end
@@ -852,7 +862,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
 
           --alpha sort order
           table.sort(tkeys)
-          for a, b in pairs(tkeys) do
+          for _, b in ipairs(tkeys) do
             --print(b)
             profString = profString .. profData[b]
           end
@@ -861,6 +871,7 @@ function Craftie:CrafterBuildData(profName, profLevel)
 
           Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] = profString
+          Craftie.ProfileBuilt[profName] = 1
 
           --share to guild members
           C_Timer.After(3, function()
@@ -886,7 +897,6 @@ function Craftie:CrafterBuildData(profName, profLevel)
 
         end)
       end
-      Craftie.ProfileBuilt[profName] = 1 --we already pulled and stored data, reset only on learning a new recipe
     end
   end
   --Craftie:Notification("Craftie:CrafterBuildData", Craftie.CHAT.FUNC)

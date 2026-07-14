@@ -344,10 +344,16 @@ function Craftie:SortTableByString(tbl) --alpha second key
 end
 
 function Craftie:SanitizeString(str, lowercase)
+  if (str == nil) then
+    return nil
+  end
+
+  -- Recipe separators are not consistent across every client build (i.e. " - " versus ": ")
+  local sanitized = str:gsub("%p", ""):gsub("%s+", " "):match("^%s*(.-)%s*$")
   if (lowercase) then
-    return str:gsub("%p", ""):lower()
+    return sanitized:lower()
   else
-    return str:gsub("%p", "")
+    return sanitized
   end
 end
 

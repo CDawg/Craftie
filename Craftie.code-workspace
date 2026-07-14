@@ -110,7 +110,8 @@
 			"CooldownFrame_Set",
 			"CooldownFrame_Clear",
 			"GUILD",
-			"ID"
+			"ID",
+			"UNKNOWN"
 		]
 	}
 }
