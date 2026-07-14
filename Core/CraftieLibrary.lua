@@ -71,6 +71,7 @@ Craftie.PlayerGUIDProf = {}
 Craftie.NumGuildMembers = 0
 Craftie.PlayerGuild = {}
 Craftie.IsInCombat = false
+Craftie.Alerted = 0
 Craftie.Throttle = {
   Chat = {
     Timer= 20,

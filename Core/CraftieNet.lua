@@ -172,6 +172,7 @@ function Craftie:PacketParse(netpacket)
         end)
         C_Timer.After(0.2, function()
           Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[5], Craftie.CHAT.FUNC)
+          Craftie:AlertIcon(0)
           Craftie:GetCraftOrders()
         end)
       end

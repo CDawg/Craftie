@@ -382,10 +382,31 @@ function Craftie:UpdateCrafterList(search)
   --end
 end
 
+function Craftie:AlertIcon(tab)
+  if (tab ~= 0) then
+    Craftie.TabGlow[tab]:Play()
+    Craftie.TipGlow[tab]:Play()
+    Craftie.Frame.TabSide[tab].Glow:Show()
+    Craftie.Frame.TabSide[tab].Tip:Show()
+  end
+  Craftie.IconGlow:Play()
+  Craftie.Frame.Button.Minimap.Glow:Show()
+  C_Timer.After(1, function() --give it time to load when logging in
+    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+300, Craftie.Frame.Button.Minimap:GetHeight()+300)
+    if (Craftie.Alerted == 0) then  
+      PlaySoundFile(Craftie._G.Path .. "Sounds/Notification1.ogg")
+    end
+  Craftie.Alerted = 1
+  end)
+  C_Timer.After(2, function()
+    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+10, Craftie.Frame.Button.Minimap:GetHeight()+10)
+  end)
+end
+
 Craftie.MyProfessions = {}
 Craftie.MyProfessionEntry={}
 function Craftie:GetEntryProfessions()
-  local new_prof = false
+  --local new_prof = false
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for i = 1, GetNumSpellTabs() do
       local offset, numSlots = select(3, GetSpellTabInfo(i))
@@ -403,31 +424,27 @@ function Craftie:GetEntryProfessions()
     for k,prof in pairs(Craftie.MyProfessions) do
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] == nil) then
         local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 1)
-        Craftie.TabGlow[tab]:Play()
-        Craftie.TipGlow[tab]:Play()
-        Craftie.Frame.TabSide[tab].Glow:Show()
-        Craftie.Frame.TabSide[tab].Tip:Show()
+        Craftie:AlertIcon(tab)
         Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
         if (prof == "Alchemy") then
-          Craftie.Tab = -1
+          Craftie.Tab = -1 --hack so that players will select alchemy as the first default loaded tab
         end
         --print("|cffffd000|Htrade:2550:300:PlayerGUID:RecipeData|h[Cooking]|h|r")
         table.insert(Craftie.MyProfessionEntry, prof)
-        Craftie.IconGlow:Play()
-        Craftie.Frame.Button.Minimap.Glow:Show()
-        new_prof = true
+        --new_prof = true
         --return prof
       end
     end
   end
+  --[==[
   if (new_prof) then
-    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+200, Craftie.Frame.Button.Minimap:GetHeight()+200)
-    C_Timer.After(2, function()
-      PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2)
+    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+400, Craftie.Frame.Button.Minimap:GetHeight()+400)
+    C_Timer.After(1, function()
       Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+10, Craftie.Frame.Button.Minimap:GetHeight()+10)
     end)
     new_prof = false
   end
+  ]==]--
   Craftie:Notification("Craftie:GetEntryProfessions(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
 end
 
@@ -1179,7 +1196,6 @@ end
 
 function Craftie:GetCraftOrders()
   local order_index = 0
-
   local order_count = 0
   if (Craftie.Save.Player["ORDERS"] ~= nil) then
     for _ in pairs(Craftie.Save.Player["ORDERS"]) do
