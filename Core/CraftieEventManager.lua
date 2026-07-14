@@ -174,11 +174,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
 
-  
-    if (event ~= "CHAT_MSG_CHANNEL") then
-      Craftie:Notification("Craftie:EventManager[4] " .. event, Craftie.CHAT.EVENT)
-    end
- 
-
+    --debugging
+    --Craftie:Notification("Craftie:EventManager[4] " .. event, Craftie.CHAT.EVENT)
   end
 end

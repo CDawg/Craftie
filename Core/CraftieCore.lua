@@ -224,8 +224,8 @@ function Craftie:UpdateCrafterList(search)
   local fav_list = {}
   local rem_list = {}
   local fav_exist = 0
+  Craftie.PlayerGuild = {}
 
-  Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.CHAT.FUNC)
   Craftie.Frame.ScrollPlayersResults:SetText("")
   Craftie.Frame.ScrollPlayersLoading:Show()
   Craftie.Frame.ScrollPlayersList:SetAlpha(0.3)
@@ -320,15 +320,10 @@ function Craftie:UpdateCrafterList(search)
         local i=n+1 --skip the 1st index
         local crafter = Craftie:Split(profession_crafters[search_list[n]], ",")
 
-        --[==[
-        --Craftie.Frame.ScrollPlayersListNet[i]:Show()
-        if (Craftie.PlayerOnline[search_list[n]] == 1) then
-          Craftie.Frame.ScrollPlayersListNet[i]:SetTexture("Interface/FriendsFrame/StatusIcon-Online")
-        end
-        ]==]--
-
         --reserve the first row for library (n) skip 1 line
         Craftie.Frame.ScrollPlayersListName[i]:SetText(search_list[n])
+
+        Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
         if (IsInGuild()) then
           if ((Craftie.PlayerGuild) and Craftie.PlayerGuild[search_list[n]]) then
             Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(Craftie.Color.Guild[1], Craftie.Color.Guild[2], Craftie.Color.Guild[3], 1)
@@ -380,6 +375,8 @@ function Craftie:UpdateCrafterList(search)
   --else
     --Craftie.Frame.ScrollPlayersListCont[1]:Hide()
   --end
+
+  Craftie:Notification("Craftie:UpdateCrafterList()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:AlertIcon(tab)
@@ -392,7 +389,7 @@ function Craftie:AlertIcon(tab)
   Craftie.IconGlow:Play()
   Craftie.Frame.Button.Minimap.Glow:Show()
   C_Timer.After(1, function() --give it time to load when logging in
-    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+300, Craftie.Frame.Button.Minimap:GetHeight()+300)
+    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+200, Craftie.Frame.Button.Minimap:GetHeight()+200)
     if (Craftie.Alerted == 0) then  
       PlaySoundFile(Craftie._G.Path .. "Sounds/Notification1.ogg")
     end
