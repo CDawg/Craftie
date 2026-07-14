@@ -389,8 +389,8 @@ function Craftie:AlertIcon(tab)
   Craftie.IconGlow:Play()
   Craftie.Frame.Button.Minimap.Glow:Show()
   C_Timer.After(1, function() --give it time to load when logging in
-    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+200, Craftie.Frame.Button.Minimap:GetHeight()+200)
-    if (Craftie.Alerted == 0) then  
+    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+120, Craftie.Frame.Button.Minimap:GetHeight()+120)
+    if (Craftie.Alerted == 0) then
       PlaySoundFile(Craftie._G.Path .. "Sounds/Notification1.ogg")
     end
   Craftie.Alerted = 1
