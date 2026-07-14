@@ -28,6 +28,7 @@ Craftie.Event:RegisterEvent("GET_ITEM_INFO_RECEIVED")
 Craftie.Event:RegisterEvent("GROUP_ROSTER_UPDATE")
 Craftie.Event:RegisterEvent("GUILD_ROSTER_UPDATE")
 Craftie.Event:RegisterEvent("GUILD_TRADESKILL_UPDATE")
+Craftie.Event:RegisterEvent("LEARNED_SPELL_IN_SKILL_LINE")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_ENABLED")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_DISABLED")
@@ -122,6 +123,11 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       Craftie:ResetCrafterBuild()
     end
 
+    if (event == "LEARNED_SPELL_IN_SKILL_LINE") then
+      --check if we learned a new proffession
+      Craftie:GetEntryProfessions()
+    end
+
     if (event == "TRADE_SKILL_SHOW") then
       if (not Craftie.IsInCombat) then
         local profName, profLevel = GetTradeSkillLine()
@@ -156,11 +162,9 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
 
-    --[==[
-    if (prefix == Craftie._G.Prefix) then
-      if (event ~= "CHAT_MSG_CHANNEL") then
-        Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
-      end
+    --[==[ debugging
+    if (event ~= "CHAT_MSG_CHANNEL") then
+      Craftie:Notification("Craftie:EventManager[2] " .. event, Craftie.CHAT.EVENT)
     end
     ]==]--
 

@@ -385,6 +385,7 @@ end
 Craftie.MyProfessions = {}
 Craftie.MyProfessionEntry={}
 function Craftie:GetEntryProfessions()
+  local new_prof = false
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for i = 1, GetNumSpellTabs() do
       local offset, numSlots = select(3, GetSpellTabInfo(i))
@@ -414,9 +415,18 @@ function Craftie:GetEntryProfessions()
         table.insert(Craftie.MyProfessionEntry, prof)
         Craftie.IconGlow:Play()
         Craftie.Frame.Button.Minimap.Glow:Show()
+        new_prof = true
         --return prof
       end
     end
+  end
+  if (new_prof) then
+    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+200, Craftie.Frame.Button.Minimap:GetHeight()+200)
+    C_Timer.After(2, function()
+      PlaySound(SOUNDKIT.ALARM_CLOCK_WARNING_2)
+      Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+10, Craftie.Frame.Button.Minimap:GetHeight()+10)
+    end)
+    new_prof = false
   end
   Craftie:Notification("Craftie:GetEntryProfessions(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
 end
@@ -472,7 +482,7 @@ function Craftie:TabSelectSide(tab, sound)
         C_Timer.After(0.03, function()
           if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
             HideUIPanel(TradeSkillFrame)
-            Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. v .. "]|r profile built for ." .. Craftie.Player.Name .. "|nNow you can link " .. v .. " in any chat", Craftie.CHAT.INFO)
+            Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. v .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link " .. v .. " in any chat", Craftie.CHAT.INFO)
           end
         end)
       end
