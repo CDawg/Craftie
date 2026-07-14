@@ -126,6 +126,9 @@ function Craftie:LoadOptions()
           Craftie.Options.DropdownPlayerlist.text:SetText(Craftie._L.MenuSelPlayers[Craftie.PlayerListFilter])
           Craftie:UpdateCrafterList()
         end
+        if (Craftie.Save.Player.CONFIG["GUILD_GREEN"] == 0) then
+          Craftie.Options.CheckboxGuild:SetChecked(false)
+        end
 
         if (Craftie.Save.Player.CONFIG["FRAME_LEVEL"] ~= nil) then
           for k,v in pairs(Craftie.FrameStrata) do

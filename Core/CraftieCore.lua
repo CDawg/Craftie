@@ -325,8 +325,10 @@ function Craftie:UpdateCrafterList(search)
 
         Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)
         if (IsInGuild()) then
-          if ((Craftie.PlayerGuild) and Craftie.PlayerGuild[search_list[n]]) then
-            Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(Craftie.Color.Guild[1], Craftie.Color.Guild[2], Craftie.Color.Guild[3], 1)
+          if (Craftie.Save.Player.CONFIG["GUILD_GREEN"] ~= 0) then
+            if ((Craftie.PlayerGuild) and Craftie.PlayerGuild[search_list[n]]) then
+              Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(Craftie.Color.Guild[1], Craftie.Color.Guild[2], Craftie.Color.Guild[3], 1)
+            end
           end
         end
         Craftie.Frame.ScrollPlayersListFav[i]:Show()
@@ -762,7 +764,7 @@ function Craftie:SelectScrollItem(scrollFrame, playerCrafterLevel)
         Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
 
         local name = Craftie.Frame.ScrollPlayersListName[i]:GetText()
-        if (Craftie.PlayerGuild[name]) then
+        if ((IsInGuild()) and (Craftie.PlayerGuild[name]) and (Craftie.Save.Player.CONFIG["GUILD_GREEN"] ~= 0)) then
           Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(Craftie.Color.Guild[1], Craftie.Color.Guild[2], Craftie.Color.Guild[3], 1)
         else
           Craftie.Frame.ScrollPlayersListName[i]:SetTextColor(1, 1, 1, 0.8)

@@ -66,10 +66,11 @@ Craftie._L = {
   },
 
   Options = {
-    Defaults = {
+    Crafters = {
       Title = "Crafter Listing",
-      {"Show The Game Library For Every Recipe", "Show the entire recipe library for each|nprofession within the player list for all phases [Recommended]"},
-      {"Default Crafter Listing",                 "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
+      {"Show The Library For Every Recipe", "Show the entire recipe library for each|nprofession within the player list for all phases [Recommended]"},
+      {"Default Crafter Listing",           "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
+      {"Show Guild Crafters In Green",      "Identify guild members in the Crafter list as the iconic guild green color"},
     },
     Notifications = {
       Title = "Order Notifications",
@@ -80,12 +81,13 @@ Craftie._L = {
     Recipes = {
       Title = "Recipe Listing",
       {"Show Crafter's Leveling Color Thresholds", "Show the Crafter's leveling threshold colors. [Gray, Green, Yellow, and Orange]"},
-      {"Automatically Open The Crafter's Recipe Book", "When clicking the Crafter's profession link in chat automatically open their recipe book"}
+      {"Automatically Open The Crafter's Recipe Book", "When clicking the Crafter's profession link in chat, automatically open their recipe book"}
     },
     Frame = {
       Title = "Frame Options",
-      {"Frame Level", "Frame level to have Craftie open on other frames such as professions, auction, other addon frames, etc...|nLOW = Behind other frames|nHIGH = On top of other frames"},
-      {"LOW", "MEDIUM", "HIGH"}
-    }
+      {"Frame Level", "Craftie frame level determines the z-order layer on top of other frames/addons|nLOW        = Behind other frames [Default - Recommended]|nMEDIUM= Between layers|nHIGH       = On top of most frames"},
+      {"LOW", "MEDIUM", "HIGH"},
+    },
   }
 }
+

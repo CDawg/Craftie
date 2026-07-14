@@ -66,10 +66,11 @@ Craftie._L = {
   },
 
   Options = {
-    Defaults = {
+    Crafters = {
       Title = "Crafter Listing",
-      {"Show The Game Library For Every Recipe", "Show the entire recipe library for each|nprofession within the player list for all phases [Recommended]"},
-      {"Default Crafter Listing",                 "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
+      {"Show The Library For Every Recipe", "Show the entire recipe library for each|nprofession within the player list for all phases [Recommended]"},
+      {"Default Crafter Listing",           "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
+      {"Show Guild Crafters In Green",      "Identify guild members in the Crafter list as the iconic guild green color"},
     },
     Notifications = {
       Title = "Order Notifications",
@@ -87,9 +88,5 @@ Craftie._L = {
       {"Frame Level", "Craftie frame level determines the z-order layer on top of other frames/addons|nLOW        = Behind other frames [Default - Recommended]|nMEDIUM= Between layers|nHIGH       = On top of most frames"},
       {"LOW", "MEDIUM", "HIGH"},
     },
-    Font = {
-      {"Font Style", "Craftie font style [Recommended = Frizqt (Blizzard default) for frame compatibility]"},
-      {"Frizqt", "Arialn", "AvantGarde"}
-    }
   }
 }
