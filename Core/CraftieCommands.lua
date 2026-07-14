@@ -16,9 +16,9 @@ the copyright holders.
 --need to localize the commands
 local commands = {
   {"options", "Options/Settings"},
-  {"debug",   "View debug info. Default = Debug level 3"},
-  {"log",     "Open The Debug Logger"},
-  {"delete",  "Delete a table [config | crafters | orders | favs]"},
+  {"debug",   " View debug info. Default = Debug level 3"},
+  {"log",     "      Open the logger"},
+  {"delete",  " Delete a table [config | crafters | orders | favs]"},
   --{"recipe",  "recipe <recipe name>|nGuild search a crafter for a recipe"},
 }
 
@@ -93,8 +93,8 @@ function SlashCmdList.Craftie(cmd)
     end
     if (args == "orders") then
       Craftie.Save.Player["ORDERS"] = {}
-      --Craftie:GetCraftOrders()
-      ReloadUI()
+      Craftie:GetCraftOrders()
+      --ReloadUI()
     end
   end
 
