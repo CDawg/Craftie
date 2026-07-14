@@ -19,7 +19,6 @@ local commands = {
   {"debug",   " View debug info. Default = Debug level 3"},
   {"log",     "      Open the logger"},
   {"delete",  " Delete a table [config | crafters | orders | favs]"},
-  --{"recipe",  "recipe <recipe name>|nGuild search a crafter for a recipe"},
 }
 
 ---@type string
@@ -93,8 +92,20 @@ function SlashCmdList.Craftie(cmd)
     end
     if (args == "orders") then
       Craftie.Save.Player["ORDERS"] = {}
+      Craftie:Notification("Table Deleted [ORDERS]", Craftie.CHAT.INFO)
       Craftie:GetCraftOrders()
-      --ReloadUI()
+    end
+    if (args == "crafters") then
+      for k,v in pairs(Craftie.Professions) do
+        Craftie.Save.Account["BLOB"][v[1]:upper()] = {}
+        Craftie.Save.Account["CACHE"][v[1]:upper()]= {}
+      end
+      ReloadUI()
+    end
+    if (args == "favs") then
+      Craftie.Save.Player["FAVS"] = {}
+      Craftie:UpdateCrafterList()
+      Craftie:Notification("Table Deleted [FAVS]", Craftie.CHAT.INFO)
     end
   end
 

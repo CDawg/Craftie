@@ -172,7 +172,13 @@ function Craftie:PacketParse(netpacket)
         end)
         C_Timer.After(0.2, function()
           Craftie:Notification("Order From: " .. packet[3] .. "," .. packet[5], Craftie.CHAT.FUNC)
-          Craftie:AlertIcon(0)
+          if (Craftie.Save.Player.CONFIG["ORDERNOTIF1"] ~= 0) and (not IsInRaid()) then
+            if (Craftie.Save.Player.CONFIG["ORDERNOTIF2"] ~= 0) and (not IsInInstance()) then
+              if (Craftie.Save.Player.CONFIG["ORDERNOTIF3"] ~= 0) and (Craftie.IsInCombat == false) then
+                Craftie:AlertIcon(0)
+              end
+            end
+          end
           Craftie:GetCraftOrders()
         end)
       end
