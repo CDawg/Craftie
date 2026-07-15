@@ -164,13 +164,6 @@ for i,v in pairs(Craftie.Professions) do
   Craftie.Frame.TabSide[i].Icon:SetTexture("Interface/Icons/" .. v[2])
   Craftie.Frame.TabSide[i].Icon:SetDesaturation(0.40)
   Craftie.Frame.TabSide[i].Icon:SetDrawLayer(tabbar_frame.layer, tabbar_frame.level-2)
-  Craftie.Frame.TabSide[i].Shadow = CreateFrame("Frame", nil, Craftie.Frame.TabSide[i], "BackdropTemplate")
-  Craftie.Frame.TabSide[i].Shadow:SetWidth(32)
-  Craftie.Frame.TabSide[i].Shadow:SetHeight(32)
-  Craftie.Frame.TabSide[i].Shadow:SetPoint("TOPLEFT", 7, -4)
-  Craftie.Frame.TabSide[i].Shadow:SetBackdrop(Craftie.Backdrop.General)
-  Craftie.Frame.TabSide[i].Shadow:SetBackdropColor(0, 0, 0, 0.6) --shadow strength
-  Craftie.Frame.TabSide[i].Shadow:SetBackdropBorderColor(1, 1, 1, 0)
   Craftie.Frame.TabSide[i].Select = Craftie.Frame.TabSide[i]:CreateTexture(nil, tabbar_frame.layer)
   Craftie.Frame.TabSide[i].Select:SetSize(Craftie.Frame.TabSide[i]:GetWidth()-8, Craftie.Frame.TabSide[i]:GetHeight()-8)
   Craftie.Frame.TabSide[i].Select:SetPoint("CENTER", 3, -1)

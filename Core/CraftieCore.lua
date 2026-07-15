@@ -467,10 +467,10 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie:ClearSearchFocus(true)
     for i=1, #Craftie.Professions do
       Craftie.Frame.TabSide[i].Select:Hide()
-      Craftie.Frame.TabSide[i].Shadow:Show()
+      Craftie.Frame.TabSide[i].Icon:SetAlpha(0.5)
     end
     Craftie.Frame.TabSide[tab].Select:Show()
-    Craftie.Frame.TabSide[tab].Shadow:Hide()
+    Craftie.Frame.TabSide[tab].Icon:SetAlpha(1)
 
     if (sound) then
       PlaySound(SOUNDKIT.IG_SPELLBOOK_OPEN)
