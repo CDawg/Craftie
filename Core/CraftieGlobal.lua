@@ -61,9 +61,10 @@ Craftie.Preload = Craftie.Color.Gold .. "Loading Data...|r"
 Craftie.Page = Craftie.Professions[1][2] --default
 Craftie.Tab = 0
 
--- Global Frames
+-- Global Frame
 Craftie.Frame={}
 Craftie.Frame = CreateFrame("Frame", 'Craftie.Frame', UIParent, "BasicFrameTemplate")
+
 table.insert(UISpecialFrames, Craftie.Frame:GetName())
 
 Craftie.Frame.Search={}

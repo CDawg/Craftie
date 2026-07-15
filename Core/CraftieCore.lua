@@ -1237,17 +1237,19 @@ function Craftie:GetCraftOrders()
     end
 
     Craftie.Frame.Button.Minimap.Glow:Hide()
+    local color = Craftie.Color.Silver
     if (order_index >= 1) then
       Craftie.Frame.CraftOrdersDeleteAll:Enable()
       Craftie.TabBottomOrderAlert:Show()
       Craftie.IconGlow:Play()
       Craftie.Frame.Button.Minimap.Glow:Show()
       C_Timer.After(1, function()
-        print("clear order anim")
+        --print("clear order anim")
         Craftie.TabBottomOrderAlert:Hide()
       end)
+      color = Craftie.Color.Yellow
     end
-    Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[2] .. " " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
+    Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[2] .. " " .. color .. "[" .. order_index .. "]")
     Craftie.Frame.CraftOrders:SetAlpha(1)
   end)
   Craftie:Notification(Craftie.Color.Yellow .. "Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)
