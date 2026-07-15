@@ -25,10 +25,11 @@ Craftie._G = {
 Craftie._G.Version = C_AddOns.GetAddOnMetadata(Craftie._G.Prefix, "version")
 
 Craftie._G.Font={
-  Style = "Fonts/FRIZQT__.ttf",
+  Style = {
+    Alpha  = "Fonts/FRIZQT__.ttf",
+    Numeric= "Fonts/ARIALN.ttf"
+  },
   Size = 11,
-  StyleA= "Interface/Addons/Craftie/Fonts/AvantGarde.ttf",
-  StyleN= "Fonts/ARIALN.ttf", --numerical
   Flags = "SLUG"
 }
 

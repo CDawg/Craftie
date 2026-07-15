@@ -143,15 +143,15 @@ for i = 1, 30 do
   local flags= nil
 
   if (header) then
-    header:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+2, flags)
+    header:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+2, flags)
   end
 
   if (left) then
-    left:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
+    left:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+1, flags)
   end
 
   if (right) then
-    right:SetFont(Craftie._G.Font.Style, Craftie._G.Font.Size+1, flags)
+    right:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+1, flags)
   end
 end
 CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
