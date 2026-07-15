@@ -87,9 +87,9 @@ function Craftie:Init()
     for k,v in pairs(Craftie.Professions) do
       order = order +1
       C_Timer.After(order*10, function()
-        if (CraftieDB[GetLocale()][Craftie._G.Version][v[1]:upper()] == nil) then
-          Craftie:Notification(Craftie.Color.Blue .. "[" .. k .. "/" .. #Craftie.Professions .. "] Locale ".. GetLocale() .. " Conversion|r " .. v[1] .. "...", Craftie.CHAT.INFO)
-          Craftie:ProfessionLocaleConversion(v[1])
+        if (CraftieDB[GetLocale()][Craftie._G.Version][v[2]:upper()] == nil) then
+          Craftie:Notification(Craftie.Color.Blue .. "[" .. k .. "/" .. #Craftie.Professions .. "] Locale ".. GetLocale() .. " Conversion|r " .. v[2] .. "...", Craftie.CHAT.INFO)
+          Craftie:ProfessionLocaleConversion(v[2])
         end
       end)
     end

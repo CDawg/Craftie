@@ -19,16 +19,16 @@ Craftie.ChatFilter = {}
 function Craftie:BuildChatHooks()
   local prof_parent = ""
   for k,v in pairs(Craftie.Professions) do
-    Craftie.Chat[v[1]] = {}
+    Craftie.Chat[v[2]] = {}
   end
 
   for k,v in pairs(Craftie.Professions) do
-    prof_parent = "[" .. v[1]
-    table.insert(Craftie.Chat[v[1]], v[1])
-    if (v[4][1] ~= nil) then
-      for a,b in pairs(v[4]) do
+    prof_parent = "[" .. v[2]
+    table.insert(Craftie.Chat[v[2]], v[2])
+    if (v[5][1] ~= nil) then
+      for a,b in pairs(v[5]) do
         --print(" - " .. b)
-        table.insert(Craftie.Chat[v[1]], b)
+        table.insert(Craftie.Chat[v[2]], b)
         prof_parent = prof_parent .. " | " .. b
       end
     end
@@ -36,12 +36,12 @@ function Craftie:BuildChatHooks()
   end
 
   for k,v in pairs(Craftie.Professions) do
-    Craftie.ChatFilter[v[1]] = function(self, event, msg, author, ...)
+    Craftie.ChatFilter[v[2]] = function(self, event, msg, author, ...)
       --local parent = Craftie.Chat.Alchemy[1]
-      for a,b in pairs(Craftie.Chat[v[1]]) do
+      for a,b in pairs(Craftie.Chat[v[2]]) do
         local pattern= "%[" .. b .. "%]"
         if (msg:find(pattern)) then --register the author data
-          local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+          local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[2] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
           --local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t[Craftie" .. pattern .. "]|h|r")
           return false, filter, author, ...
         end
@@ -52,7 +52,7 @@ function Craftie:BuildChatHooks()
   for k,v in pairs(Craftie.ChannelList) do
     for _,prof in pairs(Craftie.Professions) do
       --segment each primary profession
-      ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[1]])
+      ChatFrame_AddMessageEventFilter(v, Craftie.ChatFilter[prof[2]])
     end
   end
   if (IsInGuild()) then
@@ -74,15 +74,15 @@ function Craftie.LookupItem(self, event, msg, author, ...)
       for _,prof in pairs(Craftie.Professions) do
         --print(prof[1])
         if (Craftie.Save.Account.CACHE ~= nil) then
-          if (Craftie.Save.Account.CACHE[prof[1]:upper()] ~= nil) then
+          if (Craftie.Save.Account.CACHE[prof[2]:upper()] ~= nil) then
             --print(prof[1]:upper())
             for i = 1, numTotalMembers do
               local name = GetGuildRosterInfo(i)
               --print(name)
               if (name) then
                 local guild_crafter = Ambiguate(name, "none")
-                if (Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter] ~= nil) then
-                  local cachestring = Craftie:Split(Craftie.Save.Account.CACHE[prof[1]:upper()][guild_crafter], ";")
+                if (Craftie.Save.Account.CACHE[prof[2]:upper()][guild_crafter] ~= nil) then
+                  local cachestring = Craftie:Split(Craftie.Save.Account.CACHE[prof[2]:upper()][guild_crafter], ";")
 
                   for k,cache in pairs(cachestring) do
                     if ((cache ~= nil) and (cache ~= "")) then --who can make it that's cached
@@ -91,7 +91,7 @@ function Craftie.LookupItem(self, event, msg, author, ...)
                       local item_name = string.gsub(match, "%b[]", "")
                       local item_link = Craftie:Split(item_name, ":")
 
-                      for _,recipe in pairs(Craftie.Profession[prof[1]]) do
+                      for _,recipe in pairs(Craftie.Profession[prof[2]]) do
                         --print(recipe[1] .. " " .. recipe[2] .. " item_name " .. item_name)
                         if (item_link[2] ~= nil) then
                           item_name = C_Item.GetItemInfo(item_link[2]) --someone posted a link, get ID

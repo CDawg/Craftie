@@ -53,14 +53,14 @@ function Craftie:SaveDataBuild()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"]= {} --cache list built for multi search indexing
 
     for k,v in pairs(Craftie.Professions) do
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()] = {} --organize by prof
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][v[1]:upper()] = {} --build an indexer used only for global searches
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[2]:upper()] = {} --organize by prof
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][v[2]:upper()] = {} --build an indexer used only for global searches
     end
   end
 
   for k,v in pairs(Craftie.Professions) do
-    if (CraftieDB[locale][version][v[1]:upper()] == nil) then
-      CraftieDB[locale][version][v[1]:upper()]={}
+    if (CraftieDB[locale][version][v[2]:upper()] == nil) then
+      CraftieDB[locale][version][v[2]:upper()]={}
     end
   end
 

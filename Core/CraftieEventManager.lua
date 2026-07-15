@@ -143,7 +143,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         if (profName and profName ~= "UNKNOWN") then
           profLevel = profLevel or 0
           for k,v in pairs(Craftie.Professions) do
-            if (profName == v[1]) then --ignore non prio profs like fishing, etc.
+            if (profName == v[2]) then --ignore non prio profs like fishing, etc.
               Craftie:CrafterBuildData(profName, profLevel, isEnchanting) --throttle by recipebook
               if (Craftie.Throttle.Prof.Flag == 1) then
                 Craftie.Throttle.Prof.Flag = 0

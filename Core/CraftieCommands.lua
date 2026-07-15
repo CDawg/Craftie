@@ -97,8 +97,8 @@ function SlashCmdList.Craftie(cmd)
     end
     if (args == "crafters") then
       for k,v in pairs(Craftie.Professions) do
-        Craftie.Save.Account["BLOB"][v[1]:upper()] = {}
-        Craftie.Save.Account["CACHE"][v[1]:upper()]= {}
+        Craftie.Save.Account["BLOB"][v[2]:upper()] = {}
+        Craftie.Save.Account["CACHE"][v[2]:upper()]= {}
       end
       ReloadUI()
     end

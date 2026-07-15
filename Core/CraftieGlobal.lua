@@ -57,7 +57,7 @@ Craftie.Selected_Recipe_Index = 1
 Craftie.Selected_ViewAll = "All Alchemy Recipes" --default
 Craftie.Selected_Name = ""
 Craftie.Preload = Craftie.Color.Gold .. "Loading Data...|r"
-Craftie.Page = Craftie.Professions[1][1] --default
+Craftie.Page = Craftie.Professions[1][2] --default
 Craftie.Tab = 0
 
 -- Global Frames

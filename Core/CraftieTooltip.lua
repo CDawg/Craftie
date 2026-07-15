@@ -18,7 +18,7 @@ function Craftie:BuildPersonalTooltip()
   local tooltip = ""
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for k,v in pairs(Craftie.Professions) do
-      local prof = v[1]
+      local prof = v[2]
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
         if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] ~= nil) then
           local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name], ",")
@@ -92,21 +92,21 @@ function Craftie:TooltipLayout(data, tooltipframe)
     if (data.profN1) then
       local mastery = ""
       if (data.profM1 > 0) then
-        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN1, 1)][4][data.profM1] .. "]"
+        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN1, 2)][5][data.profM1] .. "]"
       end
       tooltipframe:AddDoubleLine(color .. data.profN1 .. mastery, Craftie.Color.White .. data.profL1 .. "/" .. Craftie.PROFMAXLEVEL)
     end
     if (data.profN2) then
       local mastery = ""
       if (data.profM2 > 0) then
-        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN2, 1)][4][data.profM2] .. "]"
+        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN2, 2)][5][data.profM2] .. "]"
       end
       tooltipframe:AddDoubleLine(color .. data.profN2 .. mastery, Craftie.Color.White .. data.profL2 .. "/" .. Craftie.PROFMAXLEVEL)
     end
     if (data.profN3) then
       local mastery = ""
       if (data.profM3 > 0) then
-        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN3, 1)][4][data.profM3] .. "]"
+        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN3, 2)][5][data.profM3] .. "]"
       end
       tooltipframe:AddDoubleLine(color .. data.profN3 .. mastery, Craftie.Color.White .. data.profL3 .. "/" .. Craftie.PROFMAXLEVEL)
     end
@@ -177,7 +177,7 @@ function Craftie:GetSavedRosterTooltipData(player)
   local data = {}
   local tooltipIndex = 0
   for k,v in ipairs(Craftie.Professions) do
-    local prof = v[1]
+    local prof = v[2]
     local professionData = account["BLOB"][prof:upper()]
     if (professionData and professionData[player]) then
       local crafter = Craftie:Split(professionData[player], ",")
@@ -279,7 +279,7 @@ function Craftie:BuildGuildRosterTooltip()
     --[==[
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
       for k,v in pairs(Craftie.Professions) do
-        local prof = v[1]
+        local prof = v[2]
         if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
 
           for i=1, numMembers do
@@ -422,7 +422,7 @@ local function GameTooltip_OnTooltipSetItem(tooltip)
   if ((Craftie.OpenState == 1) and (link_to_chat == 0)) then --only when Craftie is open
     for k,v in pairs(Craftie.Professions) do
       --print(v[1])
-      for i,r in pairs(Craftie.Profession[v[1]]) do
+      for i,r in pairs(Craftie.Profession[v[2]]) do
         if (name == r[2]) then
           --every crafted item
           tooltip:AddLine(" ")

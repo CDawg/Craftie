@@ -106,18 +106,23 @@ function Craftie:PacketParse(netpacket)
       if (prefix == Craftie.Packet.Prefix.Data) then
         local crafterName = packet[3]
         local crafterClass = packet[4]
-        local profName  = Craftie.Professions[tonumber(packet[5])][1]
+        local profIndex = Craftie:GetKeyFromValue(Craftie.Professions, tonumber(packet[5]), 1)
+        local profName  = profIndex and Craftie.Professions[profIndex][2]
         local profNum   = packet[5]
         local profLevel = packet[6]
         local crafterData = Craftie:BitCompression(packet[7], Craftie.CHAT.ACK) --decompress
         local profMastery = packet[8]
-        Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData .. "," .. profMastery, Craftie.CHAT.ACK)
-        --store it
-        Craftie.Packet.ACK[crafterName] = 1 --got an ack
-        Craftie.PlayerOnline[crafterName] = 1
-        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. Craftie.Date
-        Craftie:Notification(profString, Craftie.CHAT.SAVE)
-        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][crafterName] = profString
+        if (profName) then
+          Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData .. "," .. profMastery, Craftie.CHAT.ACK)
+          --store it
+          Craftie.Packet.ACK[crafterName] = 1 --got an ack
+          Craftie.PlayerOnline[crafterName] = 1
+          local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. Craftie.Date
+          Craftie:Notification(profString, Craftie.CHAT.SAVE)
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][crafterName] = profString
+        else
+          Craftie:Notification("Ignoring unknown profession ID: " .. tostring(packet[5]), Craftie.CHAT.ERROR)
+        end
       end
     end
 

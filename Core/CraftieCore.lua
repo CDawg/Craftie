@@ -176,8 +176,8 @@ Craftie.PlayerOnline = {}
 function Craftie:GetOnlineCrafters() --guild only?
   local count = 0
   for k,v in pairs(Craftie.Professions) do
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()] ~= nil) then
-      for p in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]:upper()]) do
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[2]:upper()] ~= nil) then
+      for p in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[2]:upper()]) do
         --print(p)
         Craftie.PlayerOnline[p] = 0
       end
@@ -368,7 +368,7 @@ function Craftie:UpdateCrafterList(search)
     Craftie.Frame.ScrollPlayersListName[1]:SetText(Craftie.Page .. " " .. Craftie._L.Player_PageNameListing)
     --Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/WorldMap/UI-World-Icon")
     Craftie.Frame.ScrollPlayersListFav[1]:SetPoint("TOPLEFT", 4, -3)
-    Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/ICONS/" .. Craftie.Professions[Craftie.Tab][2])
+    Craftie.Frame.ScrollPlayersListFav[1]:SetTexture("Interface/ICONS/" .. Craftie.Professions[Craftie.Tab][3])
     Craftie.Frame.ScrollPlayersListFav[1]:SetTexCoord(0, 1, 0, 1)
     --Craftie.Frame.ScrollPlayersListFav[1]:SetAlpha(0.7)
     Craftie.Frame.ScrollPlayersListFav[1]:SetDesaturation(0.6)
@@ -412,8 +412,8 @@ function Craftie:GetProfessionEntry()
       for j = offset+1, offset+numSlots do
         local spellName, spellSubName, spellID = GetSpellBookItemName(j, BOOKTYPE_SPELL)
         for k,v in pairs(Craftie.Professions) do
-          if (spellName == v[1]) then
-            table.insert(Craftie.MyProfessions, v[1])
+          if (spellName == v[2]) then
+            table.insert(Craftie.MyProfessions, v[2])
           end
         end
       end
@@ -422,7 +422,7 @@ function Craftie:GetProfessionEntry()
     --we know a profession, but have not opened recipe book
     for k,prof in pairs(Craftie.MyProfessions) do
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] == nil) then
-        local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 1)
+        local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 2)
         Craftie:AlertIcon(tab)
         Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
         if (prof == "Alchemy") then
@@ -450,7 +450,7 @@ end
 ---@class TradeSkillFrame
 function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then
-    local prof_name = Craftie.Professions[tab][1]
+    local prof_name = Craftie.Professions[tab][2]
     Craftie:CloseAllPlayerMenus()
     Craftie:ClearSearchFocus(true)
     for i=1, #Craftie.Professions do
@@ -700,9 +700,9 @@ function Craftie:ItemDetails(item)
     end
   end)
 
-  local prof_list = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
-  local prof_color = Craftie:Split(Craftie.Professions[prof_list][3], ",")
-  Craftie.Frame.Item.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][2])
+  local prof_list = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2)
+  local prof_color = Craftie:Split(Craftie.Professions[prof_list][4], ",")
+  Craftie.Frame.Item.SkillIcon:SetTexture("Interface/Icons/" .. Craftie.Professions[prof_list][3])
   Craftie.Frame.Item.SkillText:SetTextColor(prof_color[1], prof_color[2], prof_color[3], 1)
 
   Craftie.Frame.Item.Icon:Show()
@@ -787,7 +787,7 @@ function Craftie:AlphaSortProfessionLib()
   --very important so the order is always sorted alphabetically
   for k,v in pairs(Craftie.Professions) do
     --print(v[1])
-    Craftie:SortTableByString(Craftie.Profession[v[1]])
+    Craftie:SortTableByString(Craftie.Profession[v[2]])
   end
 end
 
@@ -795,7 +795,7 @@ Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
 function Craftie:CrafterBuildReset()
   --clear all profession flags
   for k,v in pairs(Craftie.Professions) do
-    Craftie.ProfileBuilt[v[1]] = 0
+    Craftie.ProfileBuilt[v[2]] = 0
   end
   Craftie:Notification(Craftie.Color.Lime .. "Craftie:CrafterBuildReset()", Craftie.CHAT.FUNC)
 end
@@ -810,7 +810,8 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
   local profMastery = 0
 
   for k,v in pairs(Craftie.Professions) do --use only the prio list, no fishing, first-aid, etc...
-    if (profName == v[1]) then
+    if (profName == v[2]) then
+      local professionID = v[1]
       if (Craftie.ProfileBuilt[profName] == 0) then
         --Craftie:Notification("Craftie:CrafterBuildData", Craftie.CHAT.FUNC)
         Craftie.ProfileBuilt[profName] = -1 --build scheduled/in progress
@@ -857,7 +858,7 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
           --print(Craftie:GetKeyFromValue(Craftie.Professions, profName, 1))
           --print(profName .. " | " .. profLevel)
           --profString = Craftie.Player.Name .. "," .. Craftie.Player.ClassID .. "," .. Craftie:GetKeyFromValue(Craftie.Professions, profName, 1) .. "," .. profLevel .. ","
-          profString = Craftie.Player.ClassID .. "," .. Craftie:GetKeyFromValue(Craftie.Professions, profName, 1) .. "," .. profLevel .. ","
+          profString = Craftie.Player.ClassID .. "," .. professionID .. "," .. profLevel .. ","
 
           local tkeys = {}
           for k in pairs(profData) do
@@ -1005,8 +1006,8 @@ function Craftie:CrafterDataParse(profName, player)
       profMastery = 0
     else
       C_Timer.After(0.1, function() --give it time to register the profession recipes
-        local k = Craftie:GetKeyFromValue(Craftie.Professions, profName, 1)
-        Craftie.Frame.Mastery:SetText(Craftie.Professions[k][4][tonumber(profMastery)])
+        local k = Craftie:GetKeyFromValue(Craftie.Professions, profName, 2)
+        Craftie.Frame.Mastery:SetText(Craftie.Professions[k][5][tonumber(profMastery)])
       end)
     end
     Craftie:Notification("Craftie:CrafterDataParse():" .. player .. ","  .. class .. "," .. profNum .. "," .. profLevel .. "," .. profString .. "," .. profMastery .. "," .. update, Craftie.CHAT.PARSE)
@@ -1250,7 +1251,7 @@ function Craftie:Open(player, profession)
     --local prof = profession
     Craftie:TabSelectBottom(1, true)
     C_Timer.After(0.1, function() --give it time to register
-      local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 1)
+      local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 2)
       Craftie:Notification("Craftie:Open: Go to " .. profession .. " => " .. player, Craftie.CHAT.FUNC)
       Craftie:TabSelectSide(page, true)
       Craftie.Frame:Show()

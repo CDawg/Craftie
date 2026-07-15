@@ -176,7 +176,7 @@ Craftie.Frame.Button.SearchPlayersClearIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchPlayersClear:SetScript("OnClick", function(self)
   if (Craftie.EnableScrollFrames) then
     Craftie.Frame.Search.Players.Text:SetText("")
-    local pageNum = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)
+    local pageNum = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2)
     Craftie.Tab = 0
     Craftie:TabSelectSide(pageNum) --just reset the list
   end
@@ -336,7 +336,7 @@ function Craftie:BuildRowCrafter(i)
           CraftieTooltip:AddDoubleLine(Craftie.Page, profLevel .. "/" .. Craftie.PROFMAXLEVEL)
           if (tonumber(profMastery)) then
             if (profMastery > 0) then
-              local mastery = Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 1)][4][profMastery]
+              local mastery = Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2)][5][profMastery]
               if (mastery) then
                 CraftieTooltip:AddLine(Craftie.Color.Silver .. mastery)
               end
