@@ -17,7 +17,7 @@ local TabOffset = 350
 
 --[==[
 Craftie.Frame.TitleNavigation = Craftie.Frame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.TitleNavigation:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+3, "SLUG")
+Craftie.Frame.TitleNavigation:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+3, Craftie._G.Font.Flags)
 Craftie.Frame.TitleNavigation:SetPoint("TOPLEFT", 40, -35)
 Craftie.Frame.TitleNavigation:SetText("")
 Craftie.Frame.TitleNavigation:SetTextColor(0.9, 0.9, 0.8, 1)
@@ -46,7 +46,7 @@ for k,v in pairs(Craftie._L.Navigation) do
   Craftie.TabBottom[k].Highlight:Hide()
 
   Craftie.TabBottom[k].Text = Craftie.TabBottom[k]:CreateFontString(nil, "ARTWORK")
-  Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size-1, "SLUG")
+  Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size-1, Craftie._G.Font.Flags)
   Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
   Craftie.TabBottom[k].Text:SetWidth(76)
   Craftie.TabBottom[k].Text:SetText(v)

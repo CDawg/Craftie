@@ -61,7 +61,7 @@ Craftie.Help.Data = CreateFrame("EditBox", nil, Craftie.HelpScrollFrameChildFram
 Craftie.Help.Data:SetWidth(Craftie.Help:GetWidth()-20)
 Craftie.Help.Data:SetHeight(Craftie.Help:GetHeight())
 --Craftie.Help.Data:SetFontObject(GameFontWhite)
-Craftie.Help.Data:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size-1, "OUTLINE")
+Craftie.Help.Data:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size-1, Craftie._G.Font.Flags)
 Craftie.Help.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Help.Data:SetMultiLine(true)
 Craftie.Help.Data:ClearFocus()

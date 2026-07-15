@@ -55,7 +55,7 @@ Craftie.Frame.ScrollRecipesResultsBack:SetSize(Craftie.Frame.ScrollRecipesResult
 Craftie.Frame.ScrollRecipesResultsBack:SetPoint("TOPLEFT", 0, 10)
 Craftie.Frame.ScrollRecipesResultsBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Footer-32.png")
 Craftie.Frame.ScrollRecipesResults = Craftie.Frame.ScrollRecipesResultsFrame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.ScrollRecipesResults:SetFont(Craftie._G.Font.Style.Numeric, Craftie._G.Font.Size+2, "SLUG")
+Craftie.Frame.ScrollRecipesResults:SetFont(Craftie._G.Font.Style.Numeric, Craftie._G.Font.Size+2, Craftie._G.Font.Flags)
 Craftie.Frame.ScrollRecipesResults:SetPoint("TOPLEFT", 8, -4)
 Craftie.Frame.ScrollRecipesResults:SetText("")
 
@@ -140,7 +140,7 @@ Craftie.Frame.Search.Recipes.Text = CreateFrame("EditBox", nil, Craftie.Frame.Se
 Craftie.Frame.Search.Recipes.Text:SetWidth(Craftie.Frame.Search.Recipes:GetWidth()-52)
 Craftie.Frame.Search.Recipes.Text:SetHeight(Craftie.Frame.Search.Recipes:GetHeight())
 Craftie.Frame.Search.Recipes.Text:SetFontObject(GameFontDisable)
-Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, "OUTLINE")
+Craftie.Frame.Search.Recipes.Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
 Craftie.Frame.Search.Recipes.Text:SetPoint("TOPLEFT", 22, 0)
 Craftie.Frame.Search.Recipes.Text:SetAutoFocus(false)
 Craftie.Frame.Search.Recipes.Text:SetText(Craftie._L.Placeholder_Recipes)
@@ -256,40 +256,31 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
 
   Craftie.Frame.ScrollRecipesListID[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollRecipesListID[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollRecipesListID[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
   Craftie.Frame.ScrollRecipesListID[i]:SetPoint("TOPRIGHT", -5, -5)
   Craftie.Frame.ScrollRecipesListID[i]:SetText("")
   Craftie.Frame.ScrollRecipesListID[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.ScrollRecipesListID[i]:Hide()
 
   Craftie.Frame.ScrollRecipesListName[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollRecipesListName[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollRecipesListName[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
   Craftie.Frame.ScrollRecipesListName[i]:SetPoint("TOPLEFT", 8, -5)
   Craftie.Frame.ScrollRecipesListName[i]:SetText("")
   Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 1, 0.8)
 
   Craftie.Frame.ScrollRecipesListLevel[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollRecipesListLevel[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollRecipesListLevel[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
   Craftie.Frame.ScrollRecipesListLevel[i]:SetPoint("TOPRIGHT", -30, -5)
   Craftie.Frame.ScrollRecipesListLevel[i]:SetText("")
   Craftie.Frame.ScrollRecipesListLevel[i]:SetTextColor(1, 1, 1, 0.8)
   Craftie.Frame.ScrollRecipesListLevel[i]:Hide()
 
   Craftie.Frame.ScrollRecipesListVersion[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollRecipesListVersion[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, "SLUG")
+  Craftie.Frame.ScrollRecipesListVersion[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
   Craftie.Frame.ScrollRecipesListVersion[i]:SetPoint("TOPRIGHT", -5, -5)
   Craftie.Frame.ScrollRecipesListVersion[i]:SetText("")
   Craftie.Frame.ScrollRecipesListVersion[i]:SetTextColor(1, 1, 1, 0.2)
   Craftie.Frame.ScrollRecipesListVersion[i]:Hide()
-
-  --[==[
-  Craftie.Frame.ScrollRecipesListHLink[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateFontString(nil, "ARTWORK")
-  Craftie.Frame.ScrollRecipesListHLink[i]:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, "OUTLINE")
-  Craftie.Frame.ScrollRecipesListHLink[i]:SetPoint("TOPLEFT", 8, -5)
-  Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
-  Craftie.Frame.ScrollRecipesListHLink[i]:SetTextColor(0, 1, 1, 1)
-  --Craftie.Frame.ScrollRecipesListHLink[i]:Hide()
-  ]==]--
 
   if (i % 2 == 0) then
     Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
