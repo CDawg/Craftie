@@ -296,7 +296,10 @@ Craftie.Frame.Button.Minimap:SetScript("OnEnter", function(self)
   CraftieTooltip:AddDoubleLine(Craftie._G.Title, Craftie.Color.Gray .. "v" .. Craftie._G.Version)
   CraftieTooltip:AddDoubleLine(" ", Craftie.Color.Gray .. Craftie.Game.Name)
   CraftieTooltip:AddLine(" ")
-  for _, tooltip in ipairs(Craftie._L.MMTooltip) do
+  for i,tooltip in ipairs(Craftie._L.MMTooltip) do
+    if (i == 3) then
+      CraftieTooltip:AddLine(" ")
+    end
     CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. tooltip[1], Craftie.Color.White .. tooltip[2])
   end
   CraftieTooltip:Show()
@@ -319,12 +322,12 @@ Craftie.Frame.Button.Minimap:SetScript("OnClick", function(self, button)
       CraftieTooltip:Hide()
     end
   end
-  --[==[
   if (button == "RightButton") then
-    Settings.OpenToCategory(Craftie.Options.Category:GetID())
-    Craftie.Frame:Hide()
+    Craftie:Open()
+    C_Timer.After(0.40, function()
+      Craftie:TabSelectBottom(2, true)
+    end)
   end
-  ]==]--
 end)
 
 CraftieDialog={}

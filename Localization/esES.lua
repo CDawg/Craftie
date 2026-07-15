@@ -46,8 +46,9 @@ Craftie._L = {
   MenuSelRecipes = "Buscar todos los recetas de artesanos",
 
   MMTooltip = {
-    {"Clic izquierdo", "Manualidad abierta"},
-    {"Clic derecho", "Opciones artesanales"}
+    {"Left Click", "Open Craftie"},
+    {"Shift + Left Click", "Craftie Options"},
+    {"Right Click", "Craftie Orders"}
   },
 
   Navigation = {"Profesiones", "Órdenes", "Actualizaciones", "Ayuda"},

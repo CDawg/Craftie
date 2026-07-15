@@ -46,8 +46,9 @@ Craftie._L = {
   MenuSelRecipes = "搜索所有工匠配方",
 
   MMTooltip = {
-    {"左键单击", "打开工匠"},
-    {"右键单击", "工匠选项"}
+    {"Left Click", "Open Craftie"},
+    {"Shift + Left Click", "Craftie Options"},
+    {"Right Click", "Craftie Orders"}
   },
 
   Navigation = {"Professions", "Orders", "Updates", "Help"},

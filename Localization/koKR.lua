@@ -46,8 +46,9 @@ Craftie._L = {
   MenuSelRecipes = "모든 장인 레시피 검색",
 
   MMTooltip = {
-    {"왼쪽 클릭", "오픈 크래프티"},
-    {"오른쪽 클릭", "크래프티 옵션"}
+    {"Left Click", "Open Craftie"},
+    {"Shift + Left Click", "Craftie Options"},
+    {"Right Click", "Craftie Orders"}
   },
 
   Navigation = {"Professions", "Orders", "Updates", "Help"},

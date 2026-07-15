@@ -47,7 +47,8 @@ Craftie._L = {
 
   MMTooltip = {
     {"Left Click", "Open Craftie"},
-    {"Right Click", "Craftie Options"}
+    {"Shift + Left Click", "Craftie Options"},
+    {"Right Click", "Craftie Orders"}
   },
 
   Navigation = {"Professions", "Orders", "Updates", "Help"},
