@@ -80,6 +80,7 @@ function Craftie:Init()
     end
     Craftie:GetProfessionEntry()
     Craftie:LoadOptions()
+    Craftie:GetCraftOrders()
 
     --[==[
     local order = -1

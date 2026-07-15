@@ -392,14 +392,15 @@ function Craftie:AlertIcon(tab)
   Craftie.Frame.Button.Minimap.Glow:Show()
   C_Timer.After(1, function() --give it time to load when logging in
     Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+120, Craftie.Frame.Button.Minimap:GetHeight()+120)
-    if (Craftie.Alerted == 0) then
+    if (Craftie.Alert.NewProf == 0) then
       PlaySoundFile(Craftie._G.Path .. "Sounds/Notification1.ogg")
     end
-  Craftie.Alerted = 1
+  Craftie.Alert.NewProf = 1
   end)
   C_Timer.After(2, function()
     Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+10, Craftie.Frame.Button.Minimap:GetHeight()+10)
   end)
+  Craftie:Notification("Craftie:AlertIcon(tab) = " .. tab, Craftie.CHAT.FUNC)
 end
 
 Craftie.MyProfessions = {}
@@ -423,13 +424,15 @@ function Craftie:GetProfessionEntry()
     for k,prof in pairs(Craftie.MyProfessions) do
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] == nil) then
         local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 2)
-        Craftie:AlertIcon(tab)
         Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
         if (prof == "Alchemy") then
           Craftie.Tab = -1 --hack so that players will select alchemy as the first default loaded tab
         end
         --print("|cffffd000|Htrade:2550:300:PlayerGUID:RecipeData|h[Cooking]|h|r")
         table.insert(Craftie.MyProfessionEntry, prof)
+        C_Timer.After(1, function() --new professions override existing orders
+          Craftie:AlertIcon(tab)
+        end)
         --new_prof = true
         --return prof
       end
@@ -1233,13 +1236,21 @@ function Craftie:GetCraftOrders()
       end
     end
 
+    Craftie.Frame.Button.Minimap.Glow:Hide()
     if (order_index >= 1) then
       Craftie.Frame.CraftOrdersDeleteAll:Enable()
+      Craftie.TabBottomOrderAlert:Show()
+      Craftie.IconGlow:Play()
+      Craftie.Frame.Button.Minimap.Glow:Show()
+      C_Timer.After(1, function()
+        print("clear order anim")
+        Craftie.TabBottomOrderAlert:Hide()
+      end)
     end
     Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[2] .. " " .. Craftie.Color.Gold .. "[" .. order_index .. "]")
     Craftie.Frame.CraftOrders:SetAlpha(1)
   end)
-  Craftie:Notification("Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)
+  Craftie:Notification(Craftie.Color.Yellow .. "Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)
 end
 
 --add a timer for parsed data

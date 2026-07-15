@@ -46,7 +46,7 @@ for k,v in pairs(Craftie._L.Navigation) do
   Craftie.TabBottom[k].Highlight:Hide()
 
   Craftie.TabBottom[k].Text = Craftie.TabBottom[k]:CreateFontString(nil, "ARTWORK")
-  Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size-1, "OUTLINE")
+  Craftie.TabBottom[k].Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size-1, "SLUG")
   Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
   Craftie.TabBottom[k].Text:SetWidth(76)
   Craftie.TabBottom[k].Text:SetText(v)
@@ -61,6 +61,16 @@ for k,v in pairs(Craftie._L.Navigation) do
     Craftie.TabBottom[k].Highlight:Hide()
   end)
 end
+
+--tab 2 = orders
+--blizzard's UI is broken, have to draw AFTER and use tab as the parent
+Craftie.TabBottomOrderAlert = Craftie.TabBottom[2]:CreateTexture(nil, "OVERLAY", nil, 7)
+Craftie.TabBottomOrderAlert:SetSize(42, 38)
+Craftie.TabBottomOrderAlert:SetPoint("CENTER", 20, 0)
+Craftie.TabBottomOrderAlert:SetTexture("Interface/UNITPOWERBARALT/PandarenTraining_Circular_Flash")
+Craftie.TabBottomOrderAlert:SetBlendMode("ADD")
+Craftie.TabBottomOrderAlert:SetDrawLayer("OVERLAY", 7)
+Craftie.TabBottomOrderAlert:Hide()
 
 function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.ScrollPlayersParent:Hide()
@@ -79,6 +89,7 @@ function Craftie:TabSelectBottom(tab, sound)
   for k,v in pairs(Craftie._L.Navigation) do
     Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
+    Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
   end
 
   if (tab == 1) then --professions
@@ -114,8 +125,8 @@ function Craftie:TabSelectBottom(tab, sound)
   end
 
   Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Active.png")
-  Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 1, 1)
-  --Craftie.Frame.TitleNavigation:SetText(Craftie._L.Navigation[tab])
+  Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 0.4, 1)
+  Craftie.TabBottom[tab].Text:SetPoint("CENTER", 0, -2)
 end
 
 --first tab

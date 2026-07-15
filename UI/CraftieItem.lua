@@ -344,10 +344,10 @@ Craftie.Frame.ItemReqButton:SetScript("OnClick", function(self)
     local request_msg = "to be crafted"
     Craftie.Frame.ItemReqButton:Disable()
     if (Craftie.Tab == 4) then --enchanting
-      link, spellId = GetSpellLink(Craftie.Frame.Item.ID:GetText())
+      link, _ = GetSpellLink(Craftie.Frame.Item.ID:GetText())
       request_msg = "to be enchanted"
     else
-      name, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
+      _, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
     end
 
     C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. Craftie.Frame.ItemCountEditBox:GetNumber() .. " " .. request_msg, "WHISPER", nil, Craftie.Selected_Name)
