@@ -92,8 +92,9 @@ function Craftie:ClearCraftFrame()
 end
 
 function Craftie:CraftRequestFrame(crafter)
-  Craftie.Frame.ItemRequestParent:Show()
-  --print("CraftRequestFrame: " .. crafter)
+  if ((crafter ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL > 3)) then
+    Craftie.Frame.ItemRequestParent:Show()
+  end
 end
 
 function Craftie:ClearSearchFocus(crafters)

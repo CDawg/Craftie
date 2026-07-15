@@ -416,7 +416,8 @@ local function GameTooltip_OnTooltipSetItem(tooltip)
   end
   if (Craftie.OpenState == 1) then
     tooltip:AddLine(" ")
-    tooltip:AddLine(Craftie.Color.Gray .. "Shift+Click to link in chat")
+    --tooltip:AddDoubleLine(Craftie.Color.Gray .. "Shift + Left Click", Craftie.Color.Gray .. "Link To Chat")
+    tooltip:AddLine(Craftie.Color.Gray .. "Shift + Left Click  |  Link To Chat")
   end
   --[==[
   if ((Craftie.OpenState == 1) and (link_to_chat == 0)) then --only when Craftie is open
