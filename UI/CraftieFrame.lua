@@ -290,21 +290,22 @@ Craftie.Frame.Button.Minimap:SetScript("OnDragStop", function()
 end)
 
 Craftie.Frame.Button.Minimap:SetScript("OnEnter", function(self)
-  GameTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT")
-  GameTooltip:AddDoubleLine(Craftie._G.Title, Craftie.Color.Gray .. "v" .. Craftie._G.Version)
-  GameTooltip:AddDoubleLine(" ", Craftie.Color.Gray .. Craftie.Game.Name)
-  GameTooltip:AddLine(" ")
+  CraftieTooltip:ClearAllPoints()
+  CraftieTooltip:ClearLines()
+  CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMLEFT")
+  CraftieTooltip:AddDoubleLine(Craftie._G.Title, Craftie.Color.Gray .. "v" .. Craftie._G.Version)
+  CraftieTooltip:AddDoubleLine(" ", Craftie.Color.Gray .. Craftie.Game.Name)
+  CraftieTooltip:AddLine(" ")
   for _, tooltip in ipairs(Craftie._L.MMTooltip) do
-    GameTooltip:AddDoubleLine(Craftie.Color.Blue .. tooltip[1], Craftie.Color.White .. tooltip[2])
+    CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. tooltip[1], Craftie.Color.White .. tooltip[2])
   end
-  GameTooltip:Show()
+  CraftieTooltip:Show()
 	Craftie.Frame.Button.Minimap.IconHighlight:Show()
 end)
 Craftie.Frame.Button.Minimap:SetScript("OnLeave", function(self)
-  GameTooltip:Hide()
+  CraftieTooltip:Hide()
   Craftie.Frame.Button.Minimap.IconHighlight:Hide()
 end)
-
 Craftie.Frame.Button.Minimap:SetScript("OnClick", function(self, button)
   if (button == "LeftButton") then
     if (Craftie.OpenState == 1) then
@@ -312,11 +313,18 @@ Craftie.Frame.Button.Minimap:SetScript("OnClick", function(self, button)
     else
       Craftie:Open()
     end
+    if (IsShiftKeyDown()) then
+      Settings.OpenToCategory(Craftie.Options.Category:GetID())
+      Craftie.Frame:Hide()
+      CraftieTooltip:Hide()
+    end
   end
+  --[==[
   if (button == "RightButton") then
     Settings.OpenToCategory(Craftie.Options.Category:GetID())
     Craftie.Frame:Hide()
   end
+  ]==]--
 end)
 
 CraftieDialog={}

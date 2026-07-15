@@ -136,27 +136,47 @@ end
 CraftieTooltip = {}
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
 CraftieTooltip:SetFrameLevel(800)
---[==[
 CraftieTooltip:HookScript("OnShow", function(self)
-  --print("CraftieTooltip:GetHeight() " .. CraftieTooltip:GetHeight())
-  --print("tooltip add art")
-  CraftieTooltipArtTop:Show()
-  CraftieTooltipArtBot:Show()
+  CraftieTooltipArtTL:Show()
+  CraftieTooltipArtTR:Show()
+  CraftieTooltipArtBL:Show()
+  CraftieTooltipArtBR:Show()
+  if (CraftieTooltip:GetHeight() <= 40) then
+    CraftieTooltipArtTL:Hide()
+    CraftieTooltipArtTR:Hide()
+    CraftieTooltipArtBL:Hide()
+    CraftieTooltipArtBR:Hide()
+  end
 end)
-]==]--
+CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
 CraftieTooltipArtTop = CraftieTooltip:CreateTexture(nil, "ARTWORK")
-CraftieTooltipArtTop:SetSize(45, 10)
-CraftieTooltipArtTop:SetPoint("TOP", 0, 8)
+CraftieTooltipArtTop:SetSize(50, 12)
+CraftieTooltipArtTop:SetPoint("TOP", 0, 9)
 CraftieTooltipArtTop:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-Art.png")
---CraftieTooltipArtTop:Hide()
 CraftieTooltipArtBot = CraftieTooltip:CreateTexture(nil, "ARTWORK")
-CraftieTooltipArtBot:SetSize(45, 10)
-CraftieTooltipArtBot:SetPoint("BOTTOM", 0, -8)
+CraftieTooltipArtBot:SetSize(50, 12)
+CraftieTooltipArtBot:SetPoint("BOTTOM", 0, -9)
 CraftieTooltipArtBot:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-Art.png")
 CraftieTooltipArtBot:SetRotation(-math.pi)
---CraftieTooltipArtBot:Hide()
---:SetRotation(-math.pi)
-
+CraftieTooltipArtTL = CraftieTooltip:CreateTexture(nil, "ARTWORK")
+CraftieTooltipArtTL:SetSize(12, 12)
+CraftieTooltipArtTL:SetPoint("TOPLEFT", 1, 0)
+CraftieTooltipArtTL:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-ArtCorner.png")
+CraftieTooltipArtTR = CraftieTooltip:CreateTexture(nil, "ARTWORK")
+CraftieTooltipArtTR:SetSize(12, 12)
+CraftieTooltipArtTR:SetPoint("TOPRIGHT", 0, 0)
+CraftieTooltipArtTR:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-ArtCorner.png")
+CraftieTooltipArtTR:SetRotation(-math.pi/2)
+CraftieTooltipArtBL = CraftieTooltip:CreateTexture(nil, "ARTWORK")
+CraftieTooltipArtBL:SetSize(12, 12)
+CraftieTooltipArtBL:SetPoint("BOTTOMLEFT", 0, 0)
+CraftieTooltipArtBL:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-ArtCorner.png")
+CraftieTooltipArtBL:SetRotation(math.pi/2)
+CraftieTooltipArtBR = CraftieTooltip:CreateTexture(nil, "ARTWORK")
+CraftieTooltipArtBR:SetSize(12, 12)
+CraftieTooltipArtBR:SetPoint("BOTTOMRIGHT", -1, 0)
+CraftieTooltipArtBR:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-ArtCorner.png")
+CraftieTooltipArtBR:SetRotation(math.pi)
 for i = 1, 30 do
   --local header=_G["GameTooltipHeaderText"..1]
   local header = _G["CraftieTooltipTextLeft"..1] --first line
@@ -176,7 +196,16 @@ for i = 1, 30 do
     right:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+1, flags)
   end
 end
-CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
+
+--CraftieItemTooltip = CreateFrame("ItemRefTooltip", "CraftieItemTooltip", UIParent, "ItemRefTooltip")
+
+--[==[
+if (Craftie.Frame:IsShown()) then
+    CraftieTooltip:Hide()
+    CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
+    CraftieTooltip:SetHyperlink(link)
+    CraftieTooltip:Show()
+]==]--
 
 Craftie.GuildFrameUsing = 1
 Craftie.GuildRosterTooltipHooked = false
