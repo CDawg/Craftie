@@ -135,6 +135,28 @@ end
 ---@type GameTooltip
 CraftieTooltip = {}
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
+CraftieTooltip:SetFrameLevel(800)
+--[==[
+CraftieTooltip:HookScript("OnShow", function(self)
+  --print("CraftieTooltip:GetHeight() " .. CraftieTooltip:GetHeight())
+  --print("tooltip add art")
+  CraftieTooltipArtTop:Show()
+  CraftieTooltipArtBot:Show()
+end)
+]==]--
+CraftieTooltipArtTop = CraftieTooltip:CreateTexture(nil, "ARTWORK")
+CraftieTooltipArtTop:SetSize(45, 10)
+CraftieTooltipArtTop:SetPoint("TOP", 0, 8)
+CraftieTooltipArtTop:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-Art.png")
+--CraftieTooltipArtTop:Hide()
+CraftieTooltipArtBot = CraftieTooltip:CreateTexture(nil, "ARTWORK")
+CraftieTooltipArtBot:SetSize(45, 10)
+CraftieTooltipArtBot:SetPoint("BOTTOM", 0, -8)
+CraftieTooltipArtBot:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Tooltip-Art.png")
+CraftieTooltipArtBot:SetRotation(-math.pi)
+--CraftieTooltipArtBot:Hide()
+--:SetRotation(-math.pi)
+
 for i = 1, 30 do
   --local header=_G["GameTooltipHeaderText"..1]
   local header = _G["CraftieTooltipTextLeft"..1] --first line
