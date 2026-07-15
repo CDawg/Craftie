@@ -120,31 +120,31 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
-      Craftie:ResetCrafterBuild()
+      Craftie:CrafterBuildReset()
     end
 
     if (event == "LEARNED_SPELL_IN_SKILL_LINE") then
       --check if we learned a new proffession
-      Craftie:GetEntryProfessions()
+      Craftie:GetProfessionEntry()
     end
 
     if ((event == "TRADE_SKILL_SHOW") or (event == "CRAFT_SHOW")) then
       if (not Craftie.IsInCombat) then
-        local useCraftAPI = false
+        local isEnchanting = false
         local profName, profLevel = GetTradeSkillLine()
         if ((not profName) or (profName == "UNKNOWN")) and GetCraftDisplaySkillLine then
           profName, profLevel = GetCraftDisplaySkillLine()
-          useCraftAPI = true
+          isEnchanting = true
         elseif ((not profName) or (profName == "UNKNOWN")) and GetCraftSkillLine then
           profName = GetCraftSkillLine(1)
-          useCraftAPI = true
+          isEnchanting = true
         end
 
         if (profName and profName ~= "UNKNOWN") then
           profLevel = profLevel or 0
           for k,v in pairs(Craftie.Professions) do
             if (profName == v[1]) then --ignore non prio profs like fishing, etc.
-              Craftie:CrafterBuildData(profName, profLevel, useCraftAPI) --throttle by recipebook
+              Craftie:CrafterBuildData(profName, profLevel, isEnchanting) --throttle by recipebook
               if (Craftie.Throttle.Prof.Flag == 1) then
                 Craftie.Throttle.Prof.Flag = 0
                 C_Timer.After(1, function()
@@ -155,7 +155,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
                 end)
                 C_Timer.After(Craftie.Throttle.Prof.Timer, function()
                   Craftie.Throttle.Prof.Flag = 1
-                  Craftie:ResetCrafterBuild()
+                  Craftie:CrafterBuildReset()
                 end)
               end
               break

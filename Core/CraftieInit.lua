@@ -78,7 +78,7 @@ function Craftie:Init()
         end)
       end
     end
-    Craftie:GetEntryProfessions()
+    Craftie:GetProfessionEntry()
     Craftie:LoadOptions()
 
     --[==[

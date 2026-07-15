@@ -404,7 +404,7 @@ end
 
 Craftie.MyProfessions = {}
 Craftie.MyProfessionEntry={}
-function Craftie:GetEntryProfessions()
+function Craftie:GetProfessionEntry()
   --local new_prof = false
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for i = 1, GetNumSpellTabs() do
@@ -444,7 +444,7 @@ function Craftie:GetEntryProfessions()
     new_prof = false
   end
   ]==]--
-  Craftie:Notification("Craftie:GetEntryProfessions(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
+  Craftie:Notification("Craftie:GetProfessionEntry(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
 end
 
 --[==[
@@ -804,12 +804,12 @@ function Craftie:AlphaSortProfessionLib()
 end
 
 Craftie.ProfileBuilt = {} --need to reset when learning a new recipe
-function Craftie:ResetCrafterBuild()
+function Craftie:CrafterBuildReset()
   --clear all profession flags
   for k,v in pairs(Craftie.Professions) do
     Craftie.ProfileBuilt[v[1]] = 0
   end
-  Craftie:Notification(Craftie.Color.Lime .. "Craftie:ResetCrafterBuild()", Craftie.CHAT.FUNC)
+  Craftie:Notification(Craftie.Color.Lime .. "Craftie:CrafterBuildReset()", Craftie.CHAT.FUNC)
 end
 
 --Craftie.Throttle.Prof.Flag
