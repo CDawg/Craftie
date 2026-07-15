@@ -447,18 +447,6 @@ function Craftie:GetProfessionEntry()
   Craftie:Notification("Craftie:GetProfessionEntry(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
 end
 
---[==[
-Cooking	2550
-Alchemy	2259
-Blacksmithing	2018
-Enchanting	7411
-Engineering	4036
-Leatherworking	2108
-Tailoring	3908
-First Aid	3273
-Fishing	7620
-]==]--
-
 ---@class TradeSkillFrame
 function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then

@@ -164,22 +164,23 @@ Craftie.Class = {
 Craftie.PROFMAXLEVEL = 300
 Craftie.Profession={}
 Craftie.Professions = {
-  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmutation Master"}},
-  {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48", {"Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"}},
-  {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13", {}},
-  {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83", {}},
-  {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25", {"Gnomish Engineer", "Goblin Engineer"}},
-  {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale Leatherworking", "Elemental Leatherworking", "Tribal Leatherworking"}},
-  {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"}},
+  --name, icon, color, mastery, id, spell
+  {"Alchemy",        "Trade_Alchemy",        "0.72, 0.80, 0.19", {"Elixir Master", "Potion Master", "Transmutation Master"}, 171, 2559},
+  {"Blacksmithing",  "Trade_BlackSmithing",  "0.60, 0.54, 0.48", {"Armorsmith", "Weaponsmith", "Master Swordsmith", "Master Hammersmith", "Master Axesmith"}, 164, 2018},
+  {"Cooking",        "INV_Misc_Food_15",     "0.88, 0.44, 0.13", {}, 184, 2550},
+  {"Enchanting",     "Trade_Engraving",      "0.73, 0.33, 0.83", {}, 333, 7411},
+  {"Engineering",    "Trade_Engineering",    "0.91, 0.75, 0.25", {"Gnomish Engineer", "Goblin Engineer"}, 202, 4036},
+  {"Leatherworking", "Trade_LeatherWorking", "0.76, 0.63, 0.42", {"Dragonscale Leatherworking", "Elemental Leatherworking", "Tribal Leatherworking"}, 165, 2108},
+  {"Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"}, 197, 3908},
 }
 
 if (Craftie.Game.Version >= 2) then
   Craftie.PROFMAXLEVEL = 375
-  table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}})
+  table.insert(Craftie.Professions, {"Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}, 755, 25229})
 end
 if (Craftie.Game.Version >= 3) then
   Craftie.PROFMAXLEVEL = 450
-  table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}})
+  table.insert(Craftie.Professions, {"Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}, 773, 45357})
 end
 
 Craftie.ProfessionMasteries = {
