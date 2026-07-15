@@ -476,7 +476,7 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie.TipGlow[tab]:Stop()
     Craftie.Frame.TabSide[tab].Tip:Hide()
     Craftie.ProfessionDefault = Craftie.Profession[prof_name]
-    Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundart" .. prof_name:lower() .. ".png")
+    Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/Backgrounds/professionbackgroundart" .. prof_name:lower() .. ".png")
 
     --we have no build yet
     for k,v in pairs(Craftie.MyProfessionEntry) do

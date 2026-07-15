@@ -50,7 +50,7 @@ Craftie.UpdatesScrollFrameBack = Craftie.UpdatesScrollFrame:CreateTexture(nil, "
 Craftie.UpdatesScrollFrameBack:SetWidth(Craftie.UpdatesScrollFrame:GetWidth())
 Craftie.UpdatesScrollFrameBack:SetHeight(Craftie.UpdatesScrollFrame:GetHeight())
 Craftie.UpdatesScrollFrameBack:SetPoint("TOPLEFT", 0, 0)
-Craftie.UpdatesScrollFrameBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.UpdatesScrollFrameBack:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
 Craftie.UpdatesScrollFrameBack:SetDesaturation(0.3)
 
 Craftie.UpdatesScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.UpdatesScrollFrame.Child", Craftie.UpdatesScrollFrame, "UIPanelScrollFrameTemplate")
@@ -96,7 +96,7 @@ Craftie.CreditsScrollFrameBack = Craftie.CreditsScrollFrame:CreateTexture(nil, "
 Craftie.CreditsScrollFrameBack:SetWidth(Craftie.CreditsScrollFrame:GetWidth())
 Craftie.CreditsScrollFrameBack:SetHeight(Craftie.CreditsScrollFrame:GetHeight())
 Craftie.CreditsScrollFrameBack:SetPoint("TOPLEFT", 0, 0)
-Craftie.CreditsScrollFrameBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.CreditsScrollFrameBack:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
 Craftie.CreditsScrollFrameBack:SetDesaturation(0.3)
 
 Craftie.CreditsScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.CreditsScrollFrame.Child", Craftie.CreditsScrollFrame, "UIPanelScrollFrameTemplate")

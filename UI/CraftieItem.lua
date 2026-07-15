@@ -270,7 +270,7 @@ Craftie.Frame.ItemBackBotArt = Craftie.Frame.ItemBackBot:CreateTexture(nil, "BAC
 Craftie.Frame.ItemBackBotArt:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
 Craftie.Frame.ItemBackBotArt:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())
 Craftie.Frame.ItemBackBotArt:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.ItemBackBotArt:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.Frame.ItemBackBotArt:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
 Craftie.Frame.ItemBackBotArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.ItemBackBotArt:SetDesaturation(0.3)
 ]==]--

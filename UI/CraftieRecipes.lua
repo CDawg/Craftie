@@ -27,7 +27,7 @@ Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
 Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ScrollRecipesParent.Back:SetSize(Craftie.Frame.ScrollRecipesParent:GetWidth(), Craftie.Frame.ScrollRecipesParent:GetHeight())
 Craftie.Frame.ScrollRecipesParent.Back:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Recipes.png")
+Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Recipes.png")
 
 Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesList", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.ScrollRecipesList:SetWidth(dimensions.W-5)
@@ -242,7 +242,7 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListBack[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollRecipesListBack[i]:SetSize(Craftie.Frame.ScrollRecipesListRow[i]:GetWidth(), Craftie.Frame.ScrollRecipesListRow[i]:GetHeight())
   Craftie.Frame.ScrollRecipesListBack[i]:SetPoint("TOPLEFT", 0, 0)
-  Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row1.png")
   Craftie.Frame.ScrollRecipesListBack[i]:SetAlpha(0.7)
   Craftie.Frame.ScrollRecipesListBack[i]:SetVertexColor(1, 0.8, 0.5)
 
@@ -283,9 +283,9 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListVersion[i]:Hide()
 
   if (i % 2 == 0) then
-    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
+    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row2.png")
   end
   if (i % 4 == 0) then
-    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row4.png")
+    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row4.png")
   end
 end

@@ -51,7 +51,7 @@ Craftie.Frame.CraftOrdersBackTopArt = Craftie.Frame.CraftOrdersBackTop:CreateTex
 Craftie.Frame.CraftOrdersBackTopArt:SetWidth(Craftie.Frame.CraftOrdersBackTop:GetWidth())
 Craftie.Frame.CraftOrdersBackTopArt:SetHeight(Craftie.Frame.CraftOrdersBackTop:GetHeight())
 Craftie.Frame.CraftOrdersBackTopArt:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.CraftOrdersBackTopArt:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.Frame.CraftOrdersBackTopArt:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
 --Craftie.Frame.CraftOrdersBackTopArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.CraftOrdersBackTopArt:SetDesaturation(0.3)
 
@@ -226,7 +226,7 @@ function Craftie:BuildRowOrder(i)
   Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())
   Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
-  Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row1.png")
   Craftie.Frame.ScrollOrderListBack[i]:SetVertexColor(1, 0.8, 0.5)
   Craftie.Frame.ScrollOrderListBack[i]:SetAlpha(0.5)
 
@@ -319,10 +319,10 @@ function Craftie:BuildRowOrder(i)
   Craftie.Frame.ScrollOrderListSelect[i]:Hide()
 
   if (i % 2 == 0) then
-    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
+    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row2.png")
   end
   if (i % 4 == 0) then
-    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row4.png")
+    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row4.png")
   end
 end
 

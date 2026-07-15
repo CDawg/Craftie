@@ -27,7 +27,7 @@ Craftie.Frame.ScrollPlayersParent:SetFrameStrata("MEDIUM")
 Craftie.Frame.ScrollPlayersParent.Back = Craftie.Frame.ScrollPlayersParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ScrollPlayersParent.Back:SetSize(Craftie.Frame.ScrollPlayersParent:GetWidth(), Craftie.Frame.ScrollPlayersParent:GetHeight())
 Craftie.Frame.ScrollPlayersParent.Back:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.ScrollPlayersParent.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Shadow.png")
+Craftie.Frame.ScrollPlayersParent.Back:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
 Craftie.Frame.ScrollPlayersParent.Back:SetVertexColor(.3, .4, .8)
 
 Craftie.Frame.ScrollPlayersList = CreateFrame("Frame", "Craftie.Frame.ScrollPlayersList", Craftie.Frame.ScrollPlayersParent, "BackdropTemplate")
@@ -238,7 +238,7 @@ function Craftie:BuildRowCrafter(i)
   Craftie.Frame.ScrollPlayersListBack[i] = Craftie.Frame.ScrollPlayersListRow[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollPlayersListBack[i]:SetSize(Craftie.Frame.ScrollPlayersListCont[i]:GetWidth(), Craftie.Frame.ScrollPlayersListRow[i]:GetHeight())
   Craftie.Frame.ScrollPlayersListBack[i]:SetPoint("TOPLEFT", 0, 0)
-  Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row1.png")
   --Craftie.Frame.ScrollPlayersListBack[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollPlayersListBack[i]:SetAlpha(0.5)
 
@@ -300,10 +300,10 @@ function Craftie:BuildRowCrafter(i)
   Craftie.Frame.ScrollPlayersListFav[i]:Hide()
 
   if (i % 2 == 0) then
-    Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row2.png")
+    Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row2.png")
   end
   if (i % 4 == 0) then
-    Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Background-Row4.png")
+    Craftie.Frame.ScrollPlayersListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row4.png")
   end
   Craftie.Frame.ScrollPlayersListCont[i]:SetScript("OnEnter", function(self)
     if (Craftie.EnableScrollFrames) then
