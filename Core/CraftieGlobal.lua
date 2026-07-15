@@ -18,7 +18,7 @@ Craftie._G = {
   Width  = 860,
   Height = 500,
   Update = 20260908,
-  Icon   = "UI-Craftie-Icon",
+  Icon   = "Icons/UI-Craftie-Icon",
   Author = "Porthias",
 }
 

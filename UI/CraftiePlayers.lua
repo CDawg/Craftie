@@ -274,17 +274,6 @@ function Craftie:BuildRowCrafter(i)
   Craftie.Frame.ScrollPlayersListSelect[i]:SetAlpha(0.6)
   Craftie.Frame.ScrollPlayersListSelect[i]:Hide()
 
-  --[==[
-  Craftie.Frame.ScrollPlayersListHighlight[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "BACKGROUND")
-  Craftie.Frame.ScrollPlayersListHighlight[i]:SetSize(Craftie.Frame.ScrollPlayersListCont[i]:GetWidth()-4, Craftie.Frame.ScrollPlayersListCont[i]:GetHeight())
-  Craftie.Frame.ScrollPlayersListHighlight[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollPlayersListHighlight[i]:SetTexture(Craftie._G.Path ..  "Images/UI-Craftie-Row-Highlight.png")
-  Craftie.Frame.ScrollPlayersListHighlight[i]:SetBlendMode("ADD")
-  --Craftie.Frame.ScrollPlayersListHighlight[i]:SetVertexColor(0.60, 0.80, 0.94)
-  Craftie.Frame.ScrollPlayersListHighlight[i]:SetAlpha(0.6)
-  Craftie.Frame.ScrollPlayersListHighlight[i]:Hide()
-  ]==]--
-
   Craftie.Frame.ScrollPlayersListNet[i] = Craftie.Frame.ScrollPlayersListCont[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollPlayersListNet[i]:SetSize(10, 10)
   Craftie.Frame.ScrollPlayersListNet[i]:SetPoint("TOPLEFT", 20, -6)

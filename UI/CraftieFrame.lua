@@ -258,7 +258,7 @@ Craftie.Frame.Button.Minimap.IconHighlight:SetTexture(Craftie._G.Path .. "Images
 Craftie.Frame.Button.Minimap.IconHighlight:SetAlpha(0.6)
 Craftie.Frame.Button.Minimap.IconHighlight:Hide()
 Craftie.Frame.Button.Minimap.Glow = Craftie.Frame.Button.Minimap:CreateTexture(nil, "BORDER")
-Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+10, Craftie.Frame.Button.Minimap:GetHeight()+10)
+Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+20, Craftie.Frame.Button.Minimap:GetHeight()+20)
 Craftie.Frame.Button.Minimap.Glow:SetPoint("CENTER", 0, 0)
 Craftie.Frame.Button.Minimap.Glow:SetTexture("Interface/UNITPOWERBARALT/PandarenTraining_Circular_Flash")
 Craftie.Frame.Button.Minimap.Glow:SetBlendMode("ADD")

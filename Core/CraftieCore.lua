@@ -399,7 +399,7 @@ function Craftie:AlertIcon(tab)
   Craftie.Alert.NewProf = 1
   end)
   C_Timer.After(2, function()
-    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+10, Craftie.Frame.Button.Minimap:GetHeight()+10)
+    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+20, Craftie.Frame.Button.Minimap:GetHeight()+20)
   end)
   Craftie:Notification("Craftie:AlertIcon(tab) = " .. tab, Craftie.CHAT.FUNC)
 end
@@ -439,15 +439,7 @@ function Craftie:GetProfessionEntry()
       end
     end
   end
-  --[==[
-  if (new_prof) then
-    Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+400, Craftie.Frame.Button.Minimap:GetHeight()+400)
-    C_Timer.After(1, function()
-      Craftie.Frame.Button.Minimap.Glow:SetSize(Craftie.Frame.Button.Minimap:GetWidth()+10, Craftie.Frame.Button.Minimap:GetHeight()+10)
-    end)
-    new_prof = false
-  end
-  ]==]--
+
   Craftie:Notification("Craftie:GetProfessionEntry(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
 end
 
@@ -486,11 +478,11 @@ function Craftie:TabSelectSide(tab, sound)
         C_Timer.After(2, function()
           Craftie:UpdateCrafterList()
           Craftie.MyProfessionEntry[k] = nil
+          Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. v .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. v .. " in any chat", Craftie.CHAT.INFO)
         end)
         C_Timer.After(0.03, function()
           if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
             HideUIPanel(TradeSkillFrame)
-            Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. v .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link " .. v .. " in any chat", Craftie.CHAT.INFO)
           end
         end)
       end
