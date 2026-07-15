@@ -28,6 +28,7 @@ function Craftie:PacketSend(prefix, data, channel, target)
     Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Lime .. target, Craftie.CHAT.SEND)
   else
     C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
+    if (channel == "YELL") then channel = "LOCAL" end
     Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Yellow .. channel, Craftie.CHAT.SEND)
   end
   --Craftie:Notification("Prefix: " .. prefix, Craftie.CHAT.FUNC)
