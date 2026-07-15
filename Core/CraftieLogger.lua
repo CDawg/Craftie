@@ -117,7 +117,7 @@ Craftie.Logger.ScrollFrame={}
 Craftie.Logger.ScrollFrame = CreateFrame("Frame", "Craftie.Logger.ScrollFrame", Craftie.Logger, "BackdropTemplate")
 Craftie.Logger.ScrollFrame:SetWidth(Craftie.Logger:GetWidth()-10)
 Craftie.Logger.ScrollFrame:SetHeight(Craftie.Logger:GetHeight()-240)
-Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 0, -90)
+Craftie.Logger.ScrollFrame:SetPoint("TOPLEFT", 0, -86)
 Craftie.Logger.ScrollFrame:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Logger.ScrollFrame:SetBackdropColor(1, 0, 0, 0)
 Craftie.Logger.ScrollFrame:SetBackdropBorderColor(1, 1, 1, 0)
@@ -139,7 +139,7 @@ local columns = {
   {"ID",   60,  0,   {1, 1, 0.8, 0.4}, 1},
   {"Date", 100, 60,  {1, 1, 0.7, 0.8}, 1},
   {"Type", 110, 160, {}, 1},
-  {"Log",  500, 270, {}, 0},
+  {"Log",  495, 270, {}, 0},
 }
 local column = {
   H = 28,
@@ -369,10 +369,20 @@ function Craftie.Logger.SortTypeDesc()
   end
 end
 
+Craftie.Logger.Header = CreateFrame("Frame", "Craftie.Logger.ScrollFrame", Craftie.Logger, "InsetFrameTemplate4", -4)
+Craftie.Logger.Header:SetWidth(Craftie.Logger:GetWidth()-6)
+Craftie.Logger.Header:SetHeight(46)
+Craftie.Logger.Header:SetPoint("TOPLEFT", 2, -22)
+
+Craftie.Logger.ScrollBorder = CreateFrame("Frame", "Craftie.Logger.ScrollFrame", Craftie.Logger, "InsetFrameTemplate4", -4)
+Craftie.Logger.ScrollBorder:SetWidth(Craftie.Logger:GetWidth()-6)
+Craftie.Logger.ScrollBorder:SetHeight(Craftie.Logger:GetHeight()-218)
+Craftie.Logger.ScrollBorder:SetPoint("TOPLEFT", 2, -68)
+
 Craftie.Logger.DetailsFrame = CreateFrame("Frame", "Craftie.Logger.DetailsFrame", Craftie.Logger, "InsetFrameTemplate4")
 Craftie.Logger.DetailsFrame:SetWidth(Craftie.Logger.DetailsFrame:GetParent():GetWidth()-6)
-Craftie.Logger.DetailsFrame:SetHeight(152)
-Craftie.Logger.DetailsFrame:SetPoint("TOPLEFT", 2, -396)
+Craftie.Logger.DetailsFrame:SetHeight(150)
+Craftie.Logger.DetailsFrame:SetPoint("TOPLEFT", 2, -398)
 
 Craftie.Logger.Output = CreateFrame("EditBox", "Craftie.Logger.Output", Craftie.Logger.DetailsFrame)
 Craftie.Logger.Output:SetWidth(Craftie.Logger.DetailsFrame:GetWidth()-30)
