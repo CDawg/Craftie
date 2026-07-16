@@ -53,6 +53,13 @@ Craftie._G.Image = {
     Clear = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Search-Clear.png",
     Delete= Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Delete.png",
   },
+  Scrollbar = {
+    Slider= Craftie._G.Path .. "Images/UI-Craftie-Scroll-Slider.png",
+    Back  = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Back.png",
+    End   = Craftie._G.Path .. "Images/UI-Craftie-Scroll-End.png",
+    Up    = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Up.png",
+    Down  = Craftie._G.Path .. "Images/UI-Craftie-Scroll-Dn.png"
+  }
 }
 
 --static
