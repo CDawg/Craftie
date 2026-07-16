@@ -49,8 +49,7 @@ Craftie.Frame.CraftBackTopArt = Craftie.Frame.CraftBackTop:CreateTexture(nil, "B
 Craftie.Frame.CraftBackTopArt:SetWidth(Craftie.Frame.CraftBackTop:GetWidth())
 Craftie.Frame.CraftBackTopArt:SetHeight(Craftie.Frame.CraftBackTop:GetHeight())
 Craftie.Frame.CraftBackTopArt:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Path .. "Images/professionbackgroundartalchemy.png")
---Craftie.Frame.CraftBackTopArt:SetVertexColor(.8, .8, .8) --darker
+Craftie.Frame.CraftBackTopArt:SetTexture("")
 Craftie.Frame.CraftBackTopArt:SetDesaturation(0.3)
 
 Craftie.Frame.Item = {}
@@ -76,7 +75,7 @@ CRAFT MAIN ITEM
 Craftie.Frame.Item.Back = Craftie.Frame.Item:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.Item.Back:SetSize(332, 50)
 Craftie.Frame.Item.Back:SetPoint("TOPLEFT", -4, 6)
-Craftie.Frame.Item.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Craft-Toast.png")
+Craftie.Frame.Item.Back:SetTexture(Craftie._G.Image.Background.Toast)
 
 Craftie.Frame.Item.Icon = Craftie.Frame.Item:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Item.Icon:SetSize(35, 35)
@@ -180,7 +179,7 @@ for i=1, Craftie.MAX_REAGENTS do
   Craftie.Frame.Reagent.BorderGlow[i] = Craftie.Frame.Reagent.Border[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.Reagent.BorderGlow[i]:SetSize(Craftie.Frame.Reagent.Border[i]:GetWidth()-4, Craftie.Frame.Reagent.Border[i]:GetHeight()-4)
   Craftie.Frame.Reagent.BorderGlow[i]:SetPoint("TOPLEFT", 2, -2)
-  Craftie.Frame.Reagent.BorderGlow[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Reagent-Border-Glow.png")
+  Craftie.Frame.Reagent.BorderGlow[i]:SetTexture(Craftie._G.Image.Button.Glow)
   Craftie.Frame.Reagent.BorderGlow[i]:SetAlpha(0.6)
   Craftie.Frame.Reagent.BorderGlow[i]:Hide()
   Craftie.Frame.Reagent.Icon[i] = Craftie.Frame.Reagent.Main[i]:CreateTexture(nil, "ARTWORK")
@@ -265,15 +264,6 @@ Craftie.Frame.ItemBackBot:SetPoint("TOPRIGHT", 0, -dimensions.request.Y)
 Craftie.Frame.ItemBackBot:SetBackdrop(Craftie.Backdrop.General)
 Craftie.Frame.ItemBackBot:SetBackdropColor(0, 1, 0, 0)
 Craftie.Frame.ItemBackBot:SetBackdropBorderColor(0.5, 0.5, 0.48, 1)
---[==[
-Craftie.Frame.ItemBackBotArt = Craftie.Frame.ItemBackBot:CreateTexture(nil, "BACKGROUND")
-Craftie.Frame.ItemBackBotArt:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
-Craftie.Frame.ItemBackBotArt:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())
-Craftie.Frame.ItemBackBotArt:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.ItemBackBotArt:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
-Craftie.Frame.ItemBackBotArt:SetVertexColor(.8, .8, .8) --darker
-Craftie.Frame.ItemBackBotArt:SetDesaturation(0.3)
-]==]--
 Craftie.Frame.ItemRequestParent = CreateFrame("Frame", "Craftie.Frame.ItemRequestParent", Craftie.Frame.CraftParent, "BackdropTemplate", 5)
 Craftie.Frame.ItemRequestParent:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
 Craftie.Frame.ItemRequestParent:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())

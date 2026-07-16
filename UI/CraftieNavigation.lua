@@ -35,7 +35,7 @@ for k,v in pairs(Craftie._L.Navigation) do
   Craftie.TabBottom[k].BG = Craftie.TabBottom[k]:CreateTexture(nil, "BACKGROUND")
   Craftie.TabBottom[k].BG:SetSize(Craftie.TabBottom[k]:GetWidth(), 44)
   Craftie.TabBottom[k].BG:SetPoint("CENTER", 0, -4)
-  Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
+  Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Image.Tab.Inactive)
   Craftie.TabBottom[k].Highlight = Craftie.TabBottom[k]:CreateTexture(nil, "BORDER")
   Craftie.TabBottom[k].Highlight:SetSize(Craftie.TabBottom[k]:GetWidth()-4, 18)
   Craftie.TabBottom[k].Highlight:SetPoint("CENTER", 0, -2)
@@ -87,7 +87,7 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.CrafterProgBarS:Hide()
 
   for k,v in pairs(Craftie._L.Navigation) do
-    Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Inactive.png")
+    Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Image.Tab.Inactive)
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
     Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
   end
@@ -124,7 +124,7 @@ function Craftie:TabSelectBottom(tab, sound)
     Craftie:TimerAnim(Craftie.Frame.TabBar, 1)
   end
 
-  Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Path .. "Images/UI-CraftieBottomTab-Active.png")
+  Craftie.TabBottom[tab].BG:SetTexture(Craftie._G.Image.Tab.Active)
   Craftie.TabBottom[tab].Text:SetTextColor(1, 1, 0.4, 1)
   Craftie.TabBottom[tab].Text:SetPoint("CENTER", 0, -2)
 end

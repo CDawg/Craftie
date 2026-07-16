@@ -51,7 +51,7 @@ Craftie.Frame.CraftOrdersBackTopArt = Craftie.Frame.CraftOrdersBackTop:CreateTex
 Craftie.Frame.CraftOrdersBackTopArt:SetWidth(Craftie.Frame.CraftOrdersBackTop:GetWidth())
 Craftie.Frame.CraftOrdersBackTopArt:SetHeight(Craftie.Frame.CraftOrdersBackTop:GetHeight())
 Craftie.Frame.CraftOrdersBackTopArt:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.CraftOrdersBackTopArt:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
+Craftie.Frame.CraftOrdersBackTopArt:SetTexture(Craftie._G.Image.Background.Shadow)
 --Craftie.Frame.CraftOrdersBackTopArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.CraftOrdersBackTopArt:SetDesaturation(0.3)
 
@@ -85,7 +85,7 @@ Craftie.Frame.CraftOrdersDeleteAll:SetFrameStrata("MEDIUM")
 Craftie.Frame.CraftOrdersDeleteAll.icon = Craftie.Frame.CraftOrdersDeleteAll:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.CraftOrdersDeleteAll.icon:SetSize(12, 12)
 Craftie.Frame.CraftOrdersDeleteAll.icon:SetPoint("CENTER", 0, -1)
-Craftie.Frame.CraftOrdersDeleteAll.icon:SetTexture(Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Delete.png")
+Craftie.Frame.CraftOrdersDeleteAll.icon:SetTexture(Craftie._G.Image.Button.Delete)
 Craftie.Frame.CraftOrdersDeleteAll:SetScript("OnEnter", function(self)
   CraftieTooltip:ClearLines()
   CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT", 20)
@@ -198,7 +198,7 @@ function Craftie:BuildRowOrder(i)
   Craftie.Frame.ScrollOrderListDelete[i].icon = Craftie.Frame.ScrollOrderListDelete[i]:CreateTexture(nil, "ARTWORK")
   Craftie.Frame.ScrollOrderListDelete[i].icon:SetSize(12, 12)
   Craftie.Frame.ScrollOrderListDelete[i].icon:SetPoint("CENTER", 0, -1)
-  Craftie.Frame.ScrollOrderListDelete[i].icon:SetTexture(Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Delete.png")
+  Craftie.Frame.ScrollOrderListDelete[i].icon:SetTexture(Craftie._G.Image.Button.Delete)
   Craftie.Frame.ScrollOrderListDelete[i]:Hide()
   Craftie.Frame.ScrollOrderListDelete[i]:SetScript("OnEnter", function(self)
     local requester = Craftie.Frame.ScrollOrderListName[i]:GetText()
@@ -226,7 +226,7 @@ function Craftie:BuildRowOrder(i)
   Craftie.Frame.ScrollOrderListBack[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollOrderListBack[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())
   Craftie.Frame.ScrollOrderListBack[i]:SetPoint("TOPLEFT", 0, 0)
-  Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Image.Row[1])
   Craftie.Frame.ScrollOrderListBack[i]:SetVertexColor(1, 0.8, 0.5)
   Craftie.Frame.ScrollOrderListBack[i]:SetAlpha(0.5)
 
@@ -317,17 +317,17 @@ function Craftie:BuildRowOrder(i)
   Craftie.Frame.ScrollOrderListSelect[i] = Craftie.Frame.ScrollOrderListRow[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollOrderListSelect[i]:SetSize(Craftie.Frame.ScrollOrderListRow[i]:GetWidth(), Craftie.Frame.ScrollOrderListRow[i]:GetHeight())
   Craftie.Frame.ScrollOrderListSelect[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollOrderListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select.png")
+  Craftie.Frame.ScrollOrderListSelect[i]:SetTexture(Craftie._G.Image.Row.Select)
   Craftie.Frame.ScrollOrderListSelect[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollOrderListSelect[i]:SetVertexColor(0.70, 0.70, 0.56)
   Craftie.Frame.ScrollOrderListSelect[i]:SetAlpha(0.5)
   Craftie.Frame.ScrollOrderListSelect[i]:Hide()
 
   if (i % 2 == 0) then
-    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row2.png")
+    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Image.Row[2])
   end
   if (i % 4 == 0) then
-    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row4.png")
+    Craftie.Frame.ScrollOrderListBack[i]:SetTexture(Craftie._G.Image.Row[3])
   end
 end
 

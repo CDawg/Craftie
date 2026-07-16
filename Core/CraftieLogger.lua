@@ -97,7 +97,7 @@ end)
 Craftie.Logger.Icon = Craftie.Logger.Background:CreateTexture(nil, "ARTWORK")
 Craftie.Logger.Icon:SetSize(160, 80)
 Craftie.Logger.Icon:SetPoint("TOPLEFT", -42, 30)
-Craftie.Logger.Icon:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png")
+Craftie.Logger.Icon:SetTexture(Craftie._G.Image.Logo.Header)
 Craftie.Logger.Icon:SetDrawLayer("OVERLAY", 4)
 
 Craftie.Logger.Title = Craftie.Logger:CreateFontString(nil, "ARTWORK")

@@ -41,7 +41,7 @@ function Craftie:BuildChatHooks()
       for a,b in pairs(Craftie.Chat[v[2]]) do
         local pattern= "%[" .. b .. "%]"
         if (msg:find(pattern)) then --register the author data
-          local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[2] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
+          local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[2] .. "|h" .. Craftie._G.Image.Tooltip.Layout .. pattern .. "|h|r")
           return false, filter, author, ...
         end
       end

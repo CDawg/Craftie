@@ -42,7 +42,7 @@ Craftie.HelpScrollFrameBack = Craftie.HelpScrollFrame:CreateTexture(nil, "BACKGR
 Craftie.HelpScrollFrameBack:SetWidth(Craftie.HelpScrollFrame:GetWidth())
 Craftie.HelpScrollFrameBack:SetHeight(Craftie.HelpScrollFrame:GetHeight())
 Craftie.HelpScrollFrameBack:SetPoint("TOPLEFT", 0, 0)
-Craftie.HelpScrollFrameBack:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png")
+Craftie.HelpScrollFrameBack:SetTexture(Craftie._G.Image.Background.Shadow)
 Craftie.HelpScrollFrameBack:SetDesaturation(0.3)
 
 Craftie.HelpScrollFrame.Child = CreateFrame("ScrollFrame", nil, Craftie.HelpScrollFrame, "UIPanelScrollFrameTemplate")

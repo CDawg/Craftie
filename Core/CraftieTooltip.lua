@@ -73,7 +73,6 @@ function Craftie:UpdatePlayerTooltip(channel)
   end
 end
 
-TooltipTemplate = "|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. Craftie._G.Title
 function Craftie:TooltipLayout(data, tooltipframe)
   local color = Craftie.Color.Blue
   local title = ""
@@ -88,7 +87,7 @@ function Craftie:TooltipLayout(data, tooltipframe)
         title = Craftie.Color.Lime .. "Contributor"
       end
     end
-    tooltipframe:AddLine(TooltipTemplate .. " " .. title)
+    tooltipframe:AddLine(Craftie._G.Image.Tooltip.Layout .. Craftie._G.Title .. " " .. title)
     if (data.profN1) then
       local mastery = ""
       if (data.profM1 > 0) then
@@ -151,38 +150,34 @@ CraftieTooltip:HookScript("OnShow", function(self)
   end)
 end)
 
-local TooltipArt = {
-  vert =  Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-Art.png",
-  corner= Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-ArtCorner.png",
-}
 CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
 CraftieTooltipArtTop = CraftieTooltip:CreateTexture(nil, "ARTWORK")
 CraftieTooltipArtTop:SetSize(50, 12)
 CraftieTooltipArtTop:SetPoint("TOP", 0, 9)
-CraftieTooltipArtTop:SetTexture(TooltipArt.vert)
+CraftieTooltipArtTop:SetTexture(Craftie._G.Image.Tooltip.Top)
 CraftieTooltipArtBot = CraftieTooltip:CreateTexture(nil, "ARTWORK")
 CraftieTooltipArtBot:SetSize(50, 12)
 CraftieTooltipArtBot:SetPoint("BOTTOM", 0, -9)
-CraftieTooltipArtBot:SetTexture(TooltipArt.vert)
+CraftieTooltipArtBot:SetTexture(Craftie._G.Image.Tooltip.Top)
 CraftieTooltipArtBot:SetRotation(-math.pi)
 CraftieTooltipArtTL = CraftieTooltip:CreateTexture(nil, "ARTWORK")
 CraftieTooltipArtTL:SetSize(12, 12)
 CraftieTooltipArtTL:SetPoint("TOPLEFT", 1, 0)
-CraftieTooltipArtTL:SetTexture(TooltipArt.corner)
+CraftieTooltipArtTL:SetTexture(Craftie._G.Image.Tooltip.Corner)
 CraftieTooltipArtTR = CraftieTooltip:CreateTexture(nil, "ARTWORK")
 CraftieTooltipArtTR:SetSize(12, 12)
 CraftieTooltipArtTR:SetPoint("TOPRIGHT", 0, 0)
-CraftieTooltipArtTR:SetTexture(TooltipArt.corner)
+CraftieTooltipArtTR:SetTexture(Craftie._G.Image.Tooltip.Corner)
 CraftieTooltipArtTR:SetRotation(-math.pi/2)
 CraftieTooltipArtBL = CraftieTooltip:CreateTexture(nil, "ARTWORK")
 CraftieTooltipArtBL:SetSize(12, 12)
 CraftieTooltipArtBL:SetPoint("BOTTOMLEFT", 0, 0)
-CraftieTooltipArtBL:SetTexture(TooltipArt.corner)
+CraftieTooltipArtBL:SetTexture(Craftie._G.Image.Tooltip.Corner)
 CraftieTooltipArtBL:SetRotation(math.pi/2)
 CraftieTooltipArtBR = CraftieTooltip:CreateTexture(nil, "ARTWORK")
 CraftieTooltipArtBR:SetSize(12, 12)
 CraftieTooltipArtBR:SetPoint("BOTTOMRIGHT", -1, 0)
-CraftieTooltipArtBR:SetTexture(TooltipArt.corner)
+CraftieTooltipArtBR:SetTexture(Craftie._G.Image.Tooltip.Corner)
 CraftieTooltipArtBR:SetRotation(math.pi)
 for i = 1, 30 do
   --local header=_G["GameTooltipHeaderText"..1]
@@ -473,7 +468,7 @@ function Craftie:SetItemTooltip(frame, itemID, enchant, anchor)
       --print(v[1] .. " | " .. v[2])
       if (tonumber(itemID) == tonumber(v[1])) then
         CraftieTooltip:AddLine(" ")
-        CraftieTooltip:AddLine(TooltipTemplate)
+        CraftieTooltip:AddLine(Craftie._G.Image.Tooltip.Layout .. Craftie._G.Title)
         CraftieTooltip:AddLine(Craftie.Color.White .. "Reagent")
       end
     end
@@ -491,7 +486,7 @@ local function GameTooltip_OnTooltipSetItem(tooltip)
   for k,v in pairs(Craftie.Reagents) do
     if (name == v[2]) then
       tooltip:AddLine(" ")
-      tooltip:AddLine(TooltipTemplate)
+      tooltip:AddLine(Craftie._G.Image.Tooltip.Layout .. Craftie._G.Title)
       tooltip:AddLine(Craftie.Color.White .. "Reagent")
     end
   end

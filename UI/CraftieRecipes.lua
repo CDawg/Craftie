@@ -27,7 +27,7 @@ Craftie.Frame.ScrollRecipesParent:SetFrameStrata("MEDIUM")
 Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.ScrollRecipesParent.Back:SetSize(Craftie.Frame.ScrollRecipesParent:GetWidth(), Craftie.Frame.ScrollRecipesParent:GetHeight())
 Craftie.Frame.ScrollRecipesParent.Back:SetPoint("TOPLEFT", 0, 0)
-Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Recipes.png")
+Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Image.Background.Recipes)
 
 Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesList", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.ScrollRecipesList:SetWidth(dimensions.W-5)
@@ -53,7 +53,7 @@ Craftie.Frame.ScrollRecipesResultsFrame:SetFrameLevel(50)
 Craftie.Frame.ScrollRecipesResultsBack = Craftie.Frame.ScrollRecipesResultsFrame:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipesResultsBack:SetSize(Craftie.Frame.ScrollRecipesResultsFrame:GetWidth(), 32)
 Craftie.Frame.ScrollRecipesResultsBack:SetPoint("TOPLEFT", 0, 10)
-Craftie.Frame.ScrollRecipesResultsBack:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Footer-32.png")
+Craftie.Frame.ScrollRecipesResultsBack:SetTexture(Craftie._G.Image.Scrollbar.Footer)
 Craftie.Frame.ScrollRecipesResults = Craftie.Frame.ScrollRecipesResultsFrame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.ScrollRecipesResults:SetFont(Craftie._G.Font.Style.Numeric, Craftie._G.Font.Size+2, Craftie._G.Font.Flags)
 Craftie.Frame.ScrollRecipesResults:SetPoint("TOPLEFT", 8, -4)
@@ -107,7 +107,7 @@ _G[Craftie.Frame.DropdownRecipes:GetName() .. "Right"]:Hide()
 Craftie.Frame.DropdownRecipes.Back = Craftie.Frame.DropdownRecipes:CreateTexture(nil, "BORDER")
 Craftie.Frame.DropdownRecipes.Back:SetSize(dimensions.W-5, 28)
 Craftie.Frame.DropdownRecipes.Back:SetPoint("TOPLEFT", 16, -4)
-Craftie.Frame.DropdownRecipes.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Dropdown-32.png")
+Craftie.Frame.DropdownRecipes.Back:SetTexture(Craftie._G.Image.Scrollbar.Dropdown)
 
 --[==[
 SEARCH RECIPES
@@ -127,7 +127,7 @@ Craftie.Frame.Search.Recipes:SetFrameLevel(50)
 Craftie.Frame.Search.Recipes.Back = Craftie.Frame.Search.Recipes:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Search.Recipes.Back:SetSize(Craftie.Frame.Search.Recipes:GetWidth(), 28)
 Craftie.Frame.Search.Recipes.Back:SetPoint("TOPLEFT", 0, -2)
-Craftie.Frame.Search.Recipes.Back:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Search-32.png")
+Craftie.Frame.Search.Recipes.Back:SetTexture(Craftie._G.Image.Scrollbar.Search)
 --Craftie.Frame.Search.Recipes.Back:SetRotation(-math.pi)
 --Craftie.Frame.Search.Recipes.Back:SetAlpha(0.8)
 
@@ -174,13 +174,11 @@ Craftie.Frame.Button.SearchRecipesClear:SetPoint("TOPLEFT", Craftie.Frame.Search
 Craftie.Frame.Button.SearchRecipesClearIcon = Craftie.Frame.Button.SearchRecipesClear:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Button.SearchRecipesClearIcon:SetSize(18, 18)
 Craftie.Frame.Button.SearchRecipesClearIcon:SetPoint("CENTER", 0, 0)
-Craftie.Frame.Button.SearchRecipesClearIcon:SetTexture(Craftie._G.Path ..  "Images/Buttons/UI-Craftie-Button-Search-Clear.png")
+Craftie.Frame.Button.SearchRecipesClearIcon:SetTexture(Craftie._G.Image.Button.Clear)
 Craftie.Frame.Button.SearchRecipesClearIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchRecipesClear:SetScript("OnClick", function(self)
   Craftie.Frame.Search.Recipes.Text:SetText("")
   Craftie:CloseAllPlayerMenus()
-  --Craftie:UpdateCrafterList()
-  --Craftie:SelectCrafter(1, "")
   Craftie:ClearSearchFocus(false)
   if ((Craftie.Selected_Player_Index) and (Craftie.Selected_Name)) then
     Craftie:SelectCrafter(Craftie.Selected_Player_Index, Craftie.Selected_Name)
@@ -241,14 +239,14 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListBack[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateTexture(nil, "BACKGROUND")
   Craftie.Frame.ScrollRecipesListBack[i]:SetSize(Craftie.Frame.ScrollRecipesListRow[i]:GetWidth(), Craftie.Frame.ScrollRecipesListRow[i]:GetHeight())
   Craftie.Frame.ScrollRecipesListBack[i]:SetPoint("TOPLEFT", 0, 0)
-  Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row1.png")
+  Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Image.Row[1])
   Craftie.Frame.ScrollRecipesListBack[i]:SetAlpha(0.7)
   Craftie.Frame.ScrollRecipesListBack[i]:SetVertexColor(1, 0.8, 0.5)
 
   Craftie.Frame.ScrollRecipesListSelect[i] = Craftie.Frame.ScrollRecipesListRow[i]:CreateTexture(nil, "OVERLAY")
   Craftie.Frame.ScrollRecipesListSelect[i]:SetSize(dimensions.W -30, Craftie.Frame.ScrollRecipesListRow[i]:GetHeight())
   Craftie.Frame.ScrollRecipesListSelect[i]:SetPoint("CENTER", 0, 0)
-  Craftie.Frame.ScrollRecipesListSelect[i]:SetTexture(Craftie._G.Path .. "Images/UI-Craftie-Row-Select.png")
+  Craftie.Frame.ScrollRecipesListSelect[i]:SetTexture(Craftie._G.Image.Row.Select)
   Craftie.Frame.ScrollRecipesListSelect[i]:SetBlendMode("ADD")
   Craftie.Frame.ScrollRecipesListSelect[i]:SetVertexColor(0.70, 0.70, 0.60)
   Craftie.Frame.ScrollRecipesListSelect[i]:SetAlpha(0.6)
@@ -282,9 +280,9 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListVersion[i]:Hide()
 
   if (i % 2 == 0) then
-    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row2.png")
+    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Image.Row[2])
   end
   if (i % 4 == 0) then
-    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Row4.png")
+    Craftie.Frame.ScrollRecipesListBack[i]:SetTexture(Craftie._G.Image.Row[3])
   end
 end
