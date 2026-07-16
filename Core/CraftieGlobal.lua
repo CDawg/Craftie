@@ -77,7 +77,8 @@ Craftie._G.Image = {
     Search  = Craftie._G.Path .. "Images/Scrollbar/UI-Craftie-Search.png",
   },
   Progress = {
-    Mask = Craftie._G.Path .. "Images/ProgBarMask.png",
+    Bar = Craftie._G.Path .. "Images/ProgBar.png",
+    Mask= Craftie._G.Path .. "Images/ProgBarMask.png",
   },
   TabBar = Craftie._G.Path .. "Images/Tabs/UI-Craftie-ProfBar", --dyanmic by version
   Tab = {
