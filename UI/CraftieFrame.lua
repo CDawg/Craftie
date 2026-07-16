@@ -340,7 +340,7 @@ CraftieDialog.Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Cr
 CraftieDialog.Text:SetPoint("CENTER", 0, 14)
 CraftieDialog.Text:SetText("Dialog here")
 CraftieDialog:SetFrameStrata("DIALOG")
-CraftieDialog:SetFrameLevel(500)
+CraftieDialog:SetFrameLevel(7000)
 CraftieDialog:Hide()
 
 CraftieDialog.Cancel = CreateFrame("Button", nil, CraftieDialog, "UIPanelButtonTemplate")
