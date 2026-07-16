@@ -76,9 +76,9 @@ Craftie._G.Image = {
     Dropdown= Craftie._G.Path .. "Images/Scrollbar/UI-Craftie-Dropdown.png",
     Search  = Craftie._G.Path .. "Images/Scrollbar/UI-Craftie-Search.png",
   },
-  Progress = {
-    Bar = Craftie._G.Path .. "Images/ProgBar.png",
-    Mask= Craftie._G.Path .. "Images/ProgBarMask.png",
+  ProgressBar = {
+    Back= Craftie._G.Path .. "Images/ProgressBar/ProgressBarFrame.png",
+    Bar = Craftie._G.Path .. "Images/ProgressBar/ProgressBarStandard.png",
   },
   TabBar = Craftie._G.Path .. "Images/Tabs/UI-Craftie-ProfBar", --dyanmic by version
   Tab = {

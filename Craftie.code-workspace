@@ -112,7 +112,8 @@
 			"GUILD",
 			"ID",
 			"UNKNOWN",
-			"RegisterUnitWatch"
+			"RegisterUnitWatch",
+			"SmoothStatusBarMixin"
 		]
 	}
 }

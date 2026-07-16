@@ -891,31 +891,18 @@ end
 
 Craftie.CrafterProfLevel = 1 --globalizing to add to professionlist
 function Craftie:SetProfLevel(level)
-  local diff  = 161
-  local uimax = 246 --UI Max width
-  local calc = 0
+  local numericLevel = tonumber(level)
 
-  Craftie.Frame.CrafterLevel:Hide()
-  Craftie.Frame.CrafterProgBarS:Hide()
-  Craftie.CrafterProfLevel = level
+  Craftie.Frame.CrafterProgBarFrame:Hide()
+  Craftie.Frame.CrafterProgBar:SetValue(1)
+  Craftie.CrafterProfLevel = numericLevel or 0
 
-  if (level) then
-    calc = math.ceil((level * diff) / uimax)
-    if (calc >= 1) then
-      Craftie.Frame.CrafterLevel:Show()
-      --print("level: " .. level .. " | " .. calc .. " [max: " .. uimax .. "]")
-
-      Craftie.Frame.CrafterProgBar:SetSize(calc, 15)
-      Craftie.Frame.CrafterProgLevel:SetText(level .. " / " .. Craftie.PROFMAXLEVEL)
-      local left = 0
-      if (calc < 200) then left = 4 end
-      if (calc <= 20) then left = 5 end
-      Craftie.Frame.CrafterProgBar:SetPoint("TOPLEFT", 0+left, -5)
-      --if (level < Craftie.PROFMAXLEVEL) then
-        Craftie.Frame.CrafterProgBarS:SetPoint("TOPLEFT", calc-41+left, 16)
-        Craftie.Frame.CrafterProgBarS:Show()
-      --end
-    end
+  Craftie.Frame.CrafterProgBar:SetMinMaxValues(1, Craftie.PROFMAXLEVEL)
+  if (numericLevel and numericLevel > 0) then
+    Craftie.Frame.CrafterProgBarFrame:Show()
+    --Craftie.Frame.CrafterProgBar:SetValue(tonumber(level))
+    Craftie.Frame.CrafterProgBar:SetSmoothedValue(numericLevel)
+    Craftie.Frame.CrafterProgBar.Text:SetText(numericLevel .. " / " .. Craftie.PROFMAXLEVEL)
   end
 end
 

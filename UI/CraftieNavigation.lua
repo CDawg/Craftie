@@ -83,8 +83,8 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.Title:Hide()
   Craftie.Frame.Mastery:SetText("")
   --Craftie.Frame.TitleNavigation:Show()
-  Craftie.Frame.CrafterLevel:Hide()
-  Craftie.Frame.CrafterProgBarS:Hide()
+  Craftie.Frame.CrafterProgBarFrame:Hide()
+  --Craftie.Frame.CrafterProgBar:Hide()
 
   for k,v in pairs(Craftie._L.Navigation) do
     Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Image.Tab.Inactive)
