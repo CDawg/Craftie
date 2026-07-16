@@ -110,7 +110,7 @@ Craftie.Frame.Item.HLink:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Si
 Craftie.Frame.Item.HLink:SetPoint("TOPLEFT", -4, -8)
 Craftie.Frame.Item.HLink:SetText("")
 Craftie.Frame.Item.HLink:SetScript("OnLeave", function(self)
-  GameTooltip:Hide()
+  CraftieTooltip:Hide()
 end)
 Craftie.Frame.Item.ID = Craftie.Frame.Item:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Item.ID:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
@@ -156,7 +156,7 @@ for i=1, Craftie.MAX_REAGENTS do
     end
   end)
   Craftie.Frame.Reagent.Main[i]:SetScript("OnLeave", function(self)
-    GameTooltip:Hide()
+    CraftieTooltip:Hide()
   end)
   Craftie.Frame.Reagent.Main[i]:SetScript("OnClick", function(self)
     if (IsShiftKeyDown()) then

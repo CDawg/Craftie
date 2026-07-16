@@ -318,7 +318,7 @@ function Craftie:BuildRowCrafter(i)
         end
 
         if (Craftie.EnableScrollFrames) then
-          CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+          CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT", 20)
           CraftieTooltip:ClearLines()
           CraftieTooltip:AddLine(color .. name .. "|r")
           CraftieTooltip:AddLine(" ")
@@ -344,7 +344,7 @@ function Craftie:BuildRowCrafter(i)
 
     if (Craftie.EnableScrollFrames) then
       if (i == 1) then
-        CraftieTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT")
+        CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT", 20)
         CraftieTooltip:AddLine("All ".. Craftie.Page .." Recipes")
         CraftieTooltip:AddLine(Craftie.Color.Gray .. "Showing all phases for " .. Craftie.Game.Name)
         CraftieTooltip:Show()

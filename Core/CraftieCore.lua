@@ -52,7 +52,7 @@ end
 ---@class CloseAllPlayerMenus
 function Craftie:CloseAllPlayerMenus()
   CraftieTooltip:Hide()
-  GameTooltip:Hide()
+  GameTooltip:Hide() --just in case
   Craftie.Frame.ScrollPlayersListSubMenu:Hide()
 
   Craftie.Frame.ScrollPlayersList.Child:SetAlpha(1)
@@ -505,21 +505,6 @@ function Craftie:TabSelectSide(tab, sound)
 
   Craftie:Notification("Craftie:TabSelectSide(" .. tab .. ")", Craftie.CHAT.FUNC)
   end
-end
-
-function Craftie:SetItemTooltip(frame, itemID, enchant, anchor)
-  if (anchor) then
-    GameTooltip:SetOwner(frame, anchor)
-  else
-    GameTooltip:SetOwner(frame, "ANCHOR_CURSOR_RIGHT")
-  end
-  if (enchant) then
-    GameTooltip:SetHyperlink("enchant:" .. itemID .. ":0:0:0:0:0:0:0")
-  else
-    GameTooltip:SetHyperlink("item:" .. itemID .. ":0:0:0:0:0:0:0")
-  end
-  --GameTooltip:AddLine("|nCraftie")
-  GameTooltip:Show()
 end
 
 Craftie.Animation = 0

@@ -233,7 +233,6 @@ for i=1, Craftie.MAX_RECIPES do
   Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnLeave", function(self)
     if (Craftie.EnableScrollFrames) then
       self:SetBackdropColor(1, 0.9, 0.8, 0)
-      GameTooltip:Hide()
       Craftie:SelectScrollItem("Recipes", true)
     end
     CraftieTooltip:Hide()

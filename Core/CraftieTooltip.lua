@@ -132,21 +132,23 @@ function Craftie:BuildTooltipHooks()
 end
 
 --custom tooltip for Craftie only
----@type GameTooltip
 CraftieTooltip = {}
 CraftieTooltip = CreateFrame("GameTooltip", "CraftieTooltip", UIParent, "GameTooltipTemplate")
-CraftieTooltip:SetFrameLevel(800)
+CraftieTooltip:SetFrameLevel(5000)
 CraftieTooltip:HookScript("OnShow", function(self)
-  CraftieTooltipArtTL:Show()
-  CraftieTooltipArtTR:Show()
-  CraftieTooltipArtBL:Show()
-  CraftieTooltipArtBR:Show()
-  if (CraftieTooltip:GetHeight() <= 40) then
-    CraftieTooltipArtTL:Hide()
-    CraftieTooltipArtTR:Hide()
-    CraftieTooltipArtBL:Hide()
-    CraftieTooltipArtBR:Hide()
-  end
+  CraftieTooltipArtTL:Hide()
+  CraftieTooltipArtTR:Hide()
+  CraftieTooltipArtBL:Hide()
+  CraftieTooltipArtBR:Hide()
+  C_Timer.After(0.001, function()
+    --print("CraftieTooltip:GetHeight() ", CraftieTooltip:GetHeight())
+    if (CraftieTooltip:GetHeight() >= 40) then
+      CraftieTooltipArtTL:Show()
+      CraftieTooltipArtTR:Show()
+      CraftieTooltipArtBL:Show()
+      CraftieTooltipArtBR:Show()
+    end
+  end)
 end)
 CraftieTooltip:SetBackdropBorderColor(0.82, 0.73, 0.64, 1)
 CraftieTooltipArtTop = CraftieTooltip:CreateTexture(nil, "ARTWORK")
@@ -196,16 +198,6 @@ for i = 1, 30 do
     right:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+1, flags)
   end
 end
-
---CraftieItemTooltip = CreateFrame("ItemRefTooltip", "CraftieItemTooltip", UIParent, "ItemRefTooltip")
-
---[==[
-if (Craftie.Frame:IsShown()) then
-    CraftieTooltip:Hide()
-    CraftieTooltip:SetOwner(self, "ANCHOR_RIGHT")
-    CraftieTooltip:SetHyperlink(link)
-    CraftieTooltip:Show()
-]==]--
 
 Craftie.GuildFrameUsing = 1
 Craftie.GuildRosterTooltipHooked = false
@@ -452,7 +444,40 @@ function Craftie:BuildGuildRosterTooltip()
   end
 end
 
---inventory/vendor
+function Craftie:TooltipLinkOpts()
+  CraftieTooltip:AddLine(" ")
+  CraftieTooltip:AddLine(Craftie.Color.Gray .. "Shift + Left Click  |  Link To Chat")
+end
+
+function Craftie:SetItemTooltip(frame, itemID, enchant, anchor)
+  if (itemID) then
+    local link = "item:" .. itemID .. ":0:0:0:0:0:0:0"
+    if (enchant) then
+      link = "enchant:" .. itemID .. ":0:0:0:0:0:0:0"
+    end
+    CraftieTooltip:ClearAllPoints()
+    CraftieTooltip:ClearLines()
+    CraftieTooltip:SetOwner(frame, "ANCHOR_CURSOR_RIGHT", 20)
+    if (anchor) then
+      CraftieTooltip:SetOwner(frame, anchor, 20)
+    end
+    CraftieTooltip:SetHyperlink(link)
+
+    --print("itemID " .. itemID)
+    for k,v in pairs(Craftie.Reagents) do
+      --print(v[1] .. " | " .. v[2])
+      if (tonumber(itemID) == tonumber(v[1])) then
+        CraftieTooltip:AddLine(" ")
+        CraftieTooltip:AddLine(TooltipTemplate)
+        CraftieTooltip:AddLine(Craftie.Color.White .. "Reagent")
+      end
+    end
+    Craftie:TooltipLinkOpts()
+    CraftieTooltip:Show()
+  end
+end
+
+--attach reagent data
 local function GameTooltip_OnTooltipSetItem(tooltip)
 	local name, link = tooltip:GetItem()
 	if (not link) then
@@ -465,25 +490,6 @@ local function GameTooltip_OnTooltipSetItem(tooltip)
       tooltip:AddLine(Craftie.Color.White .. "Reagent")
     end
   end
-  if (Craftie.OpenState == 1) then
-    tooltip:AddLine(" ")
-    --tooltip:AddDoubleLine(Craftie.Color.Gray .. "Shift + Left Click", Craftie.Color.Gray .. "Link To Chat")
-    tooltip:AddLine(Craftie.Color.Gray .. "Shift + Left Click  |  Link To Chat")
-  end
-  --[==[
-  if ((Craftie.OpenState == 1) and (link_to_chat == 0)) then --only when Craftie is open
-    for k,v in pairs(Craftie.Professions) do
-      --print(v[1])
-      for i,r in pairs(Craftie.Profession[v[2]]) do
-        if (name == r[2]) then
-          --every crafted item
-          tooltip:AddLine(" ")
-          tooltip:AddLine(Craftie.Color.Gray .. "Shift+Click to link in chat")
-        end
-      end
-    end
-  end
-  ]==]--
 end
 
 GameTooltip:HookScript("OnTooltipSetItem", GameTooltip_OnTooltipSetItem)
