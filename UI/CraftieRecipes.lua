@@ -174,7 +174,7 @@ Craftie.Frame.Button.SearchRecipesClear:SetPoint("TOPLEFT", Craftie.Frame.Search
 Craftie.Frame.Button.SearchRecipesClearIcon = Craftie.Frame.Button.SearchRecipesClear:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Button.SearchRecipesClearIcon:SetSize(18, 18)
 Craftie.Frame.Button.SearchRecipesClearIcon:SetPoint("CENTER", 0, 0)
-Craftie.Frame.Button.SearchRecipesClearIcon:SetTexture(Craftie._G.Path ..  "Images/UI-Craftie-Button-Search-Clear.png")
+Craftie.Frame.Button.SearchRecipesClearIcon:SetTexture(Craftie._G.Path ..  "Images/Buttons/UI-Craftie-Button-Search-Clear.png")
 Craftie.Frame.Button.SearchRecipesClearIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchRecipesClear:SetScript("OnClick", function(self)
   Craftie.Frame.Search.Recipes.Text:SetText("")

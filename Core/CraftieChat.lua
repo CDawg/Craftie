@@ -42,7 +42,6 @@ function Craftie:BuildChatHooks()
         local pattern= "%[" .. b .. "%]"
         if (msg:find(pattern)) then --register the author data
           local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[2] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. pattern .. "|h|r")
-          --local filter = gsub(msg, pattern, "|Haddon:Craftie:" .. author .. ":" .. v[1] .. "|h|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t[Craftie" .. pattern .. "]|h|r")
           return false, filter, author, ...
         end
       end
@@ -137,7 +136,6 @@ function Craftie.LookupItem(self, event, msg, author, ...)
         end)
       end
       local filter = gsub(msg, pattern, pattern)
-      --local filter = gsub(msg, pattern, msg .. "|n|T" .. Craftie._G.Path .. "Images/" .. Craftie._G.Icon .. ".png:14:14|t" .. Craftie._G.Title .. " Guild Roster Recipe Search:|nFound [" .. count .. "]|n")
       return false, filter, author, ...
     end
   end

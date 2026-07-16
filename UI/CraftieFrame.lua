@@ -101,7 +101,7 @@ Craftie.Frame.Button={}
 Craftie.Frame.Button.Frame = Craftie.Frame:CreateTexture(nil, "OVERLAY")
 Craftie.Frame.Button.Frame:SetSize(64, 64)
 Craftie.Frame.Button.Frame:SetPoint("TOPRIGHT", -1, 1)
-Craftie.Frame.Button.Frame:SetTexture(Craftie._G.Path .. "Images/UIFrameMetal-RightDouble.png")
+Craftie.Frame.Button.Frame:SetTexture(Craftie._G.Image.Button.Frame)
 Craftie.Frame.Button.Frame:SetDrawLayer("OVERLAY", 1)
 
 Craftie.Frame.Button.Options = CreateFrame("Button", nil, Craftie.Frame, "UIPanelButtonTemplate")

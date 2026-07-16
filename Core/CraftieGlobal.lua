@@ -40,6 +40,21 @@ Craftie._G.Stamp = Craftie._G.Title .. " v" .. Craftie._G.Version
 --locales library must load first
 Craftie.Game.Name = Craftie._L.Game[tonumber(string.sub(__Gversion, 1, 1))]
 
+Craftie._G.Image = {
+  Background = {
+    Profession = Craftie._G.Path .. "Images/Backgrounds/professionbackgroundart", --dynamic
+  },
+  Tooltip = {
+    Top   = Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-Art.png",
+    Corner= Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-ArtCorner.png",
+  },
+  Button = {
+    Frame = Craftie._G.Path .. "Images/Buttons/UIFrameMetal-RightDouble.png",
+    Clear = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Search-Clear.png",
+    Delete= Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Delete.png",
+  },
+}
+
 --static
 Craftie.MAX_REAGENTS= 6
 Craftie.MAX_RECIPES = 400 --max for tbc current
@@ -51,7 +66,6 @@ Craftie.TOTAL_ORDERS  = {}
 Craftie.ORDER_TIMER   = 5
 
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
---Craftie.ProfessionSearch = Craftie:CopyTable(Craftie.Profession.Alchemy)
 
 Craftie.Selected_Player_Index = 1
 Craftie.Selected_Recipe_Index = 1

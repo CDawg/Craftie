@@ -171,7 +171,7 @@ Craftie.Frame.Button.SearchPlayersClear:SetPoint("TOPLEFT", Craftie.Frame.Search
 Craftie.Frame.Button.SearchPlayersClearIcon = Craftie.Frame.Button.SearchPlayersClear:CreateTexture(nil, "ARTWORK")
 Craftie.Frame.Button.SearchPlayersClearIcon:SetSize(18, 18)
 Craftie.Frame.Button.SearchPlayersClearIcon:SetPoint("CENTER", 0, 0)
-Craftie.Frame.Button.SearchPlayersClearIcon:SetTexture(Craftie._G.Path ..  "Images/UI-Craftie-Button-Search-Clear.png")
+Craftie.Frame.Button.SearchPlayersClearIcon:SetTexture(Craftie._G.Path ..  "Images/Buttons/UI-Craftie-Button-Search-Clear.png")
 Craftie.Frame.Button.SearchPlayersClearIcon:SetAlpha(0.4)
 Craftie.Frame.Button.SearchPlayersClear:SetScript("OnClick", function(self)
   if (Craftie.EnableScrollFrames) then

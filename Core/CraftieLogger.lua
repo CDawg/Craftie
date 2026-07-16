@@ -55,7 +55,7 @@ Craftie.Logger.Button={}
 Craftie.Logger.Button.Frame = Craftie.Logger.Background:CreateTexture(nil, "OVERLAY")
 Craftie.Logger.Button.Frame:SetSize(64, 64)
 Craftie.Logger.Button.Frame:SetPoint("TOPRIGHT", -25, 1)
-Craftie.Logger.Button.Frame:SetTexture(Craftie._G.Path .. "Images/UIFrameMetal-RightDouble.png")
+Craftie.Logger.Button.Frame:SetTexture(Craftie._G.Image.Button.Frame)
 Craftie.Logger.Button.Frame:SetDrawLayer("OVERLAY", 1)
 
 Craftie.Logger.Button.Coll = CreateFrame("Button", nil, Craftie.Logger.Background)
