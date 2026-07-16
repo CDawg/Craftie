@@ -76,11 +76,35 @@ Craftie.Frame.CrafterProgBar.bg:SetSize(Craftie.Frame.CrafterProgBar:GetWidth()+
 Craftie.Frame.CrafterProgBar.bg:SetTexture(Craftie._G.Image.ProgressBar.Back)
 Craftie.Frame.CrafterProgBar:SetStatusBarTexture(Craftie._G.Image.ProgressBar.Bar)
 Craftie.Frame.CrafterProgBar:SetStatusBarColor(0, 0.70, 0)
+Craftie.Frame.CrafterProgBar.Spark = Craftie.Frame.CrafterProgBar:CreateTexture(nil, "OVERLAY", nil, 1)
+Craftie.Frame.CrafterProgBar.Spark:SetTexture(Craftie._G.Image.ProgressBar.Spark)
+Craftie.Frame.CrafterProgBar.Spark:SetPoint("CENTER", 0, 0)
+Craftie.Frame.CrafterProgBar.Spark:SetBlendMode("ADD")
+Craftie.Frame.CrafterProgBar.Spark:SetSize(16, 24)
+Craftie.Frame.CrafterProgBar.Spark:Hide()
+Craftie.Frame.CrafterProgBar:SetScript("OnValueChanged", function(self, value)
+  local minimum, maximum = self:GetMinMaxValues()
+  local range = maximum - minimum
+
+  if range <= 0 then
+    self.Spark:Hide()
+    return
+  end
+
+  local progress = math.max(0, math.min((value - minimum) / range, 1))
+  self.Spark:ClearAllPoints()
+  self.Spark:SetPoint("CENTER", self, "LEFT", progress * self:GetWidth(), 0)
+
+  if progress > 0 and progress < 1 then
+    self.Spark:Show()
+  else
+    self.Spark:Hide()
+  end
+end)
 Craftie.Frame.CrafterProgBar.Text = Craftie.Frame.CrafterProgBar:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.CrafterProgBar.Text:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
 Craftie.Frame.CrafterProgBar.Text:SetPoint("CENTER", 0, 0)
 Craftie.Frame.CrafterProgBar.Text:SetText("")
-
 Mixin(Craftie.Frame.CrafterProgBar, SmoothStatusBarMixin)
 
 -- Define the range and current progress
