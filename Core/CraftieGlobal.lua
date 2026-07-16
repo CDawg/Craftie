@@ -54,8 +54,8 @@ Craftie._G.Image = {
     Bottom    = Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Shadow-Overlay.png",
   },
   Tooltip = {
-    Top   = Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-Art.png",
-    Corner= Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-ArtCorner.png",
+    Side  = Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-Art-Side.png",
+    Corner= Craftie._G.Path .. "Images/Tooltip/UI-Craftie-Tooltip-Art-Corner.png",
     Layout= "|T" .. Craftie._G.Path .. Craftie._G.Icon .. ".png:14:14|t",
   },
   Button = {
