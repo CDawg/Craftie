@@ -146,7 +146,7 @@ Craftie.Packet.Prefix = {
   Ping = "!P", --ping request
   Data = "!D", --data chunk
   Net  = "!N", --online
-  Info = "!T", --tooltip announce
+  Info = "!T", --tooltip
   Order= "!O", --order send
   Ack  = "!A", --order ack
 }

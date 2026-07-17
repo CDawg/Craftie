@@ -172,7 +172,6 @@ function Craftie:PacketParse(netpacket)
           Craftie.Save.Player["ORDERS"] = {} --doesnt exist, just build it
           Craftie:Notification("Building New Orders table", Craftie.CHAT.FUNC)
         end
-        --Craftie:PacketSend(Craftie.Packet.Prefix.Ack, Craftie.Player.Name .. ",1", "WHISPER", packet[3])
         C_Timer.After(0.1, function()
           Craftie.Save.Player["ORDERS"][packet[3]] = packet[4] .. "," .. packet[5] .. "," .. packet[6] .. "," .. Craftie.Date
         end)

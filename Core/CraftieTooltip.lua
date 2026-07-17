@@ -60,9 +60,6 @@ function Craftie:UpdatePlayerTooltip(channel)
         if (not PlayerIsInCombat()) then
           if (not IsInInstance()) then
             Craftie:PacketSend(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "YELL")
-            --if ()
-              --Craftie:PacketSend(Craftie.Packet.Prefix.Info, Craftie.Player.Name .. "," .. Craftie.Tooltip[Craftie.Player.Name], "GUILD")
-            --end
           end
         end
       end
