@@ -85,18 +85,14 @@ Craftie.Frame.CrafterProgBar.Spark:Hide()
 Craftie.Frame.CrafterProgBar:SetScript("OnValueChanged", function(self, value)
   local minimum, maximum = self:GetMinMaxValues()
   local range = maximum - minimum
-
   if (range <= 0) then
     self.Spark:Hide()
     return
   end
-
   local progress = math.max(0, math.min((value - minimum) / range, 1))
   self.Spark:ClearAllPoints()
   self.Spark:SetPoint("CENTER", self, "LEFT", progress * self:GetWidth(), 0)
 
-  --debug
-  --print("progress " .. progress)
   if ((progress > 0.010) and (progress < 0.988)) then
     self.Spark:Show()
   else
@@ -113,14 +109,6 @@ Mixin(Craftie.Frame.CrafterProgBar, SmoothStatusBarMixin)
 --Craftie.Frame.CrafterProgBar:SetMinMaxValues(0, 100)
 Craftie.Frame.CrafterProgBar:SetMinMaxValues(0, Craftie.PROFMAXLEVEL)
 Craftie.Frame.CrafterProgBar:SetValue(1)
-
---[==[
-Craftie.Frame.CrafterProgLevel = Craftie.Frame.CrafterProgBarFrame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.CrafterProgLevel:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, "OUTLINE")
-Craftie.Frame.CrafterProgLevel:SetPoint("CENTER", 4, -2)
-Craftie.Frame.CrafterProgLevel:SetJustifyH("LEFT")
-Craftie.Frame.CrafterProgLevel:SetText("")
-]==]--
 
 Craftie.Frame.Mastery = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Mastery:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)

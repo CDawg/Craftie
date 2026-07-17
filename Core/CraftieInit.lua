@@ -96,12 +96,9 @@ function Craftie:Init()
     end
     ]==]--
     --Craftie:ProfessionLocaleConversion("Alchemy")
-
   end)
   --Craftie:BuildWorldRosterTooltip()
-
   --Craftie:ProfessionLocaleConversion("Alchemy", "enUS")
-
   --CommunitiesFrame.GuildInfoTab:GetScript("OnClick")( CommunitiesFrame.GuildInfoTab )
   Craftie:Notification("Craftie:Init()", Craftie.CHAT.FUNC)
 end

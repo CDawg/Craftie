@@ -110,7 +110,9 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         local _, numMembers = GetNumGuildMembers()
         if (Craftie.NumGuildMembers < numMembers) then
           --detect only logging in
-          Craftie:UpdatePlayerTooltip("GUILD")
+          C_Timer.After(1, function()
+            Craftie:UpdatePlayerTooltip("GUILD")
+          end)
           Craftie:Notification(event, Craftie.CHAT.EVENT)
         end
         --consistent updating
