@@ -86,7 +86,7 @@ Craftie.Frame.CrafterProgBar:SetScript("OnValueChanged", function(self, value)
   local minimum, maximum = self:GetMinMaxValues()
   local range = maximum - minimum
 
-  if range <= 0 then
+  if (range <= 0) then
     self.Spark:Hide()
     return
   end
@@ -95,7 +95,9 @@ Craftie.Frame.CrafterProgBar:SetScript("OnValueChanged", function(self, value)
   self.Spark:ClearAllPoints()
   self.Spark:SetPoint("CENTER", self, "LEFT", progress * self:GetWidth(), 0)
 
-  if progress > 0 and progress < 1 then
+  --debug
+  --print("progress " .. progress)
+  if ((progress > 0.010) and (progress < 0.988)) then
     self.Spark:Show()
   else
     self.Spark:Hide()

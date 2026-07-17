@@ -747,7 +747,6 @@ function Craftie:SelectScrollItem(scrollFrame, playerCrafterLevel)
       for i=1, Craftie.MAX_RECIPES do
         Craftie.Frame.ScrollRecipesListRow[i]:SetBackdropColor(1, 1, 1, 0)
         Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
-        --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
         Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(1, 1, 1, 0.8)
         if (playerCrafterLevel) then
         local itemLevel = tonumber(Craftie.Frame.ScrollRecipesListLevel[i]:GetText())
@@ -894,7 +893,7 @@ function Craftie:SetProfLevel(level)
   local numericLevel = tonumber(level)
 
   Craftie.Frame.CrafterProgBarFrame:Hide()
-  Craftie.Frame.CrafterProgBar:SetValue(1)
+  Craftie.Frame.CrafterProgBar:SetValue(1) --reset
   Craftie.CrafterProfLevel = numericLevel or 0
 
   Craftie.Frame.CrafterProgBar:SetMinMaxValues(1, Craftie.PROFMAXLEVEL)
@@ -1072,7 +1071,6 @@ function Craftie:OpenProfessionList(profArray, search, player)
   if (total_recipes < 15) then
     for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesListSelect[i]:Hide()
-      --Craftie.Frame.ScrollRecipesListSelectSpark[i]:Hide()
       Craftie.Frame.ScrollRecipesListID[i]:SetText("")
       Craftie.Frame.ScrollRecipesListName[i]:SetText("")
       Craftie.Frame.ScrollRecipesListLevel[i]:SetText("")
