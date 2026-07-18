@@ -314,35 +314,6 @@ end
 
 function Craftie:BuildGuildRosterTooltip()
   if (IsInGuild()) then
-     --Craftie:UpdateGuildMember()
-
-    --[==[
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
-      for k,v in pairs(Craftie.Professions) do
-        local prof = v[2]
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
-
-          for i=1, numMembers do
-            local name, _, _, level, _, zone, _, _, online = GetGuildRosterInfo(i)
-            local player = Ambiguate(name, "none")
-            local tooltip = ""
-            print(player)
-            if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][player] ~= nil) then
-              local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][player], ",")
-              local profLevel = crafter[3]
-              local profMastery = crafter[5]
-              --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
-              tooltip = tooltip .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";"
-            end
-            Craftie.Tooltip[player] = tooltip:sub(1, -2)
-          end
-        end
-      end
-    end
-    ]==]--
-
-    --hooksecurefunc("GuildRoster_SetSelection", function(index)
-
     if (Craftie.GuildFrameUsing == 2) then
       if (Craftie.CommunitiesRosterTooltipHooked) then
         return
