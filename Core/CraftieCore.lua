@@ -874,7 +874,7 @@ end
 
 --sanity check first, then send data
 function Craftie:ShareProf(prof, target)
-  --we dont want to share data from new players, just yet
+  --sanity check, we dont want to share our data as a new crafter, just yet
   if (Craftie.Save.Account["BLOB"] ~= nil) then
       if (Craftie.Save.Account["BLOB"][prof:upper()] ~= nil) then
         if (Craftie.Save.Account["BLOB"][prof:upper()][Craftie.Player.Name] ~= nil) then
@@ -901,10 +901,11 @@ function Craftie:ShareProf(prof, target)
             return false
           end
 
+          --Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", target)
+
         end
       end
   end
-  Craftie:Notification("Craftie:ShareToGroup() " .. group, Craftie.CHAT.SEND)
 end
 
 Craftie.CrafterProfLevel = 1 --globalizing to add to professionlist

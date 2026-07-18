@@ -153,9 +153,8 @@ hooksecurefunc("SetItemRef", function(link, text, button)
       --print(k .. " | " .. v)
     --end
     if (spellData[4] == Craftie._G.Prefix) then
-      --local player = Ambiguate(name, "none")
-      local playerData = Craftie:Split(spellData[5], "-") --remove realm data
-      local player = playerData[1]
+      --local playerData = Craftie:Split(spellData[5], "-") --remove realm data
+      local player = Ambiguate(spellData[5], "none")
       local profLink   = spellData[6]
       local profSplit = Craftie:Split(profLink, "|") --clean up link
       local prof = profSplit[1]
