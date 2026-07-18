@@ -254,7 +254,8 @@ for i,v in pairs(Craftie.Professions) do
     CraftieTooltip:AddLine(Craftie.Color.White .. prof .. "|r")
     for a,build in pairs(Craftie.MyProfessionEntry) do
       if (build == prof) then
-        CraftieTooltip:AddLine(Craftie.Color.Silver .. "Detected " .. Craftie.Color.Blue .. "[" .. prof .. "]|r as one of your professions")
+        CraftieTooltip:AddLine(" ")
+        CraftieTooltip:AddLine(Craftie.Color.Silver .. Craftie._L.Notification.Detected[1] .. " " .. Craftie.Color.Blue .. "[" .. prof .. "]|r as one of your professions")
         CraftieTooltip:AddLine(Craftie.Color.Silver .. "Click to build your profile")
       end
     end
