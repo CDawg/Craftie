@@ -923,6 +923,17 @@ function Craftie:SetProfLevel(level)
     --Craftie.Frame.CrafterProgBar:SetValue(tonumber(level))
     Craftie.Frame.CrafterProgBar:SetSmoothedValue(numericLevel)
     Craftie.Frame.CrafterProgBar.Text:SetText(numericLevel .. " / " .. Craftie.PROFMAXLEVEL)
+    Craftie.Frame.CrafterProgBar:SetStatusBarColor(0, 0.75, 0)
+    if (numericLevel <= 75) then
+      Craftie.Frame.CrafterProgBar:SetStatusBarColor(0.75, 0.25, 0)
+    elseif (numericLevel <= 150) then
+      Craftie.Frame.CrafterProgBar:SetStatusBarColor(0.50, 0.25, 0)
+    elseif (numericLevel <= 300) then
+      Craftie.Frame.CrafterProgBar:SetStatusBarColor(0.50, 0.50, 0)
+    elseif (numericLevel <= 350) then
+      Craftie.Frame.CrafterProgBar:SetStatusBarColor(0.25, 0.50, 0)
+    end
+
   end
 end
 

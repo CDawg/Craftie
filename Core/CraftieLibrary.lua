@@ -177,12 +177,15 @@ Craftie.Professions = {
   {197, "Tailoring",      "Trade_Tailoring",      "0.91, 0.69, 0.88", {"Mooncloth Tailoring", "Shadoweave Tailoring", "Spellfire Tailoring"}, 3908},
 }
 
+Craftie.PROFMAXSEG = 4
 if (Craftie.Game.Version >= 2) then
   Craftie.PROFMAXLEVEL = 375
+  Craftie.PROFMAXSEG = 5
   table.insert(Craftie.Professions, {755, "Jewelcrafting", "INV_Misc_Gem_02", "1.00, 0.25, 0.25", {}, 25229})
 end
 if (Craftie.Game.Version >= 3) then
   Craftie.PROFMAXLEVEL = 450
+  Craftie.PROFMAXSEG = 6
   table.insert(Craftie.Professions, {773, "Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}, 45357})
 end
 

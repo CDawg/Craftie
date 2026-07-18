@@ -79,6 +79,7 @@ Craftie._G.Image = {
   ProgressBar = {
     Back = Craftie._G.Path .. "Images/ProgressBar/ProgressBarFrame.png",
     Bar  = Craftie._G.Path .. "Images/ProgressBar/ProgressBarStandard.png",
+    Seg  = Craftie._G.Path .. "Images/ProgressBar/ProgressBarFrame-Seg.png",
     Spark= Craftie._G.Path .. "Images/ProgressBar/ProgressBarSpark.png",
   },
   TabBar = Craftie._G.Path .. "Images/Tabs/UI-Craftie-ProfBar", --dyanmic by version
