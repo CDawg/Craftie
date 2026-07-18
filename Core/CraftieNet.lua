@@ -79,14 +79,15 @@ function Craftie:PacketParse(netpacket)
       local profPack = packet[4]
       local profParse = Craftie:Split(profPack, "|")
       local profName = profParse[1]
+      local professionID = Craftie:GetProfessionID(profName)
       local profData = ""
 
       if ((requester ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL >= 3)) then
         Craftie:Notification("You were pinged by " .. requester .. " for " .. profName, Craftie.CHAT.ACK)
         --get my saved prof data and send it
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()] ~= nil) then
-          if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] ~= nil) then
-            profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name]
+        if (professionID and CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID] ~= nil) then
+          if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name] ~= nil) then
+            profData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name]
             if (profData ~= "") then
               Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profData, "WHISPER", requester)
             end
@@ -119,7 +120,7 @@ function Craftie:PacketParse(netpacket)
           Craftie.PlayerOnline[crafterName] = 1
           local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. Craftie.Date
           Craftie:Notification(profString, Craftie.CHAT.SAVE)
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][crafterName] = profString
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][tonumber(profNum)][crafterName] = profString
         else
           Craftie:Notification("Ignoring unknown profession ID: " .. tostring(packet[5]), Craftie.CHAT.ERROR)
         end

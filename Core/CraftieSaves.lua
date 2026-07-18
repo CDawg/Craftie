@@ -53,8 +53,36 @@ function Craftie:SaveDataBuild()
     CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"]= {} --cache list built for multi search indexing
 
     for k,v in pairs(Craftie.Professions) do
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[2]:upper()] = {} --organize by prof
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][v[2]:upper()] = {} --build an indexer used only for global searches
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]] = {} --organize by profession ID
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][v[1]] = {} --build an indexer by profession ID
+    end
+  end
+
+ -- set up so that existing crafters using the addon wont get an error. migrating for locale language changes
+  local blob = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"]
+  local cache = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"] or {}
+  CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"] = cache
+  for _, profession in pairs(Craftie.Professions) do
+    local professionID = profession[1]
+    local legacyKey = profession[2]:upper()
+    blob[professionID] = blob[professionID] or {}
+    if (blob[legacyKey]) then
+      for crafter, data in pairs(blob[legacyKey]) do
+        if (blob[professionID][crafter] == nil) then
+          blob[professionID][crafter] = data
+        end
+      end
+      blob[legacyKey] = nil
+    end
+
+    cache[professionID] = cache[professionID] or {}
+    if (cache[legacyKey]) then
+      for crafter, data in pairs(cache[legacyKey]) do
+        if (cache[professionID][crafter] == nil) then
+          cache[professionID][crafter] = data
+        end
+      end
+      cache[legacyKey] = nil
     end
   end
 

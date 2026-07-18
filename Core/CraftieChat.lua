@@ -107,7 +107,7 @@ function Craftie.LookupItem(self, event, msg, author, ...)
   local cacheRoot = Craftie.Save.Account and Craftie.Save.Account.CACHE
   if (cacheRoot) then
     for _, prof in pairs(Craftie.Professions) do
-      local professionCache = cacheRoot[prof[2]:upper()]
+      local professionCache = cacheRoot[prof[1]]
       local recipes = Craftie.Profession[prof[2]]
       if (professionCache and recipes) then
         for crafter, cacheString in pairs(professionCache) do

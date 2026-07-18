@@ -177,8 +177,8 @@ Craftie.PlayerOnline = {}
 function Craftie:GetOnlineCrafters() --guild only?
   local count = 0
   for k,v in pairs(Craftie.Professions) do
-    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[2]:upper()] ~= nil) then
-      for p in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[2]:upper()]) do
+    if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]] ~= nil) then
+      for p in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]]) do
         --print(p)
         Craftie.PlayerOnline[p] = 0
       end
@@ -258,7 +258,7 @@ function Craftie:UpdateCrafterList(search)
 
     local profession_crafters = nil
     if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
-      profession_crafters = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie.Page:upper()]
+      profession_crafters = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie:GetProfessionID(Craftie.Page)]
     end
 
     if (profession_crafters ~= nil) then
@@ -423,7 +423,7 @@ function Craftie:GetProfessionEntry()
 
     --we know a profession, but have not opened recipe book
     for k,prof in pairs(Craftie.MyProfessions) do
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] == nil) then
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie:GetProfessionID(prof)][Craftie.Player.Name] == nil) then
         local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 2)
         Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
         if (prof == "Alchemy") then
@@ -857,7 +857,7 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
           profString = profString .. "," .. profMastery .. "," .. Craftie.Date
 
           Craftie:Notification("Craftie:CrafterBuildData(" .. profString .. ")", Craftie.CHAT.SAVE)
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][Craftie.Player.Name] = profString
+          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name] = profString
           Craftie.ProfileBuilt[profName] = 1
 
           --share to guild members --when the profession is opened
@@ -874,11 +874,12 @@ end
 
 --sanity check first, then send data
 function Craftie:ShareProf(prof, target)
+  local professionID = Craftie:GetProfessionID(prof)
   --sanity check, we dont want to share our data as a new crafter, just yet
   if (Craftie.Save.Account["BLOB"] ~= nil) then
-      if (Craftie.Save.Account["BLOB"][prof:upper()] ~= nil) then
-        if (Craftie.Save.Account["BLOB"][prof:upper()][Craftie.Player.Name] ~= nil) then
-          local profString = Craftie.Save.Account["BLOB"][prof:upper()][Craftie.Player.Name]
+      if (professionID and Craftie.Save.Account["BLOB"][professionID] ~= nil) then
+        if (Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name] ~= nil) then
+          local profString = Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name]
           --print("my string " .. profString)
           if (target == "GUILD") then
             if (IsInGuild()) then
@@ -943,10 +944,11 @@ function Craftie:CrafterDataParse(profName, player)
   --alpha sort table (sanity check)
   Craftie:SortTableByString(compareProf)
 
-  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player] ~= nil) then
-    --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player])
+  local professionID = Craftie:GetProfessionID(profName)
+  if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][player] ~= nil) then
+    --print(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][player])
 
-    crafterData = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][profName:upper()][player], ",")
+    crafterData = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][player], ",")
 
     class = crafterData[1] --Craftie.Class[tonumber(packet[4])][1]
     profNum = crafterData[2]
@@ -979,7 +981,7 @@ function Craftie:CrafterDataParse(profName, player)
       end
     end
     if (indexer ~= "") then
-      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][profName:upper()][player] = indexer
+      CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][professionID][player] = indexer
       Craftie:Notification("Craftie:CrafterDataParse() cache indexer string built", Craftie.CHAT.FUNC)
     end
 
@@ -1033,10 +1035,11 @@ function Craftie:OpenProfessionList(profArray, search, player)
       end
 
       --print("search everyone within " .. Craftie.Page)
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()] ~= nil) then
+      local professionID = Craftie:GetProfessionID(Craftie.Page)
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][professionID] ~= nil) then
         --print("found " .. Craftie.Page)
-        for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()]) do
-          local pattern = string.find(string.lower(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][Craftie.Page:upper()][k]), search, 1, true)
+        for k,v in pairs(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["CACHE"][professionID]) do
+          local pattern = string.find(string.lower(v), search, 1, true)
           if (pattern) then
             search_all_count = search_all_count +1
             --print(k .. " - " .. pattern)

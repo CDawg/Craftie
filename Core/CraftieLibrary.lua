@@ -186,6 +186,18 @@ if (Craftie.Game.Version >= 3) then
   table.insert(Craftie.Professions, {773, "Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}, 45357})
 end
 
+-- BLOB data is keyed by the stable numeric profession ID. Names are localized
+-- and have changed between clients, so they are not suitable saved-data keys.
+function Craftie:GetProfessionID(profession)
+  local professionID = tonumber(profession)
+  if (professionID) then return professionID end
+
+  for _, data in pairs(Craftie.Professions) do
+    if (data[2] == profession) then return data[1] end
+  end
+  return nil
+end
+
 Craftie.ProfessionMasteries = {
   Alchemy = {
     [28677] = 1, --elixir master

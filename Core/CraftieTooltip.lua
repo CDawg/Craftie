@@ -19,9 +19,9 @@ function Craftie:BuildPersonalTooltip()
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for k,v in pairs(Craftie.Professions) do
       local prof = v[2]
-      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()] ~= nil) then
-        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name] ~= nil) then
-          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][prof:upper()][Craftie.Player.Name], ",")
+      if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]] ~= nil) then
+        if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]][Craftie.Player.Name] ~= nil) then
+          local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]][Craftie.Player.Name], ",")
           local profLevel = crafter[3]
           local profMastery = crafter[5]
           --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
@@ -218,7 +218,7 @@ function Craftie:GetSavedRosterTooltipData(player)
   local tooltipIndex = 0
   for k,v in ipairs(Craftie.Professions) do
     local prof = v[2]
-    local professionData = account["BLOB"][prof:upper()]
+    local professionData = account["BLOB"][v[1]]
     if (professionData and professionData[player]) then
       local crafter = Craftie:Split(professionData[player], ",")
       tooltipIndex = tooltipIndex + 1
