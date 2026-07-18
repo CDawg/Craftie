@@ -7,6 +7,7 @@ echo "Copying over current Craftie => /E/Craftie_GIT"
 cp -r "/c/Program Files (x86)/World of WarCraft/_anniversary_/Interface/AddOns/Craftie" /e/Craftie_GIT
 
 echo "Cleaning up .git .vscode"
+rm /e/Craftie/.agents
 rm /e/Craftie/.gitignore
 rm /e/Craftie/Craftie.code-workspace
 rm /e/Craftie/package.sh
