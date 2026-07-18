@@ -198,10 +198,11 @@ function Craftie:GetProfessionID(profession)
   return nil
 end
 
-function Craftie:GetProfessionName(profession)
-  local professionID = tonumber(profession)
+-- Updated for name conversions by the ID
+function Craftie:GetProfessionName(ID)
+  local professionID = tonumber(ID)
   for _, data in pairs(Craftie.Professions) do
-    if ((professionID and data[1] == professionID) or data[2] == profession) then
+    if ((professionID and data[1] == professionID) or data[2] == ID) then
       return data[2]
     end
   end

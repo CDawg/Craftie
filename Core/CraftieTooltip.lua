@@ -23,8 +23,6 @@ function Craftie:BuildPersonalTooltip()
           local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]][Craftie.Player.Name], ",")
           local profLevel = crafter[3]
           local profMastery = crafter[5]
-          -- Store and transmit the stable profession ID. The display name is
-          -- resolved only when TooltipLayout renders the data.
           tooltip = tooltip .. v[1] .. ":" .. profLevel .. ":" .. profMastery .. ";"
         end
       end
