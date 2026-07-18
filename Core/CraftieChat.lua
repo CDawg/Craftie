@@ -59,7 +59,8 @@ function Craftie:BuildChatHooks()
   end
 end
 
---guild only
+--[==[
+OLD
 function Craftie.LookupItem(self, event, msg, author, ...)
   C_GuildInfo.GuildRoster()
   local numTotalMembers, numOnlineMembers = GetNumGuildMembers()
@@ -139,6 +140,96 @@ function Craftie.LookupItem(self, event, msg, author, ...)
       return false, filter, author, ...
     end
   end
+end
+]==]--
+
+--guild only
+function Craftie.LookupItem(self, event, msg, author, ...)
+  local pattern = "craftie "
+  local commandStart, commandEnd = msg:lower():find(pattern, 1, true)
+  -- Only treat Craftie at the start of a message as a command. This also
+  -- prevents Craftie's own result messages from recursively starting searches.
+  if (commandStart ~= 1) then return end
+
+  local query = msg:sub(commandEnd + 1):match("^%s*(.-)%s*$")
+  if (query:len() < 2) then return end
+
+  if (C_GuildInfo and C_GuildInfo.GuildRoster) then
+    C_GuildInfo.GuildRoster()
+  end
+
+  local guildMembers = {}
+  for i = 1, GetNumGuildMembers() do
+    local name = GetGuildRosterInfo(i)
+    if (name) then guildMembers[Ambiguate(name, "none")] = true end
+  end
+
+  local queryItemID = tonumber(query:match("|Hitem:(%d+)") or query:match("^item:(%d+)") or query:match("^(%d+)$"))
+  local querySpellID = tonumber(query:match("|Hspell:(%d+)") or query:match("^spell:(%d+)"))
+  local queryName = query:gsub("|c%x%x%x%x%x%x%x%x", ""):gsub("|r", ""):gsub("|H.-|h(.-)|h", "%1")
+  queryName = Craftie:SanitizeString(queryName, true)
+  local results = {}
+
+  local function RecipeMatches(recipe)
+    if (queryItemID) then return tonumber(recipe[4]) == queryItemID end
+    if (querySpellID) then return tonumber(recipe[1]) == querySpellID end
+
+    local recipeName = Craftie:SanitizeString(recipe[2], true)
+    local enchantName = recipeName:gsub("^enchant%s+", "")
+    return recipeName:find(queryName, 1, true) ~= nil or enchantName:find(queryName, 1, true) ~= nil
+  end
+
+  local function RecipeLink(recipe)
+    if recipe[4] == nil or recipe[4] == "" then
+      return GetSpellLink(recipe[1]) or ("|Hspell:" .. recipe[1] .. "|h[" .. recipe[2] .. "]|h")
+    end
+
+    local _, itemLink = C_Item.GetItemInfo(recipe[4])
+    return itemLink or ("|Hitem:" .. recipe[4] .. "|h[" .. recipe[2] .. "]|h")
+  end
+
+  local cacheRoot = Craftie.Save.Account and Craftie.Save.Account.CACHE
+  if (cacheRoot) then
+    for _, prof in pairs(Craftie.Professions) do
+      local professionCache = cacheRoot[prof[2]:upper()]
+      local recipes = Craftie.Profession[prof[2]]
+      if (professionCache and recipes) then
+        for crafter, cacheString in pairs(professionCache) do
+          if (guildMembers[crafter]) then
+            local knownRecipes = {}
+            for _, cachedName in pairs(Craftie:Split(cacheString, ";")) do
+              if (cachedName and cachedName ~= "") then
+                knownRecipes[Craftie:SanitizeString(cachedName, true)] = true
+              end
+            end
+
+            for _, recipe in pairs(recipes) do
+              if knownRecipes[Craftie:SanitizeString(recipe[2], true)] and RecipeMatches(recipe) then
+                table.insert(results, {crafter, RecipeLink(recipe), recipe[2]})
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  if (Ambiguate(author, "none") == Craftie.Player.Name) then
+    table.sort(results, function(a, b)
+      if a[3] == b[3] then return a[1] < b[1] end
+      return a[3] < b[3]
+    end)
+    C_ChatInfo.SendChatMessage("[Craftie] Recipe Search: Found [" .. #results .. "]", "GUILD", nil)
+    for i, result in ipairs(results) do
+      local crafter = result[1]
+      local recipeLink = result[2]
+      C_Timer.After(i * 0.15, function()
+        C_ChatInfo.SendChatMessage(crafter .. " " .. recipeLink, "GUILD", nil)
+      end)
+    end
+  end
+
+  return false, msg, author, ...
 end
 
 hooksecurefunc("SetItemRef", function(link, text, button)
