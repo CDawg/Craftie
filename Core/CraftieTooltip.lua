@@ -18,20 +18,18 @@ function Craftie:BuildPersonalTooltip()
   local tooltip = ""
   if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"] ~= nil) then
     for k,v in pairs(Craftie.Professions) do
-      local prof = v[2]
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]] ~= nil) then
         if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]][Craftie.Player.Name] ~= nil) then
           local crafter = Craftie:Split(CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]][Craftie.Player.Name], ",")
           local profLevel = crafter[3]
           local profMastery = crafter[5]
-          --print("Craftie:BuildPersonalTooltip:" .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";")
-          tooltip = tooltip .. prof .. ":" .. profLevel .. ":" .. profMastery .. ";"
+          -- Store and transmit the stable profession ID. The display name is
+          -- resolved only when TooltipLayout renders the data.
+          tooltip = tooltip .. v[1] .. ":" .. profLevel .. ":" .. profMastery .. ";"
         end
       end
     end
   end
-  --debug
-  --tooltip = "Cooking:3;Alchemy:244;Tailoring:375;"
   Craftie.Tooltip[Craftie.Player.Name] = tooltip:sub(1, -2)
   Craftie:Notification("BuildPersonalTooltip("..Craftie.Tooltip[Craftie.Player.Name]..")", Craftie.CHAT.FUNC)
 end
@@ -85,27 +83,28 @@ function Craftie:TooltipLayout(data, tooltipframe)
       end
     end
     tooltipframe:AddLine(Craftie._G.Image.Tooltip.Layout .. Craftie._G.Title .. " " .. title)
-    if (data.profN1) then
+    local function AddProfession(profession, level, masteryID)
+      if (not profession) then return end
+
+      -- Numeric IDs are the current format. Accepting a name here keeps
+      -- tooltip data received from older Craftie clients displayable.
+      local professionID = Craftie:GetProfessionID(profession)
+      local professionName = Craftie:GetProfessionName(profession)
+      if (not professionID or not professionName) then return end
+
       local mastery = ""
-      if (data.profM1 > 0) then
-        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN1, 2)][5][data.profM1] .. "]"
+      local professionIndex = Craftie:GetKeyFromValue(Craftie.Professions, professionID, 1)
+      local masteryIndex = tonumber(masteryID) or 0
+      local masteryName = professionIndex and Craftie.Professions[professionIndex][5][masteryIndex]
+      if (masteryIndex > 0 and masteryName) then
+        mastery = " [" .. masteryName .. "]"
       end
-      tooltipframe:AddDoubleLine(color .. data.profN1 .. mastery, Craftie.Color.White .. data.profL1 .. "/" .. Craftie.PROFMAXLEVEL)
+      tooltipframe:AddDoubleLine(color .. professionName .. mastery, Craftie.Color.White .. level .. "/" .. Craftie.PROFMAXLEVEL)
     end
-    if (data.profN2) then
-      local mastery = ""
-      if (data.profM2 > 0) then
-        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN2, 2)][5][data.profM2] .. "]"
-      end
-      tooltipframe:AddDoubleLine(color .. data.profN2 .. mastery, Craftie.Color.White .. data.profL2 .. "/" .. Craftie.PROFMAXLEVEL)
-    end
-    if (data.profN3) then
-      local mastery = ""
-      if (data.profM3 > 0) then
-        mastery = " [" .. Craftie.Professions[Craftie:GetKeyFromValue(Craftie.Professions, data.profN3, 2)][5][data.profM3] .. "]"
-      end
-      tooltipframe:AddDoubleLine(color .. data.profN3 .. mastery, Craftie.Color.White .. data.profL3 .. "/" .. Craftie.PROFMAXLEVEL)
-    end
+
+    AddProfession(data.profN1, data.profL1, data.profM1)
+    AddProfession(data.profN2, data.profL2, data.profM2)
+    AddProfession(data.profN3, data.profL3, data.profM3)
     tooltipframe:Show()
   end
 end
@@ -217,12 +216,11 @@ function Craftie:GetSavedRosterTooltipData(player)
   local data = {}
   local tooltipIndex = 0
   for k,v in ipairs(Craftie.Professions) do
-    local prof = v[2]
     local professionData = account["BLOB"][v[1]]
     if (professionData and professionData[player]) then
       local crafter = Craftie:Split(professionData[player], ",")
       tooltipIndex = tooltipIndex + 1
-      data["profN" .. tooltipIndex] = prof
+      data["profN" .. tooltipIndex] = v[1]
       data["profL" .. tooltipIndex] = crafter[3]
       data["profM" .. tooltipIndex] = tonumber(crafter[5]) or 0
 

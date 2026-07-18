@@ -198,6 +198,16 @@ function Craftie:GetProfessionID(profession)
   return nil
 end
 
+function Craftie:GetProfessionName(profession)
+  local professionID = tonumber(profession)
+  for _, data in pairs(Craftie.Professions) do
+    if ((professionID and data[1] == professionID) or data[2] == profession) then
+      return data[2]
+    end
+  end
+  return nil
+end
+
 Craftie.ProfessionMasteries = {
   Alchemy = {
     [28677] = 1, --elixir master

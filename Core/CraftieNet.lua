@@ -141,17 +141,17 @@ function Craftie:PacketParse(netpacket)
         if (craftData[1] ~= "") then
           a = Craftie:Split(craftData[1], ":")
           --table.insert(tooltip, {prof1=p[1], prof1L=p[2]})
-          Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3])}
+          Craftie.PlayerGUIDProf[crafter]={profN1=tonumber(a[1]) or a[1], profL1=a[2], profM1=tonumber(a[3])}
         end
         if (craftData[2] ~= "") then
           b = Craftie:Split(craftData[2], ":")
           --table.insert(tooltip, {prof2=p[1], prof2L=p[2]})
-          Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=b[1], profL2=b[2], profM2=tonumber(b[3])}
+          Craftie.PlayerGUIDProf[crafter]={profN1=tonumber(a[1]) or a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=tonumber(b[1]) or b[1], profL2=b[2], profM2=tonumber(b[3])}
         end
         if (craftData[3] ~= "") then
           c = Craftie:Split(craftData[3], ":")
           --table.insert(tooltip, {prof3=p[1], prof3L=p[2]})
-          Craftie.PlayerGUIDProf[crafter]={profN1=a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=b[1], profL2=b[2], profM2=tonumber(b[3]), profN3=c[1], profL3=c[2], profM3=tonumber(c[3])}
+          Craftie.PlayerGUIDProf[crafter]={profN1=tonumber(a[1]) or a[1], profL1=a[2], profM1=tonumber(a[3]), profN2=tonumber(b[1]) or b[1], profL2=b[2], profM2=tonumber(b[3]), profN3=tonumber(c[1]) or c[1], profL3=c[2], profM3=tonumber(c[3])}
         end
       end
     end
