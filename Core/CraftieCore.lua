@@ -483,19 +483,22 @@ function Craftie:GetProfessionEntry()
 end
 
 ---@class TradeSkillFrame
-function Craftie:CycleCraftingBook(tab, prof)
+---@class CraftFrame
+function Craftie:CycleCraftingBook(prof)
   CastSpellByName(prof)
   C_Timer.After(2, function()
     Craftie:UpdateCrafterList()
-    Craftie.MyProfessionEntry[tab] = nil
     Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof .. " in any chat", Craftie.CHAT.INFO)
   end)
-  C_Timer.After(0.03, function()
+  C_Timer.After(0.05, function()
     if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
       HideUIPanel(TradeSkillFrame)
     end
+    if ((CraftFrame) and (CraftFrame:IsShown())) then
+      HideUIPanel(CraftFrame)
+    end
   end)
-  Craftie:Notification("Craftie:CycleCraftingBook() = " .. tab .. " " .. prof, Craftie.CHAT.FUNC)
+  Craftie:Notification("Craftie:CycleCraftingBook() = " .. prof, Craftie.CHAT.FUNC)
 end
 
 function Craftie:TabSelectSide(tab, sound)
@@ -528,7 +531,8 @@ function Craftie:TabSelectSide(tab, sound)
     --we have no build yet
     for k,v in pairs(Craftie.MyProfessionEntry) do
       if (prof_name == v) then
-        Craftie:CycleCraftingBook(k, v)
+        Craftie.MyProfessionEntry[k] = nil --remove entry
+        Craftie:CycleCraftingBook(prof_name)
       end
     end
 
