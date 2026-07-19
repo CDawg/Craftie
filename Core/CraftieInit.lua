@@ -46,14 +46,26 @@ function Craftie:Init()
     if (IsInGuild()) then
       Craftie:UpdatePlayerTooltip("GUILD")
 
-      if (GuildFrame and (not Craftie.GuildFrameShowHooked)) then
+      local function HookGuildFrame()
+        if ((not GuildFrame) or Craftie.GuildFrameShowHooked) then
+          return
+        end
+
         GuildFrame:HookScript("OnShow", function(self)
           Craftie:Notification("GuildFrame:Show() == classic", Craftie.CHAT.FUNC)
           Craftie.GuildFrameUsing = 1
           Craftie:BuildGuildRosterTooltip()
         end)
         Craftie.GuildFrameShowHooked = true
+
+        -- ADDON_LOADED can fire after the guild frame has already been shown.
+        if (GuildFrame:IsShown()) then
+          Craftie.GuildFrameUsing = 1
+          Craftie:BuildGuildRosterTooltip()
+        end
       end
+
+      HookGuildFrame()
 
       local function HookCommunitiesFrame()
         if ((not CommunitiesFrame) or Craftie.CommunitiesFrameShowHooked) then
@@ -69,11 +81,18 @@ function Craftie:Init()
       end
 
       HookCommunitiesFrame()
-      if ((not Craftie.CommunitiesFrameShowHooked) and EventRegistry) then
+      if (((not Craftie.GuildFrameShowHooked) or (not Craftie.CommunitiesFrameShowHooked)) and EventRegistry) then
         EventRegistry:RegisterFrameEventAndCallback("ADDON_LOADED", function(owner, loadedAddonName)
-          if (loadedAddonName == "Blizzard_Communities") then
-            EventRegistry:UnregisterFrameEventAndCallback("ADDON_LOADED", owner)
+          if (loadedAddonName == "Blizzard_GuildUI") then
+            HookGuildFrame()
+            if (Craftie.GuildFrameShowHooked) then
+              EventRegistry:UnregisterFrameEventAndCallback("ADDON_LOADED", owner)
+            end
+          elseif (loadedAddonName == "Blizzard_Communities") then
             HookCommunitiesFrame()
+            if (Craftie.CommunitiesFrameShowHooked) then
+              EventRegistry:UnregisterFrameEventAndCallback("ADDON_LOADED", owner)
+            end
           end
         end)
       end
