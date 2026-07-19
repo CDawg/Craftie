@@ -53,7 +53,7 @@ for k,v in pairs(Craftie._L.Navigation) do
   end)
 end
 
---tab 2 = orders
+--tab 3 = orders
 --blizzard's UI is broken, have to draw AFTER and use tab as the parent
 Craftie.TabBottomOrderAlert = Craftie.TabBottom[2]:CreateTexture(nil, "OVERLAY", nil, 7)
 Craftie.TabBottomOrderAlert:SetSize(50, 50)
@@ -94,10 +94,10 @@ function Craftie:TabSelectBottom(tab, sound)
   end
   if (tab == 2) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Frame.CraftOrders:Show()
   end
   if (tab == 3) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
+    Craftie.Frame.CraftOrders:Show()
   end
   if (tab == 4) then
     Craftie.TabBarHide = Craftie.TabBarHide+1

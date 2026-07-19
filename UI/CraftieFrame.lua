@@ -357,7 +357,7 @@ Craftie.Frame.Button.Minimap:SetScript("OnClick", function(self, button)
   if (button == "RightButton") then
     Craftie:Open()
     C_Timer.After(0.40, function()
-      Craftie:TabSelectBottom(2, true)
+      Craftie:TabSelectBottom(3, true)
     end)
   end
 end)

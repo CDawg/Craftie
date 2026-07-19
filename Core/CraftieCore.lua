@@ -1323,7 +1323,7 @@ function Craftie:GetCraftOrders()
       end)
       color = Craftie.Color.Yellow
     end
-    Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[2] .. " " .. color .. "[" .. order_index .. "]")
+    Craftie.TabBottom[3].Text:SetText(Craftie._L.Navigation[3] .. " " .. color .. "[" .. order_index .. "]")
     Craftie.Frame.CraftOrders:SetAlpha(1)
   end)
   Craftie:Notification(Craftie.Color.Yellow .. "Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)

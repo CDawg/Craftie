@@ -51,7 +51,7 @@ Craftie._L = {
     {"Right Click", "Craftie Orders"}
   },
 
-  Navigation = {"Profesiones", "Órdenes", "Requests", "Actualizaciones", "Ayuda"},
+  Navigation = {"Professions", "Requests", "Orders", "Updates", "Help"},
 
   --translate
   Professions = {
