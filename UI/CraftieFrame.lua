@@ -28,7 +28,7 @@ Craftie.Frame:SetScript("OnDragStop", function()
   Craftie.Save.Player["CONFIG"]["POS_MAIN"] = point .. "," .. xOfs .. "," .. yOfs
   Craftie:Notification("CONFIG->POS_MAIN: " .. point .. "," .. xOfs .. "," .. yOfs, Craftie.CHAT.SAVE)
 end)
-Craftie.Frame:SetFrameStrata("LOW")
+
 Craftie.Frame.Back = Craftie.Frame:CreateTexture(nil, "BACKGROUND", nil, 0)
 --Craftie.Frame.Back:SetAllPoints()
 Craftie.Frame.Back:SetPoint("TOPLEFT", 0, 0)
@@ -83,6 +83,8 @@ for i=1, Craftie.PROFMAXSEG do
   Craftie.Frame.CrafterProgBar.seg[i]:SetTexture(Craftie._G.Image.ProgressBar.Seg)
   Craftie.Frame.CrafterProgBar.seg[i]:SetAlpha(0.7)
 end
+
+Craftie.Frame:SetFrameStrata("LOW") --keep low, draw high later
 
 Craftie.Frame.CrafterProgBar:SetStatusBarTexture(Craftie._G.Image.ProgressBar.Bar)
 Craftie.Frame.CrafterProgBar:SetStatusBarColor(0, 0.70, 0)

@@ -158,12 +158,13 @@ function Craftie:LoadOptions()
           Craftie.Options.CheckboxGuild:SetChecked(false)
         end
 
+        Craftie.Frame:SetFrameStrata("HIGH") --default
         if (Craftie.Save.Player.CONFIG["FRAME_LEVEL"] ~= nil) then
           for k,v in pairs(Craftie.FrameStrata) do
             if (k == Craftie.Save.Player.CONFIG["FRAME_LEVEL"]) then
               Craftie.Frame:SetFrameStrata(v)
               Craftie.Options.DropdownFrame.text:SetText(Craftie._L.Options.Frame[2][k])
-              Craftie:Notification("FRAME_LEVEL " .. Craftie.Save.Player.CONFIG["FRAME_LEVEL"], Craftie.CHAT.SAVE)
+              Craftie:Notification("FRAME_LEVEL " .. Craftie.Frame:GetFrameLevel() .. " - " .. Craftie.Save.Player.CONFIG["FRAME_LEVEL"], Craftie.CHAT.SAVE)
             end
           end
         end

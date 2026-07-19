@@ -86,8 +86,8 @@ Craftie._L = {
     },
     Frame = {
       Title = "Frame Options",
-      {"Frame Level", "Craftie frame level determines the z-order layer on top of other frames/addons|nLOW        = Behind other frames [Default - Recommended]|nMEDIUM= Between layers|nHIGH       = On top of most frames"},
-      {"LOW", "MEDIUM", "HIGH"},
+      {"Frame Level", "Craftie frame level determines the z-order layer on top of other frames/addons|nLOW         = Behind other frames|nMEDIUM = Between layers|nHIGH        = Above most frames [Default - Recommended]"},
+      {"HIGH", "MEDIUM", "LOW"},
     },
   }
 }
