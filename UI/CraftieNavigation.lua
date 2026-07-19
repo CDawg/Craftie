@@ -55,7 +55,7 @@ end
 
 --tab 3 = orders
 --blizzard's UI is broken, have to draw AFTER and use tab as the parent
-Craftie.TabBottomOrderAlert = Craftie.TabBottom[2]:CreateTexture(nil, "OVERLAY", nil, 7)
+Craftie.TabBottomOrderAlert = Craftie.TabBottom[3]:CreateTexture(nil, "OVERLAY", nil, 7)
 Craftie.TabBottomOrderAlert:SetSize(50, 50)
 Craftie.TabBottomOrderAlert:SetPoint("CENTER", 20, 0)
 Craftie.TabBottomOrderAlert:SetTexture("Interface/UNITPOWERBARALT/PandarenTraining_Circular_Flash")
