@@ -251,11 +251,10 @@ Craftie.Frame.Item.SourceText:SetText("")
 Craftie.Frame.Item.SourceText:SetTextColor(1, 1, 1, 0.8)
 Craftie.Frame.Item.SourceText:Hide()
 
+
 --[==[
 CRAFT REQUEST
 ]==]--
-
-
 Craftie.Frame.ItemBackBot={}
 Craftie.Frame.ItemBackBot= CreateFrame("Frame", "Craftie.Frame.ItemBackBot", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.ItemBackBot:SetWidth(Craftie.Frame.CraftParent:GetWidth())
@@ -273,17 +272,14 @@ Craftie.Frame.ItemRequestParent:SetPoint("TOPRIGHT", 0, -dimensions.request.Y)
 local MIN_VALUE = 1
 local MAX_VALUE = 999
 local STEP = 1
-
-Craftie.Frame.ItemCountParent = CreateFrame("Frame", "MyNumberBoxFrame", Craftie.Frame.ItemRequestParent, "BackdropTemplate")
+Craftie.Frame.ItemCountParent = CreateFrame("Frame", "MyNumberBoxFrame", Craftie.Frame.CraftParent, "BackdropTemplate")
 Craftie.Frame.ItemCountParent:SetSize(80, 20)
-Craftie.Frame.ItemCountParent:SetPoint("TOPLEFT", 10, -6)
-
+Craftie.Frame.ItemCountParent:SetPoint("TOPLEFT", 10, -dimensions.request.Y-8)
 Craftie.Frame.ItemCountEditBox = CreateFrame("EditBox", nil, Craftie.Frame.ItemCountParent, "InputBoxTemplate")
 Craftie.Frame.ItemCountEditBox:SetSize(30, 20)
 Craftie.Frame.ItemCountEditBox:SetPoint("CENTER", 0, 0)
 Craftie.Frame.ItemCountEditBox:SetAutoFocus(false)
 Craftie.Frame.ItemCountEditBox:SetNumber(MIN_VALUE)
-
 -- Restrict to numeric input and enforce limits
 Craftie.Frame.ItemCountEditBox:SetScript("OnTextChanged", function(self)
   local num = self:GetNumber() -- Automatically extracts number
@@ -320,19 +316,19 @@ ButtonIncrease:SetPushedTexture("Interface/Buttons/UI-SpellbookIcon-NextPage-Dow
 ButtonIncrease:SetHighlightTexture("Interface/Buttons/UI-Common-MouseHilight", "ADD")
 
 Craftie.Req_Lock = 0
-Craftie.Frame.ItemReqButton = CreateFrame("Button", nil, Craftie.Frame.ItemRequestParent, "UIPanelButtonTemplate")
-Craftie.Frame.ItemReqButton:SetSize(90, 24)
-Craftie.Frame.ItemReqButton:SetPoint("TOPLEFT", 10, -30)
-Craftie.Frame.ItemReqButton:SetText("Request")
-Craftie.Frame.ItemReqButton:SetScript("OnClick", function(self)
+Craftie.Frame.ItemButtonRequest = CreateFrame("Button", nil, Craftie.Frame.ItemRequestParent, "UIPanelButtonTemplate")
+Craftie.Frame.ItemButtonRequest:SetSize(90, 24)
+Craftie.Frame.ItemButtonRequest:SetPoint("TOPLEFT", 10, -30)
+Craftie.Frame.ItemButtonRequest:SetText("Request")
+Craftie.Frame.ItemButtonRequest:SetScript("OnClick", function(self)
   if (Craftie.Req_Lock == 1) then
     Craftie:Notification("Please wait " .. Craftie.ORDER_TIMER .. " seconds before sending another request.", Craftie.CHAT.WARN)
   else
     Craftie.Req_Lock = 1
-    --Craftie.Frame.ItemReqButton:Hide()
+    --Craftie.Frame.ItemButtonRequest:Hide()
     local link = ""
     local request_msg = "to be crafted"
-    Craftie.Frame.ItemReqButton:Disable()
+    Craftie.Frame.ItemButtonRequest:Disable()
     if (Craftie.Tab == 4) then --enchanting
       link, _ = GetSpellLink(Craftie.Frame.Item.ID:GetText())
       request_msg = "to be enchanted"
@@ -349,7 +345,7 @@ Craftie.Frame.ItemReqButton:SetScript("OnClick", function(self)
 
     C_Timer.After(Craftie.ORDER_TIMER, function()
       Craftie.Req_Lock = 0
-      Craftie.Frame.ItemReqButton:Enable()
+      Craftie.Frame.ItemButtonRequest:Enable()
       Craftie.Frame.Item.ReqMessage:SetText("")
     end)
     --print(Craftie.Selected_Name .. " | " .. Craftie.Frame.Item.Text:GetText())
@@ -361,3 +357,30 @@ Craftie.Frame.Item.ReqMessage:SetPoint("TOPLEFT", 12, -65)
 Craftie.Frame.Item.ReqMessage:SetText("")
 Craftie.Frame.Item.ReqMessage:SetTextColor(1, 1, 0.92, 0.8)
 Craftie.Frame.Item.ReqMessage:SetJustifyH("LEFT")
+
+--[==[
+CRAFT CREATE
+]==]--
+Craftie.Frame.ItemCreateParent = CreateFrame("Frame", "Craftie.Frame.ItemCreateParent", Craftie.Frame.CraftParent, "BackdropTemplate", 5)
+Craftie.Frame.ItemCreateParent:SetWidth(Craftie.Frame.ItemBackBot:GetWidth())
+Craftie.Frame.ItemCreateParent:SetHeight(Craftie.Frame.ItemBackBot:GetHeight())
+Craftie.Frame.ItemCreateParent:SetPoint("TOPRIGHT", 0, -dimensions.request.Y)
+--Craftie.Frame.ItemCreateParent:SetFrameLevel(50)
+
+Craftie.Frame.ItemButtonCreateAll = CreateFrame("Button", nil, Craftie.Frame.ItemCreateParent, "UIPanelButtonTemplate")
+Craftie.Frame.ItemButtonCreateAll:SetSize(90, 24)
+Craftie.Frame.ItemButtonCreateAll:SetPoint("TOPLEFT", 10, -30)
+Craftie.Frame.ItemButtonCreateAll:SetText("Create All")
+Craftie.Frame.ItemButtonCreateAll:SetEnabled(false)
+Craftie.Frame.ItemButtonCreateAll:SetScript("OnClick", function(self)
+  print("test")
+end)
+
+Craftie.Frame.ItemButtonCreate = CreateFrame("Button", nil, Craftie.Frame.ItemCreateParent, "UIPanelButtonTemplate")
+Craftie.Frame.ItemButtonCreate:SetSize(90, 24)
+Craftie.Frame.ItemButtonCreate:SetPoint("TOPLEFT", 10, -56)
+Craftie.Frame.ItemButtonCreate:SetText("Create")
+Craftie.Frame.ItemButtonCreate:SetEnabled(false)
+Craftie.Frame.ItemButtonCreate:SetScript("OnClick", function(self)
+  print("test")
+end)

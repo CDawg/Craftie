@@ -87,14 +87,19 @@ function Craftie:ClearCraftFrame()
   Craftie.Frame.Item.SourceText:Hide()
 
   Craftie.Frame.ItemRequestParent:Hide()
+  Craftie.Frame.ItemCountParent:Hide()
+  Craftie.Frame.ItemCreateParent:Hide()
 
   Craftie:Notification("Craftie:ClearCraftFrame()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:CraftRequestFrame(crafter)
-  if ((crafter ~= Craftie.Player.Name) or (Craftie.DEBUGLEVEL > 3)) then
+  if (crafter == Craftie.Player.Name) then
+    Craftie.Frame.ItemCreateParent:Show()
+  else
     Craftie.Frame.ItemRequestParent:Show()
   end
+  Craftie.Frame.ItemCountParent:Show() --using same field for create/request
 end
 
 function Craftie:ClearSearchFocus(crafters)
