@@ -20,7 +20,9 @@ Craftie.SortOrder = 0
 ---@class GetSpellBookItemName
 ---@enum BOOKTYPE_SPELL
 ---@class GetSpellTabInfo
+
 ---@class TradeSkillFrame
+---@class CraftFrame
 
 ---@class Notification
 function Craftie:Notification(msg, type)
@@ -482,23 +484,39 @@ function Craftie:GetProfessionEntry()
   Craftie:Notification("Craftie:GetProfessionEntry(" .. #Craftie.MyProfessions .. ")", Craftie.CHAT.FUNC)
 end
 
----@class TradeSkillFrame
----@class CraftFrame
-function Craftie:CycleCraftingBook(prof)
-  CastSpellByName(prof)
-  C_Timer.After(2, function()
-    Craftie:UpdateCrafterList()
-    Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof .. " in any chat", Craftie.CHAT.INFO)
-  end)
-  C_Timer.After(0.05, function()
-    if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
-      HideUIPanel(TradeSkillFrame)
+function Craftie:GetCurrentProfs()
+  if (Craftie.Save.Account["BLOB"] ~= nil) then
+    for k,v in pairs(Craftie.Professions) do
+      if (Craftie.Save.Account["BLOB"][v[1]] ~= nil) then
+        if (Craftie.Save.Account["BLOB"][v[1]][Craftie.Player.Name] ~= nil) then
+          Craftie.CurrentProfs[v[1]] = 1
+        end
+      end
     end
-    if ((CraftFrame) and (CraftFrame:IsShown())) then
-      HideUIPanel(CraftFrame)
+  end
+end
+
+function Craftie:CycleCraftingBook(profID)
+  local prof_name = Craftie:GetProfessionName(profID)
+--  if (Craftie.CurrentProfs[profID] == 1) then
+    if (Craftie.CraftBookCycle[profID] ~= 1) then
+      CastSpellByName(prof_name)
+      C_Timer.After(0.01, function()
+        if (TradeSkillFrame) then
+          HideUIPanel(TradeSkillFrame)
+        end
+        if (CraftFrame) then
+          HideUIPanel(CraftFrame)
+        end
+      end)
+      C_Timer.After(2, function()
+        Craftie:UpdateCrafterList()
+        --Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof .. " in any chat", Craftie.CHAT.INFO)
+      end)
+      Craftie.CraftBookCycle[profID] = 1
+      Craftie:Notification("Craftie:CycleCraftingBook() = " .. profID, Craftie.CHAT.FUNC)
     end
-  end)
-  Craftie:Notification("Craftie:CycleCraftingBook() = " .. prof, Craftie.CHAT.FUNC)
+--  end
 end
 
 function Craftie:TabSelectSide(tab, sound)
@@ -532,9 +550,11 @@ function Craftie:TabSelectSide(tab, sound)
     for k,v in pairs(Craftie.MyProfessionEntry) do
       if (prof_name == v) then
         Craftie.MyProfessionEntry[k] = nil --remove entry
-        Craftie:CycleCraftingBook(prof_name)
+        --Craftie:CycleCraftingBook(prof_name) --this also flags that we opened the prof
+        Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof_name .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof_name .. " in any chat", Craftie.CHAT.INFO)
       end
     end
+    Craftie:CycleCraftingBook(Craftie:GetProfessionID(prof_name))
 
     C_Timer.After(0.1, function() --give it time to register
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
@@ -1081,7 +1101,7 @@ function Craftie:OpenProfessionList(profArray, search, player)
   Craftie:SelectScrollItem("Recipes", false)
   Craftie:SetProfLevel(0)
   if (player ~= "") then
-    Craftie:Notification(Craftie.Color.Yellow .. "Opening|r [" .. player .. "] Crafting book", Craftie.CHAT.FUNC)
+    Craftie:Notification(Craftie.Color.Yellow .. "Opening|r [" .. player .. "] " .. Craftie.Page .. " Crafting book", Craftie.CHAT.FUNC)
     profCache = Craftie:CrafterDataParse(Craftie.Page, player)
     Craftie.MenuSelRecipes[2] = player
   else

@@ -86,6 +86,9 @@ Craftie.Throttle = {
   }
 }
 
+Craftie.CraftBookCycle={} --setting this so that we dont overlap other events
+Craftie.CurrentProfs={}
+
 Craftie.Framelevel = {
   Background= 0,
   Foreground= 10,

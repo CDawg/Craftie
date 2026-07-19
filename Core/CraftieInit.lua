@@ -99,6 +99,7 @@ function Craftie:Init()
     end
     Craftie:GetProfessionEntry()
     Craftie:LoadOptions()
+    --Craftie:GetCurrentProfs()
     Craftie:GetCraftOrders()
 
     --[==[
