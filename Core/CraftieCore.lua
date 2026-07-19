@@ -549,6 +549,7 @@ function Craftie:ItemDetails(item)
   local r_next = 0 --reagent integer population
   local b_next = 0
   local loadcache = 0
+  local has_all_reagents = true
 
   Craftie.Frame.Item:Show()
   --Craftie.Frame.ItemCountEditBox:SetNumber(1)
@@ -564,6 +565,10 @@ function Craftie:ItemDetails(item)
       local r = 0
       local inv_count= C_Item.GetItemCount(item[5][i][1])
       local inv_req = item[5][i][2]
+
+      if (inv_count < inv_req) then
+        has_all_reagents = false
+      end
 
       --reset
       Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
@@ -627,6 +632,9 @@ function Craftie:ItemDetails(item)
       --print("craftie count " .. Craftie.Reagent[r][2] .. ": " .. item[5][i][2] .. " | " .. inv_count)
     end
   end
+
+  Craftie.Frame.ItemButtonCreateAll:SetEnabled(has_all_reagents)
+  Craftie.Frame.ItemButtonCreate:SetEnabled(has_all_reagents)
 
   Craftie.Frame.Item.ID:SetText(item[4])
   Craftie.Frame.Item.Text:SetText(item[2])
