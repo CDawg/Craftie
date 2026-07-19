@@ -13,16 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-local TabOffset = 350
-
---[==[
-Craftie.Frame.TitleNavigation = Craftie.Frame:CreateFontString(nil, "ARTWORK")
-Craftie.Frame.TitleNavigation:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+3, Craftie._G.Font.Flags)
-Craftie.Frame.TitleNavigation:SetPoint("TOPLEFT", 40, -35)
-Craftie.Frame.TitleNavigation:SetText("")
-Craftie.Frame.TitleNavigation:SetTextColor(0.9, 0.9, 0.8, 1)
-Craftie.Frame.TitleNavigation:Hide()
-]==]--
+local TabOffset = 430
 
 Craftie.TabBottom={}
 for k,v in pairs(Craftie._L.Navigation) do
@@ -107,14 +98,17 @@ function Craftie:TabSelectBottom(tab, sound)
   end
   if (tab == 3) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Updates:Show()
-    Craftie.Credit:Show()
   end
   if (tab == 4) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Help:Show()
+    Craftie.Updates:Show()
+    Craftie.Credit:Show()
   end
   if (tab == 5) then
+    Craftie.TabBarHide = Craftie.TabBarHide+1
+    Craftie.Help:Show()
+  end
+  if (tab == 6) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
     --Craftie.Logger:Show()
   end
