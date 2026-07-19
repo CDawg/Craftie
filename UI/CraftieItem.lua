@@ -117,6 +117,12 @@ Craftie.Frame.Item.ID:SetPoint("CENTER", 10, 0)
 Craftie.Frame.Item.ID:SetText("")
 Craftie.Frame.Item.ID:SetTextColor(1, 1, 1, 0)
 
+Craftie.Frame.Item.spellID = Craftie.Frame.Item:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Item.spellID:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
+Craftie.Frame.Item.spellID:SetPoint("CENTER", 10, 0)
+Craftie.Frame.Item.spellID:SetText("")
+Craftie.Frame.Item.spellID:SetTextColor(1, 1, 1, 0) --hide
+
 --[==[
 CRAFT REAGENTS
 ]==]--
@@ -373,7 +379,7 @@ Craftie.Frame.ItemButtonCreateAll:SetPoint("TOPLEFT", 10, -30)
 Craftie.Frame.ItemButtonCreateAll:SetText("Create All")
 Craftie.Frame.ItemButtonCreateAll:SetEnabled(false)
 Craftie.Frame.ItemButtonCreateAll:SetScript("OnClick", function(self)
-  print("test")
+  Craftie:CraftRecipe(Craftie.Frame.Item.spellID:GetText(), Craftie.Frame.ItemCountEditBox:GetNumber())
 end)
 
 Craftie.Frame.ItemButtonCreate = CreateFrame("Button", nil, Craftie.Frame.ItemCreateParent, "UIPanelButtonTemplate")
@@ -382,5 +388,5 @@ Craftie.Frame.ItemButtonCreate:SetPoint("TOPLEFT", 10, -56)
 Craftie.Frame.ItemButtonCreate:SetText("Create")
 Craftie.Frame.ItemButtonCreate:SetEnabled(false)
 Craftie.Frame.ItemButtonCreate:SetScript("OnClick", function(self)
-  print("test")
+  Craftie:CraftRecipe(Craftie.Frame.Item.spellID:GetText(), 1)
 end)

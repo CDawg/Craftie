@@ -102,6 +102,40 @@ function Craftie:CraftRequestFrame(crafter)
   Craftie.Frame.ItemCountParent:Show() --using same field for create/request
 end
 
+function Craftie:CraftRecipe(spellID, count)
+  spellID = tonumber(spellID)
+  count = tonumber(count) or 1
+  if (not spellID or count < 1) then
+    return false
+  end
+
+  local spellName = GetSpellInfo(spellID)
+  local numTradeSkills = GetNumTradeSkills and GetNumTradeSkills() or 0
+  for i = 1, numTradeSkills do
+    local recipeName, recipeType = GetTradeSkillInfo(i)
+    local recipeLink = GetTradeSkillRecipeLink and GetTradeSkillRecipeLink(i)
+    local recipeSpellID = recipeLink and tonumber(string.match(recipeLink, "enchant:(%d+)"))
+    if (recipeType ~= "header" and ((recipeSpellID and recipeSpellID == spellID) or recipeName == spellName)) then
+      DoTradeSkill(i, count)
+      return true
+    end
+  end
+
+  local numCrafts = GetNumCrafts and GetNumCrafts() or 0
+  for i = 1, numCrafts do
+    local recipeName, _, recipeType = GetCraftInfo(i)
+    local recipeLink = GetCraftRecipeLink and GetCraftRecipeLink(i)
+    local recipeSpellID = recipeLink and tonumber(string.match(recipeLink, "enchant:(%d+)"))
+    if (recipeType ~= "header" and ((recipeSpellID and recipeSpellID == spellID) or recipeName == spellName)) then
+      DoCraft(i, count)
+      return true
+    end
+  end
+
+  Craftie:Notification("Open " .. Craftie.Page .. " before crafting this recipe.", Craftie.CHAT.INFO)
+  return false
+end
+
 function Craftie:ClearSearchFocus(crafters)
   Craftie.Frame.Search.Recipes.Text:ClearFocus()
   Craftie.Frame.Search.Recipes.Text:SetText(Craftie._L.Placeholder_Recipes)
@@ -638,6 +672,7 @@ function Craftie:ItemDetails(item)
 
   Craftie.Frame.Item.ID:SetText(item[4])
   Craftie.Frame.Item.Text:SetText(item[2])
+  Craftie.Frame.Item.spellID:SetText(item[1])
 
   local item_detail = item[4]
   local is_enchant = false
