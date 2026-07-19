@@ -483,6 +483,21 @@ function Craftie:GetProfessionEntry()
 end
 
 ---@class TradeSkillFrame
+function Craftie:CycleCraftingBook(tab, prof)
+  CastSpellByName(prof)
+  C_Timer.After(2, function()
+    Craftie:UpdateCrafterList()
+    Craftie.MyProfessionEntry[tab] = nil
+    Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof .. " in any chat", Craftie.CHAT.INFO)
+  end)
+  C_Timer.After(0.03, function()
+    if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
+      HideUIPanel(TradeSkillFrame)
+    end
+  end)
+  Craftie:Notification("Craftie:CycleCraftingBook() = " .. tab .. " " .. prof, Craftie.CHAT.FUNC)
+end
+
 function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then
     local prof_name = Craftie.Professions[tab][2]
@@ -513,17 +528,7 @@ function Craftie:TabSelectSide(tab, sound)
     --we have no build yet
     for k,v in pairs(Craftie.MyProfessionEntry) do
       if (prof_name == v) then
-        CastSpellByName(v)
-        C_Timer.After(2, function()
-          Craftie:UpdateCrafterList()
-          Craftie.MyProfessionEntry[k] = nil
-          Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. v .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. v .. " in any chat", Craftie.CHAT.INFO)
-        end)
-        C_Timer.After(0.03, function()
-          if ((TradeSkillFrame) and (TradeSkillFrame:IsShown())) then
-            HideUIPanel(TradeSkillFrame)
-          end
-        end)
+        Craftie:CycleCraftingBook(k, v)
       end
     end
 
