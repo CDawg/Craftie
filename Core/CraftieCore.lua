@@ -470,7 +470,7 @@ function Craftie:GetProfessionEntry()
     for k,prof in pairs(Craftie.MyProfessions) do
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie:GetProfessionID(prof)][Craftie.Player.Name] == nil) then
         local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 2)
-        Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
+        --Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
         if (prof == "Alchemy") then
           Craftie.Tab = -1 --hack so that players will select alchemy as the first default loaded tab
         end
@@ -478,6 +478,7 @@ function Craftie:GetProfessionEntry()
         table.insert(Craftie.MyProfessionEntry, prof)
         C_Timer.After(1, function() --new professions override existing orders
           Craftie:AlertIcon(tab)
+          Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
         end)
         --new_prof = true
         --return prof
@@ -515,7 +516,6 @@ function Craftie:CycleCraftingBook(profID)
       end)
       C_Timer.After(2, function()
         Craftie:UpdateCrafterList()
-        --Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof .. " in any chat", Craftie.CHAT.INFO)
       end)
       Craftie.CraftBookCycle[profID] = 1
       Craftie:Notification("Craftie:CycleCraftingBook() = " .. profID, Craftie.CHAT.FUNC)
@@ -560,7 +560,7 @@ function Craftie:TabSelectSide(tab, sound)
     end
     Craftie:CycleCraftingBook(Craftie:GetProfessionID(prof_name))
 
-    C_Timer.After(0.1, function() --give it time to register
+    C_Timer.After(0.2, function() --give it time to register
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
       Craftie:UpdateCrafterList()
       Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
