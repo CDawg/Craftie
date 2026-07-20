@@ -18,6 +18,8 @@ Craftie.Contributors = {
   "Sweetembrace",
   "Addondev",
   "Zzaps",
+  "Slicegirls",
+  "Chilease",
 }
 Craftie.Developers = {
   "Porthias",
