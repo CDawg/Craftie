@@ -31,6 +31,7 @@ Craftie.Event:RegisterEvent("GUILD_ROSTER_UPDATE")
 Craftie.Event:RegisterEvent("GUILD_TRADESKILL_UPDATE")
 Craftie.Event:RegisterEvent("LEARNED_SPELL_IN_SKILL_LINE")
 Craftie.Event:RegisterEvent("PLAYER_LOGIN")
+Craftie.Event:RegisterEvent("PLAYER_ENTERING_WORLD")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_ENABLED")
 Craftie.Event:RegisterEvent("PLAYER_REGEN_DISABLED")
 Craftie.Event:RegisterEvent("PLAYER_STARTED_MOVING")
@@ -75,6 +76,16 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         Craftie.NumGuildMembers = numMembers
       end
 	  end
+
+    if (event == "PLAYER_ENTERING_WORLD") then
+      local uireload = prefix
+      if (prefix) then --fresh login
+        if (Craftie.Save.Player["REQS"]) then
+          Craftie:Notification("Fresh login: Clearing Requests", Craftie.CHAT.FUNC)
+          Craftie.Save.Player["REQS"] = {}
+        end
+      end
+    end
 
     if (event == "PLAYER_REGEN_ENABLED") then
       Craftie.IsInCombat = false
