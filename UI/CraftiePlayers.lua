@@ -408,7 +408,7 @@ function Craftie:BuildRowCrafter(i)
 
 end
 
-function Craftie:CrafterRowAdd(count)
+function Craftie:RowAddCrafter(count)
   for i = #Craftie.TOTAL_CRAFTERS + 1, count do
     Craftie:BuildRowCrafter(i)
     Craftie.TOTAL_CRAFTERS[i] = Craftie.Frame.ScrollPlayersListRow[i]
@@ -417,7 +417,7 @@ function Craftie:CrafterRowAdd(count)
   Craftie.Frame.ScrollPlayersListChildFrame:SetHeight(math.max(dimensions.H, count * 20 + 16))
 end
 
-Craftie:CrafterRowAdd(25) --default
+Craftie:RowAddCrafter(25) --default
 
 local SubMenuHighLight = {1, 1, 0, 0.7}
 local SubMenuWidth = 140

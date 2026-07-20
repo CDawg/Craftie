@@ -331,7 +331,7 @@ function Craftie:BuildRowOrder(i)
   end
 end
 
-function Craftie:OrderRowAdd(count)
+function Craftie:RowAddOrder(count)
   for i = #Craftie.TOTAL_ORDERS + 1, count do
     Craftie:BuildRowOrder(i)
     Craftie.TOTAL_ORDERS[i] = Craftie.Frame.ScrollOrderListRow[i]
@@ -342,4 +342,4 @@ function Craftie:OrderRowAdd(count)
 end
 
 --25 rows off the init
-Craftie:OrderRowAdd(25)
+Craftie:RowAddOrder(25)

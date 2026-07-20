@@ -95,6 +95,11 @@ function SlashCmdList.Craftie(cmd)
       Craftie:Notification("Table Deleted [ORDERS]", Craftie.CHAT.INFO)
       Craftie:GetCraftOrders()
     end
+    if (args == "requests") then
+      Craftie.Save.Player["REQS"] = {}
+      Craftie:Notification("Table Deleted [REQS]", Craftie.CHAT.INFO)
+      Craftie:GetCraftRequests()
+    end
     if (args == "crafters") then
       for k,v in pairs(Craftie.Professions) do
         Craftie.Save.Account["BLOB"][v[1]] = {}

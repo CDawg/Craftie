@@ -271,6 +271,7 @@ function Craftie:UpdateCrafterList(search)
   local rem_list = {}
   local fav_exist = 0
   Craftie.PlayerGuild = {}
+  --print(Craftie.Tab)
 
   Craftie.Frame.ScrollPlayersResults:SetText("")
   Craftie.Frame.ScrollPlayersLoading:Show()
@@ -353,7 +354,7 @@ function Craftie:UpdateCrafterList(search)
       table.sort(search_list)
     end
 
-    Craftie:CrafterRowAdd(#search_list + 1)
+    Craftie:RowAddCrafter(#search_list + 1)
 
     local results = Craftie.Color.Yellow .. "Crafter(s)"
     if (Craftie.PlayerListFilter == 2) then
@@ -1340,6 +1341,69 @@ function Craftie:OpenProfessionList(profArray, search, player)
   Craftie:Notification("Craftie:OpenProfessionList(" .. player .. " " .. search .. ")", Craftie.CHAT.FUNC)
 end
 
+function Craftie:GetCraftRequests()
+  local req_index = 0
+  local req_count = 0
+  if (Craftie.Save.Player["REQS"] ~= nil) then
+    for _ in pairs(Craftie.Save.Player["REQS"]) do
+      req_count = req_count + 1
+    end
+  end
+  Craftie:RowAddRequest(math.max(req_count, 5))
+
+  Craftie.Frame.CraftRequestsDeleteAll:Disable()
+  for i=1, #Craftie.TOTAL_REQUESTS do
+    Craftie.Frame.ScrollRequestListName[i]:SetText("")
+    Craftie.Frame.ScrollRequestListItem[i]:SetText("")
+    Craftie.Frame.ScrollRequestListCount[i]:SetText("")
+    Craftie.Frame.ScrollRequestListDate[i]:SetText("")
+    Craftie.Frame.ScrollRequestListDelete[i]:Hide()
+  end
+  Craftie.Frame.ScrollRequestListItemButton[6]:Show()
+  Craftie.Frame.ScrollRequestListItem[6]:SetText("Loading...")
+
+  Craftie.Frame.CraftRequests:SetAlpha(0.8)
+  C_Timer.After(0.3, function()
+    for i=1, #Craftie.TOTAL_REQUESTS do
+      Craftie.Frame.ScrollRequestListNameButton[i]:Hide()
+      Craftie.Frame.ScrollRequestListItemButton[i]:Hide()
+    end
+
+    if (Craftie.Save.Player["REQS"] ~= nil) then
+      for name,v in pairs(Craftie.Save.Player["REQS"]) do
+        req_index = req_index +1
+        local request = Craftie:Split(v, ",")
+        Craftie.Frame.ScrollRequestListName[req_index]:SetText(name)
+        Craftie.Frame.ScrollRequestListItem[req_index]:SetText(request[2])
+        Craftie.Frame.ScrollRequestListCount[req_index]:SetText(request[3])
+        Craftie.Frame.ScrollRequestListDate[req_index]:SetText(request[4]:gsub("_", " "))
+        Craftie.Frame.ScrollRequestListNameButton[req_index]:Show()
+        Craftie.Frame.ScrollRequestListItemButton[req_index]:Show()
+        Craftie.Frame.ScrollRequestListDelete[req_index]:Show()
+        --bugfix: resize the hidden frame for UI interactivity
+        Craftie.Frame.ScrollRequestListNameButton[req_index]:SetWidth(Craftie.Frame.ScrollRequestListName[req_index]:GetStringWidth()+30)
+        Craftie.Frame.ScrollRequestListItemButton[req_index]:SetWidth(Craftie.Frame.ScrollRequestListItem[req_index]:GetStringWidth()+20)
+
+        local class = tonumber(request[1])
+        local r = Craftie.Class[class][3][1]
+        local g = Craftie.Class[class][3][2]
+        local b = Craftie.Class[class][3][3]
+        Craftie.Frame.ScrollRequestListName[req_index]:SetTextColor(r, g, b, 1)
+      end
+    end
+
+    local color = Craftie.Color.Silver
+    if (req_index >= 1) then
+      Craftie.Frame.CraftRequestsDeleteAll:Enable()
+      color = Craftie.Color.Yellow
+    end
+    Craftie.TabBottom[3].Text:SetText(Craftie._L.Navigation[3] .. " " .. color .. "[" .. req_index .. "]")
+    Craftie.Frame.CraftRequests:SetAlpha(1)
+  end)
+
+  Craftie:Notification(Craftie.Color.Yellow .. "Craftie:GetCraftRequests()", Craftie.CHAT.FUNC)
+end
+
 function Craftie:GetCraftOrders()
   local order_index = 0
   local order_count = 0
@@ -1348,7 +1412,7 @@ function Craftie:GetCraftOrders()
       order_count = order_count + 1
     end
   end
-  Craftie:OrderRowAdd(math.max(order_count, 5))
+  Craftie:RowAddOrder(math.max(order_count, 5))
 
   Craftie.Frame.CraftOrdersDeleteAll:Disable()
   for i=1, #Craftie.TOTAL_ORDERS do
@@ -1412,6 +1476,7 @@ end
 
 --add a timer for parsed data
 function Craftie:Open(player, profession)
+  Craftie:GetCraftRequests()
   Craftie:GetCraftOrders()
   if (player) then
     --Craftie:Notification("Craftie:Open player: " .. player, Craftie.CHAT.FUNC)
