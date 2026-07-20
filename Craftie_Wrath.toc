@@ -1,7 +1,7 @@
 ## Interface: 30405
 ## Title: Craftie
 ## Notes: Share your professions with the world
-## Version: 1.02
+## Version: 1.05
 ## Author: Porthias (aka Port)
 ## SavedVariables: CraftieDB
 ## OptionalDeps: Blizzard_Settings_Shared, Blizzard_HUDInventoryTemplates
