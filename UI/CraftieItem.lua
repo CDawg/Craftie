@@ -336,11 +336,10 @@ Craftie.Frame.ItemButtonRequest:SetScript("OnClick", function(self)
     local count = Craftie.Frame.ItemCountEditBox:GetNumber()
     local request_msg = "to be crafted"
     Craftie.Frame.ItemButtonRequest:Disable()
-    if (Craftie.Tab == 4) then --enchanting
+    _, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
+    if (link == nil) then --enchanting
       link, _ = GetSpellLink(Craftie.Frame.Item.ID:GetText())
       request_msg = "to be enchanted"
-    else
-      _, link = C_Item.GetItemInfo(Craftie.Frame.Item.ID:GetText())
     end
 
     C_ChatInfo.SendChatMessage("[" .. Craftie._G.Prefix .. "] Requesting: " .. link .. "x" .. count .. " " .. request_msg, "WHISPER", nil, Craftie.Selected_Name)
@@ -354,7 +353,9 @@ Craftie.Frame.ItemButtonRequest:SetScript("OnClick", function(self)
       Craftie.Save.Player["REQS"] = {} --doesnt exist, just build it
     end
     C_Timer.After(0.1, function()
-      --Craftie.Save.Player["REQS"][Craftie.Selected_Name] = Craftie.Selected_Name .. "," .. link .. "," .. count .. "," .. Craftie.Date
+      Craftie.Save.Player["REQS"][Craftie.Selected_Name] = Craftie.Player.Name .. "," .. link .. "," .. count .. "," .. Craftie.Date
+      Craftie:Notification("Craftie.Save.Player[REQS] " .. Craftie.Player.Name .. "," .. link .. "," .. count .. "," .. Craftie.Date, Craftie.CHAT.SAVE)
+      Craftie:GetCraftRequests()
     end)
 
     C_Timer.After(Craftie.REQUEST_TIMER, function()
