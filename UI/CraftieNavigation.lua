@@ -67,6 +67,7 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.ScrollPlayersParent:Hide()
   Craftie.Frame.ScrollRecipesParent:Hide()
   Craftie.Frame.CraftParent:Hide()
+  Craftie.Frame.CraftRequests:Hide()
   Craftie.Frame.CraftOrders:Hide()
   Craftie.Updates:Hide()
   Craftie.Credit:Hide()
@@ -94,6 +95,7 @@ function Craftie:TabSelectBottom(tab, sound)
   end
   if (tab == 2) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
+    Craftie.Frame.CraftRequests:Show()
   end
   if (tab == 3) then
     Craftie.TabBarHide = Craftie.TabBarHide+1

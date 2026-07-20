@@ -17,6 +17,7 @@ the copyright holders.
 Craftie.Contributors = {
   "Sweetembrace",
   "Addondev",
+  "Zzaps",
 }
 Craftie.Developers = {
   "Porthias",
