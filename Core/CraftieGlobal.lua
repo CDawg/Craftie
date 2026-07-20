@@ -104,7 +104,7 @@ Craftie.MAX_ITEMIDS = 60000 -- some items go up to 58k
 Craftie.TOTAL_CRAFTERS= {}
 Craftie.TOTAL_ORDERS  = {}
 Craftie.TOTAL_REQUESTS= {}
-Craftie.ORDER_TIMER   = 5
+Craftie.REQUEST_TIMER = 5
 
 Craftie.ProfessionDefault = Craftie:CopyTable(Craftie.Profession.Alchemy)
 

@@ -339,6 +339,7 @@ function Craftie:RowAddOrder(count)
 
   local contentHeight = math.max(Craftie.Frame.CraftOrders:GetHeight(), count * dimensions.row.H + 16)
   Craftie.Frame.ScrollOrderListChildFrame:SetHeight(contentHeight)
+  Craftie:Notification("Craftie:RowAddOrder() " .. count, Craftie.CHAT.FUNC)
 end
 
 --25 rows off the init

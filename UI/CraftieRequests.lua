@@ -51,6 +51,7 @@ Craftie.Frame.CraftRequestsBackTopArt:SetTexture(Craftie._G.Image.Background.Sha
 --Craftie.Frame.CraftRequestsBackTopArt:SetVertexColor(.8, .8, .8) --darker
 Craftie.Frame.CraftRequestsBackTopArt:SetDesaturation(0.3)
 
+--[==[
 Craftie.Frame.CheckboxReqAutoDel= CreateFrame("CheckButton", nil, Craftie.Frame.CraftRequests, "ChatConfigCheckButtonTemplate")
 Craftie.Frame.CheckboxReqAutoDel:SetPoint("TOPLEFT", 10, 25)
 Craftie.Frame.CheckboxReqAutoDel:SetChecked(true)
@@ -77,6 +78,7 @@ end)
 Craftie.Frame.CheckboxReqAutoDel:SetScript("OnLeave", function(self)
   CraftieTooltip:Hide()
 end)
+]==]--
 
 Craftie.Frame.CraftRequestsDeleteAll = CreateFrame("Button", nil, Craftie.Frame.CraftRequests, "UIPanelButtonTemplate")
 Craftie.Frame.CraftRequestsDeleteAll:SetWidth(24)
@@ -341,6 +343,7 @@ function Craftie:RowAddRequest(count)
 
   local contentHeight = math.max(Craftie.Frame.CraftRequests:GetHeight(), count * dimensions.row.H + 16)
   Craftie.Frame.ScrollRequestListChildFrame:SetHeight(contentHeight)
+  Craftie:Notification("Craftie:RowAddRequest() " .. count, Craftie.CHAT.FUNC)
 end
 
 --25 rows off the init

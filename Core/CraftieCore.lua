@@ -1401,7 +1401,7 @@ function Craftie:GetCraftRequests()
     Craftie.Frame.CraftRequests:SetAlpha(1)
   end)
 
-  Craftie:Notification(Craftie.Color.Yellow .. "Craftie:GetCraftRequests()", Craftie.CHAT.FUNC)
+  Craftie:Notification(Craftie.Color.Skyblue .. "Craftie:GetCraftRequests()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:GetCraftOrders()
@@ -1476,8 +1476,12 @@ end
 
 --add a timer for parsed data
 function Craftie:Open(player, profession)
+
   Craftie:GetCraftRequests()
-  Craftie:GetCraftOrders()
+  C_Timer.After(0.3, function()
+    Craftie:GetCraftOrders()
+  end)
+
   if (player) then
     --Craftie:Notification("Craftie:Open player: " .. player, Craftie.CHAT.FUNC)
     --Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.CHAT.FUNC)
