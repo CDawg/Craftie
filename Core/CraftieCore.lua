@@ -119,6 +119,7 @@ function Craftie:CraftRecipe(spellID, count)
     local recipeSpellID = recipeLink and tonumber(string.match(recipeLink, "enchant:(%d+)"))
     if (recipeType ~= "header" and ((recipeSpellID and recipeSpellID == spellID) or recipeName == spellName)) then
       DoTradeSkill(i, count)
+      print("DoTradeSkill" .. i .. " | " .. count)
       return true
     end
   end
@@ -129,7 +130,10 @@ function Craftie:CraftRecipe(spellID, count)
     local recipeLink = GetCraftRecipeLink and GetCraftRecipeLink(i)
     local recipeSpellID = recipeLink and tonumber(string.match(recipeLink, "enchant:(%d+)"))
     if (recipeType ~= "header" and ((recipeSpellID and recipeSpellID == spellID) or recipeName == spellName)) then
-      DoCraft(i, count)
+      --print("DoCraft" .. i .. " | " .. count)
+      --DoCraft(i, count)
+      --CastSpellByName(recipeName)
+      --print(recipeName)
       return true
     end
   end
@@ -716,6 +720,29 @@ function Craftie:ItemDetails(item)
     Craftie:Notification("is_enchant = true", Craftie.CHAT.FUNC)
   else
     Craftie.Frame.Item.Icon:SetTexture(C_Item.GetItemIconByID(item_detail))
+  end
+
+  local inCombat = InCombatLockdown and InCombatLockdown()
+  if (is_enchant) then
+    Craftie.Frame.ItemButtonCreateAll:Hide()
+    Craftie.Frame.ItemButtonCreate:SetText("Enchant")
+    if (not inCombat) then
+      -- The secure template performs the protected CastSpell action. These
+      -- attributes must be assigned before the hardware click and out of combat.
+      Craftie.Frame.ItemButtonCreate:SetAttribute("type", "spell")
+      Craftie.Frame.ItemButtonCreate:SetAttribute("spell", GetSpellInfo(item[1]))
+    else
+      Craftie.Frame.ItemButtonCreate:SetEnabled(false)
+    end
+  else
+    Craftie.Frame.ItemButtonCreateAll:Show()
+    Craftie.Frame.ItemButtonCreate:SetText("Create")
+    if (not inCombat) then
+      Craftie.Frame.ItemButtonCreate:SetAttribute("type", nil)
+      Craftie.Frame.ItemButtonCreate:SetAttribute("spell", nil)
+    else
+      Craftie.Frame.ItemButtonCreate:SetEnabled(false)
+    end
   end
 
   C_Timer.After(0.12, function() --give it time to register

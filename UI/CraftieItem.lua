@@ -382,11 +382,13 @@ Craftie.Frame.ItemButtonCreateAll:SetScript("OnClick", function(self)
   Craftie:CraftRecipe(Craftie.Frame.Item.spellID:GetText(), Craftie.Frame.ItemCountEditBox:GetNumber())
 end)
 
-Craftie.Frame.ItemButtonCreate = CreateFrame("Button", nil, Craftie.Frame.ItemCreateParent, "UIPanelButtonTemplate")
+Craftie.Frame.ItemButtonCreate = CreateFrame("Button", nil, Craftie.Frame.ItemCreateParent, "UIPanelButtonTemplate,SecureActionButtonTemplate")
 Craftie.Frame.ItemButtonCreate:SetSize(90, 24)
 Craftie.Frame.ItemButtonCreate:SetPoint("TOPLEFT", 10, -56)
 Craftie.Frame.ItemButtonCreate:SetText("Create")
 Craftie.Frame.ItemButtonCreate:SetEnabled(false)
-Craftie.Frame.ItemButtonCreate:SetScript("OnClick", function(self)
-  Craftie:CraftRecipe(Craftie.Frame.Item.spellID:GetText(), 1)
+Craftie.Frame.ItemButtonCreate:SetScript("PostClick", function(self)
+  if (self:GetAttribute("type") ~= "spell") then
+    Craftie:CraftRecipe(Craftie.Frame.Item.spellID:GetText(), 1)
+  end
 end)
