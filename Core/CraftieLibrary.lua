@@ -47,6 +47,7 @@ Craftie.Color = {
   Silver= "|CFFDEDEDE",
   Gray  = "|CFFABABAB",
   Lime  = "|CFF9CFFA1",
+  Red   = "|CFFFF0000",
   Guild = {0.2, 0.92, 0.2}
 }
 
