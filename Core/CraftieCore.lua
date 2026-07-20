@@ -1384,11 +1384,11 @@ function Craftie:GetCraftRequests()
         Craftie.Frame.ScrollRequestListNameButton[req_index]:SetWidth(Craftie.Frame.ScrollRequestListName[req_index]:GetStringWidth()+30)
         Craftie.Frame.ScrollRequestListItemButton[req_index]:SetWidth(Craftie.Frame.ScrollRequestListItem[req_index]:GetStringWidth()+20)
 
-        local class = tonumber(request[1])
-        local r = Craftie.Class[class][3][1]
-        local g = Craftie.Class[class][3][2]
-        local b = Craftie.Class[class][3][3]
-        Craftie.Frame.ScrollRequestListName[req_index]:SetTextColor(r, g, b, 1)
+        --local class = tonumber(request[1])
+        --local r = Craftie.Class[class][3][1]
+        --local g = Craftie.Class[class][3][2]
+        --local b = Craftie.Class[class][3][3]
+        --Craftie.Frame.ScrollRequestListName[req_index]:SetTextColor(r, g, b, 1)
       end
     end
 
@@ -1397,7 +1397,7 @@ function Craftie:GetCraftRequests()
       Craftie.Frame.CraftRequestsDeleteAll:Enable()
       color = Craftie.Color.Yellow
     end
-    Craftie.TabBottom[3].Text:SetText(Craftie._L.Navigation[3] .. " " .. color .. "[" .. req_index .. "]")
+    Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[2] .. " " .. color .. "[" .. req_index .. "]")
     Craftie.Frame.CraftRequests:SetAlpha(1)
   end)
 

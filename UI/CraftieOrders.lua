@@ -342,5 +342,4 @@ function Craftie:RowAddOrder(count)
   Craftie:Notification("Craftie:RowAddOrder() " .. count, Craftie.CHAT.FUNC)
 end
 
---25 rows off the init
 Craftie:RowAddOrder(25)

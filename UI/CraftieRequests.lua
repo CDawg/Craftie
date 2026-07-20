@@ -250,7 +250,7 @@ function Craftie:BuildRowRequest(i)
     if ((requester ~= "") and (requester ~= nil)) then
       CraftieTooltip:ClearLines()
       CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT", 20)
-      CraftieTooltip:AddLine(Craftie.Color.White .. requester .. " is requesting ")
+      CraftieTooltip:AddLine(Craftie.Color.White .. "You are requesting " .. requester .. " to craft")
       CraftieTooltip:AddLine(Craftie.Frame.ScrollRequestListItem[i]:GetText() .. "x" .. Craftie.Frame.ScrollRequestListCount[i]:GetText())
       CraftieTooltip:AddLine(" ")
       CraftieTooltip:AddDoubleLine(Craftie.Color.Blue .. "Enter + Left Click", Craftie.Color.Silver .. "Whisper this player with a response")
@@ -346,5 +346,4 @@ function Craftie:RowAddRequest(count)
   Craftie:Notification("Craftie:RowAddRequest() " .. count, Craftie.CHAT.FUNC)
 end
 
---25 rows off the init
 Craftie:RowAddRequest(25)
