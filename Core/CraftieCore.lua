@@ -799,6 +799,7 @@ function Craftie:RecipeLevelColor(i, itemLevel, thresholds)
         Craftie.Frame.ScrollRecipesListName[i]:SetTextColor(green[1], green[2], green[3], green[4]) --green
       end
     end
+    Craftie.Frame.ScrollRecipesListCount[i]:SetTextColor(Craftie.Frame.ScrollRecipesListName[i]:GetTextColor())
   end
 end
 
@@ -840,6 +841,7 @@ function Craftie:SelectScrollItem(scrollFrame, playerCrafterLevel)
 end
 
 --version control when the app initializes
+--TODO - this is an issue for multi-language or localization
 function Craftie:AlphaSortProfessionLib()
   --very important so the order is always sorted alphabetically
   for k,v in pairs(Craftie.Professions) do
@@ -1092,6 +1094,47 @@ function Craftie:CrafterDataParse(profName, player)
   return crafterProf
 end
 
+function Craftie:GetRecipeCraftableCount(recipe)
+  local craftable
+  local reagents = recipe and recipe[5]
+
+  if (not reagents) then
+    return 0
+  end
+
+  for i = 1, Craftie.MAX_REAGENTS do
+    local reagent = reagents[i]
+    if (not Craftie:IsEmpty(reagent)) then
+      local required = tonumber(reagent[2]) or 0
+      if (required > 0) then
+        local available = C_Item.GetItemCount(reagent[1]) or 0
+        local reagentCrafts = math.floor(available / required)
+        craftable = craftable and math.min(craftable, reagentCrafts) or reagentCrafts
+      end
+    end
+  end
+
+  return craftable or 0
+end
+
+function Craftie:UpdateRecipeCraftableCounts()
+  if (not Craftie.Frame or not Craftie.Frame.ScrollRecipesListRow) then
+    return
+  end
+
+  for i = 1, Craftie.MAX_RECIPES do
+    local row = Craftie.Frame.ScrollRecipesListRow[i]
+    local count = Craftie.Frame.ScrollRecipesListCount[i]
+    if (row.Recipe and row:IsShown()) then
+      count:SetText(Craftie:GetRecipeCraftableCount(row.Recipe))
+      count:Show()
+    else
+      count:SetText("")
+      count:Hide()
+    end
+  end
+end
+
 function Craftie:OpenProfessionList(profArray, search, player)
   local profCache = {}
   local search_all_count = 0
@@ -1185,6 +1228,9 @@ function Craftie:OpenProfessionList(profArray, search, player)
       Craftie.Frame.ScrollRecipesListID[i]:SetText("")
       Craftie.Frame.ScrollRecipesListName[i]:SetText("")
       Craftie.Frame.ScrollRecipesListLevel[i]:SetText("")
+      Craftie.Frame.ScrollRecipesListCount[i]:SetText("")
+      Craftie.Frame.ScrollRecipesListCount[i]:Hide()
+      Craftie.Frame.ScrollRecipesListRow[i].Recipe = nil
       Craftie.Frame.ScrollRecipesListRow[i].SkillThresholds = nil
       --Craftie.Frame.ScrollRecipesListHLink[i]:SetText("")
       Craftie.Frame.ScrollRecipesListRow[i]:SetScript("OnClick", function()
@@ -1195,6 +1241,9 @@ function Craftie:OpenProfessionList(profArray, search, player)
     --hide the remainder for high level crafters
     for i=1, Craftie.MAX_RECIPES do
       Craftie.Frame.ScrollRecipesListRow[i]:Hide()
+      Craftie.Frame.ScrollRecipesListRow[i].Recipe = nil
+      Craftie.Frame.ScrollRecipesListCount[i]:SetText("")
+      Craftie.Frame.ScrollRecipesListCount[i]:Hide()
     end
   end
 
@@ -1207,7 +1256,12 @@ function Craftie:OpenProfessionList(profArray, search, player)
       Craftie.Frame.ScrollRecipesListID[i]:SetText(profCache[i][4])
       Craftie.Frame.ScrollRecipesListName[i]:SetText(profCache[i][2])
       Craftie.Frame.ScrollRecipesListLevel[i]:SetText(profCache[i][3])
+      Craftie.Frame.ScrollRecipesListCount[i]:SetText(Craftie:GetRecipeCraftableCount(profCache[i]))
+      if (tonumber(Craftie.Frame.ScrollRecipesListCount[i]:GetText()) >= 1) then
+        Craftie.Frame.ScrollRecipesListCount[i]:Show()
+      end
       Craftie.Frame.ScrollRecipesListVersion[i]:SetText(profCache[i][7])
+      Craftie.Frame.ScrollRecipesListRow[i].Recipe = profCache[i]
       Craftie.Frame.ScrollRecipesListRow[i].SkillThresholds = profCache[i][8]
       if (player ~= "") then
         local itemLevel = profCache[i][3]

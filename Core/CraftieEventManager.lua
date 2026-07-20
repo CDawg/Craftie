@@ -15,6 +15,7 @@ the copyright holders.
 
 Craftie.Event = CreateFrame("Frame")
 Craftie.Event:RegisterEvent("ADDON_LOADED")
+Craftie.Event:RegisterEvent("BAG_UPDATE_DELAYED")
 Craftie.Event:RegisterEvent("CHAT_MSG_ADDON")
 Craftie.Event:RegisterEvent("CHAT_MSG_ADDON_LOGGED")
 Craftie.Event:RegisterEvent("CHAT_MSG_CHANNEL")
@@ -80,6 +81,10 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     end
     if (event == "PLAYER_REGEN_DISABLED") then
       Craftie.IsInCombat = true
+    end
+
+    if (event == "BAG_UPDATE_DELAYED") then
+      Craftie:UpdateRecipeCraftableCounts()
     end
 
     --used for caching and building language locales
