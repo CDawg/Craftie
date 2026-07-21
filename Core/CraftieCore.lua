@@ -1152,12 +1152,15 @@ function Craftie:UpdateRecipeCraftableCounts()
     local count = Craftie.Frame.ScrollRecipesListCount[i]
     if (row.Recipe and row:IsShown()) then
       count:SetText(Craftie:GetRecipeCraftableCount(row.Recipe))
-      count:Show()
+      if (tonumber(count:GetText()) >= 1) then
+        count:Show()
+      end
     else
       count:SetText("")
       count:Hide()
     end
   end
+  Craftie:Notification("Craftie:UpdateRecipeCraftableCounts()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:OpenProfessionList(profArray, search, player)

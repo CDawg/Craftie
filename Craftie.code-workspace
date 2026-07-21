@@ -113,7 +113,8 @@
 			"ID",
 			"UNKNOWN",
 			"RegisterUnitWatch",
-			"SmoothStatusBarMixin"
+			"SmoothStatusBarMixin",
+			"CallErrorHandler"
 		]
 	}
 }

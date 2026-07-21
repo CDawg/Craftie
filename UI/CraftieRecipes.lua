@@ -154,7 +154,6 @@ Craftie.Frame.Search.Recipes.Text:SetScript("OnKeyUp", function(self, key)
       --print("search library within " .. Craftie.Page)
       Craftie:OpenProfessionList(search_array, search_index, "")
     end
-
     Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1)
   end
 end)
