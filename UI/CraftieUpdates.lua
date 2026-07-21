@@ -15,21 +15,17 @@ the copyright holders.
 
 --Updates / Credits
 Craftie.Contributors = {
-  "Sweetembrace",
-  "Addondev",
-  "Zzaps",
-  "Slicegirls",
   "Chilease",
+  "Slicegirls",
+  "Sweetembrace",
+  "Zzaps",
 }
 Craftie.Developers = {
   "Porthias",
   "Portheas",
 }
 
-local credits = [==[
-And a few nameless heroes on Dreamscythe
-Written by Porthias|r (a.k.a. Port)
-]==]
+local credits = "Special Thanks To:"
 
 local dimensions = {
   W = Craftie.Frame:GetWidth()/2,
@@ -78,7 +74,7 @@ Craftie.Updates.Data:ClearFocus()
 Craftie.Updates.Data:SetAutoFocus(false)
 Craftie.Updates:Hide()
 
-local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", Craftie.Color.Gold .. " >|r") .. "|n|n|n"
+local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", Craftie.Color.Gold .. " » |r") .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
 --[==[
@@ -123,5 +119,17 @@ Craftie.Credit.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Credit.Data:SetMultiLine(true)
 Craftie.Credit.Data:ClearFocus()
 Craftie.Credit.Data:SetAutoFocus(false)
-Craftie.Credit.Data:SetText(credits)
+
+local listcredits = credits .. "|n|n"
+for _,v in pairs(Craftie.Contributors) do
+  listcredits = listcredits .. Craftie.Color.Lime .. v .. "|r|n"
+end
+listcredits = listcredits .. [==[
+
+And a few nameless heroes on Dreamscythe
+
+Written by Porthias|r (a.k.a. Port)
+]==]
+
+Craftie.Credit.Data:SetText(listcredits)
 Craftie.Credit:Hide()

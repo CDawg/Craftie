@@ -1138,7 +1138,6 @@ function Craftie:GetRecipeCraftableCount(recipe)
       end
     end
   end
-
   return craftable or 0
 end
 
