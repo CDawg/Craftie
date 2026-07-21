@@ -96,6 +96,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 
     if (event == "BAG_UPDATE_DELAYED") then
       Craftie:UpdateRecipeCraftableCounts()
+      Craftie:UpdateSelectedRecipeReagentCounts()
     end
 
     --used for caching and building language locales
@@ -139,18 +140,14 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie:CrafterBuildReset()
-      C_Timer.After(0, function()
+      C_Timer.After(0.01, function()
         if ((Craftie.Selected_Name == Craftie.Player.Name) and (Craftie.Page ~= "")) then
           local profLevel = Craftie:GetPlayerProfessionLevel(Craftie.Page)
           if (profLevel) then
             local professionID = Craftie:GetProfessionID(Craftie.Page)
             local playerData = professionID and CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name]
             if (playerData) then
-              CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name] = playerData:gsub(
-                "^([^,]+,[^,]+,)[^,]+(,.*)$",
-                "%1" .. profLevel .. "%2",
-                1
-              )
+              CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name] = playerData:gsub("^([^,]+,[^,]+,)[^,]+(,.*)$", "%1" .. profLevel .. "%2", 1)
             end
             Craftie:SetProfLevel(profLevel)
           end

@@ -1186,6 +1186,56 @@ function Craftie:UpdateRecipeCraftableCounts()
   Craftie:Notification("Craftie:UpdateRecipeCraftableCounts()", Craftie.CHAT.FUNC)
 end
 
+function Craftie:UpdateSelectedRecipeReagentCounts()
+  if (not Craftie.Frame or not Craftie.Frame.Item or not Craftie.Frame.Item:IsShown()) then
+    return
+  end
+
+  local selectedRow = Craftie.Frame.ScrollRecipesListRow[Craftie.Selected_Recipe_Index]
+  local recipe = selectedRow and selectedRow.Recipe
+  local reagents = recipe and recipe[5]
+  if (not reagents) then
+    return
+  end
+
+  local hasAllReagents = true
+  for i = 1, Craftie.MAX_REAGENTS do
+    local reagent = reagents[i]
+    if (not Craftie:IsEmpty(reagent)) then
+      local inventoryCount = C_Item.GetItemCount(reagent[1]) or 0
+      local requiredCount = tonumber(reagent[2]) or 0
+
+      if (inventoryCount >= 99) then
+        Craftie.Frame.Reagent.Quan[i]:SetText(".. /" .. requiredCount)
+      else
+        Craftie.Frame.Reagent.Quan[i]:SetText(inventoryCount .. " /" .. requiredCount)
+      end
+
+      if (inventoryCount >= requiredCount) then
+        Craftie.Frame.Reagent.Border[i]:SetBackdropBorderColor(1, 1, 0.6, 0.9)
+        Craftie.Frame.Reagent.Border[i]:SetBackdropColor(1, 1, 0, 0.1)
+        Craftie.Frame.Reagent.BorderGlow[i]:Show()
+        Craftie.Frame.Reagent.Icon[i]:SetAlpha(1)
+        Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 0.85, 1)
+        Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, 0.6, 1)
+        Craftie.Frame.Reagent.IconGlow[i]:Show()
+      else
+        hasAllReagents = false
+        Craftie.Frame.Reagent.Border[i]:SetBackdropBorderColor(0.5, 0.5, 0.48, 1)
+        Craftie.Frame.Reagent.Border[i]:SetBackdropColor(0, 0, 0, 0.1)
+        Craftie.Frame.Reagent.BorderGlow[i]:Hide()
+        Craftie.Frame.Reagent.Icon[i]:SetAlpha(0.6)
+        Craftie.Frame.Reagent.Text[i]:SetTextColor(1, 1, 1, 0.8)
+        Craftie.Frame.Reagent.Quan[i]:SetTextColor(1, 1, 1, 0.8)
+        Craftie.Frame.Reagent.IconGlow[i]:Hide()
+      end
+    end
+  end
+
+  Craftie.Frame.ItemButtonCreateAll:SetEnabled(hasAllReagents)
+  Craftie.Frame.ItemButtonCreate:SetEnabled(hasAllReagents)
+end
+
 function Craftie:OpenProfessionList(profArray, search, player)
   local profCache = {}
   local search_all_count = 0
