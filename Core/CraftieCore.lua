@@ -119,7 +119,7 @@ function Craftie:CraftRecipe(spellID, count)
     local recipeSpellID = recipeLink and tonumber(string.match(recipeLink, "enchant:(%d+)"))
     if (recipeType ~= "header" and ((recipeSpellID and recipeSpellID == spellID) or recipeName == spellName)) then
       DoTradeSkill(i, count)
-      print("DoTradeSkill" .. i .. " | " .. count)
+      --print("DoTradeSkill" .. i .. " | " .. count)
       return true
     end
   end
@@ -130,10 +130,7 @@ function Craftie:CraftRecipe(spellID, count)
     local recipeLink = GetCraftRecipeLink and GetCraftRecipeLink(i)
     local recipeSpellID = recipeLink and tonumber(string.match(recipeLink, "enchant:(%d+)"))
     if (recipeType ~= "header" and ((recipeSpellID and recipeSpellID == spellID) or recipeName == spellName)) then
-      --print("DoCraft" .. i .. " | " .. count)
-      --DoCraft(i, count)
-      --CastSpellByName(recipeName)
-      --print(recipeName)
+      --castspell
       return true
     end
   end
