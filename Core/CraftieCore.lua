@@ -1014,6 +1014,30 @@ function Craftie:ShareProf(prof, target)
 end
 
 Craftie.CrafterProfLevel = 1 --globalizing to add to professionlist
+function Craftie:GetPlayerProfessionLevel(profName)
+  if (GetProfessions and GetProfessionInfo) then
+    local professions = {GetProfessions()}
+    for _, professionIndex in pairs(professions) do
+      if (professionIndex) then
+        local name, _, skillLevel = GetProfessionInfo(professionIndex)
+        if (name == profName) then
+          return tonumber(skillLevel)
+        end
+      end
+    end
+  end
+
+  -- Classic clients also expose professions through the character skill list.
+  if (GetNumSkillLines and GetSkillLineInfo) then
+    for i = 1, GetNumSkillLines() do
+      local name, isHeader, _, skillRank = GetSkillLineInfo(i)
+      if ((not isHeader) and (name == profName)) then
+        return tonumber(skillRank)
+      end
+    end
+  end
+end
+
 function Craftie:SetProfLevel(level)
   local numericLevel = tonumber(level)
 

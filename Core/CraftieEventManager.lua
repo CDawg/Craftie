@@ -139,6 +139,23 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
     if (event == "SKILL_LINES_CHANGED") then
       --safe method for anti-spam & prof level increase
       Craftie:CrafterBuildReset()
+      C_Timer.After(0, function()
+        if ((Craftie.Selected_Name == Craftie.Player.Name) and (Craftie.Page ~= "")) then
+          local profLevel = Craftie:GetPlayerProfessionLevel(Craftie.Page)
+          if (profLevel) then
+            local professionID = Craftie:GetProfessionID(Craftie.Page)
+            local playerData = professionID and CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name]
+            if (playerData) then
+              CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name] = playerData:gsub(
+                "^([^,]+,[^,]+,)[^,]+(,.*)$",
+                "%1" .. profLevel .. "%2",
+                1
+              )
+            end
+            Craftie:SetProfLevel(profLevel)
+          end
+        end
+      end)
     end
 
     if (event == "LEARNED_SPELL_IN_SKILL_LINE") then
@@ -146,7 +163,7 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       Craftie:GetProfessionEntry()
     end
 
-    if ((event == "TRADE_SKILL_SHOW") or (event == "CRAFT_SHOW")) then
+    if ((event == "TRADE_SKILL_SHOW") or (event == "TRADE_SKILL_UPDATE") or (event == "CRAFT_SHOW") or (event == "SKILL_LINES_CHANGED")) then
       if (not Craftie.IsInCombat) then
         local isEnchanting = false
         local profName, profLevel = GetTradeSkillLine()
@@ -162,7 +179,17 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
           profLevel = profLevel or 0
           for k,v in pairs(Craftie.Professions) do
             if (profName == v[2]) then --ignore non prio profs like fishing, etc.
+              if (event == "TRADE_SKILL_UPDATE") then
+                local savedData = CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][v[1]][Craftie.Player.Name]
+                local savedLevel = savedData and tonumber(Craftie:Split(savedData, ",")[3])
+                if ((savedLevel ~= tonumber(profLevel)) and (Craftie.ProfileBuilt[profName] ~= -1)) then
+                  Craftie.ProfileBuilt[profName] = 0
+                end
+              end
               Craftie:CrafterBuildData(profName, profLevel, isEnchanting) --throttle by recipebook
+              if ((Craftie.Selected_Name == Craftie.Player.Name) and (Craftie.Page == profName)) then
+                Craftie:SetProfLevel(profLevel)
+              end
               if (Craftie.Throttle.Prof.Flag == 1) then
                 Craftie.Throttle.Prof.Flag = 0
                 C_Timer.After(1, function()

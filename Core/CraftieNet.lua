@@ -115,6 +115,9 @@ function Craftie:PacketParse(netpacket)
         local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. Craftie.Date
         Craftie:Notification(profString, Craftie.CHAT.SAVE)
         CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][tonumber(profNum)][crafterName] = profString
+        --if ((Craftie.Selected_Name == crafterName) and (Craftie.Page == profName)) then
+          --Craftie:SetProfLevel(profLevel)
+        --end
       else
         Craftie:Notification("Ignoring unknown profession ID: " .. tostring(packet[5]), Craftie.CHAT.ERROR)
       end
