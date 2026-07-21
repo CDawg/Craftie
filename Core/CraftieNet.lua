@@ -17,48 +17,42 @@ function Craftie:PacketSend(prefix, data, channel, target)
   local repack = prefix .. "," .. Craftie._G.Version .. "," .. data
   local packet = Craftie:Split(data, ",")
 
-  C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
-  if (prefix == Craftie.Packet.Prefix.Data) then
-    -- senderPrefix, senderVer, senderName, senderClass, profNum, profLevel, profData, profMastery
-    repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false) .. "," .. packet[6]
-  end
+  if (Craftie.VersionStable) then
+    C_ChatInfo.RegisterAddonMessagePrefix(Craftie._G.Prefix)
+    if (prefix == Craftie.Packet.Prefix.Data) then
+      -- senderPrefix, senderVer, senderName, senderClass, profNum, profLevel, profData, profMastery
+      repack = prefix .. "," .. Craftie._G.Version .. "," .. packet[1] .. "," .. packet[2] .. "," .. packet[3] .. "," .. packet[4] .. "," .. Craftie:BitCompression(packet[5], false) .. "," .. packet[6]
+    end
 
-  if (channel == "WHISPER") then
-  	C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
-    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Lime .. target, Craftie.CHAT.SEND)
+    if (channel == "WHISPER") then
+      C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel, target)
+      Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Lime .. target, Craftie.CHAT.SEND)
+    else
+      C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
+      if (channel == "YELL") then channel = "LOCAL" end
+      Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Yellow .. channel, Craftie.CHAT.SEND)
+    end
   else
-    C_ChatInfo.SendAddonMessage(Craftie._G.Prefix, repack, channel)
-    if (channel == "YELL") then channel = "LOCAL" end
-    Craftie:Notification(repack .. " [" .. #repack .. "] -> " .. Craftie.Color.Yellow .. channel, Craftie.CHAT.SEND)
+    Craftie:Notification(Craftie.Color.Red .. "Packet data suppressed! Outdated major version.", Craftie.CHAT.FUNC)
   end
-  --Craftie:Notification("Prefix: " .. prefix, Craftie.CHAT.FUNC)
 end
 
-Craftie.VersionNotified = 0
+Craftie.NotifiedVersion = 0
 function Craftie:VersionControl(version)
-  --control if someone is behind a major version, only warn for minor version differences
-  local stable_version = true
-
   --minor version difference
   if (version > tonumber(Craftie._G.Version)) then
-    if (Craftie.VersionNotified ~= 1) then --dont spam the requester
-      Craftie:Notification("You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]", Craftie.CHAT.ERROR)
+    if (Craftie.NotifiedVersion ~= 1) then --dont spam the requester
+    local outdated = "You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]|nSome functionality will be limited"
+      Craftie:Notification(outdated, Craftie.CHAT.ERROR)
+      Craftie.Frame.Version:SetText(outdated)
+      Craftie.Frame.Version:Show()
+      Craftie.NotifiedVersion = 1
     end
-    stable_version = false
-    Craftie.VersionNotified = 1
-  end
-
-  --major version difference
-  if (version < tonumber(Craftie._G.Version)) then
-    if (version < tonumber(Craftie._G.Version) - 0.01) then --version is drastically outdated by 2 minor versions, do not pull data
-      Craftie:Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.CHAT.ERROR)
-      stable_version = false
-    else
-      Craftie:Notification("Crafter has an outdated version [" .. version .. "] of [" .. Craftie._G.Version .. "]", Craftie.CHAT.WARN)
-      stable_version = true
+    --major difference
+    if (version > tonumber(Craftie._G.Version + 0.01)) then
+      Craftie.VersionStable = false
     end
   end
-  return stable_version
 end
 
 function Craftie:PacketParse(netpacket)
@@ -71,6 +65,7 @@ function Craftie:PacketParse(netpacket)
     prefix  = packet[1]
     version = tonumber(packet[2])
 
+    Craftie:VersionControl(version)
     Craftie:Notification(netpacket, Craftie.CHAT.ACK)
 
     --ping another crafter for their data
@@ -103,27 +98,25 @@ function Craftie:PacketParse(netpacket)
 
     --handshake, get the other crafters data and store it
     --similar to Craftie:CrafterBuildData
-    if (Craftie:VersionControl(version)) then
-      if (prefix == Craftie.Packet.Prefix.Data) then
-        local crafterName = packet[3]
-        local crafterClass = packet[4]
-        local profIndex = Craftie:GetKeyFromValue(Craftie.Professions, tonumber(packet[5]), 1)
-        local profName  = profIndex and Craftie.Professions[profIndex][2]
-        local profNum   = packet[5]
-        local profLevel = packet[6]
-        local crafterData = Craftie:BitCompression(packet[7], Craftie.CHAT.ACK) --decompress
-        local profMastery = packet[8]
-        if (profName) then
-          Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData .. "," .. profMastery, Craftie.CHAT.ACK)
-          --store it
-          Craftie.Packet.ACK[crafterName] = 1 --got an ack
-          Craftie.PlayerOnline[crafterName] = 1
-          local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. Craftie.Date
-          Craftie:Notification(profString, Craftie.CHAT.SAVE)
-          CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][tonumber(profNum)][crafterName] = profString
-        else
-          Craftie:Notification("Ignoring unknown profession ID: " .. tostring(packet[5]), Craftie.CHAT.ERROR)
-        end
+    if (prefix == Craftie.Packet.Prefix.Data) then
+      local crafterName = packet[3]
+      local crafterClass = packet[4]
+      local profIndex = Craftie:GetKeyFromValue(Craftie.Professions, tonumber(packet[5]), 1)
+      local profName  = profIndex and Craftie.Professions[profIndex][2]
+      local profNum   = packet[5]
+      local profLevel = packet[6]
+      local crafterData = Craftie:BitCompression(packet[7], Craftie.CHAT.ACK) --decompress
+      local profMastery = packet[8]
+      if (profName) then
+        Craftie:Notification("Receiving Data:|n" .. crafterName .. "|" .. profName .. "|n" .. crafterData .. "," .. profMastery, Craftie.CHAT.ACK)
+        --store it
+        Craftie.Packet.ACK[crafterName] = 1 --got an ack
+        Craftie.PlayerOnline[crafterName] = 1
+        local profString = crafterClass .. "," .. profNum .. "," .. profLevel .. "," .. crafterData .. "," .. profMastery .. "," .. Craftie.Date
+        Craftie:Notification(profString, Craftie.CHAT.SAVE)
+        CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][tonumber(profNum)][crafterName] = profString
+      else
+        Craftie:Notification("Ignoring unknown profession ID: " .. tostring(packet[5]), Craftie.CHAT.ERROR)
       end
     end
 
@@ -193,5 +186,4 @@ function Craftie:PacketParse(netpacket)
   else
     Craftie:Notification("Malformed Packet [Version Mismatch]: " .. netpacket, Craftie.CHAT.ERROR)
   end
-  --Craftie:Notification("Malformed Packet [Bad Prefix]: " .. netpacket, Craftie.CHAT.ERROR)
 end

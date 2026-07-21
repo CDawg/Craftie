@@ -62,6 +62,13 @@ Craftie.Frame.Title:SetPoint("TOPLEFT", 40, -35)
 Craftie.Frame.Title:SetText(Craftie:TranslateLocaleProfession(Craftie.Professions[1][2]))
 Craftie.Frame.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
+Craftie.Frame.Version = Craftie.Frame:CreateFontString(nil, "ARTWORK")
+Craftie.Frame.Version:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+2, Craftie._G.Font.Flags)
+Craftie.Frame.Version:SetPoint("TOP", 0, -40)
+Craftie.Frame.Version:SetText("Outdated version [1.03] of [1.05]")
+Craftie.Frame.Version:SetTextColor(1, 0.3, 0, 1)
+Craftie.Frame.Version:Hide()
+
 Craftie.Frame.CrafterProgBarFrame = CreateFrame("Frame", nil, Craftie.Frame, "BackdropTemplate")
 Craftie.Frame.CrafterProgBarFrame:SetWidth(500)
 Craftie.Frame.CrafterProgBarFrame:SetHeight(100)
