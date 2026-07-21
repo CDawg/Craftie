@@ -74,7 +74,7 @@ Craftie.Updates.Data:ClearFocus()
 Craftie.Updates.Data:SetAutoFocus(false)
 Craftie.Updates:Hide()
 
-local updates = Craftie.CHANGELOG:gsub("### ", "v"):gsub("*", Craftie.Color.Gold .. " » |r") .. "|n|n|n"
+local updates = Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie.Color.Gold .. " » |r") .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
 --[==[
@@ -120,7 +120,7 @@ Craftie.Credit.Data:SetMultiLine(true)
 Craftie.Credit.Data:ClearFocus()
 Craftie.Credit.Data:SetAutoFocus(false)
 
-local listcredits = credits .. "|n|n"
+local listcredits = Craftie.Color.Gold .. credits .. "|r|n|n"
 for _,v in pairs(Craftie.Contributors) do
   listcredits = listcredits .. Craftie.Color.Lime .. v .. "|r|n"
 end
