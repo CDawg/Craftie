@@ -68,26 +68,29 @@ Craftie._L = {
 
   Options = {
     Crafters = {
-      Title = "Crafter Listing",
+      Title = "Crafter List",
       {"Show The Library For Every Recipe", "Show the entire recipe library for each|nprofession within the player list for all phases [Recommended]"},
       {"Default Crafter Listing",           "Default Listing: All Crafters or only Guild Crafters when opening Craftie"},
       {"Show Guild Crafters In Green",      "Identify guild members in the Crafter list as the iconic guild green color"},
     },
+    Recipes = {
+      Title = "Recipe List",
+      {"Show Crafter's Leveling Color Thresholds", "Show the Crafter's leveling threshold colors. [Gray, Green, Yellow, and Orange]"},
+      {"Automatically Open The Crafter's Recipe Book", "When clicking the Crafter's profession link in chat, automatically open their recipe book"}
+    },
     Notifications = {
-      Title = "Order Notifications",
+      Title = "Notifications",
       {"Disable Notifications While In Raid",        "Disable incoming order notifications while in a Raid"},
       {"Disable Notifications While In An Instance", "Disable incoming order notifications while in an Instance"},
       {"Disable Notifications While In Combat",      "Disable incoming order notifications while in combat"},
     },
-    Recipes = {
-      Title = "Recipe Listing",
-      {"Show Crafter's Leveling Color Thresholds", "Show the Crafter's leveling threshold colors. [Gray, Green, Yellow, and Orange]"},
-      {"Automatically Open The Crafter's Recipe Book", "When clicking the Crafter's profession link in chat, automatically open their recipe book"}
-    },
     Frame = {
       Title = "Frame Options",
-      {"Frame Level", "Craftie frame level determines the z-order layer on top of other frames/addons|nLOW         = Behind other frames|nMEDIUM = Between layers|nHIGH        = Above most frames [Default - Recommended]"},
+      {"Frame Level", "Craftie frame level determines the z-order layer on top of other frames/addons|nLOW         = Behind other frames|nMEDIUM = Between layers|nHIGH        = Above most frames ".. Craftie.Color.Gold .." [Default - Recommended]"},
       {"HIGH", "MEDIUM", "LOW"},
     },
+    Tooltip = {
+      Title = "Tooltip Options",
+    }
   }
 }
