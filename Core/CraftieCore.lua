@@ -1061,8 +1061,9 @@ function Craftie:SetProfLevel(level)
     elseif (numericLevel <= 350) then
       Craftie.Frame.CrafterProgBar:SetStatusBarColor(0.25, 0.50, 0)
     end
-
   end
+
+  Craftie:Notification("Craftie:SetProfLevel() " .. level, Craftie.CHAT.FUNC)
 end
 
 --on selection entry
@@ -1173,14 +1174,16 @@ function Craftie:UpdateRecipeCraftableCounts()
   for i = 1, Craftie.MAX_RECIPES do
     local row = Craftie.Frame.ScrollRecipesListRow[i]
     local count = Craftie.Frame.ScrollRecipesListCount[i]
+    count:SetText("")
+    count:Hide()
     if (row.Recipe and row:IsShown()) then
       count:SetText(Craftie:GetRecipeCraftableCount(row.Recipe))
       if (tonumber(count:GetText()) >= 1) then
         count:Show()
       end
-    else
-      count:SetText("")
-      count:Hide()
+--    else
+      --count:SetText("")
+      --count:Hide()
     end
   end
   Craftie:Notification("Craftie:UpdateRecipeCraftableCounts()", Craftie.CHAT.FUNC)
@@ -1234,6 +1237,8 @@ function Craftie:UpdateSelectedRecipeReagentCounts()
 
   Craftie.Frame.ItemButtonCreateAll:SetEnabled(hasAllReagents)
   Craftie.Frame.ItemButtonCreate:SetEnabled(hasAllReagents)
+
+  Craftie:Notification("Craftie:UpdateSelectedRecipeReagentCounts()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:OpenProfessionList(profArray, search, player)
