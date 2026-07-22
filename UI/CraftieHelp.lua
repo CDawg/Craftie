@@ -57,14 +57,27 @@ Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.HelpScro
 
 Craftie:ScrollBarFrame(Craftie.HelpScrollFrame.Child)
 
+local CraftieHelp = [==[
+This is a line here
+Another line
+]==]
+
+Craftie.Help.Data={}
 Craftie.Help.Data = CreateFrame("EditBox", nil, Craftie.HelpScrollFrameChildFrame)
 Craftie.Help.Data:SetWidth(Craftie.Help:GetWidth()-20)
-Craftie.Help.Data:SetHeight(Craftie.Help:GetHeight())
+--Craftie.Help.Data:SetHeight(Craftie.Help:GetHeight())
 --Craftie.Help.Data:SetFontObject(GameFontWhite)
-Craftie.Help.Data:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size-1, Craftie._G.Font.Flags)
+Craftie.Help.Data:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
 Craftie.Help.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Help.Data:SetMultiLine(true)
 Craftie.Help.Data:ClearFocus()
 Craftie.Help.Data:SetAutoFocus(false)
-Craftie.Help.Data:SetText("")
+Craftie.Help.Data:SetText(CraftieHelp)
 Craftie.Help:Hide()
+
+Craftie.Help.Data.Image1 = Craftie.HelpScrollFrameChildFrame:CreateTexture(nil, "ARTWORK")
+Craftie.Help.Data.Image1:SetWidth(140)
+Craftie.Help.Data.Image1:SetHeight(140)
+Craftie.Help.Data.Image1:SetPoint("TOPLEFT", 20, -60)
+Craftie.Help.Data.Image1:SetTexture(Craftie._G.Image.Background.Shadow)
+--Craftie.Help.Data.Image1:SetDesaturation(0.3)
