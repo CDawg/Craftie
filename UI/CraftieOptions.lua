@@ -29,16 +29,26 @@ Craftie.Options.Frame:SetPoint("TOPLEFT", 0, 0)
 Craftie.Options.Frame:Hide()
 Settings.RegisterAddOnCategory(Craftie.Options.Category)
 
+
+
+
 --[==[
 OPTIONS HEADER
 ]==]--
---This is not trapped in the scrollframe
+--[==[
 Craftie.Options.Title = Craftie.Options.Frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
 Craftie.Options.Title:SetPoint("TOPLEFT", 10, -16)
 Craftie.Options.Title:SetText(Craftie._G.Title)
+]==]--
+
+Craftie.Options.Logo = Craftie.Options.Frame:CreateTexture(nil, "ARTWORK")
+Craftie.Options.Logo:SetWidth(100)
+Craftie.Options.Logo:SetHeight(50)
+Craftie.Options.Logo:SetPoint("TOPLEFT", -5, 0)
+Craftie.Options.Logo:SetTexture(Craftie._G.Image.Logo.Header)
 
 Craftie.Options.Player = Craftie.Options.Frame:CreateFontString(nil, "OVERLAY", "GameFontWhite")
-Craftie.Options.Player:SetPoint("TOPLEFT", 70, -19)
+Craftie.Options.Player:SetPoint("TOPLEFT", 110, -19)
 Craftie.Options.Player:SetText("[" .. Craftie.Player.Name .. "]")
 
 Craftie.OptionsScrollFrame={}

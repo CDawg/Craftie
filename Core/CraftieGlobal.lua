@@ -43,7 +43,6 @@ Craftie.Game.Name = Craftie._L.Game[tonumber(string.sub(__Gversion, 1, 1))]
 Craftie._G.Image = {
   Logo = {
     Header = Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png",
-    --Icon = "", --small
   },
   Background = {
     Light =     Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Light.png",
