@@ -23,18 +23,17 @@ Craftie = {
     ClassID = select(3, UnitClass("player")), --use the class ID, due to locales
     Faction = UnitFactionGroup("player"),
     GUID    = UnitGUID("player"),
+    Guild   = GetGuildInfo("player"),
     Combine = UnitName("player").."-"..GetRealmName(), --unique to isolate accounts on save
 	},
-}
-Craftie._L={} --locales
-
-Craftie.Game = {
-  Version = tonumber(string.sub(__Gversion, 1, 1))
-}
-
-Craftie.Save = {
-  Account= {}, --account wide
-  Player = {}, --individually
+  _L={}, --locales
+  Game = {
+    Version = tonumber(string.sub(__Gversion, 1, 1))
+  },
+  Save = {
+    Account= {}, --account wide
+    Player = {}, --individual
+  }
 }
 
 Craftie.Color = {

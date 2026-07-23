@@ -210,7 +210,7 @@ function Craftie:BuildRowRequest(i)
       CraftieTooltip:ClearLines()
       CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT", 20)
       --CraftieTooltip:AddLine("Delete Request For " .. requester)
-      CraftieTooltip:AddLine(Craftie.Color.Silver .. "Delete Request from " .. requester)
+      CraftieTooltip:AddLine(Craftie.Color.Silver .. "Delete Request For " .. requester)
       CraftieTooltip:Show()
     end
   end)

@@ -1678,3 +1678,11 @@ function Craftie:GetSafeItemData(itemIdentifier)
     return C_Item.GetItemInfo(itemIdentifier)
   end
 end
+
+function Craftie:HelpBulletPoint(title)
+  if (title) then
+    return "|n|T".. Craftie._G.Image.Button.Bullet .. ":14:10|t |CFFFF9524" .. title .. "|r|n|n"
+  else
+    return "|T".. Craftie._G.Image.Button.Bullet .. ":14:10|t"
+  end
+end

@@ -68,13 +68,16 @@ Craftie.Updates.Data = CreateFrame("EditBox", "Craftie.Updates.Data", Craftie.Up
 Craftie.Updates.Data:SetWidth(Craftie.Updates:GetWidth()-20) --scrollbar
 Craftie.Updates.Data:SetHeight(Craftie.Updates:GetHeight())
 Craftie.Updates.Data:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
+Craftie.Updates.Data:SetTextColor(1, 1, 0.9, 1)
 Craftie.Updates.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Updates.Data:SetMultiLine(true)
 Craftie.Updates.Data:ClearFocus()
 Craftie.Updates.Data:SetAutoFocus(false)
-Craftie.Updates:Hide()
+Craftie.Updates.Data:SetEnabled(false)
 
-local updates = Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie.Color.Gold .. " » |r") .. "|n|n|n"
+Craftie.Updates:Hide()
+--markdown conversion to wow lua -Port
+local updates = Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie:HelpBulletPoint()) .. "|n|n|n"
 Craftie.Updates.Data:SetText(updates)
 
 --[==[
@@ -119,6 +122,7 @@ Craftie.Credit.Data:SetPoint("TOPLEFT", 4, -4)
 Craftie.Credit.Data:SetMultiLine(true)
 Craftie.Credit.Data:ClearFocus()
 Craftie.Credit.Data:SetAutoFocus(false)
+Craftie.Credit.Data:SetEnabled(false)
 
 local listcredits = Craftie.Color.Gold .. credits .. "|r|n|n"
 for _,v in pairs(Craftie.Contributors) do

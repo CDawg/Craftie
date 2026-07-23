@@ -372,3 +372,27 @@ mySpinner.animGroup:Play()
 ---@protected
 ---@private: Indicates the visibility or intended usage scope of a function.
 ---@generic T: Used for creating generic, reusable functions where the return type depends on the input type.
+
+
+
+--[==[
+local frame = CreateFrame("Frame", "MyPortraitFrame", Craftie.Help)
+frame:SetSize(64, 64)
+frame:SetPoint("CENTER")
+
+local myTexture = frame:CreateTexture(nil, "ARTWORK")
+myTexture:SetAllPoints(frame)
+
+-- Apply the player's portrait
+SetPortraitTexture(myTexture, "player")
+
+local modelFrame = CreateFrame("PlayerModel", "My3DPortrait", Craftie.HelpScrollFrameChildFrame)
+modelFrame:SetSize(64, 64)
+modelFrame:SetPoint("CENTER")
+
+-- Assign the unit to the model
+modelFrame:SetUnit("player")
+
+-- Adjust camera and positioning so the face is centered
+modelFrame:SetPortraitZoom(1)
+]==]--

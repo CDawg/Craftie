@@ -57,27 +57,50 @@ Craftie.HelpScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.HelpScro
 
 Craftie:ScrollBarFrame(Craftie.HelpScrollFrame.Child)
 
-local CraftieHelp = [==[
-This is a line here
-Another line
+local help = {}
+
+help[1] = Craftie:HelpBulletPoint("First Time Using Craftie?") .. [==[
+Note: This setup only needs to be completed once per character.
+
+ 1. Open Craftie and select each profession your character knows.
+
+   |TInterface/Addons/Craftie/Images/Help/help-craftie-new.png:128:64|t
+
+ 2. |CFF9CFFA1That's it!|r You're now ready to share your |CFF42DBFF[Recipe Book]|r in any chat channel.
+
+   |TInterface/Addons/Craftie/Images/Help/help-spellbook.png:128:256|t
+The first time you open a profession's recipe list, Craftie permanently links it to that profession.
+Craftie automatically keeps your Recipe Book up to date whenever you learn new recipes or increase your profession skill.
+
+This version is more concise while making the one-time setup and ongoing automation clear to new users.
 ]==]
+
+help[2] = Craftie:HelpBulletPoint("Opening Another Crafter's Recipe Book") .. [==[
+Craftie enhances profession links shared in any chat.
+When another Craftie user posts their profession link, you can simply click it to view all of their available recipes and add them to your list of crafters.
+]==]
+
+help[3] = Craftie:HelpBulletPoint("Guild Members") .. [==[
+Guild members who also use Craftie are automatically added to your Crafters list, allowing you to browse all of their known recipes.
+]==]
+
 
 Craftie.Help.Data={}
 Craftie.Help.Data = CreateFrame("EditBox", nil, Craftie.HelpScrollFrameChildFrame)
-Craftie.Help.Data:SetWidth(Craftie.Help:GetWidth()-20)
+Craftie.Help.Data:SetWidth(Craftie.Help:GetWidth()-110)
 --Craftie.Help.Data:SetHeight(Craftie.Help:GetHeight())
 --Craftie.Help.Data:SetFontObject(GameFontWhite)
 Craftie.Help.Data:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
-Craftie.Help.Data:SetPoint("TOPLEFT", 4, -4)
+Craftie.Help.Data:SetTextColor(1, 1, 0.9, 1)
+Craftie.Help.Data:SetPoint("TOPLEFT", 24, -4)
 Craftie.Help.Data:SetMultiLine(true)
 Craftie.Help.Data:ClearFocus()
 Craftie.Help.Data:SetAutoFocus(false)
-Craftie.Help.Data:SetText(CraftieHelp)
-Craftie.Help:Hide()
+Craftie.Help.Data:SetEnabled(false)
+local help_sheet = ""
+for k,v in pairs(help) do
+  help_sheet = help_sheet .. v .. "|n|n"
+end
+Craftie.Help.Data:SetText(help_sheet)
 
-Craftie.Help.Data.Image1 = Craftie.HelpScrollFrameChildFrame:CreateTexture(nil, "ARTWORK")
-Craftie.Help.Data.Image1:SetWidth(140)
-Craftie.Help.Data.Image1:SetHeight(140)
-Craftie.Help.Data.Image1:SetPoint("TOPLEFT", 20, -60)
-Craftie.Help.Data.Image1:SetTexture(Craftie._G.Image.Background.Shadow)
---Craftie.Help.Data.Image1:SetDesaturation(0.3)
+Craftie.Help:Hide()

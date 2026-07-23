@@ -42,7 +42,7 @@ Craftie.Game.Name = Craftie._L.Game[tonumber(string.sub(__Gversion, 1, 1))]
 
 Craftie._G.Image = {
   Logo = {
-    Header = Craftie._G.Path .. "Images/UI-Craftie-Logo-Header.png",
+    Header = Craftie._G.Path .. "Images/Icons/UI-Craftie-Logo-Header.png",
   },
   Background = {
     Light =     Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Light.png",
@@ -62,6 +62,7 @@ Craftie._G.Image = {
     Clear = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Search-Clear.png",
     Delete= Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Delete.png",
     Arrow = Craftie._G.Path .. "Images/Buttons/Helptip.png",
+    Bullet= Craftie._G.Path .. "Images/Buttons/BulletPoint.png",
     Glow  = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Reagent-Border-Glow.png"
   },
   Scrollbar = {

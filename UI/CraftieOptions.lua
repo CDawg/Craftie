@@ -29,18 +29,6 @@ Craftie.Options.Frame:SetPoint("TOPLEFT", 0, 0)
 Craftie.Options.Frame:Hide()
 Settings.RegisterAddOnCategory(Craftie.Options.Category)
 
-
-
-
---[==[
-OPTIONS HEADER
-]==]--
---[==[
-Craftie.Options.Title = Craftie.Options.Frame:CreateFontString(nil, "OVERLAY", "GameFontNormalLarge")
-Craftie.Options.Title:SetPoint("TOPLEFT", 10, -16)
-Craftie.Options.Title:SetText(Craftie._G.Title)
-]==]--
-
 Craftie.Options.Logo = Craftie.Options.Frame:CreateTexture(nil, "ARTWORK")
 Craftie.Options.Logo:SetWidth(100)
 Craftie.Options.Logo:SetHeight(50)
