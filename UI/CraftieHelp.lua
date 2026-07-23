@@ -75,13 +75,13 @@ Craftie automatically keeps your Recipe Book up to date whenever you learn new r
 This version is more concise while making the one-time setup and ongoing automation clear to new users.
 ]==]
 
-help[2] = Craftie:HelpBulletPoint("Opening Another Crafter's Recipe Book") .. [==[
-Craftie enhances profession links shared in any chat.
-When another Craftie user posts their profession link, you can simply click it to view all of their available recipes and add them to your list of crafters.
+help[2] = Craftie:HelpBulletPoint("Guild Members") .. [==[
+Guild members who also use Craftie are automatically added to your Crafters list, allowing you to browse all of their known recipes.
 ]==]
 
-help[3] = Craftie:HelpBulletPoint("Guild Members") .. [==[
-Guild members who also use Craftie are automatically added to your Crafters list, allowing you to browse all of their known recipes.
+help[3] = Craftie:HelpBulletPoint("Opening Another Crafter's Recipe Book") .. [==[
+When another Craftie user posts their profession link, you can simply click it to view all of their available recipes and add them to your list of crafters.
+Craftie enhances profession links shared in any chat.
 ]==]
 
 
