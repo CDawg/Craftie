@@ -967,9 +967,12 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
           Craftie.ProfileBuilt[profName] = 1
 
           --share to guild members --when the profession is opened
-          C_Timer.After(2, function()
-            Craftie:ShareProf(profName, "GUILD")
-          end)
+          if (Craftie.Throttle.Prof.Flag == 0) then
+            C_Timer.After(2, function()
+              Craftie.Throttle.Prof.Flag = 1
+              Craftie:ShareProf(profName, "GUILD")
+            end)
+          end
 
         end)
       end

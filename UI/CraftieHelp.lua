@@ -60,28 +60,28 @@ Craftie:ScrollBarFrame(Craftie.HelpScrollFrame.Child)
 local help = {}
 
 help[1] = Craftie:HelpBulletPoint("First Time Using Craftie?") .. [==[
-Note: This setup only needs to be completed once per character.
+Note: This setup only needs to be completed |CFFFFDA45once|r per character.
 
  1. Open Craftie and select each profession your character knows.
-
-   |TInterface/Addons/Craftie/Images/Help/help-craftie-new.png:128:64|t
-
  2. |CFF9CFFA1That's it!|r You're now ready to share your |CFF42DBFF[Recipe Book]|r in any chat channel.
 
-   |TInterface/Addons/Craftie/Images/Help/help-spellbook.png:128:256|t
+   |TInterface/Addons/Craftie/Images/Help/help-craftie-new.png:128:64|t      |TInterface/Addons/Craftie/Images/Help/help-spellbook.png:128:256|t
+]==]
+help[1] = help[1] .. "|n|nExample:|n|CFFEAD5D5[2. Trade - City] [" .. Craftie.Player.Name .. "]: LFW |r" .. Craftie._G.Image.Tooltip.Layout .. Craftie.Color.Skyblue .. "[Enchanting]|r|n|n" ..
+[==[
 The first time you open a profession's recipe list, Craftie permanently links it to that profession.
 Craftie automatically keeps your Recipe Book up to date whenever you learn new recipes or increase your profession skill.
 
 This version is more concise while making the one-time setup and ongoing automation clear to new users.
 ]==]
 
-help[2] = Craftie:HelpBulletPoint("Guild Members") .. [==[
-Guild members who also use Craftie are automatically added to your Crafters list, allowing you to browse all of their known recipes.
-]==]
-
-help[3] = Craftie:HelpBulletPoint("Opening Another Crafter's Recipe Book") .. [==[
+help[2] = Craftie:HelpBulletPoint("Opening Another Crafter's Recipe Book") .. [==[
 When another Craftie user posts their profession link, you can simply click it to view all of their available recipes and add them to your list of crafters.
 Craftie enhances profession links shared in any chat.
+]==]
+
+help[3] = Craftie:HelpBulletPoint("Guild Members") .. [==[
+Guild members who also use Craftie are automatically added to your Crafter's list, allowing you to browse all of their known recipes.
 ]==]
 
 
