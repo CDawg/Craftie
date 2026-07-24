@@ -208,9 +208,11 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
       end
     end
 
+    --[==[
     if (event == "CHAT_MSG_SYSTEM") then
-      print(event)
+      --old who format
     end
+    ]==]--
 
     if (event == "CHAT_MSG_ADDON") then
 			if (prefix == Craftie._G.Prefix) then

@@ -39,7 +39,7 @@ function Craftie:Notification(msg, type)
   if (debugLevel <= Craftie.DEBUGLEVEL) then
     --we dont need to view the type everytime
     if (debugColor == Craftie.CHAT.INFO[2]) then
-      print(Craftie._G.Title .. " " .. msg)
+      print(Craftie._G.Image.Tooltip.Layout .. Craftie._G.Title .. " " .. msg)
     else
       print(Craftie._G.Title .. " " .. debugColor .. " " .. msg)
     end
