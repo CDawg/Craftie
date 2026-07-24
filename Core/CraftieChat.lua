@@ -197,8 +197,100 @@ hooksecurefunc("SetItemRef", function(link, text, button)
   end
 end)
 
---[==[
---Dont use! API was changed and this causes performance issues
-EventRegistry:RegisterCallback("SetItemRef", function(init, link, text, button, chatFrame)
-end)
-]==]--
+
+local function WhoFormatToPattern(format)
+  format = format:gsub("%%", "%%%%")
+  format = format:gsub("%.", "%%%.")
+  format = format:gsub("%?", "%%%?")
+  format = format:gsub("%+", "%%%+")
+  format = format:gsub("%-", "%%%-")
+  format = format:gsub("%(", "%%%(")
+  format = format:gsub("%)", "%%%)")
+  format = format:gsub("%[", "%%%[")
+  format = format:gsub("%]", "%%%]")
+  format = format:gsub("%%%%s", "(.-)")
+  format = format:gsub("%%%%d", "(%%d+)")
+  return "^" .. format .. "$"
+end
+
+local whoGuildMemberPattern = WhoFormatToPattern(WHO_LIST_GUILD_FORMAT)
+local whoGuildlessPattern = WhoFormatToPattern(WHO_LIST_FORMAT)
+
+function Craftie:ParseWhoLookup(message)
+  if (type(message) ~= "string") then return nil end
+
+  local fullName, name, level, race, class, guild, zone = message:match(whoGuildMemberPattern)
+
+  if (not fullName) then
+    fullName, name, level, race, class, zone = message:match(whoGuildlessPattern)
+  end
+
+  if (not fullName) then
+    return nil
+  end
+
+  return {
+    FullName = fullName,
+    Name = name,
+    Level = tonumber(level),
+    Race = race,
+    Class = class,
+    Guild = guild,
+    Zone = zone,
+  }
+end
+
+function Craftie:FormatWhoProfessionData(data)
+  if (not data) then return nil end
+
+  local professions = {}
+  for index = 1, 3 do
+    local profession = data["profN" .. index]
+    local level = data["profL" .. index]
+    local masteryID = tonumber(data["profM" .. index]) or 0
+
+    if (profession) then
+      local professionID = Craftie:GetProfessionID(profession)
+      local professionName = Craftie:GetProfessionName(profession)
+      local professionIndex = professionID and Craftie:GetKeyFromValue(Craftie.Professions, professionID, 1)
+      local masteryName = professionIndex and Craftie.Professions[professionIndex][5][masteryID]
+
+      if (professionName) then
+        local mastery = ""
+        if (masteryID > 0 and masteryName) then
+          mastery = " [" .. masteryName .. "]"
+        end
+
+        table.insert(
+          professions,
+          Craftie.Color.Blue .. professionName ..
+          Craftie.Color.White .. " " .. tostring(level or 0) .. "/" .. Craftie.PROFMAXLEVEL .. "|r" .. mastery
+        )
+      end
+    end
+  end
+
+  if (#professions == 0) then return nil end
+
+  local title = Craftie._G.Image.Tooltip.Layout .. Craftie._G.Title .. "|n"
+  return title .. " " .. table.concat(professions, Craftie.Color.Gray .. "|n")
+end
+
+function Craftie.WhoLookupFilter(self, event, message, ...)
+  local playerInfo = Craftie:ParseWhoLookup(message)
+
+  if (playerInfo) then
+    local data = Craftie.PlayerGUIDProf[playerInfo.Name]
+    Craftie.WhoLookupResult = playerInfo
+    if (data) then
+      local professionData = Craftie:FormatWhoProfessionData(data)
+      if (professionData) then
+        return false, message .. "|n" .. professionData, ...
+      end
+    end
+  end
+
+  return false, message, ...
+end
+
+ChatFrame_AddMessageEventFilter("CHAT_MSG_SYSTEM", Craftie.WhoLookupFilter)

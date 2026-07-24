@@ -43,7 +43,7 @@ Craftie.Event:RegisterEvent("TRADE_SKILL_DETAILS_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_LIST_UPDATE")
 Craftie.Event:RegisterEvent("TRADE_SKILL_SHOW")
 Craftie.Event:RegisterEvent("TRADE_SKILL_UPDATE")
---Craftie.Event:RegisterEvent("WHO_LIST_UPDATE")
+Craftie.Event:RegisterEvent("WHO_LIST_UPDATE")
 
 --channels used for linking and filtering
 Craftie.ChannelList = {
@@ -206,6 +206,10 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
         end
         Craftie:Notification("Craftie:EventManager[3] " .. event, Craftie.CHAT.EVENT)
       end
+    end
+
+    if (event == "CHAT_MSG_SYSTEM") then
+      print(event)
     end
 
     if (event == "CHAT_MSG_ADDON") then

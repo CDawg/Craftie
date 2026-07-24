@@ -114,7 +114,9 @@
 			"UNKNOWN",
 			"RegisterUnitWatch",
 			"SmoothStatusBarMixin",
-			"CallErrorHandler"
+			"CallErrorHandler",
+			"WHO_LIST_GUILD_FORMAT",
+			"WHO_LIST_FORMAT"
 		]
 	}
 }
