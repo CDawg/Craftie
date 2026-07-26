@@ -986,7 +986,9 @@ function Craftie:ShareAllProfs(group, target)
               --print("my string " .. profString)
 
               if ((group == "player") and (target ~= nil)) then
-                Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", target)
+                if (target ~= Craftie.Player.Name) then
+                  Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", target)
+                end
               end
 
               if (group == "GUILD") then
@@ -1174,7 +1176,11 @@ function Craftie:GetRecipeCraftableCount(recipe)
 end
 
 function Craftie:UpdateRecipeCraftableCounts()
-  if (not Craftie.Frame or not Craftie.Frame.ScrollRecipesListRow) then
+  if ((not Craftie.Frame) or (not Craftie.Frame.ScrollRecipesListRow)) then
+    return
+  end
+
+  if (not Craftie.Frame:IsShown()) then
     return
   end
 
@@ -1188,16 +1194,13 @@ function Craftie:UpdateRecipeCraftableCounts()
       if (tonumber(count:GetText()) >= 1) then
         count:Show()
       end
---    else
-      --count:SetText("")
-      --count:Hide()
     end
   end
   Craftie:Notification("Craftie:UpdateRecipeCraftableCounts()", Craftie.CHAT.FUNC)
 end
 
 function Craftie:UpdateSelectedRecipeReagentCounts()
-  if (not Craftie.Frame or not Craftie.Frame.Item or not Craftie.Frame.Item:IsShown()) then
+  if ((not Craftie.Frame) or (not Craftie.Frame.Item) or (not Craftie.Frame.Item:IsShown())) then
     return
   end
 
@@ -1563,6 +1566,7 @@ end
 function Craftie:Open(player, profession)
 
   Craftie:GetCraftRequests()
+
   C_Timer.After(0.3, function()
     Craftie:GetCraftOrders()
   end)
@@ -1584,6 +1588,7 @@ function Craftie:Open(player, profession)
     Craftie.Frame.Button.Minimap.Glow:Hide()
     Craftie:Notification("Craftie:Opened", Craftie.CHAT.FUNC)
   end
+  Craftie:UpdateRecipeCraftableCounts()
 end
 
 --caching tooltip data. preload unknown data
