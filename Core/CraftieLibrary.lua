@@ -70,7 +70,6 @@ Craftie.Date = date("%y-%m-%d_%H:%M:%S")
 Craftie.VersionStable = true
 
 Craftie.PlayerGUIDProf = {}
-Craftie.NumGuildMembers = 0
 Craftie.PlayerGuild = {}
 Craftie.IsInCombat = false
 Craftie.Alert = {

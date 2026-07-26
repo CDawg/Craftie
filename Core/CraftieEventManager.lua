@@ -71,15 +71,17 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 	    Craftie:Init()
       --print("Craftie.Event[1] " .. prefix .. " | " .. event)
       Craftie:Notification("Craftie:EventManager[1] " .. event, Craftie.CHAT.EVENT)
-      if (IsInGuild()) then
-        local _, numMembers = GetNumGuildMembers()
-        Craftie.NumGuildMembers = numMembers
-      end
 	  end
 
     if (event == "PLAYER_ENTERING_WORLD") then
-      local uireload = prefix
       if (prefix) then --fresh login
+        if (IsInGuild()) then
+          C_Timer.After(1, function()
+            Craftie:ShareAllProfs("GUILD")
+            Craftie:UpdatePlayerTooltip("GUILD")
+          end)
+        end
+        --clear requests ONLY on a fresh login (not a /reload)
         if (Craftie.Save.Player["REQS"]) then
           Craftie:Notification("Fresh login: Clearing Requests", Craftie.CHAT.FUNC)
           Craftie.Save.Player["REQS"] = {}
@@ -124,17 +126,37 @@ function Craftie:EventManager(self, event, prefix, netpacket, data1, data2)
 
     if (event == "GUILD_ROSTER_UPDATE") then
       if (IsInGuild()) then
-        local _, numMembers = GetNumGuildMembers()
-        if (Craftie.NumGuildMembers < numMembers) then
-          --detect only logging in
-          C_Timer.After(1, function()
-            Craftie:ShareAllProfs("GUILD")
+        local currentOnline = {}
+        local loggedIn = {}
+        local totalMembers = GetNumGuildMembers()
+        for i = 1, totalMembers do
+          local name, _, _, _, _, _, _, _, online = GetGuildRosterInfo(i)
+          if (name) then
+            name = Ambiguate(name, "none")
+            currentOnline[name] = online == true
+
+            if Craftie.GuildOnlineMembers
+              and online
+              and not Craftie.GuildOnlineMembers[name]
+            then
+              table.insert(loggedIn, name)
+            end
+          end
+        end
+
+        --check for the fresh login, dont iterate between each member
+        if Craftie.GuildOnlineMembers and #loggedIn == 1 then
+          local memberName = loggedIn[1]
+
+          Craftie:Notification("Login [GUILD]: " .. memberName, Craftie.CHAT.EVENT)
+          C_Timer.After(0.3, function()
+            Craftie:ShareAllProfs("player", memberName)
+            --just share with everyone and update
             Craftie:UpdatePlayerTooltip("GUILD")
           end)
-          Craftie:Notification(event, Craftie.CHAT.EVENT)
         end
-        --consistent updating
-        Craftie.NumGuildMembers = numMembers
+
+        Craftie.GuildOnlineMembers = currentOnline
       end
     end
 

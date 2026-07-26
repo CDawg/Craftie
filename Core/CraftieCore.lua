@@ -977,7 +977,7 @@ function Craftie:ShareAllProfs(group, target)
   if (not Craftie.IsInCombat) then
     for k,v in pairs(Craftie.Professions) do
       local professionID = Craftie:GetProfessionID(v[1])
-      print("prof cycle " .. k .. " " .. v[1])
+      --print("prof cycle " .. k .. " " .. v[1])
       --sanity check, we dont want to share our data as a NEW crafter, just yet
       if (Craftie.Save.Account["BLOB"] ~= nil) then
           if (professionID and Craftie.Save.Account["BLOB"][professionID] ~= nil) then
@@ -1012,6 +1012,9 @@ function Craftie:ShareAllProfs(group, target)
             end
           end
       end
+    end
+    if (target ~= nil) then
+      group = target
     end
     Craftie:Notification("Craftie:ShareAllProfs() " .. group, Craftie.CHAT.FUNC)
   end
