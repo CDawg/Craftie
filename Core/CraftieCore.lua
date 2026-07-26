@@ -973,7 +973,7 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
 end
 
 --sanity check first, then send data
-function Craftie:ShareAllProfs(target)
+function Craftie:ShareAllProfs(group, target)
   if (not Craftie.IsInCombat) then
     for k,v in pairs(Craftie.Professions) do
       local professionID = Craftie:GetProfessionID(v[1])
@@ -984,8 +984,12 @@ function Craftie:ShareAllProfs(target)
             if (Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name] ~= nil) then
               local profString = Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name]
               --print("my string " .. profString)
-              --handle only the guild at this time
-              if (target == "GUILD") then
+
+              if ((group == "player") and (target ~= nil)) then
+                Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", target)
+              end
+
+              if (group == "GUILD") then
                 if (IsInGuild()) then
                   C_GuildInfo.GuildRoster()
                   local gcount = 0
@@ -1004,11 +1008,12 @@ function Craftie:ShareAllProfs(target)
                   end
                 end
               end
+
             end
           end
       end
     end
-    Craftie:Notification("Craftie:ShareAllProfs() " .. "target", Craftie.CHAT.FUNC)
+    Craftie:Notification("Craftie:ShareAllProfs() " .. group, Craftie.CHAT.FUNC)
   end
 end
 
