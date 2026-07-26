@@ -501,26 +501,25 @@ end
 
 function Craftie:CycleCraftingBook(profID)
   local prof_name = Craftie:GetProfessionName(profID)
---  if (Craftie.CurrentProfs[profID] == 1) then
-    if (Craftie.CraftBookCycle[profID] ~= 1) then
-      CastSpellByName(prof_name)
-      C_Timer.After(0.01, function()
-        if (TradeSkillFrame) then
-          HideUIPanel(TradeSkillFrame)
-        end
-        if (CraftFrame) then
-          HideUIPanel(CraftFrame)
-        end
-      end)
-      C_Timer.After(2, function()
-        Craftie:UpdateCrafterList()
-      end)
-      Craftie.CraftBookCycle[profID] = 1
-      Craftie:Notification("Craftie:CycleCraftingBook() = " .. profID, Craftie.CHAT.FUNC)
-    end
---  end
+  if (Craftie.CraftBookCycle[profID] ~= 1) then
+    CastSpellByName(prof_name)
+    C_Timer.After(0.01, function()
+      if (TradeSkillFrame) then
+        HideUIPanel(TradeSkillFrame)
+      end
+      if (CraftFrame) then
+        HideUIPanel(CraftFrame)
+      end
+    end)
+    C_Timer.After(2, function()
+      Craftie:UpdateCrafterList()
+    end)
+    Craftie.CraftBookCycle[profID] = 1
+    Craftie:Notification("Craftie:CycleCraftingBook() = " .. profID, Craftie.CHAT.FUNC)
+  end
 end
 
+Craftie.AddonLoaded = false
 function Craftie:TabSelectSide(tab, sound)
   if (Craftie.Tab ~= tab) then
     local prof_name = Craftie.Professions[tab][2]
@@ -558,7 +557,10 @@ function Craftie:TabSelectSide(tab, sound)
         Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof_name .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof_name .. " in any chat", Craftie.CHAT.INFO)
       end
     end
-    Craftie:CycleCraftingBook(Craftie:GetProfessionID(prof_name))
+    if (Craftie.AddonLoaded) then
+      Craftie:CycleCraftingBook(Craftie:GetProfessionID(prof_name))
+    end
+    Craftie.AddonLoaded = true --cycle the book by intervention, not automatically
 
     C_Timer.After(0.2, function() --give it time to register
       Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
@@ -1564,9 +1566,7 @@ end
 
 --add a timer for parsed data
 function Craftie:Open(player, profession)
-
   Craftie:GetCraftRequests()
-
   C_Timer.After(0.3, function()
     Craftie:GetCraftOrders()
   end)

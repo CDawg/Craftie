@@ -40,7 +40,9 @@ function Craftie:Init()
   end)
 
   --whisper self to prep incoming comms
-  Craftie:PacketSend(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
+  C_Timer.After(0.3, function()
+    Craftie:PacketSend(Craftie.Packet.Prefix.Load, Craftie.Player.Name, "WHISPER", Craftie.Player.Name)
+  end)
 
   C_Timer.After(2, function()
     if (IsInGuild()) then
