@@ -900,7 +900,6 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
     if (profName == v[2]) then
       local professionID = v[1]
       if (Craftie.ProfileBuilt[profName] == 0) then
-        --Craftie:Notification("Craftie:CrafterBuildData", Craftie.CHAT.FUNC)
         Craftie.ProfileBuilt[profName] = -1 --build scheduled/in progress
         C_Timer.After(0.5, function() --give it time to register the profession recipes
           --print(profName)
@@ -966,14 +965,6 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
           CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][professionID][Craftie.Player.Name] = profString
           Craftie.ProfileBuilt[profName] = 1
 
-          --share to guild members --when the profession is opened
-          if (Craftie.Throttle.Prof.Flag == 0) then
-            C_Timer.After(2, function()
-              Craftie.Throttle.Prof.Flag = 1
-              Craftie:ShareProf(profName, "GUILD")
-            end)
-          end
-
         end)
       end
     end
@@ -982,39 +973,42 @@ function Craftie:CrafterBuildData(profName, profLevel, useCraftAPI)
 end
 
 --sanity check first, then send data
-function Craftie:ShareProf(prof, target)
-  local professionID = Craftie:GetProfessionID(prof)
-  --sanity check, we dont want to share our data as a new crafter, just yet
-  if (Craftie.Save.Account["BLOB"] ~= nil) then
-      if (professionID and Craftie.Save.Account["BLOB"][professionID] ~= nil) then
-        if (Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name] ~= nil) then
-          local profString = Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name]
-          --print("my string " .. profString)
-          if (target == "GUILD") then
-            if (IsInGuild()) then
-              C_GuildInfo.GuildRoster()
-              local gcount = 0
-              local totalMembers, onlineMembers = GetNumGuildMembers()
-              for i = 1, totalMembers do
-                local gmember, _, _, level, _, zone, _, _, online = GetGuildRosterInfo(i)
-                if (online) then
-                  local member = Ambiguate(gmember, "none")
-                  gcount = gcount + 1
-                  C_Timer.After(gcount * 0.1, function()
-                    if (member ~= Craftie.Player.Name) then
-                      Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", member)
+function Craftie:ShareAllProfs(target)
+  if (not Craftie.IsInCombat) then
+    for k,v in pairs(Craftie.Professions) do
+      local professionID = Craftie:GetProfessionID(v[1])
+      print("prof cycle " .. k .. " " .. v[1])
+      --sanity check, we dont want to share our data as a NEW crafter, just yet
+      if (Craftie.Save.Account["BLOB"] ~= nil) then
+          if (professionID and Craftie.Save.Account["BLOB"][professionID] ~= nil) then
+            if (Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name] ~= nil) then
+              local profString = Craftie.Save.Account["BLOB"][professionID][Craftie.Player.Name]
+              --print("my string " .. profString)
+              --handle only the guild at this time
+              if (target == "GUILD") then
+                if (IsInGuild()) then
+                  C_GuildInfo.GuildRoster()
+                  local gcount = 0
+                  local totalMembers, onlineMembers = GetNumGuildMembers()
+                  for i = 1, totalMembers do
+                    local gmember, _, _, level, _, zone, _, _, online = GetGuildRosterInfo(i)
+                    if (online) then
+                      local member = Ambiguate(gmember, "none")
+                      gcount = gcount + 1
+                      C_Timer.After(gcount * 0.1, function()
+                        if (member ~= Craftie.Player.Name) then
+                          Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", member)
+                        end
+                      end)
                     end
-                  end)
+                  end
                 end
               end
             end
-            return false
           end
-
-          --Craftie:PacketSend(Craftie.Packet.Prefix.Data, Craftie.Player.Name .. "," .. profString, "WHISPER", target)
-
-        end
       end
+    end
+    Craftie:Notification("Craftie:ShareAllProfs() " .. "target", Craftie.CHAT.FUNC)
   end
 end
 
