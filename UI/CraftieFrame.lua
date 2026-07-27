@@ -174,14 +174,11 @@ Craftie.Frame.TabBar = CreateFrame("Button", nil, Craftie.Frame, "BackdropTempla
 Craftie.Frame.TabBar:SetWidth(40)
 Craftie.Frame.TabBar:SetHeight(330)
 Craftie.Frame.TabBar:SetPoint("TOPLEFT", -Craftie.TabBar.X, -Craftie.TabBar.Y)
---Craftie.Frame.TabBar:SetBackdrop(Craftie.Backdrop.General)
---Craftie.Frame.TabBar:SetBackdropColor(0, 1, 0, 0)
---Craftie.Frame.TabBar:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.TabBar:SetFrameStrata("BACKGROUND")
 Craftie.Frame.TabBar:SetFrameLevel(0)
 Craftie.Frame.TabBarBack = Craftie.Frame.TabBar:CreateTexture(nil, "BACKGROUND")
 Craftie.Frame.TabBarBack:SetWidth(62)
-Craftie.Frame.TabBarBack:SetHeight(400)
+Craftie.Frame.TabBarBack:SetHeight(420)
 Craftie.Frame.TabBarBack:SetPoint("TOPLEFT", 0, 10)
 Craftie.Frame.TabBarBack:SetTexture(Craftie._G.Image.TabBar .. Craftie.Game.Version .. ".png")
 
@@ -189,8 +186,9 @@ local tabbar_frame = {
   layer = "BACKGROUND",
   level = -1,
 }
-local TabSidePosY = Craftie.TabBar.Y-43
+local TabSidePosY = Craftie.TabBar.Y-68
 local TabSideSpacing = 40 --distance spacing
+
 Craftie.TabGlow={}
 Craftie.TipGlow={}
 Craftie.Frame.TabSide={}
