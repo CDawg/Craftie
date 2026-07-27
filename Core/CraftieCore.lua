@@ -268,7 +268,10 @@ function Craftie:UpdateCrafterList(search)
   local rem_list = {}
   local fav_exist = 0
   Craftie.PlayerGuild = {}
-  --print(Craftie.Tab)
+
+  if (Craftie.Tab == Craftie.TabTop) then
+    return
+  end
 
   Craftie.Frame.ScrollPlayersResults:SetText("")
   Craftie.Frame.ScrollPlayersLoading:Show()
@@ -531,10 +534,13 @@ function Craftie:TabSelectSide(tab, sound)
       Craftie.Frame.CraftParent:Hide()
     else
       prof_name = Craftie.Professions[tab][2]
+      Craftie.Frame.ScrollPlayersParent:Show()
+      Craftie.Frame.ScrollRecipesParent:Show()
+      Craftie.Frame.CraftParent:Show()
     end
     Craftie:CloseAllPlayerMenus()
     Craftie:ClearSearchFocus(true)
-    for i=1, #Craftie.Professions+1 do
+    for i=1, Craftie.TabTop do --added 1 tab to total professions
       Craftie.Frame.TabSide[i].Select:Hide()
       Craftie.Frame.TabSide[i].Border:Hide()
       Craftie.Frame.TabSide[i].Icon:SetAlpha(0.5)
@@ -551,7 +557,7 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie.Tab = tab
     Craftie.Selected_Name = ""
     Craftie.Page = prof_name
-    if (tab > #Craftie.Professions) then
+    if (tab == Craftie.TabTop) then
       --here
     else
       Craftie.TabGlow[tab]:Stop()
@@ -1598,6 +1604,7 @@ function Craftie:Open(player, profession)
     Craftie.Frame:Show()
     Craftie.IconGlow:Stop()
     Craftie.Frame.Button.Minimap.Glow:Hide()
+    --Craftie:TabSelectSide(Craftie.TabTop, true) --just stay on the tab where we left off
     Craftie:Notification("Craftie:Opened", Craftie.CHAT.FUNC)
   end
   Craftie:UpdateRecipeCraftableCounts()

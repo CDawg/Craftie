@@ -91,7 +91,7 @@ function Craftie:TabSelectBottom(tab, sound)
     Craftie.Frame.CraftParent:Show()
     Craftie.Frame.ScrollPlayersParent:Show()
     Craftie.Frame.ScrollRecipesParent:Show()
-    Craftie:TabSelectSide(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2))
+    --Craftie:TabSelectSide(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2))
   end
   if (tab == 2) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
