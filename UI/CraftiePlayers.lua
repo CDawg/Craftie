@@ -177,7 +177,7 @@ Craftie.Frame.Button.SearchPlayersClear:SetScript("OnClick", function(self)
   if (Craftie.EnableScrollFrames) then
     Craftie.Frame.Search.Players.Text:SetText("")
     local pageNum = Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2)
-    Craftie.Tab = 0
+    Craftie.Tab = Craftie.TabTop
     Craftie:TabSelectSide(pageNum) --just reset the list
   end
 end)

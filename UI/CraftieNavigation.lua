@@ -110,10 +110,6 @@ function Craftie:TabSelectBottom(tab, sound)
     Craftie.TabBarHide = Craftie.TabBarHide+1
     Craftie.Help:Show()
   end
-  if (tab == 6) then
-    Craftie.TabBarHide = Craftie.TabBarHide+1
-    --Craftie.Logger:Show()
-  end
 
   if (sound) then
     PlaySound(SOUNDKIT.IG_CHARACTER_INFO_TAB)

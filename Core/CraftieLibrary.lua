@@ -199,6 +199,8 @@ if (Craftie.Game.Version >= 3) then
   table.insert(Craftie.Professions, {773, "Inscription", "inv_inscription_tradeskill01", "1.00, 0.25, 0.25", {}, 45357})
 end
 
+Craftie.TabTop = #Craftie.Professions+1
+
 -- BLOB data is keyed by the stable numeric profession ID. Names are localized
 -- and have changed between clients, so they are not suitable saved-data keys.
 function Craftie:GetProfessionID(profession)

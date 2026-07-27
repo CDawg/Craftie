@@ -521,11 +521,20 @@ end
 
 Craftie.AddonLoaded = false
 function Craftie:TabSelectSide(tab, sound)
+  tab = tonumber(tab)
+  local prof_name = "News & Updates" --default --TODO -need to localize this for another language
+  print("TAB NUM " .. tab)
   if (Craftie.Tab ~= tab) then
-    local prof_name = Craftie.Professions[tab][2]
+    if (tab == Craftie.TabTop) then
+      Craftie.Frame.ScrollPlayersParent:Hide()
+      Craftie.Frame.ScrollRecipesParent:Hide()
+      Craftie.Frame.CraftParent:Hide()
+    else
+      prof_name = Craftie.Professions[tab][2]
+    end
     Craftie:CloseAllPlayerMenus()
     Craftie:ClearSearchFocus(true)
-    for i=1, #Craftie.Professions do
+    for i=1, #Craftie.Professions+1 do
       Craftie.Frame.TabSide[i].Select:Hide()
       Craftie.Frame.TabSide[i].Border:Hide()
       Craftie.Frame.TabSide[i].Icon:SetAlpha(0.5)
@@ -542,43 +551,46 @@ function Craftie:TabSelectSide(tab, sound)
     Craftie.Tab = tab
     Craftie.Selected_Name = ""
     Craftie.Page = prof_name
-    Craftie.TabGlow[tab]:Stop()
-    Craftie.Frame.TabSide[tab].Glow:Hide()
-    Craftie.TipGlow[tab]:Stop()
-    Craftie.Frame.TabSide[tab].Tip:Hide()
-    Craftie.ProfessionDefault = Craftie.Profession[prof_name]
-    Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Image.Background.Profession .. prof_name:lower() .. ".png")
+    if (tab > #Craftie.Professions) then
+      --here
+    else
+      Craftie.TabGlow[tab]:Stop()
+      Craftie.Frame.TabSide[tab].Glow:Hide()
+      Craftie.TipGlow[tab]:Stop()
+      Craftie.Frame.TabSide[tab].Tip:Hide()
+      Craftie.ProfessionDefault = Craftie.Profession[prof_name]
+      Craftie.Frame.CraftBackTopArt:SetTexture(Craftie._G.Image.Background.Profession .. prof_name:lower() .. ".png")
 
-    --we have no build yet
-    for k,v in pairs(Craftie.MyProfessionEntry) do
-      if (prof_name == v) then
-        Craftie.MyProfessionEntry[k] = nil --remove entry
-        --Craftie:CycleCraftingBook(prof_name) --this also flags that we opened the prof
-        Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof_name .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof_name .. " in any chat", Craftie.CHAT.INFO)
+      --we have no build yet
+      for k,v in pairs(Craftie.MyProfessionEntry) do
+        if (prof_name == v) then
+          Craftie.MyProfessionEntry[k] = nil --remove entry
+          --Craftie:CycleCraftingBook(prof_name) --this also flags that we opened the prof
+          Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof_name .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof_name .. " in any chat", Craftie.CHAT.INFO)
+        end
       end
+      if (Craftie.AddonLoaded) then
+        Craftie:CycleCraftingBook(Craftie:GetProfessionID(prof_name))
+      end
+      Craftie.AddonLoaded = true --cycle the book by intervention, not automatically
+
+      C_Timer.After(0.2, function() --give it time to register
+        Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
+        Craftie:UpdateCrafterList()
+        Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
+        Craftie.MenuSelRecipes[2] = nil
+      end)
+
+      Craftie.Selected_Player_Index = 1
+      Craftie:SelectScrollItem("Players", false)
+      Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
+
+      Craftie.Selected_Recipe_Index = 1
+      Craftie:SelectScrollItem("Recipes", false)
+      Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
     end
-    if (Craftie.AddonLoaded) then
-      Craftie:CycleCraftingBook(Craftie:GetProfessionID(prof_name))
-    end
-    Craftie.AddonLoaded = true --cycle the book by intervention, not automatically
-
-    C_Timer.After(0.2, function() --give it time to register
-      Craftie:OpenProfessionList(Craftie.ProfessionDefault, "", "")
-      Craftie:UpdateCrafterList()
-      Craftie.Frame.DropdownRecipes.text:SetText(Craftie.MenuSelRecipes[1])
-      Craftie.MenuSelRecipes[2] = nil
-    end)
-
-    Craftie.Selected_Player_Index = 1
-    Craftie:SelectScrollItem("Players", false)
-    Craftie.Frame.ScrollPlayersList.Child:SetVerticalScroll(1) --go to top
-
-    Craftie.Selected_Recipe_Index = 1
-    Craftie:SelectScrollItem("Recipes", false)
-    Craftie.Frame.ScrollRecipesList.Child:SetVerticalScroll(1) --go to top
-
-  Craftie:Notification("Craftie:TabSelectSide(" .. tab .. ")", Craftie.CHAT.FUNC)
   end
+  Craftie:Notification("Craftie:TabSelectSide(" .. tab .. ")", Craftie.CHAT.FUNC)
 end
 
 Craftie.Animation = 0
