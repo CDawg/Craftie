@@ -1,5 +1,8 @@
 Craftie.CHANGELOG = [==[
 
+### 1.07
+* Bugfix: Side tab selection - clearing player mastery data
+
 ### 1.06
 * Bottom Tab Navigation Tooltips
 
