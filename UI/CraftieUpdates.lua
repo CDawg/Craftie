@@ -64,7 +64,7 @@ Craftie.UpdatesScrollFrame.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Updat
 Craftie:ScrollBarFrame(Craftie.UpdatesScrollFrame.Child)
 
 Craftie.Updates.Data = CreateFrame("EditBox", "Craftie.Updates.Data", Craftie.UpdatesScrollFrameChildFrame)
-Craftie.Updates.Data:SetWidth(Craftie.Updates:GetWidth()-20) --scrollbar
+Craftie.Updates.Data:SetWidth(Craftie.Updates:GetWidth()-50) --scrollbar
 Craftie.Updates.Data:SetHeight(Craftie.Updates:GetHeight())
 Craftie.Updates.Data:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size, Craftie._G.Font.Flags)
 Craftie.Updates.Data:SetTextColor(1, 1, 0.9, 1)
@@ -82,10 +82,13 @@ Craftie is looking for translators!|nHelp make Craftie multilingual so players a
 
 New to Craftie?
 If this is your first time using the addon or you need assistance, click the Help tab in the bottom-right corner to get started.
+
+Help grow the Craftie community!
+Invite your friends and guildmates to use Craftie so everyone can discover more crafters, recipes, professions, and help with chat clutter.
 ]==]
 
 --markdown conversion to wow lua
-news = news .. Craftie.Color.Blue .. "|n|nUPDATES|n|r" .. Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie:HelpBulletPoint()) .. "|n|n|n"
+news = news .. Craftie.Color.Blue .. "|n|nUPDATES|n|r" .. Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie:HelpBulletPoint()):gsub("%[", "|CFFABABAB"):gsub("%]", "|r") .. "|n|n|n"
 --updates = updates:gsub("^.-\n", "")
 Craftie.Updates.Data:SetText(news)
 

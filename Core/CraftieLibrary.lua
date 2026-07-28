@@ -36,20 +36,6 @@ Craftie = {
   }
 }
 
-Craftie.Color = {
-  Theme = "|CFFFF9524",
-  Blue  = "|CFF4BB4FA",
-  Skyblue="|CFF42DBFF",
-  Yellow= "|CFFFFFB63",
-  Gold  = "|CFFFFDA45",
-  White = "|CFFFFFFFF",
-  Silver= "|CFFDEDEDE",
-  Gray  = "|CFFABABAB",
-  Lime  = "|CFF9CFFA1",
-  Red   = "|CFFFF0000",
-  Guild = {0.2, 0.92, 0.2}
-}
-
 Craftie.DEBUGLEVEL = 3 --default [INFO | ERROR] | WARN]
 
 Craftie.CHAT = {
@@ -146,6 +132,20 @@ Craftie.Backdrop = {
   Slider = {
     Template = "UISliderTemplateWithLabels",
   }
+}
+
+Craftie.Color = {
+  Theme = "|CFFFF9524",
+  Blue  = "|CFF4BB4FA",
+  Skyblue="|CFF42DBFF",
+  Yellow= "|CFFFFFB63",
+  Gold  = "|CFFFFDA45",
+  White = "|CFFFFFFFF",
+  Silver= "|CFFDEDEDE",
+  Gray  = "|CFFABABAB",
+  Lime  = "|CFF9CFFA1",
+  Red   = "|CFFFF0000",
+  Guild = {0.2, 0.92, 0.2}
 }
 
 Craftie.Packet = {}

@@ -1,11 +1,13 @@
 Craftie.CHANGELOG = [==[
 
+### 1.06
+* Bottom Tab Navigation Tooltips
+
 ### 1.05
 * Added Request Logging / Tracking
 * Few Bugfixes for enchanting requests
-* TODO Localization
-* TODO Bottom Tab Navigation Tooltips
-* TODO Classic (Vanilla) Release
+* [TODO] Language localization builder for recipes
+* [TODO] Classic (Vanilla) Release
 
 ### 1.04
 * Added Order Logging / Tracking
