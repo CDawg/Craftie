@@ -527,7 +527,7 @@ end
 Craftie.AddonLoaded = false
 function Craftie:TabSelectSide(tab, sound)
   tab = tonumber(tab)
-  local prof_name = Craftie._L.News --default --TODO -optional change default tab?
+  local prof_name = Craftie._L.NewsTab --default --TODO -optional change default tab?
 
   Craftie.Frame.CrafterProgBarFrame:Hide()
 
@@ -539,7 +539,7 @@ function Craftie:TabSelectSide(tab, sound)
       Craftie.Frame.CraftParent:Hide()
       Craftie.Updates:Show()
       Craftie.Credit:Show()
-      Craftie.Frame.Title:SetText(Craftie._L.News)
+      Craftie.Frame.Title:SetText(Craftie._L.NewsTab)
     else
       Craftie.Updates:Hide()
       Craftie.Credit:Hide()

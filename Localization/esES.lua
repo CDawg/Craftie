@@ -51,7 +51,7 @@ Craftie._L = {
     {"Right Click", "Craftie Orders"}
   },
 
-  News = "News & Updates", --first tab
+  NewsTab = "News & Updates", --first tab
 
   Navigation = {"Professions", "Requests", "Orders", "Help"},
 
