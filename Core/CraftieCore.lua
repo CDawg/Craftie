@@ -529,6 +529,7 @@ function Craftie:TabSelectSide(tab, sound)
   tab = tonumber(tab)
   local prof_name = Craftie._L.NewsTab --default --TODO -optional change default tab?
 
+  Craftie.Frame.Mastery:SetText("")
   Craftie.Frame.CrafterProgBarFrame:Hide()
 
   --print("TAB NUM " .. tab)
