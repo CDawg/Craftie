@@ -22,6 +22,7 @@ function Craftie:Init()
   Craftie:BuildPersonalTooltip()
   Craftie:TabSelectBottom(1, false)
   Craftie:BuildTooltipHooks()
+  Craftie:TabSelectSide(Craftie.TabTop, false) --default -TODO (make optional in future??)
 
   Craftie.Frame:SetScript("OnHide", function(self)
     Craftie.OpenState = 0

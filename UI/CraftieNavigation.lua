@@ -13,7 +13,7 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
-local TabOffset = 430
+local TabOffset = 350
 
 Craftie.TabBottom={}
 for k,v in pairs(Craftie._L.Navigation) do
@@ -74,7 +74,6 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Help:Hide()
   Craftie.Frame.Title:Hide()
   Craftie.Frame.Mastery:SetText("")
-  --Craftie.Frame.TitleNavigation:Show()
   Craftie.Frame.CrafterProgBarFrame:Hide()
   --Craftie.Frame.CrafterProgBar:Hide()
 
@@ -86,12 +85,20 @@ function Craftie:TabSelectBottom(tab, sound)
 
   if (tab == 1) then --professions
     Craftie.TabBarHide = 0
-    --Craftie.Frame.TitleNavigation:Hide()
     Craftie.Frame.Title:Show()
-    Craftie.Frame.CraftParent:Show()
-    Craftie.Frame.ScrollPlayersParent:Show()
-    Craftie.Frame.ScrollRecipesParent:Show()
-    --Craftie:TabSelectSide(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2))
+    Craftie.Frame.CraftParent:Hide()
+    Craftie.Frame.ScrollPlayersParent:Hide()
+    Craftie.Frame.ScrollRecipesParent:Hide()
+
+    if (Craftie.Tab == Craftie.TabTop) then
+      Craftie.Updates:Show()
+      Craftie.Credit:Show()
+    else
+      Craftie.Frame.CraftParent:Show()
+      Craftie.Frame.ScrollPlayersParent:Show()
+      Craftie.Frame.ScrollRecipesParent:Show()
+      Craftie:TabSelectSide(Craftie:GetKeyFromValue(Craftie.Professions, Craftie.Page, 2))
+    end
   end
   if (tab == 2) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
@@ -102,11 +109,6 @@ function Craftie:TabSelectBottom(tab, sound)
     Craftie.Frame.CraftOrders:Show()
   end
   if (tab == 4) then
-    Craftie.TabBarHide = Craftie.TabBarHide+1
-    Craftie.Updates:Show()
-    Craftie.Credit:Show()
-  end
-  if (tab == 5) then
     Craftie.TabBarHide = Craftie.TabBarHide+1
     Craftie.Help:Show()
   end

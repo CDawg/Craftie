@@ -192,19 +192,17 @@ local TabSideSpacing = 40 --distance spacing
 Craftie.TabGlow={}
 Craftie.TipGlow={}
 Craftie.Frame.TabSide={}
---Craftie.Frame.TabSide[Craftie.TabTop]={}
-
 Craftie.Frame.TabSide[Craftie.TabTop] = CreateFrame("Button", "Craftie.Frame.TabSide[Craftie.TabTop]", Craftie.Frame.TabBar, "BackdropTemplate")
 Craftie.Frame.TabSide[Craftie.TabTop]:SetWidth(40)
 Craftie.Frame.TabSide[Craftie.TabTop]:SetHeight(40)
-Craftie.Frame.TabSide[Craftie.TabTop]:SetPoint("TOPLEFT", 2, 0)
+Craftie.Frame.TabSide[Craftie.TabTop]:SetPoint("TOPLEFT", 2, 1)
 --Craftie.Frame.TabSide[Craftie.TabTop]:SetBackdrop(Craftie.Backdrop.General)
 --Craftie.Frame.TabSide[Craftie.TabTop]:SetBackdropColor(0, 1, 0, 1)
 --Craftie.Frame.TabSide[Craftie.TabTop]:SetBackdropBorderColor(1, 1, 1, 0)
 Craftie.Frame.TabSide[Craftie.TabTop].Icon = Craftie.Frame.TabSide[Craftie.TabTop]:CreateTexture(nil, tabbar_frame.layer)
 Craftie.Frame.TabSide[Craftie.TabTop].Icon:SetSize(Craftie.Frame.TabSide[Craftie.TabTop]:GetWidth()-9, Craftie.Frame.TabSide[Craftie.TabTop]:GetHeight()-9)
 Craftie.Frame.TabSide[Craftie.TabTop].Icon:SetPoint("TOPLEFT", 7, -5)
-Craftie.Frame.TabSide[Craftie.TabTop].Icon:SetTexture("Interface/Icons/nothin.png")
+Craftie.Frame.TabSide[Craftie.TabTop].Icon:SetTexture(Craftie._G.Image.Button.Updates)
 Craftie.Frame.TabSide[Craftie.TabTop].Icon:SetDesaturation(0.40)
 Craftie.Frame.TabSide[Craftie.TabTop].Icon:SetDrawLayer(tabbar_frame.layer, tabbar_frame.level-2)
 Craftie.Frame.TabSide[Craftie.TabTop].Select = Craftie.Frame.TabSide[Craftie.TabTop]:CreateTexture(nil, tabbar_frame.layer)

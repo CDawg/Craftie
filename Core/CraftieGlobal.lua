@@ -58,12 +58,13 @@ Craftie._G.Image = {
     Layout= "|T" .. Craftie._G.Path .. Craftie._G.Icon .. ".png:14:14|t",
   },
   Button = {
-    Frame = Craftie._G.Path .. "Images/Buttons/UIFrameMetal-RightDouble.png",
-    Clear = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Search-Clear.png",
-    Delete= Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Delete.png",
-    Arrow = Craftie._G.Path .. "Images/Buttons/Helptip.png",
-    Bullet= Craftie._G.Path .. "Images/Buttons/BulletPoint.png",
-    Glow  = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Reagent-Border-Glow.png"
+    Frame  = Craftie._G.Path .. "Images/Buttons/UIFrameMetal-RightDouble.png",
+    Updates= Craftie._G.Path .."Images/Buttons/UI-Craftie-Updates.png",
+    Clear  = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Search-Clear.png",
+    Delete = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Button-Delete.png",
+    Arrow  = Craftie._G.Path .. "Images/Buttons/Helptip.png",
+    Bullet = Craftie._G.Path .. "Images/Buttons/BulletPoint.png",
+    Glow   = Craftie._G.Path .. "Images/Buttons/UI-Craftie-Reagent-Border-Glow.png"
   },
   Scrollbar = {
     Slider  = Craftie._G.Path .. "Images/Scrollbar/UI-Craftie-Scroll-Slider.png",
@@ -113,6 +114,7 @@ Craftie.Selected_Recipe_Index = 1
 Craftie.Selected_ViewAll = "All Alchemy Recipes" --default
 Craftie.Selected_Name = ""
 Craftie.Preload = Craftie.Color.Gold .. "Loading Data...|r"
+
 Craftie.Page = Craftie.Professions[1][2] --default
 Craftie.Tab = 0
 

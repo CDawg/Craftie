@@ -472,9 +472,11 @@ function Craftie:GetProfessionEntry()
       if (CraftieDB[Craftie.Player.Realm][Craftie.Player.Faction]["BLOB"][Craftie:GetProfessionID(prof)][Craftie.Player.Name] == nil) then
         local tab = Craftie:GetKeyFromValue(Craftie.Professions, prof, 2)
         --Craftie:Notification(Craftie._L.Notification.Detected[1] .. Craftie.Color.Blue .. " [" .. prof .. "]|r " .. Craftie.Player.Name .. "|n" .. Craftie._L.Notification.Detected[2] .. Craftie.Color.Theme .. " Craftie|r " .. Craftie._L.Notification.Detected[3], Craftie.CHAT.INFO)
+        --[==[
         if (prof == "Alchemy") then
           Craftie.Tab = -1 --hack so that players will select alchemy as the first default loaded tab
         end
+        ]==]--
         --print("|cffffd000|Htrade:2550:300:PlayerGUID:RecipeData|h[Cooking]|h|r")
         table.insert(Craftie.MyProfessionEntry, prof)
         C_Timer.After(1, function() --new professions override existing orders
@@ -526,25 +528,35 @@ Craftie.AddonLoaded = false
 function Craftie:TabSelectSide(tab, sound)
   tab = tonumber(tab)
   local prof_name = "News & Updates" --default --TODO -need to localize this for another language
-  print("TAB NUM " .. tab)
+
+  Craftie.Frame.CrafterProgBarFrame:Hide()
+
+  --print("TAB NUM " .. tab)
   if (Craftie.Tab ~= tab) then
     if (tab == Craftie.TabTop) then
       Craftie.Frame.ScrollPlayersParent:Hide()
       Craftie.Frame.ScrollRecipesParent:Hide()
       Craftie.Frame.CraftParent:Hide()
+      Craftie.Updates:Show()
+      Craftie.Credit:Show()
     else
+      Craftie.Updates:Hide()
+      Craftie.Credit:Hide()
       prof_name = Craftie.Professions[tab][2]
       Craftie.Frame.ScrollPlayersParent:Show()
       Craftie.Frame.ScrollRecipesParent:Show()
       Craftie.Frame.CraftParent:Show()
     end
+
     Craftie:CloseAllPlayerMenus()
     Craftie:ClearSearchFocus(true)
+
     for i=1, Craftie.TabTop do --added 1 tab to total professions
       Craftie.Frame.TabSide[i].Select:Hide()
       Craftie.Frame.TabSide[i].Border:Hide()
       Craftie.Frame.TabSide[i].Icon:SetAlpha(0.5)
     end
+
     Craftie.Frame.TabSide[tab].Select:Show()
     Craftie.Frame.TabSide[tab].Border:Show()
     Craftie.Frame.TabSide[tab].Icon:SetAlpha(1)
@@ -1275,6 +1287,11 @@ function Craftie:OpenProfessionList(profArray, search, player)
   local profCache = {}
   local search_all_count = 0
   local index = 1
+
+  if (Craftie.Tab == Craftie.TabTop) then
+    return
+  end
+
   Craftie.Frame.ScrollRecipesLoading:Show()
   Craftie.Frame.ScrollRecipesList:SetAlpha(0.4)
   Craftie:SelectScrollItem("Recipes", false)
