@@ -65,7 +65,7 @@ Craftie.Frame.Header:SetTextColor(0.9, 0.9, 0.8, 0.5)
 Craftie.Frame.Title = Craftie.Frame:CreateFontString(nil, "ARTWORK")
 Craftie.Frame.Title:SetFont(Craftie._G.Font.Style.Alpha, Craftie._G.Font.Size+3, Craftie._G.Font.Flags)
 Craftie.Frame.Title:SetPoint("TOPLEFT", 40, -35)
-Craftie.Frame.Title:SetText(Craftie:TranslateLocaleProfession(Craftie.Professions[1][2]))
+Craftie.Frame.Title:SetText(Craftie._L.News)
 Craftie.Frame.Title:SetTextColor(0.9, 0.9, 0.8, 1)
 
 Craftie.Frame.Version = Craftie.Frame:CreateFontString(nil, "ARTWORK")

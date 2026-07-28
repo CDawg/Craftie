@@ -527,18 +527,19 @@ end
 Craftie.AddonLoaded = false
 function Craftie:TabSelectSide(tab, sound)
   tab = tonumber(tab)
-  local prof_name = "News & Updates" --default --TODO -need to localize this for another language
+  local prof_name = Craftie._L.News --default --TODO -optional change default tab?
 
   Craftie.Frame.CrafterProgBarFrame:Hide()
 
   --print("TAB NUM " .. tab)
-  if (Craftie.Tab ~= tab) then
+  if (Craftie.Tab ~= tab) then --disable double clicking
     if (tab == Craftie.TabTop) then
       Craftie.Frame.ScrollPlayersParent:Hide()
       Craftie.Frame.ScrollRecipesParent:Hide()
       Craftie.Frame.CraftParent:Hide()
       Craftie.Updates:Show()
       Craftie.Credit:Show()
+      Craftie.Frame.Title:SetText(Craftie._L.News)
     else
       Craftie.Updates:Hide()
       Craftie.Credit:Hide()

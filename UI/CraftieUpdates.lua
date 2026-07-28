@@ -28,14 +28,13 @@ Craftie.Developers = {
 local credits = "Special Thanks To:"
 
 local dimensions = {
-  W = Craftie.Frame:GetWidth()/2,
   H = Craftie.Frame:GetHeight()-124,
   X = 12,
   Y = -100,
 }
 
 Craftie.Updates = CreateFrame("Frame", "Craftie.Updates", Craftie.Frame)
-Craftie.Updates:SetWidth(dimensions.W)
+Craftie.Updates:SetWidth(500)
 Craftie.Updates:SetHeight(dimensions.H)
 Craftie.Updates:SetPoint("TOPLEFT", dimensions.X, dimensions.Y)
 Craftie.Updates:SetFrameStrata("MEDIUM")
@@ -76,17 +75,18 @@ Craftie.Updates.Data:SetAutoFocus(false)
 Craftie.Updates.Data:SetEnabled(false)
 
 Craftie.Updates:Hide()
---markdown conversion to wow lua -Port
+--markdown conversion to wow lua
 local updates = Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie:HelpBulletPoint()) .. "|n|n|n"
+--updates = updates:gsub("^.-\n", "")
 Craftie.Updates.Data:SetText(updates)
 
 --[==[
 CREDITS
 ]==]--
 Craftie.Credit = CreateFrame("Frame", nil, Craftie.Frame)
-Craftie.Credit:SetWidth(dimensions.W-30)
+Craftie.Credit:SetWidth(332)
 Craftie.Credit:SetHeight(dimensions.H)
-Craftie.Credit:SetPoint("TOPLEFT", dimensions.W+16, dimensions.Y)
+Craftie.Credit:SetPoint("TOPLEFT", Craftie.Updates:GetWidth()+14, dimensions.Y)
 Craftie.Credit:SetFrameStrata("MEDIUM")
 
 Craftie.CreditsScrollFrame = CreateFrame("Frame", "Craftie.CreditsScrollFrame", Craftie.Credit, "InsetFrameTemplate4")
@@ -131,6 +131,15 @@ end
 listcredits = listcredits .. [==[
 
 And a few nameless heroes on Dreamscythe
+
+
+
+
+
+
+
+
+
 
 Written by Porthias|r (a.k.a. Port)
 ]==]

@@ -1,4 +1,5 @@
 Craftie.CHANGELOG = [==[
+
 ### 1.05
 * Added Request Logging / Tracking
 * Few Bugfixes for enchanting requests
@@ -21,5 +22,4 @@ Craftie.CHANGELOG = [==[
 
 ### 1.00
 * First Alpha Implementation
-
 ]==]
