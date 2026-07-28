@@ -53,7 +53,10 @@ Craftie._L = {
 
   NewsTab = "News & Updates", --first tab
 
-  Navigation = {"Professions", "Requests", "Orders", "Help"},
+  Navigation = {
+    {"Professions", "Requests", "Orders", "Help"},
+    {"", "Your crafting requests to other crafters", "Crafting orders from other players for you to craft", ""},
+  },
 
   --translate
   Professions = {

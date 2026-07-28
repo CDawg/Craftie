@@ -1523,7 +1523,7 @@ function Craftie:GetCraftRequests()
       Craftie.Frame.CraftRequestsDeleteAll:Enable()
       color = Craftie.Color.Yellow
     end
-    Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[2] .. " " .. color .. "[" .. req_index .. "]")
+    Craftie.TabBottom[2].Text:SetText(Craftie._L.Navigation[1][2] .. " " .. color .. "[" .. req_index .. "]")
     Craftie.Frame.CraftRequests:SetAlpha(1)
   end)
 
@@ -1594,7 +1594,7 @@ function Craftie:GetCraftOrders()
       end)
       color = Craftie.Color.Yellow
     end
-    Craftie.TabBottom[3].Text:SetText(Craftie._L.Navigation[3] .. " " .. color .. "[" .. order_index .. "]")
+    Craftie.TabBottom[3].Text:SetText(Craftie._L.Navigation[1][3] .. " " .. color .. "[" .. order_index .. "]")
     Craftie.Frame.CraftOrders:SetAlpha(1)
   end)
   Craftie:Notification(Craftie.Color.Yellow .. "Craftie:GetCraftOrders()", Craftie.CHAT.FUNC)

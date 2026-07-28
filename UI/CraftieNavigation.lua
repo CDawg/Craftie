@@ -16,7 +16,7 @@ the copyright holders.
 local TabOffset = 350
 
 Craftie.TabBottom={}
-for k,v in pairs(Craftie._L.Navigation) do
+for k,v in pairs(Craftie._L.Navigation[1]) do
   Craftie.TabBottom[k] = CreateFrame("Button", nil, Craftie.Frame, "BackdropTemplate")
   Craftie.TabBottom[k]:SetSize(80, 38)
   Craftie.TabBottom[k]:SetPoint("BOTTOMRIGHT", -TabOffset+((Craftie.TabBottom[k]:GetWidth()+4)*k), -34)
@@ -47,9 +47,16 @@ for k,v in pairs(Craftie._L.Navigation) do
   end)
   Craftie.TabBottom[k]:SetScript("OnEnter", function(self)
     Craftie.TabBottom[k].Highlight:Show()
+    if (Craftie._L.Navigation[2][k] ~= "") then
+      CraftieTooltip:ClearLines()
+      CraftieTooltip:SetOwner(self, "ANCHOR_CURSOR_RIGHT", 20)
+      CraftieTooltip:AddLine(Craftie.Color.Silver .. Craftie._L.Navigation[2][k])
+      CraftieTooltip:Show()
+    end
   end)
   Craftie.TabBottom[k]:SetScript("OnLeave", function(self)
     Craftie.TabBottom[k].Highlight:Hide()
+    CraftieTooltip:Hide()
   end)
 end
 
@@ -77,7 +84,7 @@ function Craftie:TabSelectBottom(tab, sound)
   Craftie.Frame.CrafterProgBarFrame:Hide()
   --Craftie.Frame.CrafterProgBar:Hide()
 
-  for k,v in pairs(Craftie._L.Navigation) do
+  for k,v in pairs(Craftie._L.Navigation[1]) do
     Craftie.TabBottom[k].BG:SetTexture(Craftie._G.Image.Tab.Inactive)
     Craftie.TabBottom[k].Text:SetTextColor(1, 1, 1, 0.7)
     Craftie.TabBottom[k].Text:SetPoint("CENTER", 0, 0)
