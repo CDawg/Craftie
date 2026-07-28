@@ -131,14 +131,14 @@ Craftie.Frame.ScrollRequestList:SetHeight(Craftie.Frame.CraftRequests:GetHeight(
 Craftie.Frame.ScrollRequestList:SetPoint("TOPLEFT", 0, -dimensions.column.H)
 
 Craftie.Frame.ScrollRequestList.Child = CreateFrame("ScrollFrame", "Craftie.Frame.ScrollRequestList.Child", Craftie.Frame.ScrollRequestList, "UIPanelScrollFrameTemplate")
-Craftie.Frame.ScrollRequestList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRequestList, "TOPLEFT", 5, -10)
-Craftie.Frame.ScrollRequestList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRequestList, "BOTTOMRIGHT", 10, 10)
+Craftie.Frame.ScrollRequestList.Child:SetPoint("TOPLEFT", Craftie.Frame.ScrollRequestList, "TOPLEFT", 4, -10)
+Craftie.Frame.ScrollRequestList.Child:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRequestList, "BOTTOMRIGHT", 8, 10)
 Craftie.Frame.ScrollRequestListChildFrame = CreateFrame("Frame", "Craftie.Frame.ScrollRequestListChildFrame", Craftie.Frame.ScrollRequestList.Child)
 Craftie.Frame.ScrollRequestListChildFrame:SetSize(Craftie.Frame.CraftRequests:GetWidth(), Craftie.Frame.CraftRequests:GetHeight())
 Craftie.Frame.ScrollRequestList.Child:SetScrollChild(Craftie.Frame.ScrollRequestListChildFrame)
 Craftie.Frame.ScrollRequestList.Child.ScrollBar:ClearAllPoints()
-Craftie.Frame.ScrollRequestList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRequestList.Child, "TOPRIGHT", -32, -5)
-Craftie.Frame.ScrollRequestList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRequestList.Child, "BOTTOMRIGHT", -11, 5)
+Craftie.Frame.ScrollRequestList.Child.ScrollBar:SetPoint("TOPLEFT", Craftie.Frame.ScrollRequestList.Child, "TOPRIGHT", -33, -5)
+Craftie.Frame.ScrollRequestList.Child.ScrollBar:SetPoint("BOTTOMRIGHT", Craftie.Frame.ScrollRequestList.Child, "BOTTOMRIGHT", -10, 5)
 
 Craftie:ScrollBarFrame(Craftie.Frame.ScrollRequestList.Child)
 
@@ -180,7 +180,7 @@ end
 
 function Craftie:BuildRowRequest(i)
   Craftie.Frame.ScrollRequestListRow[i] = CreateFrame("Frame", Craftie.Frame.ScrollRequestListRow[i], Craftie.Frame.ScrollRequestListChildFrame, "BackdropTemplate", -1)
-  Craftie.Frame.ScrollRequestListRow[i]:SetWidth(Craftie.Frame.CraftRequests:GetWidth()-26)
+  Craftie.Frame.ScrollRequestListRow[i]:SetWidth(Craftie.Frame.CraftRequests:GetWidth()-30)
   Craftie.Frame.ScrollRequestListRow[i]:SetHeight(dimensions.row.H)
   Craftie.Frame.ScrollRequestListRow[i]:SetPoint("TOPLEFT", 2, -i*Craftie.Frame.ScrollRequestListRow[i]:GetHeight()+16)
   Craftie.Frame.ScrollRequestListRow[i]:SetBackdrop(Craftie.Backdrop.Borderless)
