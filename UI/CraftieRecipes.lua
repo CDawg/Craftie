@@ -28,6 +28,7 @@ Craftie.Frame.ScrollRecipesParent.Back = Craftie.Frame.ScrollRecipesParent:Creat
 Craftie.Frame.ScrollRecipesParent.Back:SetSize(Craftie.Frame.ScrollRecipesParent:GetWidth(), Craftie.Frame.ScrollRecipesParent:GetHeight())
 Craftie.Frame.ScrollRecipesParent.Back:SetPoint("TOPLEFT", 0, 0)
 Craftie.Frame.ScrollRecipesParent.Back:SetTexture(Craftie._G.Image.Background.Recipes)
+Craftie.Frame.ScrollRecipesParent.Back:SetAlpha(0.5)
 
 Craftie.Frame.ScrollRecipesList = CreateFrame("Frame", "Craftie.Frame.ScrollRecipesList", Craftie.Frame.ScrollRecipesParent, "BackdropTemplate")
 Craftie.Frame.ScrollRecipesList:SetWidth(dimensions.W-5)

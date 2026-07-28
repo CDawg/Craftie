@@ -48,7 +48,9 @@ Craftie._G.Image = {
     Light =     Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Light.png",
     Shadow=     Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Shadow.png",
     Profession= Craftie._G.Path .. "Images/Backgrounds/professionbackgroundart", --dynamic
+    News      = Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-News.png",
     Recipes   = Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Recipes.png",
+    Credits   = Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Background-Credits.png",
     Toast     = Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Craft-Toast.png",
     Bottom    = Craftie._G.Path .. "Images/Backgrounds/UI-Craftie-Shadow-Overlay.png",
   },

@@ -13,7 +13,6 @@ All rights not explicitly addressed in this license are reserved by
 the copyright holders.
 ]==]--
 
---Updates / Credits
 Craftie.Contributors = {
   "Chilease",
   "Slicegirls",
@@ -44,12 +43,13 @@ Craftie.UpdatesScrollFrame:SetWidth(Craftie.Updates:GetWidth())
 Craftie.UpdatesScrollFrame:SetHeight(Craftie.Updates:GetHeight())
 Craftie.UpdatesScrollFrame:SetPoint("TOPLEFT", 0, 0)
 
-Craftie.UpdatesScrollFrameBack = Craftie.UpdatesScrollFrame:CreateTexture(nil, "BACKGROUND")
+Craftie.UpdatesScrollFrameBack = Craftie.UpdatesScrollFrame:CreateTexture(nil, "BACKGROUND", nil, 1)
 Craftie.UpdatesScrollFrameBack:SetWidth(Craftie.UpdatesScrollFrame:GetWidth())
 Craftie.UpdatesScrollFrameBack:SetHeight(Craftie.UpdatesScrollFrame:GetHeight())
 Craftie.UpdatesScrollFrameBack:SetPoint("TOPLEFT", 0, 0)
-Craftie.UpdatesScrollFrameBack:SetTexture(Craftie._G.Image.Background.Shadow)
-Craftie.UpdatesScrollFrameBack:SetDesaturation(0.3)
+Craftie.UpdatesScrollFrameBack:SetTexture(Craftie._G.Image.Background.News)
+Craftie.UpdatesScrollFrameBack:SetAlpha(0.5)
+--Craftie.UpdatesScrollFrameBack:SetDesaturation(0.3)
 
 Craftie.UpdatesScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.UpdatesScrollFrame.Child", Craftie.UpdatesScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.UpdatesScrollFrame.Child:SetPoint("TOPLEFT", Craftie.UpdatesScrollFrame, "TOPLEFT", 4, -10)
@@ -76,9 +76,18 @@ Craftie.Updates.Data:SetEnabled(false)
 
 Craftie.Updates:Hide()
 --markdown conversion to wow lua
-local updates = Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie:HelpBulletPoint()) .. "|n|n|n"
+local news = Craftie.Color.Gold .. "Welcome to Craftie!|r|n|n"
+news = news .. [==[
+Craftie is looking for translators!|nHelp make Craftie multilingual so players around the world can enjoy the addon in their native language.
+
+New to Craftie?
+If this is your first time using the addon or you need assistance, click the Help tab in the bottom-right corner to get started.
+]==]
+
+--markdown conversion to wow lua
+news = news .. Craftie.Color.Blue .. "|n|nUPDATES|n|r" .. Craftie.CHANGELOG:gsub("### ", Craftie.Color.Blue .. "v"):gsub("*", "|r" .. Craftie:HelpBulletPoint()) .. "|n|n|n"
 --updates = updates:gsub("^.-\n", "")
-Craftie.Updates.Data:SetText(updates)
+Craftie.Updates.Data:SetText(news)
 
 --[==[
 CREDITS
@@ -98,8 +107,9 @@ Craftie.CreditsScrollFrameBack = Craftie.CreditsScrollFrame:CreateTexture(nil, "
 Craftie.CreditsScrollFrameBack:SetWidth(Craftie.CreditsScrollFrame:GetWidth())
 Craftie.CreditsScrollFrameBack:SetHeight(Craftie.CreditsScrollFrame:GetHeight())
 Craftie.CreditsScrollFrameBack:SetPoint("TOPLEFT", 0, 0)
-Craftie.CreditsScrollFrameBack:SetTexture(Craftie._G.Image.Background.Shadow)
-Craftie.CreditsScrollFrameBack:SetDesaturation(0.3)
+Craftie.CreditsScrollFrameBack:SetTexture(Craftie._G.Image.Background.Credits)
+Craftie.CreditsScrollFrameBack:SetAlpha(0.5)
+--Craftie.CreditsScrollFrameBack:SetDesaturation(0.3)
 
 Craftie.CreditsScrollFrame.Child = CreateFrame("ScrollFrame", "Craftie.CreditsScrollFrame.Child", Craftie.CreditsScrollFrame, "UIPanelScrollFrameTemplate")
 Craftie.CreditsScrollFrame.Child:SetPoint("TOPLEFT", Craftie.CreditsScrollFrame, "TOPLEFT", 4, -10)
@@ -131,18 +141,13 @@ end
 listcredits = listcredits .. [==[
 
 And a few nameless heroes on Dreamscythe
-
-
-
-
-
-
-
-
-
-
-Written by Porthias|r (a.k.a. Port)
 ]==]
+
+local padding = ""
+for i=1, 20 do
+  padding = padding .. "|n"
+end
+listcredits = listcredits .. padding .. Craftie.Color.Gray .. "Written by Porthias (a.k.a. Port)"
 
 Craftie.Credit.Data:SetText(listcredits)
 Craftie.Credit:Hide()
