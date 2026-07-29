@@ -1,5 +1,8 @@
 Craftie.CHANGELOG = [==[
 
+### 1.08
+* Bugfix: Fixed an issue when opening a link and opening professions automatically
+
 ### 1.07
 * Bugfix: Side tab selection - clearing player mastery data
 
