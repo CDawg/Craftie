@@ -117,6 +117,9 @@ Craftie.Selected_ViewAll = "All Alchemy Recipes" --default
 Craftie.Selected_Name = ""
 Craftie.Preload = Craftie.Color.Gold .. "Loading Data...|r"
 
+--prevent spellbook comparison issues, when clicking a profession link -Port
+Craftie.LinkSelected = false
+
 Craftie.Page = Craftie.Professions[1][2] --default
 Craftie.Tab = 0
 

@@ -187,7 +187,7 @@ hooksecurefunc("SetItemRef", function(link, text, button)
         end)
       end
       if (Craftie.Save.Player.CONFIG["AUTO_OPEN"] ~= 0) then
-        --we still need to open the book, but cache the incoming data
+        --cache the incoming data
         C_Timer.After(0.2, function()
           Craftie:Notification("SetItemRef " .. prof, Craftie.CHAT.FUNC)
           Craftie:Open(player, prof) --need to cache player data loading

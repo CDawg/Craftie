@@ -589,7 +589,7 @@ function Craftie:TabSelectSide(tab, sound)
           Craftie:Notification("Awesome! " .. Craftie.Color.Blue .. "[" .. prof_name .. "]|r profile built for " .. Craftie.Player.Name .. "|nNow you can link your " .. prof_name .. " in any chat", Craftie.CHAT.INFO)
         end
       end
-      if (Craftie.AddonLoaded) then
+      if ((Craftie.AddonLoaded) and (not Craftie.LinkSelected)) then
         Craftie:CycleCraftingBook(Craftie:GetProfessionID(prof_name))
       end
       Craftie.AddonLoaded = true --cycle the book by intervention, not automatically
@@ -1608,10 +1608,8 @@ function Craftie:Open(player, profession)
     Craftie:GetCraftOrders()
   end)
 
-  if (player) then
-    --Craftie:Notification("Craftie:Open player: " .. player, Craftie.CHAT.FUNC)
-    --Craftie:Notification("Craftie:Open profession: " .. profession, Craftie.CHAT.FUNC)
-    --local prof = profession
+  if (player) then --clicked a chat link
+    Craftie.LinkSelected = true
     Craftie:TabSelectBottom(1, true)
     C_Timer.After(0.1, function() --give it time to register
       local page = Craftie:GetKeyFromValue(Craftie.Professions, profession, 2)
@@ -1623,11 +1621,11 @@ function Craftie:Open(player, profession)
     Craftie.Frame:Show()
     Craftie.IconGlow:Stop()
     Craftie.Frame.Button.Minimap.Glow:Hide()
-    --Craftie:TabSelectSide(Craftie.TabTop, true) --just stay on the tab where we left off
     Craftie:Notification("Craftie:Opened", Craftie.CHAT.FUNC)
   end
   Craftie:UpdateRecipeCraftableCounts()
 end
+Craftie.LinkSelected = false --reset the link
 
 --caching tooltip data. preload unknown data
 Craftie.Reagent = {}
