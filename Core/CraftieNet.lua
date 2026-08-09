@@ -39,17 +39,21 @@ end
 
 Craftie.NotifiedVersion = 0
 function Craftie:VersionControl(version)
-  --minor version difference
-  if (version > tonumber(Craftie._G.Version)) then
+  local myVersion = tonumber(Craftie._G.Version)
+  if (version > myVersion) then
     if (Craftie.NotifiedVersion ~= 1) then --dont spam the requester
-    local outdated = "You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]|nSome functionality will be limited"
-      Craftie:Notification(outdated, Craftie.CHAT.ERROR)
+      local outdated = "You have an outdated version [" .. Craftie._G.Version .. "] of [" .. version .. "]|nSome functionality will be limited"
+      if (version > (myVersion + 0.01)) then
+        Craftie:Notification(outdated, Craftie.CHAT.ERROR)
+      else
+        Craftie:Notification(outdated, Craftie.CHAT.WARN)
+      end
       Craftie.Frame.Version:SetText(outdated)
       Craftie.Frame.Version:Show()
       Craftie.NotifiedVersion = 1
     end
     --major difference
-    if (version > tonumber(Craftie._G.Version + 0.01)) then
+    if (version > (myVersion + 0.01)) then
       Craftie.VersionStable = false
     end
   end
